@@ -1,0 +1,44 @@
+{
+  "name": "saleor",
+  "version": "0.0.0",
+  "main": "Gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mirumee/saleor-dashboard-ui.git"
+  },
+  "author": "Mirumee Software",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/mirumee/saleor/issues"
+  },
+  "homepage": "http://getsaleor.com/",
+  "engines": {
+    "node": ">=10.6.0",
+    "npm": ">=6.1.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/styles": "^4.2.1",
+    "@types/classnames": "^2.2.9",
+    "classnames": "^2.2.6",
+    "typescript": "^3.5.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@types/react": "16.8.12",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint 'src/**/*.{ts,tsx}'",
+    "lint-fix": "tslint 'src/**/*.{ts,tsx}' --fix",
+    "start": "tsc --watch"
+  }
+}
