@@ -64,7 +64,7 @@ export type ConfirmButtonLabels = Record<
 >;
 export interface ConfirmButtonProps
   extends Omit<ButtonProps, "classes">,
-    ConfirmButtonLabels {
+    Partial<ConfirmButtonLabels> {
   transitionState: ConfirmButtonTransitionState;
 }
 
