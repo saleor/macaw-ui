@@ -22,14 +22,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export interface ActionDialogProps {
+export type ActionDialogLabelKeys = "cancelLabel" | "confirmLabel" | "title";
+export type ActionDialogLabels = Record<ActionDialogLabelKeys, React.ReactNode>;
+export interface ActionDialogProps extends ActionDialogLabels {
   children?: React.ReactNode;
-  cancelLabel: React.ReactNode;
-  confirmLabel: React.ReactNode;
   confirmButtonState: ConfirmButtonTransitionState;
   maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
   open: boolean;
-  title: React.ReactNode;
   variant?: "default" | "danger";
   onClose: () => void;
   onConfirm: () => void;

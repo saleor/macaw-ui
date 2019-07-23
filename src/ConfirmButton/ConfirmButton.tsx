@@ -57,9 +57,14 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface ConfirmButtonProps extends Omit<ButtonProps, "classes"> {
-  errorLabel?: React.ReactNode;
-  successLabel?: React.ReactNode;
+export type ConfirmButtonLabelKeys = "errorLabel" | "successLabel";
+export type ConfirmButtonLabels = Record<
+  ConfirmButtonLabelKeys,
+  React.ReactNode
+>;
+export interface ConfirmButtonProps
+  extends Omit<ButtonProps, "classes">,
+    ConfirmButtonLabels {
   transitionState: ConfirmButtonTransitionState;
 }
 
