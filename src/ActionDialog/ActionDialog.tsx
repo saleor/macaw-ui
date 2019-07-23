@@ -8,9 +8,7 @@ import makeStyles from "@material-ui/styles/makeStyles";
 import classNames from "classnames";
 import React from "react";
 
-import ConfirmButton, {
-  ConfirmButtonTransitionState
-} from "../ConfirmButton/ConfirmButton";
+import ConfirmButton, { ConfirmButtonTransitionState } from "../ConfirmButton";
 
 const useStyles = makeStyles((theme: Theme) => ({
   danger: {
