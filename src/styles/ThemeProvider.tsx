@@ -1,5 +1,3 @@
-// FIXME: https://github.com/mirumee/saleor/issues/4174
-import OldMuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import MuiThemeProvider from "@material-ui/styles/ThemeProvider";
 import React from "react";
 
@@ -84,12 +82,10 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
         toggleTheme
       }}
     >
-      <OldMuiThemeProvider theme={createTheme(isDark ? dark : light)}>
-        <MuiThemeProvider theme={createTheme(isDark ? dark : light)}>
-          <Baseline />
-          {children}
-        </MuiThemeProvider>
-      </OldMuiThemeProvider>
+      <MuiThemeProvider theme={createTheme(isDark ? dark : light)}>
+        <Baseline />
+        {children}
+      </MuiThemeProvider>
     </ThemeContext.Provider>
   );
 };
