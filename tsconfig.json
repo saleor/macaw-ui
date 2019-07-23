@@ -9,6 +9,7 @@
     "noUnusedParameters": true,
     "outDir": "build",
     "sourceMap": true,
+    "listEmittedFiles": true,
     "target": "es5"
   },
   "exclude": ["build", "node_modules"]
