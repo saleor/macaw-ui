@@ -1,5 +1,6 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { createStyles, withStyles } from "@material-ui/core/styles";
+import createStyles from "@material-ui/styles/createStyles";
+import withStyles from "@material-ui/styles/withStyles";
 import React from "react";
 
 const styles = createStyles({

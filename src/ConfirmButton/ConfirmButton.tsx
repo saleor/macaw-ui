@@ -1,14 +1,11 @@
 import { Omit } from "@material-ui/core";
 import Button, { ButtonProps } from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from "@material-ui/core/styles";
+import { Theme } from "@material-ui/core/styles";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
+import createStyles from "@material-ui/styles/createStyles";
+import withStyles, { WithStyles } from "@material-ui/styles/withStyles";
 import classNames from "classnames";
 import React from "react";
 
