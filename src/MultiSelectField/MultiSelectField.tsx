@@ -1,0 +1,121 @@
+import FilledInput from "@material-ui/core/FilledInput";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select, { SelectProps } from "@material-ui/core/Select";
+import { Theme } from "@material-ui/core/styles";
+import makeStyles from "@material-ui/styles/makeStyles";
+import React from "react";
+
+import Checkbox from "../Checkbox";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  checkbox: {
+    marginRight: -theme.spacing.unit * 2
+  },
+  formControl: {
+    width: "100%"
+  },
+  menuItem: {
+    alignItems: "center",
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%"
+  }
+}));
+
+export interface MultiSelectChoiceType {
+  value: string;
+  label: string;
+}
+
+export interface MultiSelectFieldProps {
+  choices: MultiSelectChoiceType[];
+  disabled?: boolean;
+  error?: boolean;
+  hint?: string;
+  label?: string;
+  name?: string;
+  noResultsText: string;
+  selectProps?: SelectProps;
+  value?: string[];
+  onChange(event: any);
+}
+
+export const MultiSelectField: React.FC<MultiSelectFieldProps> = props => {
+  const {
+    disabled,
+    error,
+    label,
+    choices,
+    value,
+    onChange,
+    name,
+    noResultsText,
+    hint,
+    selectProps
+  } = props;
+  const classes = useStyles(props);
+  const choicesByKey = disabled
+    ? {}
+    : choices.reduce((prev, curr) => {
+        prev[curr.value] = curr.label;
+        return prev;
+      }, {});
+
+  return (
+    <FormControl
+      className={classes.formControl}
+      error={error}
+      disabled={disabled}
+    >
+      {label && <InputLabel>{label}</InputLabel>}
+      <Select
+        multiple
+        fullWidth
+        renderValue={choiceValues =>
+          (choiceValues as string[])
+            .map(choiceValue => choicesByKey[choiceValue])
+            .join(", ")
+        }
+        value={value}
+        name={name}
+        onChange={onChange}
+        input={<FilledInput name={name} />}
+        {...selectProps}
+      >
+        {choices.length > 0 ? (
+          choices.map(choice => {
+            const isSelected = !!value.find(
+              selectedChoice => selectedChoice === choice.value
+            );
+
+            return (
+              <MenuItem value={choice.value} key={choice.value}>
+                <div className={classes.menuItem}>
+                  <span>{choice.label}</span>
+                  <Checkbox
+                    className={classes.checkbox}
+                    checked={isSelected}
+                    disableRipple={true}
+                    disableTouchRipple={true}
+                  />
+                </div>
+              </MenuItem>
+            );
+          })
+        ) : (
+          <MenuItem disabled={true}>{noResultsText}</MenuItem>
+        )}
+      </Select>
+      {hint && <FormHelperText>{hint}</FormHelperText>}
+    </FormControl>
+  );
+};
+MultiSelectField.defaultProps = {
+  value: []
+};
+
+MultiSelectField.displayName = "MultiSelectField";
+export default MultiSelectField;
