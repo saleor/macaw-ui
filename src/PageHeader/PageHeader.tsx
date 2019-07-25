@@ -9,7 +9,7 @@ import Skeleton from "../Skeleton";
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
     flex: 1,
-    fontSize: 24,
+    fontSize: `${24}px !important`,
     paddingBottom: theme.spacing.unit * 2
   }
 }));
