@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   indeterminate: {},
   root: {
     alignItems: "center",
-    borderRadius: "100%",
+    borderRadius: "100% !important",
     cursor: "pointer",
     display: "flex",
     height: 48,

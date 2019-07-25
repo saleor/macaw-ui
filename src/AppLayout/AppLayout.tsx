@@ -202,7 +202,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex"
   },
   userChip: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: `${theme.palette.background.paper} !important`,
     color: theme.palette.text.primary
   },
   userMenuContainer: {
