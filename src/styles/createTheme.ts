@@ -1,4 +1,7 @@
-import { createMuiTheme, Theme } from "@material-ui/core/styles";
+import {
+  createMuiTheme as innerCreateMuiTheme,
+  Theme
+} from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import TextField from "@material-ui/core/TextField";
 
@@ -11,13 +14,13 @@ const createShadow = (pv, pb, ps, uv, ub, us, av, ab, as) =>
 
 export const ICONBUTTON_SIZE = 48;
 
-export type IThemeColors = Record<
+export type MacawTheme = Record<
   "primary" | "secondary" | "error" | "paperBorder" | "autofill",
   string
 > & {
   background: Record<"default" | "paper", string>;
 } & {
-  font: Record<"default" | "gray", string>;
+  font: Record<"default" | "gray" | "button" | "textButton", string>;
 } & {
   gray: Record<"default" | "disabled", string>;
 } & {
@@ -26,8 +29,13 @@ export type IThemeColors = Record<
 
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
-export default (colors: IThemeColors): Theme =>
-  createMuiTheme({
+TextField.defaultProps = {
+  ...TextField.defaultProps,
+  variant: "filled"
+};
+
+function createMuiTheme(colors: MacawTheme): Theme {
+  return innerCreateMuiTheme({
     overrides: {
       MuiButton: {
         contained: {
@@ -35,7 +43,18 @@ export default (colors: IThemeColors): Theme =>
             backgroundColor: fade(colors.primary, 0.12)
           }
         },
+        flat: {
+          "& span": {
+            color: colors.font.textButton
+          }
+        },
+        flatPrimary: {
+          "& span": {
+            color: colors.font.textButton
+          }
+        },
         label: {
+          color: colors.font.button,
           fontWeight: 600
         },
         root: {
@@ -363,8 +382,6 @@ export default (colors: IThemeColors): Theme =>
       useNextVariants: true
     }
   });
+}
 
-TextField.defaultProps = {
-  ...TextField.defaultProps,
-  variant: "filled"
-};
+export default createMuiTheme;
