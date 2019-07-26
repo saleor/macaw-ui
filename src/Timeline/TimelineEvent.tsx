@@ -12,9 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.typography.caption.color
   },
   dateExpander: {
-    color: theme.typography.caption.color,
-    position: "absolute",
-    right: theme.spacing.unit * 3
+    color: theme.typography.caption.color
   },
   dot: {
     backgroundColor: theme.palette.primary.main,
@@ -24,6 +22,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "absolute",
     top: 6,
     width: 8
+  },
+  expanderSummary: {
+    display: "flex",
+    justifyContent: "space-between"
   },
   noExpander: {
     alignItems: "center",
@@ -72,7 +74,12 @@ export const TimelineEvent: React.FC<TimelineEventProps> = props => {
       <span className={classes.dot} />
       {children ? (
         <ExpansionPanel className={classes.panel} elevation={0}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <ExpansionPanelSummary
+            classes={{
+              content: classes.expanderSummary
+            }}
+            expandIcon={<ExpandMoreIcon />}
+          >
             <Typography>{title}</Typography>
             <Typography className={classes.dateExpander}>{title}</Typography>
           </ExpansionPanelSummary>

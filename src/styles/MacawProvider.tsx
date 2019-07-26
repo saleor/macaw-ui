@@ -13,9 +13,10 @@ const MacawThemeProvider: React.FC<MacawThemeProviderProps> = ({
   theme
 }) => {
   const [isMenuExpanded, setMenuExpansionState] = React.useState(true);
+  const muiTheme = createMuiTheme(theme);
 
   return (
-    <MuiThemeProvider theme={createMuiTheme(theme)}>
+    <MuiThemeProvider theme={muiTheme}>
       <Baseline />
       <AppLayoutContextProvider
         menu={{

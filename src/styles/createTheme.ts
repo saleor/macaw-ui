@@ -43,16 +43,6 @@ function createMuiTheme(colors: MacawTheme): Theme {
             backgroundColor: fade(colors.primary, 0.12)
           }
         },
-        flat: {
-          "& span": {
-            color: colors.font.textButton
-          }
-        },
-        flatPrimary: {
-          "& span": {
-            color: colors.font.textButton
-          }
-        },
         label: {
           color: colors.font.button,
           fontWeight: 600
@@ -62,6 +52,16 @@ function createMuiTheme(colors: MacawTheme): Theme {
             marginLeft: 8
           },
           borderRadius: 8
+        },
+        text: {
+          "& span": {
+            color: colors.font.textButton
+          }
+        },
+        textPrimary: {
+          "& span": {
+            color: colors.font.textButton
+          }
         }
       },
       MuiCard: {
@@ -205,26 +205,6 @@ function createMuiTheme(colors: MacawTheme): Theme {
       },
 
       MuiSwitch: {
-        bar: {
-          "$colorPrimary$checked + &": {
-            backgroundColor: colors.primary
-          },
-          backgroundColor: colors.gray.default,
-          borderRadius: 12,
-          height: 24,
-          marginTop: -12,
-          opacity: [["1"], "!important"] as any,
-          width: 48
-        },
-        icon: {
-          backgroundColor: colors.background.paper,
-          boxShadow: "none",
-          marginLeft: 4
-        },
-        iconChecked: {
-          backgroundColor: colors.background.paper,
-          boxShadow: "none"
-        },
         root: {
           "& $checked": {
             transform: "translateX(24px)"
@@ -236,6 +216,22 @@ function createMuiTheme(colors: MacawTheme): Theme {
               }
             }
           }
+        },
+        thumb: {
+          backgroundColor: colors.background.paper,
+          boxShadow: "none",
+          marginLeft: 4
+        },
+        track: {
+          "$colorPrimary$checked + &": {
+            backgroundColor: colors.primary
+          },
+          backgroundColor: colors.gray.default,
+          borderRadius: 12,
+          height: 24,
+          marginTop: -12,
+          opacity: [["1"], "!important"] as any,
+          width: 48
         }
       },
       MuiTable: {
@@ -380,8 +376,7 @@ function createMuiTheme(colors: MacawTheme): Theme {
       },
       h5: {
         fontSize: "1.3125rem"
-      },
-      useNextVariants: true
+      }
     }
   });
 }

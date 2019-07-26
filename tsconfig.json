@@ -12,5 +12,6 @@
     "listEmittedFiles": true,
     "target": "es5"
   },
-  "exclude": ["build", "node_modules"]
+  "exclude": ["build", "node_modules", "src/**/*.test.*"],
+  "include": ["src"]
 }
