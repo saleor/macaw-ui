@@ -68,6 +68,8 @@ function createMuiTheme(colors: MacawTheme): Theme {
         root: {
           borderColor: colors.paperBorder,
           borderRadius: 8,
+          borderStyle: "solid",
+          borderWidth: 1,
           boxShadow: "none",
           overflow: "visible"
         }
