@@ -1,17 +1,16 @@
 {
-  "name": "saleor-dashboard-ui",
-  "version": "0.0.0",
+  "name": "macaw-ui",
+  "version": "0.1.0",
   "main": "build/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mirumee/saleor-dashboard-ui.git"
+    "url": "git://github.com/mirumee/macaw-ui.git"
   },
   "author": "Mirumee Software",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/mirumee/saleor/issues"
+    "url": "https://github.com/mirumee/macaw-ui/issues"
   },
-  "homepage": "http://getsaleor.com/",
   "engines": {
     "node": ">=10.6.0",
     "npm": ">=6.1.0"
