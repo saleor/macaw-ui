@@ -44,6 +44,7 @@
     "np": "^5.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "rimraf": "^3.0.0",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0"
   },
@@ -55,6 +56,8 @@
     "build": "tsc",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
     "lint-fix": "tslint 'src/**/*.{ts,tsx}' --fix",
+    "prebuild": "rimraf build",
     "start": "tsc --watch"
-  }
+  },
+  "sideEffects": false
 }
