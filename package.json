@@ -57,6 +57,7 @@
     "lint": "tslint 'src/**/*.{ts,tsx}'",
     "lint-fix": "tslint 'src/**/*.{ts,tsx}' --fix",
     "prebuild": "rimraf build",
+    "release": "npm run build && np --contents build",
     "start": "tsc --watch"
   },
   "sideEffects": false
