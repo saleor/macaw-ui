@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     borderRadius: 4,
     left: 0,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(),
     padding: 8,
     position: "absolute",
     right: 0,
@@ -72,13 +72,11 @@ interface SingleAutocompleteSelectFieldState {
   }>;
 }
 
-const DebounceAutocomplete: React.ComponentType<
-  DebounceProps<string>
-> = Debounce;
+const DebounceAutocomplete: React.ComponentType<DebounceProps<
+  string
+>> = Debounce;
 
-const SingleAutocompleteSelectFieldComponent: React.FC<
-  SingleAutocompleteSelectFieldProps
-> = props => {
+const SingleAutocompleteSelectFieldComponent: React.FC<SingleAutocompleteSelectFieldProps> = props => {
   const {
     choices,
     allowCustomValues,

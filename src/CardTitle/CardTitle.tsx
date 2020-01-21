@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   hr: {
     border: "none",
-    borderTop: `1px solid ${theme.overrides.MuiCard.root.borderColor}`,
+    borderTop: `1px solid ${theme.palette.divider}`,
     height: 0,
     marginBottom: 0,
     marginTop: 0,
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: 1
   },
   toolbar: {
-    marginRight: -theme.spacing.unit
+    marginRight: -theme.spacing()
   }
 }));
 

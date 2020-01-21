@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   root: {
     display: "grid",
-    gridColumnGap: theme.spacing.unit * 3 + "px",
-    gridRowGap: theme.spacing.unit * 3 + "px",
+    gridColumnGap: theme.spacing(3) + "px",
+    gridRowGap: theme.spacing(3) + "px",
     [theme.breakpoints.down("sm")]: {
-      gridRowGap: theme.spacing.unit + "px",
+      gridRowGap: theme.spacing() + "px",
       gridTemplateColumns: "1fr"
     }
   },

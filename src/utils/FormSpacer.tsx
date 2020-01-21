@@ -4,7 +4,7 @@ import React from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    marginTop: theme.spacing.unit * 3
+    marginTop: theme.spacing(3)
   }
 }));
 

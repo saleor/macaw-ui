@@ -5,11 +5,11 @@ import React from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    borderColor: theme.overrides.MuiCard.root.borderColor,
+    borderColor: theme.palette.divider,
     borderStyle: "solid",
     borderWidth: "0 0 0 2px",
     marginLeft: 20,
-    paddingLeft: theme.spacing.unit * 3
+    paddingLeft: theme.spacing(3)
   }
 }));
 

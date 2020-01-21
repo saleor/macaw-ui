@@ -42,18 +42,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     "&:last-child": {
       paddingRight: 0
     },
-    width: 48 + theme.spacing.unit / 2
+    width: 48 + theme.spacing(0.5)
   },
   indicator: {
     color: theme.palette.text.disabled,
     display: "inline-block",
     left: 0,
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
     position: "absolute"
   },
   offsetCell: {
     "&:first-child": {
-      paddingLeft: theme.spacing.unit * 3
+      paddingLeft: theme.spacing(3)
     },
     position: "relative"
   },

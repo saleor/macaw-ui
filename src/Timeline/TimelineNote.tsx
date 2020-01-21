@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     top: 0
   },
   card: {
-    marginBottom: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit * 3,
+    marginBottom: theme.spacing(3),
+    marginLeft: theme.spacing(3),
     position: "relative"
   },
   cardContent: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   content: {
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing(2)
   },
   root: {
     position: "relative"
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     display: "flex",
     justifyContent: "space-between",
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing()
   }
 }));
 

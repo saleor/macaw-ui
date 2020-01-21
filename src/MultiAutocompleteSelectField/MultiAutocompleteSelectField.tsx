@@ -34,12 +34,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   chipContainer: {
     display: "flex",
     flexDirection: "column",
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing()
   },
   chipInner: {
     "& svg": {
       color: theme.palette.primary.contrastText,
-      marginTop: -theme.spacing.unit / 2
+      marginTop: -theme.spacing(0.5)
     },
     alignItems: "center",
     background: fade(theme.palette.primary.main, 0.6),
@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.primary.contrastText,
     display: "flex",
     justifyContent: "space-between",
-    margin: `${theme.spacing.unit}px 0`,
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit
+    margin: theme.spacing(1, 0),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing()
   },
   chipLabel: {
     color: `${theme.palette.primary.contrastText} !important`
@@ -59,12 +59,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative"
   },
   hr: {
-    margin: `${theme.spacing.unit}px 0`
+    margin: theme.spacing(1, 0)
   },
   paper: {
     left: 0,
-    marginTop: theme.spacing.unit,
-    padding: theme.spacing.unit,
+    marginTop: theme.spacing(),
+    padding: theme.spacing(),
     position: "absolute",
     right: 0,
     zIndex: 2
@@ -98,13 +98,11 @@ export interface MultiAutocompleteSelectFieldProps
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
-const DebounceAutocomplete: React.ComponentType<
-  DebounceProps<string>
-> = Debounce;
+const DebounceAutocomplete: React.ComponentType<DebounceProps<
+  string
+>> = Debounce;
 
-export const MultiAutocompleteSelectFieldComponent: React.FC<
-  MultiAutocompleteSelectFieldProps
-> = props => {
+export const MultiAutocompleteSelectFieldComponent: React.FC<MultiAutocompleteSelectFieldProps> = props => {
   const {
     addCustomValueText,
     allowCustomValues,
@@ -260,9 +258,11 @@ export const MultiAutocompleteSelectFieldComponent: React.FC<
     </>
   );
 };
-const MultiAutocompleteSelectField: React.FC<
-  MultiAutocompleteSelectFieldProps
-> = ({ choices, fetchChoices, ...props }) => {
+const MultiAutocompleteSelectField: React.FC<MultiAutocompleteSelectFieldProps> = ({
+  choices,
+  fetchChoices,
+  ...props
+}) => {
   const [query, setQuery] = React.useState("");
   if (fetchChoices) {
     return (

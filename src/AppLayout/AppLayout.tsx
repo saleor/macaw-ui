@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     zIndex: 1201
   },
   arrow: {
-    marginLeft: theme.spacing.unit * 2,
+    marginLeft: theme.spacing(2),
     transition: theme.transitions.duration.standard + "ms"
   },
   content: {
@@ -52,13 +52,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: drawerWidth
   },
   darkThemeSwitch: {
-    marginRight: theme.spacing.unit * 2
+    marginRight: theme.spacing(2)
   },
   header: {
     display: "flex",
     height: 40,
-    marginBottom: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit * 2
+    marginBottom: theme.spacing(3),
+    marginTop: theme.spacing(2)
   },
   hide: {
     opacity: 0
@@ -143,8 +143,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "50%",
     cursor: "pointer",
     height: 42,
-    left: theme.spacing.unit,
-    marginRight: theme.spacing.unit * 2,
+    left: theme.spacing(),
+    marginRight: theme.spacing(2),
     position: "relative",
     transform: "rotate(0deg)",
     transition: `${theme.transitions.duration.shorter}ms ease-in-out`,
@@ -192,7 +192,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: 0
     },
     background: theme.palette.background.paper,
-    padding: `0 ${theme.spacing.unit * 4}px`
+    padding: `0 ${theme.spacing(4)}px`
   },
   spacer: {
     flex: 1
@@ -213,9 +213,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     flex: 1,
     flexGrow: 1,
     marginLeft: 0,
-    paddingBottom: theme.spacing.unit,
+    paddingBottom: theme.spacing(),
     [theme.breakpoints.up("sm")]: {
-      paddingBottom: theme.spacing.unit * 3
+      paddingBottom: theme.spacing(3)
     }
   }
 }));

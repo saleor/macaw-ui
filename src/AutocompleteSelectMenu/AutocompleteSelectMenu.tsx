@@ -40,9 +40,9 @@ const validationError: Error = new Error(
   "Values supplied to AutocompleteSelectMenu should be unique"
 );
 
-const DebounceAutocomplete: React.ComponentType<
-  DebounceProps<string>
-> = Debounce;
+const DebounceAutocomplete: React.ComponentType<DebounceProps<
+  string
+>> = Debounce;
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -50,13 +50,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative"
   },
   menuBack: {
-    marginLeft: -theme.spacing.unit / 2,
-    marginRight: theme.spacing.unit
+    marginLeft: -theme.spacing(0.5),
+    marginRight: theme.spacing()
   },
   paper: {
     left: 0,
-    marginTop: theme.spacing.unit,
-    padding: theme.spacing.unit,
+    marginTop: theme.spacing(),
+    padding: theme.spacing(),
     position: "absolute",
     right: 0,
     zIndex: 2

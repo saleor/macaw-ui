@@ -2,7 +2,8 @@ import {
   createMuiTheme as innerCreateMuiTheme,
   Theme
 } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
+import { darken, fade } from "@material-ui/core/styles/colorManipulator";
+import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
 
 const createShadow = (pv, pb, ps, uv, ub, us, av, ab, as) =>
@@ -20,19 +21,33 @@ export type MacawTheme = Record<
 > & {
   background: Record<"default" | "paper", string>;
 } & {
-  font: Record<"default" | "gray" | "button" | "textButton", string>;
+  checkbox: Record<"default", string>;
+} & {
+  divider: string;
+} & {
+  font: Record<
+    "default" | "gray" | "button" | "textButton" | "textDisabled",
+    string
+  >;
 } & {
   gray: Record<"default" | "disabled", string>;
 } & {
-  input: Record<"default" | "focused" | "disabled", string>;
+  input: Record<
+    | "default"
+    | "border"
+    | "disabled"
+    | "disabledBackground"
+    | "disabledText"
+    | "error"
+    | "text"
+    | "textHover",
+    string
+  >;
+} & {
+  theme: "dark" | "light";
 };
 
 const fontFamily = '"Inter", "roboto", "sans-serif"';
-
-TextField.defaultProps = {
-  ...TextField.defaultProps,
-  variant: "filled"
-};
 
 function createMuiTheme(colors: MacawTheme): Theme {
   return innerCreateMuiTheme({
@@ -41,16 +56,21 @@ function createMuiTheme(colors: MacawTheme): Theme {
         contained: {
           "&$disabled": {
             backgroundColor: fade(colors.primary, 0.12)
-          }
+          },
+          "&:active": {
+            boxShadow: null
+          },
+          "&:hover": {
+            boxShadow: null
+          },
+          boxShadow: null
         },
-        flat: {
-          "& span": {
-            color: colors.font.textButton
-          }
-        },
-        flatPrimary: {
-          "& span": {
-            color: colors.font.textButton
+        containedPrimary: {
+          "&:active": {
+            backgroundColor: darken(colors.primary, 0.4)
+          },
+          "&:hover": {
+            backgroundColor: darken(colors.primary, 0.1)
           }
         },
         label: {
@@ -61,7 +81,17 @@ function createMuiTheme(colors: MacawTheme): Theme {
           "& svg": {
             marginLeft: 8
           },
-          borderRadius: 8
+          borderRadius: 4
+        },
+        text: {
+          "& span": {
+            color: colors.font.default
+          }
+        },
+        textPrimary: {
+          "& span": {
+            color: colors.primary
+          }
         }
       },
       MuiCard: {
@@ -70,7 +100,6 @@ function createMuiTheme(colors: MacawTheme): Theme {
           borderRadius: 8,
           borderStyle: "solid",
           borderWidth: 1,
-          boxShadow: "none",
           overflow: "visible"
         }
       },
@@ -81,42 +110,57 @@ function createMuiTheme(colors: MacawTheme): Theme {
       },
       MuiCardContent: {
         root: {
-          paddingLeft: 24,
-          paddingRight: 24
+          padding: "24px"
         }
       },
-      MuiFilledInput: {
+      MuiChip: {
+        avatar: {
+          height: 32,
+          left: -5,
+          position: "relative",
+          width: 32
+        }
+      },
+      MuiDialogActions: {
         root: {
-          "&$disabled": {
-            backgroundColor: colors.input.disabled
+          borderTop: `1px solid ${colors.divider}`,
+          padding: `16px 24px`
+        }
+      },
+      MuiDialogContent: {
+        root: {
+          "& label": {
+            overflowX: "hidden"
           },
-          "&$focused": {
-            backgroundColor: colors.input.focused
-          },
-          "&:hover": {
-            backgroundColor: colors.input.default
-          },
-          backgroundColor: colors.input.default
+          padding: 24
+        }
+      },
+      MuiDialogContentText: {
+        root: {
+          "&:last-child": {
+            marginBottom: 0
+          }
+        }
+      },
+      MuiDialogTitle: {
+        root: {
+          borderBottom: `1px solid ${colors.divider}`
+        }
+      },
+      MuiFormControlLabel: {
+        label: {
+          marginLeft: 4
+        }
+      },
+      MuiFormLabel: {
+        filled: {
+          "&&:not($error)": {
+            color: colors.primary
+          }
         },
-        underline: {
-          "&$focused": {
-            "&:after": {
-              borderBottomColor: colors.primary
-            }
-          },
-          "&:before": {
-            borderBottomColor: "rgba(0, 0, 0, 0)"
-          },
-          "&:hover": {
-            "&:not($disabled)": {
-              "&:not($focused)": {
-                "&:not($error)": {
-                  "&:before": {
-                    borderBottomColor: colors.primary
-                  }
-                }
-              }
-            }
+        root: {
+          "&&$focused:not($error)": {
+            color: colors.font.gray
           }
         }
       },
@@ -145,23 +189,48 @@ function createMuiTheme(colors: MacawTheme): Theme {
       },
       MuiInputBase: {
         input: {
+          "&$disabled": {
+            color: colors.input.disabledText
+          },
           "&::placeholder": {
             color: colors.font.gray,
             opacity: "1 !important" as any
-          }
+          },
+          zIndex: 2
         }
       },
       MuiInputLabel: {
         filled: {
-          transform: "translate(12px, 10px) scale(0.75)"
+          zIndex: 2
         },
         formControl: {
           transform: "translate(0, 1.5px) scale(0.75)",
           transformOrigin: "top left" as "top left",
           width: "100%"
         },
+        outlined: {
+          "&$shrink": {
+            transform: "translate(12px, 9px) scale(0.75)"
+          },
+          transform: "translate(14px, 18px) scale(1)",
+          zIndex: 9
+        },
         root: {
-          color: [[colors.primary], "!important"] as any
+          "&$disabled": {
+            color: `${fade(colors.primary, 0.4)} !important` as any
+          },
+          "&$error": {
+            "&$focused": {
+              color: colors.error
+            },
+            color: colors.error
+          },
+          "&&$focused": {
+            "&:not($error)": {
+              color: colors.primary
+            }
+          },
+          color: colors.input.text
         },
         shrink: {
           // Negates x0.75 scale
@@ -197,45 +266,166 @@ function createMuiTheme(colors: MacawTheme): Theme {
       },
       MuiMenuItem: {
         root: {
-          "&:hover, &$selected, &$selected:focus": {
-            backgroundColor: colors.input.default
+          "&$selected, &$selected:focus, &$selected:hover": {
+            backgroundColor: [colors.background.default, "!important"] as any,
+            color: colors.primary,
+            fontWeight: 700
+          },
+          "&:hover": {
+            backgroundColor: [colors.background.default, "!important"] as any,
+            color: colors.font.default,
+            fontWeight: 400
           },
           borderRadius: 4
         }
       },
-
+      MuiOutlinedInput: {
+        input: {
+          "&:-webkit-autofill": {
+            borderRadius: 4,
+            boxShadow: `0 0 0px 1000px rgba(19, 190, 187, 0.1) inset`,
+            zIndex: 0
+          },
+          "&::placeholder": {
+            opacity: [[0], "!important"] as any
+          },
+          color: colors.input.text,
+          padding: "23px 12px 10px 12px"
+        },
+        inputMultiline: {
+          left: -2,
+          padding: "10px 0",
+          position: "relative"
+        },
+        root: {
+          "& fieldset": {
+            "&&:not($error)": {
+              borderColor: colors.input.border
+            },
+            top: 0,
+            zIndex: 1
+          },
+          "& legend": {
+            display: "none"
+          },
+          "&$disabled": {
+            "& fieldset": {
+              backgroundColor: colors.input.disabledBackground,
+              borderColor: [[colors.input.disabled], "!important"] as any
+            },
+            "& input": {
+              color: colors.input.disabledText,
+              zIndex: 2
+            }
+          },
+          "&$error": {
+            "&$focused": {
+              "& fieldset": {
+                borderColor: colors.error
+              },
+              "& input": {
+                color: colors.error,
+                zIndex: 2
+              }
+            },
+            "&:hover": {
+              "& fieldset": {
+                borderColor: colors.error
+              },
+              "& input": {
+                color: colors.error,
+                zIndex: 2
+              }
+            }
+          },
+          "&$focused": {
+            "& input": {
+              "& fieldset": {
+                borderColor: colors.primary
+              },
+              "&::placeholder": {
+                opacity: [[1], "!important"] as any
+              },
+              color: colors.font.default
+            }
+          },
+          "&:hover": {
+            "& input": {
+              color: colors.font.default
+            },
+            "&&&": {
+              "& fieldset": {
+                borderColor: colors.primary
+              },
+              "&$error fieldset": {
+                borderColor: colors.input.error
+              }
+            }
+          },
+          borderColor: colors.input.border,
+          top: 0
+        }
+      },
+      MuiSnackbarContent: {
+        action: {
+          "& $MuiIconButton": {
+            "& svg": {
+              color: colors.font.default
+            }
+          },
+          alignSelf: "baseline"
+        },
+        message: {
+          fontSize: 16
+        },
+        root: {
+          backgroundColor: colors.background.paper,
+          boxShadow:
+            "0 6px 10px 0px rgba(0, 0, 0, 0.15), 0 1px 18px 0px rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.10)",
+          color: colors.font.default,
+          display: "grid",
+          gridTemplateColumns: "1fr 56px",
+          maxWidth: 480
+        }
+      },
       MuiSwitch: {
-        bar: {
+        colorPrimary: {
+          "&$checked": {
+            color: colors.background.paper
+          }
+        },
+        root: {
+          "&$disabled": {
+            "&$switchBase": {
+              "& + $thumb": {
+                backgroundColor: colors.gray.disabled
+              }
+            }
+          },
+          height: 48,
+          width: 72
+        },
+        switchBase: {
+          "&$checked": {
+            transform: "translateX(23px)"
+          },
+          boxShadow: "none",
+          left: 1,
+          marginLeft: 4,
+          top: 5
+        },
+        thumb: {
+          boxShadow: "none"
+        },
+        track: {
           "$colorPrimary$checked + &": {
             backgroundColor: colors.primary
           },
           backgroundColor: colors.gray.default,
           borderRadius: 12,
           height: 24,
-          marginTop: -12,
           opacity: [["1"], "!important"] as any,
           width: 48
-        },
-        icon: {
-          backgroundColor: colors.background.paper,
-          boxShadow: "none",
-          marginLeft: 4
-        },
-        iconChecked: {
-          backgroundColor: colors.background.paper,
-          boxShadow: "none"
-        },
-        root: {
-          "& $checked": {
-            transform: "translateX(24px)"
-          },
-          "&$disabled": {
-            "&$switchBase": {
-              "& + $bar": {
-                backgroundColor: colors.gray.disabled
-              }
-            }
-          }
         }
       },
       MuiTable: {
@@ -246,13 +436,12 @@ function createMuiTheme(colors: MacawTheme): Theme {
       },
       MuiTableCell: {
         body: {
-          fontSize: ".875rem",
+          fontSize: "1rem",
           paddingBottom: 8,
           paddingTop: 8
         },
         head: {
-          fontSize: ".875rem",
-          fontWeight: 400
+          fontSize: "1rem"
         },
         paddingCheckbox: {
           "&:first-child": {
@@ -273,7 +462,7 @@ function createMuiTheme(colors: MacawTheme): Theme {
           },
           borderBottomColor: colors.paperBorder,
           height: 56,
-          padding: "4px 24px 4px 0"
+          padding: "4px 24px"
         }
       },
       MuiTableRow: {
@@ -289,7 +478,7 @@ function createMuiTheme(colors: MacawTheme): Theme {
         },
         hover: {
           "$root&:hover": {
-            backgroundColor: fade(colors.primary, 0.2)
+            backgroundColor: fade(colors.primary, 0.3)
           }
         },
         root: {
@@ -308,17 +497,23 @@ function createMuiTheme(colors: MacawTheme): Theme {
         ripple: {
           "&$rippleVisible": {
             backgroundColor: fade(colors.primary, 0.2)
-          }
+          },
+          borderRadius: "100%"
         }
       }
     },
     palette: {
+      action: {
+        active: colors.checkbox.default
+      },
       background: colors.background,
+      divider: colors.divider,
       error: {
         main: colors.error
       },
       primary: {
         contrastText: "#ffffff",
+        dark: colors.font.textDisabled,
         main: colors.primary
       },
       secondary: {
@@ -330,7 +525,8 @@ function createMuiTheme(colors: MacawTheme): Theme {
         hint: colors.font.gray,
         primary: colors.font.default,
         secondary: colors.font.gray
-      }
+      },
+      type: colors.theme
     },
     props: {
       MuiFormControl: {
@@ -369,21 +565,27 @@ function createMuiTheme(colors: MacawTheme): Theme {
         fontFamily
       },
       body1: {
-        fontSize: "0.75rem",
-        fontWeight: 600 as 600
+        color: colors.font.default
       },
-      body2: {
-        fontSize: "1rem"
-      },
+      fontFamily,
       h4: {
         color: colors.font.default
       },
       h5: {
         fontSize: "1.3125rem"
-      },
-      useNextVariants: true
+      }
     }
   });
 }
+
+TextField.defaultProps = {
+  ...TextField.defaultProps,
+  variant: "outlined"
+};
+
+Card.defaultProps = {
+  ...Card.defaultProps,
+  elevation: 0
+};
 
 export default createMuiTheme;

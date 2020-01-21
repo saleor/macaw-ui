@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       }
     },
     display: "block",
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
     textDecoration: "none"
   },
   menuListNestedOpen: {

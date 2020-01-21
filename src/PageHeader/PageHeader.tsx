@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     flex: 1,
     fontSize: `${24}px !important`,
-    paddingBottom: theme.spacing.unit * 2
+    paddingBottom: theme.spacing(2)
   }
 }));
 

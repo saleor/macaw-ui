@@ -16,16 +16,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: "100%"
     },
     alignSelf: "flex-start",
-    marginRight: theme.spacing.unit * 5.5
+    marginRight: theme.spacing(5.5)
   },
   input: {
-    marginTop: -theme.spacing.unit
+    marginTop: -theme.spacing()
   },
   noteRoot: {
-    left: -theme.spacing.unit * 8.5 - 1,
-    marginBottom: theme.spacing.unit * 3,
+    left: -theme.spacing(8.5) - 1,
+    marginBottom: theme.spacing(3),
     position: "relative",
-    width: `calc(100% + ${theme.spacing.unit * 8.5}px)`
+    width: `calc(100% + ${theme.spacing(8.5)}px)`
   },
   noteTitle: {
     "&:last-child": {

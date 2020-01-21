@@ -9,7 +9,7 @@ interface HrProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: theme.overrides.MuiCard.root.borderColor,
+    backgroundColor: theme.palette.divider,
     border: "none",
     display: "block",
     height: 1,

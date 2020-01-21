@@ -12,16 +12,16 @@ import * as React from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   formControl: {
-    padding: `0 ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(0, 2),
     width: "100%"
   },
   formLabel: {
-    marginLeft: -theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit
+    marginLeft: -theme.spacing(0.5),
+    paddingBottom: theme.spacing()
   },
   radioLabel: {
     "& > span": {
-      padding: theme.spacing.unit
+      padding: theme.spacing()
     }
   }
 }));
