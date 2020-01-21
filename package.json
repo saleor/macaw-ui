@@ -49,6 +49,7 @@
   "files": [
     "build"
   ],
+  "private": false,
   "scripts": {
     "build": "tsc",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
