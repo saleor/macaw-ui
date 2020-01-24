@@ -56,7 +56,7 @@
     "lint-fix": "tslint 'src/**/*.{ts,tsx}' --fix",
     "prebuild": "rimraf build",
     "postbuild": "node scripts/create-packages.js",
-    "release": "npm run build && np --contents build",
+    "release": "npm run build && npm run postbuild && np --contents build",
     "start": "tsc --watch"
   },
   "sideEffects": false
