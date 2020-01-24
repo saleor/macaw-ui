@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { BaseExtensionMessageData, ExtensionMessageEvent } from "./types";
 
-function useExtensionMessage<T extends BaseExtensionMessageData>(
+export function useExtensionMessage<T extends BaseExtensionMessageData>(
   handle: (message: ExtensionMessageEvent<T>) => void
 ) {
   useEffect(() => {

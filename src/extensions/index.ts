@@ -1,4 +1,3 @@
-export * from "./sendMessageToDashboard";
-export * from "./sendMessageToExtension";
+export * from "./sendMessage";
 export * from "./types";
 export * from "./useExtensionMessage";
