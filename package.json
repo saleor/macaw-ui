@@ -20,6 +20,7 @@
     "classnames": "^2.2.6",
     "downshift": "^1.31.16",
     "lodash-es": "^4.17.15",
+    "react-helmet": "^5.2.1",
     "react-inlinesvg": "^1.1.2",
     "string-similarity": "^1.2.2"
   },
