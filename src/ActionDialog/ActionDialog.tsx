@@ -3,32 +3,38 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Theme } from "@material-ui/core/styles";
-import makeStyles from "@material-ui/styles/makeStyles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import classNames from "classnames";
 import React from "react";
 
-import ConfirmButton, { ConfirmButtonTransitionState } from "../ConfirmButton";
+import ConfirmButton, {
+  ConfirmButtonTransitionState
+} from "../ConfirmButton/ConfirmButton";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  danger: {
-    "&:hover": {
-      backgroundColor: theme.palette.error.main
-    },
-    backgroundColor: theme.palette.error.main,
-    color: theme.palette.error.contrastText
-  }
-}));
+const useStyles = makeStyles(
+  theme => ({
+    danger: {
+      "&:hover": {
+        backgroundColor: theme.palette.error.main
+      },
+      backgroundColor: theme.palette.error.main,
+      color: theme.palette.error.contrastText
+    }
+  }),
+  { name: "ActionDialog" }
+);
 
+export interface DialogProps {
+  open: boolean;
+  onClose: () => void;
+}
 export type ActionDialogLabelKeys = "cancelLabel" | "confirmLabel" | "title";
 export type ActionDialogLabels = Record<ActionDialogLabelKeys, React.ReactNode>;
-export interface ActionDialogProps extends ActionDialogLabels {
+export interface ActionDialogProps extends ActionDialogLabels, DialogProps {
   children?: React.ReactNode;
   confirmButtonState: ConfirmButtonTransitionState;
   maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
-  open: boolean;
   variant?: "default" | "danger";
-  onClose: () => void;
   onConfirm: () => void;
 }
 
@@ -43,12 +49,20 @@ const ActionDialog: React.FC<ActionDialogProps> = props => {
     title,
     variant,
     onConfirm,
-    onClose
+    onClose,
+    ...rest
   } = props;
+
   const classes = useStyles(props);
 
   return (
-    <Dialog onClose={onClose} open={open} fullWidth maxWidth={maxWidth}>
+    <Dialog
+      fullWidth
+      maxWidth={maxWidth}
+      onClose={onClose}
+      open={open}
+      {...rest}
+    >
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
