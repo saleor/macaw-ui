@@ -46,6 +46,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
   useEffect(() => {
     sendThemeToExtension();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDark]);
 
   const theme = createTheme(isDark ? dark : light);

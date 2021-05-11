@@ -1,15 +1,15 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { BaseExtensionMessageData, ExtensionMessageEvent } from "./types";
+import { BaseExtensionMessageData, ExtensionMessageEvent } from './types';
 
 export function useExtensionMessage<T extends BaseExtensionMessageData>(
   handle: (message: ExtensionMessageEvent<T>) => void
 ) {
   useEffect(() => {
-    window.addEventListener("message", handle);
+    window.addEventListener('message', handle);
 
-    return () => window.removeEventListener("message", handle);
-  }, []);
+    return () => window.removeEventListener('message', handle);
+  }, [handle]);
 }
 
 export default useExtensionMessage;
