@@ -6,9 +6,10 @@ import {
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
 import { useContext } from 'react';
-import { IThemeContext, ThemeContext } from '../Theme';
+import type { SaleorThemeContext } from './types';
 
-import { SaleorTheme } from './types';
+import { SaleorTheme } from '../createSaleorTheme/types';
+import { ThemeContext } from './context';
 
 export function makeStyles<
   Props extends Record<string, any> = {},
@@ -22,7 +23,7 @@ export function makeStyles<
   return muiMakeStyles(styles, options);
 }
 
-export function useTheme(): SaleorTheme & IThemeContext {
+export function useTheme(): SaleorTheme & SaleorThemeContext {
   const saleorTheme = useMuiTheme<SaleorTheme>();
   const themeInfo = useContext(ThemeContext);
 

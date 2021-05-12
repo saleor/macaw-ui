@@ -1,6 +1,6 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { makeStyles } from './createSaleorTheme';
+import { makeStyles } from './styles';
 import React from 'react';
 
 const useStyles = makeStyles(

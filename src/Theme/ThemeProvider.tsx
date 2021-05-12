@@ -7,28 +7,26 @@ import {
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 
-import Baseline from '../Baseline';
+import Baseline from './Baseline';
 import { createTheme } from '../createSaleorTheme';
 import { dark, light } from './themes';
-
-export interface IThemeContext {
-  isDark: boolean;
-  sendThemeToExtension: () => void;
-  toggleTheme: () => void;
-}
-export const ThemeContext = React.createContext<IThemeContext>({
-  isDark: false,
-  sendThemeToExtension: () => undefined,
-  toggleTheme: () => undefined,
-});
+import { Themes } from './types';
+import { ThemeContext } from './context';
 
 export interface ThemeProviderProps {
   isDefaultDark?: boolean;
+  overrides?: Partial<Themes>;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   isDefaultDark,
+  overrides = {},
 }) => {
+  const themes = {
+    light,
+    dark,
+    ...overrides,
+  };
   const [isDark, setDark] = React.useState(!!isDefaultDark);
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
@@ -49,7 +47,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDark]);
 
-  const theme = createTheme(isDark ? dark : light);
+  const theme = createTheme(isDark ? themes.dark : themes.light);
 
   return (
     <ThemeContext.Provider
