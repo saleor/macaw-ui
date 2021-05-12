@@ -2,6 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { TypographyProps } from '@material-ui/core/Typography';
 
+import { createElement } from 'react';
 import CheckboxIcon from '../icons/Checkbox';
 import CheckboxCheckedIcon from '../icons/CheckboxChecked';
 import CheckboxIndeterminateIcon from '../icons/CheckboxIndeterminate';
@@ -202,10 +203,10 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         component: 'div',
       } as TypographyProps,
       MuiCheckbox: {
-        checkedIcon: CheckboxCheckedIcon,
+        checkedIcon: createElement(CheckboxCheckedIcon as any),
         color: 'primary',
-        icon: CheckboxIcon,
-        indeterminateIcon: CheckboxIndeterminateIcon,
+        icon: createElement(CheckboxIcon as any),
+        indeterminateIcon: createElement(CheckboxIndeterminateIcon as any),
       },
     },
     shadows,
