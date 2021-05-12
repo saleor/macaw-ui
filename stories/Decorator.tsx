@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeProvider from '../src/Theme';
+import { ThemeProvider } from '../src/Theme';
 
 export const Decorator = (storyFn) => (
   <ThemeProvider isDefaultDark={false}>
