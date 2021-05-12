@@ -24,7 +24,8 @@
   "peerDependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "react": ">=16"
+    "react": "^16.14.0",
+    "react-helmet": "^6.1.0"
   },
   "husky": {
     "hooks": {
@@ -65,15 +66,13 @@
     "@types/react-helmet": "^6.1.1",
     "babel-loader": "^8.2.2",
     "husky": "^6.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-helmet": "^6.1.0",
     "react-is": "^17.0.2",
     "size-limit": "^4.10.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
-  },
-  "dependencies": {
-    "react-helmet": "^6.1.0"
   }
 }

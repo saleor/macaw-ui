@@ -203,10 +203,10 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         component: 'div',
       } as TypographyProps,
       MuiCheckbox: {
-        checkedIcon: createElement(CheckboxCheckedIcon as any),
+        checkedIcon: createElement(CheckboxCheckedIcon),
         color: 'primary',
-        icon: createElement(CheckboxIcon as any),
-        indeterminateIcon: createElement(CheckboxIndeterminateIcon as any),
+        icon: createElement(CheckboxIcon),
+        indeterminateIcon: createElement(CheckboxIndeterminateIcon),
       },
     },
     shadows,

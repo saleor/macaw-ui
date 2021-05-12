@@ -22,11 +22,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   isDefaultDark,
   overrides = {},
 }) => {
-  const themes = {
-    light,
-    dark,
-    ...overrides,
-  };
   const [isDark, setDark] = React.useState(!!isDefaultDark);
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
@@ -47,6 +42,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDark]);
 
+  const themes = {
+    light,
+    dark,
+    ...overrides,
+  };
   const theme = createTheme(isDark ? themes.dark : themes.light);
 
   return (
@@ -66,7 +66,4 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       </MuiThemeProvider>
     </ThemeContext.Provider>
   );
-};
-ThemeProvider.defaultProps = {
-  isDefaultDark: false,
 };
