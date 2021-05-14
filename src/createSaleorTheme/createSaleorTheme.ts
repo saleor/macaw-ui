@@ -44,10 +44,17 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiChip: {
         avatar: {
+          fontSize: '1.2rem',
           height: 32,
           left: -5,
           position: 'relative',
           width: 32,
+        },
+        root: {
+          '& $avatar': {
+            fontSize: '1.2rem',
+          },
+          fontSize: '1.3rem',
         },
       },
       MuiDialogActions: {
@@ -96,8 +103,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiSvgIcon: {
         root: {
-          height: '2.4rem',
-          width: '2.4rem',
+          fontSize: '2.4rem',
+          height: '1em',
+          width: '1em',
         },
       },
       MuiList: {
@@ -230,6 +238,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       fontFamily,
       h4: {
+        fontSize: '3.4rem',
         color: colors.font.default,
       },
       h5: {
