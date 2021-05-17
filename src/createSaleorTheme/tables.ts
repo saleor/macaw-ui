@@ -19,7 +19,9 @@ const tableOverrides = (
       paddingTop: 8,
     },
     head: {
-      fontSize: '1.6rem',
+      fontSize: '1.4rem',
+      fontWeight: 400,
+      color: colors.font.textDisabled,
     },
     paddingCheckbox: {
       '&:first-child': {
@@ -41,6 +43,12 @@ const tableOverrides = (
       borderBottomColor: colors.paperBorder,
       height: 56,
       padding: '4px 24px',
+    },
+  },
+  MuiTablePagination: {
+    input: {
+      color: colors.primary,
+      fontSize: '1.4rem',
     },
   },
   MuiTableRow: {

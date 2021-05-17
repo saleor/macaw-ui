@@ -2,10 +2,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { TypographyProps } from '@material-ui/core/Typography';
 
-import { createElement } from 'react';
-import CheckboxIcon from '../icons/Checkbox';
-import CheckboxCheckedIcon from '../icons/CheckboxChecked';
-import CheckboxIndeterminateIcon from '../icons/CheckboxIndeterminate';
 import buttonOverrides from './buttons';
 import inputOverrides from './inputs';
 import createPalette from './palette';
@@ -39,7 +35,16 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiCardContent: {
         root: {
-          padding: '24px',
+          padding: '2.4rem',
+        },
+      },
+      MuiCardHeader: {
+        action: {
+          position: 'relative',
+          top: 4,
+        },
+        root: {
+          padding: '1.6rem 2.4rem',
         },
       },
       MuiChip: {
@@ -65,9 +70,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiDialogContent: {
         root: {
-          '& label': {
-            overflowX: 'hidden',
-          },
           padding: 24,
         },
       },
@@ -211,10 +213,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         component: 'div',
       } as TypographyProps,
       MuiCheckbox: {
-        checkedIcon: createElement(CheckboxCheckedIcon),
         color: 'primary',
-        icon: createElement(CheckboxIcon),
-        indeterminateIcon: createElement(CheckboxIndeterminateIcon),
       },
     },
     shadows,
@@ -237,6 +236,10 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         fontSize: '1.2rem',
       },
       fontFamily,
+      h1: {
+        fontSize: '4.8rem',
+        fontWeight: 700,
+      },
       h4: {
         fontSize: '3.4rem',
         color: colors.font.default,
@@ -248,6 +251,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       h6: {
         fontSize: '2rem',
         fontWeight: 500,
+      },
+      subtitle1: {
+        fontSize: '1.6rem',
       },
       subtitle2: {
         fontSize: '1.4rem',

@@ -7,6 +7,7 @@ const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
     contained: {
       '&$disabled': {
         backgroundColor: fade(colors.primary, 0.12),
+        color: '#FFFFFF',
       },
       '&:active': {
         boxShadow: 'none',
@@ -25,24 +26,13 @@ const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
       },
     },
     label: {
-      color: colors.font.button,
       fontWeight: 600,
-    },
-    outlined: {
-      '& span': {
-        color: colors.primary,
-      },
     },
     root: {
       '& svg': {
         marginLeft: 8,
       },
       borderRadius: 4,
-    },
-    text: {
-      '& span': {
-        color: colors.font.default,
-      },
     },
     textPrimary: {
       '&:not($disabled) span': {
