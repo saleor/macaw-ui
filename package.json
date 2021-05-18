@@ -61,6 +61,7 @@
     "@storybook/addon-links": "^6.2.9",
     "@storybook/addons": "^6.2.9",
     "@storybook/react": "^6.2.9",
+    "@types/lodash": "^4.14.169",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.4",
     "@types/react-helmet": "^6.1.1",
@@ -79,7 +80,10 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.170",
+    "@types/react-inlinesvg": "^1.0.0",
     "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "clsx": "^1.1.1",
+    "react-inlinesvg": "^2.3.0"
   }
 }
