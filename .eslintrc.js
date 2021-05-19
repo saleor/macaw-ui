@@ -1,17 +1,18 @@
 module.exports = {
   extends: [
-    'react-app',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
+    "react-app",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
   ],
-  plugins: ['simple-import-sort'],
+  plugins: ["simple-import-sort"],
   settings: {
     react: {
-      version: 'detect',
+      version: "detect",
     },
   },
   rules: {
-    'simple-import-sort/sort': ['error'],
-    'sort-imports': 'off', // imports are handled by simple-import-sort/sort
+    quotes: ["off"],
+    "simple-import-sort/sort": ["error"],
+    "sort-imports": "off", // imports are handled by simple-import-sort/sort
   },
 };

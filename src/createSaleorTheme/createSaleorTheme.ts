@@ -1,13 +1,13 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { TypographyProps } from '@material-ui/core/Typography';
+import { createMuiTheme } from "@material-ui/core/styles";
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import { TypographyProps } from "@material-ui/core/Typography";
 
-import { buttonOverrides } from './buttons';
-import { inputOverrides } from './inputs';
-import { createPalette } from './palette';
-import { shadows } from './shadows';
-import { tableOverrides } from './tables';
-import { SaleorTheme, SaleorThemeColors } from './types';
+import { buttonOverrides } from "./buttons";
+import { inputOverrides } from "./inputs";
+import { createPalette } from "./palette";
+import { shadows } from "./shadows";
+import { tableOverrides } from "./tables";
+import { SaleorTheme, SaleorThemeColors } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
@@ -23,49 +23,49 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         root: {
           borderColor: colors.paperBorder,
           borderRadius: 8,
-          borderStyle: 'solid',
+          borderStyle: "solid",
           borderWidth: 1,
-          overflow: 'visible',
+          overflow: "visible",
         },
       },
       MuiCardActions: {
         root: {
-          flexDirection: 'row-reverse' as 'row-reverse',
+          flexDirection: "row-reverse" as "row-reverse",
         },
       },
       MuiCardContent: {
         root: {
-          padding: '2.4rem',
+          padding: "2.4rem",
         },
       },
       MuiCardHeader: {
         action: {
-          position: 'relative',
+          position: "relative",
           top: 4,
         },
         root: {
-          padding: '1.6rem 2.4rem',
+          padding: "1.6rem 2.4rem",
         },
       },
       MuiChip: {
         avatar: {
-          fontSize: '1.2rem',
+          fontSize: "1.2rem",
           height: 32,
           left: -5,
-          position: 'relative',
+          position: "relative",
           width: 32,
         },
         root: {
-          '& $avatar': {
-            fontSize: '1.2rem',
+          "& $avatar": {
+            fontSize: "1.2rem",
           },
-          fontSize: '1.3rem',
+          fontSize: "1.3rem",
         },
       },
       MuiDialogActions: {
         root: {
           borderTop: `1px solid ${colors.divider}`,
-          padding: `16px 24px`,
+          padding: "16px 24px",
         },
       },
       MuiDialogContent: {
@@ -75,7 +75,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiDialogContentText: {
         root: {
-          '&:last-child': {
+          "&:last-child": {
             marginBottom: 0,
           },
         },
@@ -93,39 +93,39 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiFormLabel: {
         filled: {
-          '&&:not($error)': {
+          "&&:not($error)": {
             color: colors.primary,
           },
         },
         root: {
-          '&&$focused:not($error)': {
+          "&&$focused:not($error)": {
             color: colors.font.gray,
           },
         },
       },
       MuiSvgIcon: {
         root: {
-          fontSize: '2.4rem',
-          height: '1em',
-          width: '1em',
+          fontSize: "2.4rem",
+          height: "1em",
+          width: "1em",
         },
       },
       MuiList: {
         root: {
-          display: 'grid',
-          gridRowGap: 8 + 'px',
-          padding: '8px !important',
+          display: "grid",
+          gridRowGap: 8 + "px",
+          padding: "8px !important",
         },
       },
       MuiListItem: {
         button: {
-          '&:focus': {
+          "&:focus": {
             backgroundColor: colors.input.default,
           },
         },
         root: {
-          '&$selected': {
-            '&:hover': {
+          "&$selected": {
+            "&:hover": {
               backgroundColor: colors.input.default,
             },
             backgroundColor: colors.input.default,
@@ -139,13 +139,13 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiMenuItem: {
         root: {
-          '&$selected, &$selected:focus, &$selected:hover': {
-            backgroundColor: [colors.background.default, '!important'] as any,
+          "&$selected, &$selected:focus, &$selected:hover": {
+            backgroundColor: [colors.background.default, "!important"] as any,
             color: colors.primary,
             fontWeight: 700,
           },
-          '&:hover': {
-            backgroundColor: [colors.background.default, '!important'] as any,
+          "&:hover": {
+            backgroundColor: [colors.background.default, "!important"] as any,
             color: colors.font.default,
             fontWeight: 400,
           },
@@ -154,19 +154,19 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiSelect: {
         root: {
-          '&$disabled': {
+          "&$disabled": {
             backgroundColor: colors.input.disabledBackground,
           },
         },
       },
       MuiSnackbarContent: {
         action: {
-          '& $MuiIconButton': {
-            '& svg': {
+          "& $MuiIconButton": {
+            "& svg": {
               color: colors.font.default,
             },
           },
-          display: 'block',
+          display: "block",
           paddingBottom: 10,
           paddingLeft: 0,
           paddingRight: 45,
@@ -177,9 +177,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         root: {
           backgroundColor: colors.background.paper,
           boxShadow:
-            '0 6px 10px 0px rgba(0, 0, 0, 0.15), 0 1px 18px 0px rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.10)',
+            "0 6px 10px 0px rgba(0, 0, 0, 0.15), 0 1px 18px 0px rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.10)",
           color: colors.font.default,
-          display: 'block',
+          display: "block",
           maxWidth: 480,
         },
       },
@@ -191,29 +191,29 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           backgroundColor: fade(colors.primary, 0.2),
         },
         ripple: {
-          '&$rippleVisible': {
+          "&$rippleVisible": {
             backgroundColor: fade(colors.primary, 0.2),
           },
-          borderRadius: '100%',
+          borderRadius: "100%",
         },
       },
     },
     palette: createPalette(colors),
     props: {
       MuiFormControl: {
-        variant: 'filled',
+        variant: "filled",
       },
       MuiTextField: {
-        variant: 'outlined',
+        variant: "outlined",
       },
       MuiCard: {
         elevation: 0,
       },
       MuiTypography: {
-        component: 'div',
+        component: "div",
       } as TypographyProps,
       MuiCheckbox: {
-        color: 'primary',
+        color: "primary",
       },
     },
     shadows,
@@ -224,39 +224,39 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       body1: {
         color: colors.font.default,
-        fontSize: '1.6rem',
+        fontSize: "1.6rem",
       },
       body2: {
-        fontSize: '1.4rem',
+        fontSize: "1.4rem",
       },
       button: {
-        fontSize: '1.4rem',
+        fontSize: "1.4rem",
       },
       caption: {
-        fontSize: '1.2rem',
+        fontSize: "1.2rem",
       },
       fontFamily,
       h1: {
-        fontSize: '4.8rem',
+        fontSize: "4.8rem",
         fontWeight: 700,
       },
       h4: {
-        fontSize: '3.4rem',
+        fontSize: "3.4rem",
         color: colors.font.default,
       },
       h5: {
-        fontSize: '2.1rem',
+        fontSize: "2.1rem",
         fontWeight: 500,
       },
       h6: {
-        fontSize: '2rem',
+        fontSize: "2rem",
         fontWeight: 500,
       },
       subtitle1: {
-        fontSize: '1.6rem',
+        fontSize: "1.6rem",
       },
       subtitle2: {
-        fontSize: '1.4rem',
+        fontSize: "1.4rem",
       },
     },
   }) as unknown) as SaleorTheme;

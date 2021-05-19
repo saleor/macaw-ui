@@ -1,28 +1,28 @@
-import { darken, fade } from '@material-ui/core/styles/colorManipulator';
-import { Overrides } from '@material-ui/core/styles/overrides';
+import { darken, fade } from "@material-ui/core/styles/colorManipulator";
+import { Overrides } from "@material-ui/core/styles/overrides";
 
-import { SaleorThemeColors } from './types';
+import { SaleorThemeColors } from "./types";
 
 export const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
   MuiButton: {
     contained: {
-      '&$disabled': {
+      "&$disabled": {
         backgroundColor: fade(colors.primary, 0.12),
-        color: '#FFFFFF',
+        color: "#FFFFFF",
       },
-      '&:active': {
-        boxShadow: 'none',
+      "&:active": {
+        boxShadow: "none",
       },
-      '&:hover': {
-        boxShadow: 'none',
+      "&:hover": {
+        boxShadow: "none",
       },
-      boxShadow: 'none',
+      boxShadow: "none",
     },
     containedPrimary: {
-      '&:active': {
+      "&:active": {
         backgroundColor: darken(colors.primary, 0.4),
       },
-      '&:hover': {
+      "&:hover": {
         backgroundColor: darken(colors.primary, 0.1),
       },
     },
@@ -30,34 +30,34 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
       fontWeight: 600,
     },
     root: {
-      '& svg': {
+      "& svg": {
         marginLeft: 8,
       },
       borderRadius: 4,
     },
     textPrimary: {
-      '&:not($disabled) span': {
+      "&:not($disabled) span": {
         color: colors.primary,
       },
     },
   },
   MuiIconButton: {
     root: {
-      '&:hover': {
+      "&:hover": {
         backgroundColor: fade(colors.primary, 0.12),
       },
     },
   },
   MuiSwitch: {
     colorPrimary: {
-      '&$checked': {
+      "&$checked": {
         color: colors.background.paper,
       },
     },
     root: {
-      '&$disabled': {
-        '&$switchBase': {
-          '& + $thumb': {
+      "&$disabled": {
+        "&$switchBase": {
+          "& + $thumb": {
             backgroundColor: colors.gray.disabled,
           },
         },
@@ -66,25 +66,25 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
       width: 72,
     },
     switchBase: {
-      '&$checked': {
-        transform: 'translateX(23px)',
+      "&$checked": {
+        transform: "translateX(23px)",
       },
-      boxShadow: 'none',
+      boxShadow: "none",
       left: 1,
       marginLeft: 4,
       top: 5,
     },
     thumb: {
-      boxShadow: 'none',
+      boxShadow: "none",
     },
     track: {
-      '$colorPrimary$checked + &': {
+      "$colorPrimary$checked + &": {
         backgroundColor: colors.primary,
       },
       backgroundColor: colors.gray.default,
       borderRadius: 12,
       height: 24,
-      opacity: [['1'], '!important'] as any,
+      opacity: [["1"], "!important"] as any,
       width: 48,
     },
   },

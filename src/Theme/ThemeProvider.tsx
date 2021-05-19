@@ -1,17 +1,17 @@
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import React, { useEffect } from 'react';
-import Helmet from 'react-helmet';
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import React, { useEffect } from "react";
+import Helmet from "react-helmet";
 
-import { createTheme } from '../createSaleorTheme';
+import { createTheme } from "../createSaleorTheme";
 import {
   ExtensionMessageType,
   sendMessageToExtension,
   ThemeChangeMessage,
-} from '../extensions';
-import { Baseline } from './Baseline';
-import { ThemeContext } from './context';
-import { dark, light } from './themes';
-import { Themes } from './types';
+} from "../extensions";
+import { Baseline } from "./Baseline";
+import { ThemeContext } from "./context";
+import { dark, light } from "./themes";
+import { Themes } from "./types";
 
 export interface ThemeProviderProps {
   isDefaultDark?: boolean;
@@ -26,15 +26,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
       {
-        theme: isDark ? 'dark' : 'light',
+        theme: isDark ? "dark" : "light",
         type: ExtensionMessageType.THEME,
       },
-      '*'
+      "*"
     );
 
   const toggleTheme = () => {
     setDark(!isDark);
-    localStorage.setItem('theme', (!isDark).toString());
+    localStorage.setItem("theme", (!isDark).toString());
   };
 
   useEffect(() => {

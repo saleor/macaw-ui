@@ -1,4 +1,4 @@
-import { BaseExtensionMessageData } from './types';
+import { BaseExtensionMessageData } from "./types";
 
 export function sendMessageToDashboard<T extends BaseExtensionMessageData>(
   message: T,
@@ -14,7 +14,7 @@ export function sendMessageToExtension<T extends BaseExtensionMessageData>(
   targetOrigin: string
 ) {
   const appFrame: HTMLIFrameElement | null = document.querySelector(
-    '#extension-app'
+    "#extension-app"
   );
 
   if (!!appFrame?.contentWindow) {

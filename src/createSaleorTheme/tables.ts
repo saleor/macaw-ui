@@ -1,7 +1,7 @@
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { Overrides } from '@material-ui/core/styles/overrides';
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import { Overrides } from "@material-ui/core/styles/overrides";
 
-import { SaleorThemeColors } from './types';
+import { SaleorThemeColors } from "./types";
 
 export const tableOverrides = (
   colors: SaleorThemeColors,
@@ -15,61 +15,61 @@ export const tableOverrides = (
   },
   MuiTableCell: {
     body: {
-      fontSize: '1.6rem',
+      fontSize: "1.6rem",
       paddingBottom: 8,
       paddingTop: 8,
     },
     head: {
-      fontSize: '1.4rem',
+      fontSize: "1.4rem",
       fontWeight: 400,
       color: colors.font.textDisabled,
     },
     paddingCheckbox: {
-      '&:first-child': {
-        padding: '0 12px',
+      "&:first-child": {
+        padding: "0 12px",
         width: 72,
       },
-      '&:not(first-child)': {
+      "&:not(first-child)": {
         padding: 0,
         width: 52,
       },
     },
     root: {
-      '&:first-child': {
-        '&:not($paddingCheckbox)': {
-          paddingLeft: 24 + 'px',
-          textAlign: 'left' as 'left',
+      "&:first-child": {
+        "&:not($paddingCheckbox)": {
+          paddingLeft: 24 + "px",
+          textAlign: "left" as "left",
         },
       },
       borderBottomColor: colors.paperBorder,
       height: 56,
-      padding: '4px 24px',
+      padding: "4px 24px",
     },
   },
   MuiTablePagination: {
     input: {
       color: colors.primary,
-      fontSize: '1.4rem',
+      fontSize: "1.4rem",
     },
   },
   MuiTableRow: {
     footer: {
-      '$root$hover&:hover': {
-        background: 'none',
+      "$root$hover&:hover": {
+        background: "none",
       },
     },
     head: {
-      '$root$hover&:hover': {
-        background: 'none',
+      "$root$hover&:hover": {
+        background: "none",
       },
     },
     hover: {
-      '$root&:hover': {
+      "$root&:hover": {
         backgroundColor: fade(colors.primary, 0.3),
       },
     },
     root: {
-      '&$selected': {
+      "&$selected": {
         backgroundColor: fade(colors.primary, 0.05),
       },
     },

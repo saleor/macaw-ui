@@ -1,25 +1,25 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import React from 'react';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import React from "react";
 
-import { makeStyles } from './styles';
+import { makeStyles } from "./styles";
 
 const useStyles = makeStyles(
   (theme) => ({
-    '@global': {
-      '@import': "url('https://rsms.me/inter/inter.css')",
+    "@global": {
+      "@import": "url('https://rsms.me/inter/inter.css')",
 
       // For some reason @import clause must be put on top
       // eslint-disable-next-line sort-keys
-      '::selection': {
+      "::selection": {
         background: fade(theme.palette.primary.main, 0.2),
       },
       html: {
-        fontSize: '62.5%',
+        fontSize: "62.5%",
       },
     },
   }),
-  { name: 'Baseline' }
+  { name: "Baseline" }
 );
 
 export const Baseline: React.FC = () => {
@@ -27,4 +27,4 @@ export const Baseline: React.FC = () => {
 
   return <CssBaseline />;
 };
-Baseline.displayName = 'Baseline';
+Baseline.displayName = "Baseline";

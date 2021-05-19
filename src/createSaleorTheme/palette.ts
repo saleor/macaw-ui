@@ -1,4 +1,4 @@
-import { SaleorPaletteOptions, SaleorThemeColors } from './types';
+import { SaleorPaletteOptions, SaleorThemeColors } from "./types";
 
 export const createPalette = (
   colors: SaleorThemeColors
@@ -13,12 +13,12 @@ export const createPalette = (
     main: colors.error,
   },
   primary: {
-    contrastText: '#ffffff',
+    contrastText: "#ffffff",
     dark: colors.font.textDisabled,
     main: colors.primary,
   },
   secondary: {
-    contrastText: '#ffffff',
+    contrastText: "#ffffff",
     main: colors.secondary,
   },
   text: {

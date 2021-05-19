@@ -1,34 +1,34 @@
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { Overrides } from '@material-ui/core/styles/overrides';
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import { Overrides } from "@material-ui/core/styles/overrides";
 
-import { SaleorThemeColors } from './types';
+import { SaleorThemeColors } from "./types";
 
 export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
   MuiInput: {
     input: {
-      '&:-webkit-autofill': {
+      "&:-webkit-autofill": {
         WebkitTextFillColor: colors.font.default,
         boxShadow: `inset 0 0 0px 9999px ${colors.autofill}`,
       },
-      '&::placeholder': {
-        opacity: '1 !important' as any,
+      "&::placeholder": {
+        opacity: "1 !important" as any,
       },
       color: colors.font.default,
     },
     underline: {
-      '&:after': {
+      "&:after": {
         borderBottomColor: colors.primary,
       },
     },
   },
   MuiInputBase: {
     input: {
-      '&$disabled': {
+      "&$disabled": {
         color: colors.input.disabledText,
       },
-      '&::placeholder': {
+      "&::placeholder": {
         color: colors.font.gray,
-        opacity: '1 !important' as any,
+        opacity: "1 !important" as any,
       },
       zIndex: 2,
     },
@@ -38,29 +38,29 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
       zIndex: 2,
     },
     formControl: {
-      transform: 'translate(0, 1.5px) scale(0.75)',
-      transformOrigin: 'top left' as 'top left',
-      width: '100%',
+      transform: "translate(0, 1.5px) scale(0.75)",
+      transformOrigin: "top left" as "top left",
+      width: "100%",
     },
     outlined: {
-      '&$shrink': {
-        transform: 'translate(12px, 9px) scale(0.75)',
+      "&$shrink": {
+        transform: "translate(12px, 9px) scale(0.75)",
       },
-      transform: 'translate(14px, 18px) scale(1)',
+      transform: "translate(14px, 18px) scale(1)",
       zIndex: 9,
     },
     root: {
-      '&$disabled': {
+      "&$disabled": {
         color: `${fade(colors.primary, 0.4)} !important` as any,
       },
-      '&$error': {
-        '&$focused': {
+      "&$error": {
+        "&$focused": {
           color: colors.error,
         },
         color: colors.error,
       },
-      '&&$focused': {
-        '&:not($error)': {
+      "&&$focused": {
+        "&:not($error)": {
           color: colors.primary,
         },
       },
@@ -68,85 +68,85 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
     },
     shrink: {
       // Negates x0.75 scale
-      width: '133%',
+      width: "133%",
     },
   },
   MuiOutlinedInput: {
     input: {
-      '&:-webkit-autofill': {
+      "&:-webkit-autofill": {
         borderRadius: 4,
-        boxShadow: `0 0 0px 1000px rgba(19, 190, 187, 0.1) inset`,
+        boxShadow: "0 0 0px 1000px rgba(19, 190, 187, 0.1) inset",
         zIndex: 0,
       },
       color: colors.input.text,
-      padding: '23px 12px 10px 12px',
+      padding: "23px 12px 10px 12px",
     },
     inputMultiline: {
       left: -2,
-      padding: '10px 0',
-      position: 'relative',
+      padding: "10px 0",
+      position: "relative",
     },
     root: {
-      '& fieldset': {
-        '&&:not($error)': {
+      "& fieldset": {
+        "&&:not($error)": {
           borderColor: colors.input.border,
         },
         top: 0,
         zIndex: 1,
       },
-      '& legend': {
-        display: 'none',
+      "& legend": {
+        display: "none",
       },
-      '&$disabled': {
-        '& fieldset': {
-          borderColor: [[colors.input.disabled], '!important'] as any,
+      "&$disabled": {
+        "& fieldset": {
+          borderColor: [[colors.input.disabled], "!important"] as any,
         },
-        '& input': {
+        "& input": {
           backgroundColor: colors.input.disabledBackground,
           color: colors.input.disabledText,
           zIndex: 2,
         },
       },
-      '&$error': {
-        '&$focused': {
-          '& fieldset': {
+      "&$error": {
+        "&$focused": {
+          "& fieldset": {
             borderColor: colors.error,
           },
-          '& input': {
+          "& input": {
             color: colors.error,
             zIndex: 2,
           },
         },
-        '&:hover': {
-          '& fieldset': {
+        "&:hover": {
+          "& fieldset": {
             borderColor: colors.error,
           },
-          '& input': {
+          "& input": {
             color: colors.error,
             zIndex: 2,
           },
         },
       },
-      '&$focused': {
-        '& input': {
-          '& fieldset': {
+      "&$focused": {
+        "& input": {
+          "& fieldset": {
             borderColor: colors.primary,
           },
-          '&::placeholder': {
-            opacity: [[1], '!important'] as any,
+          "&::placeholder": {
+            opacity: [[1], "!important"] as any,
           },
           color: colors.font.default,
         },
       },
-      '&:hover': {
-        '& input': {
+      "&:hover": {
+        "& input": {
           color: colors.font.default,
         },
-        '&&&': {
-          '& fieldset': {
+        "&&&": {
+          "& fieldset": {
             borderColor: colors.primary,
           },
-          '&$error fieldset': {
+          "&$error fieldset": {
             borderColor: colors.input.error,
           },
         },
