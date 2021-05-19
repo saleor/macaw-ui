@@ -6,10 +6,10 @@ import {
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
 import { useContext } from 'react';
-import type { SaleorThemeContext } from './types';
 
 import { SaleorTheme } from '../createSaleorTheme/types';
 import { ThemeContext } from './context';
+import type { SaleorThemeContext } from './types';
 
 export function makeStyles<
   Props extends Record<string, any> = {},

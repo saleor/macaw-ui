@@ -1,5 +1,6 @@
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { Overrides } from '@material-ui/core/styles/overrides';
+
 import { SaleorThemeColors } from './types';
 
 const tableOverrides = (

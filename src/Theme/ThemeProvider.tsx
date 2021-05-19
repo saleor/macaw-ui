@@ -1,17 +1,17 @@
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import React, { useEffect } from 'react';
+import Helmet from 'react-helmet';
+
+import { createTheme } from '../createSaleorTheme';
 import {
   ExtensionMessageType,
   sendMessageToExtension,
   ThemeChangeMessage,
 } from '../extensions';
-import React, { useEffect } from 'react';
-import Helmet from 'react-helmet';
-
 import Baseline from './Baseline';
-import { createTheme } from '../createSaleorTheme';
+import { ThemeContext } from './context';
 import { dark, light } from './themes';
 import { Themes } from './types';
-import { ThemeContext } from './context';
 
 export interface ThemeProviderProps {
   isDefaultDark?: boolean;
