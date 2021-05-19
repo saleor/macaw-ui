@@ -1,13 +1,13 @@
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect } from "react";
 import Helmet from "react-helmet";
+import useLocalStorage from "react-use-localstorage";
 
 import {
   ExtensionMessageType,
   sendMessageToExtension,
   ThemeChangeMessage,
 } from "../extensions";
-import useLocalStorage from "../utils/useLocalStorage";
 import { Baseline } from "./Baseline";
 import { ThemeContext } from "./context";
 import { createTheme, Themes, ThemeType } from "./createSaleorTheme";
@@ -22,10 +22,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   defaultTheme = "light",
   overrides = {},
 }) => {
-  const [themeType, setThemeType] = useLocalStorage(
+  const [themeTypeName, setThemeType] = useLocalStorage(
     "macaw-ui-theme",
     defaultTheme
   );
+  const themeType = themeTypeName as ThemeType;
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
       {
