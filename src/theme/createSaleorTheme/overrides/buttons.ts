@@ -1,7 +1,7 @@
 import { darken, fade } from "@material-ui/core/styles/colorManipulator";
 import { Overrides } from "@material-ui/core/styles/overrides";
 
-import { SaleorThemeColors } from "./types";
+import { SaleorThemeColors } from "../types";
 
 export const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
   MuiButton: {

@@ -3,7 +3,7 @@ import React from "react";
 import { ThemeProvider } from "../src/theme";
 
 export const Decorator = (storyFn) => (
-  <ThemeProvider defaultTheme="light">
+  <ThemeProvider>
     <div
       style={{
         padding: 24,

@@ -27,6 +27,10 @@ export function useTheme(): SaleorTheme & SaleorThemeContext {
   const saleorTheme = useMuiTheme<SaleorTheme>();
   const themeInfo = useContext(ThemeContext);
 
+  if (themeInfo === undefined || saleorTheme === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+
   return {
     ...saleorTheme,
     ...themeInfo,

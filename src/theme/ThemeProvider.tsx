@@ -7,6 +7,7 @@ import {
   sendMessageToExtension,
   ThemeChangeMessage,
 } from "../extensions";
+import useLocalStorage from "../utils/useLocalStorage";
 import { Baseline } from "./Baseline";
 import { ThemeContext } from "./context";
 import { createTheme, Themes, ThemeType } from "./createSaleorTheme";
@@ -21,7 +22,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   defaultTheme = "light",
   overrides = {},
 }) => {
-  const [themeType, setThemeType] = React.useState(defaultTheme);
+  const [themeType, setThemeType] = useLocalStorage(
+    "macaw-ui-theme",
+    defaultTheme
+  );
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
       {

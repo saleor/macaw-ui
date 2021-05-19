@@ -2,11 +2,9 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { TypographyProps } from "@material-ui/core/Typography";
 
-import { buttonOverrides } from "./buttons";
-import { inputOverrides } from "./inputs";
+import { overrides } from "./overrides";
 import { createPalette } from "./palette";
 import { shadows } from "./shadows";
-import { tableOverrides } from "./tables";
 import { SaleorTheme, SaleorThemeColors } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
@@ -16,9 +14,7 @@ const fontFamily = '"Inter", "roboto", "sans-serif"';
 export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
   (createMuiTheme({
     overrides: {
-      ...inputOverrides(colors),
-      ...tableOverrides(colors, fontFamily),
-      ...buttonOverrides(colors),
+      ...overrides(colors, fontFamily),
       MuiCard: {
         root: {
           borderColor: colors.paperBorder,
