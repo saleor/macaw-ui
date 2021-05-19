@@ -1,4 +1,4 @@
-import { MuiThemeProvider } from "@material-ui/core";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect } from "react";
 import Helmet from "react-helmet";
 
