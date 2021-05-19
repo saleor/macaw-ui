@@ -1,4 +1,4 @@
-import { SaleorThemeColors } from "../createSaleorTheme";
+import { SaleorThemeColors } from "./createSaleorTheme";
 
 export const dark: SaleorThemeColors = {
   alert: {

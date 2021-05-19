@@ -7,8 +7,8 @@ import {
 } from "@material-ui/styles/withStyles";
 import { useContext } from "react";
 
-import { SaleorTheme } from "../createSaleorTheme/types";
 import { ThemeContext } from "./context";
+import { SaleorTheme } from "./createSaleorTheme/types";
 import type { SaleorThemeContext } from "./types";
 
 export function makeStyles<

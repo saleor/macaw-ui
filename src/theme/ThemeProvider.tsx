@@ -2,7 +2,6 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect } from "react";
 import Helmet from "react-helmet";
 
-import { createTheme } from "../createSaleorTheme";
 import {
   ExtensionMessageType,
   sendMessageToExtension,
@@ -10,6 +9,7 @@ import {
 } from "../extensions";
 import { Baseline } from "./Baseline";
 import { ThemeContext } from "./context";
+import { createTheme } from "./createSaleorTheme";
 import { dark, light } from "./themes";
 import { Themes } from "./types";
 

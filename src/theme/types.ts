@@ -1,4 +1,4 @@
-import type { SaleorThemeColors } from "../createSaleorTheme";
+import type { SaleorThemeColors } from "./createSaleorTheme";
 export interface SaleorThemeContext {
   isDark: boolean;
   sendThemeToExtension: () => void;

@@ -1,3 +1,3 @@
-export * from "./Theme";
-export * from "./createSaleorTheme";
+export * from "./theme";
+export * from "./theme/createSaleorTheme";
 export * from "./extensions";
