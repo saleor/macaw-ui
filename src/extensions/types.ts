@@ -1,3 +1,5 @@
+import { ThemeType } from "../theme";
+
 export enum ExtensionMessageType {
   BREADCRUMB_CLICK,
   BREADCRUMB_SET,
@@ -15,9 +17,8 @@ export interface BreadcrumbChangeMessage extends BaseExtensionMessageData {
   breadcrumbs: Breadcrumb[];
 }
 
-export type Theme = "dark" | "light";
 export interface ThemeChangeMessage extends BaseExtensionMessageData {
-  theme: Theme;
+  theme: ThemeType;
 }
 
 export interface ExtensionMessageEvent<T extends BaseExtensionMessageData> {

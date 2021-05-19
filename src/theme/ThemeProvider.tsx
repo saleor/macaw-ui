@@ -9,52 +9,46 @@ import {
 } from "../extensions";
 import { Baseline } from "./Baseline";
 import { ThemeContext } from "./context";
-import { createTheme } from "./createSaleorTheme";
+import { createTheme, Themes, ThemeType } from "./createSaleorTheme";
 import { dark, light } from "./themes";
-import { Themes } from "./types";
 
 export interface ThemeProviderProps {
-  isDefaultDark?: boolean;
+  defaultTheme?: ThemeType;
   overrides?: Partial<Themes>;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
-  isDefaultDark,
+  defaultTheme = "light",
   overrides = {},
 }) => {
-  const [isDark, setDark] = React.useState(!!isDefaultDark);
+  const [themeType, setThemeType] = React.useState(defaultTheme);
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
       {
-        theme: isDark ? "dark" : "light",
+        theme: themeType,
         type: ExtensionMessageType.THEME,
       },
       "*"
     );
 
-  const toggleTheme = () => {
-    setDark(!isDark);
-    localStorage.setItem("theme", (!isDark).toString());
-  };
-
   useEffect(() => {
     sendThemeToExtension();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDark]);
+  }, [themeType]);
 
   const themes = {
     light,
     dark,
     ...overrides,
   };
-  const theme = createTheme(isDark ? themes.dark : themes.light);
+  const theme = createTheme(themes[themeType]);
 
   return (
     <ThemeContext.Provider
       value={{
-        isDark,
+        themeType,
         sendThemeToExtension,
-        toggleTheme,
+        setTheme: setThemeType,
       }}
     >
       <Helmet>

@@ -42,6 +42,8 @@ export interface SaleorThemeOptions extends ThemeOptions {
   palette: SaleorPaletteOptions;
 }
 
+export type ThemeType = "light" | "dark";
+
 export type SaleorThemeColors = Record<
   "primary" | "secondary" | "error" | "paperBorder" | "autofill",
   string
@@ -75,5 +77,7 @@ export type SaleorThemeColors = Record<
 } & {
   alert: AlertColors;
 } & {
-  theme: "dark" | "light";
+  theme: ThemeType;
 };
+
+export type Themes = Record<ThemeType, SaleorThemeColors>;

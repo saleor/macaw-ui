@@ -1,7 +1,7 @@
-import type { SaleorThemeColors } from "./createSaleorTheme";
+import { ThemeType } from "./createSaleorTheme";
+
 export interface SaleorThemeContext {
-  isDark: boolean;
+  themeType: ThemeType;
   sendThemeToExtension: () => void;
-  toggleTheme: () => void;
+  setTheme: (theme: ThemeType) => void;
 }
-export type Themes = Record<"light" | "dark", SaleorThemeColors>;
