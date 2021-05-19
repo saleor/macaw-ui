@@ -1,5 +1,4 @@
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { fade } from "@material-ui/core/styles/colorManipulator";
+import { CssBaseline, fade } from "@material-ui/core";
 import React from "react";
 
 import { makeStyles } from "./styles";

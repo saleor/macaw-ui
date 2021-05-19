@@ -1,4 +1,4 @@
-import createSvgIcon from "@material-ui/core/utils/createSvgIcon";
+import { createSvgIcon } from "@material-ui/core";
 import React from "react";
 
 export const Checkbox = createSvgIcon(

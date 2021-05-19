@@ -1,6 +1,8 @@
-import muiMakeStyles from "@material-ui/core/styles/makeStyles";
-import useMuiTheme from "@material-ui/core/styles/useTheme";
 import {
+  makeStyles as muiMakeStyles,
+  useTheme as useMuiTheme,
+} from "@material-ui/core";
+import type {
   ClassNameMap,
   Styles,
   WithStylesOptions,

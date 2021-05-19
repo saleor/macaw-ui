@@ -1,6 +1,5 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import { TypographyProps } from "@material-ui/core/Typography";
+import { createMuiTheme, fade } from "@material-ui/core";
+import type { TypographyProps } from "@material-ui/core/Typography";
 
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";

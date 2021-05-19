@@ -1,4 +1,4 @@
-import { Overrides } from "@material-ui/core/styles/overrides";
+import type { Overrides } from "@material-ui/core/styles/overrides";
 
 import { SaleorThemeColors } from "../types";
 import { buttonOverrides } from "./buttons";

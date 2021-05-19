@@ -1,4 +1,4 @@
-import { Shadows } from "@material-ui/core/styles/shadows";
+import type { Shadows } from "@material-ui/core/styles/shadows";
 
 const createShadow = (
   pv: number,

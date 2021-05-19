@@ -1,12 +1,12 @@
-import Button from '@material-ui/core/Button';
-import { storiesOf } from '@storybook/react';
-import React from 'react';
+import { Button } from "@material-ui/core";
+import { storiesOf } from "@storybook/react";
+import React from "react";
 
-import { Decorator } from './Decorator';
+import { Decorator } from "./Decorator";
 
-storiesOf('Home', module)
+storiesOf("Home", module)
   .addDecorator(Decorator)
-  .add('default', () => (
+  .add("default", () => (
     <div>
       Macaw UI
       <Button color="primary" variant="contained">
