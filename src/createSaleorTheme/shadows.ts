@@ -17,7 +17,7 @@ const createShadow = (
     `0 ${av}px ${ab}px ${as}px rgba(0, 0, 0, 0.12)`,
   ].join(',');
 
-const shadows: Shadows = [
+export const shadows: Shadows = [
   'none',
   createShadow(1, 1, 0, 2, 1, -2, 1, 3, 0),
   createShadow(2, 2, 0, 3, 1, -2, 1, 5, 0),
@@ -44,5 +44,3 @@ const shadows: Shadows = [
   createShadow(9, 44, 7, 11, 16, -6, 22, 35, 2),
   createShadow(9, 46, 8, 11, 15, -7, 24, 38, 3),
 ];
-
-export default shadows;

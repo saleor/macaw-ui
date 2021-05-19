@@ -3,7 +3,7 @@ import { Overrides } from '@material-ui/core/styles/overrides';
 
 import { SaleorThemeColors } from './types';
 
-const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
+export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
   MuiInput: {
     input: {
       '&:-webkit-autofill': {
@@ -157,5 +157,3 @@ const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
     },
   },
 });
-
-export default inputOverrides;

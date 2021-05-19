@@ -2,11 +2,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { TypographyProps } from '@material-ui/core/Typography';
 
-import buttonOverrides from './buttons';
-import inputOverrides from './inputs';
-import createPalette from './palette';
-import shadows from './shadows';
-import tableOverrides from './tables';
+import { buttonOverrides } from './buttons';
+import { inputOverrides } from './inputs';
+import { createPalette } from './palette';
+import { shadows } from './shadows';
+import { tableOverrides } from './tables';
 import { SaleorTheme, SaleorThemeColors } from './types';
 
 export const ICONBUTTON_SIZE = 48;

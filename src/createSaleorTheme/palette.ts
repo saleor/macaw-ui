@@ -1,6 +1,8 @@
 import { SaleorPaletteOptions, SaleorThemeColors } from './types';
 
-const createPalette = (colors: SaleorThemeColors): SaleorPaletteOptions => ({
+export const createPalette = (
+  colors: SaleorThemeColors
+): SaleorPaletteOptions => ({
   action: {
     active: colors.checkbox.default,
   },
@@ -31,5 +33,3 @@ const createPalette = (colors: SaleorThemeColors): SaleorPaletteOptions => ({
   },
   type: colors.theme,
 });
-
-export default createPalette;

@@ -3,7 +3,7 @@ import { Overrides } from '@material-ui/core/styles/overrides';
 
 import { SaleorThemeColors } from './types';
 
-const tableOverrides = (
+export const tableOverrides = (
   colors: SaleorThemeColors,
   fontFamily: string
 ): Overrides => ({
@@ -75,5 +75,3 @@ const tableOverrides = (
     },
   },
 });
-
-export default tableOverrides;

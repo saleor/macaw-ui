@@ -22,11 +22,9 @@ const useStyles = makeStyles(
   { name: 'Baseline' }
 );
 
-const Baseline: React.FC = () => {
+export const Baseline: React.FC = () => {
   useStyles();
 
   return <CssBaseline />;
 };
 Baseline.displayName = 'Baseline';
-
-export default Baseline;

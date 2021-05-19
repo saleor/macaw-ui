@@ -3,7 +3,7 @@ import { Overrides } from '@material-ui/core/styles/overrides';
 
 import { SaleorThemeColors } from './types';
 
-const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
+export const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
   MuiButton: {
     contained: {
       '&$disabled': {
@@ -89,5 +89,3 @@ const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
     },
   },
 });
-
-export default buttonOverrides;

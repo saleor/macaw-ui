@@ -8,7 +8,7 @@ import {
   sendMessageToExtension,
   ThemeChangeMessage,
 } from '../extensions';
-import Baseline from './Baseline';
+import { Baseline } from './Baseline';
 import { ThemeContext } from './context';
 import { dark, light } from './themes';
 import { Themes } from './types';

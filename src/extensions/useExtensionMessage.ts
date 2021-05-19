@@ -11,5 +11,3 @@ export function useExtensionMessage<T extends BaseExtensionMessageData>(
     return () => window.removeEventListener('message', handle);
   }, [handle]);
 }
-
-export default useExtensionMessage;

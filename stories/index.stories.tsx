@@ -1,7 +1,8 @@
-import Decorator from './Decorator';
+import Button from '@material-ui/core/Button';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Button from '@material-ui/core/Button';
+
+import { Decorator } from './Decorator';
 
 storiesOf('Home', module)
   .addDecorator(Decorator)
