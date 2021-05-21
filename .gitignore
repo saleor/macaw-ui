@@ -1,5 +1,9 @@
+.*
+!.eslintrc.js
+!.gitignore
+!.gitkeep
+!.storybook
+!.github
 *.log
-.DS_Store
 node_modules
-.cache
 dist
