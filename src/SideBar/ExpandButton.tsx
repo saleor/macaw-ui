@@ -1,22 +1,22 @@
-import { ButtonProps } from '@material-ui/core/Button';
-import { makeStyles } from '../Theme';
-import ArrowIcon from '@material-ui/icons/ArrowBack';
-import clsx from 'clsx';
-import React from 'react';
+import { ButtonProps } from "@material-ui/core/Button";
+import ArrowIcon from "@material-ui/icons/ArrowBack";
+import clsx from "clsx";
+import React from "react";
 
-import SquareButton from '../SquareButton';
+import SquareButton from "../SquareButton";
+import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
   (theme) => ({
     arrow: {
-      transition: theme.transitions.duration.shortest + 'ms',
+      transition: theme.transitions.duration.shortest + "ms",
     },
     shrunk: {
-      transform: 'scaleX(-1)',
+      transform: "scaleX(-1)",
     },
   }),
   {
-    name: 'ExpandButton',
+    name: "ExpandButton",
   }
 );
 
@@ -38,5 +38,5 @@ const ExpandButton: React.FC<ExpandButtonProps> = ({ isShrunk, ...rest }) => {
   );
 };
 
-ExpandButton.displayName = 'ExpandButton';
+ExpandButton.displayName = "ExpandButton";
 export default ExpandButton;

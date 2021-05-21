@@ -1,27 +1,17 @@
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { IMenuItem } from './types';
-import Decorator from '../utils/Decorator';
+import { storiesOf } from "@storybook/react";
+import React from "react";
 
-import homeIcon from '../../stories/assets/menu-home-icon.svg';
-import SideBar from './SideBar';
+import homeIcon from "../../stories/assets/menu-home-icon.svg";
+import { Decorator } from "../utils/Decorator";
+import * as fixtures from "./fixtures";
+import SideBar from "./SideBar";
 
-const menu: IMenuItem[] = [
-  {
-    ariaLabel: 'Menu 1',
-    id: 'menu1',
-    label: 'Menu 1',
-    iconSrc: homeIcon,
-    url: '/section1/',
-  },
-];
-
-storiesOf('Components / Side Menu', module)
+storiesOf("Components / Side Menu", module)
   .addDecorator(Decorator)
-  .add('default', () => (
+  .add("default", () => (
     <SideBar
       active="menu1"
-      menuItems={menu}
+      menuItems={fixtures.menu}
       onMenuItemClick={() => undefined}
       logoSrc={{ light: homeIcon }}
     />

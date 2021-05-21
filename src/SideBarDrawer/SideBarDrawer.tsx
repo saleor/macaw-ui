@@ -1,16 +1,16 @@
-import { Typography } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-import MenuIcon from '@material-ui/icons/Menu';
-import clsx from 'clsx';
-import React from 'react';
-import SVG from 'react-inlinesvg';
-import { IMenuItem, SideBarProps } from '../SideBar/types';
+import { Typography } from "@material-ui/core";
+import Drawer from "@material-ui/core/Drawer";
+import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
+import MenuIcon from "@material-ui/icons/Menu";
+import clsx from "clsx";
+import React from "react";
+import SVG from "react-inlinesvg";
 
-import SquareButton from '../SquareButton';
-import { useTheme } from '../Theme';
-import MenuItemBtn from './MenuItemBtn';
-import useStyles from './styles';
+import { IMenuItem, SideBarProps } from "../SideBar/types";
+import SquareButton from "../SquareButton";
+import { useTheme } from "../theme";
+import MenuItemBtn from "./MenuItemBtn";
+import useStyles from "./styles";
 
 export type SideBarDrawerProps = SideBarProps;
 
@@ -21,11 +21,12 @@ const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
 }) => {
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
-  const { isDark } = useTheme();
+  const { themeType } = useTheme();
   const [activeMenu, setActiveMenu] = React.useState<IMenuItem | null>(null);
   const [showSubmenu, setShowSubmenu] = React.useState(false);
   const container = React.useRef<HTMLDivElement>(null);
-  const logo = isDark && logoSrc.dark ? logoSrc.dark : logoSrc.light;
+  const logo =
+    themeType === "dark" && logoSrc.dark ? logoSrc.dark : logoSrc.light;
 
   const handleMenuItemClick = (url: string) => {
     setOpened(false);
@@ -109,5 +110,5 @@ const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
   );
 };
 
-SideBarDrawer.displayName = 'SideBarDrawer';
+SideBarDrawer.displayName = "SideBarDrawer";
 export default SideBarDrawer;

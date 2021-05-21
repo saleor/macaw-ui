@@ -1,12 +1,13 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import clsx from 'clsx';
-import React from 'react';
-import SVG from 'react-inlinesvg';
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import clsx from "clsx";
+import React from "react";
+import SVG from "react-inlinesvg";
+import useLocalStorage from "react-use-localstorage";
 
-import ExpandButton from './ExpandButton';
-import MenuItem, { menuWidth, shrunkMenuWidth } from './MenuItem';
-import { useTheme } from '../Theme';
-import { SideBarProps } from './types';
+import { useTheme } from "../theme";
+import ExpandButton from "./ExpandButton";
+import MenuItem, { menuWidth, shrunkMenuWidth } from "./MenuItem";
+import { SideBarProps } from "./types";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -14,13 +15,13 @@ const useStyles = makeStyles(
       marginLeft: theme.spacing(2),
     },
     float: {
-      position: 'fixed',
+      position: "fixed",
     },
     logo: {
-      margin: `36px 0 ${theme.spacing(3)}px ${theme.spacing(3)}px`,
+      margin: `36px 0 ${theme.spacing(3)} ${theme.spacing(3.5)}`,
     },
     root: {
-      transition: 'width 0.5s ease',
+      transition: "width 0.5s ease",
       width: menuWidth,
       zIndex: 100,
     },
@@ -29,7 +30,7 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: 'SideBar',
+    name: "SideBar",
   }
 );
 
@@ -40,9 +41,14 @@ const SideBar: React.FC<SideBarProps & { active: string }> = ({
   logoSrc,
 }) => {
   const classes = useStyles({});
-  const { isDark } = useTheme();
-  const logo = isDark && logoSrc.dark ? logoSrc.dark : logoSrc.light;
-  const [isShrunk, setShrink] = React.useState(false); // TODO: make it persistent
+  const { themeType } = useTheme();
+  const logo =
+    themeType === "dark" && logoSrc.dark ? logoSrc.dark : logoSrc.light;
+  const [isShrunkStr, setShrink] = useLocalStorage(
+    "macaw-ui-menu-shrink",
+    false.toString()
+  );
+  const isShrunk = isShrunkStr === "true";
 
   return (
     <div
@@ -66,12 +72,12 @@ const SideBar: React.FC<SideBarProps & { active: string }> = ({
         <ExpandButton
           className={classes.expandButton}
           isShrunk={isShrunk}
-          onClick={() => setShrink(!isShrunk)}
+          onClick={() => setShrink((!isShrunk).toString())}
         />
       </div>
     </div>
   );
 };
 
-SideBar.displayName = 'SideBar';
+SideBar.displayName = "SideBar";
 export default SideBar;

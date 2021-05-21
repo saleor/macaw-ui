@@ -42,6 +42,13 @@ const useStyles = makeStyles(
       opacity: 1,
       transition: theme.transitions.duration.shortest + 'ms',
     },
+    labelRoot: {
+      position: 'absolute',
+      left: 72,
+      width: 200,
+      textAlign: 'left',
+      pointerEvents: 'none',
+    },
     menuItemBtn: {
       '&:focus': {
         color: theme.palette.primary.main,
@@ -154,7 +161,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
         )}
         <Typography
           aria-label={menuItem.ariaLabel}
-          className={clsx(classes.label, {
+          className={clsx(classes.label, classes.labelRoot, {
             [classes.hideLabel]: isMenuShrunk,
           })}
           variant="body2"
