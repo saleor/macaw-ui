@@ -4,6 +4,7 @@ import React from "react";
 import SVG from "react-inlinesvg";
 import useLocalStorage from "react-use-localstorage";
 
+import { localStorageKeys } from "../localStorageKeys";
 import { useTheme } from "../theme";
 import ExpandButton from "./ExpandButton";
 import MenuItem, { menuWidth, shrunkMenuWidth } from "./MenuItem";
@@ -45,7 +46,7 @@ const SideBar: React.FC<SideBarProps & { active: string }> = ({
   const logo =
     themeType === "dark" && logoSrc.dark ? logoSrc.dark : logoSrc.light;
   const [isShrunkStr, setShrink] = useLocalStorage(
-    "macaw-ui-menu-shrink",
+    localStorageKeys.menuShrink,
     false.toString()
   );
   const isShrunk = isShrunkStr === "true";
