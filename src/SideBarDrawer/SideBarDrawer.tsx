@@ -6,27 +6,23 @@ import clsx from "clsx";
 import React from "react";
 import SVG from "react-inlinesvg";
 
+import { Logo } from "../icons/Logo";
 import { IMenuItem, SideBarProps } from "../SideBar/types";
-import SquareButton from "../SquareButton";
-import { useTheme } from "../theme";
-import MenuItemBtn from "./MenuItemBtn";
+import { SquareButton } from "../SquareButton";
+import { MenuItemBtn } from "./MenuItemBtn";
 import useStyles from "./styles";
 
 export type SideBarDrawerProps = SideBarProps;
 
-const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
-  logoSrc,
+export const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
   menuItems,
   onMenuItemClick,
 }) => {
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
-  const { themeType } = useTheme();
   const [activeMenu, setActiveMenu] = React.useState<IMenuItem | null>(null);
   const [showSubmenu, setShowSubmenu] = React.useState(false);
   const container = React.useRef<HTMLDivElement>(null);
-  const logo =
-    themeType === "dark" && logoSrc.dark ? logoSrc.dark : logoSrc.light;
 
   const handleMenuItemClick = (url: string) => {
     setOpened(false);
@@ -66,7 +62,9 @@ const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
             })}
           >
             <div className={classes.content}>
-              <SVG className={classes.logo} src={logo} />
+              <div className={classes.logo}>
+                <Logo />
+              </div>
               {menuItems.map((menuItem) => (
                 <MenuItemBtn
                   menuItem={menuItem}
@@ -111,4 +109,3 @@ const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
 };
 
 SideBarDrawer.displayName = "SideBarDrawer";
-export default SideBarDrawer;

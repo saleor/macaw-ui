@@ -1,13 +1,12 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import clsx from "clsx";
 import React from "react";
-import SVG from "react-inlinesvg";
 import useLocalStorage from "react-use-localstorage";
 
+import { Logo } from "../icons/Logo";
 import { localStorageKeys } from "../localStorageKeys";
-import { useTheme } from "../theme";
-import ExpandButton from "./ExpandButton";
-import MenuItem, { menuWidth, shrunkMenuWidth } from "./MenuItem";
+import { ExpandButton } from "./ExpandButton";
+import { MenuItem, menuWidth, shrunkMenuWidth } from "./MenuItem";
 import { SideBarProps } from "./types";
 
 const useStyles = makeStyles(
@@ -35,16 +34,12 @@ const useStyles = makeStyles(
   }
 );
 
-const SideBar: React.FC<SideBarProps & { active: string }> = ({
+export const SideBar: React.FC<SideBarProps & { active: string }> = ({
   active,
   menuItems,
   onMenuItemClick,
-  logoSrc,
 }) => {
   const classes = useStyles({});
-  const { themeType } = useTheme();
-  const logo =
-    themeType === "dark" && logoSrc.dark ? logoSrc.dark : logoSrc.light;
   const [isShrunkStr, setShrink] = useLocalStorage(
     localStorageKeys.menuShrink,
     false.toString()
@@ -59,7 +54,7 @@ const SideBar: React.FC<SideBarProps & { active: string }> = ({
     >
       <div className={classes.float}>
         <div className={classes.logo}>
-          <SVG src={logo} />
+          <Logo />
         </div>
         {menuItems.map((menuItem) => (
           <MenuItem
@@ -81,4 +76,3 @@ const SideBar: React.FC<SideBarProps & { active: string }> = ({
 };
 
 SideBar.displayName = "SideBar";
-export default SideBar;

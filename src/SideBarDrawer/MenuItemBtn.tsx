@@ -1,15 +1,18 @@
-import Typography from '@material-ui/core/Typography';
-import React from 'react';
-import SVG from 'react-inlinesvg';
-import { IMenuItem } from '../SideBar/types';
+import Typography from "@material-ui/core/Typography";
+import React from "react";
+import SVG from "react-inlinesvg";
 
-import useStyles from './styles';
+import { IMenuItem } from "../SideBar/types";
+import useStyles from "./styles";
 
 export interface MenuItemBtnProps {
   menuItem: IMenuItem;
   onClick: (url: string) => void;
 }
-const MenuItemBtn: React.FC<MenuItemBtnProps> = ({ menuItem, onClick }) => {
+export const MenuItemBtn: React.FC<MenuItemBtnProps> = ({
+  menuItem,
+  onClick,
+}) => {
   const classes = useStyles({});
 
   return (
@@ -29,5 +32,4 @@ const MenuItemBtn: React.FC<MenuItemBtnProps> = ({ menuItem, onClick }) => {
   );
 };
 
-MenuItemBtn.displayName = 'MenuItemBtn';
-export default MenuItemBtn;
+MenuItemBtn.displayName = "MenuItemBtn";

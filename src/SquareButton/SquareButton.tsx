@@ -23,11 +23,13 @@ const useStyles = makeStyles(
   }
 );
 
-const SquareButton: React.FC<ButtonBaseProps> = ({ className, ...rest }) => {
+export const SquareButton: React.FC<ButtonBaseProps> = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles({});
 
   return <ButtonBase className={clsx(classes.root, className)} {...rest} />;
 };
 
 SquareButton.displayName = "SquareButton";
-export default SquareButton;

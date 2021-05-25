@@ -40,6 +40,9 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
         color: colors.primary,
       },
     },
+    textSizeSmall: {
+      fontSize: "1.3rem",
+    },
   },
   MuiIconButton: {
     root: {

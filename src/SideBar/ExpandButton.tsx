@@ -3,7 +3,7 @@ import ArrowIcon from "@material-ui/icons/ArrowBack";
 import clsx from "clsx";
 import React from "react";
 
-import SquareButton from "../SquareButton";
+import { SquareButton } from "../SquareButton";
 import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
@@ -24,7 +24,10 @@ export interface ExpandButtonProps extends ButtonProps {
   isShrunk: boolean;
 }
 
-const ExpandButton: React.FC<ExpandButtonProps> = ({ isShrunk, ...rest }) => {
+export const ExpandButton: React.FC<ExpandButtonProps> = ({
+  isShrunk,
+  ...rest
+}) => {
   const classes = useStyles({});
 
   return (
@@ -39,4 +42,3 @@ const ExpandButton: React.FC<ExpandButtonProps> = ({ isShrunk, ...rest }) => {
 };
 
 ExpandButton.displayName = "ExpandButton";
-export default ExpandButton;
