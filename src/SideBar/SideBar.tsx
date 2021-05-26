@@ -15,6 +15,7 @@ const useStyles = makeStyles(
       marginLeft: theme.spacing(2),
     },
     float: {
+      height: "100vh",
       position: "fixed",
     },
     logo: {
@@ -28,6 +29,9 @@ const useStyles = makeStyles(
     rootShrink: {
       width: shrunkMenuWidth,
     },
+    toolbarContainer: {
+      margin: theme.spacing(1, 0, 1, 2),
+    },
   }),
   {
     name: "SideBar",
@@ -37,6 +41,7 @@ const useStyles = makeStyles(
 export const SideBar: React.FC<SideBarProps & { active: string }> = ({
   active,
   menuItems,
+  toolbar,
   onMenuItemClick,
 }) => {
   const classes = useStyles({});
@@ -65,6 +70,7 @@ export const SideBar: React.FC<SideBarProps & { active: string }> = ({
             key={menuItem.ariaLabel}
           />
         ))}
+        {toolbar && <div className={classes.toolbarContainer}>{toolbar}</div>}
         <ExpandButton
           className={classes.expandButton}
           isShrunk={isShrunk}
