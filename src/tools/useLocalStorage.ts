@@ -4,9 +4,11 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-// We also had to tweak return signature because tuples were bugging
+// FIXME: We also had to tweak return signature because tuples were bugging
 // typescript parser
 // https://stackoverflow.com/questions/62079477/line-0-parsing-error-cannot-read-property-map-of-undefined
+// tsdx issue
+// https://github.com/formium/tsdx/issues/926
 export interface UseLocalStorage {
   value: string;
   setValue: (value: string) => void;
