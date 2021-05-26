@@ -21,6 +21,9 @@ export const createPalette = (
     contrastText: "#ffffff",
     main: colors.secondary,
   },
+  success: {
+    main: colors.success,
+  },
   text: {
     disabled: colors.font.gray,
     hint: colors.font.gray,
