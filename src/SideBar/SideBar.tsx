@@ -1,10 +1,10 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import clsx from "clsx";
 import React from "react";
-import useLocalStorage from "react-use-localstorage";
 
 import { Logo } from "../icons/Logo";
 import { localStorageKeys } from "../localStorageKeys";
+import useLocalStorage from "../tools/useLocalStorage";
 import { ExpandButton } from "./ExpandButton";
 import { MenuItem, menuWidth, shrunkMenuWidth } from "./MenuItem";
 import { SideBarProps } from "./types";
@@ -45,7 +45,7 @@ export const SideBar: React.FC<SideBarProps & { active: string }> = ({
   onMenuItemClick,
 }) => {
   const classes = useStyles({});
-  const [isShrunkStr, setShrink] = useLocalStorage(
+  const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
     localStorageKeys.menuShrink,
     false.toString()
   );
