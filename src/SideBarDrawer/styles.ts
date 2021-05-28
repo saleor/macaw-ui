@@ -1,45 +1,45 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(
   (theme) => ({
     activeMenuLabel: {
-      display: 'flex',
+      display: "flex",
     },
     container: {
-      overflowX: 'hidden',
-      width: '100%',
+      overflowX: "hidden",
+      width: "100%",
     },
     containerSubMenu: {
-      '&$container': {
-        overflow: 'hidden',
+      "&$container": {
+        overflow: "hidden",
       },
     },
     content: {
-      width: '50%',
+      width: "50%",
     },
     icon: {
       marginRight: theme.spacing(2),
     },
     innerContainer: {
-      display: 'flex',
-      position: 'relative',
+      display: "flex",
+      position: "relative",
       right: 0,
-      transition: theme.transitions.duration.short + 'ms',
-      width: '200%',
+      transition: theme.transitions.duration.short + "ms",
+      width: "200%",
     },
     label: {
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
     logo: {
-      display: 'block',
+      display: "block",
       marginBottom: theme.spacing(4),
     },
     menuItemBtn: {
-      alignItems: 'center',
-      background: 'none',
-      border: 'none',
+      alignItems: "center",
+      background: "none",
+      border: "none",
       color: theme.palette.text.secondary,
-      display: 'flex',
+      display: "flex",
       marginBottom: theme.spacing(3),
       padding: 0,
     },
@@ -51,17 +51,17 @@ const useStyles = makeStyles(
       width: 260,
     },
     secondaryContentActive: {
-      right: '100%',
+      right: "100%",
     },
     subMenuTopBar: {
-      alignItems: 'center',
-      display: 'flex',
-      justifyContent: 'space-between',
+      alignItems: "center",
+      display: "flex",
+      justifyContent: "space-between",
       marginBottom: theme.spacing(3),
     },
   }),
   {
-    name: 'SideBarDrawer',
+    name: "SideBarDrawer",
   }
 );
 
