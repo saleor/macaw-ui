@@ -44,11 +44,11 @@
   "size-limit": [
     {
       "path": "dist/macaw-ui.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "15 KB"
     },
     {
       "path": "dist/macaw-ui.esm.js",
-      "limit": "10 KB"
+      "limit": "15 KB"
     }
   ],
   "devDependencies": {
