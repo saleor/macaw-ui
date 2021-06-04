@@ -1,4 +1,3 @@
-import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
@@ -22,13 +21,13 @@ const Wrapper: React.FC = ({ children }) => {
 const props: SavebarProps = {
   labels,
   disabled: false,
-  onCancel: action("cancel"),
-  onSubmit: action("submit"),
+  onCancel: () => undefined,
+  onSubmit: () => undefined,
   state: "default",
 };
 export const Default: Story = () => <Savebar {...props} />;
 export const WithDelete: Story = () => (
-  <Savebar {...props} onDelete={action("delete")} />
+  <Savebar {...props} onDelete={() => undefined} />
 );
 
 export default {
