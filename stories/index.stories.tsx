@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { Decorator } from "./Decorator";
+import { Decorator } from "../src/utils/Decorator";
 
 storiesOf("Home", module)
   .addDecorator(Decorator)

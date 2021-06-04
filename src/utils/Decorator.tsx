@@ -1,8 +1,9 @@
+import { StoryFn } from "@storybook/addons";
 import React from "react";
 
-import { ThemeProvider } from "../src/theme";
+import { ThemeProvider } from "../theme";
 
-export const Decorator = (storyFn) => (
+export const Decorator = (storyFn: StoryFn<React.ReactNode>) => (
   <ThemeProvider>
     <div
       style={{

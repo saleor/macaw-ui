@@ -1,7 +1,7 @@
-import { storiesOf } from "@storybook/react";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Decorator } from "../../stories/Decorator";
+import { Decorator } from "../utils/Decorator";
 import {
   ConfirmButton,
   ConfirmButtonLabels,
@@ -13,7 +13,7 @@ const labels: ConfirmButtonLabels = {
   error: "Error",
 };
 
-const InteractiveStory = () => {
+export const Interactive: Story = () => {
   const [
     transitionState,
     setTransitionState,
@@ -47,30 +47,28 @@ const InteractiveStory = () => {
   );
 };
 
-storiesOf("Confirm Button", module)
-  .addDecorator(Decorator)
-  .add("default", () => (
-    <ConfirmButton labels={labels} transitionState="default" />
-  ))
-  .add("loading", () => (
-    <ConfirmButton
-      labels={labels}
-      transitionState="loading"
-      noTransition={true}
-    />
-  ))
-  .add("error", () => (
-    <ConfirmButton
-      labels={labels}
-      transitionState="error"
-      noTransition={true}
-    />
-  ))
-  .add("success", () => (
-    <ConfirmButton
-      labels={labels}
-      transitionState="success"
-      noTransition={true}
-    />
-  ))
-  .add("interactive", () => <InteractiveStory />);
+export const Default: Story = () => (
+  <ConfirmButton labels={labels} transitionState="default" />
+);
+export const Loading: Story = () => (
+  <ConfirmButton
+    labels={labels}
+    transitionState="loading"
+    noTransition={true}
+  />
+);
+export const Error: Story = () => (
+  <ConfirmButton labels={labels} transitionState="error" noTransition={true} />
+);
+export const Success: Story = () => (
+  <ConfirmButton
+    labels={labels}
+    transitionState="success"
+    noTransition={true}
+  />
+);
+
+export default {
+  title: "Confirm Button",
+  decorators: [Decorator],
+} as Meta;

@@ -1,8 +1,9 @@
-import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Decorator } from "../../stories/Decorator";
-import { SavebarProvider, useSavebar } from "./context";
+import { Decorator } from "../utils/Decorator";
+import { useSavebar } from "./context";
 import { Savebar, SavebarLabels, SavebarProps } from "./Savebar";
 
 const labels: SavebarLabels = {
@@ -21,21 +22,23 @@ const Wrapper: React.FC = ({ children }) => {
 const props: SavebarProps = {
   labels,
   disabled: false,
-  onCancel: () => undefined,
-  onSubmit: () => undefined,
+  onCancel: action("cancel"),
+  onSubmit: action("submit"),
   state: "default",
 };
+export const Default: Story = () => <Savebar {...props} />;
+export const WithDelete: Story = () => (
+  <Savebar {...props} onDelete={action("delete")} />
+);
 
-storiesOf("Savebar", module)
-  .addDecorator(Decorator)
-  .addDecorator((storyFn) => <SavebarProvider>{storyFn()}</SavebarProvider>)
-  .add("default", () => (
-    <Wrapper>
-      <Savebar {...props} />
-    </Wrapper>
-  ))
-  .add("with delete", () => (
-    <Wrapper>
-      <Savebar {...props} onDelete={() => undefined} />
-    </Wrapper>
-  ));
+export default {
+  title: "Savebar",
+  decorators: [
+    (Story) => (
+      <Wrapper>
+        <Story />
+      </Wrapper>
+    ),
+    Decorator,
+  ],
+} as Meta;
