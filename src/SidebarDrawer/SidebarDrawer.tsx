@@ -7,14 +7,14 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import { Logo } from "../icons/Logo";
-import { IMenuItem, SideBarProps } from "../SideBar/types";
+import { BaseSidebarProps, IMenuItem } from "../Sidebar/types";
 import { SquareButton } from "../SquareButton";
 import { MenuItemBtn } from "./MenuItemBtn";
 import useStyles from "./styles";
 
-export type SideBarDrawerProps = SideBarProps;
+export type SideBarDrawerProps = BaseSidebarProps;
 
-export const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
+export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   menuItems,
   onMenuItemClick,
 }) => {
@@ -108,4 +108,4 @@ export const SideBarDrawer: React.FC<SideBarDrawerProps> = ({
   );
 };
 
-SideBarDrawer.displayName = "SideBarDrawer";
+SidebarDrawer.displayName = "SideBarDrawer";

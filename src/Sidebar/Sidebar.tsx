@@ -7,7 +7,7 @@ import { localStorageKeys } from "../localStorageKeys";
 import useLocalStorage from "../tools/useLocalStorage";
 import { ExpandButton } from "./ExpandButton";
 import { MenuItem, menuWidth, shrunkMenuWidth } from "./MenuItem";
-import { SideBarProps } from "./types";
+import { BaseSidebarProps } from "./types";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -38,7 +38,11 @@ const useStyles = makeStyles(
   }
 );
 
-export const SideBar: React.FC<SideBarProps & { active: string }> = ({
+export interface SidebarProps extends BaseSidebarProps {
+  active: string;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({
   active,
   menuItems,
   toolbar,
@@ -81,4 +85,4 @@ export const SideBar: React.FC<SideBarProps & { active: string }> = ({
   );
 };
 
-SideBar.displayName = "SideBar";
+Sidebar.displayName = "SideBar";

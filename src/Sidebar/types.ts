@@ -7,9 +7,10 @@ export interface IMenuItem {
   label: string;
   id: string;
   url?: string;
+  external?: boolean;
 }
 
-export interface SideBarProps {
+export interface BaseSidebarProps {
   className?: string;
   menuItems: IMenuItem[];
   toolbar?: React.ReactNode;

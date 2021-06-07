@@ -184,7 +184,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
               {menuItem.children.map((subMenuItem) => (
                 <Typography
                   aria-label={subMenuItem.ariaLabel}
-                  component="button"
+                  component={subMenuItem.external ? "a" : "button"}
                   className={clsx(classes.label, classes.subMenuLabel)}
                   key={subMenuItem.url}
                   onClick={(event: React.MouseEvent<any>) =>

@@ -2,7 +2,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import SVG from "react-inlinesvg";
 
-import { IMenuItem } from "../SideBar/types";
+import { IMenuItem } from "../Sidebar/types";
 import useStyles from "./styles";
 
 export interface MenuItemBtnProps {
