@@ -42,6 +42,7 @@ const useStyles = makeStyles(
       display: "flex",
       marginBottom: theme.spacing(3),
       padding: 0,
+      textDecoration: "none",
     },
     root: {
       background: theme.palette.background.default,

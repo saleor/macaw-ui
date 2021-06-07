@@ -10,6 +10,6 @@ export const Default: Story = () => (
 );
 
 export default {
-  title: "Sidebar",
+  title: "Sidebar - mobile",
   decorators: [Decorator],
 } as Meta;

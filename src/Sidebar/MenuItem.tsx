@@ -114,7 +114,9 @@ const useStyles = makeStyles(
       background: "none",
       border: "none",
       color: fade(theme.palette.text.primary, 0.6),
+      padding: 0,
       textAlign: "left",
+      textDecoration: "none",
       whiteSpace: "nowrap",
     },
   }),
@@ -181,22 +183,29 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         >
           <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Paper className={classes.paper}>
-              {menuItem.children.map((subMenuItem) => (
-                <Typography
-                  aria-label={subMenuItem.ariaLabel}
-                  component={subMenuItem.external ? "a" : "button"}
-                  className={clsx(classes.label, classes.subMenuLabel)}
-                  key={subMenuItem.url}
-                  onClick={(event: React.MouseEvent<any>) =>
-                    handleClick(event, subMenuItem)
-                  }
-                  data-test="submenu-item-label"
-                  data-test-id={subMenuItem.id}
-                  variant="body2"
-                >
-                  {subMenuItem.label}
-                </Typography>
-              ))}
+              {menuItem.children.map((subMenuItem) => {
+                const linkProps = subMenuItem.external
+                  ? { href: subMenuItem.url, target: "_blank" }
+                  : {};
+
+                return (
+                  <Typography
+                    aria-label={subMenuItem.ariaLabel}
+                    component={subMenuItem.external ? "a" : "button"}
+                    className={clsx(classes.label, classes.subMenuLabel)}
+                    key={subMenuItem.url}
+                    onClick={(event: React.MouseEvent<any>) =>
+                      handleClick(event, subMenuItem)
+                    }
+                    data-test="submenu-item-label"
+                    data-test-id={subMenuItem.id}
+                    variant="body2"
+                    {...linkProps}
+                  >
+                    {subMenuItem.label}
+                  </Typography>
+                );
+              })}
             </Paper>
           </ClickAwayListener>
         </Popper>

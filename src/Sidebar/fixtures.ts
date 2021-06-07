@@ -27,6 +27,13 @@ export const menu: IMenuItem[] = [
         label: "Menu 22",
         url: "/section22/",
       },
+      {
+        ariaLabel: "Menu 2.3",
+        id: "menu23",
+        label: "Menu 22 - external",
+        url: "http://example.com",
+        external: true,
+      },
     ],
   },
 ];
