@@ -1,14 +1,17 @@
 import CloseIcon from "@material-ui/icons/Close";
-import { storiesOf } from "@storybook/react";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import { Decorator } from "../utils/Decorator";
 import { SquareButton } from "./SquareButton";
 
-storiesOf("Components / Square Button", module)
-  .addDecorator(Decorator)
-  .add("default", () => (
-    <SquareButton>
-      <CloseIcon />
-    </SquareButton>
-  ));
+export const Default: Story = () => (
+  <SquareButton>
+    <CloseIcon />
+  </SquareButton>
+);
+
+export default {
+  title: "Square button",
+  decorators: [Decorator],
+} as Meta;
