@@ -7,6 +7,7 @@ import {
   sendMessageToExtension,
   ThemeChangeMessage,
 } from "../extensions";
+import { SavebarProvider } from "../Savebar/context";
 import useLocalStorage from "../tools/useLocalStorage";
 import { Baseline } from "./Baseline";
 import { ThemeContext } from "./context";
@@ -60,8 +61,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         <meta name="theme-color" content={theme.palette.background.default} />
       </Helmet>
       <MuiThemeProvider theme={theme}>
-        <Baseline />
-        {children}
+        <SavebarProvider>
+          <Baseline />
+          {children}
+        </SavebarProvider>
       </MuiThemeProvider>
     </ThemeContext.Provider>
   );
