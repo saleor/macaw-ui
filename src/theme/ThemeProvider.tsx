@@ -2,6 +2,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect } from "react";
 import Helmet from "react-helmet";
 
+import { BacklinkProvider } from "../Backlink/context";
 import {
   ExtensionMessageType,
   sendMessageToExtension,
@@ -63,8 +64,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       </Helmet>
       <MuiThemeProvider theme={theme}>
         <SavebarProvider>
-          <Baseline />
-          {children}
+          <BacklinkProvider>
+            <Baseline />
+            {children}
+          </BacklinkProvider>
         </SavebarProvider>
       </MuiThemeProvider>
     </ThemeContext.Provider>
