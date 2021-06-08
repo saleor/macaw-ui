@@ -1,3 +1,5 @@
+// It's only optimized for esm, cjs will remain fat blob
+// Ref https://github.com/formium/tsdx/issues/763
 import { throttle } from "lodash";
 import { useEffect, useState } from "react";
 
