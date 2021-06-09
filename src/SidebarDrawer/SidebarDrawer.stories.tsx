@@ -2,7 +2,6 @@ import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import * as fixtures from "../Sidebar/fixtures";
-import { Decorator } from "../utils/Decorator";
 import { SidebarDrawer } from "./SidebarDrawer";
 
 export const Default: Story = () => (
@@ -11,5 +10,4 @@ export const Default: Story = () => (
 
 export default {
   title: "Sidebar - mobile",
-  decorators: [Decorator],
 } as Meta;

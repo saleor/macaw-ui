@@ -2,7 +2,6 @@ import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import { SquareButton } from "../SquareButton";
-import { Decorator } from "../utils/Decorator";
 import * as fixtures from "./fixtures";
 import { Sidebar, SidebarProps } from "./Sidebar";
 
@@ -19,5 +18,4 @@ export const WithToolbar: Story = () => (
 
 export default {
   title: "Sidebar",
-  decorators: [Decorator],
 } as Meta;
