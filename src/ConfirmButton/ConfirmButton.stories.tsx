@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Decorator } from "../utils/Decorator";
 import {
   ConfirmButton,
   ConfirmButtonLabels,
@@ -70,5 +69,4 @@ export const Success: Story = () => (
 
 export default {
   title: "Confirm Button",
-  decorators: [Decorator],
 } as Meta;

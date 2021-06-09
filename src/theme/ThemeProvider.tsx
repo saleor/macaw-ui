@@ -7,6 +7,7 @@ import {
   sendMessageToExtension,
   ThemeChangeMessage,
 } from "../extensions";
+import { localStorageKeys } from "../localStorageKeys";
 import { SavebarProvider } from "../Savebar/context";
 import useLocalStorage from "../tools/useLocalStorage";
 import { Baseline } from "./Baseline";
@@ -24,7 +25,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   overrides = {},
 }) => {
   const { value: themeTypeName, setValue: setThemeType } = useLocalStorage(
-    "macaw-ui-theme",
+    localStorageKeys.theme,
     defaultTheme
   );
   const themeType = themeTypeName as ThemeType;

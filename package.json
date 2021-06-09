@@ -44,11 +44,11 @@
   "size-limit": [
     {
       "path": "dist/macaw-ui.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "45 KB"
     },
     {
       "path": "dist/macaw-ui.esm.js",
-      "limit": "10 KB"
+      "limit": "20 KB"
     }
   ],
   "devDependencies": {
@@ -61,9 +61,11 @@
     "@storybook/addon-links": "^6.2.9",
     "@storybook/addons": "^6.2.9",
     "@storybook/react": "^6.2.9",
+    "@types/lodash": "^4.14.170",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.4",
     "@types/react-helmet": "^6.1.1",
+    "@types/react-inlinesvg": "^1.0.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-import": "^1.13.3",
     "eslint-plugin-simple-import-sort": "^5.0.3",
@@ -78,8 +80,9 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.170",
+    "clsx": "^1.1.1",
     "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "react-inlinesvg": "^2.3.0"
   }
 }
