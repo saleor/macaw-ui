@@ -74,6 +74,7 @@
     "react-dom": "^16.8.0 || ^17.0.0",
     "react-helmet": "^6.1.0",
     "react-is": "^17.0.2",
+    "rollup-plugin-svg": "^2.0.0",
     "size-limit": "^4.10.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
