@@ -1,21 +1,11 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { darken } from "@material-ui/core/styles/colorManipulator";
-import warningIcon from "images/alert_icon.svg";
-import errorIcon from "images/error_icon.svg";
-import infoIcon from "images/info_icon.svg";
-import successIcon from "images/success_icon.svg";
-
-const successColor = "#DFF3E9";
-const warningColor = "#FFF4E4";
-const infoColor = "#FFFFFF";
-const errorColor = "#FFD6D9";
+import warningIcon from "../assets/alert_icon.svg";
+import errorIcon from "../assets/error_icon.svg";
+import infoIcon from "../assets/info_icon.svg";
+import successIcon from "../assets/success_icon.svg";
+import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
   (theme) => ({
-    "@keyframes bar": {
-      from: { transform: "translateX(-100%)" },
-      to: { transform: "translateX(0)" },
-    },
     actionBtn: {
       minWidth: "unset",
     },
@@ -25,8 +15,8 @@ const useStyles = makeStyles(
     },
     closeBtn: {
       "& svg": {
-        maxHeight: 18,
-        maxWidth: 18,
+        maxHeight: 20,
+        maxWidth: 20,
       },
       padding: 10,
       position: "absolute",
@@ -36,162 +26,70 @@ const useStyles = makeStyles(
     closeBtnInfo: {
       color: theme.palette.text.primary,
     },
-    container: {
-      display: "grid",
-      gridTemplateRows: "repeat(auto-fill, minmax(90px, 1fr))",
-      justifyContent: "end",
-      left: 0,
-      pointerEvents: "none",
-      position: "fixed",
-      top: 0,
-      width: "100%",
-      zIndex: 10000,
-    },
     error: {
-      "& > div:first-child": {
-        "&:before": {
-          backgroundImage: `url(${errorIcon})`,
-        },
-      },
-      backgroundColor: errorColor,
-    },
-    expandBtn: {
-      "&:before": {
-        borderLeft: "4px solid transparent",
-        borderRight: "4px solid transparent",
-        borderTop: "8px solid #fff",
-        content: "''",
-        display: "block",
-        height: 0,
-        position: "absolute",
-        right: 0,
-        top: "50%",
-        transform: "translateY(-50%)",
-        width: 0,
-      },
-      background: "transparent",
-      border: "none",
-      color: "#fff",
-      cursor: "pointer",
-      fontSize: theme.spacing(2),
-      outline: "none",
-      padding: 0,
-      paddingRight: 15,
-      position: "relative",
-    },
-    expandBtnInfo: {
-      "&:before": {
-        borderTop: `8px solid ${theme.palette.text.primary}`,
-      },
-      color: theme.palette.text.primary,
-    },
-    expandedContainer: {
-      "& p": {
-        margin: theme.spacing(1, 0),
-      },
-      marginBottom: 5,
-    },
-    expandedContainerContent: {
-      overflow: "hidden",
-      transition: "max-height .6s ease",
-    },
-    expandedContainerInfo: {
-      color: theme.palette.text.secondary,
-    },
-    expandedText: {
-      maxHeight: 500,
+      backgroundColor: theme.palette.alert.paper.error,
     },
     hiddenText: {
       maxHeight: 0,
     },
-    info: {
-      "& > div:first-child": {
-        "&:before": {
-          backgroundImage: `url(${infoIcon})`,
-        },
-      },
-    },
-    progressBar: {
-      animation: `$bar var(--animationTime) ease both`,
-      backgroundColor: infoColor,
-      height: 8,
-      transform: "translateX(-100%)",
-      width: "100%",
-    },
-    progressBarContainer: {
-      borderRadius: "0 0 4px 4px",
-      bottom: 0,
-      left: 0,
-      overflow: "hidden",
-      position: "absolute",
-      width: "calc(100%)",
-    },
-    progressBarError: {
-      backgroundColor: darken(errorColor, 0.2),
-    },
-    progressBarSuccess: {
-      backgroundColor: darken(successColor, 0.2),
-    },
-    progressBarWarning: {
-      backgroundColor: darken(warningColor, 0.2),
-    },
+    info: {},
     snackbar: {
-      "& > div": {
-        paddingLeft: 60,
-      },
-      "& > div:first-child": {
-        "&:before": {
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          content: "''",
-          display: "block",
-          height: 32,
-          left: 15,
-          position: "absolute",
-          top: 13,
-          width: 32,
-        },
-        paddingTop: 16,
-        position: "relative",
-      },
-      "&:hover": {
-        "& [class*='progressBar']": {
-          animationPlayState: "paused",
-        },
-      },
       borderRadius: 4,
-      paddingBottom: 15,
-      paddingLeft: 5,
-      paddingRight: 45,
+      paddingBottom: theme.spacing(1),
+      paddingLeft: theme.spacing(8),
+      paddingRight: theme.spacing(6),
       position: "relative",
     },
     snackbarContainer: {
-      borderRadius: 4,
-      display: "block",
-      margin: theme.spacing(2, 2, 0, 2),
+      marginBottom: theme.spacing(2),
       maxWidth: 450,
-      pointerEvents: "all",
       position: "relative",
     },
     success: {
-      "& > div:first-child": {
-        "&:before": {
-          backgroundImage: `url(${successIcon})`,
-        },
-      },
-      backgroundColor: successColor,
+      backgroundColor: theme.palette.alert.paper.success,
     },
     text: {
       fontWeight: 400,
       paddingTop: 5,
     },
     warning: {
-      "& > div:first-child": {
-        "&:before": {
-          backgroundImage: `url(${warningIcon})`,
-        },
+      backgroundColor: theme.palette.alert.paper.warning,
+    },
+
+    messageContainer: {
+      "&:before": {
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        content: "''",
+        display: "block",
+        height: 32,
+        left: theme.spacing(-6),
+        position: "absolute",
+        top: 13,
+        width: 32,
       },
-      backgroundColor: warningColor,
+      paddingTop: theme.spacing(2),
+      position: "relative",
+    },
+    messageContainerInfo: {
+      "&:before": {
+        backgroundImage: `url(${infoIcon})`,
+      },
+    },
+    messageContainerSuccess: {
+      "&:before": {
+        backgroundImage: `url(${successIcon})`,
+      },
+    },
+    messageContainerError: {
+      "&:before": {
+        backgroundImage: `url(${errorIcon})`,
+      },
+    },
+    messageContainerWarn: {
+      "&:before": {
+        backgroundImage: `url(${warningIcon})`,
+      },
     },
   }),
   { name: "Notification" }

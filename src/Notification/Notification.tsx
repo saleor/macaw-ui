@@ -10,15 +10,14 @@ import useStyles from "./styles";
 import type { NotificationProps } from "./types";
 
 const Notification: React.FC<NotificationProps> = ({
-  message,
-  options,
-  close,
+  onClose,
+  title,
+  type,
+  action,
+  content,
   ...rest
 }) => {
   const classes = useStyles();
-
-  const { type } = options;
-  const { title, content, action } = message;
 
   return (
     <div
@@ -28,6 +27,14 @@ const Notification: React.FC<NotificationProps> = ({
     >
       <SnackbarContent
         aria-describedby="client-snackbar"
+        classes={{
+          message: clsx(classes.messageContainer, {
+            [classes.messageContainerInfo]: type === "info",
+            [classes.messageContainerSuccess]: type === "success",
+            [classes.messageContainerWarn]: type === "warning",
+            [classes.messageContainerError]: type === "error",
+          }),
+        }}
         className={clsx(classes.snackbar, {
           [classes.info]: type === "info",
           [classes.error]: type === "error",
@@ -35,14 +42,14 @@ const Notification: React.FC<NotificationProps> = ({
           [classes.warning]: type === "warning",
         })}
         message={
-          <span>
+          <div>
             {title && (
               <Typography variant="h5" style={{ fontWeight: "bold" }}>
                 {title}
               </Typography>
             )}
             <Typography className={classes.text}>{content}</Typography>
-          </span>
+          </div>
         }
         action={[
           <div key="actions" className={classes.actionContainer}>
@@ -63,7 +70,7 @@ const Notification: React.FC<NotificationProps> = ({
             key="close"
             aria-label="Close"
             color="inherit"
-            onClick={close}
+            onClick={onClose}
             className={clsx(classes.closeBtn, {
               [classes.closeBtnInfo]: type === "info",
             })}

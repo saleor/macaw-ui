@@ -1,27 +1,42 @@
-import { storiesOf } from "@storybook/react";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
-import Decorator from "stories/Decorator";
 
-import Snackbar, { SnackbarProps } from "./Snackbar";
+import Notification from "./Notification";
+import type { NotificationProps } from "./types";
 
-const props: SnackbarProps = {
-  message: {
-    title: "Title",
-    content: "Content",
-    action: {
-      label: "Action",
-      onClick: () => undefined,
-    },
-  },
-  close: () => undefined,
-  options: {
-    type: "info",
-  },
+const props: NotificationProps = {
+  title: "Title",
+  onClose: () => undefined,
+  type: "info",
 };
 
-storiesOf("Components / Snackbar", module)
-  .addDecorator(Decorator)
-  .add("info", () => <Snackbar {...props} />)
-  .add("warn", () => <Snackbar {...props} options={{ type: "warning" }} />)
-  .add("success", () => <Snackbar {...props} options={{ type: "success" }} />)
-  .add("error", () => <Snackbar {...props} options={{ type: "error" }} />);
+export const Info: Story = () => <Notification {...props} />;
+export const Warn: Story = () => <Notification {...props} type="warning" />;
+export const Success: Story = () => <Notification {...props} type="success" />;
+export const Error: Story = () => <Notification {...props} type="error" />;
+export const WithAction: Story = () => (
+  <Notification
+    {...props}
+    action={{
+      label: "Action",
+      onClick: () => undefined,
+    }}
+  />
+);
+export const WithContent: Story = () => (
+  <Notification {...props} content="Some notification content" />
+);
+export const WithActionAndContent: Story = () => (
+  <Notification
+    {...props}
+    content="Some notification content"
+    action={{
+      label: "Action",
+      onClick: () => undefined,
+    }}
+  />
+);
+
+export default {
+  title: "Notification",
+} as Meta;

@@ -1,11 +1,14 @@
+import type { ReactNode } from "react";
+
 export type NotificationType = "info" | "success" | "error" | "warning";
+export interface NotificationAction {
+  label: string;
+  onClick: () => void;
+}
 export interface Notification {
-  content?: string;
+  content?: ReactNode;
   title: string;
-  action?: {
-    label: string;
-    onClick: () => void;
-  };
+  action?: NotificationAction;
   type: NotificationType;
 }
 
