@@ -9,7 +9,7 @@ const useStyles = makeStyles(
       top: theme.spacing(-1),
     },
     container: {
-      columnGap: theme.spacing(2) + "px",
+      columnGap: theme.spacing(2),
       display: "grid",
       gridTemplateColumns: "40px 1fr",
     },
