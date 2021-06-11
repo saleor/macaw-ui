@@ -5,11 +5,28 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
+import SVG from "react-inlinesvg";
 
+import warningIcon from "../assets/alert_icon.svg";
+import errorIcon from "../assets/error_icon.svg";
+import infoIcon from "../assets/info_icon.svg";
+import successIcon from "../assets/success_icon.svg";
 import useStyles from "./styles";
-import type { NotificationProps } from "./types";
+import type { NotificationProps, NotificationType } from "./types";
 
-export const Notification: React.FC<NotificationProps> = ({
+function getIcon(variant: NotificationType): string {
+  switch (variant) {
+    case "error":
+      return errorIcon;
+    case "success":
+      return successIcon;
+    case "warning":
+      return warningIcon;
+  }
+  return infoIcon;
+}
+
+export const Notification: React.VFC<NotificationProps> = ({
   onClose,
   title,
   type,
@@ -28,12 +45,8 @@ export const Notification: React.FC<NotificationProps> = ({
       <SnackbarContent
         aria-describedby="client-snackbar"
         classes={{
-          message: clsx(classes.messageContainer, {
-            [classes.messageContainerInfo]: type === "info",
-            [classes.messageContainerSuccess]: type === "success",
-            [classes.messageContainerWarn]: type === "warning",
-            [classes.messageContainerError]: type === "error",
-          }),
+          action: classes.snackbarAction,
+          message: classes.messageContainer,
         }}
         className={clsx(classes.snackbar, {
           [classes.info]: type === "info",
@@ -42,17 +55,20 @@ export const Notification: React.FC<NotificationProps> = ({
           [classes.warning]: type === "warning",
         })}
         message={
-          <div>
-            {title && (
-              <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                {title}
-              </Typography>
-            )}
-            <Typography className={classes.text}>{content}</Typography>
+          <div className={classes.container}>
+            <div>
+              <SVG className={classes.icon} src={getIcon(type)} />
+            </div>
+            <div>
+              <div className={classes.title}>
+                <Typography variant="h5">{title}</Typography>
+              </div>
+              <Typography variant="body1">{content}</Typography>
+            </div>
           </div>
         }
         action={[
-          <div key="actions" className={classes.actionContainer}>
+          <div key="actions">
             {!!action && (
               <Button
                 className={classes.actionBtn}

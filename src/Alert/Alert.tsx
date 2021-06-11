@@ -21,7 +21,7 @@ export interface AlertProps {
   title: string;
 }
 
-function getVariantIcon(variant: AlertVariant): string {
+function getIcon(variant: AlertVariant): string {
   switch (variant) {
     case "error":
       return errorIcon;
@@ -59,7 +59,7 @@ export const Alert: React.FC<AlertProps> = ({
       <CardContent>
         <div className={classes.container}>
           <div>
-            <SVG className={classes.icon} src={getVariantIcon(variant)} />
+            <SVG className={classes.icon} src={getIcon(variant)} />
           </div>
           <div className={classes.content}>
             <div className={classes.titleBar}>
@@ -73,7 +73,11 @@ export const Alert: React.FC<AlertProps> = ({
                 </IconButton>
               )}
             </div>
-            {children}
+            {typeof children === "string" ? (
+              <Typography variant="body1">{children}</Typography>
+            ) : (
+              children
+            )}
           </div>
         </div>
       </CardContent>

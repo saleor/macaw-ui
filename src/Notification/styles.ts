@@ -1,17 +1,13 @@
-import warningIcon from "../assets/alert_icon.svg";
-import errorIcon from "../assets/error_icon.svg";
-import infoIcon from "../assets/info_icon.svg";
-import successIcon from "../assets/success_icon.svg";
 import { makeStyles } from "../theme";
+
+const iconWidth = 40;
 
 const useStyles = makeStyles(
   (theme) => ({
     actionBtn: {
-      minWidth: "unset",
-    },
-    actionContainer: {
       left: -4,
       position: "relative",
+      minWidth: "unset",
     },
     closeBtn: {
       "& svg": {
@@ -35,15 +31,16 @@ const useStyles = makeStyles(
     info: {},
     snackbar: {
       borderRadius: 4,
-      paddingBottom: theme.spacing(1),
-      paddingLeft: theme.spacing(8),
-      paddingRight: theme.spacing(6),
+      padding: theme.spacing(0, 6, 1, 2),
       position: "relative",
     },
     snackbarContainer: {
       marginBottom: theme.spacing(2),
       maxWidth: 450,
       position: "relative",
+    },
+    snackbarAction: {
+      paddingLeft: `calc(${iconWidth}px + ${theme.spacing(2)})`,
     },
     success: {
       backgroundColor: theme.palette.alert.paper.success,
@@ -57,40 +54,20 @@ const useStyles = makeStyles(
     },
 
     messageContainer: {
-      "&:before": {
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        content: "''",
-        display: "block",
-        height: 32,
-        left: theme.spacing(-6),
-        position: "absolute",
-        top: 13,
-        width: 32,
-      },
       paddingTop: theme.spacing(2),
       position: "relative",
     },
-    messageContainerInfo: {
-      "&:before": {
-        backgroundImage: `url(${infoIcon})`,
-      },
+
+    container: {
+      columnGap: theme.spacing(2),
+      display: "grid",
+      gridTemplateColumns: `${iconWidth}px 1fr`,
     },
-    messageContainerSuccess: {
-      "&:before": {
-        backgroundImage: `url(${successIcon})`,
-      },
+    title: {
+      marginTop: 6,
+      marginBottom: theme.spacing(0.5),
     },
-    messageContainerError: {
-      "&:before": {
-        backgroundImage: `url(${errorIcon})`,
-      },
-    },
-    messageContainerWarn: {
-      "&:before": {
-        backgroundImage: `url(${warningIcon})`,
-      },
-    },
+    icon: {},
   }),
   { name: "Notification" }
 );

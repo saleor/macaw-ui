@@ -19,7 +19,8 @@ const useStyles = makeStyles(
     icon: {},
     root: {},
     titleBar: {
-      margin: theme.spacing(0.5, 0),
+      marginTop: 6,
+      marginBottom: theme.spacing(0.5),
       position: "relative",
     },
     error: {
