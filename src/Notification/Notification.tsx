@@ -26,7 +26,7 @@ function getIcon(variant: NotificationType): string {
   return infoIcon;
 }
 
-export const Notification: React.VFC<NotificationProps> = ({
+export const Notification: React.FC<NotificationProps> = ({
   onClose,
   title,
   type,
