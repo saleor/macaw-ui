@@ -26,7 +26,7 @@ const useStyles = makeStyles(
     root: {},
     titleBar: {
       marginTop: 6,
-      marginBottom: theme.spacing(0.5),
+      marginBottom: theme.spacing(1),
       position: "relative",
     },
     error: {
