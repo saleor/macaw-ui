@@ -19,6 +19,11 @@ export const WithContent: Story = () => (
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </Alert>
 );
+export const WithContentAndClose: Story = () => (
+  <Alert {...props} close>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </Alert>
+);
 
 export default {
   title: "Alert",

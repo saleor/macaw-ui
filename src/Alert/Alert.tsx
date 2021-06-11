@@ -66,7 +66,9 @@ export const Alert: React.FC<AlertProps> = ({
               <Typography variant="h5">{title}</Typography>
               {close && (
                 <IconButton
-                  className={classes.close}
+                  className={clsx(classes.close, {
+                    [classes.closeNoContent]: !!children,
+                  })}
                   onClick={() => setVisible(false)}
                 >
                   <CloseIcon />
