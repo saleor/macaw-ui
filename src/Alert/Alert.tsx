@@ -33,7 +33,7 @@ function getVariantIcon(variant: AlertVariant): string {
   return infoIcon;
 }
 
-const Alert: React.FC<AlertProps> = ({
+export const Alert: React.FC<AlertProps> = ({
   className,
   close = true,
   variant = "info",
@@ -82,4 +82,3 @@ const Alert: React.FC<AlertProps> = ({
 };
 
 Alert.displayName = "Alert";
-export default Alert;

@@ -5,13 +5,13 @@ export interface NotificationAction {
   label: string;
   onClick: () => void;
 }
-export interface Notification {
+export interface NotificationData {
   content?: ReactNode;
   title: string;
   action?: NotificationAction;
   type: NotificationType;
 }
 
-export interface NotificationProps extends Notification {
+export interface NotificationProps extends NotificationData {
   onClose: () => void;
 }

@@ -9,7 +9,7 @@ import React from "react";
 import useStyles from "./styles";
 import type { NotificationProps } from "./types";
 
-const Notification: React.FC<NotificationProps> = ({
+export const Notification: React.FC<NotificationProps> = ({
   onClose,
   title,
   type,
@@ -82,5 +82,4 @@ const Notification: React.FC<NotificationProps> = ({
     </div>
   );
 };
-
-export default Notification;
+Notification.displayName = "Notification";

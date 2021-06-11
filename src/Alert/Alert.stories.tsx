@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import Alert, { AlertProps } from "./Alert";
+import { Alert, AlertProps } from "./Alert";
 
 const props: AlertProps = {
   close: false,
