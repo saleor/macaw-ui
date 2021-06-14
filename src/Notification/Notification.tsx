@@ -32,13 +32,14 @@ export const Notification: React.FC<NotificationProps> = ({
   type,
   action,
   content,
+  className,
   ...rest
 }) => {
   const classes = useStyles();
 
   return (
     <div
-      className={classes.snackbarContainer}
+      className={clsx(classes.snackbarContainer, className)}
       data-test={`notification-${type}`}
       {...rest}
     >
