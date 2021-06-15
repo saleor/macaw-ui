@@ -11,15 +11,16 @@ export type AlertPalette = Record<
   string
 >;
 export type AlertColors = Record<"paper" | "icon", AlertPalette>;
-interface ExtraPaletteOptions {
-  alert?: AlertColors;
-  textHighlighted?: {
+interface ExtraPalette {
+  alert: AlertColors;
+  textHighlighted: {
     active: string;
     inactive: string;
   };
 }
+type ExtraPaletteOptions = Partial<ExtraPalette>;
 
-export interface SaleorPalette extends Palette, ExtraPaletteOptions {}
+export interface SaleorPalette extends Palette, ExtraPalette {}
 
 export interface SaleorPaletteOptions
   extends PaletteOptions,

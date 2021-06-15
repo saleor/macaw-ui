@@ -1,4 +1,4 @@
-import { CssBaseline } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import React from "react";
 

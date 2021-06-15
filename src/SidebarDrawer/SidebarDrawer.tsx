@@ -1,5 +1,5 @@
-import { Typography } from "@material-ui/core";
 import Drawer from "@material-ui/core/Drawer";
+import Typography from "@material-ui/core/Typography";
 import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
 import MenuIcon from "@material-ui/icons/Menu";
 import clsx from "clsx";

@@ -5,3 +5,5 @@ export * from "./ConfirmButton";
 export * from "./Sidebar";
 export * from "./SidebarDrawer";
 export * from "./SquareButton";
+export * from "./Alert";
+export * from "./Notification";
