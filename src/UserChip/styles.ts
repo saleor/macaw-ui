@@ -43,11 +43,6 @@ const useStyles = makeStyles(
     rotate: {
       transform: "rotate(180deg)",
     },
-    switch: {
-      "&&:hover": {
-        background: "transparent",
-      },
-    },
     userChip: {
       [theme.breakpoints.down("sm")]: {
         height: 48,
@@ -60,9 +55,6 @@ const useStyles = makeStyles(
     },
     userMenuContainer: {
       position: "relative",
-    },
-    userMenuItem: {
-      textAlign: "right",
     },
   }),
   {
