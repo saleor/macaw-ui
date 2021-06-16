@@ -11,6 +11,7 @@ import classNames from "classnames";
 import React from "react";
 
 import ArrowDropdown from "../icons/ArrowDropdown";
+import { UserChipMenuContext } from "./context";
 import useStyles from "./styles";
 
 export interface UserChipProps {
@@ -30,6 +31,8 @@ export const UserChip: React.FC<UserChipProps> = ({
   const classes = useStyles({});
   const [isMenuOpened, setMenuState] = React.useState(false);
   const anchor = React.useRef<HTMLDivElement>(null);
+
+  const closeMenu = () => setMenuState(false);
 
   return (
     <div className={classes.userMenuContainer}>
@@ -92,11 +95,12 @@ export const UserChip: React.FC<UserChipProps> = ({
             }}
           >
             <Paper>
-              <ClickAwayListener
-                onClickAway={() => setMenuState(false)}
-                mouseEvent="onClick"
-              >
-                <Menu>{children}</Menu>
+              <ClickAwayListener onClickAway={closeMenu} mouseEvent="onClick">
+                <Menu>
+                  <UserChipMenuContext.Provider value={closeMenu}>
+                    {children}
+                  </UserChipMenuContext.Provider>
+                </Menu>
               </ClickAwayListener>
             </Paper>
           </Grow>

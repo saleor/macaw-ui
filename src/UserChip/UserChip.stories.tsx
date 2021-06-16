@@ -1,9 +1,9 @@
-import MenuItem from "@material-ui/core/MenuItem";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import placeholder from "../assets/placeholder_64x64.png";
 import { UserChip, UserChipProps } from "./UserChip";
+import { UserChipMenuItem } from "./UserChipMenuItem";
 
 const props: UserChipProps = {
   avatar: null,
@@ -14,7 +14,7 @@ const props: UserChipProps = {
 const Options: React.FC = () => (
   <>
     {["First Option", "Second Option"].map((option) => (
-      <MenuItem key={option}>{option}</MenuItem>
+      <UserChipMenuItem key={option}>{option}</UserChipMenuItem>
     ))}
   </>
 );
