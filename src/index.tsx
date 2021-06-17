@@ -7,3 +7,4 @@ export * from "./SidebarDrawer";
 export * from "./SquareButton";
 export * from "./Alert";
 export * from "./Notification";
+export * from "./UserChip";
