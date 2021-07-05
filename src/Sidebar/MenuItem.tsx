@@ -8,12 +8,12 @@ import clsx from "clsx";
 import React from "react";
 import SVG from "react-inlinesvg";
 
-import { IMenuItem } from "./types";
+import { SidebarMenuItem } from "./types";
 
 export interface MenuItemProps {
   active: boolean;
   isMenuShrunk: boolean;
-  menuItem: IMenuItem;
+  menuItem: SidebarMenuItem;
   onClick: (url: string) => void;
 }
 
@@ -135,7 +135,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   const [open, setOpen] = React.useState(false);
   const anchor = React.useRef<HTMLDivElement>(null);
 
-  const handleClick = (event: React.MouseEvent, menuItem: IMenuItem) => {
+  const handleClick = (event: React.MouseEvent, menuItem: SidebarMenuItem) => {
     event.stopPropagation();
     if (menuItem.children) {
       setOpen(true);

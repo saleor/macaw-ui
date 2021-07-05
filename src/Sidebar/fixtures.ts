@@ -1,7 +1,7 @@
 import homeIcon from "../../stories/assets/menu-home-icon.svg";
-import { IMenuItem } from "./types";
+import { SidebarMenuItem } from "./types";
 
-export const menu: IMenuItem[] = [
+export const menu: SidebarMenuItem[] = [
   {
     ariaLabel: "Menu 1",
     id: "menu1",
