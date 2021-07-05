@@ -1,2 +1,2 @@
-export * from "./UserChip";
+export * from "./UserChipMenu";
 export * from "./UserChipMenuItem";

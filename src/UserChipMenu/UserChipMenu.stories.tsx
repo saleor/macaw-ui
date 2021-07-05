@@ -2,7 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import placeholder from "../assets/placeholder_64x64.png";
-import { UserChip, UserChipProps } from "./UserChip";
+import { UserChipMenu, UserChipProps } from "./UserChipMenu";
 import { UserChipMenuItem } from "./UserChipMenuItem";
 
 const props: UserChipProps = {
@@ -20,19 +20,19 @@ const Options: React.FC = () => (
 );
 
 export const Default: Story = () => (
-  <UserChip {...props}>
+  <UserChipMenu {...props}>
     <Options />
-  </UserChip>
+  </UserChipMenu>
 );
 export const WithSubtext: Story = () => (
-  <UserChip {...props} subtext="Lorem ipsum dolor sit amet">
+  <UserChipMenu {...props} subtext="Lorem ipsum dolor sit amet">
     <Options />
-  </UserChip>
+  </UserChipMenu>
 );
 export const WithAvatar: Story = () => (
-  <UserChip {...props} avatar={placeholder}>
+  <UserChipMenu {...props} avatar={placeholder}>
     <Options />
-  </UserChip>
+  </UserChipMenu>
 );
 
 export default {
