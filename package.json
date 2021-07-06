@@ -49,7 +49,7 @@
     },
     {
       "path": "dist/macaw-ui.esm.js",
-      "limit": "20 KB"
+      "limit": "25 KB"
     }
   ],
   "devDependencies": {
