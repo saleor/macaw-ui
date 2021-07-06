@@ -7,7 +7,7 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import { Logo } from "../icons/Logo";
-import { BaseSidebarProps, IMenuItem } from "../Sidebar/types";
+import { BaseSidebarProps, SidebarMenuItem } from "../Sidebar/types";
 import { SquareButton } from "../SquareButton";
 import { MenuItemBtn } from "./MenuItemBtn";
 import useStyles from "./styles";
@@ -20,7 +20,9 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
 }) => {
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
-  const [activeMenu, setActiveMenu] = React.useState<IMenuItem | null>(null);
+  const [activeMenu, setActiveMenu] = React.useState<SidebarMenuItem | null>(
+    null
+  );
   const [showSubmenu, setShowSubmenu] = React.useState(false);
   const container = React.useRef<HTMLDivElement>(null);
 
@@ -30,7 +32,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
     onMenuItemClick(url);
   };
 
-  const handleMenuItemWithChildrenClick = (menuItem: IMenuItem) => {
+  const handleMenuItemWithChildrenClick = (menuItem: SidebarMenuItem) => {
     setActiveMenu(menuItem);
     setShowSubmenu(true);
     container.current?.scrollTo({

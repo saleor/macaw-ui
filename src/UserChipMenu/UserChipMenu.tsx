@@ -21,7 +21,7 @@ export interface UserChipProps {
   subtext?: string;
 }
 
-export const UserChip: React.FC<UserChipProps> = ({
+export const UserChipMenu: React.FC<UserChipProps> = ({
   avatar,
   initials,
   name,
@@ -109,4 +109,4 @@ export const UserChip: React.FC<UserChipProps> = ({
     </div>
   );
 };
-UserChip.displayName = "UserChip";
+UserChipMenu.displayName = "UserChip";

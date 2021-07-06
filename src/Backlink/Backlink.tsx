@@ -9,10 +9,10 @@ import useStyles from "./styles";
 
 export interface AppHeaderProps {
   children: React.ReactNode;
-  onBack: () => void;
+  onClick: () => void;
 }
 
-export const Backlink: React.FC<AppHeaderProps> = ({ children, onBack }) => {
+export const Backlink: React.FC<AppHeaderProps> = ({ children, onClick }) => {
   const classes = useStyles();
   const anchor = useBacklink();
 
@@ -24,7 +24,7 @@ export const Backlink: React.FC<AppHeaderProps> = ({ children, onBack }) => {
     <Portal container={anchor.current}>
       <div
         className={classes.root}
-        onClick={onBack}
+        onClick={onClick}
         data-test-id="app-header-back-button"
       >
         <ArrowBackIcon className={classes.backArrow} />

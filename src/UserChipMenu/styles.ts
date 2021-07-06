@@ -58,7 +58,7 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: "UserChip",
+    name: "UserChipMenu",
   }
 );
 

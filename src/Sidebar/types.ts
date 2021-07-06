@@ -1,8 +1,8 @@
 import React from "react";
 
-export interface IMenuItem {
+export interface SidebarMenuItem {
   ariaLabel: string;
-  children?: IMenuItem[];
+  children?: SidebarMenuItem[];
   iconSrc?: string;
   label: string;
   id: string;
@@ -12,7 +12,7 @@ export interface IMenuItem {
 
 export interface BaseSidebarProps {
   className?: string;
-  menuItems: IMenuItem[];
+  menuItems: SidebarMenuItem[];
   toolbar?: React.ReactNode;
   onMenuItemClick: (url: string) => void;
 }
