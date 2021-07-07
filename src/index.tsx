@@ -9,3 +9,4 @@ export * from "./SquareButton";
 export * from "./Alert";
 export * from "./Notification";
 export * from "./UserChipMenu";
+export * from "./ResponsiveTable";
