@@ -63,7 +63,7 @@ const Default: React.FC = () => {
         duplicate it to make any changes and create your own solutions.
       </Typography>
       <Typography className={classes.paragraph} component="p">
-        Have a great time working on your designs and empowering your users
+        Have a great time working on your designs and empowering your users.
       </Typography>
       <div className={classes.authors}>
         <Typography className={classes.authorsText}>Saleor Team</Typography>
