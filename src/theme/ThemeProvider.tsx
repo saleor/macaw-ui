@@ -1,4 +1,6 @@
+import type { Theme } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import { merge } from "lodash";
 import React, { useEffect } from "react";
 import Helmet from "react-helmet";
 
@@ -18,11 +20,13 @@ import { dark, light } from "./themes";
 
 export interface ThemeProviderProps {
   defaultTheme?: ThemeType;
-  overrides?: Partial<Themes>;
+  palettes?: Partial<Themes>;
+  overrides?: Partial<Theme>;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   defaultTheme = "light",
+  palettes = {},
   overrides = {},
 }) => {
   const { value: themeTypeName, setValue: setThemeType } = useLocalStorage(
@@ -47,9 +51,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   const themes = {
     light,
     dark,
-    ...overrides,
+    ...palettes,
   };
-  const theme = createTheme(themes[themeType]);
+  const theme = merge(createTheme(themes[themeType]), overrides);
 
   return (
     <ThemeContext.Provider
