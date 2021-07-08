@@ -29,11 +29,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   palettes = {},
   overrides = {},
 }) => {
-  const [themeTypeName, setThemeType] = useLocalStorage(
+  const [themeType, setThemeType] = useLocalStorage<ThemeType>(
     localStorageKeys.theme,
     defaultTheme
   );
-  const themeType = themeTypeName as ThemeType;
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
       {
@@ -48,7 +47,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [themeType]);
 
-  const themes = {
+  const themes: Themes = {
     light,
     dark,
     ...palettes,

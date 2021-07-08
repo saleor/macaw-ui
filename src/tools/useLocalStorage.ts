@@ -4,14 +4,14 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-export type UseLocalStorage = [
-  value: string,
-  setValue: (value: string) => void
+export type UseLocalStorage<T extends string> = [
+  value: T,
+  setValue: (value: T) => void
 ];
-export default function useLocalStorage(
+export default function useLocalStorage<T extends string>(
   key: string,
-  initialValue: string = ""
-): UseLocalStorage {
+  initialValue: T
+): UseLocalStorage<T> {
   const [value, setValue] = useState(
     () => window.localStorage.getItem(key) || initialValue
   );
@@ -44,5 +44,5 @@ export default function useLocalStorage(
     return () => window.removeEventListener("storage", handleStorage);
   }, [handleStorage]);
 
-  return [value, setItem];
+  return [value as T, setItem];
 }
