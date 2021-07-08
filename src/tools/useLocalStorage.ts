@@ -4,15 +4,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-// FIXME: We also had to tweak return signature because tuples were bugging
-// typescript parser
-// https://stackoverflow.com/questions/62079477/line-0-parsing-error-cannot-read-property-map-of-undefined
-// tsdx issue
-// https://github.com/formium/tsdx/issues/926
-export interface UseLocalStorage {
-  value: string;
-  setValue: (value: string) => void;
-}
+export type UseLocalStorage = [
+  value: string,
+  setValue: (value: string) => void
+];
 export default function useLocalStorage(
   key: string,
   initialValue: string = ""
@@ -49,8 +44,5 @@ export default function useLocalStorage(
     return () => window.removeEventListener("storage", handleStorage);
   }, [handleStorage]);
 
-  return {
-    value,
-    setValue: setItem,
-  };
+  return [value, setItem];
 }

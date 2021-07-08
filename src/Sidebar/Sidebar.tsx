@@ -49,7 +49,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onMenuItemClick,
 }) => {
   const classes = useStyles({});
-  const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
+  const [isShrunkStr, setShrink] = useLocalStorage(
     localStorageKeys.menuShrink,
     false.toString()
   );
