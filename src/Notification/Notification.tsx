@@ -40,7 +40,8 @@ export const Notification: React.FC<NotificationProps> = ({
   return (
     <div
       className={clsx(classes.snackbarContainer, className)}
-      data-test={`notification-${type}`}
+      data-test="notification"
+      data-test-type={type}
       {...rest}
     >
       <SnackbarContent
@@ -91,6 +92,7 @@ export const Notification: React.FC<NotificationProps> = ({
             className={clsx(classes.closeBtn, {
               [classes.closeBtnInfo]: type === "info",
             })}
+            data-test="close"
           >
             <CloseIcon />
           </IconButton>,

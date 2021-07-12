@@ -15,10 +15,10 @@ export const UserChipMenuItem: React.FC<UserChipMenuItemProps> = ({
   const closeMenu = useUserChipMenu();
 
   // We're not really interested in event type here
-  const handleClickWithClose = (event: any) => {
+  const handleClickWithClose = (event: unknown) => {
     closeMenu();
     if (onClick) {
-      onClick(event);
+      onClick(event as any);
     }
   };
 

@@ -27,6 +27,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
   name,
   subtext,
   children,
+  ...props
 }) => {
   const classes = useStyles({});
   const [isMenuOpened, setMenuState] = React.useState(false);
@@ -35,7 +36,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
   const closeMenu = () => setMenuState(false);
 
   return (
-    <div className={classes.userMenuContainer}>
+    <div className={classes.userMenuContainer} {...props}>
       <Chip
         avatar={
           avatar ? (
