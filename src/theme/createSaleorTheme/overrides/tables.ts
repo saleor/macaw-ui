@@ -16,8 +16,6 @@ export const tableOverrides = (
   MuiTableCell: {
     body: {
       fontSize: "1.6rem",
-      paddingBottom: 8,
-      paddingTop: 8,
     },
     head: {
       fontSize: "1.4rem",
@@ -42,8 +40,7 @@ export const tableOverrides = (
         },
       },
       borderBottomColor: colors.paperBorder,
-      height: 56,
-      padding: "4px 24px",
+      padding: "16px 24px",
     },
   },
   MuiTablePagination: {
