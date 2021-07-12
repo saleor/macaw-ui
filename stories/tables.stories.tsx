@@ -30,7 +30,7 @@ const Default: React.FC = () => {
         Tables
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
-        Tables play huge part in creating dashboards. If you're building Saleor
+        Tables play a huge part in creating dashboards. If you're building a Saleor
         Extension, it's probably what you're going to use for displaying tabular
         data. In Saleor Dashboard, we build our tables like this:
       </Typography>
