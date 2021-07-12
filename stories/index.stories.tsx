@@ -34,16 +34,16 @@ const Default: React.FC = () => {
     <div>
       <SVG className={classes.logo} src={logo} />
       <Typography className={guideClasses.paragraph} component="p">
-        Welcome to the MacawUI.
+        Welcome to MacawUI.
         <br />
-        This is an official React UI Kit for Saleor, a GraphQL-First e-commerce
-        platform for perfectionists.
+        This is the official React UI Kit for Saleor—an open-source
+        GraphQL-first and Next.js ready e-commerce platform.
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
-        You can find most of the elements used in the creation of Saleor’s
+        You can find most of the elements used in the creation of Saleor's
         dashboard interface and use it to create projects for your specific
-        purposes. Use the left-side navigation to choose between different pages
-        on which you can find categorized UI Components.
+        purposes. Use the left-hand side navigation to choose between different
+        pages on which you can find categorized UI Components.
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
         Code for this documentation is easily accesible{" "}
@@ -53,7 +53,15 @@ const Default: React.FC = () => {
         , in case you need to check how we made things you'll see here.
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
-        Have a great time working on your projects and empowering your users.
+        Have a great time working on your projects and empowering your users. If
+        you have any questions, feel free to let us know on{" "}
+        <Link
+          href="https://github.com/mirumee/saleor/discussions"
+          target="_blank"
+        >
+          GitHub Discussions
+        </Link>
+        .
       </Typography>
       <div className={classes.authors}>
         <Typography className={classes.authorsText}>Saleor Team</Typography>

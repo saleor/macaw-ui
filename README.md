@@ -1,12 +1,12 @@
 ![Macaw-UI Logo](/stories/assets/macaw-ui-logo.svg)
 
-Welcome to the MacawUI.
+Welcome to MacawUI.
 
-This is an official React UI Kit for Saleor, a GraphQL-First e-commerce platform for perfectionists.
+This is the official React UI Kit for Saleor—an open-source GraphQL-first and Next.js ready e-commerce platform.
 
-You can find most of the elements used in the creation of Saleor’s dashboard interface and use it to create projects for your specific purposes. Take a look a our [storybook docs](https://macaw-ui.vercel.app) for guides, component overview and project ideas.
+You can find most of the elements used in the creation of Saleor's dashboard interface and use it to create projects for your specific purposes. Take a look at our [storybook docs](https://macaw-ui.vercel.app). You can find guides, component overview, and project ideas there.
 
-Have a great time working on your projects and empowering your users.
+Have a great time working on your projects and empowering your users. If you have any questions, feel free to let us know on [GitHub Discussions](https://github.com/mirumee/saleor/discussions).
 
 Visit us at [saleor.io](http://saleor.io)
 
