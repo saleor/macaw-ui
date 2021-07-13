@@ -55,6 +55,7 @@ export const Alert: React.FC<AlertProps> = ({
         [classes.warning]: variant === "warning",
         [classes.success]: variant === "success",
       })}
+      data-test="alert"
     >
       <CardContent>
         <div className={classes.container}>
@@ -70,6 +71,7 @@ export const Alert: React.FC<AlertProps> = ({
                     [classes.closeNoContent]: !!children,
                   })}
                   onClick={() => setVisible(false)}
+                  data-test="close"
                 >
                   <CloseIcon />
                 </IconButton>
