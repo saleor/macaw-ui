@@ -1,7 +1,22 @@
 {
-  "version": "0.1.0",
-  "license": "MIT",
+  "version": "0.2.0",
+  "license": "CC-BY-4.0",
   "main": "dist/index.js",
+  "homepage": "https://macaw-ui.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mirumee/macaw-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mirumee/macaw-ui/issues"
+  },
+  "keywords": [
+    "saleor",
+    "macaw",
+    "macaw-ui",
+    "react",
+    "ui components"
+  ],
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -12,14 +27,15 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build --tsconfig ./tsconfig.prod.json",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint src",
-    "prepare": "tsdx build",
+    "prepare": "npm run build",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release": "np"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.2",
@@ -33,6 +49,10 @@
       "pre-commit": "tsdx lint"
     }
   },
+  "np": {
+    "yarn": false,
+    "contents": "dist"
+  },
   "prettier": {
     "printWidth": 80,
     "semi": true,
@@ -40,8 +60,14 @@
     "trailingComma": "es5"
   },
   "name": "@saleor/macaw-ui",
-  "author": "Saleor",
+  "description": "Saleor's UI component library",
+  "author": "Saleor Commerce",
   "module": "dist/macaw-ui.esm.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
   "size-limit": [
     {
       "path": "dist/macaw-ui.cjs.production.min.js",
@@ -72,6 +98,7 @@
     "babel-plugin-import": "^1.13.3",
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "husky": "^6.0.0",
+    "np": "^7.5.0",
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0",
     "react-helmet": "^6.1.0",
