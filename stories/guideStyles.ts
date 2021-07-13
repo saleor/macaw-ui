@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       margin: theme.spacing(3, 0),
     },
     sectionHeader: {
-      marginBottom: theme.spacing(3),
+      margin: theme.spacing(3, 0),
     },
   }),
   { name: "Guide" }

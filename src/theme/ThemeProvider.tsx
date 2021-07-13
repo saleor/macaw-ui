@@ -20,7 +20,15 @@ import { dark, light } from "./themes";
 
 export interface ThemeProviderProps {
   defaultTheme?: ThemeType;
+  /**
+   * Passing an object here will result in losing visual consistency with
+   * Saleor's Dashboard. Use with caution.
+   */
   palettes?: Partial<Themes>;
+  /**
+   * Passing an object here will result in losing visual consistency with
+   * Saleor's Dashboard. Use with caution.
+   */
   overrides?: Partial<Theme>;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
