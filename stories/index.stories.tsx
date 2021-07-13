@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import SVG from "react-inlinesvg";
 
+import { Alert } from "../src";
 import { light, makeStyles, ThemeProvider } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import * as logo from "./assets/macaw-ui-logo.svg";
@@ -111,6 +112,10 @@ const CustomTheme: React.FC = () => {
         props. MacawUI uses deep merge algorithm to combine supplied props with
         its own theme.
       </Typography>
+      <Alert variant="warning" title="Saleor Marketplace">
+        If you’re using MacawUI to create a Saleor App for marketplace, you must
+        not modify the existing theme
+      </Alert>
       <Typography className={guideClasses.sectionHeader} variant="h3">
         Example
       </Typography>
