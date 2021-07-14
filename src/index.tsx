@@ -12,3 +12,4 @@ export * from "./UserChipMenu";
 export * from "./ResponsiveTable";
 export * from "./Tooltip";
 export * from "./Pagination";
+export * from "./LayoutButton";
