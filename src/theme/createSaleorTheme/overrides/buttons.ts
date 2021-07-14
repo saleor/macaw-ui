@@ -27,8 +27,14 @@ export const buttonOverrides = (
     MuiButton: {
       contained: {
         "&$disabled": {
-          backgroundColor: fade(colors.primary, 0.12),
-          color: "#FFFFFF",
+          "&$containedPrimary": {
+            color: colors.secondary,
+            backgroundColor: colors.gray.disabled,
+          },
+          "&$containedSecondary": {
+            background: colors.secondary,
+            color: colors.gray.disabled,
+          },
         },
         "&:active": {
           boxShadow: "none",
@@ -62,6 +68,9 @@ export const buttonOverrides = (
       text: {
         ...containedSecondaryStates,
         "@media(hover: none)": containedSecondaryStates,
+        "&&$disabled": {
+          color: colors.gray.disabled,
+        },
       },
       textPrimary: {
         "&:not($disabled) span": {
