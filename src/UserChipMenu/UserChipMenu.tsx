@@ -1,5 +1,4 @@
 import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
 import Hidden from "@material-ui/core/Hidden";
@@ -7,10 +6,8 @@ import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
-import clsx from "clsx";
 import React from "react";
 
-import ArrowDropdownIcon from "../icons/ArrowDropdownIcon";
 import { UserChipMenuContext } from "./context";
 import useStyles from "./styles";
 
@@ -37,49 +34,40 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
 
   return (
     <div className={classes.userMenuContainer} {...props}>
-      <Chip
-        avatar={
-          avatar ? (
-            <Avatar alt="user" src={avatar} />
+      <div
+        className={classes.userChip}
+        ref={anchor}
+        onClick={() => setMenuState(!isMenuOpened)}
+        data-test="userMenu"
+      >
+        <div className={classes.avatarContainer}>
+          {avatar ? (
+            <Avatar className={classes.avatar} alt="user" src={avatar} />
           ) : (
             <div className={classes.avatarPlaceholder}>
               <div className={classes.avatarInitials}>{initials}</div>
             </div>
-          )
-        }
-        classes={{
-          avatar: classes.avatar,
-        }}
-        className={classes.userChip}
-        label={
-          <div className={classes.labelContainer}>
-            <Hidden smDown>
-              <div>
-                <Typography className={classes.label} variant="body2">
-                  {name}
+          )}
+        </div>
+        <div className={classes.labelContainer}>
+          <Hidden smDown>
+            <div>
+              <Typography className={classes.label} variant="body2">
+                {name}
+              </Typography>
+              {subtext && (
+                <Typography
+                  className={classes.label}
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  {subtext}
                 </Typography>
-                {subtext && (
-                  <Typography
-                    className={classes.label}
-                    variant="body2"
-                    color="textSecondary"
-                  >
-                    {subtext}
-                  </Typography>
-                )}
-              </div>
-            </Hidden>
-            <ArrowDropdownIcon
-              className={clsx(classes.arrow, {
-                [classes.rotate]: isMenuOpened,
-              })}
-            />
-          </div>
-        }
-        onClick={() => setMenuState(!isMenuOpened)}
-        ref={anchor}
-        data-test="userMenu"
-      />
+              )}
+            </div>
+          </Hidden>
+        </div>
+      </div>
       <Popper
         className={classes.popover}
         open={isMenuOpened}
