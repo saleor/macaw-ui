@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.1.0",
   "license": "CC-BY-4.0",
   "main": "dist/index.js",
   "homepage": "https://macaw-ui.vercel.app/",
@@ -50,8 +50,7 @@
     }
   },
   "np": {
-    "yarn": false,
-    "contents": "dist"
+    "yarn": false
   },
   "prettier": {
     "printWidth": 80,
