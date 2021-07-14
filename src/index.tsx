@@ -13,3 +13,4 @@ export * from "./UserChipMenu";
 export * from "./ResponsiveTable";
 export * from "./Tooltip";
 export * from "./ActionBar";
+export * from "./Pagination";
