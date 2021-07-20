@@ -1,9 +1,9 @@
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import clsx from "clsx";
 import React from "react";
 
 import { Logo } from "../icons/Logo";
 import { localStorageKeys } from "../localStorageKeys";
+import { makeStyles } from "../theme";
 import useLocalStorage from "../tools/useLocalStorage";
 import { ExpandButton } from "./ExpandButton";
 import { MenuItem, menuWidth, shrunkMenuWidth } from "./MenuItem";
