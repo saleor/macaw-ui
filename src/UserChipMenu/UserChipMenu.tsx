@@ -7,7 +7,7 @@ import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
+import clsx from "clsx";
 import React from "react";
 
 import ArrowDropdown from "../icons/ArrowDropdown";
@@ -70,7 +70,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
               </div>
             </Hidden>
             <ArrowDropdown
-              className={classNames(classes.arrow, {
+              className={clsx(classes.arrow, {
                 [classes.rotate]: isMenuOpened,
               })}
             />
