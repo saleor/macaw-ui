@@ -1,4 +1,4 @@
-import { darken, fade } from "@material-ui/core/styles/colorManipulator";
+import { darken, fade } from "@material-ui/core/styles";
 import type { Overrides } from "@material-ui/core/styles/overrides";
 
 import { SaleorThemeColors } from "../types";
