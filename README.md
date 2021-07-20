@@ -23,6 +23,17 @@ npm i @material-ui/core @material-ui/icons @material-ui/lab
 ## Documentation
 Take a look at our [storybook docs](https://macaw-ui.vercel.app). You can find guides, component overview, and project ideas there.
 
+### Working with Material-UI
+MacawUI was created to integrate with [Material-UI](https://material-ui.com/) seamlessly. It exports a `ThemeProvider` that will override Material-UI component styles:
+```jsx
+import { ThemeProvider } from "@saleor/macaw-ui";
+
+// ...
+
+<ThemeProvider>
+  <App />
+</ThemeProvider>
+```
 
 ## License
 Distributed under the Creative Common Attribution 4.0 International License
