@@ -17,6 +17,10 @@ const useStyles = makeStyles(
       html: {
         fontSize: "62.5%",
       },
+      a: {
+        color: theme.palette.primary.main,
+        textDecoration: "none",
+      },
     },
   }),
   { name: "Baseline" }
