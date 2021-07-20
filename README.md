@@ -1,14 +1,29 @@
-![Macaw-UI Logo](/stories/assets/macaw-ui-logo.svg)
+<div align="center">
+  <a href="https://macaw-ui.vercel.app/" rel="noopener" target="_blank"><img src="/stories/assets/macaw-ui-logo.svg" alt="Material-ui-pickers logo"></a></p>
+  
+  [![npm package](https://img.shields.io/npm/v/@saleor/macaw-ui.svg)](https://www.npmjs.com/package/@saleor/macaw-ui)
+  [![npm download](https://img.shields.io/npm/dm/@saleor/macaw-ui.svg)](https://www.npmjs.com/package/@saleor/macaw-ui)
+<!--   [![Bundle Size](https://badgen.net/bundlephobia/minzip/@saleor/macaw-ui)](https://bundlephobia.com/result?p=@saleor/macaw-ui@latest) -->
+</div>
 
-Welcome to MacawUI.
+# MacawUI
+Official React UI components kit for [Saleor](https://saleor.io/) — an open-source GraphQL-first and Next.js ready e-commerce platform. You can find most of the elements used in the creation of Saleor's dashboard interface and use it to create Saleor Apps. Have a great time working on your projects and empowering your users. If you have any questions, feel free to let us know on [GitHub Discussions](https://github.com/mirumee/saleor/discussions).
 
-This is the official React UI Kit for Saleor—an open-source GraphQL-first and Next.js ready e-commerce platform.
+## Installation
+```sh
+npm i @saleor/macaw-ui
+```
 
-You can find most of the elements used in the creation of Saleor's dashboard interface and use it to create projects for your specific purposes. Take a look at our [storybook docs](https://macaw-ui.vercel.app). You can find guides, component overview, and project ideas there.
+Note that this package depends on the following Material-UI **v4** packages: `@material-ui/core`, `@material-ui/icons` and `@material-ui/lab`. If your project doesn't have them installed and you're not using npm v7 with [automatically installed peer dependencies](https://github.blog/2020-10-13-presenting-v7-0-0-of-the-npm-cli/) then you'll need to install them manually:
 
-Have a great time working on your projects and empowering your users. If you have any questions, feel free to let us know on [GitHub Discussions](https://github.com/mirumee/saleor/discussions).
+```sh
+npm i @material-ui/core @material-ui/icons @material-ui/lab
+```
 
-Visit us at [saleor.io](http://saleor.io)
+## Documentation
+Take a look at our [storybook docs](https://macaw-ui.vercel.app). You can find guides, component overview, and project ideas there.
 
+
+## License
 Distributed under the Creative Common Attribution 4.0 International License
 [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)

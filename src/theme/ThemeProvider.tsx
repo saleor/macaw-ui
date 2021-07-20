@@ -2,7 +2,6 @@ import type { Theme } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { merge } from "lodash";
 import React, { useEffect } from "react";
-import Helmet from "react-helmet";
 
 import { BacklinkProvider } from "../Backlink/context";
 import {
@@ -17,6 +16,7 @@ import { Baseline } from "./Baseline";
 import { ThemeContext } from "./context";
 import { createTheme, Themes, ThemeType } from "./createSaleorTheme";
 import { dark, light } from "./themes";
+import { changeColorMeta } from "./utils";
 
 export interface ThemeProviderProps {
   defaultTheme?: ThemeType;
@@ -42,6 +42,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     defaultTheme
   );
   const themeType = themeTypeName as ThemeType;
+  const themes = {
+    light,
+    dark,
+    ...palettes,
+  };
+  const theme = merge(createTheme(themes[themeType]), overrides);
   const sendThemeToExtension = () =>
     sendMessageToExtension<ThemeChangeMessage>(
       {
@@ -53,15 +59,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
   useEffect(() => {
     sendThemeToExtension();
+    changeColorMeta(theme.palette.background.default);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [themeType]);
-
-  const themes = {
-    light,
-    dark,
-    ...palettes,
-  };
-  const theme = merge(createTheme(themes[themeType]), overrides);
 
   return (
     <ThemeContext.Provider
@@ -71,9 +71,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         setTheme: setThemeType,
       }}
     >
-      <Helmet>
-        <meta name="theme-color" content={theme.palette.background.default} />
-      </Helmet>
       <MuiThemeProvider theme={theme}>
         <SavebarProvider>
           <BacklinkProvider>
