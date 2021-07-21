@@ -16,3 +16,4 @@ export * from "./ActionBar";
 export * from "./Pagination";
 export * from "./LayoutButton";
 export * from "./icons";
+export * from "./StatusChip";
