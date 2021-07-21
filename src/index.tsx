@@ -15,3 +15,4 @@ export * from "./Tooltip";
 export * from "./ActionBar";
 export * from "./Pagination";
 export * from "./LayoutButton";
+export * from "./icons";
