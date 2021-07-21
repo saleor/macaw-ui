@@ -80,6 +80,9 @@ export const buttonOverrides = (
       textSizeSmall: {
         fontSize: "1.3rem",
       },
+      outlinedPrimary: {
+        borderColor: colors.gray.disabled,
+      },
     },
     MuiIconButton: {
       root: {
