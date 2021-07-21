@@ -79,6 +79,11 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           borderBottom: `1px solid ${colors.divider}`,
         },
       },
+      MuiDivider: {
+        light: {
+          backgroundColor: colors.background.paper,
+        },
+      },
       MuiFormControlLabel: {
         label: {
           lineHeight: 1.2,
