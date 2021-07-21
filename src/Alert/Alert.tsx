@@ -16,18 +16,18 @@ export interface AlertProps {
   variant: AlertVariant;
   title: string;
 }
-
-function getIcon(variant: AlertVariant): React.ReactElement {
+const Icon: React.FC<{ variant: AlertVariant }> = ({ variant }) => {
   switch (variant) {
     case "error":
       return <NotAllowedIcon />;
-    case "success":
-      return <CompleteIcon />;
     case "warning":
       return <WarningIcon />;
+    case "success":
+      return <CompleteIcon />;
+    default:
+      return <InfoIcon />;
   }
-  return <InfoIcon />;
-}
+};
 
 export const Alert: React.FC<AlertProps> = ({
   className,
@@ -55,7 +55,9 @@ export const Alert: React.FC<AlertProps> = ({
     >
       <CardContent>
         <div className={classes.container}>
-          <div>{getIcon(variant)}</div>
+          <div>
+            <Icon variant={variant} />
+          </div>
           <div className={classes.content}>
             <div className={classes.titleBar}>
               <Typography variant="h5">{title}</Typography>
