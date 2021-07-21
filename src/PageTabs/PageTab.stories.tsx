@@ -4,11 +4,8 @@ import React from "react";
 import { makeStyles } from "../theme";
 import { Decorator, GuideDecorator } from "../utils/Decorator";
 import { PageTab } from "./PageTab";
+import { PageTabPanel } from "./PageTabPanel";
 import { PageTabs } from "./PageTabs";
-
-const TabPanel: React.FC<{ show: boolean }> = ({ children, show }) => (
-  <div style={{ display: show ? "block" : "none" }}>{children}</div>
-);
 
 const useStyles = makeStyles((theme) => ({
   tabContainer: {
@@ -30,15 +27,15 @@ const InteractiveStory: React.FC = () => {
           <PageTab value="dolor" label="Dolor" />
         </PageTabs>
       </div>
-      <TabPanel show={tab === "lorem"}>
+      <PageTabPanel show={tab === "lorem"}>
         Currently opened tab is "Lorem"
-      </TabPanel>
-      <TabPanel show={tab === "ipsum"}>
+      </PageTabPanel>
+      <PageTabPanel show={tab === "ipsum"}>
         Currently opened tab is "Ipsum"
-      </TabPanel>
-      <TabPanel show={tab === "dolor"}>
+      </PageTabPanel>
+      <PageTabPanel show={tab === "dolor"}>
         Currently opened tab is "Dolor"
-      </TabPanel>
+      </PageTabPanel>
     </div>
   );
 };
