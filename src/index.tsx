@@ -13,3 +13,4 @@ export * from "./ResponsiveTable";
 export * from "./Tooltip";
 export * from "./Pagination";
 export * from "./LayoutButton";
+export * from "./icons";

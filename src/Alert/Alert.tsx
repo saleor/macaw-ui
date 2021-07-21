@@ -5,12 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
-import SVG from "react-inlinesvg";
 
-import warningIcon from "../assets/alert_icon.svg";
-import errorIcon from "../assets/error_icon.svg";
-import infoIcon from "../assets/info_icon.svg";
-import successIcon from "../assets/success_icon.svg";
+import { Error, Info, Success, Warning } from "../icons";
 import useStyles from "./styles";
 
 export type AlertVariant = "error" | "warning" | "success" | "info";
@@ -20,18 +16,18 @@ export interface AlertProps {
   variant: AlertVariant;
   title: string;
 }
-
-function getIcon(variant: AlertVariant): string {
+const Icon: React.FC<{ variant: AlertVariant }> = ({ variant }) => {
   switch (variant) {
     case "error":
-      return errorIcon;
-    case "success":
-      return successIcon;
+      return <Error />;
     case "warning":
-      return warningIcon;
+      return <Warning />;
+    case "success":
+      return <Success />;
+    default:
+      return <Info />;
   }
-  return infoIcon;
-}
+};
 
 export const Alert: React.FC<AlertProps> = ({
   className,
@@ -60,7 +56,7 @@ export const Alert: React.FC<AlertProps> = ({
       <CardContent>
         <div className={classes.container}>
           <div>
-            <SVG className={classes.icon} src={getIcon(variant)} />
+            <Icon variant={variant} />
           </div>
           <div className={classes.content}>
             <div className={classes.titleBar}>
