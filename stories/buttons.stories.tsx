@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.default,
     borderRadius: 4,
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(4, 1fr)",
     columnGap: theme.spacing(3),
     rowGap: theme.spacing(2),
     padding: theme.spacing(3),
@@ -35,6 +35,7 @@ const Default: React.FC = () => {
         <div>Primary</div>
         <div>Secondary</div>
         <div>Text</div>
+        <div>Outlined</div>
         <Button variant="contained" color="primary">
           Lorem
         </Button>
@@ -44,6 +45,9 @@ const Default: React.FC = () => {
         <Button color="primary" variant="text">
           Dolor Sit
         </Button>
+        <Button color="primary" variant="outlined">
+          Amet
+        </Button>
         <Button disabled variant="contained" color="primary">
           Lorem
         </Button>
@@ -52,6 +56,9 @@ const Default: React.FC = () => {
         </Button>
         <Button disabled color="primary" variant="text">
           Dolor Sit
+        </Button>
+        <Button disabled color="primary" variant="outlined">
+          Amet
         </Button>
       </div>
 
