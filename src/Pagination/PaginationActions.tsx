@@ -1,7 +1,7 @@
 import ButtonBase from "@material-ui/core/ButtonBase";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ChevronRight from "@material-ui/icons/ChevronRight";
-import classNames from "classnames";
+import clsx from "clsx";
 import React from "react";
 
 import { useTheme } from "../theme";
@@ -36,9 +36,9 @@ export const PaginationActions: React.FC<PaginationActionsProps> = ({
   const nextDisabled = !hasNextPage || disabled;
 
   return (
-    <div className={classNames(classes.actions, className)} {...other}>
+    <div className={clsx(classes.actions, className)} {...other}>
       <ButtonBase
-        className={classNames(classes.actionsButton, {
+        className={clsx(classes.actionsButton, {
           [classes.dark]: isDark,
           [classes.actionsButtonDisabled]: previousDisabled,
         })}
@@ -51,7 +51,7 @@ export const PaginationActions: React.FC<PaginationActionsProps> = ({
       </ButtonBase>
 
       <ButtonBase
-        className={classNames(classes.actionsButton, {
+        className={clsx(classes.actionsButton, {
           [classes.dark]: isDark,
           [classes.actionsButtonDisabled]: nextDisabled,
         })}
