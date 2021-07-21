@@ -10,17 +10,18 @@ import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
 
-function getIcon(variant: NotificationType): React.ReactElement {
-  switch (variant) {
+const Icon: React.FC<{ type: NotificationType }> = ({ type }) => {
+  switch (type) {
     case "error":
       return <NotAllowedIcon />;
-    case "success":
-      return <CompleteIcon />;
     case "warning":
       return <WarningIcon />;
+    case "success":
+      return <CompleteIcon />;
+    default:
+      return <InfoIcon />;
   }
-  return <InfoIcon />;
-}
+};
 
 export const Notification: React.FC<NotificationProps> = ({
   onClose,
@@ -54,7 +55,9 @@ export const Notification: React.FC<NotificationProps> = ({
         })}
         message={
           <div className={classes.container}>
-            <div>{getIcon(type)}</div>
+            <div>
+              <Icon type={type} />
+            </div>
             <div>
               <div className={classes.title}>
                 <Typography variant="h5">{title}</Typography>
