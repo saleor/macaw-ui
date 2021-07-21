@@ -14,3 +14,4 @@ export * from "./Tooltip";
 export * from "./Pagination";
 export * from "./LayoutButton";
 export * from "./icons";
+export * from "./StatusChip";
