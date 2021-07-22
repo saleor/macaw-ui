@@ -219,6 +219,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiCheckbox: {
         color: "primary",
       },
+      MuiList: {
+        disablePadding: true,
+      },
     },
     shadows,
     spacing: (value: number = 1) => `${(value * 8) / 10}rem`,
