@@ -230,6 +230,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiTooltip: {
         placement: "right-end",
       },
+      MuiList: {
+        disablePadding: true,
+      },
     },
     shadows,
     spacing: (value: number = 1) => `${(value * 8) / 10}rem`,
