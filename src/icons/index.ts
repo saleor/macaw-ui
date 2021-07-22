@@ -6,3 +6,4 @@ export * from "./Info";
 export * from "./Logo";
 export * from "./Success";
 export * from "./Warning";
+export * from "./Edit";
