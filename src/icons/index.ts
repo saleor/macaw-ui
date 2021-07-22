@@ -7,3 +7,4 @@ export * from "./ArrowDropdownIcon";
 export * from "./CheckboxIcon";
 export * from "./CheckboxCheckedIcon";
 export * from "./CheckboxIndeterminateIcon";
+export * from "./EditIcon";
