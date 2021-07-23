@@ -17,10 +17,8 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       ...overrides(colors, fontFamily),
       MuiCard: {
         root: {
-          borderColor: colors.paperBorder,
           borderRadius: 8,
-          borderStyle: "solid",
-          borderWidth: 1,
+          borderWidth: 0,
           overflow: "visible",
         },
       },
@@ -81,6 +79,11 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           borderBottom: `1px solid ${colors.divider}`,
         },
       },
+      MuiDivider: {
+        light: {
+          backgroundColor: colors.background.paper,
+        },
+      },
       MuiFormControlLabel: {
         label: {
           lineHeight: 1.2,
@@ -104,13 +107,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           fontSize: "2.4rem",
           height: "1em",
           width: "1em",
-        },
-      },
-      MuiList: {
-        root: {
-          display: "grid",
-          gridRowGap: 8 + "px",
-          padding: "8px !important",
         },
       },
       MuiListItem: {
@@ -145,7 +141,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
             color: colors.font.default,
             fontWeight: 400,
           },
-          borderRadius: 4,
+          "@media(min-width: 600px)": {
+            minHeight: 48,
+          },
         },
       },
       MuiSelect: {
@@ -177,6 +175,16 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           color: colors.font.default,
           display: "block",
           maxWidth: 480,
+        },
+      },
+      MuiTooltip: {
+        arrow: {
+          color: colors.alert.icon.info,
+        },
+        tooltip: {
+          backgroundColor: colors.alert.icon.info,
+          fontSize: "1.1rem",
+          padding: 16,
         },
       },
       MuiTouchRipple: {

@@ -1,3 +1,5 @@
+import { fade } from "@material-ui/core/styles/colorManipulator";
+
 import { SaleorThemeColors } from "./createSaleorTheme";
 
 export const dark: SaleorThemeColors = {
@@ -75,7 +77,7 @@ export const light: SaleorThemeColors = {
   },
   autofill: "#f4f6c5",
   background: {
-    default: "#EFF5F8",
+    default: "#EBF1F6",
     paper: "#FFFFFF",
   },
   checkbox: {
@@ -85,14 +87,14 @@ export const light: SaleorThemeColors = {
   error: "#FE6D76",
   font: {
     button: "#FFFFFF",
-    default: "#3D3D3D",
-    gray: "#616161",
+    default: "#28234A",
+    gray: fade("#28234A", 0.6),
     textButton: "#06847B",
-    textDisabled: "#616161",
+    textDisabled: fade("#28234A", 0.4),
   },
   gray: {
     default: "#C8C8C8",
-    disabled: "rgba(216, 216, 216, 0.3)",
+    disabled: "#C0CFE2",
   },
 
   input: {
@@ -106,8 +108,8 @@ export const light: SaleorThemeColors = {
     textHover: "#616161",
   },
   paperBorder: "#EAEAEA",
-  primary: "#06847B",
-  secondary: "#21125E",
+  primary: "#056DFF",
+  secondary: "#FFFFFF",
   success: "#5DC292",
   theme: "light",
 };

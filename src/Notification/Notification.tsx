@@ -5,26 +5,23 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
-import SVG from "react-inlinesvg";
 
-import warningIcon from "../assets/alert_icon.svg";
-import errorIcon from "../assets/error_icon.svg";
-import infoIcon from "../assets/info_icon.svg";
-import successIcon from "../assets/success_icon.svg";
+import { Error, Info, Success, Warning } from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
 
-function getIcon(variant: NotificationType): string {
-  switch (variant) {
+const Icon: React.FC<{ type: NotificationType }> = ({ type }) => {
+  switch (type) {
     case "error":
-      return errorIcon;
-    case "success":
-      return successIcon;
+      return <Error />;
     case "warning":
-      return warningIcon;
+      return <Warning />;
+    case "success":
+      return <Success />;
+    default:
+      return <Info />;
   }
-  return infoIcon;
-}
+};
 
 export const Notification: React.FC<NotificationProps> = ({
   onClose,
@@ -59,7 +56,7 @@ export const Notification: React.FC<NotificationProps> = ({
         message={
           <div className={classes.container}>
             <div>
-              <SVG className={classes.icon} src={getIcon(type)} />
+              <Icon type={type} />
             </div>
             <div>
               <div className={classes.title}>
