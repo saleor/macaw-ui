@@ -29,6 +29,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiCardContent: {
         root: {
+          ".MuiCardHeader-root + &": {
+            paddingTop: 0,
+          },
           padding: "2.4rem 3.2rem",
         },
       },
