@@ -24,7 +24,10 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiCardActions: {
         root: {
-          flexDirection: "row-reverse" as "row-reverse",
+          ".MuiCardContent-root + &": {
+            paddingTop: 0,
+          },
+          padding: "1.6rem 3.2rem",
         },
       },
       MuiCardContent: {
