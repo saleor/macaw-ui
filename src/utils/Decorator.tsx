@@ -1,4 +1,5 @@
-import { Card, CardContent } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import { StoryFn } from "@storybook/addons";
 import React from "react";
 
