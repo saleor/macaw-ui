@@ -1,9 +1,16 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Filter, FilterBar, FilterType } from "./Filter";
+import { Filter } from "./Filter";
+import { FilterBar } from "./FilterBar";
+import { FilterType } from "./types";
 
-const labels = { addButton: "Add Filter", header: "Filters", where: "Where" };
+const labels = {
+  addButton: "Add Filter",
+  header: "Filters",
+  where: "Where",
+  and: "and",
+};
 
 export const Default: Story = () => (
   <FilterBar labels={labels}>
@@ -23,6 +30,7 @@ export const Default: Story = () => (
       ]}
       labels={labels}
     />
+    <Filter name="name" label="Name" type={FilterType.Text} labels={labels} />
   </FilterBar>
 );
 
