@@ -14,15 +14,31 @@ const useStyles = makeStyles(
     },
 
     filter: {
+      alignItems: "center",
       display: "flex",
       columnGap: theme.spacing(2),
+      marginBottom: theme.spacing(2),
     },
     filterDelete: {
       marginLeft: "auto",
     },
+    filterName: {
+      width: 180,
+    },
+    filterNameInner: {
+      padding: theme.spacing(2),
+    },
+    filterConjunction: {
+      minWidth: 80,
+    },
 
     bar: {
       width: 800,
+    },
+
+    selectPaper: {
+      borderRadius: 0,
+      marginTop: `calc(48px + ${theme.spacing(1)})`,
     },
   }),
   {
