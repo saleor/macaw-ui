@@ -25,6 +25,12 @@ module.exports = {
         },
       },
     ],
-    "import/no-extraneous-dependencies":["error"]
+    "import/no-extraneous-dependencies": ["error"],
+    "no-restricted-imports": [
+      "error",
+      {
+        paths: ["@material-ui/core"],
+      },
+    ],
   },
 };
