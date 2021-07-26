@@ -5,7 +5,7 @@ import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 
-import { useFilters } from "./Filter";
+import { useFilters } from "./context";
 import useStyles from "./styles";
 import { getAvailableFilters } from "./utils";
 
@@ -17,7 +17,7 @@ export interface FilterMenuProps {
   onClose: () => void;
 }
 
-const FilterMenu: React.FC<FilterMenuProps> = ({
+export const FilterMenu: React.FC<FilterMenuProps> = ({
   anchorEl,
   labels,
   open,
@@ -50,8 +50,8 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
               {labels.header}
             </Typography>
           </div>
-          {availableFilters.map(([filterName, filter]) => (
-            <MenuItem onClick={() => handleFilterClick(filterName)}>
+          {availableFilters.map((filter) => (
+            <MenuItem onClick={() => handleFilterClick(filter.name)}>
               {filter.label}
             </MenuItem>
           ))}
@@ -61,4 +61,3 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
   );
 };
 FilterMenu.displayName = "FilterMenu";
-export default FilterMenu;
