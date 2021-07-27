@@ -9,6 +9,7 @@ import { useFilters } from "./context";
 import { FilterContent } from "./FilterContent";
 import useStyles from "./styles";
 import {
+  EventTarget,
   FilterDetailedOptions,
   FilterLabels,
   FilterOptions,
@@ -51,7 +52,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   const availableFilters = utils.getAvailableFilters(filters);
   const options = [filter, ...availableFilters];
 
-  const change = (event: React.ChangeEvent<any>) => {
+  const change = (event: React.ChangeEvent<EventTarget>) => {
     toggle(name);
     toggle(event.target.value);
   };
