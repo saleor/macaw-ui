@@ -19,13 +19,27 @@ import * as utils from "./utils";
 
 export type FilterProps = FilterOptions & FilterDetailedOptions;
 export const Filter: React.FC<FilterProps> = ({ name, label, ...options }) => {
-  const { register, unregister } = useFilters();
+  const { register, set, unregister } = useFilters();
+  const registered = React.useRef(false);
   React.useEffect(() => {
     register(name, label, options);
+    registered.current = true;
 
     return () => unregister(name);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  React.useEffect(() => {
+    if (registered.current && options.choices !== undefined) {
+      set(name, {
+        options: {
+          ...options,
+          choices: options.choices,
+        },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options.choices]);
 
   return null;
 };
@@ -41,7 +55,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   labels,
 }) => {
   const classes = useStyles();
-  const { filters, toggle, toggleRange } = useFilters();
+  const { filters, set, toggle, toggleRange } = useFilters();
 
   const filter = filters.find((filter) => filter.name === name);
 
@@ -52,9 +66,9 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   const availableFilters = utils.getAvailableFilters(filters);
   const options = [filter, ...availableFilters];
 
-  const change = (event: React.ChangeEvent<EventTarget>) => {
+  const change = (event: React.ChangeEvent<EventTarget<unknown>>) => {
     toggle(name);
-    toggle(event.target.value);
+    toggle(event.target.value as string);
   };
 
   return (

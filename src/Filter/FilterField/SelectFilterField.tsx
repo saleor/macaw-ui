@@ -18,7 +18,7 @@ export const SelectFilterField: React.FC<FilterContentProps> = ({ filter }) => {
   const { choices } = options;
 
   const handleChoiceChange = (event: React.ChangeEvent<EventTarget>) =>
-    onChange(name, event.target.value);
+    onChange(name, event.target.value as string);
 
   return (
     <Select

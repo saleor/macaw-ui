@@ -3,6 +3,7 @@ import { uniqBy } from "lodash";
 import {
   FilterData,
   FilterDetailedOptions,
+  FilterInput,
   FilterType,
   OnFilterChangeOpts,
 } from "./types";
@@ -43,10 +44,12 @@ export function register(
   filterData: FilterData[],
   name: string,
   label: string,
+  initial: FilterInput[],
   options: FilterDetailedOptions
 ): FilterData[] {
+  const existingFilter = initial.find((f) => f.name === name);
   const filter: FilterData = {
-    active: false,
+    active: !!existingFilter,
     label,
     name,
     range: false,
@@ -61,6 +64,7 @@ export function register(
     {
       ...filter,
       ...getDefaultValue(filter),
+      ...existingFilter,
     },
   ];
 }
