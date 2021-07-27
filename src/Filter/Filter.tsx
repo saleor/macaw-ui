@@ -8,18 +8,16 @@ import React from "react";
 import { useFilters } from "./context";
 import { FilterContent } from "./FilterContent";
 import useStyles from "./styles";
-import { FilterDetailedOptions, FilterLabels, FilterOptions } from "./types";
+import {
+  FilterDetailedOptions,
+  FilterLabels,
+  FilterOptions,
+  FilterType,
+} from "./types";
 import * as utils from "./utils";
 
-export interface FilterProps extends FilterOptions, FilterDetailedOptions {
-  labels: FilterLabels;
-}
-export const Filter: React.FC<FilterProps> = ({
-  name,
-  label,
-  labels,
-  ...options
-}) => {
+export type FilterProps = FilterOptions & FilterDetailedOptions;
+export const Filter: React.FC<FilterProps> = ({ name, label, ...options }) => {
   const { register, unregister } = useFilters();
   React.useEffect(() => {
     register(name, label, options);
@@ -42,7 +40,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   labels,
 }) => {
   const classes = useStyles();
-  const { filters, toggle } = useFilters();
+  const { filters, toggle, toggleRange } = useFilters();
 
   const filter = filters.find((filter) => filter.name === name);
 
@@ -58,8 +56,6 @@ export const FilterRow: React.FC<FilterRowProps> = ({
     toggle(event.target.value);
   };
 
-  console.log("row", name, filter);
-
   return (
     <div className={classes.filter}>
       <Typography className={classes.filterConjunction}>
@@ -68,22 +64,32 @@ export const FilterRow: React.FC<FilterRowProps> = ({
       <Select
         className={classes.filterName}
         classes={{
-          selectMenu: classes.filterNameInner,
+          selectMenu: classes.filterInputInner,
         }}
         variant="outlined"
         onChange={change}
         value={filter.name}
-        MenuProps={{
-          PopoverClasses: {
-            paper: classes.selectPaper,
-          },
-        }}
       >
-        {options.map((filter) => (
-          <MenuItem value={filter.name}>{filter.label}</MenuItem>
+        {options.map((option) => (
+          <MenuItem key={option.name} value={option.name}>
+            {option.label}
+          </MenuItem>
         ))}
       </Select>
-      <FilterContent filter={filter} />
+      <Select
+        disabled={filter.options.type !== FilterType.Range}
+        className={classes.filterRange}
+        classes={{
+          selectMenu: classes.filterInputInner,
+        }}
+        variant="outlined"
+        value={filter.range.toString()}
+        onChange={() => toggleRange(name)}
+      >
+        <MenuItem value="false">{labels.is}</MenuItem>
+        <MenuItem value="true">{labels.range}</MenuItem>
+      </Select>
+      <FilterContent filter={filter} labels={labels} />
       <IconButton className={classes.filterDelete} onClick={() => toggle(name)}>
         <Delete />
       </IconButton>
