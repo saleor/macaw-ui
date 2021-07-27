@@ -1,4 +1,5 @@
 import { Meta, Story } from "@storybook/react";
+import { debounce } from "lodash";
 import React from "react";
 
 import { Filter } from "./Filter";
@@ -10,15 +11,19 @@ const labels = {
   header: "Filters",
   where: "Where",
   and: "and",
+  is: "is",
+  range: "between",
 };
 
 export const Default: Story = () => (
-  <FilterBar labels={labels}>
+  <FilterBar labels={labels} onChange={debounce((fd) => console.log(fd), 1000)}>
     <Filter
       name="category"
       label="Category"
       type={FilterType.Text}
-      labels={labels}
+      InputProps={{
+        placeholder: "Search by name",
+      }}
     />
     <Filter
       name="availability"
@@ -28,9 +33,30 @@ export const Default: Story = () => (
         { label: "Available", value: "yes" },
         { label: "Not Available", value: "no" },
       ]}
-      labels={labels}
     />
-    <Filter name="name" label="Name" type={FilterType.Text} labels={labels} />
+    <Filter name="name" label="Name" type={FilterType.Text} />
+    <Filter
+      name="status"
+      label="Status"
+      type={FilterType.Choice}
+      default="scheduled"
+      choices={[
+        { label: "Published", value: "published" },
+        { label: "Scheduled for publishing", value: "scheduled" },
+        { label: "Not Published", value: "unpublished" },
+      ]}
+      multiple
+    />
+    <Filter
+      name="price"
+      label="Price"
+      type={FilterType.Range}
+      InputProps={{
+        InputProps: {
+          endAdornment: "USD",
+        },
+      }}
+    />
   </FilterBar>
 );
 

@@ -140,7 +140,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiMenu: {
         paper: {
-          borderRadius: 8,
+          borderRadius: 0,
         },
       },
       MuiMenuItem: {
@@ -152,8 +152,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           },
           "&:hover": {
             backgroundColor: [colors.background.default, "!important"] as any,
-            color: colors.font.default,
-            fontWeight: 400,
           },
           "@media(min-width: 600px)": {
             minHeight: 48,
@@ -238,6 +236,19 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiList: {
         disablePadding: true,
+      },
+      MuiSelect: {
+        MenuProps: {
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "left",
+          },
+          transformOrigin: {
+            vertical: "top",
+            horizontal: "left",
+          },
+          getContentAnchorEl: null,
+        },
       },
     },
     shadows,
