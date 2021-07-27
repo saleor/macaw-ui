@@ -15,7 +15,7 @@ export const TextFilterField: React.FC<FilterContentProps> = ({ filter }) => {
 
   const { name } = filter;
 
-  const handleChange = (event: React.ChangeEvent<EventTarget>) =>
+  const handleChange = (event: React.ChangeEvent<EventTarget<string>>) =>
     onChange(name, event.target.value);
 
   return (

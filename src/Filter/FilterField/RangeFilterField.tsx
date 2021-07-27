@@ -5,7 +5,7 @@ import React from "react";
 
 import { useFilters } from "../context";
 import useStyles from "../styles";
-import { FilterData, FilterLabels } from "../types";
+import { EventTarget, FilterData, FilterLabels } from "../types";
 
 export interface FilterContentProps {
   filter: FilterData;
@@ -21,9 +21,7 @@ export const RangeFilterField: React.FC<FilterContentProps> = ({
 
   const { name } = filter;
 
-  const handleChange = (
-    event: React.ChangeEvent<{ name: string; value: string }>
-  ) =>
+  const handleChange = (event: React.ChangeEvent<EventTarget<string>>) =>
     onChange(name, event.target.value, {
       rangePart: event.target.name as "min" | "max",
     });

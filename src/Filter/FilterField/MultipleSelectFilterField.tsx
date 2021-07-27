@@ -23,7 +23,7 @@ export const MultipleSelectFilterField: React.FC<FilterContentProps> = ({
   const { choices } = options;
 
   const handleChoiceChange = (event: React.ChangeEvent<EventTarget>) =>
-    onChange(name, event.target.value);
+    onChange(name, event.target.value as string);
 
   return (
     <Select
