@@ -189,7 +189,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                     component={subMenuItem.external ? "a" : "button"}
                     className={clsx(classes.label, classes.subMenuLabel)}
                     key={subMenuItem.url}
-                    onClick={(event: React.MouseEvent<any>) =>
+                    onClick={(event: React.MouseEvent) =>
                       handleClick(event, subMenuItem)
                     }
                     data-test="submenu-item-label"
