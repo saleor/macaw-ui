@@ -25,15 +25,38 @@ const useStyles = makeStyles(
     filterName: {
       width: 180,
     },
-    filterNameInner: {
-      padding: theme.spacing(2),
+    filterValue: {
+      height: 51,
+      width: 320,
+    },
+    filterRange: {
+      width: 115,
+    },
+    filterInputInner: {
+      "&&": {
+        padding: theme.spacing(2),
+      },
     },
     filterConjunction: {
       minWidth: 80,
     },
+    filterValueCheckbox: {
+      paddingLeft: 0,
+    },
+    filterValueSelected: {
+      color: theme.palette.primary.main,
+      fontWeight: 500,
+    },
+    filterRangeLabel: {
+      margin: theme.spacing(0, 1),
+    },
+    filterRangeValueContainer: {
+      display: "flex",
+      alignItems: "center",
+    },
 
     bar: {
-      width: 800,
+      minWidth: 600,
     },
 
     selectPaper: {

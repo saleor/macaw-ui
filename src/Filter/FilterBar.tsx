@@ -8,16 +8,26 @@ import { FilterContext } from "./context";
 import { FilterRow } from "./Filter";
 import { FilterMenu, FilterMenuLabels } from "./FilterMenu";
 import useStyles from "./styles";
-import { FilterData, FilterDetailedOptions, FilterLabels } from "./types";
+import {
+  FilterData,
+  FilterDetailedOptions,
+  FilterLabels,
+  OnFilterChangeOpts,
+} from "./types";
 import * as utils from "./utils";
 
 export interface FilterBarProps {
   labels: Record<"header" | "addButton", string> &
     FilterMenuLabels &
     FilterLabels;
+  onChange: (filterData: FilterData[]) => void;
 }
 
-export const FilterBar: React.FC<FilterBarProps> = ({ children, labels }) => {
+export const FilterBar: React.FC<FilterBarProps> = ({
+  children,
+  labels,
+  onChange: changeCb,
+}) => {
   const classes = useStyles();
   const [filterData, setFilterData] = React.useState<FilterData[]>([]);
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -30,20 +40,35 @@ export const FilterBar: React.FC<FilterBarProps> = ({ children, labels }) => {
     label: string,
     options: FilterDetailedOptions
   ) => setFilterData((fd) => utils.register(fd, name, label, options));
-  const onChange = (name: string, value: string) =>
-    setFilterData((fd) => utils.change(fd, name, value));
+  const onChange = (
+    name: string,
+    value: string | string[],
+    opts?: OnFilterChangeOpts
+  ) => setFilterData((fd) => utils.change(fd, name, value, opts));
   const toggle = (name: string) =>
     setFilterData((fd) => utils.toggle(fd, name));
+  const toggleRange = (name: string) =>
+    setFilterData((fd) => utils.toggleRange(fd, name));
   const unregister = (name: string) =>
     setFilterData((fd) => fd.filter((filter) => filter.name !== name));
 
   const availableFilters = utils.getAvailableFilters(filterData);
 
-  console.log(filterData);
+  React.useEffect(() => changeCb(utils.getActiveFilters(filterData)), [
+    changeCb,
+    filterData,
+  ]);
 
   return (
     <FilterContext.Provider
-      value={{ filters: filterData, register, toggle, unregister, onChange }}
+      value={{
+        filters: filterData,
+        register,
+        toggle,
+        toggleRange,
+        unregister,
+        onChange,
+      }}
     >
       {children}
       <Card className={classes.bar}>
