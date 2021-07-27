@@ -51,7 +51,10 @@ export const FilterMenu: React.FC<FilterMenuProps> = ({
             </Typography>
           </div>
           {availableFilters.map((filter) => (
-            <MenuItem onClick={() => handleFilterClick(filter.name)}>
+            <MenuItem
+              key={filter.name}
+              onClick={() => handleFilterClick(filter.name)}
+            >
               {filter.label}
             </MenuItem>
           ))}
