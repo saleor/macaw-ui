@@ -129,10 +129,9 @@ function createMuiTheme(colors: MacawTheme): Theme {
       },
       MuiDialogContent: {
         root: {
-          "& label": {
-            overflowX: "hidden"
-          },
-          padding: 24
+          overflowX: "hidden",
+          padding: `24px 0px`,
+          margin: `0px 24px`
         }
       },
       MuiDialogContentText: {
