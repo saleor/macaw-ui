@@ -3,7 +3,7 @@ import React from "react";
 
 import { useFilters } from "../context";
 import useStyles from "../styles";
-import { FilterData } from "../types";
+import { EventTarget, FilterData } from "../types";
 
 export interface FilterContentProps {
   filter: FilterData;
@@ -15,7 +15,7 @@ export const TextFilterField: React.FC<FilterContentProps> = ({ filter }) => {
 
   const { name } = filter;
 
-  const handleChange = (event: React.ChangeEvent<any>) =>
+  const handleChange = (event: React.ChangeEvent<EventTarget>) =>
     onChange(name, event.target.value);
 
   return (

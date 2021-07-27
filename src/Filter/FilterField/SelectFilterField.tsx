@@ -4,7 +4,7 @@ import React from "react";
 
 import { useFilters } from "../context";
 import useStyles from "../styles";
-import { FilterData } from "../types";
+import { EventTarget, FilterData } from "../types";
 
 export interface FilterContentProps {
   filter: FilterData;
@@ -17,7 +17,7 @@ export const SelectFilterField: React.FC<FilterContentProps> = ({ filter }) => {
   const { name, options } = filter;
   const { choices } = options;
 
-  const handleChoiceChange = (event: React.ChangeEvent<any>) =>
+  const handleChoiceChange = (event: React.ChangeEvent<EventTarget>) =>
     onChange(name, event.target.value);
 
   return (
