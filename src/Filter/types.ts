@@ -49,3 +49,8 @@ export interface FilterContextType {
 }
 
 export type FilterLabels = Record<"where" | "and" | "is" | "range", string>;
+
+export interface EventTarget {
+  name: string;
+  value: string;
+}
