@@ -59,6 +59,45 @@ export const Default: Story = () => (
     />
   </FilterBar>
 );
+export const WithInitialState: Story = () => (
+  <FilterBar
+    labels={labels}
+    onChange={debounce((fd) => console.log(fd), 1000)}
+    initial={[
+      {
+        name: "name",
+        value: "Lorem Ipsum",
+        values: null,
+      },
+      {
+        name: "availability",
+        value: "no",
+        values: null,
+      },
+    ]}
+  >
+    <Filter name="name" label="Name" type={FilterType.Text} />
+    <Filter
+      name="price"
+      label="Price"
+      type={FilterType.Range}
+      InputProps={{
+        InputProps: {
+          endAdornment: "USD",
+        },
+      }}
+    />
+    <Filter
+      name="availability"
+      label="Availability"
+      type={FilterType.Choice}
+      choices={[
+        { label: "Available", value: "yes" },
+        { label: "Not Available", value: "no" },
+      ]}
+    />
+  </FilterBar>
+);
 
 export default {
   title: "Filter",

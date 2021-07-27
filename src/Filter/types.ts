@@ -18,13 +18,23 @@ export interface FilterOptions {
   label: string;
 }
 
-export interface FilterData extends FilterOptions {
+export interface FilterValues {
+  value: string | null;
+  values: string[] | null;
+}
+
+export interface FilterState extends FilterValues {
   active: boolean;
   range: boolean;
   sortIndex: number;
-  value: string | null;
-  values: string[] | null;
+}
+
+export interface FilterData extends FilterOptions, FilterState {
   options: FilterDetailedOptions;
+}
+
+export interface FilterInput extends FilterValues {
+  name: string;
 }
 
 export interface OnFilterChangeOpts {
@@ -33,6 +43,7 @@ export interface OnFilterChangeOpts {
 
 export interface FilterContextType {
   filters: FilterData[];
+  set: (name: string, filter: Partial<FilterData>) => void;
   register: (
     name: string,
     label: string,
@@ -50,7 +61,7 @@ export interface FilterContextType {
 
 export type FilterLabels = Record<"where" | "and" | "is" | "range", string>;
 
-export interface EventTarget {
-  name: string;
-  value: string;
+export interface EventTarget<T = unknown> {
+  name?: string;
+  value: T;
 }

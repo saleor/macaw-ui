@@ -11,12 +11,14 @@ import useStyles from "./styles";
 import {
   FilterData,
   FilterDetailedOptions,
+  FilterInput,
   FilterLabels,
   OnFilterChangeOpts,
 } from "./types";
 import * as utils from "./utils";
 
 export interface FilterBarProps {
+  initial?: FilterInput[];
   labels: Record<"header" | "addButton", string> &
     FilterMenuLabels &
     FilterLabels;
@@ -25,6 +27,7 @@ export interface FilterBarProps {
 
 export const FilterBar: React.FC<FilterBarProps> = ({
   children,
+  initial = [],
   labels,
   onChange: changeCb,
 }) => {
@@ -39,7 +42,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     name: string,
     label: string,
     options: FilterDetailedOptions
-  ) => setFilterData((fd) => utils.register(fd, name, label, options));
+  ) => setFilterData((fd) => utils.register(fd, name, label, initial, options));
   const onChange = (
     name: string,
     value: string | string[],
@@ -51,6 +54,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     setFilterData((fd) => utils.toggleRange(fd, name));
   const unregister = (name: string) =>
     setFilterData((fd) => fd.filter((filter) => filter.name !== name));
+  const set = (name: string, filter: Partial<FilterData>) =>
+    setFilterData((fd) =>
+      fd.map((f) => (f.name === name ? { ...f, filter } : f))
+    );
 
   const availableFilters = utils.getAvailableFilters(filterData);
 
@@ -64,6 +71,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       value={{
         filters: filterData,
         register,
+        set,
         toggle,
         toggleRange,
         unregister,
