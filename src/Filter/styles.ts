@@ -19,6 +19,15 @@ const useStyles = makeStyles(
       columnGap: theme.spacing(2),
       marginBottom: theme.spacing(2),
     },
+    filterChip: {
+      borderRadius: 8,
+      background: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+    },
+    filterChipContainer: {
+      display: "flex",
+      columnGap: theme.spacing(1),
+    },
     filterDelete: {
       marginLeft: "auto",
     },
