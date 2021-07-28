@@ -39,9 +39,9 @@ export const MultipleSelectFilterField: React.FC<FilterContentProps> = ({
         const typedValues = values as string[];
 
         return (
-          <div>
+          <div className={classes.filterChipContainer}>
             {typedValues.map((value) => (
-              <Chip key={value} label={value} />
+              <Chip className={classes.filterChip} key={value} label={value} />
             ))}
           </div>
         );
