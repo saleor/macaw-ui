@@ -27,7 +27,7 @@ const useStyles = makeStyles(
     },
     filterValue: {
       height: 51,
-      width: 320,
+      width: 400,
     },
     filterRange: {
       width: 115,
