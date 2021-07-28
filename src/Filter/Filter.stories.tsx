@@ -16,7 +16,11 @@ const labels = {
 };
 
 export const Default: Story = () => (
-  <FilterBar labels={labels} onChange={debounce((fd) => console.log(fd), 1000)}>
+  <FilterBar
+    labels={labels}
+    onChange={debounce((fd) => console.log(fd), 1000)}
+    onClose={() => undefined}
+  >
     <Filter
       name="category"
       label="Category"
@@ -75,6 +79,7 @@ export const WithInitialState: Story = () => (
         values: null,
       },
     ]}
+    onClose={() => undefined}
   >
     <Filter name="name" label="Name" type={FilterType.Text} />
     <Filter
