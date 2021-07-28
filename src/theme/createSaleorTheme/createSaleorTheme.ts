@@ -64,7 +64,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiDialogContent: {
         root: {
-          padding: 24,
+          overflowX: "hidden",
+          padding: `24px 0px`,
+          margin: `0px 24px`,
         },
       },
       MuiDialogContentText: {
