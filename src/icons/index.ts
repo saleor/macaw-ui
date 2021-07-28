@@ -9,3 +9,4 @@ export * from "./CheckboxCheckedIcon";
 export * from "./CheckboxIndeterminateIcon";
 export * from "./SearchIcon";
 export * from "./EditIcon";
+export * from "./FilteringIcon";

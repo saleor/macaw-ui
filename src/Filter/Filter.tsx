@@ -3,6 +3,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 import Delete from "@material-ui/icons/Delete";
+import { difference } from "lodash";
 import React from "react";
 
 import { useFilters } from "./context";
@@ -30,7 +31,11 @@ export const Filter: React.FC<FilterProps> = ({ name, label, ...options }) => {
   }, []);
 
   React.useEffect(() => {
-    if (registered.current && options.choices !== undefined) {
+    if (
+      registered.current &&
+      options.choices !== undefined &&
+      difference(options.choices, options.choices).length
+    ) {
       set(name, {
         options: {
           ...options,
@@ -55,7 +60,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   labels,
 }) => {
   const classes = useStyles();
-  const { filters, set, toggle, toggleRange } = useFilters();
+  const { filters, toggle, toggleRange } = useFilters();
 
   const filter = filters.find((filter) => filter.name === name);
 
