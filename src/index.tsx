@@ -15,3 +15,4 @@ export * from "./LayoutButton";
 export * from "./icons";
 export * from "./StatusChip";
 export * from "./PageTabs";
+export * from "./Filter";
