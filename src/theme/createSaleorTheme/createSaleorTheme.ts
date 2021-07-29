@@ -179,6 +179,11 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           maxWidth: 480,
         },
       },
+      MuiTooltip: {
+        tooltip: {
+          fontSize: "0.8em",
+        },
+      },
       MuiTouchRipple: {
         child: {
           backgroundColor: fade(colors.primary, 0.2),
