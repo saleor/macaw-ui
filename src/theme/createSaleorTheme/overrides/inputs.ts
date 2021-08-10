@@ -153,6 +153,7 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
       },
       backgroundColor: colors.background.paper,
       borderColor: colors.input.border,
+      borderRadius: 0,
       top: 0,
     },
   },
