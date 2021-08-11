@@ -30,13 +30,9 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
         color: colors.font.gray,
         opacity: "1 !important" as any,
       },
-      zIndex: 2,
     },
   },
   MuiInputLabel: {
-    filled: {
-      zIndex: 2,
-    },
     formControl: {
       transform: "translate(0, 1.5px) scale(0.75)",
       transformOrigin: "top left" as "top left",
@@ -47,7 +43,6 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
         transform: "translate(12px, 9px) scale(0.75)",
       },
       transform: "translate(14px, 18px) scale(1)",
-      zIndex: 9,
     },
     root: {
       "&$disabled": {
@@ -76,7 +71,6 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
       "&:-webkit-autofill": {
         borderRadius: 4,
         boxShadow: "0 0 0px 1000px rgba(19, 190, 187, 0.1) inset",
-        zIndex: 0,
       },
       color: colors.input.text,
       padding: "23px 12px 10px 12px",
@@ -92,7 +86,6 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
           borderColor: colors.input.border,
         },
         top: 0,
-        zIndex: 1,
       },
       "& legend": {
         display: "none",
@@ -104,7 +97,6 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
         "& input": {
           backgroundColor: colors.input.disabledBackground,
           color: colors.input.disabledText,
-          zIndex: 2,
         },
       },
       "&$error": {
@@ -114,7 +106,6 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
           },
           "& input": {
             color: colors.error,
-            zIndex: 2,
           },
         },
         "&:hover": {
@@ -123,7 +114,6 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
           },
           "& input": {
             color: colors.error,
-            zIndex: 2,
           },
         },
       },
