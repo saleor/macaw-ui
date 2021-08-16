@@ -218,6 +218,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiCheckbox: {
         color: "primary",
       },
+      MuiTooltip: {
+        placement: "right-end",
+      },
     },
     shadows,
     spacing: (value: number = 1) => `${(value * 8) / 10}rem`,
