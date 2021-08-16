@@ -10,7 +10,7 @@ export interface TooltipProps extends MUITooltipProps {
 
 export const Tooltip: React.FC<TooltipProps> = ({
   children,
-  variant,
+  variant = "info",
   ...rest
 }) => {
   const classes = useStyles({ variant, children, ...rest });
