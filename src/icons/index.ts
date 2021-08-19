@@ -8,3 +8,4 @@ export * from "./Success";
 export * from "./Warning";
 export * from "./Edit";
 export * from "./Filtering";
+export * from "./Delete";
