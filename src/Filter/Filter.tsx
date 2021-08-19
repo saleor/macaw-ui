@@ -2,7 +2,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
-import Delete from "@material-ui/icons/Delete";
+import { DeleteIcon } from "../icons";
 import { difference } from "lodash";
 import React from "react";
 
@@ -111,7 +111,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
       </Select>
       <FilterContent filter={filter} labels={labels} />
       <IconButton className={classes.filterDelete} onClick={() => toggle(name)}>
-        <Delete />
+        <DeleteIcon />
       </IconButton>
     </div>
   );
