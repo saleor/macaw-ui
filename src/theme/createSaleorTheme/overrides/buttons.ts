@@ -79,7 +79,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         fontSize: "1.3rem",
       },
       outlinedPrimary: {
-        borderColor: colors.gray.disabled,
+        borderColor: colors.background.default,
       },
     },
     MuiIconButton: {
