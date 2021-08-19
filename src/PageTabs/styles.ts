@@ -1,3 +1,5 @@
+import { fade } from "@material-ui/core/styles";
+
 import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
@@ -9,6 +11,9 @@ const useStyles = makeStyles(
       "&.Mui-selected": {
         background: theme.palette.secondary.main,
         color: theme.palette.primary.main,
+      },
+      "&:hover": {
+        background: fade(theme.palette.secondary.main, 0.6),
       },
       borderRadius: 8,
       minHeight: 40,
