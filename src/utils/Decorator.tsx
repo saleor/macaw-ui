@@ -18,7 +18,7 @@ export const Decorator = (storyFn: StoryFn<React.ReactNode>) => (
 );
 
 export const GuideDecorator = (storyFn: StoryFn<React.ReactNode>) => (
-  <Card style={{ margin: "auto", width: 600 }}>
+  <Card style={{ margin: "auto", width: 700 }}>
     <CardContent>{storyFn()}</CardContent>
   </Card>
 );
