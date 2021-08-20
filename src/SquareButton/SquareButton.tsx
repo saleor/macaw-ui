@@ -7,6 +7,11 @@ import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
   (theme) => ({
+    disabled: {
+      "&$root": {
+        color: theme.palette.grey[500],
+      },
+    },
     root: {
       "&:hover, &:focus": {
         background: fade(theme.palette.primary.light, 0.2),
@@ -30,7 +35,9 @@ export const SquareButton: React.FC<ButtonBaseProps> = React.forwardRef(
 
     return (
       <ButtonBase
-        className={clsx(classes.root, className)}
+        className={clsx(classes.root, className, {
+          [classes.disabled]: rest.disabled,
+        })}
         ref={ref}
         {...rest}
       />
