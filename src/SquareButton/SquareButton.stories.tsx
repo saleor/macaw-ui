@@ -9,6 +9,11 @@ export const Default: Story = () => (
     <CloseIcon />
   </SquareButton>
 );
+export const Disabled: Story = () => (
+  <SquareButton disabled>
+    <CloseIcon />
+  </SquareButton>
+);
 
 export default {
   title: "Square button",
