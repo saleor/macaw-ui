@@ -64,6 +64,9 @@ export const buttonOverrides = (
           marginLeft: 8,
         },
         borderRadius: 4,
+        fontSize: "1.6rem",
+        lineHeight: 1.55,
+        padding: "12px 16px",
       },
       text: {
         ...containedSecondaryStates,
@@ -80,7 +83,14 @@ export const buttonOverrides = (
       textSizeSmall: {
         fontSize: "1.3rem",
       },
+      outlined: {
+        padding: undefined,
+      },
       outlinedPrimary: {
+        "&:hover": {
+          borderColor: "transparent",
+          backgroundColor: fade(colors.primary, 0.1),
+        },
         borderColor: colors.background.default,
       },
     },

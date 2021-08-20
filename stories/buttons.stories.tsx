@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button, fade, Typography } from "@material-ui/core";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
@@ -8,7 +8,7 @@ import useGuideStyles from "./guideStyles";
 
 const useStyles = makeStyles((theme) => ({
   buttonGrid: {
-    background: theme.palette.background.default,
+    background: fade(theme.palette.background.default, 0.25),
     borderRadius: 4,
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
@@ -28,7 +28,7 @@ const Default: React.FC = () => {
         Buttons
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
-        In most cases your app will be using one of those three button types:
+        In most cases your app will be using one of those four button types:
       </Typography>
 
       <div className={classes.buttonGrid}>
