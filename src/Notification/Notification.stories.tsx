@@ -36,6 +36,9 @@ export const WithActionAndContent: Story = () => (
     }}
   />
 );
+export const Permanent: Story = () => (
+  <Notification {...props} onClose={undefined} />
+);
 
 export default {
   title: "Notification",

@@ -84,18 +84,20 @@ export const Notification: React.FC<NotificationProps> = ({
               </Button>
             )}
           </div>,
-          <IconButton
-            key="close"
-            aria-label="Close"
-            color="inherit"
-            onClick={onClose}
-            className={clsx(classes.closeBtn, {
-              [classes.closeBtnInfo]: type === "info",
-            })}
-            data-test="close"
-          >
-            <CloseIcon />
-          </IconButton>,
+          onClose && (
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              onClick={onClose}
+              className={clsx(classes.closeBtn, {
+                [classes.closeBtnInfo]: type === "info",
+              })}
+              data-test="close"
+            >
+              <CloseIcon />
+            </IconButton>
+          ),
         ]}
       />
     </div>

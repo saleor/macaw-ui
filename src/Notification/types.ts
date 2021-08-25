@@ -14,5 +14,5 @@ export interface NotificationData {
 
 export interface NotificationProps extends NotificationData {
   className?: string;
-  onClose: () => void;
+  onClose?: () => void;
 }

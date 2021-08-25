@@ -33,6 +33,7 @@ const useStyles = makeStyles(
       borderRadius: 4,
       padding: theme.spacing(0, 6, 1, 2),
       position: "relative",
+      maxWidth: "100%",
     },
     snackbarContainer: {
       marginBottom: theme.spacing(2),
