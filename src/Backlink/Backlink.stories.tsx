@@ -21,6 +21,7 @@ const Wrapper: React.FC = ({ children }) => {
     }, 50) as any;
 
     return () => clearInterval(timer.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
