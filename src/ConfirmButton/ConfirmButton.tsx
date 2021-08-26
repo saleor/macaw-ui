@@ -28,6 +28,7 @@ export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
   labels,
   noTransition,
   transitionState,
+  variant = "contained",
   onClick,
   onTransitionToDefault,
   ...props
@@ -75,7 +76,11 @@ export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
 
   return (
     <Button
-      variant="contained"
+      variant={
+        isCompleted && ["success", "error"].includes(transitionState)
+          ? "contained"
+          : variant
+      }
       onClick={transitionState === "loading" ? undefined : onClick}
       color="primary"
       className={clsx(className, {

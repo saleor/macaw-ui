@@ -84,7 +84,8 @@ export const buttonOverrides = (
         fontSize: "1.3rem",
       },
       outlined: {
-        padding: undefined,
+        // 2px smaller because of border
+        padding: "10px 16px",
       },
       outlinedPrimary: {
         "&:hover": {
