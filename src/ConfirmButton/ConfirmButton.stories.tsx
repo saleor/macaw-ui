@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
+import { Decorator, GuideDecorator } from "../utils/Decorator";
 import {
   ConfirmButton,
   ConfirmButtonLabels,
@@ -27,46 +28,100 @@ export const Interactive: Story = () => {
     []
   );
 
+  const setSuccess = () => {
+    setTransitionState("success");
+    timer.current = undefined;
+  };
+
   const handleClick = () => {
     if (!timer.current) {
       setTransitionState("loading");
-      timer.current = (setTimeout(
-        () => setTransitionState("success"),
-        2000
-      ) as unknown) as number;
+      timer.current = (setTimeout(setSuccess, 2000) as unknown) as number;
     }
   };
 
   return (
-    <ConfirmButton
-      labels={labels}
-      transitionState={transitionState}
-      onClick={handleClick}
-    />
+    <>
+      <ConfirmButton
+        labels={labels}
+        transitionState={transitionState}
+        onClick={handleClick}
+      />
+      <ConfirmButton
+        labels={labels}
+        transitionState={transitionState}
+        onClick={handleClick}
+        variant="outlined"
+      />
+    </>
   );
 };
 
 export const Default: Story = () => (
-  <ConfirmButton labels={labels} transitionState="default" />
+  <>
+    <ConfirmButton labels={labels} transitionState="default" />
+    <ConfirmButton
+      labels={labels}
+      transitionState="default"
+      variant="outlined"
+    />
+  </>
 );
 export const Loading: Story = () => (
-  <ConfirmButton
-    labels={labels}
-    transitionState="loading"
-    noTransition={true}
-  />
+  <>
+    <ConfirmButton
+      labels={labels}
+      transitionState="loading"
+      noTransition={true}
+    />
+    <ConfirmButton
+      labels={labels}
+      transitionState="loading"
+      noTransition={true}
+      variant="outlined"
+    />
+  </>
 );
 export const Error: Story = () => (
-  <ConfirmButton labels={labels} transitionState="error" noTransition={true} />
+  <>
+    <ConfirmButton
+      labels={labels}
+      transitionState="error"
+      noTransition={true}
+    />
+    <ConfirmButton
+      labels={labels}
+      transitionState="error"
+      noTransition={true}
+      variant="outlined"
+    />
+  </>
 );
 export const Success: Story = () => (
-  <ConfirmButton
-    labels={labels}
-    transitionState="success"
-    noTransition={true}
-  />
+  <>
+    <ConfirmButton
+      labels={labels}
+      transitionState="success"
+      noTransition={true}
+    />
+    <ConfirmButton
+      labels={labels}
+      transitionState="success"
+      noTransition={true}
+      variant="outlined"
+    />
+  </>
 );
 
 export default {
+  decorators: [
+    (Story) => (
+      <div style={{ display: "flex", gap: "24px" }}>
+        <Story />
+      </div>
+    ),
+    Decorator,
+    GuideDecorator,
+  ],
   title: "Confirm Button",
 } as Meta;
