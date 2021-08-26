@@ -24,7 +24,6 @@ const useStyles = makeStyles(
     },
     progress: {
       "& svg": {
-        color: theme.palette.common.white,
         margin: 0,
       },
       position: "absolute",
