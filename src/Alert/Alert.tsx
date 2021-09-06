@@ -67,11 +67,6 @@ export const Alert: React.FC<AlertProps> = ({
             children
           )}
         </div>
-        {typeof children === "string" ? (
-          <Typography variant="body1">{children}</Typography>
-        ) : (
-          children
-        )}
       </div>
     </AlertBase>
   );
