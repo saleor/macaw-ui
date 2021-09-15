@@ -22,7 +22,6 @@ const useStyles = makeStyles(
     content: {
       padding: theme.spacing(0, 1),
     },
-    icon: {},
     root: {},
     titleBar: {
       marginTop: 6,
