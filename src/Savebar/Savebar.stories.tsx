@@ -35,6 +35,11 @@ const props: SavebarProps = {
   state: "default",
 };
 export const Default: Story = () => <Savebar {...props} />;
+
+export const WithOnlyDelete: Story = () => (
+  <Savebar labels={labels} onDelete={() => undefined} />
+);
+
 export const WithDelete: Story = () => (
   <Savebar {...props} onDelete={() => undefined} />
 );

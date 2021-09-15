@@ -21,20 +21,20 @@ export type SavebarTooltips = Partial<
   Record<"confirm" | "delete" | "cancel", string>
 >;
 export interface SavebarProps {
-  disabled: boolean;
-  state: ConfirmButtonTransitionState;
+  disabled?: boolean;
+  state?: ConfirmButtonTransitionState;
   labels: SavebarLabels;
   tooltips?: SavebarTooltips;
-  onCancel: () => void;
+  onCancel?: () => void;
   onDelete?: () => void;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
 
 export const Savebar: React.FC<SavebarProps> = ({
-  disabled,
+  disabled = false,
   labels,
   tooltips,
-  state,
+  state = "default",
   onCancel,
   onDelete,
   onSubmit,
@@ -81,26 +81,30 @@ export const Savebar: React.FC<SavebarProps> = ({
                 </ButtonTooltipDecorator>
               )}
               <div className={classes.spacer} />
-              <ButtonTooltipDecorator tooltip={tooltips?.cancel}>
-                <Button
-                  className={classes.cancelButton}
-                  variant="text"
-                  onClick={onCancel}
-                  data-test="button-bar-cancel"
-                >
-                  {labels.cancel}
-                </Button>
-              </ButtonTooltipDecorator>
-              <ButtonTooltipDecorator tooltip={tooltips?.confirm}>
-                <ConfirmButton
-                  disabled={disabled}
-                  labels={labels}
-                  onClick={onSubmit}
-                  transitionState={state}
-                  data-test="button-bar-confirm"
-                  onTransitionToDefault={() => setDocked(true)}
-                />
-              </ButtonTooltipDecorator>
+              {!!onCancel && (
+                <ButtonTooltipDecorator tooltip={tooltips?.cancel}>
+                  <Button
+                    className={classes.cancelButton}
+                    variant="text"
+                    onClick={onCancel}
+                    data-test="button-bar-cancel"
+                  >
+                    {labels.cancel}
+                  </Button>
+                </ButtonTooltipDecorator>
+              )}
+              {!!onSubmit && (
+                <ButtonTooltipDecorator tooltip={tooltips?.confirm}>
+                  <ConfirmButton
+                    disabled={disabled}
+                    labels={labels}
+                    onClick={onSubmit}
+                    transitionState={state}
+                    data-test="button-bar-confirm"
+                    onTransitionToDefault={() => setDocked(true)}
+                  />
+                </ButtonTooltipDecorator>
+              )}
             </CardContent>
           </Card>
         </Container>
