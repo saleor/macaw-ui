@@ -9,6 +9,12 @@ import {
   SavebarTooltips,
 } from "./Savebar";
 
+const Wrapper: React.FC = ({ children }) => {
+  const { anchor } = useActionBar();
+
+  return <div ref={anchor}>{children}</div>;
+};
+
 const labels: SavebarLabels = {
   confirm: "Confirm",
   error: "Error",
@@ -27,12 +33,6 @@ const props: SavebarProps = {
   onCancel: () => undefined,
   onSubmit: () => undefined,
   state: "default",
-};
-
-const Wrapper: React.FC = ({ children }) => {
-  const { anchor } = useActionBar();
-
-  return <div ref={anchor}>{children}</div>;
 };
 
 export const Default: Story = () => <Savebar {...props} />;
