@@ -67,7 +67,6 @@ const useStyles = makeStyles(
       marginTop: 6,
       marginBottom: theme.spacing(0.5),
     },
-    icon: {},
   }),
   { name: "Notification" }
 );
