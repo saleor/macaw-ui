@@ -1,4 +1,4 @@
-import { Tooltip as MUITooltip } from "@material-ui/core";
+import MUITooltip from "@material-ui/core/Tooltip";
 import { TooltipProps as MUITooltipProps } from "@material-ui/core/Tooltip";
 import React from "react";
 
