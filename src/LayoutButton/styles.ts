@@ -6,9 +6,10 @@ const useStyles = makeStyles(
   (theme) => ({
     root: {
       "&:hover": {
-        color: theme.typography.body1.color,
+        background: theme.palette.background.paper,
+        color: theme.palette.primary.main,
       },
-      background: fade("#FFFFFF", 0.4),
+      background: fade(theme.palette.background.paper, 0.4),
       borderRadius: 4,
       color: theme.palette.text.secondary,
       fontSize: theme.typography.body1.fontSize,
