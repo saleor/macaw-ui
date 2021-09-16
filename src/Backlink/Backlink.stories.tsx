@@ -36,7 +36,9 @@ export const Default: Story = () => (
   <Backlink onClick={() => undefined}>Back</Backlink>
 );
 export const Loading: Story = () => (
-  <Backlink onClick={() => undefined}>{undefined}</Backlink>
+  <Backlink disabled onClick={() => undefined}>
+    {undefined}
+  </Backlink>
 );
 
 export default {
