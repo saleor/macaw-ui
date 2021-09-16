@@ -195,14 +195,14 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiTouchRipple: {
         child: {
-          backgroundColor: fade(colors.primary, 0.2),
+          backgroundColor: fade(colors.primary, 1),
         },
         childLeaving: {
-          backgroundColor: fade(colors.primary, 0.2),
+          backgroundColor: fade(colors.primary, 1),
         },
         ripple: {
           "&$rippleVisible": {
-            backgroundColor: fade(colors.primary, 0.2),
+            backgroundColor: fade(colors.primary, 1),
           },
           borderRadius: "100%",
         },
