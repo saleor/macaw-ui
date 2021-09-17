@@ -1,13 +1,19 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { useSavebar } from "./context";
+import { useActionBar } from "../ActionBar";
 import {
   Savebar,
   SavebarLabels,
   SavebarProps,
   SavebarTooltips,
 } from "./Savebar";
+
+const Wrapper: React.FC = ({ children }) => {
+  const { anchor } = useActionBar();
+
+  return <div ref={anchor}>{children}</div>;
+};
 
 const labels: SavebarLabels = {
   confirm: "Confirm",
@@ -21,12 +27,6 @@ const tooltips: SavebarTooltips = {
   delete: "Delete text",
 };
 
-const Wrapper: React.FC = ({ children }) => {
-  const { anchor } = useSavebar();
-
-  return <div ref={anchor}>{children}</div>;
-};
-
 const props: SavebarProps = {
   labels,
   disabled: false,
@@ -34,6 +34,7 @@ const props: SavebarProps = {
   onSubmit: () => undefined,
   state: "default",
 };
+
 export const Default: Story = () => <Savebar {...props} />;
 export const WithDelete: Story = () => (
   <Savebar {...props} onDelete={() => undefined} />

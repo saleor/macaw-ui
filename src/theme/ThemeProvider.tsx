@@ -3,6 +3,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import { merge } from "lodash";
 import React, { useEffect } from "react";
 
+import { ActionBarProvider } from "../ActionBar/context";
 import { BacklinkProvider } from "../Backlink/context";
 import {
   ExtensionMessageType,
@@ -10,7 +11,6 @@ import {
   ThemeChangeMessage,
 } from "../extensions";
 import { localStorageKeys } from "../localStorageKeys";
-import { SavebarProvider } from "../Savebar/context";
 import useLocalStorage from "../tools/useLocalStorage";
 import { Baseline } from "./Baseline";
 import { ThemeContext } from "./context";
@@ -72,12 +72,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       }}
     >
       <MuiThemeProvider theme={theme}>
-        <SavebarProvider>
+        <ActionBarProvider>
           <BacklinkProvider>
             <Baseline />
             {children}
           </BacklinkProvider>
-        </SavebarProvider>
+        </ActionBarProvider>
       </MuiThemeProvider>
     </ThemeContext.Provider>
   );
