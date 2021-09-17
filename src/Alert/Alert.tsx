@@ -4,7 +4,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
 
-import { Complete, Info, NotAllowed, Warning } from "../icons";
+import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import { AlertBase, AlertBaseProps, AlertVariant } from "./AlertBase";
 import useStyles from "./styles";
 
@@ -15,13 +15,13 @@ export interface AlertProps extends AlertBaseProps {
 const Icon: React.FC<{ variant: AlertVariant }> = ({ variant }) => {
   switch (variant) {
     case "error":
-      return <NotAllowed />;
+      return <NotAllowedIcon />;
     case "warning":
-      return <Warning />;
+      return <WarningIcon />;
     case "success":
-      return <Complete />;
+      return <CompleteIcon />;
     default:
-      return <Info />;
+      return <InfoIcon />;
   }
 };
 
