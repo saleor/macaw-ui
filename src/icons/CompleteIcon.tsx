@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Complete: React.FC = () => (
+export const CompleteIcon: React.FC = () => (
   <svg
     width="40"
     height="40"
@@ -19,4 +19,4 @@ export const Complete: React.FC = () => (
   </svg>
 );
 
-Complete.displayName = "Complete";
+CompleteIcon.displayName = "CompleteIcon";

@@ -6,23 +6,23 @@ import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
 
-import { Complete } from "../icons/Complete";
-import { Info } from "../icons/Info";
-import { NotAllowed } from "../icons/NotAllowed";
-import { Warning } from "../icons/Warning";
+import { CompleteIcon } from "../icons/CompleteIcon";
+import { InfoIcon } from "../icons/InfoIcon";
+import { NotAllowedIcon } from "../icons/NotAllowedIcon";
+import { WarningIcon } from "../icons/WarningIcon";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
 
 function getIcon(variant: NotificationType): React.ReactElement {
   switch (variant) {
     case "error":
-      return <NotAllowed />;
+      return <NotAllowedIcon />;
     case "success":
-      return <Complete />;
+      return <CompleteIcon />;
     case "warning":
-      return <Warning />;
+      return <WarningIcon />;
   }
-  return <Info />;
+  return <InfoIcon />;
 }
 
 export const Notification: React.FC<NotificationProps> = ({
