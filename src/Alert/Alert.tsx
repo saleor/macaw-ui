@@ -6,10 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
 
-import { CompleteIcon } from "../icons/CompleteIcon";
-import { InfoIcon } from "../icons/InfoIcon";
-import { NotAllowedIcon } from "../icons/NotAllowedIcon";
-import { WarningIcon } from "../icons/WarningIcon";
+import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 
 export type AlertVariant = "error" | "warning" | "success" | "info";
