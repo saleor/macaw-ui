@@ -9,3 +9,6 @@ export * from "./WarningIcon";
 export * from "./Edit";
 export * from "./Filtering";
 export * from "./Delete";
+export * from "./CompleteIcon";
+export * from "./NotAllowedIcon";
+export * from "./NotAllowedInvertedIcon";

@@ -1,5 +1,6 @@
 export * from "./theme";
 export * from "./extensions";
+export * from "./icons";
 export * from "./Savebar";
 export * from "./Backlink";
 export * from "./ConfirmButton";
