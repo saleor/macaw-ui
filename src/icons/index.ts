@@ -3,3 +3,7 @@ export * from "./InfoIcon";
 export * from "./NotAllowedIcon";
 export * from "./NotAllowedInvertedIcon";
 export * from "./WarningIcon";
+export * from "./ArrowDropdownIcon";
+export * from "./CheckboxIcon";
+export * from "./CheckboxCheckedIcon";
+export * from "./CheckboxIndeterminateIcon";

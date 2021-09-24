@@ -1,7 +1,7 @@
 import { createSvgIcon } from "@material-ui/core/utils";
 import React from "react";
 
-export const CheckboxChecked = createSvgIcon(
+export const CheckboxCheckedIcon = createSvgIcon(
   <>
     <rect x="5" y="5" width="14" height="14" fill="currentColor" />
     <path
@@ -11,5 +11,5 @@ export const CheckboxChecked = createSvgIcon(
       fill="white"
     />
   </>,
-  "CheckboxChecked"
+  "CheckboxCheckedIcon"
 );
