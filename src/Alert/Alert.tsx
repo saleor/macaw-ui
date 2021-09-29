@@ -5,12 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
-import SVG from "react-inlinesvg";
 
-import warningIcon from "../assets/alert_icon.svg";
-import errorIcon from "../assets/error_icon.svg";
-import infoIcon from "../assets/info_icon.svg";
-import successIcon from "../assets/success_icon.svg";
+import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 
 export type AlertVariant = "error" | "warning" | "success" | "info";
@@ -21,16 +17,16 @@ export interface AlertProps {
   title: string;
 }
 
-function getIcon(variant: AlertVariant): string {
+function getIcon(variant: AlertVariant): React.ReactElement {
   switch (variant) {
     case "error":
-      return errorIcon;
+      return <NotAllowedIcon />;
     case "success":
-      return successIcon;
+      return <CompleteIcon />;
     case "warning":
-      return warningIcon;
+      return <WarningIcon />;
   }
-  return infoIcon;
+  return <InfoIcon />;
 }
 
 export const Alert: React.FC<AlertProps> = ({
@@ -59,9 +55,7 @@ export const Alert: React.FC<AlertProps> = ({
     >
       <CardContent>
         <div className={classes.container}>
-          <div>
-            <SVG className={classes.icon} src={getIcon(variant)} />
-          </div>
+          <div>{getIcon(variant)}</div>
           <div className={classes.content}>
             <div className={classes.titleBar}>
               <Typography variant="h5">{title}</Typography>

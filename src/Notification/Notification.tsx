@@ -5,25 +5,21 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
-import SVG from "react-inlinesvg";
 
-import warningIcon from "../assets/alert_icon.svg";
-import errorIcon from "../assets/error_icon.svg";
-import infoIcon from "../assets/info_icon.svg";
-import successIcon from "../assets/success_icon.svg";
+import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
 
-function getIcon(variant: NotificationType): string {
+function getIcon(variant: NotificationType): React.ReactElement {
   switch (variant) {
     case "error":
-      return errorIcon;
+      return <NotAllowedIcon />;
     case "success":
-      return successIcon;
+      return <CompleteIcon />;
     case "warning":
-      return warningIcon;
+      return <WarningIcon />;
   }
-  return infoIcon;
+  return <InfoIcon />;
 }
 
 export const Notification: React.FC<NotificationProps> = ({
@@ -58,9 +54,7 @@ export const Notification: React.FC<NotificationProps> = ({
         })}
         message={
           <div className={classes.container}>
-            <div>
-              <SVG className={classes.icon} src={getIcon(type)} />
-            </div>
+            <div>{getIcon(type)}</div>
             <div>
               <div className={classes.title}>
                 <Typography variant="h5">{title}</Typography>

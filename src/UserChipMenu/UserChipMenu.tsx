@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import React from "react";
 
-import ArrowDropdown from "../icons/ArrowDropdown";
+import ArrowDropdownIcon from "../icons/ArrowDropdownIcon";
 import { UserChipMenuContext } from "./context";
 import useStyles from "./styles";
 
@@ -69,7 +69,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
                 )}
               </div>
             </Hidden>
-            <ArrowDropdown
+            <ArrowDropdownIcon
               className={clsx(classes.arrow, {
                 [classes.rotate]: isMenuOpened,
               })}
