@@ -1,7 +1,7 @@
 import { createSvgIcon } from "@material-ui/core/utils";
 import React from "react";
 
-export const Delete = createSvgIcon(
+export const DeleteIcon = createSvgIcon(
   <path
     fillRule="evenodd"
     clipRule="evenodd"
@@ -9,5 +9,5 @@ export const Delete = createSvgIcon(
     fill="currentColor"
     fillOpacity="0.6"
   />,
-  "Delete"
+  "DeleteIcon"
 );

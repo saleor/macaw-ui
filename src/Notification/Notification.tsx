@@ -6,20 +6,20 @@ import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
 
-import { Error, Info, Success, Warning } from "../icons";
+import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
 
 const Icon: React.FC<{ type: NotificationType }> = ({ type }) => {
   switch (type) {
     case "error":
-      return <Error />;
+      return <NotAllowedIcon />;
     case "warning":
-      return <Warning />;
+      return <WarningIcon />;
     case "success":
-      return <Success />;
+      return <CompleteIcon />;
     default:
-      return <Info />;
+      return <InfoIcon />;
   }
 };
 

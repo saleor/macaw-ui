@@ -1,6 +1,8 @@
 import React from "react";
 
-export const Success: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+export const CompleteIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props
+) => (
   <svg
     width="40"
     height="40"
@@ -20,4 +22,4 @@ export const Success: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-Success.displayName = "Success";
+CompleteIcon.displayName = "CompleteIcon";

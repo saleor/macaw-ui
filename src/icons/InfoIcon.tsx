@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Info: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+export const InfoIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     width="40"
     height="40"
@@ -20,4 +20,4 @@ export const Info: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-Info.displayName = "Info";
+InfoIcon.displayName = "InfoIcon";
