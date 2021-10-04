@@ -10,3 +10,4 @@ export * from "./CheckboxIndeterminateIcon";
 export * from "./EditIcon";
 export * from "./FilteringIcon";
 export * from "./DeleteIcon";
+export * from "./ImageIcon";
