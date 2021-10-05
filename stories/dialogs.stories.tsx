@@ -13,10 +13,11 @@ import { Meta } from "@storybook/react";
 import React from "react";
 
 import { DialogHeader, DialogTable, ScrollShadow } from "../src";
-import useElementScroll, {
+import {
   isScrolledToBottom,
   isScrolledToTop,
-} from "../src/tools/useElementScroll";
+  useElementScroll,
+} from "../src/tools";
 import employees from "./__fixtures__/dialogs.json";
 
 export const Info: React.FC = () => (

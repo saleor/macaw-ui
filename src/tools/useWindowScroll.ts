@@ -10,7 +10,7 @@ function getPosition() {
   };
 }
 
-function useWindowScroll() {
+export function useWindowScroll() {
   const [scroll, setScroll] = useState(getPosition);
 
   useEffect(() => {
@@ -23,4 +23,3 @@ function useWindowScroll() {
 
   return scroll;
 }
-export default useWindowScroll;
