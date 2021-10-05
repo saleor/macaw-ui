@@ -12,3 +12,4 @@ export * from "./EditIcon";
 export * from "./FilteringIcon";
 export * from "./DeleteIcon";
 export * from "./ImageIcon";
+export * from "./CloseIcon";
