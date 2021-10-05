@@ -37,11 +37,11 @@ export const Info: React.FC = () => (
 );
 
 export const WithOverflowTable: React.FC = () => {
-  const { element, position, setAnchor } = useElementScroll();
+  const { anchor, position, setAnchor } = useElementScroll();
   // isScrolledToTop can be undefined which is falsy, but we don'w want to
   // display shadow then
-  const topShadow = isScrolledToTop(element, position, 20) === false;
-  const bottomShadow = isScrolledToBottom(element, position, 20) === false;
+  const topShadow = isScrolledToTop(anchor, position, 20) === false;
+  const bottomShadow = isScrolledToBottom(anchor, position, 20) === false;
 
   return (
     <Dialog open maxWidth={false}>
