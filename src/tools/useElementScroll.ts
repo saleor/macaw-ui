@@ -34,7 +34,7 @@ export function isScrolledToTop(
 }
 
 export interface UseElementScrollOpts<T extends HTMLElement> {
-  element: T | null;
+  anchor: T | null;
   position: Position | undefined;
 }
 
@@ -77,7 +77,7 @@ function useElementScroll<T extends HTMLElement>(): UseElementScroll<T> {
 
   return {
     setAnchor,
-    element: anchorEl,
+    anchor: anchorEl,
     position: scroll,
   };
 }
