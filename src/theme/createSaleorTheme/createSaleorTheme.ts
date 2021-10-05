@@ -12,7 +12,7 @@ export const ICONBUTTON_SIZE = 48;
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
 export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
-  (createMuiTheme({
+  createMuiTheme({
     overrides: {
       ...overrides(colors, fontFamily),
       MuiCard: {
@@ -69,7 +69,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiDialogActions: {
         root: {
-          borderTop: `1px solid ${colors.divider}`,
           padding: "16px 24px",
         },
       },
@@ -86,11 +85,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "&:last-child": {
             marginBottom: 0,
           },
-        },
-      },
-      MuiDialogTitle: {
-        root: {
-          borderBottom: `1px solid ${colors.divider}`,
         },
       },
       MuiDivider: {
@@ -294,4 +288,4 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         fontSize: "1.4rem",
       },
     },
-  }) as unknown) as SaleorTheme;
+  }) as unknown as SaleorTheme;
