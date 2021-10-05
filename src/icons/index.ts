@@ -10,3 +10,4 @@ export * from "./DeleteIcon";
 export * from "./CompleteIcon";
 export * from "./NotAllowedIcon";
 export * from "./NotAllowedInvertedIcon";
+export * from "./ImageIcon";
