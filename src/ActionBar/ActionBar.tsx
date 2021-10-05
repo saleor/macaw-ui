@@ -5,7 +5,7 @@ import Portal from "@material-ui/core/Portal";
 import React from "react";
 
 import { ConfirmButtonTransitionState } from "../ConfirmButton";
-import useWindowScroll from "../tools/useWindowScroll";
+import { useWindowScroll } from "../tools";
 import { useActionBar } from "./context";
 import useStyles from "./styles";
 
