@@ -43,7 +43,7 @@ export interface UseElementScroll<T extends HTMLElement>
   setAnchor: React.Dispatch<T | null>;
 }
 
-function useElementScroll<T extends HTMLElement>(): UseElementScroll<T> {
+export function useElementScroll<T extends HTMLElement>(): UseElementScroll<T> {
   const [anchorEl, setAnchorEl] = useState<T | null>(null);
   const [scroll, setScroll] = useState(getPosition(anchorEl));
 
@@ -81,4 +81,3 @@ function useElementScroll<T extends HTMLElement>(): UseElementScroll<T> {
     position: scroll,
   };
 }
-export default useElementScroll;
