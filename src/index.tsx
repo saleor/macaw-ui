@@ -23,3 +23,4 @@ export * from "./ActionBar";
 export * from "./DialogHeader";
 export * from "./DialogTable";
 export * from "./ScrollShadow";
+export * from "./tools";
