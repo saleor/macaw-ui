@@ -44,7 +44,7 @@ export const WithOverflowTable: React.FC = () => {
   const bottomShadow = isScrolledToBottom(element, position, 20) === false;
 
   return (
-    <Dialog open fullWidth maxWidth="sm">
+    <Dialog open maxWidth={false}>
       <ScrollShadow show={topShadow} variant="top">
         <DialogHeader onClose={() => undefined}>Employee List</DialogHeader>
       </ScrollShadow>
