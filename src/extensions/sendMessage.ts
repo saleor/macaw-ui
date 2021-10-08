@@ -13,9 +13,8 @@ export function sendMessageToExtension<T extends BaseExtensionMessageData>(
   message: T,
   targetOrigin: string
 ) {
-  const appFrame: HTMLIFrameElement | null = document.querySelector(
-    "#extension-app"
-  );
+  const appFrame: HTMLIFrameElement | null =
+    document.querySelector("#extension-app");
 
   if (!!appFrame?.contentWindow) {
     appFrame.contentWindow.postMessage(message, targetOrigin);
