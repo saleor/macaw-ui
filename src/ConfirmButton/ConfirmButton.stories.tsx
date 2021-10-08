@@ -14,10 +14,8 @@ const labels: ConfirmButtonLabels = {
 };
 
 export const Interactive: Story = () => {
-  const [
-    transitionState,
-    setTransitionState,
-  ] = React.useState<ConfirmButtonTransitionState>("default");
+  const [transitionState, setTransitionState] =
+    React.useState<ConfirmButtonTransitionState>("default");
   const timer = React.useRef<number>();
   React.useEffect(
     () => () => {
@@ -36,7 +34,7 @@ export const Interactive: Story = () => {
   const handleClick = () => {
     if (!timer.current) {
       setTransitionState("loading");
-      timer.current = (setTimeout(setSuccess, 2000) as unknown) as number;
+      timer.current = setTimeout(setSuccess, 2000) as unknown as number;
     }
   };
 
