@@ -34,10 +34,8 @@ export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
   ...props
 }) => {
   const classes = useStyles();
-  const [
-    displayCompletedActionState,
-    setDisplayCompletedActionState,
-  ] = React.useState(false);
+  const [displayCompletedActionState, setDisplayCompletedActionState] =
+    React.useState(false);
   const timeout = React.useRef<number>();
 
   React.useEffect(() => {
@@ -53,12 +51,12 @@ export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
         transitionState
       )
     ) {
-      timeout.current = (setTimeout(() => {
+      timeout.current = setTimeout(() => {
         setDisplayCompletedActionState(false);
         if (onTransitionToDefault) {
           onTransitionToDefault();
         }
-      }, DEFAULT_NOTIFICATION_SHOW_TIME) as unknown) as number;
+      }, DEFAULT_NOTIFICATION_SHOW_TIME) as unknown as number;
     } else if (transitionState === "loading") {
       clearTimeout(timeout.current);
     }

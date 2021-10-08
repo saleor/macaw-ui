@@ -28,8 +28,8 @@
   "scripts": {
     "start": "node scripts/build.js watch",
     "build": "node scripts/build.js",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint src",
+    "test": "jest",
+    "lint": "npx eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix ; npx prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write",
     "prepare": "npm run build",
     "size": "size-limit",
     "analyze": "size-limit --why",
@@ -46,8 +46,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint",
-      "pre-push": "tsdx lint"
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
     }
   },
   "np": {
@@ -96,16 +96,19 @@
     "babel-plugin-import": "^1.13.3",
     "chalk": "^4.1.2",
     "esbuild": "^0.13.4",
+    "esbuild-jest": "^0.5.0",
+    "eslint": "^7.32.0",
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "husky": "^6.0.0",
+    "jest-file": "^1.0.0",
     "np": "^7.5.0",
+    "prettier": "^2.4.1",
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0",
     "react-is": "^17.0.2",
     "rollup-plugin-esbuild": "^4.5.0",
     "rollup-plugin-svg": "^2.0.0",
     "size-limit": "^4.10.2",
-    "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
   },
@@ -114,5 +117,18 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "react-inlinesvg": "^2.3.0"
+  },
+  "jest": {
+    "resetMocks": false,
+    "transform": {
+      "^.+\\.(jsx?|tsx?)$": "esbuild-jest",
+      "^.+\\.(png|svg|jpe?g)$": "jest-file"
+    },
+    "testRegex": ".*\\.test\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }
