@@ -86,6 +86,7 @@
     "@storybook/addon-links": "^6.2.9",
     "@storybook/addons": "^6.2.9",
     "@storybook/react": "^6.2.9",
+    "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.170",
     "@types/lodash-es": "^4.17.5",
     "@types/react": "^17.0.5",
@@ -120,6 +121,7 @@
     "react-inlinesvg": "^2.3.0"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "resetMocks": false,
     "transform": {
       "^.+\\.(jsx?|tsx?)$": "esbuild-jest",
