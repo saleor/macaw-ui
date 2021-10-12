@@ -35,4 +35,5 @@ export const createPalette = (
     inactive: colors.highlightInactive.default,
   },
   type: colors.theme,
+  saleor: colors,
 });

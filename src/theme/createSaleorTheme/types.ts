@@ -6,6 +6,41 @@ import type {
   PaletteOptions,
 } from "@material-ui/core/styles/createPalette";
 
+export type ThemeType = "light" | "dark";
+
+export type SaleorThemeColors = Record<
+  | "primary"
+  | "secondary"
+  | "error"
+  | "paperBorder"
+  | "autofill"
+  | "success"
+  | "disabled",
+  string
+> & {
+  highlightInactive: Record<"default", string>;
+} & {
+  background: Record<"default" | "paper", string>;
+} & {
+  checkbox: Record<"default", string>;
+} & {
+  divider: string;
+} & {
+  font: Record<
+    "default" | "gray" | "button" | "textButton" | "textDisabled",
+    string
+  >;
+} & {
+  gray: Record<"default" | "disabled", string>;
+} & {
+  alert: AlertColors;
+  theme: ThemeType;
+  fail: Record<"dark" | "mid" | "light", string>;
+  main: Record<1 | 2 | 3 | 4, string>;
+  active: Record<1 | 2 | 3 | 4 | 5, string>;
+  errorAction: Record<1 | 2 | 3 | 4 | 5, string>;
+};
+
 export type AlertPalette = Record<
   "success" | "error" | "warning" | "info",
   string
@@ -13,6 +48,7 @@ export type AlertPalette = Record<
 export type AlertColors = Record<"paper" | "icon", AlertPalette>;
 interface ExtraPalette {
   alert: AlertColors;
+  saleor: SaleorThemeColors;
   textHighlighted: {
     active: string;
     inactive: string;
@@ -42,41 +78,5 @@ export interface SaleorTheme extends Omit<Theme, "spacing"> {
 export interface SaleorThemeOptions extends ThemeOptions {
   palette: SaleorPaletteOptions;
 }
-
-export type ThemeType = "light" | "dark";
-
-type Fail = Record<"dark" | "mid" | "light", string>;
-
-export type SaleorThemeColors = Record<
-  | "primary"
-  | "secondary"
-  | "error"
-  | "paperBorder"
-  | "autofill"
-  | "success"
-  | "disabled",
-  string
-> & {
-  highlightInactive: Record<"default", string>;
-} & {
-  background: Record<"default" | "paper", string>;
-} & {
-  checkbox: Record<"default", string>;
-} & {
-  divider: string;
-} & {
-  font: Record<
-    "default" | "gray" | "button" | "textButton" | "textDisabled",
-    string
-  >;
-} & {
-  gray: Record<"default" | "disabled", string>;
-} & {
-  alert: AlertColors;
-  theme: ThemeType;
-  fail: Fail;
-  main: Record<1 | 2 | 3 | 4, string>;
-  active: Record<1 | 2 | 3 | 4 | 5, string>;
-};
 
 export type Themes = Record<ThemeType, SaleorThemeColors>;
