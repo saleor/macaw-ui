@@ -4,13 +4,26 @@ import type { Overrides } from "@material-ui/core/styles/overrides";
 import { SaleorThemeColors } from "../types";
 
 export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
+  const containedPrimaryHover = {
+    backgroundColor: colors.active[3],
+  };
   const containedPrimaryStates = {
-    "&&:hover": {
-      backgroundColor: colors.active[3],
-    },
+    "&&:hover": containedPrimaryHover,
     "&&:active": {
       backgroundColor: colors.active[4],
     },
+  };
+
+  const outlinedPrimaryHover = {
+    // Unsets border as it will require us to override borderWidth and
+    // borderStyle over and over
+    border: undefined,
+    borderColor: colors.active[1],
+    backgroundColor: colors.active[5],
+  };
+
+  const textPrimaryHover = {
+    background: colors.active[5],
   };
 
   return {
@@ -25,6 +38,10 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
             background: colors.background.paper,
             color: colors.disabled,
           },
+        },
+        "&$focusVisible": {
+          ...containedPrimaryHover,
+          boxShadow: undefined,
         },
         "&:active": {
           boxShadow: "none",
@@ -60,9 +77,8 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         },
       },
       textPrimary: {
-        "&:hover": {
-          background: colors.active[5],
-        },
+        "&$focusVisible": textPrimaryHover,
+        "&:hover": textPrimaryHover,
         "&:active": {
           background: colors.active[4],
         },
@@ -76,18 +92,13 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
           borderColor: colors.disabled,
         },
         background: colors.background.paper,
-        // 2px smaller because of border
         border: `2px solid ${colors.active[4]}`,
+        // 2px smaller because of border
         padding: "10px 12px",
       },
       outlinedPrimary: {
-        "&:hover": {
-          // Unsets border as it will require us to override borderWidth and
-          // borderStyle over and over
-          border: undefined,
-          borderColor: colors.active[1],
-          backgroundColor: colors.active[5],
-        },
+        "&$focusVisible": outlinedPrimaryHover,
+        "&:hover": outlinedPrimaryHover,
         "&:active": {
           backgroundColor: colors.active[4],
         },
