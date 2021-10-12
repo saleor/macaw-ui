@@ -7,19 +7,11 @@ export const buttonOverrides = (
   colors: SaleorThemeColors
 ): ThemeOptions["overrides"] => {
   const containedPrimaryStates = {
-    "&&:active": {
-      backgroundColor: fade(colors.primary, 0.4),
-    },
     "&&:hover": {
-      backgroundColor: fade(colors.primary, 0.6),
+      backgroundColor: colors.active[3],
     },
-  };
-  const containedSecondaryStates = {
     "&&:active": {
-      backgroundColor: fade(colors.primary, 0.2),
-    },
-    "&&:hover": {
-      backgroundColor: fade(colors.primary, 0.1),
+      backgroundColor: colors.active[4],
     },
   };
 
@@ -29,11 +21,11 @@ export const buttonOverrides = (
         "&$disabled": {
           "&$containedPrimary": {
             color: colors.secondary,
-            backgroundColor: colors.gray.disabled,
+            backgroundColor: colors.disabled,
           },
           "&$containedSecondary": {
-            background: colors.secondary,
-            color: colors.gray.disabled,
+            background: colors.background.paper,
+            color: colors.disabled,
           },
         },
         "&:active": {
@@ -51,11 +43,6 @@ export const buttonOverrides = (
         ...containedPrimaryStates,
         "@media(hover: none)": containedPrimaryStates,
       },
-      containedSecondary: {
-        ...containedSecondaryStates,
-        "@media(hover: none)": containedSecondaryStates,
-        color: colors.primary,
-      },
       label: {
         fontWeight: 600,
       },
@@ -65,34 +52,48 @@ export const buttonOverrides = (
         },
         borderRadius: 4,
         fontSize: "1.6rem",
+        letterSpacing: "0.06rem",
         lineHeight: 1.55,
         padding: "12px 16px",
       },
       text: {
-        ...containedSecondaryStates,
-        "@media(hover: none)": containedSecondaryStates,
         "&&$disabled": {
-          color: colors.gray.disabled,
+          color: colors.disabled,
         },
       },
       textPrimary: {
-        "&:not($disabled) span": {
-          color: colors.primary,
+        "&:hover": {
+          background: colors.active[5],
+        },
+        "&:active": {
+          background: colors.active[4],
         },
       },
       textSizeSmall: {
         fontSize: "1.3rem",
       },
       outlined: {
+        "&$disabled": {
+          border: undefined,
+          borderColor: colors.disabled,
+        },
+        background: colors.background.paper,
         // 2px smaller because of border
-        padding: "10px 16px",
+        border: `2px solid ${colors.active[4]}`,
+        padding: "10px 12px",
       },
       outlinedPrimary: {
         "&:hover": {
-          borderColor: "transparent",
-          backgroundColor: fade(colors.primary, 0.1),
+          // Unsets border as it will require us to override borderWidth and
+          // borderStyle over and over
+          border: undefined,
+          borderColor: colors.active[1],
+          backgroundColor: colors.active[5],
         },
-        borderColor: colors.background.default,
+        "&:active": {
+          backgroundColor: colors.active[4],
+        },
+        border: undefined,
       },
     },
     MuiIconButton: {
@@ -112,7 +113,7 @@ export const buttonOverrides = (
         "&$disabled": {
           "&$switchBase": {
             "& + $thumb": {
-              backgroundColor: colors.gray.disabled,
+              backgroundColor: colors.disabled,
             },
           },
         },

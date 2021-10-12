@@ -126,6 +126,13 @@ export const light: SaleorThemeColors = {
     mid: "#FEADAD",
     light: "#FEDEDE",
   },
+  errorAction: {
+    1: "#B63755",
+    2: "#D36474",
+    3: "#E9878B",
+    4: "#F7B6B2",
+    5: "#FBDDD8",
+  },
 
   disabled: "#CCDDDD",
   paperBorder: "#EAEAEA",
