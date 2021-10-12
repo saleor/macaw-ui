@@ -39,8 +39,16 @@ export interface SaleorThemeOptions extends ThemeOptions {
 
 export type ThemeType = "light" | "dark";
 
+type Fail = Record<"dark" | "mid" | "light", string>;
+
 export type SaleorThemeColors = Record<
-  "primary" | "secondary" | "error" | "paperBorder" | "autofill" | "success",
+  | "primary"
+  | "secondary"
+  | "error"
+  | "paperBorder"
+  | "autofill"
+  | "success"
+  | "disabled",
   string
 > & {
   highlightInactive: Record<"default", string>;
@@ -65,14 +73,17 @@ export type SaleorThemeColors = Record<
     | "disabledBackground"
     | "disabledText"
     | "error"
+    | "errorHover"
+    | "errorFocus"
     | "text"
     | "textHover",
     string
   >;
 } & {
   alert: AlertColors;
-} & {
   theme: ThemeType;
+  fail: Fail;
+  main: Record<1 | 2 | 3 | 4, string>;
 };
 
 export type Themes = Record<ThemeType, SaleorThemeColors>;

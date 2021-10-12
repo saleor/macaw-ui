@@ -5,6 +5,20 @@ import { SaleorThemeColors } from "../types";
 export const inputOverrides = (
   colors: SaleorThemeColors
 ): ThemeOptions["overrides"] => ({
+  MuiFormControl: {
+    root: {
+      "&:hover label": {
+        color: colors.primary,
+      },
+    },
+  },
+  MuiFormHelperText: {
+    root: {
+      "&$error": {
+        color: colors.fail.dark,
+      },
+    },
+  },
   MuiInput: {
     input: {
       "&:-webkit-autofill": {
@@ -23,6 +37,9 @@ export const inputOverrides = (
     },
   },
   MuiInputBase: {
+    root: {
+      borderRadius: "4px",
+    },
     input: {
       "&$disabled": {
         color: colors.input.disabledText,
@@ -31,12 +48,13 @@ export const inputOverrides = (
         color: colors.font.gray,
         opacity: "1 !important" as any,
       },
+      borderRadius: "4px",
     },
   },
   MuiInputLabel: {
     formControl: {
       transform: "translate(0, 1.5px) scale(0.75)",
-      transformOrigin: "top left" as "top left",
+      transformOrigin: "top left" as "to p left",
       width: "100%",
     },
     outlined: {
@@ -51,16 +69,16 @@ export const inputOverrides = (
       },
       "&$error": {
         "&$focused": {
-          color: colors.error,
+          color: colors.fail.dark,
         },
-        color: colors.error,
+        color: colors.fail.dark,
       },
       "&&$focused": {
         "&:not($error)": {
           color: colors.primary,
         },
       },
-      color: fade(colors.input.text, 0.6),
+      color: colors.main[3],
     },
     shrink: {
       // Negates x0.75 scale
@@ -72,6 +90,9 @@ export const inputOverrides = (
       "&:-webkit-autofill": {
         borderRadius: 4,
         boxShadow: "0 0 0px 1000px rgba(19, 190, 187, 0.1) inset",
+      },
+      "&&$disabled": {
+        backgroundColor: colors.background.default,
       },
       color: colors.input.text,
       padding: "23px 12px 10px 12px",
@@ -93,32 +114,35 @@ export const inputOverrides = (
       },
       "&$disabled": {
         "& fieldset": {
-          borderColor: [[colors.input.disabled], "!important"] as any,
+          borderColor: `${colors.input.disabled} !important`,
         },
         "& input": {
           backgroundColor: colors.input.disabledBackground,
           color: colors.input.disabledText,
         },
+        boxShadow: `0 0 0 0 transparent !important`,
       },
       "&$error": {
         "&$focused": {
+          "&:hover": {
+            boxShadow: `0px 0px 0px 3px ${colors.fail.mid}`,
+          },
           "& fieldset": {
-            borderColor: colors.error,
+            borderColor: colors.fail.dark,
           },
-          "& input": {
-            color: colors.error,
-          },
+          boxShadow: `0px 0px 0px 3px ${colors.fail.mid}`,
         },
         "&:hover": {
           "& fieldset": {
-            borderColor: colors.error,
+            borderColor: colors.fail.dark,
           },
-          "& input": {
-            color: colors.error,
-          },
+          boxShadow: `0px 0px 0px 3px ${colors.fail.light}`,
         },
       },
       "&$focused": {
+        "&, &:hover": {
+          boxShadow: `0px 0px 0px 3px ${fade(colors.primary, 0.6)}`,
+        },
         "& input": {
           "& fieldset": {
             borderColor: colors.primary,
@@ -130,6 +154,7 @@ export const inputOverrides = (
         },
       },
       "&:hover": {
+        boxShadow: `0px 0px 0px 3px ${fade(colors.primary, 0.1)}`,
         "& input": {
           color: colors.font.default,
         },
@@ -143,9 +168,15 @@ export const inputOverrides = (
         },
       },
       backgroundColor: colors.background.paper,
-      borderColor: colors.input.border,
-      borderRadius: 0,
+      transition: "box-shadow 200ms",
       top: 0,
+      fontWeight: 500,
+    },
+    notchedOutline: {
+      border: `1px solid ${colors.input.border}`,
+      // It's so much easier to put it here with important tag rather than
+      // override in multiple places using cascade composition
+      borderWidth: "1px !important",
     },
   },
 });

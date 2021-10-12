@@ -48,6 +48,8 @@ export const dark: SaleorThemeColors = {
     disabledBackground: "#292A2D",
     disabledText: "#9D9D9D",
     error: "#8C2054",
+    errorFocus: "#FF6666",
+    errorHover: "#FEDEDE",
     text: "#FCFCFC",
     textHover: "#616161",
   },
@@ -77,7 +79,7 @@ export const light: SaleorThemeColors = {
   },
   autofill: "#f4f6c5",
   background: {
-    default: "#EBF1F6",
+    default: "#EFF5F8",
     paper: "#FFFFFF",
   },
   checkbox: {
@@ -103,10 +105,26 @@ export const light: SaleorThemeColors = {
     disabled: "#EAEAEA",
     disabledBackground: "#F4F4F4",
     disabledText: "#9D9D9D",
-    error: "#8C2054",
+    error: "#B65757",
+    errorFocus: "#FEADAD",
+    errorHover: "#FEDEDE",
     text: "#3D3D3D",
     textHover: "#616161",
   },
+
+  main: {
+    1: "#28234A",
+    2: "rgba(40, 35, 74, 0.8)",
+    3: "rgba(40, 35, 74, 0.6)",
+    4: "rgba(40, 35, 74, 0.4)",
+  },
+  fail: {
+    dark: "#B65757",
+    mid: "#FEADAD",
+    light: "#FEDEDE",
+  },
+
+  disabled: "#CCDDDD",
   paperBorder: "#EAEAEA",
   primary: "#056DFF",
   secondary: "#FFFFFF",
