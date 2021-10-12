@@ -92,6 +92,7 @@ export const buttonOverrides = (
         "&$disabled": {
           border: undefined,
           borderColor: colors.disabled,
+          color: colors.disabled,
         },
         background: colors.background.paper,
         border: `2px solid ${colors.active[4]}`,
