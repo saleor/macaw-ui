@@ -9,24 +9,6 @@ export const buttonOverrides = (
   const containedPrimaryHover = {
     backgroundColor: colors.active[3],
   };
-  const containedPrimaryStates = {
-    "&&:hover": containedPrimaryHover,
-    "&&:active": {
-      backgroundColor: colors.active[4],
-    },
-  };
-
-  const outlinedPrimaryHover = {
-    // Unsets border as it will require us to override borderWidth and
-    // borderStyle over and over
-    border: undefined,
-    borderColor: colors.active[1],
-    backgroundColor: colors.active[5],
-  };
-
-  const textPrimaryHover = {
-    background: colors.active[5],
-  };
 
   return {
     MuiButton: {
@@ -57,8 +39,10 @@ export const buttonOverrides = (
         boxShadow: "none",
       },
       containedPrimary: {
-        ...containedPrimaryStates,
-        "@media(hover: none)": containedPrimaryStates,
+        "&&:hover": containedPrimaryHover,
+        "&&:active": {
+          backgroundColor: colors.active[4],
+        },
       },
       label: {
         fontWeight: 600,
@@ -79,8 +63,9 @@ export const buttonOverrides = (
         },
       },
       textPrimary: {
-        "&$focusVisible": textPrimaryHover,
-        "&:hover": textPrimaryHover,
+        "&:hover, &$focusVisible": {
+          background: colors.active[5],
+        },
         "&:active": {
           background: colors.active[4],
         },
@@ -100,8 +85,15 @@ export const buttonOverrides = (
         padding: "10px 12px",
       },
       outlinedPrimary: {
-        "&$focusVisible": outlinedPrimaryHover,
-        "&:hover": outlinedPrimaryHover,
+        "&:hover, &$focusVisible": {
+          borderColor: colors.active[1],
+          backgroundColor: colors.active[5],
+        },
+        "&:hover": {
+          // Unsets border as it will require us to override borderWidth and
+          // borderStyle over and over
+          border: undefined,
+        },
         "&:active": {
           backgroundColor: colors.active[4],
         },

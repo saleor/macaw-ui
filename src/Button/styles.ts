@@ -4,7 +4,7 @@ const useStyles = makeStyles(
   (theme) => ({
     primary: {
       "&&": {
-        "&:hover": {
+        "&:hover, &.Mui-focusVisible": {
           background: theme.palette.saleor.errorAction[2],
         },
         "&:active": {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(
 
     secondary: {
       "&&": {
-        "&:hover": {
+        "&:hover, &.Mui-focusVisible": {
           background: theme.palette.saleor.errorAction[5],
           borderColor: theme.palette.saleor.errorAction[1],
         },
@@ -42,7 +42,7 @@ const useStyles = makeStyles(
 
     tertiary: {
       "&&": {
-        "&:hover": {
+        "&:hover, &.Mui-focusVisible": {
           background: theme.palette.saleor.errorAction[5],
         },
         "&:active": {
