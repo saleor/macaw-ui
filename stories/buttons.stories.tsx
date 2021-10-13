@@ -1,4 +1,4 @@
-import { PillLink, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 import Delete from "@material-ui/icons/Delete";
@@ -6,7 +6,7 @@ import Delete from "@material-ui/icons/Delete";
 import useGuideStyles from "./guideStyles";
 import { makeStyles } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
-import { Button, IconButton } from "../src";
+import { PillLink, Button, IconButton } from "../src";
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -44,7 +44,7 @@ export const Default: Story = () => {
         Buttons
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
-        In most cases your app will be using one of those three button types:
+        In most cases your app will be using one of those button types:
       </Typography>
 
       <div className={classes.grid}>
@@ -72,7 +72,9 @@ export const Default: Story = () => {
             </Button>
           </Cell>
           <Cell>
-            <PillLink label="Link" />
+            <PillLink>Clickable Pill</PillLink>
+            <PillLink state="hover">Clickable Pill</PillLink>
+            <PillLink state="active">Clickable Pill</PillLink>
           </Cell>
         </div>
         <div>
