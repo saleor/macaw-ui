@@ -5,13 +5,6 @@ import { SaleorThemeColors } from "../types";
 export const inputOverrides = (
   colors: SaleorThemeColors
 ): ThemeOptions["overrides"] => ({
-  MuiFormControl: {
-    root: {
-      "&:hover label": {
-        color: colors.primary,
-      },
-    },
-  },
   MuiFormHelperText: {
     root: {
       "&$error": {
@@ -64,8 +57,8 @@ export const inputOverrides = (
       transform: "translate(14px, 18px) scale(1)",
     },
     root: {
-      "&$disabled": {
-        color: `${fade(colors.primary, 0.4)} !important` as any,
+      "&&$disabled": {
+        color: colors.main[4],
       },
       "&$error": {
         "&$focused": {
@@ -77,6 +70,9 @@ export const inputOverrides = (
         "&:not($error)": {
           color: colors.primary,
         },
+      },
+      "&:not($error):hover label": {
+        color: colors.main[4],
       },
       color: colors.main[3],
     },
