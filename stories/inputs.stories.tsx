@@ -28,10 +28,10 @@ const Default: React.FC = () => {
   return (
     <div>
       <Typography className={guideClasses.headline} variant="h1">
-        Below you will find inputs in different states:
+        Inputs
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
-        copy
+        Below you will find inputs in different states:
       </Typography>
 
       <div className={classes.inputs}>
