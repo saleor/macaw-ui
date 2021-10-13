@@ -4,13 +4,6 @@ import type { Overrides } from "@material-ui/core/styles/overrides";
 import { SaleorThemeColors } from "../types";
 
 export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
-  MuiFormControl: {
-    root: {
-      "&:hover label": {
-        color: colors.primary,
-      },
-    },
-  },
   MuiFormHelperText: {
     root: {
       "&$error": {
@@ -63,8 +56,8 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
       transform: "translate(14px, 18px) scale(1)",
     },
     root: {
-      "&$disabled": {
-        color: `${fade(colors.primary, 0.4)} !important` as any,
+      "&&$disabled": {
+        color: colors.main[4],
       },
       "&$error": {
         "&$focused": {
@@ -76,6 +69,9 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
         "&:not($error)": {
           color: colors.primary,
         },
+      },
+      "&:not($error):hover label": {
+        color: colors.main[4],
       },
       color: colors.main[3],
     },

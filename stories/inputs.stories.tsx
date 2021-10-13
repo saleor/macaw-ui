@@ -44,6 +44,11 @@ const Default: React.FC = () => {
         <TextField
           {...typographyProps}
           error
+          helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
+        />
+        <TextField
+          {...typographyProps}
+          error
           value="Filled Text"
           helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
         />
