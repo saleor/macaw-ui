@@ -113,7 +113,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         },
         "&$disabled": {
           border: undefined,
-          borderColor: colors.disabled,
+          borderColor: "transparent",
           color: colors.disabled,
         },
         background: colors.background.paper,
