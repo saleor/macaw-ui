@@ -72,24 +72,11 @@ export type SaleorThemeColors = Record<
 } & {
   gray: Record<"default" | "disabled", string>;
 } & {
-  input: Record<
-    | "default"
-    | "border"
-    | "disabled"
-    | "disabledBackground"
-    | "disabledText"
-    | "error"
-    | "errorHover"
-    | "errorFocus"
-    | "text"
-    | "textHover",
-    string
-  >;
-} & {
   alert: AlertColors;
   theme: ThemeType;
   fail: Fail;
   main: Record<1 | 2 | 3 | 4, string>;
+  active: Record<1 | 2 | 3 | 4 | 5, string>;
 };
 
 export type Themes = Record<ThemeType, SaleorThemeColors>;

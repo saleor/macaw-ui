@@ -41,18 +41,27 @@ export const dark: SaleorThemeColors = {
     default: "#202124",
     disabled: "rgba(32, 33, 36, 0.6)",
   },
-  input: {
-    border: "#9d9d9d",
-    default: "#25262A",
-    disabled: "#393939",
-    disabledBackground: "#292A2D",
-    disabledText: "#9D9D9D",
-    error: "#8C2054",
-    errorFocus: "#FF6666",
-    errorHover: "#FEDEDE",
-    text: "#FCFCFC",
-    textHover: "#616161",
+
+  active: {
+    1: "#056DFF",
+    2: "#378AFF",
+    3: "#68A7FF",
+    4: "#C1DBFF",
+    5: "#E6F0FF",
   },
+  main: {
+    1: "#FCFCFC",
+    2: "rgba(252, 252, 252, 0.8)",
+    3: "rgba(252, 252, 252, 0.6)",
+    4: "rgba(252, 252, 252, 0.4)",
+  },
+  fail: {
+    dark: "#B65757",
+    mid: "#FEADAD",
+    light: "#FEDEDE",
+  },
+
+  disabled: "#CCDDDD",
   paperBorder: "#252728",
   primary: "#13BEBB",
   secondary: "#21125E",
@@ -99,19 +108,13 @@ export const light: SaleorThemeColors = {
     disabled: "#C0CFE2",
   },
 
-  input: {
-    border: "#BDBDBD",
-    default: "#FFFFFF",
-    disabled: "#EAEAEA",
-    disabledBackground: "#F4F4F4",
-    disabledText: "#9D9D9D",
-    error: "#B65757",
-    errorFocus: "#FEADAD",
-    errorHover: "#FEDEDE",
-    text: "#3D3D3D",
-    textHover: "#616161",
+  active: {
+    1: "#056DFF",
+    2: "#378AFF",
+    3: "#68A7FF",
+    4: "#C1DBFF",
+    5: "#E6F0FF",
   },
-
   main: {
     1: "#28234A",
     2: "rgba(40, 35, 74, 0.8)",
