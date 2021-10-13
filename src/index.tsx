@@ -26,3 +26,4 @@ export * from "./ScrollShadow";
 export * from "./tools";
 export * from "./Button";
 export * from "./IconButton";
+export * from "./PillLink";
