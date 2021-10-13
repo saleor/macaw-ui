@@ -1,4 +1,4 @@
-import { fade, ThemeOptions } from "@material-ui/core/styles";
+import { ThemeOptions } from "@material-ui/core/styles";
 
 import { SaleorThemeColors } from "../types";
 
@@ -16,7 +16,7 @@ export const inputOverrides = (
     input: {
       "&:-webkit-autofill": {
         WebkitTextFillColor: colors.font.default,
-        boxShadow: `inset 0 0 0px 9999px ${colors.autofill}`,
+        boxShadow: `inset 0 0 0px 9999px ${colors.active[5]}`,
       },
       "&::placeholder": {
         opacity: "1 !important" as any,
@@ -35,7 +35,7 @@ export const inputOverrides = (
     },
     input: {
       "&$disabled": {
-        color: colors.input.disabledText,
+        color: colors.disabled,
       },
       "&::placeholder": {
         color: colors.font.gray,
@@ -90,7 +90,7 @@ export const inputOverrides = (
       "&&$disabled": {
         backgroundColor: colors.background.default,
       },
-      color: colors.input.text,
+      color: colors.main[1],
       padding: "23px 12px 10px 12px",
     },
     inputMultiline: {
@@ -100,9 +100,6 @@ export const inputOverrides = (
     },
     root: {
       "& fieldset": {
-        "&&:not($error)": {
-          borderColor: colors.input.border,
-        },
         top: 0,
       },
       "& legend": {
@@ -110,11 +107,11 @@ export const inputOverrides = (
       },
       "&$disabled": {
         "& fieldset": {
-          borderColor: `${colors.input.disabled} !important`,
+          borderColor: `${colors.disabled} !important`,
         },
         "& input": {
-          backgroundColor: colors.input.disabledBackground,
-          color: colors.input.disabledText,
+          backgroundColor: colors.background.default,
+          color: colors.main[3],
         },
         boxShadow: `0 0 0 0 transparent !important`,
       },
@@ -129,7 +126,7 @@ export const inputOverrides = (
           boxShadow: `0px 0px 0px 3px ${colors.fail.mid}`,
         },
         "&:hover": {
-          "& fieldset": {
+          "&& fieldset": {
             borderColor: colors.fail.dark,
           },
           boxShadow: `0px 0px 0px 3px ${colors.fail.light}`,
@@ -137,7 +134,7 @@ export const inputOverrides = (
       },
       "&$focused": {
         "&, &:hover": {
-          boxShadow: `0px 0px 0px 3px ${fade(colors.primary, 0.6)}`,
+          boxShadow: `0px 0px 0px 3px ${colors.active[3]}`,
         },
         "& input": {
           "& fieldset": {
@@ -150,16 +147,13 @@ export const inputOverrides = (
         },
       },
       "&:hover": {
-        boxShadow: `0px 0px 0px 3px ${fade(colors.primary, 0.1)}`,
+        boxShadow: `0px 0px 0px 3px ${colors.active[5]}`,
         "& input": {
           color: colors.font.default,
         },
         "&&&": {
           "& fieldset": {
             borderColor: colors.primary,
-          },
-          "&$error fieldset": {
-            borderColor: colors.input.error,
           },
         },
       },
@@ -169,7 +163,6 @@ export const inputOverrides = (
       fontWeight: 500,
     },
     notchedOutline: {
-      border: `1px solid ${colors.input.border}`,
       // It's so much easier to put it here with important tag rather than
       // override in multiple places using cascade composition
       borderWidth: "1px !important",
