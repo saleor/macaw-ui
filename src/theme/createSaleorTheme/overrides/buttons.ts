@@ -1,5 +1,4 @@
 import type { ThemeOptions } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles";
 
 import { SaleorThemeColors } from "../types";
 
@@ -102,9 +101,28 @@ export const buttonOverrides = (
     },
     MuiIconButton: {
       root: {
-        "&:hover": {
-          backgroundColor: fade(colors.primary, 0.12),
+        "&:hover, &$focusVisible": {
+          borderColor: colors.active[1],
+          backgroundColor: colors.active[5],
         },
+        "&:hover": {
+          // Unsets border as it will require us to override borderWidth and
+          // borderStyle over and over
+          border: undefined,
+        },
+        "&:active": {
+          backgroundColor: colors.active[4],
+        },
+        "&$disabled": {
+          border: undefined,
+          borderColor: colors.disabled,
+          color: colors.disabled,
+        },
+        background: colors.background.paper,
+        border: `2px solid ${colors.active[4]}`,
+        borderRadius: 4,
+        color: colors.active[1],
+        transition: "200ms",
       },
     },
     MuiSwitch: {
