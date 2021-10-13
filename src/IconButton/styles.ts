@@ -18,7 +18,7 @@ const useStyles = makeStyles(
     },
     disabledError: {
       "&&&": {
-        borderColor: theme.palette.saleor.errorAction[5],
+        borderColor: "transparent",
         color: theme.palette.saleor.errorAction[5],
       },
     },
