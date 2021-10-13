@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { PillLink, Typography } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 import Delete from "@material-ui/icons/Delete";
@@ -70,6 +70,9 @@ export const Default: Story = () => {
             <Button disabled variant="secondary">
               Secondary
             </Button>
+          </Cell>
+          <Cell>
+            <PillLink label="Link" />
           </Cell>
         </div>
         <div>
