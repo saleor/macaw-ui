@@ -12,7 +12,7 @@ export const ICONBUTTON_SIZE = 48;
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
 export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
-  (createMuiTheme({
+  createMuiTheme({
     overrides: {
       ...overrides(colors, fontFamily),
       MuiCard: {
@@ -120,15 +120,15 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiListItem: {
         button: {
           "&:focus": {
-            backgroundColor: colors.input.default,
+            backgroundColor: colors.main[1],
           },
         },
         root: {
           "&$selected": {
             "&:hover": {
-              backgroundColor: colors.input.default,
+              backgroundColor: colors.main[1],
             },
-            backgroundColor: colors.input.default,
+            backgroundColor: colors.main[1],
           },
         },
       },
@@ -155,7 +155,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiSelect: {
         root: {
           "&$disabled": {
-            backgroundColor: colors.input.disabledBackground,
+            backgroundColor: colors.background.default,
           },
         },
       },
@@ -288,4 +288,4 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         fontSize: "1.4rem",
       },
     },
-  }) as unknown) as SaleorTheme;
+  }) as unknown as SaleorTheme;
