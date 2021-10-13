@@ -1,19 +1,24 @@
-import { fade, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
+import Delete from "@material-ui/icons/Delete";
 
-import useGuideStyles from "../../stories/guideStyles";
-import { makeStyles } from "../theme";
-import { Decorator, GuideDecorator } from "../utils/Decorator";
-import { Button } from ".";
+import useGuideStyles from "./guideStyles";
+import { makeStyles } from "../src/theme";
+import { Decorator, GuideDecorator } from "../src/utils/Decorator";
+import { Button, IconButton } from "../src";
 
 const useStyles = makeStyles((theme) => ({
-  buttonGrid: {
+  grid: {
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
     columnGap: theme.spacing(3),
   },
-  buttonColumn: {
+  cell: {
+    "&:not(:last-child)": {
+      marginBottom: theme.spacing(3),
+    },
+    alignItems: "center",
     border: "1px dashed #7B61FF",
     borderRadius: 4,
     display: "flex",
@@ -22,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
     rowGap: theme.spacing(3),
   },
 }));
+
+const Cell: React.FC = ({ children }) => {
+  const classes = useStyles();
+
+  return <div className={classes.cell}>{children}</div>;
+};
 
 export const Default: Story = () => {
   const classes = useStyles();
@@ -36,30 +47,38 @@ export const Default: Story = () => {
         In most cases your app will be using one of those three button types:
       </Typography>
 
-      <div className={classes.buttonGrid}>
+      <div className={classes.grid}>
         <div>
-          <div className={classes.buttonColumn}>
+          <Cell>
             <Button variant="primary">Primary</Button>
             <Button disabled variant="primary">
               Primary
             </Button>
-          </div>
+          </Cell>
+          <Cell>
+            <IconButton>
+              <Delete />
+            </IconButton>
+            <IconButton disabled>
+              <Delete />
+            </IconButton>
+          </Cell>
         </div>
         <div>
-          <div className={classes.buttonColumn}>
+          <Cell>
             <Button variant="secondary">Secondary</Button>
             <Button disabled variant="secondary">
               Secondary
             </Button>
-          </div>
+          </Cell>
         </div>
         <div>
-          <div className={classes.buttonColumn}>
+          <Cell>
             <Button variant="tertiary">Tertiary</Button>
             <Button disabled variant="tertiary">
               Tertiary
             </Button>
-          </div>
+          </Cell>
         </div>
       </div>
 
@@ -86,36 +105,44 @@ export const Error: Story = () => {
         needs additional attention:
       </Typography>
 
-      <div className={classes.buttonGrid}>
+      <div className={classes.grid}>
         <div>
-          <div className={classes.buttonColumn}>
+          <Cell>
             <Button error variant="primary">
               Primary
             </Button>
             <Button error disabled variant="primary">
               Primary
             </Button>
-          </div>
+          </Cell>
+          <Cell>
+            <IconButton error>
+              <Delete />
+            </IconButton>
+            <IconButton error disabled>
+              <Delete />
+            </IconButton>
+          </Cell>
         </div>
         <div>
-          <div className={classes.buttonColumn}>
+          <Cell>
             <Button error variant="secondary">
               Secondary
             </Button>
             <Button error disabled variant="secondary">
               Secondary
             </Button>
-          </div>
+          </Cell>
         </div>
         <div>
-          <div className={classes.buttonColumn}>
+          <Cell>
             <Button error variant="tertiary">
               Tertiary
             </Button>
             <Button error disabled variant="tertiary">
               Tertiary
             </Button>
-          </div>
+          </Cell>
         </div>
       </div>
 

@@ -24,3 +24,5 @@ export * from "./DialogHeader";
 export * from "./DialogTable";
 export * from "./ScrollShadow";
 export * from "./tools";
+export * from "./Button";
+export * from "./IconButton";
