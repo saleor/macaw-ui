@@ -47,7 +47,7 @@ export const inputOverrides = (
   MuiInputLabel: {
     formControl: {
       transform: "translate(0, 1.5px) scale(0.75)",
-      transformOrigin: "top left" as "to p left",
+      transformOrigin: "top left",
       width: "100%",
     },
     outlined: {
