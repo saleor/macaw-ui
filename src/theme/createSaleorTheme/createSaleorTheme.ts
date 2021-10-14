@@ -58,6 +58,11 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           fontSize: "1.3rem",
         },
       },
+      MuiDialog: {
+        paper: {
+          overflowY: undefined,
+        },
+      },
       MuiDialogActions: {
         root: {
           borderTop: `1px solid ${colors.divider}`,
@@ -66,6 +71,8 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiDialogContent: {
         root: {
+          overflowX: undefined,
+          overflowY: undefined,
           padding: `24px 0px`,
           margin: `0px 24px`,
         },
