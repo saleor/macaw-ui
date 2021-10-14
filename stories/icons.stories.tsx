@@ -15,6 +15,7 @@ import {
   InfoIcon,
   NotAllowedIcon,
   NotAllowedInvertedIcon,
+  PlusIcon,
   WarningIcon,
 } from "../src/icons";
 import { makeStyles } from "../src/theme";
@@ -53,6 +54,7 @@ const icons: React.FC<{ className: string }>[] = [
   InfoIcon,
   NotAllowedIcon,
   NotAllowedInvertedIcon,
+  PlusIcon,
   WarningIcon,
 ];
 
