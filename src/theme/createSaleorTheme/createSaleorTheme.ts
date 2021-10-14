@@ -120,15 +120,15 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiListItem: {
         button: {
           "&:focus": {
-            backgroundColor: colors.input.default,
+            backgroundColor: colors.main[1],
           },
         },
         root: {
           "&$selected": {
             "&:hover": {
-              backgroundColor: colors.input.default,
+              backgroundColor: colors.main[1],
             },
-            backgroundColor: colors.input.default,
+            backgroundColor: colors.main[1],
           },
         },
       },
@@ -155,7 +155,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiSelect: {
         root: {
           "&$disabled": {
-            backgroundColor: colors.input.disabledBackground,
+            backgroundColor: colors.background.default,
           },
         },
       },
