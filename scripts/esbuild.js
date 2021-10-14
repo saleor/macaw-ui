@@ -13,33 +13,29 @@ const lodash = esbuildPluginImport([
     camel2DashComponentName: false,
   },
 ]);
-const logger = (log) => ({
+const logger = {
   name: "logger",
   setup: (build) => {
     const timer = new Timer();
 
     build.onStart((result) => {
-      log(`Building files...`);
+      console.log("Building files...");
       timer.reset();
     });
     build.onEnd((result) => {
-      result.errors.forEach((esbErr) =>
-        log(formatEsbDiagnostic(esbErr), "err")
-      );
-      result.warnings.forEach((esbWarn) =>
-        log(formatEsbDiagnostic(esbWarn), "warn")
-      );
-      log(`Built in ${timer.getTime()}ms`);
+      result.errors.forEach((esbErr) => console.log(esbErr));
+      result.warnings.forEach((esbWarn) => console.log(esbWarn));
+      console.log(`Built in ${timer.getTime()}ms`);
     });
   },
-});
+};
 
-module.exports = (entryPoints, log, watch) => {
+module.exports = (entryPoints, watch) => {
   const options = {
     bundle: true,
     entryPoints,
     outdir: "dist",
-    plugins: [logger(log), lodash],
+    plugins: [logger, lodash],
     external: [
       ...Object.keys(packageJson.peerDependencies),
       ...Object.keys(packageJson.dependencies),

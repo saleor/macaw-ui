@@ -26,8 +26,12 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "node scripts/build.js watch",
-    "build": "node scripts/build.js",
+    "watch-esb": "node scripts/build.js watch",
+    "build-esb": "node scripts/build.js",
+    "watch-tsc": "tsc --watch --preserveWatchOutput",
+    "build-tsc": "tsc",
+    "start": "concurrently -n w: npm:watch-* --prefix-colors=green,blue",
+    "build": "npm run build-esb && npm run build-tsc",
     "test": "jest",
     "lint": "npx eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix ; npx prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write",
     "prepare": "npm run build",
@@ -95,7 +99,7 @@
     "@types/react-inlinesvg": "^1.0.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-import": "^1.13.3",
-    "chalk": "^4.1.2",
+    "concurrently": "^6.3.0",
     "esbuild": "^0.13.4",
     "esbuild-jest": "^0.5.0",
     "eslint": "^7.32.0",
