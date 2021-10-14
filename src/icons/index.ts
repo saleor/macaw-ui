@@ -12,3 +12,4 @@ export * from "./NotAllowedIcon";
 export * from "./NotAllowedInvertedIcon";
 export * from "./ImageIcon";
 export * from "./CloseIcon";
+export * from "./PlusIcon";
