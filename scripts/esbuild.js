@@ -1,7 +1,6 @@
 const esbuild = require("esbuild");
 const { esbuildPluginImport } = require("@linjiajian999/esbuild-plugin-import");
 const packageJson = require("../package.json");
-const Timer = require("./timer");
 
 const formatEsbDiagnostic = (esbDiagnostic) =>
   `${esbDiagnostic.location.file}:${esbDiagnostic.location.line} ${esbDiagnostic.text}`;
@@ -13,17 +12,16 @@ const lodash = esbuildPluginImport([
     camel2DashComponentName: false,
   },
 ]);
+const timerLabel = "Finished";
 const logger = {
   name: "logger",
   setup: (build) => {
-    const timer = new Timer();
-
     build.onStart((result) => {
       console.log("Building files...");
-      timer.reset();
+      console.time(timerLabel);
     });
     build.onEnd((result) => {
-      console.log(`Finished in ${timer.getTime()}ms`);
+      console.timeEnd(timerLabel);
     });
   },
 };
