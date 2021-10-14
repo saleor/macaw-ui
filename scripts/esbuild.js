@@ -23,9 +23,7 @@ const logger = {
       timer.reset();
     });
     build.onEnd((result) => {
-      result.errors.forEach((esbErr) => console.log(esbErr));
-      result.warnings.forEach((esbWarn) => console.log(esbWarn));
-      console.log(`Built in ${timer.getTime()}ms`);
+      console.log(`Finished in ${timer.getTime()}ms`);
     });
   },
 };
