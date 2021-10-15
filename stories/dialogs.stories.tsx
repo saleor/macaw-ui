@@ -39,7 +39,7 @@ export const Info: React.FC = () => (
 
 export const WithOverflowTable: React.FC = () => {
   const { anchor, position, setAnchor } = useElementScroll();
-  // isScrolledToTop can be undefined which is falsy, but we don'w want to
+  // isScrolledToTop can be undefined which is falsy, but we don't want to
   // display shadow then
   const topShadow = isScrolledToTop(anchor, position, 20) === false;
   const bottomShadow = isScrolledToBottom(anchor, position, 20) === false;
