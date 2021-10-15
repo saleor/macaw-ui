@@ -13,8 +13,11 @@ const useStyles = makeStyles(
       },
     },
     root: {
-      "&:hover, &:focus": {
-        background: fade(theme.palette.primary.light, 0.2),
+      "&:hover, &:focus-visible": {
+        background: theme.palette.saleor.active[5],
+      },
+      "&:active": {
+        background: theme.palette.saleor.active[4],
       },
       background: theme.palette.background.paper,
       borderRadius: 4,
