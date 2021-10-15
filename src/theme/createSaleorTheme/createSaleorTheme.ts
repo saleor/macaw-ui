@@ -64,15 +64,13 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiDialogActions: {
         root: {
-          borderTop: `1px solid ${colors.divider}`,
           padding: "16px 24px",
         },
       },
       MuiDialogContent: {
         root: {
           overflowX: "hidden",
-          padding: `24px 0px`,
-          margin: `0px 24px`,
+          padding: `0px 24px`,
         },
       },
       MuiDialogContentText: {
@@ -80,11 +78,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "&:last-child": {
             marginBottom: 0,
           },
-        },
-      },
-      MuiDialogTitle: {
-        root: {
-          borderBottom: `1px solid ${colors.divider}`,
         },
       },
       MuiDivider: {

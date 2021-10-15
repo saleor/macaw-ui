@@ -102,6 +102,7 @@
     "esbuild-jest": "^0.5.0",
     "eslint": "^7.32.0",
     "eslint-plugin-simple-import-sort": "^5.0.3",
+    "faker": "^5.5.3",
     "husky": "^6.0.0",
     "jest": "^27.2.4",
     "jest-file": "^1.0.0",
@@ -112,7 +113,8 @@
     "react-is": "^17.0.2",
     "size-limit": "^4.10.2",
     "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "yargs": "^17.2.1"
   },
   "dependencies": {
     "clsx": "^1.1.1",
