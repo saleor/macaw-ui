@@ -12,7 +12,7 @@ export const ICONBUTTON_SIZE = 48;
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
 export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
-  (createMuiTheme({
+  createMuiTheme({
     overrides: {
       ...overrides(colors, fontFamily),
       MuiCard: {
@@ -288,4 +288,4 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         fontSize: "1.4rem",
       },
     },
-  }) as unknown) as SaleorTheme;
+  }) as unknown as SaleorTheme;
