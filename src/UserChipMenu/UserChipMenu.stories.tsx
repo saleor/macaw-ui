@@ -20,9 +20,15 @@ const Options: React.FC = () => (
 );
 
 export const Default: Story = () => (
-  <UserChipMenu {...props}>
-    <Options />
-  </UserChipMenu>
+  <>
+    <UserChipMenu {...props}>
+      <Options />
+    </UserChipMenu>
+    <div style={{ height: 24 }} />
+    <UserChipMenu {...props} open>
+      <Options />
+    </UserChipMenu>
+  </>
 );
 export const WithSubtext: Story = () => (
   <UserChipMenu {...props} subtext="Lorem ipsum dolor sit amet">

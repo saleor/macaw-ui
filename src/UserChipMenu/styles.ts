@@ -1,6 +1,6 @@
 import { makeStyles } from "../theme";
 
-const avatarSize = 36;
+const avatarSize = 32;
 const mobileAvatarSize = 42;
 
 const useStyles = makeStyles(
@@ -15,11 +15,6 @@ const useStyles = makeStyles(
         width: avatarSize,
       },
       backgroundColor: theme.palette.background.paper,
-    },
-    avatarContainer: {
-      padding: 2,
-      backgroundColor: theme.palette.background.paper,
-      borderRadius: "100%",
     },
     avatarInitials: {
       [theme.breakpoints.down("sm")]: {
@@ -41,7 +36,9 @@ const useStyles = makeStyles(
       justifyContent: "center",
     },
     label: {
+      letterSpacing: "0.02em",
       lineHeight: 1.2,
+      textAlign: "left",
     },
     labelContainer: {
       display: "inline-flex",
@@ -49,14 +46,16 @@ const useStyles = makeStyles(
       marginLeft: theme.spacing(1),
     },
     popover: {
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(0.5),
       zIndex: 10,
     },
     userChip: {
-      borderRadius: 24,
-      color: theme.palette.text.primary,
+      "&&": {
+        padding: theme.spacing(0.5, 3, 0.5, 1),
+      },
+      ...theme.typography.body1,
       display: "flex",
-      padding: theme.spacing(0.5),
+      textTransform: "unset",
     },
     userMenuContainer: {
       cursor: "pointer",

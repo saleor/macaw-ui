@@ -140,12 +140,12 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiMenuItem: {
         root: {
           "&$selected, &$selected:focus, &$selected:hover": {
-            backgroundColor: [colors.background.default, "!important"] as any,
+            backgroundColor: [colors.active[5], "!important"] as any,
             color: colors.primary,
             fontWeight: 700,
           },
           "&:hover": {
-            backgroundColor: [colors.background.default, "!important"] as any,
+            backgroundColor: [colors.active[5], "!important"] as any,
           },
           "@media(min-width: 600px)": {
             minHeight: 48,
