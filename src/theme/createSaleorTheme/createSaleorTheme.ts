@@ -266,7 +266,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       fontFamily,
       h1: {
-        fontSize: "4.8rem",
+        fontSize: "4rem",
         fontWeight: 700,
       },
       h4: {
