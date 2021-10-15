@@ -34,7 +34,7 @@ export const ExpandButton: React.FC<ExpandButtonProps> = ({
     <SquareButton disableRipple {...rest}>
       <ArrowRightIcon
         className={clsx(classes.arrow, {
-          [classes.shrunk]: isShrunk,
+          [classes.shrunk]: !isShrunk,
         })}
       />
     </SquareButton>

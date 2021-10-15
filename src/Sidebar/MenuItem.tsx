@@ -12,7 +12,7 @@ import { makeStyles } from "../theme";
 import { SidebarMenuItem } from "./types";
 
 export interface MenuItemProps {
-  active: boolean;
+  active: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
   onClick: (url: string) => void;
@@ -71,11 +71,12 @@ const useStyles = makeStyles(
       textAlign: "left",
     },
     popper: {
-      margin: theme.spacing(3.5, 0, 0, -3.5),
+      margin: theme.spacing(3.5, 0, 0, 0),
+      marginLeft: "-50%",
       zIndex: 2,
     },
     root: {
-      "&:hover, &:focus": {
+      "&:hover, &:focus-visible": {
         color: theme.palette.primary.main,
         outline: 0,
       },
@@ -93,6 +94,9 @@ const useStyles = makeStyles(
     },
     rootActive: {
       "&$root": {
+        "&:hover, &:focus-visible": {
+          color: theme.palette.primary.main,
+        },
         background: theme.palette.background.paper,
         color: theme.palette.text.primary,
       },
@@ -101,13 +105,13 @@ const useStyles = makeStyles(
       width: menuWidth,
     },
     subMenuLabel: {
-      "&:hover, &:active": {
-        color: theme.palette.primary.main,
-        fontWeight: "bold",
+      "&.Mui-selected": {
+        background: "unset !importants",
       },
       background: "none",
       border: "none",
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.primary,
+      fontWeight: 500,
       height: 48,
       lineHeight: 36 + "px",
       textAlign: "left",
@@ -144,7 +148,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className={clsx(classes.root, {
-        [classes.rootActive]: active,
+        [classes.rootActive]: active === menuItem.id,
         [classes.rootExpanded]: !isMenuShrunk,
       })}
       ref={anchor}
@@ -194,6 +198,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                     }
                     data-test="submenu-item-label"
                     data-test-id={subMenuItem.id}
+                    selected={active === subMenuItem.id}
                     {...linkProps}
                   >
                     {subMenuItem.label}

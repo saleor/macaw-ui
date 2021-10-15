@@ -12,6 +12,9 @@ const props: SidebarProps = {
 };
 
 export const Default: Story = () => <Sidebar {...props} />;
+export const SubmenuSelected: Story = () => (
+  <Sidebar {...props} active="menu21" />
+);
 export const WithToolbar: Story = () => (
   <Sidebar {...props} toolbar={<SquareButton>tool</SquareButton>} />
 );

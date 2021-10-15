@@ -73,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
         {menuItems.map((menuItem) => (
           <MenuItem
-            active={active === menuItem.id}
+            active={active}
             isMenuShrunk={isShrunk}
             menuItem={menuItem}
             onClick={onMenuItemClick}
