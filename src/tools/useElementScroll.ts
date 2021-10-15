@@ -6,7 +6,7 @@ export type Position = Record<"x" | "y", number>;
 function getPosition<T extends HTMLElement>(
   anchor?: T | null
 ): Position | undefined {
-  if (!!anchor) {
+  if (anchor) {
     return {
       x: anchor.scrollLeft,
       y: anchor.scrollTop,
