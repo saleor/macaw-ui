@@ -1,5 +1,4 @@
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -12,7 +11,7 @@ import {
 import { Meta } from "@storybook/react";
 import React from "react";
 
-import { DialogHeader, DialogTable, ScrollShadow } from "../src";
+import { Button, DialogHeader, DialogTable, ScrollShadow } from "../src";
 import {
   isScrolledToBottom,
   isScrolledToTop,
@@ -30,7 +29,7 @@ export const Info: React.FC = () => (
       </DialogContentText>
     </DialogContent>
     <DialogActions>
-      <Button color="primary" variant="contained">
+      <Button color="primary" variant="primary">
         OK
       </Button>
     </DialogActions>
@@ -69,7 +68,7 @@ export const WithOverflowTable: React.FC = () => {
       </DialogTable>
       <ScrollShadow show={bottomShadow} variant="bottom">
         <DialogActions>
-          <Button color="primary" variant="contained">
+          <Button color="primary" variant="primary">
             OK
           </Button>
         </DialogActions>

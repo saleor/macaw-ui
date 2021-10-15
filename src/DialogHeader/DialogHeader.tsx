@@ -1,5 +1,4 @@
 import DialogTitle from "@material-ui/core/DialogTitle";
-import IconButton from "@material-ui/core/IconButton";
 import Typography, { TypographyProps } from "@material-ui/core/Typography";
 import React from "react";
 
@@ -27,14 +26,14 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
         <Typography variant="h5" component="h5" {...props}>
           {children}
         </Typography>
-        <IconButton
+        <button
           className={classes.button}
           onClick={onClose}
           aria-label="Close modal"
           data-test="close"
         >
           <CloseIcon />
-        </IconButton>
+        </button>
       </DialogTitle>
     </>
   );
