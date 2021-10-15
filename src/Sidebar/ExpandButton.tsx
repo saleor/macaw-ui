@@ -31,7 +31,7 @@ export const ExpandButton: React.FC<ExpandButtonProps> = ({
   const classes = useStyles({});
 
   return (
-    <SquareButton {...rest}>
+    <SquareButton disableRipple {...rest}>
       <ArrowRightIcon
         className={clsx(classes.arrow, {
           [classes.shrunk]: isShrunk,
