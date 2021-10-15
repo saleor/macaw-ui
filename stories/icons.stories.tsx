@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import {
+  ArrowRightIcon,
   CheckboxCheckedIcon,
   CheckboxIcon,
   CheckboxIndeterminateIcon,
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const icons: React.FC<{ className: string }>[] = [
+  ArrowRightIcon,
   CheckboxCheckedIcon,
   CheckboxIcon,
   CheckboxIndeterminateIcon,
