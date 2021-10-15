@@ -7,8 +7,10 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import { Logo } from "../icons/Logo";
+import { LogoLight } from "../icons/LogoLight";
 import { BaseSidebarProps, SidebarMenuItem } from "../Sidebar/types";
 import { SquareButton } from "../SquareButton";
+import { useTheme } from "../theme";
 import { MenuItemBtn } from "./MenuItemBtn";
 import useStyles from "./styles";
 
@@ -18,6 +20,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   menuItems,
   onMenuItemClick,
 }) => {
+  const theme = useTheme();
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
   const [activeMenu, setActiveMenu] = React.useState<SidebarMenuItem | null>(
@@ -65,7 +68,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
           >
             <div className={classes.content}>
               <div className={classes.logo}>
-                <Logo />
+                {theme.themeType === "light" ? <Logo /> : <LogoLight />}
               </div>
               {menuItems.map((menuItem) => (
                 <MenuItemBtn
