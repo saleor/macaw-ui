@@ -1,7 +1,7 @@
 import { ButtonProps } from "@material-ui/core/Button";
-import ArrowIcon from "@material-ui/icons/ArrowBack";
 import clsx from "clsx";
 import React from "react";
+import { ArrowRightIcon } from "../icons";
 
 import { SquareButton } from "../SquareButton";
 import { makeStyles } from "../theme";
@@ -32,7 +32,7 @@ export const ExpandButton: React.FC<ExpandButtonProps> = ({
 
   return (
     <SquareButton {...rest}>
-      <ArrowIcon
+      <ArrowRightIcon
         className={clsx(classes.arrow, {
           [classes.shrunk]: isShrunk,
         })}

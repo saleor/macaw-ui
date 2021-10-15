@@ -26,7 +26,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
   name,
   subtext,
   children,
-  open,
+  open = false,
   ...props
 }) => {
   const classes = useStyles({});

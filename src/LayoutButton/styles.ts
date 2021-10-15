@@ -5,7 +5,7 @@ import { makeStyles } from "../theme";
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      "&:hover, &$hover": {
+      "&:hover, &:focus-visible, &$hover": {
         background: theme.palette.background.paper,
         color: theme.palette.primary.main,
       },
