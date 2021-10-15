@@ -174,7 +174,6 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           open={open}
           anchorEl={anchor.current}
           transition
-          disablePortal
           placement="right-start"
         >
           <ClickAwayListener onClickAway={() => setOpen(false)}>
