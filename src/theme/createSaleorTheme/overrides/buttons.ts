@@ -99,7 +99,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
     },
     MuiIconButton: {
       root: {
-        "&:hover, &$focusVisible": {
+        "&:hover, &.Mui-focusVisible": {
           borderColor: colors.active[1],
           backgroundColor: colors.active[5],
         },

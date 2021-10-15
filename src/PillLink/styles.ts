@@ -3,7 +3,7 @@ import { makeStyles } from "../theme";
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      "&:hover, &$hover": {
+      "&:hover, &:focus-visible, &$hover": {
         borderColor: theme.palette.saleor.active[3],
         color: theme.palette.primary.main,
       },
@@ -17,6 +17,7 @@ const useStyles = makeStyles(
       borderRadius: 20,
       cursor: "pointer",
       color: theme.palette.text.primary,
+      outline: 0,
       userSelect: "none",
       padding: "5px 8px",
       transition: theme.transitions.create(
