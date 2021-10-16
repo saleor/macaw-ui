@@ -1,5 +1,4 @@
 import ButtonBase, { ButtonBaseProps } from "@material-ui/core/ButtonBase";
-import { fade } from "@material-ui/core/styles";
 import clsx from "clsx";
 import React from "react";
 
