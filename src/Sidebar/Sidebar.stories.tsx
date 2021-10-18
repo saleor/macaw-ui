@@ -6,14 +6,14 @@ import * as fixtures from "./fixtures";
 import { Sidebar, SidebarProps } from "./Sidebar";
 
 const props: SidebarProps = {
-  active: "menu1",
+  activeId: "menu1",
   menuItems: fixtures.menu,
   onMenuItemClick: () => undefined,
 };
 
 export const Default: Story = () => <Sidebar {...props} />;
 export const SubmenuSelected: Story = () => (
-  <Sidebar {...props} active="menu21" />
+  <Sidebar {...props} activeId="menu21" />
 );
 export const WithToolbar: Story = () => (
   <Sidebar {...props} toolbar={<SquareButton>tool</SquareButton>} />
