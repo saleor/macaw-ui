@@ -10,8 +10,7 @@ const useStyles = makeStyles(
     },
     closeNoContent: {
       "&$close": {
-        right: theme.spacing(-3),
-        top: theme.spacing(-3),
+        top: 2,
       },
     },
     container: {

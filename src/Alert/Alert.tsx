@@ -1,8 +1,8 @@
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import clsx from "clsx";
 import React from "react";
+import { IconButton } from "../IconButton";
 
 import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import { AlertBase, AlertBaseProps, AlertVariant } from "./AlertBase";
@@ -51,8 +51,9 @@ export const Alert: React.FC<AlertProps> = ({
             {close && (
               <IconButton
                 className={clsx(classes.close, {
-                  [classes.closeNoContent]: !!children,
+                  [classes.closeNoContent]: !children,
                 })}
+                variant="secondary"
                 onClick={() => setVisible(false)}
                 data-test="close"
               >

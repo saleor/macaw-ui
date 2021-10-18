@@ -120,6 +120,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         border: `2px solid ${colors.active[4]}`,
         borderRadius: 4,
         color: colors.active[1],
+        padding: 10,
         transition: "200ms",
       },
     },
