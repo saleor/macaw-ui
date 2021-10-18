@@ -1,5 +1,5 @@
-import { darken, fade } from "@material-ui/core/styles";
 import type { ThemeOptions } from "@material-ui/core/styles";
+import { darken, fade } from "@material-ui/core/styles";
 
 import { SaleorThemeColors } from "../types";
 
