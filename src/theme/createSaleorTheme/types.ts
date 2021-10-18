@@ -1,10 +1,5 @@
 /* eslint-disable @typescript-eslint/unified-signatures */
-import type { Theme } from "@material-ui/core/styles";
-import type { ThemeOptions } from "@material-ui/core/styles/createMuiTheme";
-import type {
-  Palette,
-  PaletteOptions,
-} from "@material-ui/core/styles/createPalette";
+import type { Theme, ThemeOptions } from "@material-ui/core/styles";
 
 export type AlertPalette = Record<
   "success" | "error" | "warning" | "info",
@@ -20,11 +15,10 @@ interface ExtraPalette {
 }
 type ExtraPaletteOptions = Partial<ExtraPalette>;
 
-export interface SaleorPalette extends Palette, ExtraPalette {}
+export type SaleorPalette = Theme["palette"] & ExtraPalette;
 
-export interface SaleorPaletteOptions
-  extends PaletteOptions,
-    ExtraPaletteOptions {}
+export type SaleorPaletteOptions = ThemeOptions["palette"] &
+  ExtraPaletteOptions;
 
 export interface SaleorSpacing {
   (): string;

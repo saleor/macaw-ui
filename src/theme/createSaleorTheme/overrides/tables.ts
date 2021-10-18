@@ -1,12 +1,11 @@
-import { fade } from "@material-ui/core/styles";
-import type { Overrides } from "@material-ui/core/styles/overrides";
+import { fade, ThemeOptions } from "@material-ui/core/styles";
 
 import { SaleorThemeColors } from "../types";
 
 export const tableOverrides = (
   colors: SaleorThemeColors,
   fontFamily: string
-): Overrides => ({
+): ThemeOptions["overrides"] => ({
   MuiTable: {
     root: {
       fontFamily,
