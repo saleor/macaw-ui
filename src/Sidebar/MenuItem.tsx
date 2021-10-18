@@ -72,11 +72,14 @@ const useStyles = makeStyles(
     },
     popper: {
       margin: theme.spacing(3.5, 0, 0, 0),
-      marginLeft: "-50%",
+      marginLeft: -menuWidth / 2,
       zIndex: 2,
     },
+    popperShrink: {
+      marginLeft: -shrunkMenuWidth / 2,
+    },
     root: {
-      "&:hover, &:focus-visible": {
+      "&:hover, &:focus-visible, &$rootOpen": {
         color: theme.palette.primary.main,
         outline: 0,
       },
@@ -94,7 +97,7 @@ const useStyles = makeStyles(
     },
     rootActive: {
       "&$root": {
-        "&:hover, &:focus-visible": {
+        "&:hover, &:focus-visible, &$rootOpen": {
           color: theme.palette.primary.main,
         },
         background: theme.palette.background.paper,
@@ -104,9 +107,10 @@ const useStyles = makeStyles(
     rootExpanded: {
       width: menuWidth,
     },
+    rootOpen: {},
     subMenuLabel: {
       "&.Mui-selected": {
-        background: "unset !importants",
+        background: "unset !important",
       },
       background: "none",
       border: "none",
@@ -148,7 +152,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className={clsx(classes.root, {
-        [classes.rootActive]: activeId === menuItem.id,
+        [classes.rootOpen]: open,
+        [classes.rootActive]: [
+          menuItem.id,
+          ...(menuItem.children?.map((subMenu) => subMenu.id) || []),
+        ].includes(activeId),
         [classes.rootExpanded]: !isMenuShrunk,
       })}
       ref={anchor}
@@ -174,11 +182,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       </button>
       {menuItem.children && (
         <Popper
-          className={classes.popper}
+          className={clsx(classes.popper, {
+            [classes.popperShrink]: isMenuShrunk,
+          })}
           open={open}
           anchorEl={anchor.current}
           transition
-          disablePortal
           placement="right-start"
         >
           <ClickAwayListener onClickAway={() => setOpen(false)}>
