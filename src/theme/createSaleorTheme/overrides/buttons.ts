@@ -1,9 +1,11 @@
+import type { ThemeOptions } from "@material-ui/core/styles";
 import { darken, fade } from "@material-ui/core/styles";
-import type { Overrides } from "@material-ui/core/styles/overrides";
 
 import { SaleorThemeColors } from "../types";
 
-export const buttonOverrides = (colors: SaleorThemeColors): Overrides => ({
+export const buttonOverrides = (
+  colors: SaleorThemeColors
+): ThemeOptions["overrides"] => ({
   MuiButton: {
     contained: {
       "&$disabled": {

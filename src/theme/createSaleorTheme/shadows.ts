@@ -1,4 +1,4 @@
-import type { Shadows } from "@material-ui/core/styles/shadows";
+import type { ThemeOptions } from "@material-ui/core/styles";
 
 const createShadow = (
   pv: number,
@@ -17,7 +17,7 @@ const createShadow = (
     `0 ${av}px ${ab}px ${as}px rgba(0, 0, 0, 0.12)`,
   ].join(",");
 
-export const shadows: Shadows = [
+export const shadows: ThemeOptions["shadows"] = [
   "none",
   createShadow(1, 1, 0, 2, 1, -2, 1, 3, 0),
   createShadow(2, 2, 0, 3, 1, -2, 1, 5, 0),

@@ -1,9 +1,10 @@
-import { fade } from "@material-ui/core/styles";
-import type { Overrides } from "@material-ui/core/styles/overrides";
+import { fade, ThemeOptions } from "@material-ui/core/styles";
 
 import { SaleorThemeColors } from "../types";
 
-export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
+export const inputOverrides = (
+  colors: SaleorThemeColors
+): ThemeOptions["overrides"] => ({
   MuiInput: {
     input: {
       "&:-webkit-autofill": {
