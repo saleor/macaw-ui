@@ -18,6 +18,7 @@ import {
   NotAllowedInvertedIcon,
   PlusIcon,
   WarningIcon,
+  MoreIcon,
 } from "../src/icons";
 import { makeStyles } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
@@ -58,6 +59,7 @@ const icons: React.FC<{ className: string }>[] = [
   NotAllowedInvertedIcon,
   PlusIcon,
   WarningIcon,
+  MoreIcon,
 ];
 
 const Default: React.FC = () => {

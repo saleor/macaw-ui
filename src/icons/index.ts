@@ -15,3 +15,4 @@ export * from "./ImageIcon";
 export * from "./CloseIcon";
 export * from "./PlusIcon";
 export * from "./ArrowRightIcon";
+export * from "./MoreIcon";

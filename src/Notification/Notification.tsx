@@ -1,5 +1,4 @@
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
@@ -9,6 +8,7 @@ import React from "react";
 import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
+import { IconButton } from "../IconButton";
 
 const Icon: React.FC<{ type: NotificationType }> = ({ type }) => {
   switch (type) {
@@ -86,6 +86,7 @@ export const Notification: React.FC<NotificationProps> = ({
             aria-label="Close"
             color="inherit"
             onClick={onClose}
+            variant="secondary"
             className={clsx(classes.closeBtn, {
               [classes.closeBtnInfo]: type === "info",
             })}

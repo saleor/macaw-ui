@@ -47,6 +47,12 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           padding: "2.4rem 3.2rem",
         },
       },
+      MuiCheckbox: {
+        root: {
+          border: "none",
+          background: "none",
+        },
+      },
       MuiChip: {
         avatar: {
           fontSize: "1.2rem",
@@ -120,7 +126,8 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiListItem: {
         button: {
           "&:focus": {
-            backgroundColor: colors.main[1],
+            background: colors.active[5],
+            color: colors.main[1],
           },
         },
         root: {
@@ -150,6 +157,12 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "@media(min-width: 600px)": {
             minHeight: 48,
           },
+        },
+      },
+      MuiRadio: {
+        root: {
+          border: "none",
+          borderRadius: "100%",
         },
       },
       MuiSelect: {
@@ -230,6 +243,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiList: {
         disablePadding: true,
+      },
+      MuiRadio: {
+        disableRipple: true,
       },
       MuiSelect: {
         MenuProps: {
