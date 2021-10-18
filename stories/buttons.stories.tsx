@@ -63,6 +63,14 @@ export const Default: Story = () => {
               <Delete />
             </IconButton>
           </Cell>
+          <Cell>
+            <IconButton variant="secondary">
+              <Delete />
+            </IconButton>
+            <IconButton disabled variant="secondary">
+              <Delete />
+            </IconButton>
+          </Cell>
         </div>
         <div>
           <Cell>
