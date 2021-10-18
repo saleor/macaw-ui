@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/unified-signatures */
 import type { Theme } from "@material-ui/core/styles";
-import type { ThemeOptions } from "@material-ui/core/styles/createMuiTheme";
+import type { ThemeOptions } from "@material-ui/core/styles";
 import type {
   Palette,
   PaletteOptions,
