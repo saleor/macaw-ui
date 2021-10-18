@@ -12,7 +12,7 @@ import { makeStyles } from "../theme";
 import { SidebarMenuItem } from "./types";
 
 export interface MenuItemProps {
-  active: string;
+  activeId: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
   onClick: (url: string) => void;
@@ -126,7 +126,7 @@ const useStyles = makeStyles(
 );
 
 export const MenuItem: React.FC<MenuItemProps> = ({
-  active,
+  activeId,
   menuItem,
   isMenuShrunk,
   onClick,
@@ -148,7 +148,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className={clsx(classes.root, {
-        [classes.rootActive]: active === menuItem.id,
+        [classes.rootActive]: activeId === menuItem.id,
         [classes.rootExpanded]: !isMenuShrunk,
       })}
       ref={anchor}
@@ -198,7 +198,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                     }
                     data-test="submenu-item-label"
                     data-test-id={subMenuItem.id}
-                    selected={active === subMenuItem.id}
+                    selected={activeId === subMenuItem.id}
                     {...linkProps}
                   >
                     {subMenuItem.label}
