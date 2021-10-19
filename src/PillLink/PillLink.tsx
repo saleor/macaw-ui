@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { UserInteraction } from "../../types/utils";
 
 import useStyles from "./styles";
 
@@ -8,7 +9,7 @@ export interface PillLinkProps
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
   > {
-  state?: "default" | "hover" | "active";
+  state?: UserInteraction;
 }
 
 export const PillLink: React.FC<PillLinkProps> = ({

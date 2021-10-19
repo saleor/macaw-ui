@@ -42,11 +42,11 @@ const useStyles = makeStyles(
 );
 
 export interface SidebarProps extends BaseSidebarProps {
-  active: string;
+  activeId: string;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
-  active,
+  activeId,
   menuItems,
   toolbar,
   onMenuItemClick,
@@ -70,7 +70,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
         {menuItems.map((menuItem) => (
           <MenuItem
-            active={active === menuItem.id}
+            activeId={activeId}
             isMenuShrunk={isShrunk}
             menuItem={menuItem}
             onClick={onMenuItemClick}

@@ -6,7 +6,7 @@ import Delete from "@material-ui/icons/Delete";
 import useGuideStyles from "./guideStyles";
 import { makeStyles } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
-import { PillLink, Button, IconButton } from "../src";
+import { PillLink, Button, IconButton, LayoutButton } from "../src";
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -72,9 +72,13 @@ export const Default: Story = () => {
             </Button>
           </Cell>
           <Cell>
-            <PillLink>Clickable Pill</PillLink>
-            <PillLink state="hover">Clickable Pill</PillLink>
-            <PillLink state="active">Clickable Pill</PillLink>
+            <PillLink href="#">Clickable Pill</PillLink>
+            <PillLink href="#" state="hover">
+              Clickable Pill
+            </PillLink>
+            <PillLink href="#" state="active">
+              Clickable Pill
+            </PillLink>
           </Cell>
         </div>
         <div>
@@ -83,6 +87,11 @@ export const Default: Story = () => {
             <Button disabled variant="tertiary">
               Tertiary
             </Button>
+          </Cell>
+          <Cell>
+            <LayoutButton>Layout</LayoutButton>
+            <LayoutButton state="hover">Layout</LayoutButton>
+            <LayoutButton state="active">Layout</LayoutButton>
           </Cell>
         </div>
       </div>

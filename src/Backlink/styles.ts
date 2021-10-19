@@ -4,6 +4,7 @@ const useStyles = makeStyles(
   (theme) => ({
     backArrow: {
       fontSize: 30,
+      transform: "rotate(180deg)",
     },
     menuButton: {
       flex: "0 0 auto",
@@ -24,6 +25,7 @@ const useStyles = makeStyles(
       width: "10rem",
     },
     title: {
+      lineHeight: 1.1,
       flex: 1,
       marginLeft: theme.spacing(),
     },

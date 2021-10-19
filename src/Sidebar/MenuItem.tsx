@@ -12,7 +12,7 @@ import { makeStyles } from "../theme";
 import { SidebarMenuItem } from "./types";
 
 export interface MenuItemProps {
-  active: boolean;
+  activeId: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
   onClick: (url: string) => void;
@@ -79,7 +79,7 @@ const useStyles = makeStyles(
       marginLeft: -shrunkMenuWidth / 2,
     },
     root: {
-      "&:hover, &:focus": {
+      "&:hover, &:focus-visible, &$rootOpen": {
         color: theme.palette.primary.main,
         outline: 0,
       },
@@ -97,6 +97,9 @@ const useStyles = makeStyles(
     },
     rootActive: {
       "&$root": {
+        "&:hover, &:focus-visible, &$rootOpen": {
+          color: theme.palette.primary.main,
+        },
         background: theme.palette.background.paper,
         color: theme.palette.text.primary,
       },
@@ -104,14 +107,15 @@ const useStyles = makeStyles(
     rootExpanded: {
       width: menuWidth,
     },
+    rootOpen: {},
     subMenuLabel: {
-      "&:hover, &:active": {
-        color: theme.palette.primary.main,
-        fontWeight: "bold",
+      "&.Mui-selected": {
+        background: "unset !important",
       },
       background: "none",
       border: "none",
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.primary,
+      fontWeight: 500,
       height: 48,
       lineHeight: 36 + "px",
       textAlign: "left",
@@ -126,7 +130,7 @@ const useStyles = makeStyles(
 );
 
 export const MenuItem: React.FC<MenuItemProps> = ({
-  active,
+  activeId,
   menuItem,
   isMenuShrunk,
   onClick,
@@ -148,7 +152,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className={clsx(classes.root, {
-        [classes.rootActive]: active,
+        [classes.rootOpen]: open,
+        [classes.rootActive]: [
+          menuItem.id,
+          ...(menuItem.children?.map((subMenu) => subMenu.id) || []),
+        ].includes(activeId),
         [classes.rootExpanded]: !isMenuShrunk,
       })}
       ref={anchor}
@@ -200,6 +208,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                     }
                     data-test="submenu-item-label"
                     data-test-id={subMenuItem.id}
+                    selected={activeId === subMenuItem.id}
                     {...linkProps}
                   >
                     {subMenuItem.label}

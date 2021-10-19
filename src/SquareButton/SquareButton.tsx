@@ -1,5 +1,4 @@
 import ButtonBase, { ButtonBaseProps } from "@material-ui/core/ButtonBase";
-import { fade } from "@material-ui/core/styles";
 import clsx from "clsx";
 import React from "react";
 
@@ -13,8 +12,11 @@ const useStyles = makeStyles(
       },
     },
     root: {
-      "&:hover, &:focus": {
-        background: fade(theme.palette.primary.light, 0.2),
+      "&:hover, &:focus-visible": {
+        background: theme.palette.saleor.active[5],
+      },
+      "&:active": {
+        background: theme.palette.saleor.active[4],
       },
       background: theme.palette.background.paper,
       borderRadius: 4,

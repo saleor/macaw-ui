@@ -1,13 +1,13 @@
 import Portal from "@material-ui/core/Portal";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Skeleton from "@material-ui/lab/Skeleton";
 import React from "react";
 
-import { LayoutButton } from "../LayoutButton";
+import { LayoutButton, LayoutButtonProps } from "../LayoutButton";
 import { useBacklink } from "./context";
 import useStyles from "./styles";
+import { ArrowRightIcon } from "../icons";
 
-export interface AppHeaderProps {
+export interface AppHeaderProps extends LayoutButtonProps {
   children: React.ReactNode;
   disabled?: boolean;
   onClick: () => void;
@@ -17,6 +17,7 @@ export const Backlink: React.FC<AppHeaderProps> = ({
   children,
   disabled,
   onClick,
+  ...props
 }) => {
   const classes = useStyles();
   const anchor = useBacklink();
@@ -32,8 +33,9 @@ export const Backlink: React.FC<AppHeaderProps> = ({
         disabled={disabled}
         onClick={onClick}
         data-test-id="app-header-back-button"
+        {...props}
       >
-        <ArrowBackIcon className={classes.backArrow} />
+        <ArrowRightIcon className={classes.backArrow} />
         {children ? (
           <div className={classes.title}>{children}</div>
         ) : (

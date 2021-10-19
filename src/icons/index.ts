@@ -13,3 +13,4 @@ export * from "./DeleteIcon";
 export * from "./ImageIcon";
 export * from "./CloseIcon";
 export * from "./PlusIcon";
+export * from "./ArrowRightIcon";
