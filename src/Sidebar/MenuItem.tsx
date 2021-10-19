@@ -71,8 +71,12 @@ const useStyles = makeStyles(
       textAlign: "left",
     },
     popper: {
-      margin: theme.spacing(3.5, 0, 0, -3.5),
+      margin: theme.spacing(3.5, 0, 0, 0),
+      marginLeft: -menuWidth / 2,
       zIndex: 2,
+    },
+    popperShrink: {
+      marginLeft: -shrunkMenuWidth / 2,
     },
     root: {
       "&:hover, &:focus": {
@@ -170,11 +174,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       </button>
       {menuItem.children && (
         <Popper
-          className={classes.popper}
+          className={clsx(classes.popper, {
+            [classes.popperShrink]: isMenuShrunk,
+          })}
           open={open}
           anchorEl={anchor.current}
           transition
-          disablePortal
           placement="right-start"
         >
           <ClickAwayListener onClickAway={() => setOpen(false)}>
