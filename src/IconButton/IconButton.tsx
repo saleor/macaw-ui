@@ -1,3 +1,4 @@
+import ButtonBase from "@material-ui/core/ButtonBase";
 import MuiIconButton, {
   IconButtonProps as MuiIconButtonProps,
 } from "@material-ui/core/IconButton";
@@ -11,14 +12,22 @@ export type IconButtonProps<T extends React.ElementType = "button"> = Omit<
   "variant"
 > & {
   error?: boolean;
+  variant?: "primary" | "secondary";
 };
 
 export const IconButton: React.FC<IconButtonProps> = ({
   className,
   error,
+  variant = "primary",
   ...props
 }) => {
   const classes = useStyles();
+
+  if (variant === "secondary") {
+    return (
+      <ButtonBase className={classes.secondary} disableRipple {...props} />
+    );
+  }
 
   return (
     <MuiIconButton
