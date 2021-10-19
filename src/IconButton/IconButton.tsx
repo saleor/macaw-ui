@@ -15,29 +15,32 @@ export type IconButtonProps<T extends React.ElementType = "button"> = Omit<
   variant?: "primary" | "secondary";
 };
 
-export const IconButton: React.FC<IconButtonProps> = ({
-  className,
-  error,
-  variant = "primary",
-  ...props
-}) => {
-  const classes = useStyles();
+export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
+  ({ className, error, variant = "primary", ...props }, ref) => {
+    const classes = useStyles();
 
-  if (variant === "secondary") {
+    if (variant === "secondary") {
+      return (
+        <ButtonBase
+          ref={ref}
+          className={clsx(classes.secondary, className)}
+          disableRipple
+          {...props}
+        />
+      );
+    }
+
     return (
-      <ButtonBase className={classes.secondary} disableRipple {...props} />
+      <MuiIconButton
+        ref={ref}
+        className={clsx(className, {
+          [classes.error]: error,
+          [classes.disabledError]: error && props.disabled,
+        })}
+        disableRipple
+        {...props}
+      />
     );
   }
-
-  return (
-    <MuiIconButton
-      className={clsx(className, {
-        [classes.error]: error,
-        [classes.disabledError]: error && props.disabled,
-      })}
-      disableRipple
-      {...props}
-    />
-  );
-};
+);
 IconButton.displayName = "Button";
