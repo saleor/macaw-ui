@@ -49,7 +49,7 @@ export const Interactive: Story = () => {
         labels={labels}
         transitionState={transitionState}
         onClick={handleClick}
-        variant="outlined"
+        variant="secondary"
       />
     </>
   );
@@ -61,7 +61,7 @@ export const Default: Story = () => (
     <ConfirmButton
       labels={labels}
       transitionState="default"
-      variant="outlined"
+      variant="secondary"
     />
   </>
 );
@@ -76,7 +76,7 @@ export const Loading: Story = () => (
       labels={labels}
       transitionState="loading"
       noTransition={true}
-      variant="outlined"
+      variant="secondary"
     />
   </>
 );
@@ -91,7 +91,7 @@ export const Error: Story = () => (
       labels={labels}
       transitionState="error"
       noTransition={true}
-      variant="outlined"
+      variant="secondary"
     />
   </>
 );
@@ -106,7 +106,7 @@ export const Success: Story = () => (
       labels={labels}
       transitionState="success"
       noTransition={true}
-      variant="outlined"
+      variant="secondary"
     />
   </>
 );
