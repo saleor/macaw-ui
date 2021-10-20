@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       background: "transparent",
       borderRadius: 4,
       color: theme.palette.saleor.main[3],
-      padding: theme.spacing(0.5),
+      padding: theme.spacing(1),
       transition: theme.transitions.create(["color", "background"], {
         duration: theme.transitions.duration.shorter,
       }),
