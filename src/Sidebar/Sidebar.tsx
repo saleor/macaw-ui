@@ -31,6 +31,7 @@ const useStyles = makeStyles(
       zIndex: 100,
     },
     rootShrink: {
+      minWidth: shrunkMenuWidth,
       width: shrunkMenuWidth,
     },
     toolbarContainer: {
