@@ -1,6 +1,8 @@
 import MuiButton, {
   ButtonProps as MuiButtonProps,
+  ButtonTypeMap as MuiButtonTypeMap,
 } from "@material-ui/core/Button";
+import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import clsx from "clsx";
 import React from "react";
 
@@ -8,13 +10,22 @@ import useStyles from "./styles";
 
 export type ButtonVariant = "primary" | "secondary" | "tertiary";
 
+interface ButtonInnerProps {
+  error?: boolean;
+  variant?: ButtonVariant;
+}
+
+export interface ButtonTypeMap<P = {}, D extends React.ElementType = "button"> {
+  props: Omit<MuiButtonTypeMap<P, D>["props"], "variant"> & ButtonInnerProps;
+  defaultComponent: D;
+  classKey: never;
+}
+
 export type ButtonProps<T extends React.ElementType = "button"> = Omit<
   MuiButtonProps<T>,
   "variant"
-> & {
-  error?: boolean;
-  variant?: ButtonVariant;
-};
+> &
+  ButtonInnerProps;
 
 function getButtonProps(variant: ButtonVariant): Partial<MuiButtonProps> {
   switch (variant) {
@@ -27,7 +38,7 @@ function getButtonProps(variant: ButtonVariant): Partial<MuiButtonProps> {
   }
 }
 
-export const Button: React.FC<ButtonProps> = ({
+const _Button: React.FC<ButtonProps> = ({
   className,
   error,
   variant = "tertiary",
@@ -56,4 +67,5 @@ export const Button: React.FC<ButtonProps> = ({
     />
   );
 };
-Button.displayName = "Button";
+_Button.displayName = "Button";
+export const Button = _Button as OverridableComponent<ButtonTypeMap>;
