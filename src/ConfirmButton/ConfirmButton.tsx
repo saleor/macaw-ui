@@ -1,4 +1,4 @@
-import Button, { ButtonProps } from "@material-ui/core/Button";
+import { Button, ButtonProps } from "../Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CheckIcon from "@material-ui/icons/Check";
 import clsx from "clsx";
@@ -23,12 +23,11 @@ export interface ConfirmButtonProps extends Omit<ButtonProps, "classes"> {
 
 export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
   children,
-  className,
   disabled,
   labels,
   noTransition,
   transitionState,
-  variant = "contained",
+  variant = "primary",
   onClick,
   onTransitionToDefault,
   ...props
@@ -74,17 +73,9 @@ export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
 
   return (
     <Button
-      variant={
-        isCompleted && ["success", "error"].includes(transitionState)
-          ? "contained"
-          : variant
-      }
+      variant={variant}
+      error={transitionState === "error" && isCompleted}
       onClick={transitionState === "loading" ? undefined : onClick}
-      color="primary"
-      className={clsx(className, {
-        [classes.error]: transitionState === "error" && isCompleted,
-        [classes.success]: transitionState === "success" && isCompleted,
-      })}
       disabled={!isCompleted && disabled}
       data-test-state={isCompleted ? transitionState : "default"}
       {...props}

@@ -29,10 +29,23 @@ const useStyles = makeStyles(
       "&:disabled": {
         color: theme.palette.saleor.disabled,
       },
+      background: "transparent",
+      borderRadius: 4,
       color: theme.palette.saleor.main[3],
-      transition: theme.transitions.create("color", {
+      padding: theme.spacing(1),
+      transition: theme.transitions.create(["color", "background"], {
         duration: theme.transitions.duration.shorter,
       }),
+    },
+    hoverOutline: {
+      "&$secondary": {
+        "&:hover,&:focus-visible": {
+          background: theme.palette.saleor.active[5],
+        },
+        "&:active": {
+          background: theme.palette.saleor.active[4],
+        },
+      },
     },
   }),
   {

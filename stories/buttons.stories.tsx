@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { FormControlLabel, Typography } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 import Delete from "@material-ui/icons/Delete";
@@ -64,9 +64,22 @@ export const Default: Story = () => {
             </IconButton>
           </Cell>
           <Cell>
-            <IconButton variant="secondary">
-              <Delete />
-            </IconButton>
+            <FormControlLabel
+              control={
+                <IconButton variant="secondary">
+                  <Delete />
+                </IconButton>
+              }
+              label="default"
+            />
+            <FormControlLabel
+              control={
+                <IconButton hoverOutline variant="secondary">
+                  <Delete />
+                </IconButton>
+              }
+              label="outlined"
+            />
             <IconButton disabled variant="secondary">
               <Delete />
             </IconButton>

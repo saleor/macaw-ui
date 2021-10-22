@@ -12,18 +12,21 @@ export type IconButtonProps<T extends React.ElementType = "button"> = Omit<
   "variant"
 > & {
   error?: boolean;
+  hoverOutline?: boolean;
   variant?: "primary" | "secondary";
 };
 
 export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
-  ({ className, error, variant = "primary", ...props }, ref) => {
+  ({ className, error, hoverOutline, variant = "primary", ...props }, ref) => {
     const classes = useStyles();
 
     if (variant === "secondary") {
       return (
         <ButtonBase
           ref={ref}
-          className={clsx(classes.secondary, className)}
+          className={clsx(classes.secondary, className, {
+            [classes.hoverOutline]: hoverOutline,
+          })}
           disableRipple
           {...props}
         />

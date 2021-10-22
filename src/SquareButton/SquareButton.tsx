@@ -40,6 +40,7 @@ export const SquareButton: React.FC<ButtonBaseProps> = React.forwardRef(
         className={clsx(classes.root, className, {
           [classes.disabled]: rest.disabled,
         })}
+        disableRipple
         ref={ref}
         {...rest}
       />

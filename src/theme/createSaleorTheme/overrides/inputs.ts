@@ -1,5 +1,9 @@
 import type { Overrides } from "@material-ui/core/styles/overrides";
 
+function getInputBoxShadow(color: string) {
+  return `0 0 0 3px ${color}`;
+}
+
 import { SaleorThemeColors } from "../types";
 
 export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
@@ -116,23 +120,24 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
       "&$error": {
         "&$focused": {
           "&:hover": {
-            boxShadow: `0px 0px 0px 3px ${colors.fail.mid}`,
+            boxShadow: getInputBoxShadow(colors.fail.mid),
           },
           "& fieldset": {
             borderColor: colors.fail.dark,
           },
-          boxShadow: `0px 0px 0px 3px ${colors.fail.mid}`,
+          boxShadow: getInputBoxShadow(colors.fail.mid),
         },
         "&:hover": {
           "&& fieldset": {
             borderColor: colors.fail.dark,
           },
-          boxShadow: `0px 0px 0px 3px ${colors.fail.light}`,
+          boxShadow: getInputBoxShadow(colors.fail.light),
         },
+        boxShadow: getInputBoxShadow(colors.fail.light),
       },
       "&$focused": {
         "&, &:hover": {
-          boxShadow: `0px 0px 0px 3px ${colors.active[3]}`,
+          boxShadow: getInputBoxShadow(colors.active[3]),
         },
         "& input": {
           "& fieldset": {
@@ -145,7 +150,7 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
         },
       },
       "&:hover": {
-        boxShadow: `0px 0px 0px 3px ${colors.active[5]}`,
+        boxShadow: getInputBoxShadow(colors.active[5]),
         "& input": {
           color: colors.font.default,
         },
