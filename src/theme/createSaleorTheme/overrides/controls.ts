@@ -13,23 +13,42 @@ export const controlOverrides = (
     },
     root: {
       "&:hover, &.Mui-focusVisible": {
-        "& > span": {
-          boxShadow: `0px 0px 0px 6px ${colors.active[5]}`,
-        },
-        background: "transparent",
+        background: colors.active[5],
         color: colors.active[1],
       },
       "& > span": {
-        borderRadius: 2,
-        boxShadow: `0 0 0 6px transparent`,
-        transition: "200ms",
+        position: "relative",
       },
       "& svg": {
         width: 20,
         height: 20,
       },
       border: "transparent",
+      borderRadius: 3,
       padding: 6,
+    },
+  },
+  MuiRadio: {
+    colorPrimary: {
+      "&&.Mui-checked:hover": {
+        backgroundColor: "transparent",
+      },
+    },
+    root: {
+      "&:hover, &.Mui-focusVisible": {
+        background: colors.active[5],
+        color: colors.active[1],
+      },
+      "& > span": {
+        position: "relative",
+      },
+      "& svg": {
+        width: 20,
+        height: 20,
+      },
+      border: "transparent",
+      borderRadius: "100%",
+      padding: 4,
     },
   },
 });

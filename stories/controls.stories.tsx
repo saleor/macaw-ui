@@ -1,4 +1,4 @@
-import { Checkbox, Typography } from "@material-ui/core";
+import { Checkbox, Radio, Typography, RadioGroup } from "@material-ui/core";
 import Delete from "@material-ui/icons/Delete";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
@@ -10,6 +10,7 @@ import { Cell } from "./utils/Cell";
 
 export const Default: Story = () => {
   const guideClasses = useGuideStyles();
+  const [radioValue, setRadioValue] = React.useState("opt1");
 
   return (
     <div>
@@ -29,6 +30,22 @@ export const Default: Story = () => {
             <Checkbox disabled />
             <Checkbox checked disabled />
             <Checkbox indeterminate />
+          </Cell>
+        </div>
+        <div>
+          <Cell>
+            <RadioGroup
+              value={radioValue}
+              onChange={(event) => setRadioValue(event.target.value)}
+              style={{ flexDirection: "row" }}
+            >
+              <Radio value="opt1" />
+              <Radio value="opt2" />
+            </RadioGroup>
+            <Radio className="Mui-focusVisible" />
+            <Radio checked />
+            <Radio disabled />
+            <Radio checked disabled />
           </Cell>
         </div>
       </div>

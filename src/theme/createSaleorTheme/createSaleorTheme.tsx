@@ -247,6 +247,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         disablePadding: true,
       },
       MuiRadio: {
+        color: "primary",
         disableRipple: true,
       },
       MuiSelect: {
