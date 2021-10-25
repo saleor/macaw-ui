@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       borderBottomRightRadius: 0,
     },
     root: {
-      height: 70,
+      height: 80,
     },
   }),
   { name: "Savebar" }
