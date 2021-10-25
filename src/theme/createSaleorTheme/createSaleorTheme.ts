@@ -223,6 +223,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
     },
     palette: createPalette(colors),
     props: {
+      MuiButton: {
+        disableRipple: true,
+      },
       MuiFormControl: {
         variant: "filled",
       },
