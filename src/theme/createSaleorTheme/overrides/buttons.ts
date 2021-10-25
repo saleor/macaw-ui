@@ -45,9 +45,6 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         fontWeight: 600,
       },
       root: {
-        "& svg": {
-          marginLeft: 8,
-        },
         borderRadius: 4,
         fontSize: "1.6rem",
         letterSpacing: "0.06rem",
