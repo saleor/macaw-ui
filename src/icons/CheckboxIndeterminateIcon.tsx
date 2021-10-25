@@ -3,15 +3,8 @@ import React from "react";
 
 export const CheckboxIndeterminateIcon = createSvgIcon(
   <>
-    <rect
-      x="5"
-      y="5"
-      width="14"
-      height="14"
-      stroke="currentColor"
-      fill="none"
-    />
-    <rect x="8" y="11" width="8" height="2" fill="currentColor" />
+    <rect x="0.5" y="0.5" width="23" height="23" rx="1.5" fill="currentColor" />
+    <rect x="4" y="10" width="16" height="4" rx="1.5" fill="white" />
   </>,
   "CheckboxIndeterminateIcon"
 );

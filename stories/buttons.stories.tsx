@@ -1,41 +1,14 @@
 import { FormControlLabel, Typography } from "@material-ui/core";
+import Delete from "@material-ui/icons/Delete";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
-import Delete from "@material-ui/icons/Delete";
 
-import useGuideStyles from "./guideStyles";
-import { makeStyles } from "../src/theme";
+import { Button, IconButton, PillLink, LayoutButton } from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
-import { PillLink, Button, IconButton, LayoutButton } from "../src";
-
-const useStyles = makeStyles((theme) => ({
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    columnGap: theme.spacing(3),
-  },
-  cell: {
-    "&:not(:last-child)": {
-      marginBottom: theme.spacing(3),
-    },
-    alignItems: "center",
-    border: "1px dashed #7B61FF",
-    borderRadius: 4,
-    display: "flex",
-    flexDirection: "column",
-    padding: theme.spacing(3),
-    rowGap: theme.spacing(3),
-  },
-}));
-
-const Cell: React.FC = ({ children }) => {
-  const classes = useStyles();
-
-  return <div className={classes.cell}>{children}</div>;
-};
+import useGuideStyles from "./guideStyles";
+import { Cell } from "./utils/Cell";
 
 export const Default: Story = () => {
-  const classes = useStyles();
   const guideClasses = useGuideStyles();
 
   return (
@@ -47,7 +20,7 @@ export const Default: Story = () => {
         In most cases your app will be using one of those button types:
       </Typography>
 
-      <div className={classes.grid}>
+      <div className={guideClasses.grid}>
         <div>
           <Cell>
             <Button variant="primary">Primary</Button>
@@ -127,7 +100,6 @@ export const Default: Story = () => {
 };
 
 export const Error: Story = () => {
-  const classes = useStyles();
   const guideClasses = useGuideStyles();
 
   return (
@@ -140,7 +112,7 @@ export const Error: Story = () => {
         needs additional attention:
       </Typography>
 
-      <div className={classes.grid}>
+      <div className={guideClasses.grid}>
         <div>
           <Cell>
             <Button error variant="primary">

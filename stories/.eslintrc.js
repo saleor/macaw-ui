@@ -1,8 +1,6 @@
 module.exports = {
-    extends: [
-      "../.eslintrc.json",,
-    ],
-      "no-restricted-imports":"off",
-    },
-  };
-  
+  extends: "../.eslintrc.js",
+  rules: {
+    "no-restricted-imports": "off",
+  },
+};
