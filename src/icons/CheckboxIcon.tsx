@@ -10,8 +10,7 @@ export const CheckboxIcon = createSvgIcon(
       width="20"
       height="20"
       rx="1"
-      fill="white"
-      strokeOpacity="0.6"
+      fill="var(--background-paper)"
       strokeWidth="2"
     />
   </>,

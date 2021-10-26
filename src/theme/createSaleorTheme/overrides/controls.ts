@@ -13,15 +13,30 @@ export const controlOverrides = (
     },
     root: {
       "&:hover, &.Mui-focusVisible": {
-        background: colors.active[5],
+        "& > span::before": {
+          animation: `200ms alternate hoverRadioStart, 
+          600ms infinite alternate 200ms hoverRadio`,
+        },
+        background: "transparent",
         color: colors.active[1],
       },
       "& > span": {
+        "&::before": {
+          content: "''",
+          width: 20,
+          height: 20,
+          background: colors.active[5],
+          position: "absolute",
+          top: 0,
+          left: 0,
+          borderRadius: 2,
+        },
         position: "relative",
       },
       "& svg": {
         width: 20,
         height: 20,
+        zIndex: 0,
       },
       border: "transparent",
       borderRadius: 3,
@@ -36,15 +51,30 @@ export const controlOverrides = (
     },
     root: {
       "&:hover, &.Mui-focusVisible": {
-        background: colors.active[5],
+        "& > span::before": {
+          animation: `200ms alternate hoverRadioStart, 
+          600ms infinite alternate 200ms hoverRadio`,
+        },
+        background: "transparent",
         color: colors.active[1],
       },
       "& > span": {
+        "&::before": {
+          content: "''",
+          width: 20,
+          height: 20,
+          background: colors.active[5],
+          position: "absolute",
+          top: 0,
+          left: 0,
+          borderRadius: "100%",
+        },
         position: "relative",
       },
       "& svg": {
         width: 20,
         height: 20,
+        zIndex: 0,
       },
       border: "transparent",
       borderRadius: "100%",
@@ -82,7 +112,8 @@ export const controlOverrides = (
       "&:hover, &:focus-visible, &.Mui-focusVisible": {
         "& $switchBase:not($disabled)": {
           "& + $track": {
-            boxShadow: `0 0 0 4px ${colors.active[5]}`,
+            animation: `200ms alternate hoverSwitchStart, 
+              600ms infinite alternate 200ms hoverSwitch`,
           },
         },
       },
@@ -110,7 +141,6 @@ export const controlOverrides = (
       width: 14,
     },
     track: {
-      boxShadow: "0 0 0 4px transparent",
       border: `2px solid ${colors.main[3]}`,
       backgroundColor: "transparent",
       borderRadius: 12,
