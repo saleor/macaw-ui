@@ -14,8 +14,8 @@ export const controlOverrides = (
     root: {
       "&:hover, &.Mui-focusVisible": {
         "& > span::before": {
-          animation: `200ms alternate hoverRadioStart, 
-          600ms infinite alternate 200ms hoverRadio`,
+          animation: `200ms alternate hoverControlStart, 
+          600ms infinite alternate 200ms hoverControl`,
         },
         background: "transparent",
         color: colors.active[1],
@@ -52,8 +52,8 @@ export const controlOverrides = (
     root: {
       "&:hover, &.Mui-focusVisible": {
         "& > span::before": {
-          animation: `200ms alternate hoverRadioStart, 
-          600ms infinite alternate 200ms hoverRadio`,
+          animation: `200ms alternate hoverControlStart, 
+          600ms infinite alternate 200ms hoverControl`,
         },
         background: "transparent",
         color: colors.active[1],

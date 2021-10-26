@@ -11,7 +11,7 @@ const useStyles = makeStyles(
 
       // Putting them here, because MUI doesn't let putting own keys in
       // `overrides` objects
-      "@keyframes hoverCheckboxStart": {
+      "@keyframes hoverControlStart": {
         from: {
           transform: "scale(1)",
         },
@@ -19,29 +19,12 @@ const useStyles = makeStyles(
           transform: "scale(1.4)",
         },
       },
-      "@keyframes hoverCheckbox": {
+      "@keyframes hoverControl": {
         from: {
           transform: "scale(1.4)",
         },
         to: {
           transform: "scale(1.6)",
-        },
-      },
-
-      "@keyframes hoverRadioStart": {
-        from: {
-          transform: "scale(1)",
-        },
-        to: {
-          transform: "scale(1.3)",
-        },
-      },
-      "@keyframes hoverRadio": {
-        from: {
-          transform: "scale(1.3)",
-        },
-        to: {
-          transform: "scale(1.5)",
         },
       },
 
