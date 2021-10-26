@@ -7,6 +7,8 @@ import {
   CheckboxCheckedIcon,
   CheckboxIcon,
   CheckboxIndeterminateIcon,
+  RadioCheckedIcon,
+  RadioIcon,
 } from "../..";
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
@@ -249,6 +251,8 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiRadio: {
         color: "primary",
         disableRipple: true,
+        icon: <RadioIcon />,
+        checkedIcon: <RadioCheckedIcon />,
       },
       MuiSwitch: {
         color: "primary",
