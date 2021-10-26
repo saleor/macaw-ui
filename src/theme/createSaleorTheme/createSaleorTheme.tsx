@@ -250,6 +250,10 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         color: "primary",
         disableRipple: true,
       },
+      MuiSwitch: {
+        color: "primary",
+        disableRipple: true,
+      },
       MuiSelect: {
         MenuProps: {
           anchorOrigin: {

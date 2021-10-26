@@ -51,4 +51,73 @@ export const controlOverrides = (
       padding: 4,
     },
   },
+  MuiSwitch: {
+    colorPrimary: {
+      "&$disabled": {
+        "& + $track": {
+          backgroundColor: "transparent",
+          border: `2px solid ${colors.disabled}`,
+        },
+        "&$checked + $track": {
+          backgroundColor: colors.disabled,
+          borderColor: colors.disabled,
+        },
+        "&$checked": {
+          color: colors.background.paper,
+        },
+        color: colors.disabled,
+      },
+      "&$checked": {
+        "&:hover": {
+          backgroundColor: "transparent",
+        },
+        "& + $track": {
+          borderColor: colors.active[1],
+        },
+        color: colors.background.paper,
+      },
+      color: colors.main[3],
+    },
+    root: {
+      "&:hover, &:focus-visible, &.Mui-focusVisible": {
+        "& $switchBase:not($disabled)": {
+          "& + $track": {
+            boxShadow: `0 0 0 4px ${colors.active[5]}`,
+          },
+        },
+      },
+      height: 48,
+      width: 72,
+    },
+    switchBase: {
+      "&$checked": {
+        transform: "translateX(23px)",
+      },
+      "&:hover, &.Mui-focusVisible": {
+        backgroundColor: "transparent",
+      },
+      boxShadow: "none",
+      left: 4,
+      marginLeft: 4,
+      top: 8,
+      color: colors.background.paper,
+      border: "none",
+      background: "transparent",
+    },
+    thumb: {
+      boxShadow: "none",
+      height: 14,
+      width: 14,
+    },
+    track: {
+      boxShadow: "0 0 0 4px transparent",
+      border: `2px solid ${colors.main[3]}`,
+      backgroundColor: "transparent",
+      borderRadius: 12,
+      height: 24,
+      opacity: [["1"], "!important"] as any,
+      width: 48,
+      transition: "200ms",
+    },
+  },
 });

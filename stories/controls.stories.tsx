@@ -1,9 +1,13 @@
-import { Checkbox, Radio, Typography, RadioGroup } from "@material-ui/core";
-import Delete from "@material-ui/icons/Delete";
+import {
+  Checkbox,
+  Radio,
+  Typography,
+  RadioGroup,
+  Switch,
+} from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Button, IconButton, PillLink } from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
 import { Cell } from "./utils/Cell";
@@ -46,6 +50,15 @@ export const Default: Story = () => {
             <Radio checked />
             <Radio disabled />
             <Radio checked disabled />
+          </Cell>
+        </div>
+        <div>
+          <Cell>
+            <Switch />
+            <Switch className="Mui-focusVisible" />
+            <Switch checked />
+            <Switch disabled />
+            <Switch checked disabled />
           </Cell>
         </div>
       </div>
