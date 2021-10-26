@@ -38,9 +38,15 @@ export const controlOverrides = (
         height: 20,
         zIndex: 0,
       },
+      "& input": {
+        width: 48,
+        height: 48,
+        top: -14,
+        left: -14,
+      },
       border: "transparent",
       borderRadius: 3,
-      padding: 6,
+      padding: 14,
     },
   },
   MuiRadio: {
@@ -76,9 +82,15 @@ export const controlOverrides = (
         height: 20,
         zIndex: 0,
       },
+      "& input": {
+        width: 48,
+        height: 48,
+        top: -14,
+        left: -14,
+      },
       border: "transparent",
       borderRadius: "100%",
-      padding: 4,
+      padding: 14,
     },
   },
   MuiSwitch: {
