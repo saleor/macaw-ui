@@ -39,7 +39,8 @@
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "release": "np"
+    "release": "np",
+    "chromatic": "npx chromatic --project-token=4626409b8516"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.2",
@@ -97,6 +98,7 @@
     "@types/react-dom": "^17.0.4",
     "@types/react-helmet": "^6.1.1",
     "@types/react-inlinesvg": "^1.0.0",
+    "chromatic": "^6.0.4",
     "concurrently": "^6.3.0",
     "esbuild": "^0.13.4",
     "esbuild-jest": "^0.5.0",
