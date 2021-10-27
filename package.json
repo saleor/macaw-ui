@@ -40,7 +40,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "release": "np",
-    "chromatic": "npx chromatic --project-token=4626409b8516"
+    "chromatic": "npx chromatic --exit-zero-on-changes --skip 'dependabot/**'"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.2",
