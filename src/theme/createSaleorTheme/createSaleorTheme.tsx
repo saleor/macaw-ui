@@ -106,6 +106,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           lineHeight: 1.2,
           marginLeft: 4,
         },
+        root: {
+          marginLeft: -14,
+        },
       },
       MuiFormLabel: {
         filled: {
@@ -117,7 +120,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "&&$focused:not($error)": {
             color: colors.font.gray,
           },
-          marginLeft: -14,
         },
       },
       MuiSvgIcon: {
