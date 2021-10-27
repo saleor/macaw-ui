@@ -42,12 +42,12 @@ export const Alert: React.FC<AlertProps> = ({
   return (
     <AlertBase variant={variant} {...rest}>
       <div className={classes.container}>
-        <div>
+        <div style={{ margin: 20 }}>
           <Icon variant={variant} />
         </div>
         <div className={classes.content}>
           <div className={classes.titleBar}>
-            <Typography variant="h5">{title}</Typography>
+            <Typography variant="h3">{title}</Typography>
             {close && (
               <IconButton
                 className={clsx(classes.close, {
