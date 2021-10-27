@@ -117,6 +117,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "&&$focused:not($error)": {
             color: colors.font.gray,
           },
+          marginLeft: -14,
         },
       },
       MuiSvgIcon: {
