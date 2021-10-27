@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Required for Chromatic to retrieve full git history
 
       - name: Use Node 12.x
         uses: actions/setup-node@v1
@@ -26,3 +28,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
