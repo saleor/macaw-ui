@@ -6,32 +6,35 @@ const useStyles = makeStyles(
   (theme) => ({
     actions: {},
     actionsButton: {
+      "&:hover": {
+        color: theme.palette.primary.main,
+      },
       "&:last-child": {
         marginLeft: theme.spacing(1.5),
       },
       "& svg": {
-        color: theme.palette.text.primary,
+        color: "currentColor",
         width: 16,
       },
-      border: `2px solid ${theme.palette.text.primary}`,
+      border: "2px solid currentColor",
+      color: theme.palette.text.primary,
       height: 36,
       width: 36,
+      transition: theme.transitions.create("color", {
+        duration: theme.transitions.duration.shorter,
+      }),
     },
     actionsButtonDisabled: {
-      "& svg": {
-        color: theme.palette.text.disabled,
-      },
       border: `2px solid ${theme.palette.text.disabled}`,
+      color: theme.palette.text.disabled,
     },
     dark: {
-      "& svg": {
-        color: theme.palette.primary.main,
-      },
       "&:focus, &:hover": {
         "& > span:first-of-type": {
           backgroundColor: fade(theme.palette.primary.main, 0.2),
         },
       },
+      color: theme.palette.primary.main,
     },
     root: {},
     toolbar: {
