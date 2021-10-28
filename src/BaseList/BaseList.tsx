@@ -103,7 +103,8 @@ export const BaseListItemCell: React.FC<BaseListItemCellProps> = ({
   );
 };
 
-export const BaseListHeader: React.FC<React.HTMLProps<HTMLHeadingElement>> = ({
+export type BaseListHeaderProps = React.HTMLProps<HTMLHeadingElement>;
+export const BaseListHeader: React.FC<BaseListHeaderProps> = ({
   children,
   ...props
 }) => (
@@ -112,7 +113,8 @@ export const BaseListHeader: React.FC<React.HTMLProps<HTMLHeadingElement>> = ({
   </ListContext.Provider>
 );
 
-export const BaseListBody: React.FC<React.HTMLProps<HTMLUListElement>> = ({
+export type BaseListBodyProps = React.HTMLProps<HTMLUListElement>;
+export const BaseListBody: React.FC<BaseListBodyProps> = ({
   children,
   ...props
 }) => (
@@ -123,7 +125,8 @@ export const BaseListBody: React.FC<React.HTMLProps<HTMLUListElement>> = ({
   </ListContext.Provider>
 );
 
-export const BaseListFooter: React.FC<React.HTMLProps<HTMLHeadingElement>> = ({
+export type BaseListFooterProps = React.HTMLProps<HTMLHeadingElement>;
+export const BaseListFooter: React.FC<BaseListFooterProps> = ({
   children,
   ...props
 }) => (
