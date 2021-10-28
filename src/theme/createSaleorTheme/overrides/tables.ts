@@ -31,7 +31,7 @@ export const tableOverrides = (
         width: 52,
       },
       "&:last-child": {
-        paddingRight: undefined,
+        paddingRight: 20,
       },
     },
     root: {
@@ -69,6 +69,9 @@ export const tableOverrides = (
         background: colors.active[5],
       },
       transition: "200ms",
+    },
+    root: {
+      position: "relative",
     },
   },
 });

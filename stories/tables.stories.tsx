@@ -12,6 +12,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import {
+  Alert,
   DeleteIcon,
   IconButton,
   ResponsiveTable,
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     width: 72,
   },
   colAction: {
-    width: 48,
+    width: 120,
   },
 }));
 
@@ -83,6 +84,13 @@ const Default: React.FC = () => {
       setSelected(selected.filter((row) => row !== name));
     } else {
       setSelected([...selected, name]);
+    }
+  };
+  const toggleAll = () => {
+    if (data.length === selected.length) {
+      setSelected([]);
+    } else {
+      setSelected(data.map((row) => row.name));
     }
   };
 
@@ -177,12 +185,30 @@ const Default: React.FC = () => {
           <col className={classes.colAction} />
         </colgroup>
         <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Name</TableCell>
-            <TableCell>Calories (per 100g)</TableCell>
-            <TableCell />
-          </TableRow>
+          {selected.length > 0 ? (
+            <TableRow>
+              <TableCell padding="checkbox">
+                <Checkbox
+                  checked={selected.length === data.length}
+                  indeterminate={selected.length !== data.length}
+                  onChange={toggleAll}
+                />
+              </TableCell>
+              <TableCell colSpan={2}>&nbsp;</TableCell>
+              <TableCell align="right" padding="checkbox">
+                <IconButton variant="secondary" hoverOutline>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ) : (
+            <TableRow>
+              <TableCell />
+              <TableCell>Name</TableCell>
+              <TableCell>Calories (per 100g)</TableCell>
+              <TableCell />
+            </TableRow>
+          )}
         </TableHead>
         <TableBody>
           {data.map((dataRow) => (
@@ -205,6 +231,16 @@ const Default: React.FC = () => {
           ))}
         </TableBody>
       </ResponsiveTable>
+      <Typography className={guideClasses.paragraph} component="p">
+        <Alert title="Tip" close={false} variant="info">
+          Note that we're using{" "}
+          <Typography className={guideClasses.code}>
+            useTableActionHover
+          </Typography>{" "}
+          hook to deactivate hover effect on row when user is hovering above
+          control components.
+        </Alert>
+      </Typography>
     </div>
   );
 };
