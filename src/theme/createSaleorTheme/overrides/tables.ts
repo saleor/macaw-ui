@@ -30,6 +30,9 @@ export const tableOverrides = (
         padding: 0,
         width: 52,
       },
+      "&:last-child": {
+        paddingRight: undefined,
+      },
     },
     root: {
       "&:first-child": {
@@ -39,8 +42,8 @@ export const tableOverrides = (
           textAlign: "left",
         },
       },
-      borderBottomColor: "transparent",
-      padding: "16px 24px",
+      borderBottomColor: colors.background.default,
+      padding: "24px 32px",
     },
   },
   MuiTablePagination: {
@@ -59,27 +62,13 @@ export const tableOverrides = (
       "$root$hover&:hover": {
         background: "none",
       },
+      color: colors.main[3],
     },
     hover: {
       "$root&:hover": {
-        "& td": {
-          borderColor: "transparent",
-        },
-        backgroundColor: colors.active[5],
+        background: colors.active[5],
       },
       transition: "200ms",
-    },
-    root: {
-      "&::after": {
-        content: "''",
-        height: 1,
-        width: "calc(100% - 64px)",
-        left: 32,
-        top: "100%",
-        position: "absolute",
-        background: colors.background.default,
-      },
-      position: "relative",
     },
   },
 });
