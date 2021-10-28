@@ -1,4 +1,3 @@
-import { fade } from "@material-ui/core/styles";
 import type { Overrides } from "@material-ui/core/styles/overrides";
 
 import { SaleorThemeColors } from "../types";
@@ -35,12 +34,12 @@ export const tableOverrides = (
     root: {
       "&:first-child": {
         "&:not($paddingCheckbox)": {
-          paddingLeft: 24 + "px",
-          paddingRight: 24 + "px",
-          textAlign: "left" as "left",
+          paddingLeft: 32,
+          paddingRight: 32,
+          textAlign: "left",
         },
       },
-      borderBottomColor: colors.paperBorder,
+      borderBottomColor: "transparent",
       padding: "16px 24px",
     },
   },
@@ -63,13 +62,24 @@ export const tableOverrides = (
     },
     hover: {
       "$root&:hover": {
-        backgroundColor: fade(colors.primary, 0.3),
+        "& td": {
+          borderColor: "transparent",
+        },
+        backgroundColor: colors.active[5],
       },
+      transition: "200ms",
     },
     root: {
-      "&$selected": {
-        backgroundColor: fade(colors.primary, 0.05),
+      "&::after": {
+        content: "''",
+        height: 1,
+        width: "calc(100% - 64px)",
+        left: 32,
+        top: "100%",
+        position: "absolute",
+        background: colors.background.default,
       },
+      position: "relative",
     },
   },
 });
