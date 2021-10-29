@@ -71,7 +71,7 @@ const S: React.FC = () => {
 
   return (
     <OffsettedList
-      gridTemplate={`${checkbox}px 1fr 200px ${actions(2)}`}
+      gridTemplate={`${checkbox} 1fr 200px ${actions(2)}`}
       style={{ width: 650 }}
     >
       <OffsettedListHeader>

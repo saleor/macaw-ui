@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from "..";
 import {
   BaseList,
   BaseListBody,
@@ -26,7 +27,6 @@ export const ListItem: React.FC<Omit<BaseListItemProps, "classes">> = ({
 }) => {
   const classes = useStyles();
   const [hover, setHover] = useState(true);
-  console.log(hover, initialHover && hover);
 
   return (
     <ListActionContext.Provider value={setHover}>
@@ -54,4 +54,13 @@ export const ListItemCellAction: React.FC<
       {...props}
     />
   );
+};
+
+export const useListWidths = () => {
+  const theme = useTheme();
+
+  return {
+    actions: (n: number = 1) => `calc( ${theme.spacing(n + 1)} + ${48 * n}px)`,
+    checkbox: "64px",
+  };
 };

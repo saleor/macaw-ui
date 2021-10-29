@@ -45,8 +45,9 @@ export const useOffsettedListWidths = () => {
   const theme = useTheme();
 
   return {
+    // n actions - 1 + 2.5 right padding
     actions: (n: number = 1) =>
-      `calc( ${theme.spacing(n + 0.5)} + ${48 * n}px)`,
-    checkbox: 64,
+      `calc( ${theme.spacing(n - 1 + 2.5)} + ${40 * n}px)`,
+    checkbox: "64px",
   };
 };

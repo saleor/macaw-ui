@@ -50,7 +50,7 @@ export const useStyles = makeStyles(
       cell: {},
       cellAction: {
         "&$cell:last-child": {
-          paddingRight: theme.spacing(2.5),
+          paddingRight: theme.spacing(3),
         },
         display: "flex",
         gap: theme.spacing(1),

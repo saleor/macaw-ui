@@ -12,6 +12,7 @@ import {
   ListItem,
   ListItemCell,
   ListItemCellAction,
+  useListWidths,
 } from ".";
 
 export const Default: Story = () => {
@@ -64,18 +65,19 @@ export const Default: Story = () => {
   );
 };
 
-export const WithActions: Story = () => {
+const StoryWrapper: React.FC = () => {
   const { data, pageData, selected, isRowSelected, toggleAll, toggleRow } =
     useListStory(10);
+  const { checkbox, actions } = useListWidths();
 
   return (
     <Card>
       <CardHeader title="Example List" />
-      <List gridTemplate="48px 1fr 200px 48px">
+      <List gridTemplate={`${checkbox} 1fr 200px ${actions(1)}`}>
         <ListHeader>
           {selected.length > 0 ? (
             <ListItem>
-              <ListItemCell>
+              <ListItemCell padding="checkbox">
                 <Checkbox
                   checked={selected.length === data.length}
                   indeterminate={selected.length !== data.length}
@@ -83,7 +85,7 @@ export const WithActions: Story = () => {
                 />
               </ListItemCell>
               <ListItemCell colSpan={2} />
-              <ListItemCell>
+              <ListItemCell padding="action">
                 <IconButton variant="secondary" hoverOutline>
                   <DeleteIcon />
                 </IconButton>
@@ -101,7 +103,7 @@ export const WithActions: Story = () => {
         <ListBody>
           {pageData.map((dataRow) => (
             <ListItem selected={isRowSelected(dataRow.name)} key={dataRow.name}>
-              <ListItemCell>
+              <ListItemCell padding="checkbox">
                 <ListItemCellAction>
                   <Checkbox
                     checked={isRowSelected(dataRow.name)}
@@ -111,7 +113,7 @@ export const WithActions: Story = () => {
               </ListItemCell>
               <ListItemCell>{dataRow.name}</ListItemCell>
               <ListItemCell>{`${dataRow.calories} kcal`}</ListItemCell>
-              <ListItemCell>
+              <ListItemCell padding="action">
                 <ListItemCellAction>
                   <IconButton variant="secondary" hoverOutline>
                     <DeleteIcon />
@@ -125,6 +127,8 @@ export const WithActions: Story = () => {
     </Card>
   );
 };
+
+export const WithActions: Story = () => <StoryWrapper />;
 
 export default {
   title: "Lists / List",
