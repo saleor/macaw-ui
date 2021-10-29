@@ -17,6 +17,8 @@ const useStyles = makeStyles(
         width: 16,
       },
       border: "2px solid currentColor",
+      borderRadius: 2,
+      boxSizing: "border-box",
       color: theme.palette.text.primary,
       height: 36,
       width: 36,

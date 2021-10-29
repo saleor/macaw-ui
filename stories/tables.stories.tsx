@@ -12,14 +12,12 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import {
-  Alert,
   DeleteIcon,
   IconButton,
   ResponsiveTable,
   TablePagination,
 } from "../src";
 import { makeStyles } from "../src/theme";
-import { useTableActionHover } from "../src/tools";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
 
@@ -72,7 +70,6 @@ const Default: React.FC = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(2);
   const [selected, setSelected] = React.useState([data[0].name, data[2].name]);
-  const { hover, props } = useTableActionHover();
 
   const hasNextPage = (page + 1) * rowsPerPage < data.length;
   const hasPreviousPage = page > 0;
@@ -212,10 +209,9 @@ const Default: React.FC = () => {
         </TableHead>
         <TableBody>
           {data.map((dataRow) => (
-            <TableRow hover={hover} selected={isRowSelected(dataRow.name)}>
+            <TableRow hover selected={isRowSelected(dataRow.name)}>
               <TableCell padding="checkbox">
                 <Checkbox
-                  {...props}
                   checked={isRowSelected(dataRow.name)}
                   onChange={() => toggleRow(dataRow.name)}
                 />
@@ -223,7 +219,7 @@ const Default: React.FC = () => {
               <TableCell>{dataRow.name}</TableCell>
               <TableCell>{`${dataRow.calories} kcal`}</TableCell>
               <TableCell align="right" padding="checkbox">
-                <IconButton {...props} variant="secondary" hoverOutline>
+                <IconButton variant="secondary" hoverOutline>
                   <DeleteIcon />
                 </IconButton>
               </TableCell>
@@ -231,16 +227,6 @@ const Default: React.FC = () => {
           ))}
         </TableBody>
       </ResponsiveTable>
-      <Typography className={guideClasses.paragraph} component="p">
-        <Alert title="Tip" close={false} variant="info">
-          Note that we're using{" "}
-          <Typography className={guideClasses.code}>
-            useTableActionHover
-          </Typography>{" "}
-          hook to deactivate hover effect on row when user is hovering above
-          control components.
-        </Alert>
-      </Typography>
     </div>
   );
 };

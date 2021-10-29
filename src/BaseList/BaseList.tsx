@@ -6,7 +6,7 @@ import {
   useGridStyles,
   useListContext,
 } from "./context";
-import { ListGridTemplate } from "./styles";
+import { ListGridTemplate, useStyles } from "./styles";
 
 export interface BaseListProps extends React.HTMLAttributes<HTMLElement> {
   gridTemplate: ListGridTemplate;
@@ -24,9 +24,12 @@ export const BaseList: React.FC<BaseListProps> = ({
 export type BaseListItemClassKey =
   | "row"
   | "rowBody"
+  | "rowHead"
+  | "rowFoot"
   | "rowCheckbox"
   | "rowNoPadding"
-  | "rowHover";
+  | "rowHover"
+  | "rowBodySelected";
 
 export interface BaseListItemProps
   extends React.HTMLAttributes<HTMLDivElement | HTMLLIElement> {
@@ -45,6 +48,7 @@ export const BaseListItem: React.FC<BaseListItemProps> = ({
   selected,
   ...props
 }) => {
+  const baseClasses = useStyles();
   const gridClasses = useGridStyles();
   const listSection = useListContext();
 
@@ -57,11 +61,16 @@ export const BaseListItem: React.FC<BaseListItemProps> = ({
         "OfsettedTableRow",
         gridClasses.root,
         classes.row,
+        baseClasses.row,
         {
           [classes.rowBody]: listSection === "body",
+          [classes.rowHead]: listSection === "head",
+          [classes.rowFoot]: listSection === "foot",
           [classes.rowCheckbox]: padding === "checkbox",
+          [baseClasses.rowNoPadding]: padding === "none",
           [classes.rowNoPadding]: padding === "none",
           [classes.rowHover]: hover,
+          [classes.rowBodySelected]: selected,
         }
       )}
       aria-selected={selected}
@@ -86,12 +95,13 @@ export const BaseListItemCell: React.FC<BaseListItemCellProps> = ({
   colSpan,
   ...props
 }) => {
+  const baseClasses = useStyles();
   const listSection = useListContext();
   const style = colSpan ? { gridColumn: `span ${colSpan}` } : {};
 
   return (
     <div
-      className={clsx(className, classes.cell, {
+      className={clsx(className, baseClasses.cell, classes.cell, {
         [classes.cellBody]: listSection === "body",
         [classes.cellHeader]: listSection === "head",
       })}
@@ -116,14 +126,19 @@ export const BaseListHeader: React.FC<BaseListHeaderProps> = ({
 export type BaseListBodyProps = React.HTMLProps<HTMLUListElement>;
 export const BaseListBody: React.FC<BaseListBodyProps> = ({
   children,
+  className,
   ...props
-}) => (
-  <ListContext.Provider value="body">
-    <ul role="feed" {...props}>
-      {children}
-    </ul>
-  </ListContext.Provider>
-);
+}) => {
+  const classes = useStyles();
+
+  return (
+    <ListContext.Provider value="body">
+      <ul role="feed" className={clsx(classes.body, className)} {...props}>
+        {children}
+      </ul>
+    </ListContext.Provider>
+  );
+};
 
 export type BaseListFooterProps = React.HTMLProps<HTMLHeadingElement>;
 export const BaseListFooter: React.FC<BaseListFooterProps> = ({

@@ -34,6 +34,8 @@ export const useStyles = makeStyles<
     rowCheckbox: {
       paddingLeft: theme.spacing(2.5),
     },
+    rowFoot: {},
+    rowHead: {},
     rowHover: {
       "&$rowBody:hover": {
         "& $cell:first-child": {
@@ -45,9 +47,7 @@ export const useStyles = makeStyles<
     rowNoPadding: {
       padding: 0,
     },
-    rowBodySelected: {
-      background: fade(theme.palette.primary.main, 0.2),
-    },
+    rowBodySelected: {},
     cell: {
       boxSizing: "content-box",
       flex: 1,

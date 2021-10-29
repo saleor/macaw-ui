@@ -25,5 +25,26 @@ export const useGridTemplateStyles = makeStyles<
       };
     },
   }),
-  { name: "OfsettedListGrid" }
+  { name: "ListGrid" }
+);
+
+export const useStyles = makeStyles(
+  () => ({
+    row: {
+      alignItems: "center",
+      display: "grid",
+    },
+    rowNoPadding: {
+      padding: 0,
+    },
+    cell: {
+      boxSizing: "content-box",
+      flex: 1,
+    },
+    body: {
+      margin: 0,
+      padding: 0,
+    },
+  }),
+  { name: "BaseList" }
 );

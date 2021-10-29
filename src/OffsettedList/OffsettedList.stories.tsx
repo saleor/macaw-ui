@@ -92,7 +92,7 @@ export const WithActions: Story = () => {
       </OffsettedListHeader>
       <OffsettedListBody>
         {pageData.map((dataRow) => (
-          <OffsettedListItem>
+          <OffsettedListItem selected={isRowSelected(dataRow.name)}>
             <OffsettedListItemCell>
               <Checkbox
                 checked={isRowSelected(dataRow.name)}
