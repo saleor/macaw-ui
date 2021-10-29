@@ -34,9 +34,6 @@ export const useStyles = makeStyles(
       alignItems: "center",
       display: "grid",
     },
-    rowNoPadding: {
-      padding: 0,
-    },
     cell: {
       boxSizing: "content-box",
       flex: 1,

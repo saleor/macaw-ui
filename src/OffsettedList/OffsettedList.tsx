@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "..";
 import {
   BaseList,
   BaseListBody,
@@ -38,4 +39,14 @@ export const OffsettedListItemCell: React.FC<
   const classes = useStyles();
 
   return <BaseListItemCell classes={classes} {...props} />;
+};
+
+export const useOffsettedListWidths = () => {
+  const theme = useTheme();
+
+  return {
+    actions: (n: number = 1) =>
+      `calc( ${theme.spacing(n + 0.5)} + ${48 * n}px)`,
+    checkbox: 64,
+  };
 };

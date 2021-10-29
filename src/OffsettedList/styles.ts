@@ -11,7 +11,6 @@ export const useStyles = makeStyles<
       display: "grid",
       minHeight: 48,
       gap: theme.spacing(4),
-      padding: theme.spacing(0, 4),
     },
     rowBody: {
       "&:first-child": {
@@ -30,9 +29,6 @@ export const useStyles = makeStyles<
       })}`,
       ...theme.typography.body1,
     },
-    rowCheckbox: {
-      paddingLeft: theme.spacing(2.5),
-    },
     rowFoot: {},
     rowHead: {},
     rowHover: {
@@ -43,9 +39,6 @@ export const useStyles = makeStyles<
         boxShadow: theme.shadows[16],
       },
     },
-    rowNoPadding: {
-      padding: 0,
-    },
     rowBodySelected: {},
     cell: {
       boxSizing: "content-box",
@@ -54,7 +47,26 @@ export const useStyles = makeStyles<
         duration: theme.transitions.duration.shorter,
       }),
     },
+    cellAction: {
+      "&$cell:last-child": {
+        paddingRight: theme.spacing(2.5),
+      },
+      display: "flex",
+      gap: theme.spacing(1),
+      justifyContent: "flex-end",
+    },
+    cellCheckbox: {
+      "&$cell:first-child": {
+        paddingLeft: theme.spacing(2),
+      },
+    },
     cellBody: {
+      "&:first-child": {
+        paddingLeft: theme.spacing(4),
+      },
+      "&:last-child": {
+        paddingRight: theme.spacing(4),
+      },
       padding: theme.spacing(1, 0),
     },
     cellHeader: {

@@ -1,7 +1,13 @@
 import { Checkbox } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
-import { DeleteIcon, IconButton, Pagination } from "..";
+import {
+  DeleteIcon,
+  EditIcon,
+  IconButton,
+  Pagination,
+  useOffsettedListWidths,
+} from "..";
 import { useListStory } from "../utils/useListStory";
 
 import {
@@ -58,16 +64,20 @@ export const Default: Story = () => {
   );
 };
 
-export const WithActions: Story = () => {
+const S: React.FC = () => {
   const { data, pageData, selected, isRowSelected, toggleAll, toggleRow } =
     useListStory(10);
+  const { checkbox, actions } = useOffsettedListWidths();
 
   return (
-    <OffsettedList gridTemplate="48px 1fr 200px 48px" style={{ width: 650 }}>
+    <OffsettedList
+      gridTemplate={`${checkbox}px 1fr 200px ${actions(2)}`}
+      style={{ width: 650 }}
+    >
       <OffsettedListHeader>
         {selected.length > 0 ? (
           <OffsettedListItem>
-            <OffsettedListItemCell>
+            <OffsettedListItemCell padding="checkbox">
               <Checkbox
                 checked={selected.length === data.length}
                 indeterminate={selected.length !== data.length}
@@ -75,7 +85,10 @@ export const WithActions: Story = () => {
               />
             </OffsettedListItemCell>
             <OffsettedListItemCell colSpan={2} />
-            <OffsettedListItemCell>
+            <OffsettedListItemCell padding="action">
+              <IconButton variant="secondary" hoverOutline>
+                <EditIcon />
+              </IconButton>
               <IconButton variant="secondary" hoverOutline>
                 <DeleteIcon />
               </IconButton>
@@ -83,7 +96,9 @@ export const WithActions: Story = () => {
           </OffsettedListItem>
         ) : (
           <OffsettedListItem>
-            <OffsettedListItemCell />
+            <OffsettedListItemCell padding="checkbox">
+              <Checkbox checked={false} onChange={toggleAll} />
+            </OffsettedListItemCell>
             <OffsettedListItemCell>Name</OffsettedListItemCell>
             <OffsettedListItemCell>Calories (per 100g)</OffsettedListItemCell>
             <OffsettedListItemCell />
@@ -93,7 +108,7 @@ export const WithActions: Story = () => {
       <OffsettedListBody>
         {pageData.map((dataRow) => (
           <OffsettedListItem selected={isRowSelected(dataRow.name)}>
-            <OffsettedListItemCell>
+            <OffsettedListItemCell padding="checkbox">
               <Checkbox
                 checked={isRowSelected(dataRow.name)}
                 onChange={() => toggleRow(dataRow.name)}
@@ -101,7 +116,10 @@ export const WithActions: Story = () => {
             </OffsettedListItemCell>
             <OffsettedListItemCell>{dataRow.name}</OffsettedListItemCell>
             <OffsettedListItemCell>{`${dataRow.calories} kcal`}</OffsettedListItemCell>
-            <OffsettedListItemCell>
+            <OffsettedListItemCell padding="action">
+              <IconButton variant="secondary" hoverOutline>
+                <EditIcon />
+              </IconButton>
               <IconButton variant="secondary" hoverOutline>
                 <DeleteIcon />
               </IconButton>
@@ -112,6 +130,8 @@ export const WithActions: Story = () => {
     </OffsettedList>
   );
 };
+
+export const WithActions: Story = () => <S />;
 
 export default {
   title: "Lists / Offsetted List",

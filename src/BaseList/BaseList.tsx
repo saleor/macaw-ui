@@ -26,8 +26,6 @@ export type BaseListItemClassKey =
   | "rowBody"
   | "rowHead"
   | "rowFoot"
-  | "rowCheckbox"
-  | "rowNoPadding"
   | "rowHover"
   | "rowBodySelected";
 
@@ -35,7 +33,6 @@ export interface BaseListItemProps
   extends React.HTMLAttributes<HTMLDivElement | HTMLLIElement> {
   classes: Record<BaseListItemClassKey, string>;
   hover?: boolean;
-  padding?: "checkbox" | "none" | "default";
   selected?: boolean;
 }
 
@@ -44,7 +41,6 @@ export const BaseListItem: React.FC<BaseListItemProps> = ({
   className,
   children,
   hover = true,
-  padding = "normal",
   selected,
   ...props
 }) => {
@@ -66,9 +62,6 @@ export const BaseListItem: React.FC<BaseListItemProps> = ({
           [classes.rowBody]: listSection === "body",
           [classes.rowHead]: listSection === "head",
           [classes.rowFoot]: listSection === "foot",
-          [classes.rowCheckbox]: padding === "checkbox",
-          [baseClasses.rowNoPadding]: padding === "none",
-          [classes.rowNoPadding]: padding === "none",
           [classes.rowHover]: hover,
           [classes.rowBodySelected]: selected,
         }
@@ -81,18 +74,25 @@ export const BaseListItem: React.FC<BaseListItemProps> = ({
   );
 };
 
-export type BaseListItemCellClassKey = "cell" | "cellBody" | "cellHeader";
+export type BaseListItemCellClassKey =
+  | "cell"
+  | "cellBody"
+  | "cellHeader"
+  | "cellAction"
+  | "cellCheckbox";
 
 export interface BaseListItemCellProps
   extends React.HTMLAttributes<HTMLDivElement> {
   classes: Record<BaseListItemCellClassKey, string>;
   colSpan?: number;
+  padding?: "action" | "checkbox" | "none";
 }
 export const BaseListItemCell: React.FC<BaseListItemCellProps> = ({
   classes,
   className,
   children,
   colSpan,
+  padding,
   ...props
 }) => {
   const baseClasses = useStyles();
@@ -104,6 +104,8 @@ export const BaseListItemCell: React.FC<BaseListItemCellProps> = ({
       className={clsx(className, baseClasses.cell, classes.cell, {
         [classes.cellBody]: listSection === "body",
         [classes.cellHeader]: listSection === "head",
+        [classes.cellAction]: padding === "action",
+        [classes.cellCheckbox]: padding === "checkbox",
       })}
       style={style}
       {...props}
