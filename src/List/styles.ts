@@ -17,7 +17,6 @@ export const useStyles = makeStyles(
       row: {
         gap: theme.spacing(4),
         minHeight: 72,
-        padding: theme.spacing(0, 4),
         position: "relative",
       },
       rowBody: {
@@ -30,9 +29,6 @@ export const useStyles = makeStyles(
           duration: theme.transitions.duration.shorter,
         }),
         ...theme.typography.body1,
-      },
-      rowCheckbox: {
-        paddingLeft: theme.spacing(2.5),
       },
       rowFoot: {
         padding: theme.spacing(0, 4),
@@ -52,8 +48,27 @@ export const useStyles = makeStyles(
       rowNoPadding: {},
       rowBodySelected: {},
       cell: {},
+      cellAction: {
+        "&$cell:last-child": {
+          paddingRight: theme.spacing(2.5),
+        },
+        display: "flex",
+        gap: theme.spacing(1),
+        justifyContent: "flex-end",
+      },
       cellBody: {
+        "&:first-child": {
+          paddingLeft: theme.spacing(4),
+        },
+        "&:last-child": {
+          paddingRight: theme.spacing(4),
+        },
         padding: theme.spacing(1, 0),
+      },
+      cellCheckbox: {
+        "&$cell:first-child": {
+          paddingLeft: `calc(${theme.spacing(2)} + 2px)`,
+        },
       },
       cellHeader: {},
     };
