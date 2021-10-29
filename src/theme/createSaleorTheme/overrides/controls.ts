@@ -49,6 +49,9 @@ export const controlOverrides = (
       borderRadius: 3,
       padding: 14,
     },
+    indeterminate: {
+      color: colors.active[1],
+    },
   },
   MuiRadio: {
     colorPrimary: {
