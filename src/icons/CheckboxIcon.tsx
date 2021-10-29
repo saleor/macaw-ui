@@ -3,15 +3,17 @@ import React from "react";
 
 export const CheckboxIcon = createSvgIcon(
   <>
-    <rect width="24" height="24" rx="2" fill="currentColor" />
     <rect
-      x="2"
-      y="2"
-      width="20"
-      height="20"
-      rx="1"
-      fill="var(--background-paper)"
+      width="22"
+      height="22"
+      rx="2"
+      ry="2"
+      x="1"
+      y="1"
       strokeWidth="2"
+      stroke="currentColor"
+      fill="transparent"
+      strokeLinejoin="round"
     />
   </>,
   "CheckboxIcon"
