@@ -1,4 +1,3 @@
-import { fade } from "@material-ui/core";
 import { makeStyles } from "..";
 import { BaseListItemCellClassKey, BaseListItemClassKey } from "../BaseList";
 
