@@ -15,3 +15,5 @@ export * from "./CloseIcon";
 export * from "./PlusIcon";
 export * from "./ArrowRightIcon";
 export * from "./MoreIcon";
+export * from "./RadioIcon";
+export * from "./RadioCheckedIcon";
