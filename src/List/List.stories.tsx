@@ -29,7 +29,7 @@ export const Default: Story = () => {
   return (
     <Card>
       <CardHeader title="Example List" />
-      <List gridTemplate="1fr 200px">
+      <List gridTemplate={["1fr", "200px"]}>
         <ListHeader>
           <ListItem>
             <ListItemCell>Name</ListItemCell>
@@ -73,7 +73,7 @@ const StoryWrapper: React.FC = () => {
   return (
     <Card>
       <CardHeader title="Example List" />
-      <List gridTemplate={`${checkbox} 1fr 200px ${actions(1)}`}>
+      <List gridTemplate={[checkbox, "1fr", "200px", actions(1)]}>
         <ListHeader>
           {selected.length > 0 ? (
             <ListItem>

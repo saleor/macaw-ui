@@ -34,6 +34,14 @@ export const useStyles = makeStyles(
         padding: theme.spacing(0, 4),
       },
       rowHead: {
+        "& $cell": {
+          "&:first-child": {
+            paddingLeft: theme.spacing(4),
+          },
+          "&:last-child": {
+            paddingRight: theme.spacing(4),
+          },
+        },
         ...theme.typography.body2,
         color: theme.palette.text.secondary,
       },

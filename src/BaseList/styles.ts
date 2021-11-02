@@ -1,7 +1,7 @@
 import { merge } from "lodash";
 import { makeStyles } from "..";
 
-export type ListGridTemplate = string | Record<string, string>;
+export type ListGridTemplate = string[] | Record<string, string[]>;
 
 export const useGridTemplateStyles = makeStyles<
   { width: ListGridTemplate },
@@ -9,19 +9,19 @@ export const useGridTemplateStyles = makeStyles<
 >(
   () => ({
     root: ({ width }) => {
-      if (typeof width === "object") {
-        const x = Object.entries(width).map(([breakpoint, value]) => ({
-          [breakpoint]: {
-            gridTemplateColumns: value,
-          },
-        }));
+      if (width instanceof Array) {
         return {
-          ...merge({}, ...x),
+          gridTemplateColumns: width.join(" "),
         };
       }
 
+      const x = Object.entries(width).map(([breakpoint, value]) => ({
+        [breakpoint]: {
+          gridTemplateColumns: value.join(" "),
+        },
+      }));
       return {
-        gridTemplateColumns: width,
+        ...merge({}, ...x),
       };
     },
   }),

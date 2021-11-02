@@ -31,7 +31,7 @@ export const Default: Story = () => {
   } = useListStory();
 
   return (
-    <OffsettedList gridTemplate="1fr 200px" style={{ width: 650 }}>
+    <OffsettedList gridTemplate={["1fr", "200px"]} style={{ width: 650 }}>
       <OffsettedListHeader>
         <OffsettedListItem>
           <OffsettedListItemCell>Name</OffsettedListItemCell>
@@ -47,18 +47,20 @@ export const Default: Story = () => {
         ))}
       </OffsettedListBody>
       <OffsettedListFooter>
-        <OffsettedListItemCell>
-          <Pagination
-            choices={[1, 2, 3]}
-            onRowNumberUpdate={setRowsPerPage}
-            hasNextPage={hasNextPage}
-            hasPreviousPage={hasPreviousPage}
-            labels={{ noOfRows: "No. of rows:" }}
-            onNextPage={nextPage}
-            onPreviousPage={previousPage}
-            rowNumber={rowsPerPage}
-          />
-        </OffsettedListItemCell>
+        <OffsettedListItem>
+          <OffsettedListItemCell colSpan={2}>
+            <Pagination
+              choices={[1, 2, 3]}
+              onRowNumberUpdate={setRowsPerPage}
+              hasNextPage={hasNextPage}
+              hasPreviousPage={hasPreviousPage}
+              labels={{ noOfRows: "No. of rows:" }}
+              onNextPage={nextPage}
+              onPreviousPage={previousPage}
+              rowNumber={rowsPerPage}
+            />
+          </OffsettedListItemCell>
+        </OffsettedListItem>
       </OffsettedListFooter>
     </OffsettedList>
   );
@@ -71,7 +73,7 @@ const S: React.FC = () => {
 
   return (
     <OffsettedList
-      gridTemplate={`${checkbox} 1fr 200px ${actions(2)}`}
+      gridTemplate={[checkbox, "1fr", "200px", actions(2)]}
       style={{ width: 650 }}
     >
       <OffsettedListHeader>
