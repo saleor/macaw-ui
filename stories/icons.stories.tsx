@@ -2,24 +2,7 @@ import { Typography } from "@material-ui/core";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import {
-  ArrowRightIcon,
-  CheckboxCheckedIcon,
-  CheckboxIcon,
-  CheckboxIndeterminateIcon,
-  CloseIcon,
-  CompleteIcon,
-  DeleteIcon,
-  EditIcon,
-  FilteringIcon,
-  ImageIcon,
-  InfoIcon,
-  NotAllowedIcon,
-  NotAllowedInvertedIcon,
-  PlusIcon,
-  WarningIcon,
-  MoreIcon,
-} from "../src/icons";
+import * as macawIcons from "../src/icons";
 import { makeStyles } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
@@ -43,24 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const icons: React.FC<{ className: string }>[] = [
-  ArrowRightIcon,
-  CheckboxCheckedIcon,
-  CheckboxIcon,
-  CheckboxIndeterminateIcon,
-  CloseIcon,
-  CompleteIcon,
-  DeleteIcon,
-  EditIcon,
-  FilteringIcon,
-  ImageIcon,
-  InfoIcon,
-  NotAllowedIcon,
-  NotAllowedInvertedIcon,
-  PlusIcon,
-  WarningIcon,
-  MoreIcon,
-];
+const icons: React.FC<{ className: string }>[] = Object.values(macawIcons);
 
 const Default: React.FC = () => {
   const classes = useStyles();

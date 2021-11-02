@@ -23,7 +23,7 @@ export const tableOverrides = (
     },
     paddingCheckbox: {
       "&:first-child": {
-        padding: "0 12px",
+        padding: "0 18px",
         width: 72,
       },
       "&:not(first-child)": {

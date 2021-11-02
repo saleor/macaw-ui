@@ -123,45 +123,5 @@ export const buttonOverrides = (
         transition: "200ms",
       },
     },
-    MuiSwitch: {
-      colorPrimary: {
-        "&$checked": {
-          color: colors.background.paper,
-        },
-      },
-      root: {
-        "&$disabled": {
-          "&$switchBase": {
-            "& + $thumb": {
-              backgroundColor: colors.disabled,
-            },
-          },
-        },
-        height: 48,
-        width: 72,
-      },
-      switchBase: {
-        "&$checked": {
-          transform: "translateX(23px)",
-        },
-        boxShadow: "none",
-        left: 1,
-        marginLeft: 4,
-        top: 5,
-      },
-      thumb: {
-        boxShadow: "none",
-      },
-      track: {
-        "$colorPrimary$checked + &": {
-          backgroundColor: colors.primary,
-        },
-        backgroundColor: colors.gray.default,
-        borderRadius: 12,
-        height: 24,
-        opacity: [["1"], "!important"] as any,
-        width: 48,
-      },
-    },
   };
 };

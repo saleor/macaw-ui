@@ -1,7 +1,15 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles";
 import type { TypographyProps } from "@material-ui/core/Typography";
+import React from "react";
 
+import {
+  CheckboxCheckedIcon,
+  CheckboxIcon,
+  CheckboxIndeterminateIcon,
+  RadioCheckedIcon,
+  RadioIcon,
+} from "../..";
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
 import { shadows } from "./shadows";
@@ -47,12 +55,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           padding: "2.4rem 3.2rem",
         },
       },
-      MuiCheckbox: {
-        root: {
-          border: "none",
-          background: "none",
-        },
-      },
       MuiChip: {
         avatar: {
           fontSize: "1.2rem",
@@ -75,6 +77,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiDialogActions: {
         root: {
+          borderTop: `1px solid ${colors.divider}`,
           padding: "16px 24px",
         },
       },
@@ -102,6 +105,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         label: {
           lineHeight: 1.2,
           marginLeft: 4,
+        },
+        root: {
+          marginLeft: -14,
         },
       },
       MuiFormLabel: {
@@ -157,12 +163,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "@media(min-width: 600px)": {
             minHeight: 48,
           },
-        },
-      },
-      MuiRadio: {
-        root: {
-          border: "none",
-          borderRadius: "100%",
         },
       },
       MuiSelect: {
@@ -240,6 +240,10 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       } as TypographyProps,
       MuiCheckbox: {
         color: "primary",
+        disableRipple: true,
+        checkedIcon: <CheckboxCheckedIcon />,
+        icon: <CheckboxIcon />,
+        indeterminateIcon: <CheckboxIndeterminateIcon />,
       },
       MuiTooltip: {
         placement: "right-end",
@@ -248,6 +252,13 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         disablePadding: true,
       },
       MuiRadio: {
+        color: "primary",
+        disableRipple: true,
+        icon: <RadioIcon />,
+        checkedIcon: <RadioCheckedIcon />,
+      },
+      MuiSwitch: {
+        color: "primary",
         disableRipple: true,
       },
       MuiSelect: {

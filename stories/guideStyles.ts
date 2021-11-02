@@ -19,6 +19,23 @@ const useStyles = makeStyles(
     sectionHeader: {
       margin: theme.spacing(3, 0),
     },
+    grid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      columnGap: theme.spacing(3),
+    },
+    cell: {
+      "&:not(:last-child)": {
+        marginBottom: theme.spacing(3),
+      },
+      alignItems: "center",
+      border: "1px dashed #7B61FF",
+      borderRadius: 4,
+      display: "flex",
+      flexDirection: "column",
+      padding: theme.spacing(3),
+      rowGap: theme.spacing(3),
+    },
   }),
   { name: "Guide" }
 );

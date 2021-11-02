@@ -2,6 +2,19 @@ import { createSvgIcon } from "@material-ui/core/utils";
 import React from "react";
 
 export const CheckboxIcon = createSvgIcon(
-  <rect x="5" y="5" width="14" height="14" stroke="currentColor" fill="none" />,
+  <>
+    <rect
+      width="22"
+      height="22"
+      rx="2"
+      ry="2"
+      x="1"
+      y="1"
+      strokeWidth="2"
+      stroke="currentColor"
+      fill="transparent"
+      strokeLinejoin="round"
+    />
+  </>,
   "CheckboxIcon"
 );
