@@ -8,7 +8,8 @@ import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
 import { Cell } from "./utils/Cell";
 
-export const Default: Story = () => {
+// Workaround for context initialization
+const DefaultStory: React.FC = () => {
   const guideClasses = useGuideStyles();
 
   return (
@@ -98,8 +99,9 @@ export const Default: Story = () => {
     </div>
   );
 };
+export const Default: Story = () => <DefaultStory />;
 
-export const Error: Story = () => {
+const ErrorStory: React.FC = () => {
   const guideClasses = useGuideStyles();
 
   return (
@@ -160,6 +162,7 @@ export const Error: Story = () => {
     </div>
   );
 };
+export const Error: Story = () => <ErrorStory />;
 
 export default {
   title: "Buttons",

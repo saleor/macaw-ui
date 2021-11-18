@@ -12,7 +12,7 @@ import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
 import { Cell } from "./utils/Cell";
 
-export const Default: Story = () => {
+const DefaultStory: React.FC = () => {
   const guideClasses = useGuideStyles();
   const [radioValue, setRadioValue] = React.useState("opt1");
 
@@ -22,7 +22,7 @@ export const Default: Story = () => {
         Controls
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
-        In most cases your app will be using one of those button types:
+        These components can be used in forms or switch application state:
       </Typography>
 
       <div className={guideClasses.grid}>
@@ -62,15 +62,10 @@ export const Default: Story = () => {
           </Cell>
         </div>
       </div>
-
-      <Typography className={guideClasses.paragraph} component="p">
-        They are designed to perform most of the actions that you will need to
-        add. These buttons can be placed in various places, most notably cards,
-        dialogs and forms.
-      </Typography>
     </div>
   );
 };
+export const Default: Story = () => <DefaultStory />;
 
 export default {
   title: "Controls",

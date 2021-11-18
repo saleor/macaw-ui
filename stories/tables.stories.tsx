@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   TableBody,
   TableCell,
   TableFooter,
@@ -10,14 +11,25 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { ResponsiveTable, TablePagination } from "../src";
+import {
+  DeleteIcon,
+  IconButton,
+  ResponsiveTable,
+  TablePagination,
+} from "../src";
 import { makeStyles } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
 
 const useStyles = makeStyles((theme) => ({
   colCalories: {
-    width: 180,
+    width: 200,
+  },
+  colCheckbox: {
+    width: 72,
+  },
+  colAction: {
+    width: 120,
   },
 }));
 
@@ -57,9 +69,27 @@ const Default: React.FC = () => {
   const guideClasses = useGuideStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(2);
+  const [selected, setSelected] = React.useState([data[0].name, data[2].name]);
 
   const hasNextPage = (page + 1) * rowsPerPage < data.length;
   const hasPreviousPage = page > 0;
+
+  const isRowSelected = (name: string) =>
+    !!selected.find((selected) => selected === name);
+  const toggleRow = (name: string) => {
+    if (isRowSelected(name)) {
+      setSelected(selected.filter((row) => row !== name));
+    } else {
+      setSelected([...selected, name]);
+    }
+  };
+  const toggleAll = () => {
+    if (data.length === selected.length) {
+      setSelected([]);
+    } else {
+      setSelected(data.map((row) => row.name));
+    }
+  };
 
   return (
     <div>
@@ -138,6 +168,63 @@ const Default: React.FC = () => {
               <Skeleton />
             </TableCell>
           </TableRow>
+        </TableBody>
+      </ResponsiveTable>
+
+      <Typography className={guideClasses.paragraph} component="p">
+        We can also embed ability to select rows and add actions to them:
+      </Typography>
+      <ResponsiveTable>
+        <colgroup>
+          <col className={classes.colCheckbox} />
+          <col />
+          <col className={classes.colCalories} />
+          <col className={classes.colAction} />
+        </colgroup>
+        <TableHead>
+          {selected.length > 0 ? (
+            <TableRow>
+              <TableCell padding="checkbox">
+                <Checkbox
+                  checked={selected.length === data.length}
+                  indeterminate={selected.length !== data.length}
+                  onChange={toggleAll}
+                />
+              </TableCell>
+              <TableCell colSpan={2}>&nbsp;</TableCell>
+              <TableCell align="right" padding="checkbox">
+                <IconButton variant="secondary" hoverOutline>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ) : (
+            <TableRow>
+              <TableCell />
+              <TableCell>Name</TableCell>
+              <TableCell>Calories (per 100g)</TableCell>
+              <TableCell />
+            </TableRow>
+          )}
+        </TableHead>
+        <TableBody>
+          {data.map((dataRow) => (
+            <TableRow hover selected={isRowSelected(dataRow.name)}>
+              <TableCell padding="checkbox">
+                <Checkbox
+                  checked={isRowSelected(dataRow.name)}
+                  onChange={() => toggleRow(dataRow.name)}
+                />
+              </TableCell>
+              <TableCell>{dataRow.name}</TableCell>
+              <TableCell>{`${dataRow.calories} kcal`}</TableCell>
+              <TableCell align="right" padding="checkbox">
+                <IconButton variant="secondary" hoverOutline>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </ResponsiveTable>
     </div>

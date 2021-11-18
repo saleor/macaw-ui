@@ -12,7 +12,8 @@ export const shadows: ThemeOptions["shadows"] = [
   createShadow(24, 20, -20),
   createShadow(24, 20, -20),
   createShadow(24, 20, -20),
-  createShadow(24, 20, -20),
+  // This one is special as it's used in dropdowns
+  createShadow(6, 30, 0),
   createShadow(24, 20, -20),
   createShadow(24, 20, -20),
   createShadow(24, 20, -20),

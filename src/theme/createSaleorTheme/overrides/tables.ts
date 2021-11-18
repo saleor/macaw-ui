@@ -1,4 +1,4 @@
-import { fade, ThemeOptions } from "@material-ui/core/styles";
+import { ThemeOptions } from "@material-ui/core/styles";
 
 import { SaleorThemeColors } from "../types";
 
@@ -30,17 +30,20 @@ export const tableOverrides = (
         padding: 0,
         width: 52,
       },
+      "&:last-child": {
+        paddingRight: 20,
+      },
     },
     root: {
       "&:first-child": {
         "&:not($paddingCheckbox)": {
-          paddingLeft: 24 + "px",
-          paddingRight: 24 + "px",
-          textAlign: "left" as "left",
+          paddingLeft: 32,
+          paddingRight: 32,
+          textAlign: "left",
         },
       },
-      borderBottomColor: colors.paperBorder,
-      padding: "16px 24px",
+      borderBottomColor: colors.background.default,
+      padding: "24px 32px",
     },
   },
   MuiTablePagination: {
@@ -59,16 +62,16 @@ export const tableOverrides = (
       "$root$hover&:hover": {
         background: "none",
       },
+      color: colors.main[3],
     },
     hover: {
       "$root&:hover": {
-        backgroundColor: fade(colors.primary, 0.3),
+        background: colors.active[5],
       },
+      transition: "200ms",
     },
     root: {
-      "&$selected": {
-        backgroundColor: fade(colors.primary, 0.05),
-      },
+      position: "relative",
     },
   },
 });
