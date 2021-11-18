@@ -76,7 +76,7 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "35 KB"
+      "limit": "40 KB"
     }
   ],
   "devDependencies": {
@@ -114,7 +114,7 @@
     "react-dom": "^16.8.0 || ^17.0.0",
     "react-is": "^17.0.2",
     "size-limit": "^4.10.2",
-    "tslib": "^2.2.0",
+    "tslib": "^2.3.1",
     "typescript": "^4.2.4",
     "yargs": "^17.2.1"
   },

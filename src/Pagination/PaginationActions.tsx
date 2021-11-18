@@ -42,6 +42,7 @@ export const PaginationActions: React.FC<PaginationActionsProps> = ({
           [classes.dark]: isDark,
           [classes.actionsButtonDisabled]: previousDisabled,
         })}
+        disableRipple
         onClick={onPreviousPage}
         disabled={previousDisabled}
         data-test="button-pagination-back"
@@ -55,6 +56,7 @@ export const PaginationActions: React.FC<PaginationActionsProps> = ({
           [classes.dark]: isDark,
           [classes.actionsButtonDisabled]: nextDisabled,
         })}
+        disableRipple
         onClick={onNextPage}
         disabled={nextDisabled}
         data-test="button-pagination-next"
