@@ -17,3 +17,4 @@ export * from "./ArrowRightIcon";
 export * from "./MoreIcon";
 export * from "./RadioIcon";
 export * from "./RadioCheckedIcon";
+export * from "./SearchIcon";
