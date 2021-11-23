@@ -14,7 +14,7 @@ export interface AlertProps {
   className?: string;
   close?: boolean;
   variant: AlertVariant;
-  title: string;
+  title?: string;
 }
 
 function getIcon(variant: AlertVariant): React.ReactElement {
@@ -58,7 +58,8 @@ export const Alert: React.FC<AlertProps> = ({
           <div>{getIcon(variant)}</div>
           <div className={classes.content}>
             <div className={classes.titleBar}>
-              <Typography variant="h5">{title}</Typography>
+              {title && <Typography variant="h5">{title}</Typography>}
+
               {close && (
                 <IconButton
                   className={clsx(classes.close, {
