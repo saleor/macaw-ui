@@ -18,3 +18,4 @@ export * from "./MoreIcon";
 export * from "./RadioIcon";
 export * from "./RadioCheckedIcon";
 export * from "./SearchIcon";
+export * from "./NavigatorIcon";
