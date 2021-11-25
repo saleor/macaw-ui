@@ -9,14 +9,18 @@ import React from "react";
 import useStyles from "./styles";
 
 export type ButtonVariant = "primary" | "secondary" | "tertiary";
+// Aliasing "default" to "text" because "default" isn't actually default
+export type ButtonColor = "primary" | "secondary" | "text";
 
 interface ButtonInnerProps {
+  color?: ButtonColor;
   error?: boolean;
   variant?: ButtonVariant;
 }
 
 export interface ButtonTypeMap<P = {}, D extends React.ElementType = "button"> {
-  props: Omit<MuiButtonTypeMap<P, D>["props"], "variant"> & ButtonInnerProps;
+  props: Omit<MuiButtonTypeMap<P, D>["props"], "variant" | "color"> &
+    ButtonInnerProps;
   defaultComponent: D;
   classKey: never;
 }
@@ -27,19 +31,25 @@ export type ButtonProps<T extends React.ElementType = "button"> = Omit<
 > &
   ButtonInnerProps;
 
-function getButtonProps(variant: ButtonVariant): Partial<MuiButtonProps> {
+function getButtonProps(
+  colorProp: ButtonColor,
+  variant: ButtonVariant
+): Partial<MuiButtonProps> {
+  const color = colorProp === "text" ? "default" : colorProp;
+
   switch (variant) {
     case "primary":
-      return { variant: "contained", color: "primary" };
+      return { variant: "contained", color };
     case "secondary":
-      return { variant: "outlined", color: "primary" };
+      return { variant: "outlined", color };
     default:
-      return { variant: "text", color: "primary" };
+      return { variant: "text", color };
   }
 }
 
 const _Button: React.FC<ButtonProps> = ({
   className,
+  color = "primary",
   error,
   variant = "tertiary",
   ...props
@@ -61,7 +71,7 @@ const _Button: React.FC<ButtonProps> = ({
         [classes.tertiaryDisabled]:
           variant === "tertiary" && error && props.disabled,
       })}
-      {...getButtonProps(variant)}
+      {...getButtonProps(color, variant)}
       disableRipple
       {...props}
     />

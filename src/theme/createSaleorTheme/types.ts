@@ -36,7 +36,7 @@ export type SaleorThemeColors = Record<
   alert: AlertColors;
   theme: ThemeType;
   fail: Record<"dark" | "mid" | "light", string>;
-  main: Record<1 | 2 | 3 | 4, string>;
+  main: Record<1 | 2 | 3 | 4 | 5, string>;
   active: Record<1 | 2 | 3 | 4 | 5, string>;
   errorAction: Record<1 | 2 | 3 | 4 | 5, string>;
 };

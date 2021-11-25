@@ -55,6 +55,12 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         "&&$disabled": {
           color: colors.disabled,
         },
+        "&:hover, &$focusVisible": {
+          background: colors.main[5],
+        },
+        "&:active": {
+          background: colors.main[4],
+        },
       },
       textPrimary: {
         "&:hover, &$focusVisible": {
@@ -73,8 +79,22 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
           borderColor: colors.disabled,
           color: colors.disabled,
         },
+        "&:hover": {
+          // Unsets border as it will require us to override borderWidth and
+          // borderStyle over and over
+          border: undefined,
+        },
+        "&:hover, &$focusVisible": {
+          borderColor: colors.main[1],
+          backgroundColor: colors.main[5],
+        },
+        "&:active": {
+          backgroundColor: colors.main[4],
+        },
         background: colors.background.paper,
-        border: `2px solid ${colors.active[4]}`,
+        borderColor: colors.main[4],
+        borderWidth: 2,
+        borderStyle: "solid",
         // 2px smaller because of border
         padding: "10px 12px",
       },
@@ -92,6 +112,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
           backgroundColor: colors.active[4],
         },
         border: undefined,
+        borderColor: colors.active[4],
       },
     },
     MuiIconButton: {
