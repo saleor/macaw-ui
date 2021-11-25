@@ -37,9 +37,11 @@ const Default: React.FC = () => {
       <div className={classes.inputs}>
         <TextField {...typographyProps} />
         <TextField {...typographyProps} value="Filled Text" />
+        <TextField {...typographyProps} multiline value="Multiline" />
 
         <TextField {...typographyProps} disabled />
         <TextField {...typographyProps} value="Filled Text" disabled />
+        <TextField {...typographyProps} multiline value="Multiline" disabled />
 
         <TextField
           {...typographyProps}
@@ -50,6 +52,13 @@ const Default: React.FC = () => {
           {...typographyProps}
           error
           value="Filled Text"
+          helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
+        />
+        <TextField
+          {...typographyProps}
+          error
+          multiline
+          value="Multiline"
           helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
         />
       </div>

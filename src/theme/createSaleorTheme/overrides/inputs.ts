@@ -102,6 +102,11 @@ export const inputOverrides = (
       padding: "10px 0",
       position: "relative",
     },
+    multiline: {
+      "&$disabled": {
+        background: colors.background.default,
+      },
+    },
     root: {
       "& fieldset": {
         top: 0,
@@ -113,7 +118,7 @@ export const inputOverrides = (
         "& fieldset": {
           borderColor: `${colors.disabled} !important`,
         },
-        "& input": {
+        "& input, & textarea": {
           backgroundColor: colors.background.default,
           color: colors.main[3],
         },
