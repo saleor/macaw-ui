@@ -1,3 +1,4 @@
+import { Link, Typography } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
@@ -22,6 +23,15 @@ export const WithContent: Story = () => (
 export const WithContentAndClose: Story = () => (
   <Alert {...props} close>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </Alert>
+);
+
+export const WithoutTitle: Story = () => (
+  <Alert close={false} variant="info">
+    <Typography>
+      Gift cards will appear after their order is fullfilled.{" "}
+      <Link>View Orders with Gift Cards</Link>
+    </Typography>
   </Alert>
 );
 
