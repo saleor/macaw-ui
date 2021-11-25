@@ -54,10 +54,10 @@ const DefaultStory: React.FC = () => {
               Secondary
             </Button>
             <Button variant="secondary" color="text">
-              Secondary
+              Secondary Text
             </Button>
             <Button disabled variant="secondary" color="text">
-              Secondary
+              Secondary Text
             </Button>
           </Cell>
           <Cell>
@@ -73,10 +73,10 @@ const DefaultStory: React.FC = () => {
               Tertiary
             </Button>
             <Button variant="tertiary" color="text">
-              Tertiary
+              Tertiary Text
             </Button>
             <Button disabled variant="tertiary" color="text">
-              Tertiary
+              Tertiary Text
             </Button>
           </Cell>
           <Cell>
