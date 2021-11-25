@@ -28,12 +28,10 @@ export const WithContentAndClose: Story = () => (
 
 export const WithoutTitle: Story = () => (
   <Alert close={false} variant="info">
-    <Link>
-      <Typography>
-        Gift cards will appear after their order is fullfilled.{" "}
-        <Link>View Orders with Gift Cards</Link>
-      </Typography>
-    </Link>
+    <Typography>
+      Gift cards will appear after their order is fullfilled.{" "}
+      <Link>View Orders with Gift Cards</Link>
+    </Typography>
   </Alert>
 );
 
