@@ -10,7 +10,7 @@ import useStyles from "./styles";
 
 export interface AlertProps extends AlertBaseProps {
   close?: boolean;
-  title: string;
+  title?: string;
 }
 const Icon: React.FC<{ variant: AlertVariant }> = ({ variant }) => {
   switch (variant) {
@@ -47,7 +47,7 @@ export const Alert: React.FC<AlertProps> = ({
         </div>
         <div className={classes.content}>
           <div className={classes.titleBar}>
-            <Typography variant="h5">{title}</Typography>
+            {title && <Typography variant="h5">{title}</Typography>}
             {close && (
               <IconButton
                 className={clsx(classes.close, {

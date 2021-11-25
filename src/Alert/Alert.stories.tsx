@@ -1,4 +1,4 @@
-import Typography from "@material-ui/core/Typography";
+import { Link, Typography } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
@@ -32,6 +32,15 @@ export const Custom: Story = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </Typography>
   </AlertBase>
+);
+
+export const WithoutTitle: Story = () => (
+  <Alert close={false} variant="info">
+    <Typography>
+      Gift cards will appear after their order is fullfilled.{" "}
+      <Link>View Orders with Gift Cards</Link>
+    </Typography>
+  </Alert>
 );
 
 export default {
