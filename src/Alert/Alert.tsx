@@ -10,7 +10,6 @@ import useStyles from "./styles";
 
 export interface AlertProps extends AlertBaseProps {
   close?: boolean;
-  variant: AlertVariant;
   title?: string;
 }
 const Icon: React.FC<{ variant: AlertVariant }> = ({ variant }) => {
