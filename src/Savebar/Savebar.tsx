@@ -1,5 +1,5 @@
-import Button from "@material-ui/core/Button";
 import React from "react";
+import { Button } from "..";
 
 import { useActionBar } from "../ActionBar";
 import { ActionBar } from "../ActionBar/ActionBar";
@@ -43,9 +43,9 @@ export const Savebar: React.FC<SavebarProps> = ({
       {!!onDelete && (
         <ButtonTooltipDecorator tooltip={tooltips?.delete}>
           <Button
-            variant="contained"
+            error
+            variant="primary"
             onClick={onDelete}
-            className={classes.deleteButton}
             data-test="button-bar-delete"
           >
             {labels.delete}
@@ -55,8 +55,8 @@ export const Savebar: React.FC<SavebarProps> = ({
       <div className={classes.spacer} />
       <ButtonTooltipDecorator tooltip={tooltips?.cancel}>
         <Button
-          className={classes.cancelButton}
-          variant="text"
+          color="text"
+          variant="secondary"
           onClick={onCancel}
           data-test="button-bar-cancel"
         >
