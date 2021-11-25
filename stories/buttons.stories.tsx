@@ -38,6 +38,48 @@ const DefaultStory: React.FC = () => {
             </IconButton>
           </Cell>
           <Cell>
+            <PillLink href="#">Clickable Pill</PillLink>
+            <PillLink href="#" state="hover">
+              Clickable Pill
+            </PillLink>
+            <PillLink href="#" state="active">
+              Clickable Pill
+            </PillLink>
+          </Cell>
+        </div>
+        <div>
+          <Cell>
+            <Button variant="secondary">Secondary</Button>
+            <Button disabled variant="secondary">
+              Secondary
+            </Button>
+            <Button variant="secondary" color="text">
+              Secondary Text
+            </Button>
+            <Button disabled variant="secondary" color="text">
+              Secondary Text
+            </Button>
+          </Cell>
+          <Cell>
+            <LayoutButton>Layout</LayoutButton>
+            <LayoutButton state="hover">Layout</LayoutButton>
+            <LayoutButton state="active">Layout</LayoutButton>
+          </Cell>
+        </div>
+        <div>
+          <Cell>
+            <Button variant="tertiary">Tertiary</Button>
+            <Button disabled variant="tertiary">
+              Tertiary
+            </Button>
+            <Button variant="tertiary" color="text">
+              Tertiary Text
+            </Button>
+            <Button disabled variant="tertiary" color="text">
+              Tertiary Text
+            </Button>
+          </Cell>
+          <Cell>
             <FormControlLabel
               control={
                 <IconButton variant="secondary">
@@ -57,36 +99,6 @@ const DefaultStory: React.FC = () => {
             <IconButton disabled variant="secondary">
               <Delete />
             </IconButton>
-          </Cell>
-        </div>
-        <div>
-          <Cell>
-            <Button variant="secondary">Secondary</Button>
-            <Button disabled variant="secondary">
-              Secondary
-            </Button>
-          </Cell>
-          <Cell>
-            <PillLink href="#">Clickable Pill</PillLink>
-            <PillLink href="#" state="hover">
-              Clickable Pill
-            </PillLink>
-            <PillLink href="#" state="active">
-              Clickable Pill
-            </PillLink>
-          </Cell>
-        </div>
-        <div>
-          <Cell>
-            <Button variant="tertiary">Tertiary</Button>
-            <Button disabled variant="tertiary">
-              Tertiary
-            </Button>
-          </Cell>
-          <Cell>
-            <LayoutButton>Layout</LayoutButton>
-            <LayoutButton state="hover">Layout</LayoutButton>
-            <LayoutButton state="active">Layout</LayoutButton>
           </Cell>
         </div>
       </div>

@@ -54,6 +54,7 @@ export const dark: SaleorThemeColors = {
     2: "rgba(252, 252, 252, 0.8)",
     3: "rgba(252, 252, 252, 0.6)",
     4: "rgba(252, 252, 252, 0.4)",
+    5: "rgba(252, 252, 252, 0.1)",
   },
   fail: {
     dark: "#B65757",
@@ -127,6 +128,7 @@ export const light: SaleorThemeColors = {
     2: "rgba(40, 35, 74, 0.8)",
     3: "rgba(40, 35, 74, 0.6)",
     4: "rgba(40, 35, 74, 0.4)",
+    5: "rgba(40, 35, 74, 0.1)",
   },
   fail: {
     dark: "#B65757",
