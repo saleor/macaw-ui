@@ -10,6 +10,7 @@ import {
   RadioCheckedIcon,
   RadioIcon,
 } from "../..";
+import { getSecondaryButtonStyles } from "../../IconButton/partials";
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
 import { shadows } from "./shadows";
@@ -99,6 +100,12 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiDivider: {
         light: {
           backgroundColor: colors.background.paper,
+        },
+      },
+      MuiExpansionPanelSummary: {
+        expandIcon: {
+          ...getSecondaryButtonStyles(colors),
+          border: "none",
         },
       },
       MuiFormControlLabel: {
@@ -234,6 +241,11 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiCard: {
         elevation: 0,
+      },
+      MuiExpansionPanelSummary: {
+        IconButtonProps: {
+          disableRipple: true,
+        },
       },
       MuiTypography: {
         component: "div",

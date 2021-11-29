@@ -2,6 +2,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Portal from "@material-ui/core/Portal";
+import clsx from "clsx";
 import React from "react";
 
 import { ConfirmButtonTransitionState } from "../ConfirmButton";
@@ -45,8 +46,9 @@ export const ActionBar: React.FC<ActionBarProps> = ({
       <div className={classes.root} {...rest}>
         <Container maxWidth="lg">
           <Card
-            className={classes.paper}
-            elevation={!(docked || scrolledToBottom) ? 16 : 0}
+            className={clsx(classes.paper, {
+              [classes.shadow]: !(docked || scrolledToBottom),
+            })}
           >
             <CardContent className={classes.content}>{children}</CardContent>
           </Card>
