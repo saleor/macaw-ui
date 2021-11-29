@@ -21,6 +21,9 @@ const useStyles = makeStyles(
     root: {
       height: 80,
     },
+    shadow: {
+      boxShadow: `0 -24px 20px -20px rgba(0, 0, 0, 0.15)`,
+    },
   }),
   { name: "Savebar" }
 );

@@ -1,4 +1,5 @@
 import { makeStyles } from "../theme";
+import { getSecondaryButtonStyles } from "./partials";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -22,21 +23,7 @@ const useStyles = makeStyles(
         color: theme.palette.saleor.errorAction[5],
       },
     },
-    secondary: {
-      "&:hover, &.Mui-focusVisible": {
-        color: theme.palette.primary.main,
-      },
-      "&:disabled": {
-        color: theme.palette.saleor.disabled,
-      },
-      background: "transparent",
-      borderRadius: 4,
-      color: theme.palette.saleor.main[3],
-      padding: theme.spacing(1),
-      transition: theme.transitions.create(["color", "background"], {
-        duration: theme.transitions.duration.shorter,
-      }),
-    },
+    secondary: getSecondaryButtonStyles(theme.palette.saleor),
     hoverOutline: {
       "&$secondary": {
         "&:hover,&:focus-visible": {

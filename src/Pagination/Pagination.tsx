@@ -10,10 +10,13 @@ import useStyles from "./styles";
 
 export interface PaginationProps
   extends PaginationActionsProps,
-    Omit<PaginationRowNumberSelectProps, "className" | "choices" | "onChange"> {
+    Omit<
+      PaginationRowNumberSelectProps,
+      "className" | "choices" | "onChange" | "rowNumber"
+    > {
   choices?: number[];
   disabled?: boolean;
-  rowNumber: number;
+  rowNumber?: number;
   onRowNumberUpdate?: (rowNumber: number) => void;
 }
 
@@ -35,13 +38,15 @@ export const Pagination: React.FC<PaginationProps> = ({
   return (
     <Toolbar className={classes.toolbar} disableGutters {...other}>
       <div className={classes.spacer}>
-        <PaginationRowNumberSelect
-          choices={choices}
-          disabled={disabled}
-          labels={labels}
-          rowNumber={rowNumber}
-          onChange={onRowNumberUpdate}
-        />
+        {rowNumber && (
+          <PaginationRowNumberSelect
+            choices={choices}
+            disabled={disabled}
+            labels={labels}
+            rowNumber={rowNumber}
+            onChange={onRowNumberUpdate}
+          />
+        )}
       </div>
       <PaginationActions
         disabled={disabled}
