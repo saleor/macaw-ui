@@ -51,7 +51,7 @@ module.exports = (entryPoints, watch) => {
     },
     {
       ...commonOptions,
-      outdir: "dist/mjs",
+      outdir: "dist/esm",
       splitting: true,
       format: "esm",
       plugins: [logger("Finished esm"), lodash],
