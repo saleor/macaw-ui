@@ -75,7 +75,11 @@
   "sideEffects": false,
   "size-limit": [
     {
-      "path": "dist/index.js",
+      "path": "dist/cjs/index.js",
+      "limit": "40 KB"
+    },
+    {
+      "path": "dist/esm/index.js",
       "limit": "40 KB"
     }
   ],
