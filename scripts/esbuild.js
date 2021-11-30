@@ -47,6 +47,7 @@ module.exports = (entryPoints, watch) => {
       ...commonOptions,
       outfile: "dist/cjs/index.js",
       plugins: [logger("Finished cjs"), lodash],
+      platform: "node",
     },
     {
       ...commonOptions,
