@@ -31,7 +31,7 @@
     // error out if import and file system have a casing mismatch. Recommended by TS
     "forceConsistentCasingInFileNames": true,
     "emitDeclarationOnly": true,
-    "outDir": "dist",
+    "outDir": "dist/types",
     "isolatedModules": true
   }
 }

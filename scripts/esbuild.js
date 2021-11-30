@@ -12,8 +12,7 @@ const lodash = esbuildPluginImport([
     camel2DashComponentName: false,
   },
 ]);
-const timerLabel = "Finished";
-const logger = {
+const logger = (timerLabel) => ({
   name: "logger",
   setup: (build) => {
     build.onStart((result) => {
@@ -24,26 +23,39 @@ const logger = {
       console.timeEnd(timerLabel);
     });
   },
-};
+});
 
 module.exports = (entryPoints, watch) => {
-  const options = {
-    bundle: true,
+  const commonOptions = {
     entryPoints,
-    outdir: "dist",
-    plugins: [logger, lodash],
+    loader: {
+      ".svg": "text",
+    },
+    bundle: true,
     external: [
       ...Object.keys(packageJson.peerDependencies),
       ...Object.keys(packageJson.dependencies),
     ],
-    loader: {
-      ".svg": "text",
-    },
     sourcemap: true,
     minify: true,
     target: "es6",
     watch,
   };
 
-  return esbuild.build(options);
+  const optionMatrix = [
+    {
+      ...commonOptions,
+      outfile: "dist/cjs/index.js",
+      plugins: [logger("Finished cjs"), lodash],
+    },
+    {
+      ...commonOptions,
+      outdir: "dist/mjs",
+      splitting: true,
+      format: "esm",
+      plugins: [logger("Finished esm"), lodash],
+    },
+  ];
+
+  return Promise.all(optionMatrix.map((options) => esbuild.build(options)));
 };
