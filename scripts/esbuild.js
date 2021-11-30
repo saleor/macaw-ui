@@ -39,10 +39,8 @@ module.exports = (entryPoints, watch) => {
     loader: {
       ".svg": "text",
     },
-    splitting: true,
     sourcemap: true,
     minify: true,
-    format: "esm",
     target: "es6",
     watch,
   };
