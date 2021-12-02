@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-a.4",
+  "version": "0.3.0-a.5",
   "license": "CC-BY-4.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
