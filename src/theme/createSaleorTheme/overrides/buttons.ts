@@ -42,14 +42,15 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         },
       },
       label: {
-        fontWeight: 600,
+        fontWeight: 500,
       },
       root: {
         borderRadius: 4,
         fontSize: "1.6rem",
         letterSpacing: "0.06rem",
         lineHeight: 1.55,
-        padding: "12px 16px",
+        padding: "8px 16px",
+        textTransform: "none",
       },
       text: {
         "&&$disabled": {
@@ -96,7 +97,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         borderWidth: 2,
         borderStyle: "solid",
         // 2px smaller because of border
-        padding: "10px 12px",
+        padding: "6px 12px",
       },
       outlinedPrimary: {
         "&:hover, &$focusVisible": {
@@ -113,6 +114,10 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         },
         border: undefined,
         borderColor: colors.active[4],
+      },
+      outlinedSizeSmall: {
+        fontSize: "1.6rem",
+        padding: "2px 12px",
       },
     },
     MuiIconButton: {
@@ -138,7 +143,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         border: `2px solid ${colors.active[4]}`,
         borderRadius: 4,
         color: colors.active[1],
-        padding: 10,
+        padding: 6,
         transition: "200ms",
       },
     },
