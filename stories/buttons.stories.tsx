@@ -1,9 +1,8 @@
 import { FormControlLabel, Typography } from "@material-ui/core";
-import Delete from "@material-ui/icons/Delete";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Button, IconButton, PillLink, LayoutButton } from "../src";
+import { Button, IconButton, PillLink, LayoutButton, DeleteIcon } from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
 import { Cell } from "./utils/Cell";
@@ -31,10 +30,10 @@ const DefaultStory: React.FC = () => {
           </Cell>
           <Cell>
             <IconButton>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
             <IconButton disabled>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
           </Cell>
           <Cell>
@@ -83,7 +82,7 @@ const DefaultStory: React.FC = () => {
             <FormControlLabel
               control={
                 <IconButton variant="secondary">
-                  <Delete />
+                  <DeleteIcon />
                 </IconButton>
               }
               label="default"
@@ -91,13 +90,13 @@ const DefaultStory: React.FC = () => {
             <FormControlLabel
               control={
                 <IconButton hoverOutline variant="secondary">
-                  <Delete />
+                  <DeleteIcon />
                 </IconButton>
               }
               label="outlined"
             />
             <IconButton disabled variant="secondary">
-              <Delete />
+              <DeleteIcon />
             </IconButton>
           </Cell>
         </div>
@@ -138,10 +137,10 @@ const ErrorStory: React.FC = () => {
           </Cell>
           <Cell>
             <IconButton error>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
             <IconButton error disabled>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
           </Cell>
         </div>

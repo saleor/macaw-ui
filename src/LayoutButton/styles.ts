@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       color: theme.palette.text.secondary,
       fontSize: theme.typography.body1.fontSize,
       fontWeight: 600,
-      height: 48,
+      height: 40,
       padding: theme.spacing(0.5, 2),
       textAlign: "center",
       textTransform: "uppercase",
