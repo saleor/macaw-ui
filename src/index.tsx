@@ -30,3 +30,4 @@ export * from "./PillLink";
 export * from "./BaseList";
 export * from "./OffsettedList";
 export * from "./List";
+export * from "./NavigationCard";
