@@ -93,18 +93,18 @@ const DefaultStory: React.FC = () => {
             <FormControlLabel
               control={
                 <IconButton variant="secondary">
-                  <ArrowDownward />
-                </IconButton>
-              }
-              label="Expand"
-            />
-            <FormControlLabel
-              control={
-                <IconButton hoverOutline variant="secondary">
                   <DeleteIcon />
                 </IconButton>
               }
               label="Delete from list"
+            />
+            <FormControlLabel
+              control={
+                <IconButton hoverOutline={false} variant="secondary">
+                  <ArrowDownward />
+                </IconButton>
+              }
+              label="Expand"
             />
             <FormControlLabel
               control={

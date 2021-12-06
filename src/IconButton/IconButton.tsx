@@ -17,7 +17,10 @@ export type IconButtonProps<T extends React.ElementType = "button"> = Omit<
 };
 
 export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
-  ({ className, error, hoverOutline, variant = "primary", ...props }, ref) => {
+  (
+    { className, error, hoverOutline = true, variant = "primary", ...props },
+    ref
+  ) => {
     const classes = useStyles();
 
     if (variant === "secondary") {
