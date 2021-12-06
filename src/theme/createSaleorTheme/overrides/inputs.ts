@@ -90,7 +90,7 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
         boxShadow: "0 0 0px 1000px rgba(19, 190, 187, 0.1) inset",
       },
       "&&$disabled": {
-        backgroundColor: colors.background.default,
+        backgroundColor: undefined,
       },
       color: colors.main[1],
       padding: "23px 12px 10px 12px",
@@ -121,6 +121,7 @@ export const inputOverrides = (colors: SaleorThemeColors): Overrides => ({
           color: colors.main[3],
         },
         boxShadow: `0 0 0 0 transparent !important`,
+        backgroundColor: colors.background.default,
       },
       "&$error": {
         "&$focused": {
