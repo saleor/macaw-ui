@@ -1,4 +1,5 @@
 import { FormControlLabel, Typography } from "@material-ui/core";
+import { ArrowDownward } from "@material-ui/icons";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
@@ -45,6 +46,16 @@ const DefaultStory: React.FC = () => {
               Clickable Pill
             </PillLink>
           </Cell>
+          <Cell>
+            <Button variant="secondary">
+              <DeleteIcon />
+              With Icon
+            </Button>
+            <Button disabled variant="secondary">
+              <DeleteIcon />
+              With Icon
+            </Button>
+          </Cell>
         </div>
         <div>
           <Cell>
@@ -82,10 +93,10 @@ const DefaultStory: React.FC = () => {
             <FormControlLabel
               control={
                 <IconButton variant="secondary">
-                  <DeleteIcon />
+                  <ArrowDownward />
                 </IconButton>
               }
-              label="default"
+              label="Expand"
             />
             <FormControlLabel
               control={
@@ -93,11 +104,16 @@ const DefaultStory: React.FC = () => {
                   <DeleteIcon />
                 </IconButton>
               }
-              label="outlined"
+              label="Delete from list"
             />
-            <IconButton disabled variant="secondary">
-              <DeleteIcon />
-            </IconButton>
+            <FormControlLabel
+              control={
+                <IconButton disabled variant="secondary">
+                  <DeleteIcon />
+                </IconButton>
+              }
+              label="Disabled"
+            />
           </Cell>
         </div>
       </div>
