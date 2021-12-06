@@ -17,7 +17,7 @@ export const Decorator = (storyFn: any) => (
 );
 
 export const GuideDecorator = (storyFn: any) => (
-  <Card style={{ margin: "auto", width: 700 }}>
+  <Card style={{ margin: "auto", width: 800 }}>
     <CardContent>{storyFn()}</CardContent>
   </Card>
 );

@@ -26,6 +26,7 @@ const useStyles = makeStyles(
     hoverOutline: {
       "&$secondary": {
         "&:hover,&:focus-visible": {
+          background: theme.palette.saleor.active[5],
           borderColor: theme.palette.saleor.active[4],
         },
         "&:active": {

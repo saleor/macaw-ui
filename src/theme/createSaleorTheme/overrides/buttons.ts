@@ -99,6 +99,9 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         "&:active": {
           backgroundColor: colors.main[5],
         },
+        "& svg": {
+          marginRight: 8,
+        },
         background: colors.background.paper,
         borderColor: colors.main[5],
         borderWidth: 1,
