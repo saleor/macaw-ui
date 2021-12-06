@@ -21,7 +21,6 @@ const useStyles = makeStyles(
       height: 40,
       padding: theme.spacing(0.5, 2),
       textAlign: "center",
-      textTransform: "uppercase",
       transition: theme.transitions.duration.shorter + "ms",
     },
     hover: {},
