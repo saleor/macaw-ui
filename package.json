@@ -41,7 +41,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "release": "np",
-    "chromatic": "npx chromatic --exit-zero-on-changes --skip 'dependabot/**'"
+    "chromatic": "npx chromatic --exit-zero-on-changes --skip 'dependabot/**'",
+    "generate-icon": "hygen icon new"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.2",
@@ -110,6 +111,7 @@
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "faker": "^5.5.3",
     "husky": "^6.0.0",
+    "hygen": "^6.1.0",
     "jest": "^27.2.4",
     "jest-file": "^1.0.0",
     "np": "^7.5.0",
