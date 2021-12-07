@@ -42,7 +42,8 @@
     "build-storybook": "build-storybook",
     "release": "np",
     "chromatic": "npx chromatic --exit-zero-on-changes --skip 'dependabot/**'",
-    "generate-icon": "hygen icon new"
+    "generate-icon": "hygen icon new",
+    "build-icons": "node scripts/icons.js"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.2",
