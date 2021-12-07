@@ -7,9 +7,9 @@ export const RadioIcon = createSvgIcon(
       cx="12"
       cy="12"
       r="11"
-      fill="white"
+      fill="var(--background-paper)"
       stroke="currentColor"
-      stroke-width="2"
+      strokeWidth="2"
     />
   </>,
   "RadioIcon"
