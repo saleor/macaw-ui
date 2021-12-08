@@ -28,7 +28,7 @@ export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
         <ButtonBase
           ref={ref}
           className={clsx(classes.secondary, className, {
-            [classes.hoverOutline]: hoverOutline,
+            [classes.hoverOutline]: hoverOutline && !props.disabled,
           })}
           disableRipple
           {...props}

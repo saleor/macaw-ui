@@ -5,8 +5,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import clsx from "clsx";
 import React from "react";
 import SVG from "react-inlinesvg";
+import { useTheme } from "..";
 
 import { Logo } from "../icons/Logo";
+import { LogoDark } from "../icons/LogoDark";
 import { BaseSidebarProps, SidebarMenuItem } from "../Sidebar/types";
 import { SquareButton } from "../SquareButton";
 import { MenuItemBtn } from "./MenuItemBtn";
@@ -25,6 +27,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   );
   const [showSubmenu, setShowSubmenu] = React.useState(false);
   const container = React.useRef<HTMLDivElement>(null);
+  const { themeType } = useTheme();
 
   const handleMenuItemClick = (url: string) => {
     setOpened(false);
@@ -65,7 +68,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
           >
             <div className={classes.content}>
               <div className={classes.logo}>
-                <Logo />
+                {themeType === "dark" ? <LogoDark /> : <Logo />}
               </div>
               {menuItems.map((menuItem) => (
                 <MenuItemBtn
