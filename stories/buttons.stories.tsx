@@ -1,9 +1,9 @@
 import { FormControlLabel, Typography } from "@material-ui/core";
-import Delete from "@material-ui/icons/Delete";
+import { ArrowDownward } from "@material-ui/icons";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Button, IconButton, PillLink, LayoutButton } from "../src";
+import { Button, IconButton, PillLink, LayoutButton, DeleteIcon } from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "./guideStyles";
 import { Cell } from "./utils/Cell";
@@ -31,10 +31,10 @@ const DefaultStory: React.FC = () => {
           </Cell>
           <Cell>
             <IconButton>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
             <IconButton disabled>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
           </Cell>
           <Cell>
@@ -45,6 +45,16 @@ const DefaultStory: React.FC = () => {
             <PillLink href="#" state="active">
               Clickable Pill
             </PillLink>
+          </Cell>
+          <Cell>
+            <Button variant="secondary">
+              <DeleteIcon />
+              With Icon
+            </Button>
+            <Button disabled variant="secondary">
+              <DeleteIcon />
+              With Icon
+            </Button>
           </Cell>
         </div>
         <div>
@@ -83,22 +93,27 @@ const DefaultStory: React.FC = () => {
             <FormControlLabel
               control={
                 <IconButton variant="secondary">
-                  <Delete />
+                  <DeleteIcon />
                 </IconButton>
               }
-              label="default"
+              label="Delete from list"
             />
             <FormControlLabel
               control={
-                <IconButton hoverOutline variant="secondary">
-                  <Delete />
+                <IconButton hoverOutline={false} variant="secondary">
+                  <ArrowDownward />
                 </IconButton>
               }
-              label="outlined"
+              label="Expand"
             />
-            <IconButton disabled variant="secondary">
-              <Delete />
-            </IconButton>
+            <FormControlLabel
+              control={
+                <IconButton disabled variant="secondary">
+                  <DeleteIcon />
+                </IconButton>
+              }
+              label="Disabled"
+            />
           </Cell>
         </div>
       </div>
@@ -138,10 +153,10 @@ const ErrorStory: React.FC = () => {
           </Cell>
           <Cell>
             <IconButton error>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
             <IconButton error disabled>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
           </Cell>
         </div>

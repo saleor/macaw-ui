@@ -43,7 +43,7 @@ function getButtonProps(
     case "secondary":
       return { variant: "outlined", color };
     default:
-      return { variant: "text", color };
+      return { variant: "outlined", size: "small", color };
   }
 }
 

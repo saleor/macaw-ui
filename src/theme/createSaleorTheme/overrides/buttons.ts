@@ -4,7 +4,8 @@ import { SaleorThemeColors } from "../types";
 
 export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
   const containedPrimaryHover = {
-    backgroundColor: colors.active[3],
+    backgroundColor: colors.background.paper,
+    color: colors.active[1],
   };
 
   return {
@@ -38,28 +39,36 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
       containedPrimary: {
         "&&:hover": containedPrimaryHover,
         "&&:active": {
-          backgroundColor: colors.active[4],
+          backgroundColor: colors.active[5],
         },
       },
       label: {
-        fontWeight: 600,
+        fontWeight: 500,
       },
       root: {
+        "&$disabled": {
+          borderColor: colors.disabled,
+        },
+        "&:hover": {
+          backgroundColor: undefined,
+        },
+        border: `1px solid ${colors.active[1]}`,
         borderRadius: 4,
         fontSize: "1.6rem",
         letterSpacing: "0.06rem",
         lineHeight: 1.55,
-        padding: "12px 16px",
+        padding: "7px 16px",
+        textTransform: "none",
       },
       text: {
         "&&$disabled": {
           color: colors.disabled,
         },
         "&:hover, &$focusVisible": {
-          background: colors.main[5],
+          borderColor: colors.main[1],
         },
         "&:active": {
-          background: colors.main[4],
+          background: colors.main[5],
         },
       },
       textPrimary: {
@@ -86,48 +95,56 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         },
         "&:hover, &$focusVisible": {
           borderColor: colors.main[1],
-          backgroundColor: colors.main[5],
         },
         "&:active": {
-          backgroundColor: colors.main[4],
+          backgroundColor: colors.main[5],
+        },
+        "& svg": {
+          marginRight: 8,
         },
         background: colors.background.paper,
-        borderColor: colors.main[4],
-        borderWidth: 2,
+        borderColor: colors.main[5],
+        borderWidth: 1,
         borderStyle: "solid",
-        // 2px smaller because of border
-        padding: "10px 12px",
+        // 1px smaller because of border
+        padding: "7px 12px",
       },
       outlinedPrimary: {
         "&:hover, &$focusVisible": {
           borderColor: colors.active[1],
-          backgroundColor: colors.active[5],
+          color: colors.active[1],
         },
         "&:hover": {
           // Unsets border as it will require us to override borderWidth and
           // borderStyle over and over
           border: undefined,
+          backgroundColor: undefined,
         },
         "&:active": {
-          backgroundColor: colors.active[4],
+          backgroundColor: colors.active[5],
         },
         border: undefined,
-        borderColor: colors.active[4],
+        color: undefined,
+      },
+      outlinedSizeSmall: {
+        fontSize: "1.6rem",
+        padding: "2px 12px",
       },
     },
     MuiIconButton: {
       root: {
         "&:hover, &.Mui-focusVisible": {
           borderColor: colors.active[1],
-          backgroundColor: colors.active[5],
+          color: colors.active[1],
         },
         "&:hover": {
           // Unsets border as it will require us to override borderWidth and
           // borderStyle over and over
           border: undefined,
+          backgroundColor: undefined,
         },
         "&:active": {
-          backgroundColor: colors.active[4],
+          backgroundColor: colors.active[5],
         },
         "&$disabled": {
           border: undefined,
@@ -135,10 +152,10 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
           color: colors.disabled,
         },
         background: colors.background.paper,
-        border: `2px solid ${colors.active[4]}`,
+        border: `1px solid ${colors.main[5]}`,
         borderRadius: 4,
-        color: colors.active[1],
-        padding: 10,
+        color: colors.main[1],
+        padding: 7,
         transition: "200ms",
       },
     },

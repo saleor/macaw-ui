@@ -6,16 +6,15 @@ const useStyles = makeStyles(
     error: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
-          background: theme.palette.saleor.errorAction[5],
           borderColor: theme.palette.saleor.errorAction[1],
+          color: theme.palette.saleor.errorAction[1],
         },
         "&:active": {
-          background: theme.palette.saleor.errorAction[4],
-          borderColor: theme.palette.saleor.errorAction[1],
+          background: theme.palette.saleor.errorAction[5],
         },
       },
       borderColor: theme.palette.saleor.errorAction[4],
-      color: theme.palette.saleor.errorAction[1],
+      color: theme.palette.saleor.errorAction[2],
     },
     disabledError: {
       "&&&": {
@@ -28,6 +27,7 @@ const useStyles = makeStyles(
       "&$secondary": {
         "&:hover,&:focus-visible": {
           background: theme.palette.saleor.active[5],
+          borderColor: theme.palette.saleor.active[4],
         },
         "&:active": {
           background: theme.palette.saleor.active[4],

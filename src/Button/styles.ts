@@ -5,33 +5,35 @@ const useStyles = makeStyles(
     primary: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
-          background: theme.palette.saleor.errorAction[2],
+          color: theme.palette.saleor.errorAction[1],
         },
         "&:active": {
-          background: theme.palette.saleor.errorAction[3],
+          background: theme.palette.saleor.errorAction[5],
         },
       },
       background: theme.palette.saleor.errorAction[1],
+      borderColor: theme.palette.saleor.errorAction[1],
     },
     primaryDisabled: {
       "&&&": {
         background: theme.palette.saleor.errorAction[5],
+        borderColor: theme.palette.saleor.errorAction[5],
       },
     },
 
     secondary: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
-          background: theme.palette.saleor.errorAction[5],
           borderColor: theme.palette.saleor.errorAction[1],
+          color: theme.palette.saleor.errorAction[1],
         },
         "&:active": {
-          background: theme.palette.saleor.errorAction[4],
+          background: theme.palette.saleor.errorAction[5],
           borderColor: theme.palette.saleor.errorAction[1],
         },
       },
       borderColor: theme.palette.saleor.errorAction[4],
-      color: theme.palette.saleor.errorAction[1],
+      color: theme.palette.saleor.errorAction[2],
     },
     secondaryDisabled: {
       "&&&": {
@@ -43,16 +45,20 @@ const useStyles = makeStyles(
     tertiary: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
-          background: theme.palette.saleor.errorAction[5],
+          borderColor: theme.palette.saleor.errorAction[1],
+          color: theme.palette.saleor.errorAction[1],
         },
         "&:active": {
-          background: theme.palette.saleor.errorAction[4],
+          background: theme.palette.saleor.errorAction[5],
+          borderColor: theme.palette.saleor.errorAction[1],
         },
       },
-      color: theme.palette.saleor.errorAction[1],
+      borderColor: theme.palette.saleor.errorAction[4],
+      color: theme.palette.saleor.errorAction[2],
     },
     tertiaryDisabled: {
       "&&&": {
+        borderColor: theme.palette.saleor.errorAction[5],
         color: theme.palette.saleor.errorAction[5],
       },
     },
