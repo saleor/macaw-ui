@@ -8,7 +8,6 @@ const files = fs.readdirSync(dir, {
   withFileTypes: true,
 });
 
-console.log(files);
 const imports = files
   .map((file) => file.name)
   .filter((fileName) => iconRegexp.test(fileName))
