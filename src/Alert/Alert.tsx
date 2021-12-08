@@ -1,5 +1,5 @@
 import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
+import { CloseIcon } from "../icons";
 import clsx from "clsx";
 import React from "react";
 import { IconButton } from "../IconButton";
@@ -12,16 +12,19 @@ export interface AlertProps extends AlertBaseProps {
   close?: boolean;
   title?: string;
 }
-const Icon: React.FC<{ variant: AlertVariant }> = ({ variant }) => {
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  variant: AlertVariant;
+}
+const Icon: React.FC<IconProps> = ({ variant, ...props }) => {
   switch (variant) {
     case "error":
-      return <NotAllowedIcon />;
+      return <NotAllowedIcon {...props} />;
     case "warning":
-      return <WarningIcon />;
+      return <WarningIcon {...props} />;
     case "success":
-      return <CompleteIcon />;
+      return <CompleteIcon {...props} />;
     default:
-      return <InfoIcon />;
+      return <InfoIcon {...props} />;
   }
 };
 
@@ -42,8 +45,15 @@ export const Alert: React.FC<AlertProps> = ({
   return (
     <AlertBase variant={variant} {...rest}>
       <div className={classes.container}>
-        <div>
-          <Icon variant={variant} />
+        <div className={classes.icon}>
+          <Icon
+            className={clsx({
+              [classes.error]: variant === "error",
+              [classes.warning]: variant === "warning",
+              [classes.success]: variant === "success",
+            })}
+            variant={variant}
+          />
         </div>
         <div className={classes.content}>
           <div className={classes.titleBar}>
@@ -53,6 +63,7 @@ export const Alert: React.FC<AlertProps> = ({
                 className={clsx(classes.close, {
                   [classes.closeNoContent]: !children,
                 })}
+                hoverOutline={false}
                 variant="secondary"
                 onClick={() => setVisible(false)}
                 data-test="close"
