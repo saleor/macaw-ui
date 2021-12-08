@@ -9,7 +9,7 @@ export const WarningIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <circle cx="20" cy="20" r="20" fill="white" />
+    <circle cx="20" cy="20" r="20" fill="var(--background-paper)" />
     <circle cx="20" cy="20" r="14" stroke="#FFB84E" strokeWidth="4" />
     <path
       fillRule="evenodd"
