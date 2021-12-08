@@ -12,7 +12,7 @@ export const NotAllowedIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
     {...props}
   >
     <circle cx="20" cy="20" r="16" fill="#F5FAFB" />
-    <circle cx="20" cy="20" r="20" fill="white" />
+    <circle cx="20" cy="20" r="20" fill="var(--background-paper)" />
     <path
       fillRule="evenodd"
       clipRule="evenodd"
