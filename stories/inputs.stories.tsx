@@ -17,13 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const inputProps: Partial<StandardTextFieldProps> = {
+  fullWidth: true,
+  label: "Input Label",
+};
+
 const Default: React.FC = () => {
   const classes = useStyles();
   const guideClasses = useGuideStyles();
-  const typographyProps: Partial<StandardTextFieldProps> = {
-    fullWidth: true,
-    label: "Input Label",
-  };
 
   return (
     <div>
@@ -35,27 +36,77 @@ const Default: React.FC = () => {
       </Typography>
 
       <div className={classes.inputs}>
-        <TextField {...typographyProps} />
-        <TextField {...typographyProps} value="Filled Text" />
-        <TextField {...typographyProps} multiline value="Multiline" />
+        <TextField {...inputProps} />
+        <TextField {...inputProps} value="Filled Text" />
+        <TextField {...inputProps} multiline value="Multiline" />
 
-        <TextField {...typographyProps} disabled />
-        <TextField {...typographyProps} value="Filled Text" disabled />
-        <TextField {...typographyProps} multiline value="Multiline" disabled />
+        <TextField {...inputProps} disabled />
+        <TextField {...inputProps} value="Filled Text" disabled />
+        <TextField {...inputProps} multiline value="Multiline" disabled />
 
         <TextField
-          {...typographyProps}
+          {...inputProps}
           error
           helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
         />
         <TextField
-          {...typographyProps}
+          {...inputProps}
           error
           value="Filled Text"
           helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
         />
         <TextField
-          {...typographyProps}
+          {...inputProps}
+          error
+          multiline
+          value="Multiline"
+          helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
+        />
+      </div>
+    </div>
+  );
+};
+
+const inputWithAdornmentProps: Partial<StandardTextFieldProps> = {
+  ...inputProps,
+  InputProps: {
+    endAdornment: "EUR",
+  },
+};
+
+const Adornments: React.FC = () => {
+  const classes = useStyles();
+  const guideClasses = useGuideStyles();
+
+  return (
+    <div>
+      <Typography className={guideClasses.headline} variant="h1">
+        Inputs with adornments
+      </Typography>
+      <Typography className={guideClasses.paragraph} component="p">
+        Adornments can be used to display units or loaders
+      </Typography>
+
+      <div className={classes.inputs}>
+        <TextField {...inputWithAdornmentProps} value="Filled Text" />
+        <TextField {...inputWithAdornmentProps} multiline value="Multiline" />
+
+        <TextField {...inputWithAdornmentProps} value="Filled Text" disabled />
+        <TextField
+          {...inputWithAdornmentProps}
+          multiline
+          value="Multiline"
+          disabled
+        />
+
+        <TextField
+          {...inputWithAdornmentProps}
+          error
+          value="Filled Text"
+          helperText="Lorem ipsum dolor site amet consectetur adipiscing elit"
+        />
+        <TextField
+          {...inputWithAdornmentProps}
           error
           multiline
           value="Multiline"
@@ -69,4 +120,5 @@ const Default: React.FC = () => {
 storiesOf("Inputs", module)
   .addDecorator(Decorator)
   .addDecorator(GuideDecorator)
-  .add("default", () => <Default />);
+  .add("default", () => <Default />)
+  .add("with adornments", () => <Adornments />);
