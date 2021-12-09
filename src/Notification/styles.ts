@@ -10,24 +10,29 @@ const useStyles = makeStyles(
       minWidth: "unset",
     },
     closeBtn: {
+      "&:hover": {
+        color: theme.palette.text.primary,
+      },
       "& svg": {
         maxHeight: 20,
         maxWidth: 20,
       },
+      color: theme.palette.text.secondary,
       padding: 10,
       position: "absolute",
       right: 5,
       top: 7,
     },
-    closeBtnInfo: {
-      color: theme.palette.text.primary,
-    },
     error: {
+      "& $icon": {
+        color: theme.palette.alert.icon.error,
+      },
       backgroundColor: theme.palette.alert.paper.error,
     },
     hiddenText: {
       maxHeight: 0,
     },
+    icon: {},
     info: {},
     snackbar: {
       borderRadius: 4,
@@ -43,6 +48,9 @@ const useStyles = makeStyles(
       paddingLeft: `calc(${iconWidth}px + ${theme.spacing(2)})`,
     },
     success: {
+      "& $icon": {
+        color: theme.palette.alert.icon.success,
+      },
       backgroundColor: theme.palette.alert.paper.success,
     },
     text: {
@@ -50,6 +58,9 @@ const useStyles = makeStyles(
       paddingTop: 5,
     },
     warning: {
+      "& $icon": {
+        color: theme.palette.alert.icon.warning,
+      },
       backgroundColor: theme.palette.alert.paper.warning,
     },
 

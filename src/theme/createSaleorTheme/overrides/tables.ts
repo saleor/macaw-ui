@@ -19,7 +19,7 @@ export const tableOverrides = (
     head: {
       fontSize: "1.4rem",
       fontWeight: 400,
-      color: colors.font.gray,
+      color: colors.main[3],
     },
     paddingCheckbox: {
       "&:first-child": {
@@ -48,7 +48,7 @@ export const tableOverrides = (
   },
   MuiTablePagination: {
     input: {
-      color: colors.primary,
+      color: colors.active[1],
       fontSize: "1.4rem",
     },
   },

@@ -3,7 +3,10 @@ import { makeStyles } from "../theme";
 const useStyles = makeStyles(
   (theme) => ({
     close: {
-      color: theme.palette.common.black,
+      "&:hover": {
+        color: theme.palette.text.primary,
+      },
+      color: theme.palette.text.secondary,
       position: "absolute",
       right: theme.spacing(-2),
       top: theme.spacing(-1),
@@ -20,6 +23,17 @@ const useStyles = makeStyles(
     },
     content: {
       padding: theme.spacing(0, 1),
+    },
+    icon: {
+      "& $error": {
+        color: theme.palette.alert.icon.error,
+      },
+      "& $warning": {
+        color: theme.palette.alert.icon.warning,
+      },
+      "& $success": {
+        color: theme.palette.alert.icon.success,
+      },
     },
     root: {},
     titleBar: {

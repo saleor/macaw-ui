@@ -1,25 +1,28 @@
-import Button from "@material-ui/core/Button";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
+import { CloseIcon } from "../icons";
 import clsx from "clsx";
 import React from "react";
 
 import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
+import { Button } from "../Button";
 import { IconButton } from "../IconButton";
 
-const Icon: React.FC<{ type: NotificationType }> = ({ type }) => {
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  type: NotificationType;
+}
+const Icon: React.FC<IconProps> = ({ type, ...props }) => {
   switch (type) {
     case "error":
-      return <NotAllowedIcon />;
+      return <NotAllowedIcon {...props} />;
     case "warning":
-      return <WarningIcon />;
+      return <WarningIcon {...props} />;
     case "success":
-      return <CompleteIcon />;
+      return <CompleteIcon {...props} />;
     default:
-      return <InfoIcon />;
+      return <InfoIcon {...props} />;
   }
 };
 
@@ -56,7 +59,7 @@ export const Notification: React.FC<NotificationProps> = ({
         message={
           <div className={classes.container}>
             <div>
-              <Icon type={type} />
+              <Icon className={classes.icon} type={type} />
             </div>
             <div>
               <div className={classes.title}>
@@ -72,8 +75,7 @@ export const Notification: React.FC<NotificationProps> = ({
               <Button
                 className={classes.actionBtn}
                 key="action"
-                color="default"
-                size="small"
+                variant="tertiary"
                 onClick={action.onClick}
                 data-test="button-action"
               >
@@ -82,14 +84,11 @@ export const Notification: React.FC<NotificationProps> = ({
             )}
           </div>,
           <IconButton
-            key="close"
             aria-label="Close"
-            color="inherit"
             onClick={onClose}
+            hoverOutline={false}
             variant="secondary"
-            className={clsx(classes.closeBtn, {
-              [classes.closeBtnInfo]: type === "info",
-            })}
+            className={classes.closeBtn}
             data-test="close"
           >
             <CloseIcon />
