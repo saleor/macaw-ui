@@ -19,17 +19,17 @@ export const inputOverrides = (
   MuiInput: {
     input: {
       "&:-webkit-autofill": {
-        WebkitTextFillColor: colors.font.default,
+        WebkitTextFillColor: colors.main[1],
         boxShadow: `inset 0 0 0px 9999px ${colors.active[5]}`,
       },
       "&::placeholder": {
         opacity: "1 !important" as any,
       },
-      color: colors.font.default,
+      color: colors.main[1],
     },
     underline: {
       "&:after": {
-        borderBottomColor: colors.primary,
+        borderBottomColor: colors.active[1],
       },
     },
   },
@@ -42,7 +42,7 @@ export const inputOverrides = (
         color: colors.disabled,
       },
       "&::placeholder": {
-        color: colors.font.gray,
+        color: colors.main[3],
         opacity: "1 !important" as any,
       },
       borderRadius: "4px",
@@ -72,7 +72,7 @@ export const inputOverrides = (
       },
       "&&$focused": {
         "&:not($error)": {
-          color: colors.primary,
+          color: colors.active[1],
         },
       },
       "&:not($error):hover label": {
@@ -149,22 +149,22 @@ export const inputOverrides = (
         },
         "& input": {
           "& fieldset": {
-            borderColor: colors.primary,
+            borderColor: colors.active[1],
           },
           "&::placeholder": {
             opacity: [[1], "!important"] as any,
           },
-          color: colors.font.default,
+          color: colors.main[1],
         },
       },
       "&:hover": {
         boxShadow: getInputBoxShadow(colors.active[5]),
         "& input": {
-          color: colors.font.default,
+          color: colors.main[1],
         },
         "&&&": {
           "& fieldset": {
-            borderColor: colors.primary,
+            borderColor: colors.active[1],
           },
         },
       },

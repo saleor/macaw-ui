@@ -120,12 +120,12 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiFormLabel: {
         filled: {
           "&&:not($error)": {
-            color: colors.primary,
+            color: colors.active[1],
           },
         },
         root: {
           "&&$focused:not($error)": {
-            color: colors.font.gray,
+            color: colors.main[3],
           },
         },
       },
@@ -161,7 +161,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         root: {
           "&$selected, &$selected:focus, &$selected:hover": {
             backgroundColor: [colors.active[5], "!important"] as any,
-            color: colors.primary,
+            color: colors.active[1],
             fontWeight: 700,
           },
           "&:hover": {
@@ -183,7 +183,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         action: {
           "& $MuiIconButton": {
             "& svg": {
-              color: colors.font.default,
+              color: colors.main[1],
             },
           },
           display: "block",
@@ -198,7 +198,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           backgroundColor: colors.background.paper,
           boxShadow:
             "0 6px 10px 0px rgba(0, 0, 0, 0.15), 0 1px 18px 0px rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.10)",
-          color: colors.font.default,
+          color: colors.main[1],
           display: "block",
           maxWidth: 480,
         },
@@ -215,14 +215,14 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiTouchRipple: {
         child: {
-          backgroundColor: fade(colors.primary, 1),
+          backgroundColor: fade(colors.active[1], 1),
         },
         childLeaving: {
-          backgroundColor: fade(colors.primary, 1),
+          backgroundColor: fade(colors.active[1], 1),
         },
         ripple: {
           "&$rippleVisible": {
-            backgroundColor: fade(colors.primary, 1),
+            backgroundColor: fade(colors.active[1], 1),
           },
           borderRadius: "100%",
         },
@@ -297,7 +297,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         fontFamily,
       },
       body1: {
-        color: colors.font.default,
+        color: colors.main[1],
         fontSize: "1.6rem",
       },
       body2: {
@@ -316,7 +316,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       h4: {
         fontSize: "3.4rem",
-        color: colors.font.default,
+        color: colors.main[1],
       },
       h5: {
         fontSize: "2.1rem",

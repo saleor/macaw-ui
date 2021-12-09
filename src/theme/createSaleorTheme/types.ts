@@ -4,13 +4,7 @@ import type { Theme, ThemeOptions } from "@material-ui/core/styles";
 export type ThemeType = "light" | "dark";
 
 export type SaleorThemeColors = Record<
-  | "primary"
-  | "secondary"
-  | "error"
-  | "paperBorder"
-  | "autofill"
-  | "success"
-  | "disabled",
+  "paperBorder" | "autofill" | "success" | "disabled",
   string
 > & {
   highlightInactive: Record<"default", string>;
@@ -20,11 +14,6 @@ export type SaleorThemeColors = Record<
   checkbox: Record<"default", string>;
 } & {
   divider: string;
-} & {
-  font: Record<
-    "default" | "gray" | "button" | "textButton" | "textDisabled",
-    string
-  >;
 } & {
   gray: Record<"default" | "disabled", string>;
 } & {

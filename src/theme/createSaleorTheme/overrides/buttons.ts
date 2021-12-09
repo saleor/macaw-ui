@@ -15,7 +15,7 @@ export const buttonOverrides = (
       contained: {
         "&$disabled": {
           "&$containedPrimary": {
-            color: colors.secondary,
+            color: colors.background.paper,
             backgroundColor: colors.disabled,
           },
           "&$containedSecondary": {

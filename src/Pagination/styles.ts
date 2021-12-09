@@ -36,7 +36,9 @@ const useStyles = makeStyles(
           backgroundColor: fade(theme.palette.primary.main, 0.2),
         },
       },
-      color: theme.palette.primary.main,
+      "&:not($actionsButtonDisabled)": {
+        color: theme.palette.primary.main,
+      },
     },
     root: {},
     toolbar: {

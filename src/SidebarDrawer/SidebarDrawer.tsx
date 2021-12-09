@@ -7,7 +7,7 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import { Logo } from "../icons/Logo";
-import { LogoLight } from "../icons/LogoLight";
+import { LogoDark } from "../icons/LogoDark";
 import { BaseSidebarProps, SidebarMenuItem } from "../Sidebar/types";
 import { SquareButton } from "../SquareButton";
 import { useTheme } from "../theme";
@@ -20,7 +20,6 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   menuItems,
   onMenuItemClick,
 }) => {
-  const theme = useTheme();
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
   const [activeMenu, setActiveMenu] = React.useState<SidebarMenuItem | null>(
@@ -28,6 +27,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   );
   const [showSubmenu, setShowSubmenu] = React.useState(false);
   const container = React.useRef<HTMLDivElement>(null);
+  const { themeType } = useTheme();
 
   const handleMenuItemClick = (url: string) => {
     setOpened(false);
@@ -68,7 +68,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
           >
             <div className={classes.content}>
               <div className={classes.logo}>
-                {theme.themeType === "light" ? <Logo /> : <LogoLight />}
+                {themeType === "dark" ? <LogoDark /> : <Logo />}
               </div>
               {menuItems.map((menuItem) => (
                 <MenuItemBtn

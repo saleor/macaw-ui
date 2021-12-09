@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { Logo } from "../icons/Logo";
-import { LogoLight } from "../icons/LogoLight";
+import { LogoDark } from "../icons/LogoDark";
 import { localStorageKeys } from "../localStorageKeys";
 import { makeStyles, useTheme } from "../theme";
 import useLocalStorage from "../tools/useLocalStorage";
@@ -53,13 +53,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
   toolbar,
   onMenuItemClick,
 }) => {
-  const theme = useTheme();
   const classes = useStyles({});
   const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
     localStorageKeys.menuShrink,
     false.toString()
   );
   const isShrunk = isShrunkStr === "true";
+  const { themeType } = useTheme();
 
   return (
     <div
@@ -69,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       <div className={classes.float}>
         <div className={classes.logo}>
-          {theme.themeType === "light" ? <Logo /> : <LogoLight />}
+          {themeType === "dark" ? <LogoDark /> : <Logo />}
         </div>
         {menuItems.map((menuItem) => (
           <MenuItem
