@@ -46,7 +46,7 @@ const useStyles = makeStyles(
     },
     labelRoot: {
       position: "absolute",
-      left: 72,
+      left: 60,
       width: 200,
       textAlign: "left",
       pointerEvents: "none",

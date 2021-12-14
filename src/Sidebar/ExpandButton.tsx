@@ -1,7 +1,7 @@
 import { ButtonProps } from "@material-ui/core/Button";
 import clsx from "clsx";
 import React from "react";
-import { ArrowRightIcon } from "../icons";
+import { ChevronIcon } from "../icons";
 
 import { SquareButton } from "../SquareButton";
 import { makeStyles } from "../theme";
@@ -10,9 +10,10 @@ const useStyles = makeStyles(
   (theme) => ({
     arrow: {
       transition: theme.transitions.duration.shortest + "ms",
+      transform: "rotate(-90deg)",
     },
     shrunk: {
-      transform: "scaleX(-1)",
+      transform: "rotate(-90deg) scaleY(-1)",
     },
   }),
   {
@@ -32,7 +33,7 @@ export const ExpandButton: React.FC<ExpandButtonProps> = ({
 
   return (
     <SquareButton disableRipple {...rest}>
-      <ArrowRightIcon
+      <ChevronIcon
         className={clsx(classes.arrow, {
           [classes.shrunk]: !isShrunk,
         })}

@@ -55,7 +55,7 @@ export const buttonOverrides = (colors: SaleorThemeColors): Overrides => {
         border: `1px solid ${colors.active[1]}`,
         borderRadius: 4,
         fontSize: "1.6rem",
-        letterSpacing: "0.06rem",
+        letterSpacing: "0.02rem",
         lineHeight: 1.55,
         padding: "7px 16px",
         textTransform: "none",
