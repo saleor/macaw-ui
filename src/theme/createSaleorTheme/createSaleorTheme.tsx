@@ -257,6 +257,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         icon: <CheckboxIcon />,
         indeterminateIcon: <CheckboxIndeterminateIcon />,
       },
+      MuiMenuItem: {
+        button: false,
+      },
       MuiTableRow: {
         hover: true,
       },

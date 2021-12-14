@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       fontSize: theme.typography.body1.fontSize,
       fontWeight: 500,
       height: 40,
-      letterSpacing: "0.06rem",
+      letterSpacing: "0.02rem",
       padding: theme.spacing(0.5, 2),
       textAlign: "center",
       transition: theme.transitions.duration.shorter + "ms",
