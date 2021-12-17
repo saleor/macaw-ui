@@ -36,7 +36,6 @@ const useStyles = makeStyles(
       justifyContent: "center",
     },
     label: {
-      letterSpacing: "0.02em",
       lineHeight: 1.2,
       textAlign: "left",
     },
