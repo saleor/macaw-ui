@@ -1,27 +1,17 @@
 import { makeStyles } from "../theme";
 
 const avatarSize = 32;
-const mobileAvatarSize = 42;
 
 const useStyles = makeStyles(
   (theme) => ({
     avatar: {
       "&&": {
-        [theme.breakpoints.down("sm")]: {
-          height: mobileAvatarSize,
-          width: mobileAvatarSize,
-        },
         height: avatarSize,
         width: avatarSize,
       },
       backgroundColor: theme.palette.background.paper,
     },
     avatarInitials: {
-      [theme.breakpoints.down("sm")]: {
-        height: mobileAvatarSize,
-        width: mobileAvatarSize,
-        lineHeight: mobileAvatarSize + "px",
-      },
       height: avatarSize,
       lineHeight: avatarSize + "px",
       width: avatarSize,
@@ -41,6 +31,9 @@ const useStyles = makeStyles(
       textAlign: "left",
     },
     labelContainer: {
+      [theme.breakpoints.down("sm")]: {
+        marginLeft: 0,
+      },
       display: "inline-flex",
       alignItems: "center",
       marginLeft: theme.spacing(1),
@@ -51,6 +44,9 @@ const useStyles = makeStyles(
     },
     userChip: {
       "&&": {
+        [theme.breakpoints.down("sm")]: {
+          padding: theme.spacing(0.5),
+        },
         padding: theme.spacing(0.5, 3, 0.5, 1),
       },
       ...theme.typography.body1,
