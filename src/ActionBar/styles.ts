@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       borderBottomRightRadius: 0,
     },
     root: {
-      height: 80,
+      height: 72,
     },
     shadow: {
       boxShadow: `0 -24px 20px -20px rgba(0, 0, 0, 0.15)`,

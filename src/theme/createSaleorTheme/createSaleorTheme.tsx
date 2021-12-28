@@ -298,6 +298,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
     typography: {
       allVariants: {
         fontFamily,
+        letterSpacing: "0.02rem",
       },
       body1: {
         color: colors.main[1],
@@ -311,6 +312,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       caption: {
         fontSize: "1.2rem",
+        letterSpacing: 0,
       },
       fontFamily,
       h1: {
