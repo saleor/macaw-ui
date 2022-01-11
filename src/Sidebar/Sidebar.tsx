@@ -27,11 +27,9 @@ const useStyles = makeStyles(
     },
     root: {
       transition: "width 0.5s ease",
-      minWidth: menuWidth,
       width: menuWidth,
     },
     rootShrink: {
-      minWidth: shrunkMenuWidth,
       width: shrunkMenuWidth,
     },
     toolbarContainer: {
