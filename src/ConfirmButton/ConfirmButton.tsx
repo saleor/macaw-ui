@@ -1,4 +1,4 @@
-import Button, { ButtonProps } from "@material-ui/core/Button";
+import { Button, ButtonProps } from "../Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CheckIcon from "@material-ui/icons/Check";
 import clsx from "clsx";
@@ -23,20 +23,18 @@ export interface ConfirmButtonProps extends Omit<ButtonProps, "classes"> {
 
 export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
   children,
-  className,
   disabled,
   labels,
   noTransition,
   transitionState,
+  variant = "primary",
   onClick,
   onTransitionToDefault,
   ...props
 }) => {
   const classes = useStyles();
-  const [
-    displayCompletedActionState,
-    setDisplayCompletedActionState,
-  ] = React.useState(false);
+  const [displayCompletedActionState, setDisplayCompletedActionState] =
+    React.useState(false);
   const timeout = React.useRef<number>();
 
   React.useEffect(() => {
@@ -52,12 +50,12 @@ export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
         transitionState
       )
     ) {
-      timeout.current = (setTimeout(() => {
+      timeout.current = setTimeout(() => {
         setDisplayCompletedActionState(false);
         if (onTransitionToDefault) {
           onTransitionToDefault();
         }
-      }, DEFAULT_NOTIFICATION_SHOW_TIME) as unknown) as number;
+      }, DEFAULT_NOTIFICATION_SHOW_TIME) as unknown as number;
     } else if (transitionState === "loading") {
       clearTimeout(timeout.current);
     }
@@ -75,13 +73,9 @@ export const ConfirmButton: React.FC<ConfirmButtonProps> = ({
 
   return (
     <Button
-      variant="contained"
+      variant={variant}
+      error={transitionState === "error" && isCompleted}
       onClick={transitionState === "loading" ? undefined : onClick}
-      color="primary"
-      className={clsx(className, {
-        [classes.error]: transitionState === "error" && isCompleted,
-        [classes.success]: transitionState === "success" && isCompleted,
-      })}
       disabled={!isCompleted && disabled}
       data-test-state={isCompleted ? transitionState : "default"}
       {...props}

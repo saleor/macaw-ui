@@ -21,6 +21,7 @@ const Wrapper: React.FC = ({ children }) => {
     }, 50) as any;
 
     return () => clearInterval(timer.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -32,10 +33,12 @@ const Wrapper: React.FC = ({ children }) => {
 };
 
 export const Default: Story = () => (
-  <Backlink onClick={() => undefined}>Go back</Backlink>
+  <Backlink onClick={() => undefined}>Back</Backlink>
 );
 export const Loading: Story = () => (
-  <Backlink onClick={() => undefined}>{undefined}</Backlink>
+  <Backlink disabled onClick={() => undefined}>
+    {undefined}
+  </Backlink>
 );
 
 export default {

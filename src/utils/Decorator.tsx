@@ -1,10 +1,10 @@
-import { Card, CardContent } from "@material-ui/core";
-import { StoryFn } from "@storybook/addons";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 
 import { ThemeProvider } from "../theme";
 
-export const Decorator = (storyFn: StoryFn<React.ReactNode>) => (
+export const Decorator = (storyFn: any) => (
   <ThemeProvider>
     <div
       style={{
@@ -16,8 +16,8 @@ export const Decorator = (storyFn: StoryFn<React.ReactNode>) => (
   </ThemeProvider>
 );
 
-export const GuideDecorator = (storyFn: StoryFn<React.ReactNode>) => (
-  <Card style={{ margin: "auto", width: 600 }}>
+export const GuideDecorator = (storyFn: any) => (
+  <Card style={{ margin: "auto", width: 800 }}>
     <CardContent>{storyFn()}</CardContent>
   </Card>
 );

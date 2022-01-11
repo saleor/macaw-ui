@@ -1,26 +1,22 @@
 import { makeStyles } from "../theme";
 
+const avatarSize = 32;
+
 const useStyles = makeStyles(
   (theme) => ({
-    arrow: {
-      [theme.breakpoints.down("sm")]: {
-        marginLeft: 0,
-      },
-      marginLeft: theme.spacing(2),
-      transition: theme.transitions.duration.standard + "ms",
-    },
     avatar: {
       "&&": {
-        [theme.breakpoints.down("sm")]: {
-          height: 40,
-          width: 40,
-        },
-        height: 32,
-        width: 32,
+        height: avatarSize,
+        width: avatarSize,
       },
+      backgroundColor: theme.palette.background.paper,
     },
     avatarInitials: {
+      height: avatarSize,
+      lineHeight: avatarSize + "px",
+      width: avatarSize,
       color: theme.palette.primary.contrastText,
+      textAlign: "center",
     },
     avatarPlaceholder: {
       alignItems: "center",
@@ -31,29 +27,34 @@ const useStyles = makeStyles(
     },
     label: {
       lineHeight: 1.2,
+      textAlign: "left",
     },
     labelContainer: {
+      [theme.breakpoints.down("sm")]: {
+        marginLeft: 0,
+      },
       display: "inline-flex",
       alignItems: "center",
+      marginLeft: theme.spacing(1),
     },
     popover: {
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(0.5),
       zIndex: 10,
     },
-    rotate: {
-      transform: "rotate(180deg)",
-    },
     userChip: {
-      [theme.breakpoints.down("sm")]: {
-        height: 48,
+      "&&": {
+        [theme.breakpoints.down("sm")]: {
+          padding: theme.spacing(0.5),
+        },
+        padding: theme.spacing(0.5, 3, 0.5, 1),
       },
-      backgroundColor: theme.palette.background.paper,
-      borderRadius: 24,
-      color: theme.palette.text.primary,
-      height: 40,
-      padding: theme.spacing(0.5),
+      ...theme.typography.body1,
+      display: "flex",
+      textTransform: "unset",
     },
     userMenuContainer: {
+      cursor: "pointer",
+      display: "inline-block",
       position: "relative",
     },
   }),

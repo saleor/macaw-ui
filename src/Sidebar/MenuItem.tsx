@@ -1,4 +1,5 @@
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import MuiMenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import { fade } from "@material-ui/core/styles";
@@ -11,7 +12,7 @@ import { makeStyles } from "../theme";
 import { SidebarMenuItem } from "./types";
 
 export interface MenuItemProps {
-  active: boolean;
+  activeId: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
   onClick: (url: string) => void;
@@ -45,7 +46,7 @@ const useStyles = makeStyles(
     },
     labelRoot: {
       position: "absolute",
-      left: 72,
+      left: 60,
       width: 200,
       textAlign: "left",
       pointerEvents: "none",
@@ -64,60 +65,63 @@ const useStyles = makeStyles(
       padding: 0,
     },
     paper: {
-      borderRadius: 16,
+      borderRadius: 4,
       boxShadow: "0px 6px 30px rgba(0, 0, 0, 0.16)",
       cursor: "default",
-      padding: theme.spacing(3),
       textAlign: "left",
     },
     popper: {
-      marginLeft: theme.spacing(3),
+      margin: theme.spacing(3.5, 0, 0, 0),
+      marginLeft: -menuWidth / 2,
       zIndex: 2,
     },
+    popperShrink: {
+      marginLeft: -shrunkMenuWidth / 2,
+    },
     root: {
-      "&:hover, &:focus": {
+      "&:hover, &:focus-visible, &$rootOpen": {
         color: theme.palette.primary.main,
         outline: 0,
       },
-      borderBottomRightRadius: 100,
-      borderTopRightRadius: 100,
+      borderBottomRightRadius: 4,
+      borderTopRightRadius: 4,
       color: fade(theme.palette.text.primary, 0.6),
       cursor: "pointer",
       display: "flex",
       height: 56,
       marginBottom: theme.spacing(),
       overflow: "hidden",
-      padding: theme.spacing(2, 3, 2, 3.5),
+      padding: theme.spacing(2, 3, 2, 3),
       transition: theme.transitions.duration.shortest + "ms",
       width: shrunkMenuWidth,
     },
     rootActive: {
       "&$root": {
+        "&:hover, &:focus-visible, &$rootOpen": {
+          color: theme.palette.primary.main,
+        },
         background: theme.palette.background.paper,
-        boxShadow: "0px 6px 30px rgba(0, 0, 0, 0.16)",
-        color: theme.palette.primary.main,
+        color: theme.palette.text.primary,
       },
     },
     rootExpanded: {
       width: menuWidth,
     },
+    rootOpen: {},
     subMenuLabel: {
-      "&$label": {
-        "&:not(:last-child)": {
-          marginBottom: theme.spacing(2),
-        },
-      },
-      "&:hover, &:focus": {
-        color: theme.palette.primary.main,
-        outline: 0,
+      "&.Mui-selected": {
+        background: "unset !important",
       },
       background: "none",
       border: "none",
-      color: fade(theme.palette.text.primary, 0.6),
-      padding: 0,
+      color: theme.palette.text.primary,
+      fontWeight: 500,
+      height: 48,
+      lineHeight: 36 + "px",
       textAlign: "left",
       textDecoration: "none",
       whiteSpace: "nowrap",
+      width: "100%",
     },
   }),
   {
@@ -126,7 +130,7 @@ const useStyles = makeStyles(
 );
 
 export const MenuItem: React.FC<MenuItemProps> = ({
-  active,
+  activeId,
   menuItem,
   isMenuShrunk,
   onClick,
@@ -148,7 +152,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className={clsx(classes.root, {
-        [classes.rootActive]: active,
+        [classes.rootOpen]: open,
+        [classes.rootActive]: [
+          menuItem.id,
+          ...(menuItem.children?.map((subMenu) => subMenu.id) || []),
+        ].includes(activeId),
         [classes.rootExpanded]: !isMenuShrunk,
       })}
       ref={anchor}
@@ -174,7 +182,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       </button>
       {menuItem.children && (
         <Popper
-          className={classes.popper}
+          className={clsx(classes.popper, {
+            [classes.popperShrink]: isMenuShrunk,
+          })}
           open={open}
           anchorEl={anchor.current}
           transition
@@ -188,21 +198,21 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                   : {};
 
                 return (
-                  <Typography
+                  <MuiMenuItem
                     aria-label={subMenuItem.ariaLabel}
                     component={subMenuItem.external ? "a" : "button"}
                     className={clsx(classes.label, classes.subMenuLabel)}
                     key={subMenuItem.url}
-                    onClick={(event: React.MouseEvent<any>) =>
+                    onClick={(event: React.MouseEvent) =>
                       handleClick(event, subMenuItem)
                     }
                     data-test="submenu-item-label"
                     data-test-id={subMenuItem.id}
-                    variant="body2"
+                    selected={activeId === subMenuItem.id}
                     {...linkProps}
                   >
                     {subMenuItem.label}
-                  </Typography>
+                  </MuiMenuItem>
                 );
               })}
             </Paper>

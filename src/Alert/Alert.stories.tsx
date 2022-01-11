@@ -3,6 +3,7 @@ import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import { Alert, AlertProps } from "./Alert";
+import { AlertBase } from "./AlertBase";
 
 const props: AlertProps = {
   close: false,
@@ -24,6 +25,13 @@ export const WithContentAndClose: Story = () => (
   <Alert {...props} close>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </Alert>
+);
+export const Custom: Story = () => (
+  <AlertBase {...props} elevation={16} variant="warning">
+    <Typography>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Typography>
+  </AlertBase>
 );
 
 export const WithoutTitle: Story = () => (

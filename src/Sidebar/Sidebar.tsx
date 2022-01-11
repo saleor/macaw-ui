@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { Logo } from "../icons/Logo";
-import { LogoLight } from "../icons/LogoLight";
+import { LogoDark } from "../icons/LogoDark";
 import { localStorageKeys } from "../localStorageKeys";
 import { makeStyles, useTheme } from "../theme";
 import useLocalStorage from "../tools/useLocalStorage";
@@ -13,29 +13,27 @@ import { BaseSidebarProps } from "./types";
 const useStyles = makeStyles(
   (theme) => ({
     expandButton: {
-      marginLeft: theme.spacing(2),
+      marginLeft: theme.spacing(1.5),
     },
     float: {
       height: "100vh",
       position: "fixed",
-      paddingRight: "2em",
       overflowY: "auto",
+      overflowX: "hidden",
+      paddingBottom: theme.spacing(3),
     },
     logo: {
-      margin: `36px 0 ${theme.spacing(3)} ${theme.spacing(3.5)}`,
+      margin: `36px 0 ${theme.spacing(3)} ${theme.spacing(2.5)}`,
     },
     root: {
       transition: "width 0.5s ease",
-      minWidth: menuWidth,
       width: menuWidth,
-      zIndex: 100,
     },
     rootShrink: {
-      minWidth: shrunkMenuWidth,
       width: shrunkMenuWidth,
     },
     toolbarContainer: {
-      margin: theme.spacing(1, 0, 1, 2),
+      margin: theme.spacing(1, 0, 1, 1.5),
     },
   }),
   {
@@ -44,22 +42,22 @@ const useStyles = makeStyles(
 );
 
 export interface SidebarProps extends BaseSidebarProps {
-  active: string;
+  activeId: string;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
-  active,
+  activeId,
   menuItems,
   toolbar,
   onMenuItemClick,
 }) => {
-  const theme = useTheme();
   const classes = useStyles({});
   const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
     localStorageKeys.menuShrink,
     false.toString()
   );
   const isShrunk = isShrunkStr === "true";
+  const { themeType } = useTheme();
 
   return (
     <div
@@ -69,11 +67,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       <div className={classes.float}>
         <div className={classes.logo}>
-          {theme.themeType === "light" ? <Logo /> : <LogoLight />}
+          {themeType === "dark" ? <LogoDark /> : <Logo />}
         </div>
         {menuItems.map((menuItem) => (
           <MenuItem
-            active={active === menuItem.id}
+            activeId={activeId}
             isMenuShrunk={isShrunk}
             menuItem={menuItem}
             onClick={onMenuItemClick}

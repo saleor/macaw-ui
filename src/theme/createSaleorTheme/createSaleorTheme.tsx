@@ -1,7 +1,16 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles";
 import type { TypographyProps } from "@material-ui/core/Typography";
+import React from "react";
 
+import {
+  CheckboxCheckedIcon,
+  CheckboxIcon,
+  CheckboxIndeterminateIcon,
+  RadioCheckedIcon,
+  RadioIcon,
+} from "../..";
+import { getSecondaryButtonStyles } from "../../IconButton/partials";
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
 import { shadows } from "./shadows";
@@ -12,26 +21,30 @@ export const ICONBUTTON_SIZE = 48;
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
 export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
-  (createMuiTheme({
+  createMuiTheme({
     overrides: {
       ...overrides(colors, fontFamily),
       MuiCard: {
         root: {
-          borderColor: colors.paperBorder,
           borderRadius: 8,
-          borderStyle: "solid",
-          borderWidth: 1,
+          borderWidth: 0,
           overflow: "visible",
         },
       },
       MuiCardActions: {
         root: {
-          flexDirection: "row-reverse" as "row-reverse",
+          ".MuiCardContent-root + &": {
+            paddingTop: 0,
+          },
+          padding: "3.2rem 3.2rem 3.2rem",
         },
       },
       MuiCardContent: {
         root: {
-          padding: "2.4rem",
+          ".MuiCardHeader-root + &": {
+            paddingTop: 0,
+          },
+          padding: "2.4rem 3.2rem",
         },
       },
       MuiCardHeader: {
@@ -40,7 +53,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           top: 4,
         },
         root: {
-          padding: "1.6rem 2.4rem",
+          padding: "2.4rem 3.2rem",
         },
       },
       MuiChip: {
@@ -84,9 +97,15 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           },
         },
       },
-      MuiDialogTitle: {
-        root: {
-          borderBottom: `1px solid ${colors.divider}`,
+      MuiDivider: {
+        light: {
+          backgroundColor: colors.background.paper,
+        },
+      },
+      MuiExpansionPanelSummary: {
+        expandIcon: {
+          ...getSecondaryButtonStyles(colors),
+          border: "none",
         },
       },
       MuiFormControlLabel: {
@@ -94,16 +113,19 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           lineHeight: 1.2,
           marginLeft: 4,
         },
+        root: {
+          marginLeft: -14,
+        },
       },
       MuiFormLabel: {
         filled: {
           "&&:not($error)": {
-            color: colors.primary,
+            color: colors.active[1],
           },
         },
         root: {
           "&&$focused:not($error)": {
-            color: colors.font.gray,
+            color: colors.main[3],
           },
         },
       },
@@ -114,52 +136,46 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           width: "1em",
         },
       },
-      MuiList: {
-        root: {
-          display: "grid",
-          gridRowGap: 8 + "px",
-          padding: "8px !important",
-        },
-      },
       MuiListItem: {
         button: {
           "&:focus": {
-            backgroundColor: colors.input.default,
+            background: colors.active[5],
+            color: colors.main[1],
           },
         },
         root: {
           "&$selected": {
             "&:hover": {
-              backgroundColor: colors.input.default,
+              backgroundColor: colors.main[1],
             },
-            backgroundColor: colors.input.default,
+            backgroundColor: colors.main[1],
           },
         },
       },
       MuiMenu: {
         paper: {
-          borderRadius: 8,
+          borderRadius: 0,
         },
       },
       MuiMenuItem: {
         root: {
           "&$selected, &$selected:focus, &$selected:hover": {
-            backgroundColor: [colors.background.default, "!important"] as any,
-            color: colors.primary,
+            backgroundColor: [colors.active[5], "!important"] as any,
+            color: colors.active[1],
             fontWeight: 700,
           },
           "&:hover": {
-            backgroundColor: [colors.background.default, "!important"] as any,
-            color: colors.font.default,
-            fontWeight: 400,
+            backgroundColor: [colors.active[5], "!important"] as any,
           },
-          borderRadius: 4,
+          "@media(min-width: 600px)": {
+            minHeight: 48,
+          },
         },
       },
       MuiSelect: {
         root: {
           "&$disabled": {
-            backgroundColor: colors.input.disabledBackground,
+            backgroundColor: colors.background.default,
           },
         },
       },
@@ -167,7 +183,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         action: {
           "& $MuiIconButton": {
             "& svg": {
-              color: colors.font.default,
+              color: colors.main[1],
             },
           },
           display: "block",
@@ -182,26 +198,31 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           backgroundColor: colors.background.paper,
           boxShadow:
             "0 6px 10px 0px rgba(0, 0, 0, 0.15), 0 1px 18px 0px rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.10)",
-          color: colors.font.default,
+          color: colors.main[1],
           display: "block",
           maxWidth: 480,
         },
       },
       MuiTooltip: {
+        arrow: {
+          color: colors.alert.icon.info,
+        },
         tooltip: {
+          backgroundColor: colors.alert.icon.info,
           fontSize: "0.8em",
+          padding: 16,
         },
       },
       MuiTouchRipple: {
         child: {
-          backgroundColor: fade(colors.primary, 0.2),
+          backgroundColor: fade(colors.active[1], 1),
         },
         childLeaving: {
-          backgroundColor: fade(colors.primary, 0.2),
+          backgroundColor: fade(colors.active[1], 1),
         },
         ripple: {
           "&$rippleVisible": {
-            backgroundColor: fade(colors.primary, 0.2),
+            backgroundColor: fade(colors.active[1], 1),
           },
           borderRadius: "100%",
         },
@@ -209,6 +230,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
     },
     palette: createPalette(colors),
     props: {
+      MuiButton: {
+        disableRipple: true,
+      },
       MuiFormControl: {
         variant: "filled",
       },
@@ -218,14 +242,55 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiCard: {
         elevation: 0,
       },
+      MuiExpansionPanelSummary: {
+        IconButtonProps: {
+          disableRipple: true,
+        },
+      },
       MuiTypography: {
         component: "div",
       } as TypographyProps,
       MuiCheckbox: {
         color: "primary",
+        disableRipple: true,
+        checkedIcon: <CheckboxCheckedIcon />,
+        icon: <CheckboxIcon />,
+        indeterminateIcon: <CheckboxIndeterminateIcon />,
+      },
+      MuiMenuItem: {
+        button: false,
+      },
+      MuiTableRow: {
+        hover: true,
       },
       MuiTooltip: {
         placement: "right-end",
+      },
+      MuiList: {
+        disablePadding: true,
+      },
+      MuiRadio: {
+        color: "primary",
+        disableRipple: true,
+        icon: <RadioIcon />,
+        checkedIcon: <RadioCheckedIcon />,
+      },
+      MuiSwitch: {
+        color: "primary",
+        disableRipple: true,
+      },
+      MuiSelect: {
+        MenuProps: {
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "left",
+          },
+          transformOrigin: {
+            vertical: "top",
+            horizontal: "left",
+          },
+          getContentAnchorEl: null,
+        },
       },
     },
     shadows,
@@ -233,9 +298,10 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
     typography: {
       allVariants: {
         fontFamily,
+        letterSpacing: "0.02rem",
       },
       body1: {
-        color: colors.font.default,
+        color: colors.main[1],
         fontSize: "1.6rem",
       },
       body2: {
@@ -246,15 +312,16 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       caption: {
         fontSize: "1.2rem",
+        letterSpacing: 0,
       },
       fontFamily,
       h1: {
-        fontSize: "4.8rem",
+        fontSize: "4rem",
         fontWeight: 700,
       },
       h4: {
         fontSize: "3.4rem",
-        color: colors.font.default,
+        color: colors.main[1],
       },
       h5: {
         fontSize: "2.1rem",
@@ -271,4 +338,4 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         fontSize: "1.4rem",
       },
     },
-  }) as unknown) as SaleorTheme;
+  }) as unknown as SaleorTheme;

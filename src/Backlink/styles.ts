@@ -4,6 +4,7 @@ const useStyles = makeStyles(
   (theme) => ({
     backArrow: {
       fontSize: 30,
+      transform: "rotate(180deg)",
     },
     menuButton: {
       flex: "0 0 auto",
@@ -12,15 +13,10 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(-2),
     },
     root: {
-      "&:hover": {
-        color: theme.typography.body1.color,
-      },
       alignItems: "center",
-      color: theme.palette.grey[500],
       cursor: "pointer",
       display: "flex",
       marginTop: theme.spacing(0.5),
-      transition: theme.transitions.duration.standard + "ms",
       [theme.breakpoints.down("sm")]: {
         margin: theme.spacing(4, 0, 0, 0),
       },
@@ -29,10 +25,9 @@ const useStyles = makeStyles(
       width: "10rem",
     },
     title: {
-      color: "inherit",
+      lineHeight: 1.1,
       flex: 1,
       marginLeft: theme.spacing(),
-      textTransform: "uppercase",
     },
   }),
   { name: "AppHeader" }

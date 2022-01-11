@@ -1,5 +1,4 @@
 import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
 import Hidden from "@material-ui/core/Hidden";
@@ -7,10 +6,9 @@ import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
-import clsx from "clsx";
 import React from "react";
+import { LayoutButton } from "..";
 
-import ArrowDropdownIcon from "../icons/ArrowDropdownIcon";
 import { UserChipMenuContext } from "./context";
 import useStyles from "./styles";
 
@@ -19,6 +17,7 @@ export interface UserChipProps {
   initials: string;
   name: string;
   subtext?: string;
+  open?: boolean;
 }
 
 export const UserChipMenu: React.FC<UserChipProps> = ({
@@ -27,59 +26,51 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
   name,
   subtext,
   children,
+  open = false,
   ...props
 }) => {
   const classes = useStyles({});
-  const [isMenuOpened, setMenuState] = React.useState(false);
-  const anchor = React.useRef<HTMLDivElement>(null);
+  const [isMenuOpened, setMenuState] = React.useState(open);
+  const anchor = React.useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => setMenuState(false);
 
   return (
-    <div className={classes.userMenuContainer} {...props}>
-      <Chip
-        avatar={
-          avatar ? (
-            <Avatar alt="user" src={avatar} />
-          ) : (
-            <div className={classes.avatarPlaceholder}>
-              <div className={classes.avatarInitials}>{initials}</div>
-            </div>
-          )
-        }
-        classes={{
-          avatar: classes.avatar,
-        }}
+    <>
+      <LayoutButton
         className={classes.userChip}
-        label={
-          <div className={classes.labelContainer}>
-            <Hidden smDown>
-              <div>
-                <Typography className={classes.label} variant="body2">
-                  {name}
-                </Typography>
-                {subtext && (
-                  <Typography
-                    className={classes.label}
-                    variant="body2"
-                    color="textSecondary"
-                  >
-                    {subtext}
-                  </Typography>
-                )}
-              </div>
-            </Hidden>
-            <ArrowDropdownIcon
-              className={clsx(classes.arrow, {
-                [classes.rotate]: isMenuOpened,
-              })}
-            />
-          </div>
-        }
-        onClick={() => setMenuState(!isMenuOpened)}
         ref={anchor}
+        onClick={() => setMenuState(!isMenuOpened)}
         data-test="userMenu"
-      />
+        state={isMenuOpened ? "active" : "default"}
+        {...props}
+      >
+        {avatar ? (
+          <Avatar className={classes.avatar} alt="user" src={avatar} />
+        ) : (
+          <div className={classes.avatarPlaceholder}>
+            <div className={classes.avatarInitials}>{initials}</div>
+          </div>
+        )}
+        <div className={classes.labelContainer}>
+          <Hidden smDown>
+            <div>
+              <Typography className={classes.label} variant="body2">
+                {name}
+              </Typography>
+              {subtext && (
+                <Typography
+                  className={classes.label}
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  {subtext}
+                </Typography>
+              )}
+            </div>
+          </Hidden>
+        </div>
+      </LayoutButton>
       <Popper
         className={classes.popover}
         open={isMenuOpened}
@@ -97,7 +88,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
           >
             <Paper>
               <ClickAwayListener onClickAway={closeMenu} mouseEvent="onClick">
-                <Menu>
+                <Menu disablePadding>
                   <UserChipMenuContext.Provider value={closeMenu}>
                     {children}
                   </UserChipMenuContext.Provider>
@@ -107,7 +98,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
           </Grow>
         )}
       </Popper>
-    </div>
+    </>
   );
 };
 UserChipMenu.displayName = "UserChip";

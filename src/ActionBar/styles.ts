@@ -7,6 +7,7 @@ const useStyles = makeStyles(
         paddingBottom: theme.spacing(2),
       },
       display: "flex",
+      gap: theme.spacing(2),
       paddingBottom: theme.spacing(2),
       paddingTop: theme.spacing(2),
       [theme.breakpoints.down("sm")]: {
@@ -18,7 +19,10 @@ const useStyles = makeStyles(
       borderBottomRightRadius: 0,
     },
     root: {
-      height: 70,
+      height: 72,
+    },
+    shadow: {
+      boxShadow: `0 -24px 20px -20px rgba(0, 0, 0, 0.15)`,
     },
   }),
   { name: "Savebar" }

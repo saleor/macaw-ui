@@ -10,29 +10,30 @@ export const createPalette = (
   background: colors.background,
   divider: colors.divider,
   error: {
-    main: colors.error,
+    main: colors.errorAction[1],
   },
   primary: {
     contrastText: "#ffffff",
-    dark: colors.font.textDisabled,
-    main: colors.primary,
+    dark: colors.main[4],
+    main: colors.active[1],
   },
   secondary: {
     contrastText: "#ffffff",
-    main: colors.secondary,
+    main: colors.background.paper,
   },
   success: {
     main: colors.success,
   },
   text: {
-    disabled: colors.font.gray,
-    hint: colors.font.gray,
-    primary: colors.font.default,
-    secondary: colors.font.gray,
+    disabled: colors.main[4],
+    hint: colors.main[3],
+    primary: colors.main[1],
+    secondary: colors.main[3],
   },
   textHighlighted: {
-    active: colors.primary,
+    active: colors.active[1],
     inactive: colors.highlightInactive.default,
   },
   type: colors.theme,
+  saleor: colors,
 });
