@@ -6,16 +6,20 @@ import useStyles from "./styles";
 
 export interface TooltipProps extends MUITooltipProps {
   variant?: "info" | "success" | "warning" | "error";
+  disabled?: boolean;
 }
 
 export const Tooltip: React.FC<TooltipProps> = ({
   children,
+  disabled = false,
   variant = "info",
   ...rest
 }) => {
   const classes = useStyles({ variant, children, ...rest });
 
-  return (
+  return disabled ? (
+    children
+  ) : (
     <MUITooltip classes={classes} {...rest}>
       {children}
     </MUITooltip>
