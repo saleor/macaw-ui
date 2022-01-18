@@ -1,4 +1,4 @@
-import { makeStyles } from "../src/theme";
+import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -21,6 +21,10 @@ const useStyles = makeStyles(
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       columnGap: theme.spacing(3),
+    },
+    border: {
+      borderRadius: 4,
+      border: "1px dashed #7B61FF",
     },
     cell: {
       "&:not(:last-child)": {

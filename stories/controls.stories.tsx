@@ -9,7 +9,7 @@ import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
-import useGuideStyles from "./guideStyles";
+import useGuideStyles from "../src/utils/guideStyles";
 import { Cell } from "./utils/Cell";
 
 const DefaultStory: React.FC = () => {

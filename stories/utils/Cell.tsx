@@ -1,4 +1,4 @@
-import useGuideStyles from "../guideStyles";
+import useGuideStyles from "../../src/utils/guideStyles";
 
 export const Cell: React.FC = ({ children }) => {
   const classes = useGuideStyles();

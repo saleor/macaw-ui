@@ -5,7 +5,7 @@ import React from "react";
 
 import { Button, IconButton, PillLink, LayoutButton, DeleteIcon } from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
-import useGuideStyles from "./guideStyles";
+import useGuideStyles from "../src/utils/guideStyles";
 import { Cell } from "./utils/Cell";
 
 // Workaround for context initialization
