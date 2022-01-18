@@ -22,7 +22,7 @@ export const createPalette = (
     main: colors.background.paper,
   },
   success: {
-    main: colors.success,
+    main: colors.success.mid,
   },
   text: {
     disabled: colors.main[4],

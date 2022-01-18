@@ -47,9 +47,28 @@ export const dark: SaleorThemeColors = {
     5: "rgba(250, 250, 250, 0.1)",
   },
   fail: {
+    verydark: "#9F2E2E",
     dark: "#B65757",
     mid: "#FEADAD",
     light: "#FEDEDE",
+  },
+  warning: {
+    verydark: "#97661F",
+    dark: "#B78A48",
+    mid: "#FFE6AB",
+    light: "#FFF4D2",
+  },
+  success: {
+    verydark: "#22805D",
+    dark: "#439C7B",
+    mid: "#A4E8BA",
+    light: "#E6F9F0",
+  },
+  info: {
+    verydark: "#004697",
+    dark: "#105CB3",
+    mid: "#99E6FD",
+    light: "#D2F6FE",
   },
   errorAction: {
     1: "#EB2B59",
@@ -61,7 +80,6 @@ export const dark: SaleorThemeColors = {
 
   disabled: "#5D6D83",
   paperBorder: "#252728",
-  success: "#5DC292",
   theme: "dark",
 };
 export const light: SaleorThemeColors = {
@@ -111,9 +129,28 @@ export const light: SaleorThemeColors = {
     5: "rgba(40, 35, 74, 0.1)",
   },
   fail: {
+    verydark: "#9F2E2E",
     dark: "#B65757",
     mid: "#FEADAD",
     light: "#FEDEDE",
+  },
+  warning: {
+    verydark: "#97661F",
+    dark: "#B78A48",
+    mid: "#FFE6AB",
+    light: "#FFF4D2",
+  },
+  success: {
+    verydark: "#22805D",
+    dark: "#439C7B",
+    mid: "#A4E8BA",
+    light: "#E6F9F0",
+  },
+  info: {
+    verydark: "#004697",
+    dark: "#105CB3",
+    mid: "#99E6FD",
+    light: "#D2F6FE",
   },
   errorAction: {
     1: "#B63755",
@@ -125,6 +162,5 @@ export const light: SaleorThemeColors = {
 
   disabled: "#CCDDDD",
   paperBorder: "#EAEAEA",
-  success: "#5DC292",
   theme: "light",
 };

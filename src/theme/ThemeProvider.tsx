@@ -37,6 +37,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   palettes = {},
   overrides = {},
 }) => {
+  console.log(`mounted ${defaultTheme}`);
   const { value: themeTypeName, setValue: setThemeType } = useLocalStorage(
     localStorageKeys.theme,
     defaultTheme

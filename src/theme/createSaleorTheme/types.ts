@@ -3,8 +3,12 @@ import type { Theme, ThemeOptions } from "@material-ui/core/styles";
 
 export type ThemeType = "light" | "dark";
 
+export type VariantColors = Record<
+  "verydark" | "dark" | "mid" | "light",
+  string
+>;
 export type SaleorThemeColors = Record<
-  "paperBorder" | "autofill" | "success" | "disabled",
+  "paperBorder" | "autofill" | "disabled",
   string
 > & {
   highlightInactive: Record<"default", string>;
@@ -19,7 +23,10 @@ export type SaleorThemeColors = Record<
 } & {
   alert: AlertColors;
   theme: ThemeType;
-  fail: Record<"dark" | "mid" | "light", string>;
+  fail: VariantColors;
+  warning: VariantColors;
+  success: VariantColors;
+  info: VariantColors;
   main: Record<1 | 2 | 3 | 4 | 5, string>;
   active: Record<1 | 2 | 3 | 4 | 5, string>;
   errorAction: Record<1 | 2 | 3 | 4 | 5, string>;
