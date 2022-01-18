@@ -48,6 +48,7 @@ export const Pill: React.FC<PillProps> = ({
       }}
       // There is no other way to disable ripple
       clickable={false}
+      component={onClick ? "button" : "div"}
       onClick={onClick}
       {...rest}
     />

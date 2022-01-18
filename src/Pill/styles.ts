@@ -6,7 +6,7 @@ function colorProps(color: VariantColors) {
       "&$clickable": {
         borderColor: color.light,
       },
-      "&$active, &$clickable:hover": {
+      "&$active, &$clickable:hover, &$clickable:focus": {
         backgroundColor: color.verydark,
       },
       borderColor: color.dark,
@@ -16,7 +16,7 @@ function colorProps(color: VariantColors) {
       "&$clickable": {
         borderColor: color.dark,
       },
-      "&$active, &$clickable:hover": {
+      "&$active, &$clickable:hover, &$clickable:focus": {
         backgroundColor: color.light,
       },
       borderColor: color.mid,
