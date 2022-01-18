@@ -32,7 +32,7 @@ const StoryWrapper: React.FC = () => {
       </Typography>
       <Typography className={guideClasses.paragraph} component="p">
         Pills are used to display certain status of a given entity. It could be
-        paid or unpaid order, a VAT number awaiting verification, or plugin that
+        paid or unpaid order, a VAT number awaiting verification, or a plugin that
         had been disabled.
       </Typography>
       <div style={{ display: "flex", gap: "24px" }}>
