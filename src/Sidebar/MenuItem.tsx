@@ -9,12 +9,12 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import { makeStyles } from "../theme";
-import { SidebarMenuItem } from "./types";
+import { SidebarMenuItemButton } from "./types";
 
 export interface MenuItemProps {
   activeId: string;
   isMenuShrunk: boolean;
-  menuItem: SidebarMenuItem;
+  menuItem: SidebarMenuItemButton;
   onClick: (url: string) => void;
 }
 
@@ -108,6 +108,11 @@ const useStyles = makeStyles(
       width: menuWidth,
     },
     rootOpen: {},
+    subMenuHeader: {
+      textTransform: "uppercase",
+      color: theme.palette.text.hint,
+      padding: "16px 16px 4px 16px",
+    },
     subMenuLabel: {
       "&.Mui-selected": {
         background: "unset !important",
@@ -139,7 +144,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   const [open, setOpen] = React.useState(false);
   const anchor = React.useRef<HTMLDivElement>(null);
 
-  const handleClick = (event: React.MouseEvent, menuItem: SidebarMenuItem) => {
+  const handleClick = (
+    event: React.MouseEvent,
+    menuItem: SidebarMenuItemButton
+  ) => {
     event.stopPropagation();
     if (menuItem.children) {
       setOpen(true);
@@ -193,6 +201,17 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Paper className={classes.paper}>
               {menuItem.children.map((subMenuItem) => {
+                if (subMenuItem.header) {
+                  return (
+                    <Typography
+                      variant="caption"
+                      className={classes.subMenuHeader}
+                    >
+                      {subMenuItem.label}
+                    </Typography>
+                  );
+                }
+
                 const linkProps = subMenuItem.external
                   ? { href: subMenuItem.url, target: "_blank" }
                   : {};

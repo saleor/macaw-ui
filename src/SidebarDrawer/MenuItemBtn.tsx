@@ -2,11 +2,11 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import SVG from "react-inlinesvg";
 
-import { SidebarMenuItem } from "../Sidebar/types";
+import { SidebarMenuItemButton } from "../Sidebar/types";
 import useStyles from "./styles";
 
 export interface MenuItemBtnProps {
-  menuItem: SidebarMenuItem;
+  menuItem: SidebarMenuItemButton;
   onClick: (url: string) => void;
 }
 export const MenuItemBtn: React.FC<MenuItemBtnProps> = ({
