@@ -1,11 +1,12 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import React from "react";
+import { useDarkMode } from "storybook-dark-mode";
 
 import { ThemeProvider } from "../theme";
 
 export const Decorator = (storyFn: any) => (
-  <ThemeProvider>
+  <ThemeProvider defaultTheme={useDarkMode() ? "dark" : "light"}>
     <div
       style={{
         padding: 24,
