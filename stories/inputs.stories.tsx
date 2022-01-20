@@ -8,7 +8,7 @@ import React from "react";
 
 import { makeStyles } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
-import useGuideStyles from "./guideStyles";
+import useGuideStyles from "../src/utils/guideStyles";
 
 const useStyles = makeStyles((theme) => ({
   inputs: {
