@@ -37,7 +37,7 @@ const useStyles = makeStyles(
     subMenuHeader: {
       textTransform: "uppercase",
       color: theme.palette.text.hint,
-      padding: "6px 0 18px 0",
+      padding: theme.spacing(1, 0, 2.5, 0),
     },
     menuItemBtn: {
       alignItems: "center",

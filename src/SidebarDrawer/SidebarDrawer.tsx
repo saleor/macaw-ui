@@ -8,7 +8,7 @@ import SVG from "react-inlinesvg";
 
 import { Logo } from "../icons/Logo";
 import { LogoDark } from "../icons/LogoDark";
-import { BaseSidebarProps, SidebarMenuItemButton } from "../Sidebar/types";
+import { BaseSidebarProps, SidebarMenuItem } from "../Sidebar/types";
 import { SquareButton } from "../SquareButton";
 import { useTheme } from "../theme";
 import { MenuItemBtn } from "./MenuItemBtn";
@@ -22,8 +22,9 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
 }) => {
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
-  const [activeMenu, setActiveMenu] =
-    React.useState<SidebarMenuItemButton | null>(null);
+  const [activeMenu, setActiveMenu] = React.useState<SidebarMenuItem | null>(
+    null
+  );
   const [showSubmenu, setShowSubmenu] = React.useState(false);
   const container = React.useRef<HTMLDivElement>(null);
   const { themeType } = useTheme();
@@ -34,7 +35,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
     onMenuItemClick(url);
   };
 
-  const handleMenuItemWithChildrenClick = (menuItem: SidebarMenuItemButton) => {
+  const handleMenuItemWithChildrenClick = (menuItem: SidebarMenuItem) => {
     setActiveMenu(menuItem);
     setShowSubmenu(true);
     container.current?.scrollTo({
@@ -97,16 +98,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
                   </SquareButton>
                 </div>
                 {activeMenu.children?.map((subMenuItem) => {
-                  if (subMenuItem.header) {
-                    return (
-                      <Typography
-                        variant="caption"
-                        className={classes.subMenuHeader}
-                      >
-                        {subMenuItem.label}
-                      </Typography>
-                    );
-                  } else {
+                  if (subMenuItem.url || subMenuItem.children) {
                     return (
                       <MenuItemBtn
                         menuItem={subMenuItem}
@@ -115,6 +107,15 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
                       />
                     );
                   }
+
+                  return (
+                    <Typography
+                      variant="caption"
+                      className={classes.subMenuHeader}
+                    >
+                      {subMenuItem.label}
+                    </Typography>
+                  );
                 })}
               </div>
             )}

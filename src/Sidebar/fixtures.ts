@@ -1,7 +1,7 @@
 import homeIcon from "../../stories/assets/menu-home-icon.svg";
 import { SidebarMenuItem } from "./types";
 
-export const menu: SidebarMenuItem<"button">[] = [
+export const menu: SidebarMenuItem[] = [
   {
     ariaLabel: "Menu 1",
     id: "menu1",
@@ -36,7 +36,6 @@ export const menu: SidebarMenuItem<"button">[] = [
       {
         label: "External",
         id: "menu2external",
-        header: true,
       },
       {
         ariaLabel: "Menu 2.4",

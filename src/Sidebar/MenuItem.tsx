@@ -9,12 +9,12 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import { makeStyles } from "../theme";
-import { SidebarMenuItemButton } from "./types";
+import { SidebarMenuItem } from "./types";
 
 export interface MenuItemProps {
   activeId: string;
   isMenuShrunk: boolean;
-  menuItem: SidebarMenuItemButton;
+  menuItem: SidebarMenuItem;
   onClick: (url: string) => void;
 }
 
@@ -111,7 +111,7 @@ const useStyles = makeStyles(
     subMenuHeader: {
       textTransform: "uppercase",
       color: theme.palette.text.hint,
-      padding: "16px 16px 4px 16px",
+      padding: theme.spacing(2, 2, 0.5, 2),
     },
     subMenuLabel: {
       "&.Mui-selected": {
@@ -144,10 +144,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   const [open, setOpen] = React.useState(false);
   const anchor = React.useRef<HTMLDivElement>(null);
 
-  const handleClick = (
-    event: React.MouseEvent,
-    menuItem: SidebarMenuItemButton
-  ) => {
+  const handleClick = (event: React.MouseEvent, menuItem: SidebarMenuItem) => {
     event.stopPropagation();
     if (menuItem.children) {
       setOpen(true);
@@ -201,37 +198,37 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Paper className={classes.paper}>
               {menuItem.children.map((subMenuItem) => {
-                if (subMenuItem.header) {
+                if (subMenuItem.url || subMenuItem.children) {
+                  const linkProps = subMenuItem.external
+                    ? { href: subMenuItem.url, target: "_blank" }
+                    : {};
+
                   return (
-                    <Typography
-                      variant="caption"
-                      className={classes.subMenuHeader}
+                    <MuiMenuItem
+                      aria-label={subMenuItem.ariaLabel}
+                      component={subMenuItem.external ? "a" : "button"}
+                      className={clsx(classes.label, classes.subMenuLabel)}
+                      key={subMenuItem.url}
+                      onClick={(event: React.MouseEvent) =>
+                        handleClick(event, subMenuItem)
+                      }
+                      data-test="submenu-item-label"
+                      data-test-id={subMenuItem.id}
+                      selected={activeId === subMenuItem.id}
+                      {...linkProps}
                     >
                       {subMenuItem.label}
-                    </Typography>
+                    </MuiMenuItem>
                   );
                 }
 
-                const linkProps = subMenuItem.external
-                  ? { href: subMenuItem.url, target: "_blank" }
-                  : {};
-
                 return (
-                  <MuiMenuItem
-                    aria-label={subMenuItem.ariaLabel}
-                    component={subMenuItem.external ? "a" : "button"}
-                    className={clsx(classes.label, classes.subMenuLabel)}
-                    key={subMenuItem.url}
-                    onClick={(event: React.MouseEvent) =>
-                      handleClick(event, subMenuItem)
-                    }
-                    data-test="submenu-item-label"
-                    data-test-id={subMenuItem.id}
-                    selected={activeId === subMenuItem.id}
-                    {...linkProps}
+                  <Typography
+                    variant="caption"
+                    className={classes.subMenuHeader}
                   >
                     {subMenuItem.label}
-                  </MuiMenuItem>
+                  </Typography>
                 );
               })}
             </Paper>

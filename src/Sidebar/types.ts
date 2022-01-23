@@ -1,31 +1,18 @@
 import React from "react";
 
-export type SidebarMenuItemType = "header" | "button";
-
-export interface SidebarMenuItemHeader {
+export interface SidebarMenuItem {
   label: string;
   id: string;
-  header: true;
-}
-
-export interface SidebarMenuItemButton {
-  label: string;
-  id: string;
-  ariaLabel: string;
-  children?: SidebarMenuItem<SidebarMenuItemType>[];
+  ariaLabel?: string;
+  children?: SidebarMenuItem[];
   iconSrc?: string;
   url?: string;
   external?: boolean;
-  header?: false;
 }
-
-export type SidebarMenuItem<T extends SidebarMenuItemType> = T extends "header"
-  ? SidebarMenuItemHeader
-  : SidebarMenuItemButton;
 
 export interface BaseSidebarProps {
   className?: string;
-  menuItems: SidebarMenuItemButton[];
+  menuItems: SidebarMenuItem[];
   toolbar?: React.ReactNode;
   onMenuItemClick: (url: string) => void;
 }
