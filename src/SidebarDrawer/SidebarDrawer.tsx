@@ -97,13 +97,26 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
                     <ArrowLeftIcon />
                   </SquareButton>
                 </div>
-                {activeMenu.children?.map((subMenuItem) => (
-                  <MenuItemBtn
-                    menuItem={subMenuItem}
-                    onClick={handleMenuItemClick}
-                    key={subMenuItem.ariaLabel}
-                  />
-                ))}
+                {activeMenu.children?.map((subMenuItem) => {
+                  if (subMenuItem.url || subMenuItem.children) {
+                    return (
+                      <MenuItemBtn
+                        menuItem={subMenuItem}
+                        onClick={handleMenuItemClick}
+                        key={subMenuItem.ariaLabel}
+                      />
+                    );
+                  }
+
+                  return (
+                    <Typography
+                      variant="caption"
+                      className={classes.subMenuHeader}
+                    >
+                      {subMenuItem.label}
+                    </Typography>
+                  );
+                })}
               </div>
             )}
           </div>

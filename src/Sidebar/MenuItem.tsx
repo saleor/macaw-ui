@@ -108,6 +108,11 @@ const useStyles = makeStyles(
       width: menuWidth,
     },
     rootOpen: {},
+    subMenuHeader: {
+      textTransform: "uppercase",
+      color: theme.palette.text.hint,
+      padding: theme.spacing(2, 2, 0.5, 2),
+    },
     subMenuLabel: {
       "&.Mui-selected": {
         background: "unset !important",
@@ -193,26 +198,37 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Paper className={classes.paper}>
               {menuItem.children.map((subMenuItem) => {
-                const linkProps = subMenuItem.external
-                  ? { href: subMenuItem.url, target: "_blank" }
-                  : {};
+                if (subMenuItem.url || subMenuItem.children) {
+                  const linkProps = subMenuItem.external
+                    ? { href: subMenuItem.url, target: "_blank" }
+                    : {};
+
+                  return (
+                    <MuiMenuItem
+                      aria-label={subMenuItem.ariaLabel}
+                      component={subMenuItem.external ? "a" : "button"}
+                      className={clsx(classes.label, classes.subMenuLabel)}
+                      key={subMenuItem.url}
+                      onClick={(event: React.MouseEvent) =>
+                        handleClick(event, subMenuItem)
+                      }
+                      data-test="submenu-item-label"
+                      data-test-id={subMenuItem.id}
+                      selected={activeId === subMenuItem.id}
+                      {...linkProps}
+                    >
+                      {subMenuItem.label}
+                    </MuiMenuItem>
+                  );
+                }
 
                 return (
-                  <MuiMenuItem
-                    aria-label={subMenuItem.ariaLabel}
-                    component={subMenuItem.external ? "a" : "button"}
-                    className={clsx(classes.label, classes.subMenuLabel)}
-                    key={subMenuItem.url}
-                    onClick={(event: React.MouseEvent) =>
-                      handleClick(event, subMenuItem)
-                    }
-                    data-test="submenu-item-label"
-                    data-test-id={subMenuItem.id}
-                    selected={activeId === subMenuItem.id}
-                    {...linkProps}
+                  <Typography
+                    variant="caption"
+                    className={classes.subMenuHeader}
                   >
                     {subMenuItem.label}
-                  </MuiMenuItem>
+                  </Typography>
                 );
               })}
             </Paper>

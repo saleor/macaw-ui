@@ -1,11 +1,11 @@
 import React from "react";
 
 export interface SidebarMenuItem {
-  ariaLabel: string;
-  children?: SidebarMenuItem[];
-  iconSrc?: string;
   label: string;
   id: string;
+  ariaLabel?: string;
+  children?: SidebarMenuItem[];
+  iconSrc?: string;
   url?: string;
   external?: boolean;
 }

@@ -34,6 +34,11 @@ const useStyles = makeStyles(
       display: "block",
       marginBottom: theme.spacing(4),
     },
+    subMenuHeader: {
+      textTransform: "uppercase",
+      color: theme.palette.text.hint,
+      padding: theme.spacing(1, 0, 2.5, 0),
+    },
     menuItemBtn: {
       alignItems: "center",
       background: "none",
@@ -43,6 +48,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacing(3),
       padding: 0,
       textDecoration: "none",
+      cursor: "pointer",
     },
     root: {
       background: theme.palette.background.default,
