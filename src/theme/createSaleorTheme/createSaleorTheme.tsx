@@ -275,6 +275,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         icon: <RadioIcon />,
         checkedIcon: <RadioCheckedIcon />,
       },
+      MuiRadioGroup: {
+        formLabel: "inherit",
+      },
       MuiSwitch: {
         color: "primary",
         disableRipple: true,
@@ -306,6 +309,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       body2: {
         fontSize: "1.4rem",
+        lineHeight: 1.56,
       },
       button: {
         fontSize: "1.4rem",
