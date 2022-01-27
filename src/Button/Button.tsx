@@ -47,35 +47,35 @@ function getButtonProps(
   }
 }
 
-const _Button: React.FC<ButtonProps> = ({
-  className,
-  color = "primary",
-  error,
-  variant = "tertiary",
-  ...props
-}) => {
-  const classes = useStyles();
+const _Button: React.FC<ButtonProps> = React.forwardRef(
+  (
+    { className, color = "primary", error, variant = "tertiary", ...props },
+    ref
+  ) => {
+    const classes = useStyles();
 
-  return (
-    <MuiButton
-      className={clsx(className, {
-        [classes.primary]: variant === "primary" && error,
-        [classes.primaryDisabled]:
-          variant === "primary" && error && props.disabled,
+    return (
+      <MuiButton
+        ref={ref}
+        className={clsx(className, {
+          [classes.primary]: variant === "primary" && error,
+          [classes.primaryDisabled]:
+            variant === "primary" && error && props.disabled,
 
-        [classes.secondary]: variant === "secondary" && error,
-        [classes.secondaryDisabled]:
-          variant === "secondary" && error && props.disabled,
+          [classes.secondary]: variant === "secondary" && error,
+          [classes.secondaryDisabled]:
+            variant === "secondary" && error && props.disabled,
 
-        [classes.tertiary]: variant === "tertiary" && error,
-        [classes.tertiaryDisabled]:
-          variant === "tertiary" && error && props.disabled,
-      })}
-      {...getButtonProps(color, variant)}
-      disableRipple
-      {...props}
-    />
-  );
-};
+          [classes.tertiary]: variant === "tertiary" && error,
+          [classes.tertiaryDisabled]:
+            variant === "tertiary" && error && props.disabled,
+        })}
+        {...getButtonProps(color, variant)}
+        disableRipple
+        {...props}
+      />
+    );
+  }
+);
 _Button.displayName = "Button";
 export const Button = _Button as OverridableComponent<ButtonTypeMap>;
