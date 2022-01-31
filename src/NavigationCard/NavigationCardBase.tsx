@@ -6,12 +6,12 @@ import React from "react";
 import useStyles from "./styles";
 
 export interface NavigationCardBaseProps extends Omit<CardProps, "classes"> {
-  classes: Record<"root" | "content", string>;
+  classes?: Record<"root" | "content", string>;
 }
 
 export const NavigationCardBase: React.FC<NavigationCardBaseProps> = ({
   className,
-  classes: propClasses,
+  classes: propClasses = {},
   children,
   ...rest
 }) => {
