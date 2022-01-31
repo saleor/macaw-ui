@@ -7,7 +7,7 @@ import useStyles from "./styles";
 
 export interface MenuItemBtnProps {
   menuItem: SidebarMenuItem;
-  onClick: (url: string) => void;
+  onClick: (menuItem: SidebarMenuItem) => void;
 }
 export const MenuItemBtn: React.FC<MenuItemBtnProps> = ({
   menuItem,
@@ -24,7 +24,7 @@ export const MenuItemBtn: React.FC<MenuItemBtnProps> = ({
       className={classes.menuItemBtn}
       data-test="menu-item-label"
       data-test-id={menuItem.id}
-      onClick={() => onClick(menuItem.url!)}
+      onClick={() => onClick(menuItem)}
       {...linkProps}
     >
       {menuItem.iconSrc && (

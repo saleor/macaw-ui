@@ -29,10 +29,10 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   const container = React.useRef<HTMLDivElement>(null);
   const { themeType } = useTheme();
 
-  const handleMenuItemClick = (url: string) => {
+  const handleMenuItemClick = (menuItem: SidebarMenuItem) => {
     setOpened(false);
     setShowSubmenu(false);
-    onMenuItemClick(url);
+    menuItem.onClick ? menuItem.onClick() : onMenuItemClick(menuItem);
   };
 
   const handleMenuItemWithChildrenClick = (menuItem: SidebarMenuItem) => {
