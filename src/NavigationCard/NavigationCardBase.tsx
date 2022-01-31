@@ -15,7 +15,7 @@ export const NavigationCardBase: React.FC<NavigationCardBaseProps> = ({
   const classes = useStyles();
 
   return (
-    <Card className={clsx(classes.card, classes.dupa, className)} {...rest}>
+    <Card className={clsx(classes.card, className)} {...rest}>
       <CardContent className={classes.cardContent}>{children}</CardContent>
     </Card>
   );
