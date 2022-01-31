@@ -5,18 +5,23 @@ import React from "react";
 
 import useStyles from "./styles";
 
-export type NavigationCardBaseProps = CardProps;
+export interface NavigationCardBaseProps extends Omit<CardProps, "classes"> {
+  classes: Record<"root" | "content", string>;
+}
 
 export const NavigationCardBase: React.FC<NavigationCardBaseProps> = ({
   className,
+  classes: propClasses,
   children,
   ...rest
 }) => {
   const classes = useStyles();
 
   return (
-    <Card className={clsx(classes.card, className)} {...rest}>
-      <CardContent className={classes.cardContent}>{children}</CardContent>
+    <Card className={clsx(classes.card, className, propClasses.root)} {...rest}>
+      <CardContent className={clsx(classes.cardContent, propClasses.content)}>
+        {children}
+      </CardContent>
     </Card>
   );
 };
