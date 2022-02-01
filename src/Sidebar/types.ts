@@ -8,7 +8,6 @@ export interface SidebarMenuItem {
   iconSrc?: string;
   url?: string;
   external?: boolean;
-  onClick?: () => void;
 }
 
 export interface BaseSidebarProps {
