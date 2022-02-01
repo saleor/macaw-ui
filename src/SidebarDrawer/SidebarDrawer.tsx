@@ -32,7 +32,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   const handleMenuItemClick = (menuItem: SidebarMenuItem) => {
     setOpened(false);
     setShowSubmenu(false);
-    menuItem.onClick ? menuItem.onClick() : onMenuItemClick(menuItem);
+    onMenuItemClick(menuItem);
   };
 
   const handleMenuItemWithChildrenClick = (menuItem: SidebarMenuItem) => {

@@ -149,7 +149,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     if (menuItem.children) {
       setOpen(true);
     } else {
-      menuItem.onClick ? menuItem.onClick() : onClick(menuItem);
+      onClick(menuItem);
       setOpen(false);
     }
   };
