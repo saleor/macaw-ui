@@ -15,7 +15,7 @@ export interface MenuItemProps {
   activeId: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
-  onClick: (url: string) => void;
+  onClick: (menuItem: SidebarMenuItem) => void;
 }
 
 export const menuWidth = 210;
@@ -149,7 +149,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     if (menuItem.children) {
       setOpen(true);
     } else {
-      onClick(menuItem.url!);
+      onClick(menuItem);
       setOpen(false);
     }
   };

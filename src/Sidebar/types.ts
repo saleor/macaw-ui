@@ -14,5 +14,5 @@ export interface BaseSidebarProps {
   className?: string;
   menuItems: SidebarMenuItem[];
   toolbar?: React.ReactNode;
-  onMenuItemClick: (url: string) => void;
+  onMenuItemClick: (menuItem: SidebarMenuItem) => void;
 }
