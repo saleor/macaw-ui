@@ -4,6 +4,8 @@ import { Grid } from "@material-ui/core";
 import { DeleteIcon } from "..";
 
 import { NavigationCard } from "./NavigationCard";
+import { NavigationCardBase } from "./NavigationCardBase";
+
 export const Default: Story = () => (
   <Grid container>
     <Grid item xs={12} md={4}>
@@ -14,6 +16,14 @@ export const Default: Story = () => (
           icon={<DeleteIcon />}
         />
       </a>
+    </Grid>
+  </Grid>
+);
+
+export const Custom: Story = () => (
+  <Grid container>
+    <Grid item xs={12} md={4}>
+      <NavigationCardBase>Lorem ipsum dolor sit amet</NavigationCardBase>
     </Grid>
   </Grid>
 );
