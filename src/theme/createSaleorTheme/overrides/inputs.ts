@@ -171,7 +171,7 @@ export const inputOverrides = (
       backgroundColor: colors.background.paper,
       transition: "box-shadow 200ms",
       top: 0,
-      fontWeight: 500,
+      fontWeight: 400,
     },
     notchedOutline: {
       // It's so much easier to put it here with important tag rather than
