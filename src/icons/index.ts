@@ -20,6 +20,7 @@ export * from "./CustomersIcon";
 export * from "./CustomersLargeIcon";
 export * from "./DashboardIcon";
 export * from "./DeleteIcon";
+export * from "./DeleteUserIcon";
 export * from "./DeveloperIcon";
 export * from "./DigitalLargeIcon";
 export * from "./DigitalSmallIcon";
