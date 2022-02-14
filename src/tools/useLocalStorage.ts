@@ -17,20 +17,24 @@ export default function useLocalStorage(
   key: string,
   initialValue: string = ""
 ): UseLocalStorage {
+  const isWindowDefined = typeof window !== "undefined";
+
   const [value, setValue] = useState(
-    () => window.localStorage.getItem(key) || initialValue
+    () => (isWindowDefined && window.localStorage.getItem(key)) || initialValue
   );
 
   const setItem = (newValue: string) => {
     setValue(newValue);
-    window.localStorage.setItem(key, newValue);
+    isWindowDefined && window.localStorage.setItem(key, newValue);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const newValue = window.localStorage.getItem(key);
-    if (value !== newValue) {
-      setValue(newValue || initialValue);
+    if (isWindowDefined) {
+      const newValue = window.localStorage.getItem(key);
+      if (value !== newValue) {
+        setValue(newValue || initialValue);
+      }
     }
   });
 
@@ -45,8 +49,11 @@ export default function useLocalStorage(
   );
 
   useEffect(() => {
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    if (isWindowDefined) {
+      window.addEventListener("storage", handleStorage);
+      return () => window.removeEventListener("storage", handleStorage);
+    }
+    return;
   }, [handleStorage]);
 
   return {
