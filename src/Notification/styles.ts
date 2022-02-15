@@ -9,6 +9,14 @@ const useStyles = makeStyles(
       position: "relative",
       minWidth: "unset",
     },
+    rotate: {
+      transform: "rotate(180deg)",
+    },
+    apiMessageAction: {
+      display: "flex",
+      alignItems: "center",
+      marginTop: "-10px",
+    },
     closeBtn: {
       "&:hover": {
         color: theme.palette.text.primary,

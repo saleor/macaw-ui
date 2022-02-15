@@ -36,6 +36,38 @@ export const WithActionAndContent: Story = () => (
     }}
   />
 );
+export const WithApiMessage: Story = () => (
+  <Notification
+    {...props}
+    type="error"
+    apiMessage={{
+      apiMessageContent:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      hideApiLabel: "Hide log",
+      showApiLabel: "See error log",
+    }}
+    title="Something went wrong"
+  />
+);
+
+export const WithApiMessageAndAction: Story = () => (
+  <Notification
+    {...props}
+    type="error"
+    apiMessage={{
+      apiMessageContent:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      hideApiLabel: "Hide log",
+      showApiLabel: "See error log",
+    }}
+    title="Something went wrong"
+    content="Some notification content"
+    action={{
+      label: "Action",
+      onClick: () => undefined,
+    }}
+  />
+);
 
 export default {
   title: "Notification",
