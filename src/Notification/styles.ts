@@ -5,12 +5,16 @@ const iconWidth = 40;
 const useStyles = makeStyles(
   (theme) => ({
     actionBtn: {
-      left: -4,
-      position: "relative",
+      position: "absolute",
       minWidth: "unset",
+      right: "20px",
+      bottom: "18px",
     },
     rotate: {
       transform: "rotate(180deg)",
+    },
+    apiMessage: {
+      margin: "16px 0",
     },
     apiMessageAction: {
       display: "flex",
@@ -54,6 +58,9 @@ const useStyles = makeStyles(
     },
     snackbarAction: {
       paddingLeft: `calc(${iconWidth}px + ${theme.spacing(2)})`,
+    },
+    snackbarContentWithAction: {
+      paddingBottom: "3.5rem",
     },
     success: {
       "& $icon": {

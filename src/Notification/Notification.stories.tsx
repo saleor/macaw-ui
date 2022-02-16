@@ -36,6 +36,18 @@ export const WithActionAndContent: Story = () => (
     }}
   />
 );
+
+export const WithActionAndLongContent: Story = () => (
+  <Notification
+    {...props}
+    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    action={{
+      label: "Action",
+      onClick: () => undefined,
+    }}
+  />
+);
+
 export const WithApiMessage: Story = () => (
   <Notification
     {...props}

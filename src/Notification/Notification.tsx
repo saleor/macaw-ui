@@ -49,7 +49,9 @@ export const Notification: React.FC<NotificationProps> = ({
       <SnackbarContent
         aria-describedby="client-snackbar"
         classes={{
-          action: classes.snackbarAction,
+          action: clsx(classes.snackbarAction, {
+            [classes.snackbarContentWithAction]: !!action,
+          }),
           message: classes.messageContainer,
         }}
         className={clsx(classes.snackbar, {
@@ -69,7 +71,7 @@ export const Notification: React.FC<NotificationProps> = ({
               </div>
               <Typography variant="body1">{content}</Typography>
               {showApiMessage && (
-                <Typography variant="body2">
+                <Typography variant="body2" className={classes.apiMessage}>
                   {apiMessage?.apiMessageContent}
                 </Typography>
               )}
