@@ -5,9 +5,21 @@ const iconWidth = 40;
 const useStyles = makeStyles(
   (theme) => ({
     actionBtn: {
-      left: -4,
-      position: "relative",
+      position: "absolute",
       minWidth: "unset",
+      right: "24px",
+      bottom: "20px",
+    },
+    rotate: {
+      transform: "rotate(180deg)",
+    },
+    apiMessage: {
+      margin: "6px 0 4px 0",
+    },
+    apiMessageAction: {
+      display: "flex",
+      alignItems: "center",
+      marginTop: "-10px",
     },
     closeBtn: {
       "&:hover": {
@@ -46,6 +58,9 @@ const useStyles = makeStyles(
     },
     snackbarAction: {
       paddingLeft: `calc(${iconWidth}px + ${theme.spacing(2)})`,
+    },
+    snackbarContentWithAction: {
+      paddingBottom: "5rem",
     },
     success: {
       "& $icon": {

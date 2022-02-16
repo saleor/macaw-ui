@@ -1,8 +1,8 @@
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Typography from "@material-ui/core/Typography";
-import { CloseIcon } from "../icons";
+import { CloseIcon, ExpandIcon } from "../icons";
 import clsx from "clsx";
-import React from "react";
+import React, { useState } from "react";
 
 import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
@@ -33,9 +33,11 @@ export const Notification: React.FC<NotificationProps> = ({
   action,
   content,
   className,
+  apiMessage,
   ...rest
 }) => {
   const classes = useStyles();
+  const [showApiMessage, setShowApiMessage] = useState(false);
 
   return (
     <div
@@ -47,7 +49,9 @@ export const Notification: React.FC<NotificationProps> = ({
       <SnackbarContent
         aria-describedby="client-snackbar"
         classes={{
-          action: classes.snackbarAction,
+          action: clsx(classes.snackbarAction, {
+            [classes.snackbarContentWithAction]: !!action && !apiMessage,
+          }),
           message: classes.messageContainer,
         }}
         className={clsx(classes.snackbar, {
@@ -66,6 +70,11 @@ export const Notification: React.FC<NotificationProps> = ({
                 <Typography variant="h5">{title}</Typography>
               </div>
               <Typography variant="body1">{content}</Typography>
+              {showApiMessage && (
+                <Typography variant="body2" className={classes.apiMessage}>
+                  {apiMessage?.apiMessageContent}
+                </Typography>
+              )}
             </div>
           </div>
         }
@@ -81,6 +90,29 @@ export const Notification: React.FC<NotificationProps> = ({
               >
                 {action.label}
               </Button>
+            )}
+          </div>,
+          <div key="api-action" className={classes.apiMessageAction}>
+            {!!apiMessage && (
+              <>
+                <Typography variant="body1">
+                  {showApiMessage
+                    ? apiMessage.hideApiLabel
+                    : apiMessage.showApiLabel}
+                </Typography>
+                <IconButton
+                  aria-label={showApiMessage ? "shrink" : "expand"}
+                  onClick={() => setShowApiMessage((show) => !show)}
+                  hoverOutline={false}
+                  variant="secondary"
+                >
+                  <ExpandIcon
+                    className={clsx({
+                      [classes.rotate]: showApiMessage,
+                    })}
+                  />
+                </IconButton>
+              </>
             )}
           </div>,
           <IconButton
