@@ -7,14 +7,14 @@ const useStyles = makeStyles(
     actionBtn: {
       position: "absolute",
       minWidth: "unset",
-      right: "20px",
-      bottom: "18px",
+      right: "24px",
+      bottom: "20px",
     },
     rotate: {
       transform: "rotate(180deg)",
     },
     apiMessage: {
-      margin: "16px 0",
+      margin: "6px 0 4px 0",
     },
     apiMessageAction: {
       display: "flex",
@@ -60,7 +60,7 @@ const useStyles = makeStyles(
       paddingLeft: `calc(${iconWidth}px + ${theme.spacing(2)})`,
     },
     snackbarContentWithAction: {
-      paddingBottom: "3.5rem",
+      paddingBottom: "5rem",
     },
     success: {
       "& $icon": {

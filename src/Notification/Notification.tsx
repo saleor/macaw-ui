@@ -50,7 +50,7 @@ export const Notification: React.FC<NotificationProps> = ({
         aria-describedby="client-snackbar"
         classes={{
           action: clsx(classes.snackbarAction, {
-            [classes.snackbarContentWithAction]: !!action,
+            [classes.snackbarContentWithAction]: !!action && !apiMessage,
           }),
           message: classes.messageContainer,
         }}
