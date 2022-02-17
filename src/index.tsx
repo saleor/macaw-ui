@@ -32,3 +32,4 @@ export * from "./OffsettedList";
 export * from "./List";
 export * from "./NavigationCard";
 export * from "./Pill";
+export * from "./CircleIndicator"
