@@ -44,5 +44,5 @@ export const Default: Story = () => <StoryWrapper />;
 
 export default {
   decorators: [Decorator, GuideDecorator],
-  title: "CircleIndicator",
+  title: "Circle Indicator",
 } as Meta;
