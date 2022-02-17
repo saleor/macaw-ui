@@ -8,6 +8,3 @@ export const CircleIndicatorIcon = createSvgIcon(
   </>,
   "CircleIndicatorIcon"
 );
-(CircleIndicatorIcon as React.ComponentType).defaultProps = {
-  viewBox: "0 0 24 24",
-};

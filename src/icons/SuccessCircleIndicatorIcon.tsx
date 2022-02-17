@@ -14,6 +14,3 @@ export const SuccessCircleIndicatorIcon = createSvgIcon(
   </>,
   "SuccessCircleIndicatorIcon"
 );
-(SuccessCircleIndicatorIcon as React.ComponentType).defaultProps = {
-  viewBox: "0 0 24 24",
-};
