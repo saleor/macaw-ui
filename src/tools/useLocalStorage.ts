@@ -3,6 +3,7 @@
 // to avoid cjs and esm confusion in jest transformators
 
 import { useCallback, useEffect, useState } from "react";
+import { isWindowDefined } from "../consts";
 
 // FIXME: We also had to tweak return signature because tuples were bugging
 // typescript parser
@@ -17,8 +18,6 @@ export default function useLocalStorage(
   key: string,
   initialValue: string = ""
 ): UseLocalStorage {
-  const isWindowDefined = typeof window !== "undefined";
-
   const [value, setValue] = useState(
     () => (isWindowDefined && window.localStorage.getItem(key)) || initialValue
   );
@@ -49,11 +48,10 @@ export default function useLocalStorage(
   );
 
   useEffect(() => {
-    if (isWindowDefined) {
-      window.addEventListener("storage", handleStorage);
-      return () => window.removeEventListener("storage", handleStorage);
-    }
-    return;
+    isWindowDefined && window.addEventListener("storage", handleStorage);
+    return () => {
+      isWindowDefined && window.removeEventListener("storage", handleStorage);
+    };
   }, [handleStorage]);
 
   return {
