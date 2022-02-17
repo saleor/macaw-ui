@@ -1,8 +1,9 @@
-import React from "react";
 import Chip, { ChipProps } from "@material-ui/core/Chip";
-import useStyles from "./styles";
 import clsx from "clsx";
+import React from "react";
+
 import { useTheme } from "..";
+import useStyles from "./styles";
 
 export type PillColor = "error" | "warning" | "success" | "info";
 

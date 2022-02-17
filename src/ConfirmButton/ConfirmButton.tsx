@@ -1,9 +1,9 @@
-import { Button, ButtonProps } from "../Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CheckIcon from "@material-ui/icons/Check";
 import clsx from "clsx";
 import React from "react";
 
+import { Button, ButtonProps } from "../Button";
 import useStyles from "./styles";
 
 const DEFAULT_NOTIFICATION_SHOW_TIME = 3000;

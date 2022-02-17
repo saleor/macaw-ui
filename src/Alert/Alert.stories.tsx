@@ -1,4 +1,5 @@
-import { Link, Typography } from "@material-ui/core";
+import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 

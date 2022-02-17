@@ -1,8 +1,8 @@
+import Grid from "@material-ui/core/Grid";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
-import { Grid } from "@material-ui/core";
-import { DeleteIcon } from "..";
 
+import { DeleteIcon } from "..";
 import { NavigationCard } from "./NavigationCard";
 import { NavigationCardBase } from "./NavigationCardBase";
 

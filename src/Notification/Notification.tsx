@@ -1,14 +1,14 @@
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Typography from "@material-ui/core/Typography";
-import { CloseIcon, ExpandIcon } from "../icons";
 import clsx from "clsx";
 import React, { useState } from "react";
 
+import { Button } from "../Button";
+import { IconButton } from "../IconButton";
+import { CloseIcon, ExpandIcon } from "../icons";
 import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
-import { Button } from "../Button";
-import { IconButton } from "../IconButton";
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   type: NotificationType;

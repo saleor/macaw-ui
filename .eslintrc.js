@@ -1,10 +1,9 @@
 module.exports = {
-  extends: [
-    "react-app",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
-  ],
-  plugins: ["simple-import-sort"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    sourceType: "module",
+  },
+  plugins: ["@typescript-eslint", "simple-import-sort"],
   settings: {
     react: {
       version: "detect",
@@ -32,5 +31,11 @@ module.exports = {
         paths: ["@material-ui/core"],
       },
     ],
+    "no-unused-expressions": "error",
+    "simple-import-sort/sort": ["error"],
+    "sort-imports": "off", // imports are handled by simple-import-sort/sort
+    "import/no-extraneous-dependencies": "off", // imports are handled by simple-import-sort/sort
+    "import/no-internal-modules": "off", // imports are handled by simple-import-sort/sort
+    "import/order": "off", // imports are handled by simple-import-sort/sort
   },
 };

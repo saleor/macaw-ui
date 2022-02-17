@@ -1,10 +1,9 @@
 import type { ButtonBaseProps } from "@material-ui/core/ButtonBase";
-
 import ButtonBase from "@material-ui/core/ButtonBase";
 import clsx from "clsx";
 import React from "react";
-import { UserInteraction } from "../../types/utils";
 
+import { UserInteraction } from "../../types/utils";
 import useStyles from "./styles";
 
 export type LayoutButtonProps<T extends React.ElementType = "button"> =

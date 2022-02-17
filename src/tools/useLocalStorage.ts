@@ -3,6 +3,7 @@
 // to avoid cjs and esm confusion in jest transformators
 
 import { useCallback, useEffect, useState } from "react";
+
 import { isWindowDefined } from "../consts";
 
 // FIXME: We also had to tweak return signature because tuples were bugging
@@ -24,10 +25,11 @@ export default function useLocalStorage(
 
   const setItem = (newValue: string) => {
     setValue(newValue);
-    isWindowDefined && window.localStorage.setItem(key, newValue);
+    if (isWindowDefined) {
+      window.localStorage.setItem(key, newValue);
+    }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (isWindowDefined) {
       const newValue = window.localStorage.getItem(key);
@@ -43,15 +45,15 @@ export default function useLocalStorage(
         setValue(event.newValue || initialValue);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [value, key]
   );
 
   useEffect(() => {
-    isWindowDefined && window.addEventListener("storage", handleStorage);
-    return () => {
-      isWindowDefined && window.removeEventListener("storage", handleStorage);
-    };
+    if (isWindowDefined) {
+      window.addEventListener("storage", handleStorage);
+      return () => window.removeEventListener("storage", handleStorage);
+    }
+    return;
   }, [handleStorage]);
 
   return {

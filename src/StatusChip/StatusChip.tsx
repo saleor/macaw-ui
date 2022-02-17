@@ -1,6 +1,6 @@
 import React from "react";
-import { Pill, PillColor } from "../Pill/Pill";
 
+import { Pill, PillColor } from "../Pill/Pill";
 import { StatusChipProps } from "./types";
 
 const colors: Record<StatusChipProps["variant"], PillColor> = {

@@ -4,7 +4,7 @@ export function changeColorMeta(color: string) {
   themeColorTag.setAttribute("name", "theme-color");
 
   const existingColorTag = document.head.querySelector(
-    `meta[name="theme-color"]`
+    'meta[name="theme-color"]'
   );
   if (existingColorTag) {
     existingColorTag.remove();

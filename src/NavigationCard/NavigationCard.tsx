@@ -1,10 +1,10 @@
 import Typography from "@material-ui/core/Typography";
 import React from "react";
+
 import {
   NavigationCardBase,
   NavigationCardBaseProps,
 } from "./NavigationCardBase";
-
 import useStyles from "./styles";
 
 export interface NavigationCardProps extends NavigationCardBaseProps {

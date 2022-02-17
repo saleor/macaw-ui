@@ -122,7 +122,7 @@ export const inputOverrides = (
           backgroundColor: colors.background.default,
           color: colors.main[3],
         },
-        boxShadow: `0 0 0 0 transparent !important`,
+        boxShadow: "0 0 0 0 transparent !important",
         backgroundColor: colors.background.default,
       },
       "&$error": {

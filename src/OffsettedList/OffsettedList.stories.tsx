@@ -1,6 +1,7 @@
-import { Checkbox } from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
+
 import {
   DeleteIcon,
   EditIcon,
@@ -9,7 +10,6 @@ import {
   useOffsettedListWidths,
 } from "..";
 import { useListStory } from "../utils/useListStory";
-
 import {
   OffsettedList,
   OffsettedListBody,
