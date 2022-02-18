@@ -16,8 +16,9 @@ const labels = {
 
 const PillGroup: React.FC<PillProps> = (props) => (
   <>
-    <Pill {...props} />
-    <Pill {...props} outlined />
+    <Pill {...props} onClick={() => undefined} />
+    <Pill {...props} active />
+    <Pill {...props} onClick={() => undefined} outlined />
     <Pill {...props} outlined active />
   </>
 );
@@ -39,6 +40,7 @@ const DefaultStory: React.FC = () => {
         <div
           className={clsx(guideClasses.border, guideClasses.grid)}
           style={{
+            gridTemplateColumns: "repeat(4, 1fr)",
             gap: 24,
             margin: "auto",
             padding: 24,
@@ -71,6 +73,7 @@ const SmallStory: React.FC = () => {
         <div
           className={clsx(guideClasses.border, guideClasses.grid)}
           style={{
+            gridTemplateColumns: "repeat(4, 1fr)",
             gap: 24,
             margin: "auto",
             padding: 24,

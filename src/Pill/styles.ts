@@ -2,30 +2,32 @@ import { makeStyles, VariantColors } from "../theme";
 
 function colorProps(color: VariantColors) {
   return {
-    "&:not($small)": {
-      "&$dark": {
-        "&$clickable": {
+    "&$dark": {
+      "&$outlined": {
+        borderColor: color.light,
+      },
+      "&$active, &$clickable:hover, &$clickable:focus": {
+        "&:not($outlined)": {
+          borderColor: color.verydark,
+        },
+        backgroundColor: color.verydark,
+      },
+      borderColor: color.dark,
+      backgroundColor: color.dark,
+    },
+    "&:not($dark)": {
+      "&$outlined": {
+        borderColor: color.dark,
+      },
+      "&$active, &$clickable:hover, &$clickable:focus": {
+        "&:not($outlined)": {
           borderColor: color.light,
         },
-        "&$active, &$clickable:hover, &$clickable:focus": {
-          backgroundColor: color.verydark,
-        },
-        borderColor: color.dark,
-        background: color.dark,
+        backgroundColor: color.light,
       },
-      "&:not($dark)": {
-        "&$clickable": {
-          borderColor: color.dark,
-        },
-        "&$active, &$clickable:hover, &$clickable:focus": {
-          backgroundColor: color.light,
-        },
-        borderColor: color.mid,
-        background: color.mid,
-      },
+      borderColor: color.mid,
+      backgroundColor: color.mid,
     },
-    borderColor: color.light,
-    background: color.light,
   };
 }
 
@@ -33,14 +35,17 @@ const useStyles = makeStyles(
   (theme) => ({
     root: {
       border: `1px solid ${theme.palette.saleor.info.mid}`,
+      transition: theme.transitions.duration.shorter + "ms",
     },
     dark: {
       color: theme.palette.saleor.main[1],
     },
     active: {},
     clickable: {
-      borderStyle: "dashed",
       cursor: "pointer",
+    },
+    outlined: {
+      borderStyle: "dashed",
     },
     error: colorProps(theme.palette.saleor.fail),
     labelSmall: {
