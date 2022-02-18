@@ -2,26 +2,30 @@ import { makeStyles, VariantColors } from "../theme";
 
 function colorProps(color: VariantColors) {
   return {
-    "&$dark": {
-      "&$clickable": {
-        borderColor: color.light,
-      },
-      "&$active, &$clickable:hover, &$clickable:focus": {
-        backgroundColor: color.verydark,
-      },
-      borderColor: color.dark,
-      background: color.dark,
-    },
-    "&:not($dark)": {
-      "&$clickable": {
+    "&:not($small)": {
+      "&$dark": {
+        "&$clickable": {
+          borderColor: color.light,
+        },
+        "&$active, &$clickable:hover, &$clickable:focus": {
+          backgroundColor: color.verydark,
+        },
         borderColor: color.dark,
+        background: color.dark,
       },
-      "&$active, &$clickable:hover, &$clickable:focus": {
-        backgroundColor: color.light,
+      "&:not($dark)": {
+        "&$clickable": {
+          borderColor: color.dark,
+        },
+        "&$active, &$clickable:hover, &$clickable:focus": {
+          backgroundColor: color.light,
+        },
+        borderColor: color.mid,
+        background: color.mid,
       },
-      borderColor: color.mid,
-      background: color.mid,
     },
+    borderColor: color.light,
+    background: color.light,
   };
 }
 
@@ -39,6 +43,15 @@ const useStyles = makeStyles(
       cursor: "pointer",
     },
     error: colorProps(theme.palette.saleor.fail),
+    labelSmall: {
+      "&&": {
+        fontSize: "1.2rem",
+        lineHeight: 1.6,
+        letterSpacing: "0.1rem",
+        fontWeight: 500,
+        textTransform: "uppercase",
+      },
+    },
     warning: colorProps(theme.palette.saleor.warning),
     success: colorProps(theme.palette.saleor.success),
     info: colorProps(theme.palette.saleor.info),
@@ -46,6 +59,7 @@ const useStyles = makeStyles(
       ...theme.typography.body2,
       userSelect: "none",
     },
+    small: {},
   }),
   { name: "Pill" }
 );

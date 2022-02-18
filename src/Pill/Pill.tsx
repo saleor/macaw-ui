@@ -17,16 +17,20 @@ export interface PillProps
     | "color"
     | "disabled"
     | "classes"
+    | "clickable"
   > {
   active?: boolean;
   color?: PillColor;
+  outlined?: boolean;
 }
 
 export const Pill: React.FC<PillProps> = ({
   active,
   className,
   color = "info",
+  outlined,
   onClick,
+  size,
   ...rest
 }) => {
   const classes = useStyles();
@@ -42,14 +46,17 @@ export const Pill: React.FC<PillProps> = ({
           [classes.success]: color === "success",
           [classes.info]: color === "info",
           [classes.dark]: themeType === "dark",
-          [classes.clickable]: !!onClick,
+          [classes.clickable]: !!onClick || outlined,
+          [classes.small]: size === "small",
         }),
         label: classes.label,
+        labelSmall: classes.labelSmall,
       }}
       // There is no other way to disable ripple
       clickable={false}
       component={onClick ? "button" : "div"}
       onClick={onClick}
+      size={size}
       {...rest}
     />
   );
