@@ -24,40 +24,38 @@ export interface PillProps
   outlined?: boolean;
 }
 
-export const Pill: React.FC<PillProps> = ({
-  active,
-  className,
-  color = "info",
-  outlined,
-  onClick,
-  size,
-  ...rest
-}) => {
-  const classes = useStyles();
-  const { themeType } = useTheme();
+export const Pill = React.forwardRef<HTMLDivElement, PillProps>(
+  (
+    { active, className, color = "info", outlined, onClick, size, ...rest },
+    ref
+  ) => {
+    const classes = useStyles();
+    const { themeType } = useTheme();
 
-  return (
-    <Chip
-      classes={{
-        root: clsx(className, classes.root, {
-          [classes.active]: active,
-          [classes.error]: color === "error",
-          [classes.warning]: color === "warning",
-          [classes.success]: color === "success",
-          [classes.info]: color === "info",
-          [classes.dark]: themeType === "dark",
-          [classes.clickable]: !!onClick || outlined,
-          [classes.small]: size === "small",
-        }),
-        label: classes.label,
-        labelSmall: classes.labelSmall,
-      }}
-      // There is no other way to disable ripple
-      clickable={false}
-      component={onClick ? "button" : "div"}
-      onClick={onClick}
-      size={size}
-      {...rest}
-    />
-  );
-};
+    return (
+      <Chip
+        classes={{
+          root: clsx(className, classes.root, {
+            [classes.active]: active,
+            [classes.error]: color === "error",
+            [classes.warning]: color === "warning",
+            [classes.success]: color === "success",
+            [classes.info]: color === "info",
+            [classes.dark]: themeType === "dark",
+            [classes.clickable]: !!onClick || outlined,
+            [classes.small]: size === "small",
+          }),
+          label: classes.label,
+          labelSmall: classes.labelSmall,
+        }}
+        // There is no other way to disable ripple
+        clickable={false}
+        component={onClick ? "button" : "div"}
+        onClick={onClick}
+        size={size}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
