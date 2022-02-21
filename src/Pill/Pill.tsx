@@ -17,40 +17,46 @@ export interface PillProps
     | "color"
     | "disabled"
     | "classes"
+    | "clickable"
   > {
   active?: boolean;
   color?: PillColor;
+  outlined?: boolean;
 }
 
-export const Pill: React.FC<PillProps> = ({
-  active,
-  className,
-  color = "info",
-  onClick,
-  ...rest
-}) => {
-  const classes = useStyles();
-  const { themeType } = useTheme();
+export const Pill = React.forwardRef<HTMLDivElement, PillProps>(
+  (
+    { active, className, color = "info", outlined, onClick, size, ...rest },
+    ref
+  ) => {
+    const classes = useStyles();
+    const { themeType } = useTheme();
 
-  return (
-    <Chip
-      classes={{
-        root: clsx(className, classes.root, {
-          [classes.active]: active,
-          [classes.error]: color === "error",
-          [classes.warning]: color === "warning",
-          [classes.success]: color === "success",
-          [classes.info]: color === "info",
-          [classes.dark]: themeType === "dark",
-          [classes.clickable]: !!onClick,
-        }),
-        label: classes.label,
-      }}
-      // There is no other way to disable ripple
-      clickable={false}
-      component={onClick ? "button" : "div"}
-      onClick={onClick}
-      {...rest}
-    />
-  );
-};
+    return (
+      <Chip
+        classes={{
+          root: clsx(className, classes.root, {
+            [classes.active]: active,
+            [classes.error]: color === "error",
+            [classes.warning]: color === "warning",
+            [classes.success]: color === "success",
+            [classes.info]: color === "info",
+            [classes.dark]: themeType === "dark",
+            [classes.outlined]: outlined,
+            [classes.small]: size === "small",
+            [classes.clickable]: !!onClick,
+          }),
+          label: classes.label,
+          labelSmall: classes.labelSmall,
+        }}
+        // There is no other way to disable ripple
+        clickable={false}
+        component={onClick ? "button" : "div"}
+        onClick={onClick}
+        size={size}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
