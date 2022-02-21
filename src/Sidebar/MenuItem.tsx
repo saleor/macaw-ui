@@ -224,6 +224,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 
                 return (
                   <Typography
+                    key={subMenuItem.label}
                     variant="caption"
                     className={classes.subMenuHeader}
                   >
