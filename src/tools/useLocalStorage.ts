@@ -4,6 +4,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import { isWindowDefined } from "../consts";
+
 // FIXME: We also had to tweak return signature because tuples were bugging
 // typescript parser
 // https://stackoverflow.com/questions/62079477/line-0-parsing-error-cannot-read-property-map-of-undefined
@@ -18,19 +20,22 @@ export default function useLocalStorage(
   initialValue: string = ""
 ): UseLocalStorage {
   const [value, setValue] = useState(
-    () => window.localStorage.getItem(key) || initialValue
+    () => (isWindowDefined && window.localStorage.getItem(key)) || initialValue
   );
 
   const setItem = (newValue: string) => {
     setValue(newValue);
-    window.localStorage.setItem(key, newValue);
+    if (isWindowDefined) {
+      window.localStorage.setItem(key, newValue);
+    }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const newValue = window.localStorage.getItem(key);
-    if (value !== newValue) {
-      setValue(newValue || initialValue);
+    if (isWindowDefined) {
+      const newValue = window.localStorage.getItem(key);
+      if (value !== newValue) {
+        setValue(newValue || initialValue);
+      }
     }
   });
 
@@ -40,13 +45,15 @@ export default function useLocalStorage(
         setValue(event.newValue || initialValue);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [value, key]
   );
 
   useEffect(() => {
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    if (isWindowDefined) {
+      window.addEventListener("storage", handleStorage);
+      return () => window.removeEventListener("storage", handleStorage);
+    }
+    return;
   }, [handleStorage]);
 
   return {

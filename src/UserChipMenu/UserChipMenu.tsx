@@ -7,8 +7,8 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { LayoutButton } from "..";
 
+import { LayoutButton } from "..";
 import { UserChipMenuContext } from "./context";
 import useStyles from "./styles";
 

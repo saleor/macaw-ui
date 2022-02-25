@@ -1,9 +1,9 @@
 import Typography from "@material-ui/core/Typography";
-import { CloseIcon } from "../icons";
 import clsx from "clsx";
 import React from "react";
-import { IconButton } from "../IconButton";
 
+import { IconButton } from "../IconButton";
+import { CloseIcon } from "../icons";
 import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import { AlertBase, AlertBaseProps, AlertVariant } from "./AlertBase";
 import useStyles from "./styles";

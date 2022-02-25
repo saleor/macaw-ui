@@ -60,7 +60,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   useEffect(() => {
     sendThemeToExtension();
     changeColorMeta(theme.palette.background.default);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [themeType]);
 
   return (

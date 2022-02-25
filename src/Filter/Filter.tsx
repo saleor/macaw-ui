@@ -2,10 +2,10 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
-import { DeleteIcon } from "../icons";
 import { difference } from "lodash";
 import React from "react";
 
+import { DeleteIcon } from "../icons";
 import { useFilters } from "./context";
 import { FilterContent } from "./FilterContent";
 import useStyles from "./styles";
@@ -27,7 +27,6 @@ export const Filter: React.FC<FilterProps> = ({ name, label, ...options }) => {
     registered.current = true;
 
     return () => unregister(name);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -43,7 +42,6 @@ export const Filter: React.FC<FilterProps> = ({ name, label, ...options }) => {
         },
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options.choices]);
 
   return null;

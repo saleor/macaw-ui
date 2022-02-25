@@ -12,11 +12,11 @@ describe("Changing color meta tag", () => {
 
     // Then
     expect(
-      document.querySelector(`head meta[name="tag1"]`)?.getAttribute("content")
+      document.querySelector('head meta[name="tag1"]')?.getAttribute("content")
     ).toBe("value1");
     expect(
       document
-        .querySelector(`head meta[name="theme-color"]`)
+        .querySelector('head meta[name="theme-color"]')
         ?.getAttribute("content")
     ).toBe("#FF0000");
   });
@@ -32,11 +32,11 @@ describe("Changing color meta tag", () => {
 
     // Then
     expect(
-      document.querySelector(`head meta[name="tag1"]`)?.getAttribute("content")
+      document.querySelector('head meta[name="tag1"]')?.getAttribute("content")
     ).toBe("value1");
     expect(
       document
-        .querySelector(`head meta[name="theme-color"]`)
+        .querySelector('head meta[name="theme-color"]')
         ?.getAttribute("content")
     ).toBe("#FF0000");
   });

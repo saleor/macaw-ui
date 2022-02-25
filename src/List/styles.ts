@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+
 import { makeStyles } from "..";
 
 export const useStyles = makeStyles(

@@ -2,10 +2,10 @@ import Portal from "@material-ui/core/Portal";
 import Skeleton from "@material-ui/lab/Skeleton";
 import React from "react";
 
+import { ArrowRightIcon } from "../icons";
 import { LayoutButton, LayoutButtonProps } from "../LayoutButton";
 import { useBacklink } from "./context";
 import useStyles from "./styles";
-import { ArrowRightIcon } from "../icons";
 
 export interface AppHeaderProps extends LayoutButtonProps {
   children: React.ReactNode;

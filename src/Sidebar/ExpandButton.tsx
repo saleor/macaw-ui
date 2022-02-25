@@ -1,8 +1,8 @@
 import { ButtonProps } from "@material-ui/core/Button";
 import clsx from "clsx";
 import React from "react";
-import { ChevronIcon } from "../icons";
 
+import { ChevronIcon } from "../icons";
 import { SquareButton } from "../SquareButton";
 import { makeStyles } from "../theme";
 

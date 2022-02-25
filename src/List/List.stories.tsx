@@ -1,9 +1,11 @@
-import { Card, CardHeader, Checkbox } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import Checkbox from "@material-ui/core/Checkbox";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
+
 import { DeleteIcon, IconButton, Pagination } from "..";
 import { useListStory } from "../utils/useListStory";
-
 import {
   List,
   ListBody,

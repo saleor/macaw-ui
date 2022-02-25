@@ -1,11 +1,11 @@
+import Typography from "@material-ui/core/Typography";
 import { Meta, Story } from "@storybook/react";
+import clsx from "clsx";
 import React from "react";
+
 import { Decorator, GuideDecorator } from "../utils/Decorator";
 import useGuideStyles from "../utils/guideStyles";
-
 import { Pill, PillProps } from "./Pill";
-import { Typography } from "@material-ui/core";
-import clsx from "clsx";
 
 const labels = {
   error: "Error",

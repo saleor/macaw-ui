@@ -63,7 +63,6 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
 
     React.useEffect(
       () => changeCb(utils.getActiveFilters(filterData)),
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       [filterData]
     );
 
