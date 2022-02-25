@@ -1,9 +1,9 @@
 import {
   Checkbox,
   Radio,
-  Typography,
   RadioGroup,
   Switch,
+  Typography,
 } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";

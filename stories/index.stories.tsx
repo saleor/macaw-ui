@@ -7,8 +7,8 @@ import SVG from "react-inlinesvg";
 import { Alert } from "../src";
 import { light, makeStyles, ThemeProvider } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
-import * as logo from "./assets/macaw-ui-logo.svg";
 import useGuideStyles from "../src/utils/guideStyles";
+import * as logo from "./assets/macaw-ui-logo.svg";
 
 const useStyles = makeStyles((theme) => ({
   authors: {

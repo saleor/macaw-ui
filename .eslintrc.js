@@ -38,4 +38,12 @@ module.exports = {
     "import/no-internal-modules": "off", // imports are handled by simple-import-sort/sort
     "import/order": "off", // imports are handled by simple-import-sort/sort
   },
+  overrides: [
+    {
+      files: ["**/*.stories.tsx"],
+      rules: {
+        "no-restricted-imports": "off",
+      },
+    },
+  ],
 };
