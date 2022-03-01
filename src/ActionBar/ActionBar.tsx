@@ -6,6 +6,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { ConfirmButtonTransitionState } from "../ConfirmButton";
+import { useTheme } from "../theme";
 import { useWindowScroll } from "../tools";
 import { useActionBar } from "./context";
 import useStyles from "./styles";
@@ -22,6 +23,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   state,
   ...rest
 }) => {
+  const { ssr } = useTheme();
   const classes = useStyles();
 
   const { anchor, docked, setDocked } = useActionBar();
@@ -37,7 +39,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   const scrolledToBottom =
     scrollPosition.y + window.innerHeight >= document.body.scrollHeight;
 
-  if (!anchor.current) {
+  if (!anchor.current && !ssr) {
     return null;
   }
 
