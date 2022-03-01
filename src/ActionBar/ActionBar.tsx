@@ -14,6 +14,7 @@ import useStyles from "./styles";
 export interface ActionBarProps {
   disabled: boolean;
   state: ConfirmButtonTransitionState;
+  fixed?: boolean;
   children: React.ReactNode[] | React.ReactNode;
 }
 
@@ -21,6 +22,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   disabled,
   children,
   state,
+  fixed,
   ...rest
 }) => {
   const { ssr } = useTheme();
@@ -45,7 +47,12 @@ export const ActionBar: React.FC<ActionBarProps> = ({
 
   return (
     <Portal container={anchor.current}>
-      <div className={classes.root} {...rest}>
+      <div
+        className={clsx(classes.root, {
+          [classes.fixed]: fixed,
+        })}
+        {...rest}
+      >
         <Container maxWidth="lg">
           <Card
             className={clsx(classes.paper, {

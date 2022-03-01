@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 import { Button } from "..";
@@ -21,6 +22,7 @@ export interface SavebarProps {
   state: ConfirmButtonTransitionState;
   labels: SavebarLabels;
   tooltips?: SavebarTooltips;
+  fixed?: boolean;
   onCancel: () => void;
   onDelete?: () => void;
   onSubmit: () => void;
@@ -31,6 +33,7 @@ export const Savebar: React.FC<SavebarProps> = ({
   labels,
   tooltips,
   state,
+  fixed,
   onCancel,
   onDelete,
   onSubmit,
@@ -39,7 +42,7 @@ export const Savebar: React.FC<SavebarProps> = ({
   const { setDocked } = useActionBar();
 
   return (
-    <ActionBar state={state} disabled={disabled}>
+    <ActionBar state={state} disabled={disabled} fixed={fixed}>
       {!!onDelete && (
         <ButtonTooltipDecorator tooltip={tooltips?.delete}>
           <Button
