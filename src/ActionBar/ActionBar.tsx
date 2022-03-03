@@ -15,6 +15,7 @@ export interface ActionBarProps {
   disabled: boolean;
   state: ConfirmButtonTransitionState;
   fixed?: boolean;
+  className?: string;
   children: React.ReactNode[] | React.ReactNode;
 }
 
@@ -23,6 +24,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   children,
   state,
   fixed,
+  className,
   ...rest
 }) => {
   const { ssr } = useTheme();
@@ -48,9 +50,13 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   return (
     <Portal container={anchor.current}>
       <div
-        className={clsx(classes.root, {
-          [classes.fixed]: fixed,
-        })}
+        className={clsx(
+          classes.root,
+          {
+            [classes.fixed]: fixed,
+          },
+          className
+        )}
         {...rest}
       >
         <Container maxWidth="lg">
