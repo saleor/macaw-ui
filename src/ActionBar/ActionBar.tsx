@@ -6,6 +6,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { ConfirmButtonTransitionState } from "../ConfirmButton";
+import { useTheme } from "../theme";
 import { useWindowScroll } from "../tools";
 import { useActionBar } from "./context";
 import useStyles from "./styles";
@@ -13,6 +14,8 @@ import useStyles from "./styles";
 export interface ActionBarProps {
   disabled: boolean;
   state: ConfirmButtonTransitionState;
+  fixed?: boolean;
+  className?: string;
   children: React.ReactNode[] | React.ReactNode;
 }
 
@@ -20,8 +23,11 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   disabled,
   children,
   state,
+  fixed,
+  className,
   ...rest
 }) => {
+  const { ssr } = useTheme();
   const classes = useStyles();
 
   const { anchor, docked, setDocked } = useActionBar();
@@ -37,13 +43,22 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   const scrolledToBottom =
     scrollPosition.y + window.innerHeight >= document.body.scrollHeight;
 
-  if (!anchor.current) {
+  if (!anchor.current && !ssr) {
     return null;
   }
 
   return (
     <Portal container={anchor.current}>
-      <div className={classes.root} {...rest}>
+      <div
+        className={clsx(
+          classes.root,
+          {
+            [classes.fixed]: fixed,
+          },
+          className
+        )}
+        {...rest}
+      >
         <Container maxWidth="lg">
           <Card
             className={clsx(classes.paper, {

@@ -4,6 +4,7 @@ import React from "react";
 
 import { ArrowRightIcon } from "../icons";
 import { LayoutButton, LayoutButtonProps } from "../LayoutButton";
+import { useTheme } from "../theme";
 import { useBacklink } from "./context";
 import useStyles from "./styles";
 
@@ -19,10 +20,11 @@ export const Backlink: React.FC<AppHeaderProps> = ({
   onClick,
   ...props
 }) => {
+  const { ssr } = useTheme();
   const classes = useStyles();
   const anchor = useBacklink();
 
-  if (!anchor.current) {
+  if (!anchor.current && !ssr) {
     return null;
   }
 

@@ -30,12 +30,17 @@ export interface ThemeProviderProps {
    * Saleor's Dashboard. Use with caution.
    */
   overrides?: Partial<Theme>;
+  /**
+   * Enables server side rendering.
+   */
+  ssr?: boolean;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   defaultTheme = "light",
   palettes = {},
   overrides = {},
+  ssr = false,
 }) => {
   const { value: themeTypeName, setValue: setThemeType } = useLocalStorage(
     localStorageKeys.theme,
@@ -66,6 +71,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     <ThemeContext.Provider
       value={{
         themeType,
+        ssr,
         sendThemeToExtension,
         setTheme: setThemeType,
       }}
