@@ -24,11 +24,6 @@ const useStyles = makeStyles(
     shadow: {
       boxShadow: "0 -24px 20px -20px rgba(0, 0, 0, 0.15)",
     },
-    fixed: {
-      position: "fixed",
-      bottom: 0,
-      width: "100%",
-    },
   }),
   { name: "ActionBar" }
 );
