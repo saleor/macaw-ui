@@ -30,15 +30,8 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   const { ssr } = useTheme();
   const classes = useStyles();
 
-  const { anchor, docked, setDocked } = useActionBar();
+  const { anchor } = useActionBar();
   const scrollPosition = useWindowScroll();
-
-  React.useEffect(() => {
-    if (!disabled && state !== "loading") {
-      setDocked(false);
-    }
-  }, [disabled, state, setDocked]);
-  React.useEffect(() => () => setDocked(true), [setDocked]);
 
   const scrolledToBottom =
     scrollPosition.y + window.innerHeight >= document.body.scrollHeight;
@@ -62,7 +55,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
         <Container maxWidth="lg">
           <Card
             className={clsx(classes.paper, {
-              [classes.shadow]: !(docked || scrolledToBottom),
+              [classes.shadow]: !scrolledToBottom,
             })}
           >
             <CardContent className={classes.content}>{children}</CardContent>

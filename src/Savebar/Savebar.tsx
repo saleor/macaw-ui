@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Button } from "..";
-import { useActionBar } from "../ActionBar";
 import { ActionBar } from "../ActionBar/ActionBar";
 import {
   ConfirmButton,
@@ -40,7 +39,6 @@ export const Savebar: React.FC<SavebarProps> = ({
   onSubmit,
 }) => {
   const classes = useStyles();
-  const { setDocked } = useActionBar();
 
   return (
     <ActionBar
@@ -79,7 +77,6 @@ export const Savebar: React.FC<SavebarProps> = ({
           onClick={onSubmit}
           transitionState={state}
           data-test="button-bar-confirm"
-          onTransitionToDefault={() => setDocked(true)}
         />
       </ButtonTooltipDecorator>
     </ActionBar>
