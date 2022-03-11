@@ -1,5 +1,6 @@
 import {
   Checkbox,
+  FormControlLabel,
   Radio,
   RadioGroup,
   Switch,
