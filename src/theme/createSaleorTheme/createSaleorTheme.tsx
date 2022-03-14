@@ -149,6 +149,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
               backgroundColor: colors.main[1],
             },
             backgroundColor: colors.main[1],
+            outline: 0,
           },
         },
       },
