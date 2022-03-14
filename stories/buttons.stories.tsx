@@ -3,7 +3,7 @@ import { ArrowDownward } from "@material-ui/icons";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Button, IconButton, PillLink, LayoutButton, DeleteIcon } from "../src";
+import { Button, DeleteIcon, IconButton, LayoutButton, PillLink } from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "../src/utils/guideStyles";
 import { Cell } from "./utils/Cell";
@@ -105,6 +105,22 @@ const DefaultStory: React.FC = () => {
                 </IconButton>
               }
               label="Expand"
+            />
+            <FormControlLabel
+              control={
+                <IconButton state="hover" variant="secondary">
+                  <DeleteIcon />
+                </IconButton>
+              }
+              label="Hover"
+            />
+            <FormControlLabel
+              control={
+                <IconButton state="active" variant="secondary">
+                  <DeleteIcon />
+                </IconButton>
+              }
+              label="Focused"
             />
             <FormControlLabel
               control={

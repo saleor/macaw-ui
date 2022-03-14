@@ -5,6 +5,7 @@ import MuiIconButton, {
 import clsx from "clsx";
 import React from "react";
 
+import { UserInteraction } from "../../types/utils";
 import useStyles from "./styles";
 
 export type IconButtonProps<T extends React.ElementType = "button"> = Omit<
@@ -13,12 +14,20 @@ export type IconButtonProps<T extends React.ElementType = "button"> = Omit<
 > & {
   error?: boolean;
   hoverOutline?: boolean;
+  state?: UserInteraction;
   variant?: "primary" | "secondary";
 };
 
 export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
   (
-    { className, error, hoverOutline = true, variant = "primary", ...props },
+    {
+      className,
+      error,
+      hoverOutline = true,
+      variant = "primary",
+      state = "default",
+      ...props
+    },
     ref
   ) => {
     const classes = useStyles();
@@ -29,6 +38,8 @@ export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
           ref={ref}
           className={clsx(classes.secondary, className, {
             [classes.hoverOutline]: hoverOutline && !props.disabled,
+            [classes.hover]: state === "hover",
+            [classes.active]: state === "active",
           })}
           disableRipple
           {...props}
@@ -42,6 +53,8 @@ export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
         className={clsx(className, {
           [classes.error]: error,
           [classes.disabledError]: error && props.disabled,
+          [classes.hover]: state === "hover",
+          [classes.active]: state === "active",
         })}
         disableRipple
         {...props}

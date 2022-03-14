@@ -3,7 +3,7 @@ import type { SaleorThemeColors } from "..";
 // Extracting it to separate file to avoid circular imports
 export function getSecondaryButtonStyles(colors: SaleorThemeColors) {
   return {
-    "&:hover, &.Mui-focusVisible": {
+    "&:hover, &.Mui-focusVisible, &$hover, &$active": {
       color: colors.active[1],
     },
     "&:disabled": {
