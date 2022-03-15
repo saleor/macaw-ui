@@ -137,7 +137,8 @@ export const controlOverrides = (
         },
       },
       height: 48,
-      width: 72,
+      padding: "12px 16px",
+      width: 80,
     },
     switchBase: {
       "&$checked": {
@@ -157,6 +158,8 @@ export const controlOverrides = (
     thumb: {
       boxShadow: "none",
       height: 14,
+      left: 4,
+      position: "relative",
       width: 14,
     },
     track: {
