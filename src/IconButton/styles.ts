@@ -5,11 +5,11 @@ const useStyles = makeStyles(
   (theme) => ({
     error: {
       "&&": {
-        "&:hover, &.Mui-focusVisible": {
+        "&:hover, &.Mui-focusVisible, &$hover": {
           borderColor: theme.palette.saleor.errorAction[1],
           color: theme.palette.saleor.errorAction[1],
         },
-        "&:active": {
+        "&:active, &$active": {
           background: theme.palette.saleor.errorAction[5],
         },
       },
@@ -25,15 +25,17 @@ const useStyles = makeStyles(
     secondary: getSecondaryButtonStyles(theme.palette.saleor),
     hoverOutline: {
       "&$secondary": {
-        "&:hover,&:focus-visible": {
+        "&:hover, &:focus-visible, &$hover": {
           background: theme.palette.saleor.active[5],
           borderColor: theme.palette.saleor.active[4],
         },
-        "&:active": {
+        "&:active, &$active": {
           background: theme.palette.saleor.active[4],
         },
       },
     },
+    active: {},
+    hover: {},
   }),
   {
     name: "IconButton",
