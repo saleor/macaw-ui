@@ -14,7 +14,6 @@ import useStyles from "./styles";
 export interface ActionBarProps {
   disabled: boolean;
   state: ConfirmButtonTransitionState;
-  fixed?: boolean;
   className?: string;
   children: React.ReactNode[] | React.ReactNode;
 }
@@ -23,22 +22,14 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   disabled,
   children,
   state,
-  fixed,
   className,
   ...rest
 }) => {
   const { ssr } = useTheme();
   const classes = useStyles();
 
-  const { anchor, docked, setDocked } = useActionBar();
+  const { anchor } = useActionBar();
   const scrollPosition = useWindowScroll();
-
-  React.useEffect(() => {
-    if (!disabled && state !== "loading") {
-      setDocked(false);
-    }
-  }, [disabled, state, setDocked]);
-  React.useEffect(() => () => setDocked(true), [setDocked]);
 
   const scrolledToBottom =
     scrollPosition.y + window.innerHeight >= document.body.scrollHeight;
@@ -49,20 +40,11 @@ export const ActionBar: React.FC<ActionBarProps> = ({
 
   return (
     <Portal container={anchor.current}>
-      <div
-        className={clsx(
-          classes.root,
-          {
-            [classes.fixed]: fixed,
-          },
-          className
-        )}
-        {...rest}
-      >
+      <div className={clsx(classes.root, className)} {...rest}>
         <Container maxWidth="lg">
           <Card
             className={clsx(classes.paper, {
-              [classes.shadow]: !(docked || scrolledToBottom),
+              [classes.shadow]: !scrolledToBottom,
             })}
           >
             <CardContent className={classes.content}>{children}</CardContent>

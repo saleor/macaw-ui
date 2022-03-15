@@ -2,8 +2,6 @@ import React from "react";
 
 export interface ActionBarContextType {
   anchor: React.RefObject<HTMLDivElement>;
-  docked: boolean;
-  setDocked: (docked: boolean) => void;
 }
 
 export const ActionBarContext = React.createContext<
@@ -21,11 +19,10 @@ export const useActionBar = () => {
 };
 
 export const ActionBarProvider: React.FC = ({ children }) => {
-  const [docked, setDocked] = React.useState(true);
   const anchor = React.useRef<HTMLDivElement | null>(null);
 
   return (
-    <ActionBarContext.Provider value={{ anchor, docked, setDocked }}>
+    <ActionBarContext.Provider value={{ anchor }}>
       {children}
     </ActionBarContext.Provider>
   );

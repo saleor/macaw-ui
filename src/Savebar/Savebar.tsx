@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Button } from "..";
-import { useActionBar } from "../ActionBar";
 import { ActionBar } from "../ActionBar/ActionBar";
 import {
   ConfirmButton,
@@ -21,7 +20,6 @@ export interface SavebarProps {
   state: ConfirmButtonTransitionState;
   labels: SavebarLabels;
   tooltips?: SavebarTooltips;
-  fixed?: boolean;
   className?: string;
   onCancel: () => void;
   onDelete?: () => void;
@@ -33,22 +31,15 @@ export const Savebar: React.FC<SavebarProps> = ({
   labels,
   tooltips,
   state,
-  fixed,
   className,
   onCancel,
   onDelete,
   onSubmit,
 }) => {
   const classes = useStyles();
-  const { setDocked } = useActionBar();
 
   return (
-    <ActionBar
-      state={state}
-      disabled={disabled}
-      fixed={fixed}
-      className={className}
-    >
+    <ActionBar state={state} disabled={disabled} className={className}>
       {!!onDelete && (
         <ButtonTooltipDecorator tooltip={tooltips?.delete}>
           <Button
@@ -79,7 +70,6 @@ export const Savebar: React.FC<SavebarProps> = ({
           onClick={onSubmit}
           transitionState={state}
           data-test="button-bar-confirm"
-          onTransitionToDefault={() => setDocked(true)}
         />
       </ButtonTooltipDecorator>
     </ActionBar>
