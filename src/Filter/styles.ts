@@ -65,7 +65,13 @@ const useStyles = makeStyles(
     },
 
     bar: {
-      minWidth: 600,
+      minWidth: 100,
+    },
+    barAddBtn: {
+      "& svg": {
+        marginLeft: theme.spacing(1),
+        marginRight: 0,
+      },
     },
 
     selectPaper: {
