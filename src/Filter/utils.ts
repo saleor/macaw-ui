@@ -8,8 +8,25 @@ import {
   OnFilterChangeOpts,
 } from "./types";
 
-export function getAvailableFilters(filterData: FilterData[]) {
-  return filterData.filter((filter) => !filter.active);
+export function getFilterName(
+  name: string,
+  options: FilterDetailedOptions
+): string {
+  return options.group ? `${options.group.name}:${name}` : name;
+}
+
+export function getAvailableFilters(
+  filterData: FilterData[]
+): Array<Record<"name" | "label", string>> {
+  return [
+    ...filterData.filter((filter) => !(filter.active || filter.options.group)),
+    ...uniqBy(
+      filterData
+        .filter((filter) => !filter.active && filter.options.group)
+        .map((filter) => filter.options.group!),
+      "name"
+    ),
+  ];
 }
 export function getActiveFilters(filterData: FilterData[]) {
   return filterData.filter((filter) => filter.active);
@@ -108,14 +125,23 @@ export function change(
 }
 
 export function toggle(filterData: FilterData[], name: string): FilterData[] {
-  const selectedFilter = filterData.find((filter) => filter.name === name)!;
+  let selectedFilter = filterData.find((filter) => filter.name === name);
+  let filterName = name;
+
+  if (!selectedFilter) {
+    selectedFilter = filterData.find(
+      (filter) => filter.options.group?.name === name
+    )!;
+    filterName = selectedFilter.name;
+  }
+
   const sortIndex = selectedFilter.active
     ? selectedFilter.sortIndex
     : getActiveFilters(filterData).length;
   const value = selectedFilter.active ? getDefaultValue(selectedFilter) : {};
 
   return filterData.map((filter) =>
-    filter.name === name
+    filter.name === filterName
       ? {
           ...filter,
           active: !filter.active,

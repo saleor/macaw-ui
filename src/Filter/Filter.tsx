@@ -19,7 +19,12 @@ import {
 import * as utils from "./utils";
 
 export type FilterProps = FilterOptions & FilterDetailedOptions;
-export const Filter: React.FC<FilterProps> = ({ name, label, ...options }) => {
+export const Filter: React.FC<FilterProps> = ({
+  name: nameProp,
+  label,
+  ...options
+}) => {
+  const name = utils.getFilterName(nameProp, options);
   const { register, set, unregister } = useFilters();
   const registered = React.useRef(false);
   React.useEffect(() => {

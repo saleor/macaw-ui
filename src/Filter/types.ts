@@ -14,7 +14,7 @@ export interface FilterDetailedOptions {
   default?: string;
   multiple?: boolean;
   InputProps?: Partial<TextFieldProps>;
-  group?: string;
+  group?: Record<"label" | "name", string>;
   displayValues?: Choice[];
 }
 export interface FilterOptions {
