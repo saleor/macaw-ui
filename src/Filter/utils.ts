@@ -1,4 +1,4 @@
-import { uniqBy } from "lodash";
+import { sortBy, uniqBy } from "lodash";
 
 import {
   FilterData,
@@ -15,18 +15,29 @@ export function getFilterName(
   return options.group ? `${options.group.name}:${name}` : name;
 }
 
+export function getAvailableFilterGroups(
+  filterData: FilterData[]
+): Array<Record<"name" | "label", string>> {
+  return uniqBy(
+    filterData
+      .filter((filter) => !filter.active && filter.options.group)
+      .map((filter) => filter.options.group!),
+    "name"
+  );
+}
+
 export function getAvailableFilters(
   filterData: FilterData[]
 ): Array<Record<"name" | "label", string>> {
-  return [
-    ...filterData.filter((filter) => !(filter.active || filter.options.group)),
-    ...uniqBy(
-      filterData
-        .filter((filter) => !filter.active && filter.options.group)
-        .map((filter) => filter.options.group!),
-      "name"
-    ),
-  ];
+  return sortBy(
+    [
+      ...filterData.filter(
+        (filter) => !(filter.active || filter.options.group)
+      ),
+      ...getAvailableFilterGroups(filterData),
+    ],
+    "label"
+  );
 }
 export function getActiveFilters(filterData: FilterData[]) {
   return filterData.filter((filter) => filter.active);
@@ -130,7 +141,7 @@ export function toggle(filterData: FilterData[], name: string): FilterData[] {
 
   if (!selectedFilter) {
     selectedFilter = filterData.find(
-      (filter) => filter.options.group?.name === name
+      (filter) => !filter.active && filter.options.group?.name === name
     )!;
     filterName = selectedFilter.name;
   }
