@@ -6,12 +6,16 @@ export enum FilterType {
   Range,
 }
 
+export type Choice = Record<"label" | "value", string>;
+
 export interface FilterDetailedOptions {
   type: FilterType;
-  choices?: Array<Record<"label" | "value", string>>;
+  choices?: Choice[];
   default?: string;
   multiple?: boolean;
   InputProps?: Partial<TextFieldProps>;
+  group?: string;
+  displayValues?: Choice[];
 }
 export interface FilterOptions {
   name: string;

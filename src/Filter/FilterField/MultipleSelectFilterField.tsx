@@ -18,6 +18,9 @@ export const MultipleSelectFilterField: React.FC<FilterContentProps> = ({
 }) => {
   const classes = useStyles();
   const { onChange } = useFilters();
+  const [displayValues] = React.useState(
+    filter.options.displayValues || filter.options.choices
+  );
 
   const { name, options } = filter;
   const { choices } = options;
@@ -42,7 +45,8 @@ export const MultipleSelectFilterField: React.FC<FilterContentProps> = ({
           <div className={classes.filterChipContainer}>
             {typedValues.map((value) => (
               <Chip className={classes.filterChip} key={value}>
-                {value}
+                {displayValues?.find((dv) => dv.value === value)?.label ??
+                  value}
               </Chip>
             ))}
           </div>
