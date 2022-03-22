@@ -30,6 +30,8 @@ const useStyles = makeStyles(
     },
     filterDelete: {
       marginLeft: "auto",
+      position: "relative",
+      left: 6,
     },
     filterName: {
       width: 180,

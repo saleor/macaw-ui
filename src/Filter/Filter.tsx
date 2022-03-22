@@ -1,10 +1,10 @@
-import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 import { difference } from "lodash";
 import React from "react";
 
+import { IconButton } from "../IconButton";
 import { DeleteIcon } from "../icons";
 import { useFilters } from "./context";
 import { FilterContent } from "./FilterContent";
@@ -108,7 +108,11 @@ export const FilterRow: React.FC<FilterRowProps> = ({
         <MenuItem value="true">{labels.range}</MenuItem>
       </Select>
       <FilterContent filter={filter} labels={labels} />
-      <IconButton className={classes.filterDelete} onClick={() => toggle(name)}>
+      <IconButton
+        variant="secondary"
+        className={classes.filterDelete}
+        onClick={() => toggle(name)}
+      >
         <DeleteIcon />
       </IconButton>
     </div>

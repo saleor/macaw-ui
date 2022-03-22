@@ -1,12 +1,11 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import IconButton from "@material-ui/core/IconButton";
-import Close from "@material-ui/icons/Close";
 import React from "react";
 
 import { Button } from "../Button";
-import { PlusIcon } from "../icons";
+import { IconButton } from "../IconButton";
+import { CloseIcon, PlusIcon } from "../icons";
 import { FilterContext } from "./context";
 import { FilterRow } from "./Filter";
 import { FilterMenu, FilterMenuLabels } from "./FilterMenu";
@@ -84,8 +83,8 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
           <CardHeader
             title={labels.header}
             action={
-              <IconButton onClick={onClose}>
-                <Close />
+              <IconButton variant="secondary" onClick={onClose}>
+                <CloseIcon />
               </IconButton>
             }
           />
