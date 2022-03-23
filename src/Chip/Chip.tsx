@@ -20,7 +20,7 @@ export interface ChipProps {
   className?: string;
   children: React.ReactNode;
   /** Strings used inside the Chip */
-  labels: ChipLabels;
+  labels?: ChipLabels;
 }
 
 export type ChipLabels = Record<"a11yRemove", string>;
@@ -66,7 +66,7 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
             role="button"
             className={clsx(classes.addonRight, classes.icon)}
             onClick={() => onRemove()}
-            aria-label={labels.a11yRemove}
+            aria-label={labels?.a11yRemove}
           />
         )}
       </div>
