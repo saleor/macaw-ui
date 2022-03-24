@@ -3,13 +3,7 @@ import { ArrowDownward } from "@material-ui/icons";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import {
-  Button,
-  DeleteIcon,
-  IconButton,
-  LayoutButton,
-  PillLink,
-} from "../src";
+import { Button, DeleteIcon, IconButton, LayoutButton, PillLink } from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "../src/utils/guideStyles";
 import { Cell } from "./utils/Cell";
@@ -46,13 +40,22 @@ const DefaultStory: React.FC = () => {
               <IconButton disabled>
                 <DeleteIcon />
               </IconButton>
-              <IconButton variant="primary" error>
+              <IconButton variant="primary" state="hover">
                 <DeleteIcon />
               </IconButton>
-              <IconButton variant="secondary" error>
+              <IconButton variant="secondary" state="hover">
                 <DeleteIcon />
               </IconButton>
-              <IconButton disabled error>
+              <IconButton disabled state="hover">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="primary" state="active">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="secondary" state="active">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton disabled state="active">
                 <DeleteIcon />
               </IconButton>
             </div>
@@ -188,12 +191,35 @@ const ErrorStory: React.FC = () => {
             </Button>
           </Cell>
           <Cell>
-            <IconButton error>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton error disabled>
-              <DeleteIcon />
-            </IconButton>
+            <div className={guideClasses.gridCell}>
+              <IconButton error variant="primary">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error variant="secondary">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error disabled>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error variant="primary" state="hover">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error variant="secondary" state="hover">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error disabled state="hover">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error variant="primary" state="active">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error variant="secondary" state="active">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton error disabled state="active">
+                <DeleteIcon />
+              </IconButton>
+            </div>
           </Cell>
         </div>
         <div>
