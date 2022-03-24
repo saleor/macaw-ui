@@ -1,5 +1,5 @@
 import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import Select, { SelectProps } from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 import { difference } from "lodash";
 import React from "react";
@@ -73,6 +73,15 @@ export const FilterRow: React.FC<FilterRowProps> = ({
 
   const availableFilters = utils.getAvailableFilters(filters);
   const options = [filter.options.group ?? filter, ...availableFilters];
+  const groupOptions = [
+    filter,
+    ...filters.filter(
+      (f) =>
+        f.name !== filter.name &&
+        f.options.group?.name === filter.options.group?.name &&
+        !f.active
+    ),
+  ];
 
   const change = (event: React.ChangeEvent<EventTarget<unknown>>) => {
     const targetFilterName = event.target.value as string;
@@ -90,17 +99,21 @@ export const FilterRow: React.FC<FilterRowProps> = ({
     }
   };
 
+  const selectProps: SelectProps = {
+    classes: {
+      selectMenu: classes.filterInputInner,
+    },
+    variant: "outlined",
+  };
+
   return (
     <div className={classes.filter}>
       <Typography className={classes.filterConjunction}>
         {first ? labels.where : labels.and}
       </Typography>
       <Select
+        {...selectProps}
         className={classes.filterName}
-        classes={{
-          selectMenu: classes.filterInputInner,
-        }}
-        variant="outlined"
         onChange={change}
         value={filter.options.group?.name ?? filter.name}
       >
@@ -112,23 +125,12 @@ export const FilterRow: React.FC<FilterRowProps> = ({
       </Select>
       {!!filter.options.group && (
         <Select
+          {...selectProps}
           className={classes.filterName}
-          classes={{
-            selectMenu: classes.filterInputInner,
-          }}
-          variant="outlined"
           onChange={change}
           value={filter.name}
         >
-          {[
-            filter,
-            ...filters.filter(
-              (f) =>
-                f.name !== filter.name &&
-                f.options.group?.name === filter.options.group!.name &&
-                !f.active
-            ),
-          ].map((option) => (
+          {groupOptions.map((option) => (
             <MenuItem key={option.name} value={option.name}>
               {option.label}
             </MenuItem>
@@ -136,12 +138,9 @@ export const FilterRow: React.FC<FilterRowProps> = ({
         </Select>
       )}
       <Select
+        {...selectProps}
         disabled={filter.options.type !== FilterType.Range}
         className={classes.filterRange}
-        classes={{
-          selectMenu: classes.filterInputInner,
-        }}
-        variant="outlined"
         value={filter.range.toString()}
         onChange={() => toggleRange(name)}
       >
