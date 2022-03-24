@@ -3,45 +3,31 @@ import React from "react";
 
 import useStyles from "./styles";
 
-export interface ChipProps {
+export interface ChipProps
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {
   startAdornment?: React.ReactElement;
   endAdornment?: React.ReactElement;
-  onClick?: () => void;
-  className?: string;
-  children: React.ReactNode;
 }
 
 export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
   (
-    {
-      startAdornment,
-      endAdornment,
-      onClick = () => {},
-      className,
-      children,
-    }: ChipProps,
+    { startAdornment, endAdornment, className, children, ...props }: ChipProps,
     ref
   ) => {
     const classes = useStyles();
 
     return (
-      <div
-        className={clsx(classes.chip, className)}
-        onClick={() => onClick()}
-        ref={ref}
-      >
-        {startAdornment &&
-          React.cloneElement(startAdornment, {
-            className: clsx(
-              classes.startAdornment,
-              startAdornment.props.className
-            ),
-          })}
+      <div className={clsx(classes.chip, className)} ref={ref} {...props}>
+        {startAdornment && (
+          <span className={classes.startAdornment}>{startAdornment}</span>
+        )}
         <span>{children}</span>
-        {endAdornment &&
-          React.cloneElement(endAdornment, {
-            className: clsx(classes.endAdornment, endAdornment.props.className),
-          })}
+        {endAdornment && (
+          <span className={classes.endAdornment}>{endAdornment}</span>
+        )}
       </div>
     );
   }

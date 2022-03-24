@@ -3,26 +3,29 @@ import React from "react";
 
 import { makeStyles } from "../theme";
 
-const useStyles = makeStyles((theme) => ({
-  adornment: {
-    color: theme.palette.primary.contrastText,
-    opacity: "60%",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    transition: theme.transitions.create("opacity", {
-      duration: theme.transitions.duration.short,
-      easing: theme.transitions.easing.easeOut,
-    }),
-    lineHeight: 0,
-    "&:hover": {
-      opacity: "100%",
+const useStyles = makeStyles(
+  (theme) => ({
+    adornment: {
+      color: theme.palette.primary.contrastText,
+      opacity: "60%",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      transition: theme.transitions.create("opacity", {
+        duration: theme.transitions.duration.short,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      lineHeight: 0,
+      "&:hover": {
+        opacity: "100%",
+      },
     },
-  },
-  defaultCursor: {
-    cursor: "inherit",
-  },
-}));
+    defaultCursor: {
+      cursor: "inherit",
+    },
+  }),
+  { name: "ChipAdornment" }
+);
 
 export interface ChipAdornmentProps {
   className?: string;
