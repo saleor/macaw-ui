@@ -56,7 +56,7 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
       setFilterData((fd) => fd.filter((filter) => filter.name !== name));
     const set = (name: string, filter: Partial<FilterData>) =>
       setFilterData((fd) =>
-        fd.map((f) => (f.name === name ? { ...f, filter } : f))
+        fd.map((f) => (f.name === name ? { ...f, ...filter } : f))
       );
 
     const availableFilters = utils.getAvailableFilters(filterData);

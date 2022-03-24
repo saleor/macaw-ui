@@ -63,7 +63,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   labels,
 }) => {
   const classes = useStyles();
-  const { filters, toggle, toggleRange } = useFilters();
+  const { filters, toggle, toggleRange, set } = useFilters();
 
   const filter = filters.find((filter) => filter.name === name);
 
@@ -72,11 +72,22 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   }
 
   const availableFilters = utils.getAvailableFilters(filters);
-  const options = [filter, ...availableFilters];
+  const options = [filter.options.group ?? filter, ...availableFilters];
 
   const change = (event: React.ChangeEvent<EventTarget<unknown>>) => {
-    toggle(name);
-    toggle(event.target.value as string);
+    const targetFilterName = event.target.value as string;
+
+    if (filter.options.group) {
+      toggle(name);
+      set(targetFilterName, {
+        active: true,
+        sortIndex: filter.sortIndex,
+      });
+    } else {
+      // Hide currently open
+      toggle(name);
+      toggle(targetFilterName);
+    }
   };
 
   return (
@@ -91,7 +102,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
         }}
         variant="outlined"
         onChange={change}
-        value={filter.name}
+        value={filter.options.group?.name ?? filter.name}
       >
         {options.map((option) => (
           <MenuItem key={option.name} value={option.name}>
@@ -99,6 +110,31 @@ export const FilterRow: React.FC<FilterRowProps> = ({
           </MenuItem>
         ))}
       </Select>
+      {!!filter.options.group && (
+        <Select
+          className={classes.filterName}
+          classes={{
+            selectMenu: classes.filterInputInner,
+          }}
+          variant="outlined"
+          onChange={change}
+          value={filter.name}
+        >
+          {[
+            filter,
+            ...filters.filter(
+              (f) =>
+                f.name !== filter.name &&
+                f.options.group?.name === filter.options.group!.name &&
+                !f.active
+            ),
+          ].map((option) => (
+            <MenuItem key={option.name} value={option.name}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      )}
       <Select
         disabled={filter.options.type !== FilterType.Range}
         className={classes.filterRange}
