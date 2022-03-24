@@ -3,7 +3,14 @@ import { ArrowDownward } from "@material-ui/icons";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { Button, DeleteIcon, IconButton, LayoutButton, PillLink } from "../src";
+import {
+  Button,
+  DeleteIcon,
+  EditIcon,
+  IconButton,
+  LayoutButton,
+  PillLink,
+} from "../src";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "../src/utils/guideStyles";
 import { Cell } from "./utils/Cell";
@@ -30,12 +37,26 @@ const DefaultStory: React.FC = () => {
             </Button>
           </Cell>
           <Cell>
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton disabled>
-              <DeleteIcon />
-            </IconButton>
+            <div className={guideClasses.gridCell}>
+              <IconButton variant="primary">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="secondary">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton disabled>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="primary" error>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="secondary" error>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton disabled error>
+                <DeleteIcon />
+              </IconButton>
+            </div>
           </Cell>
           <Cell>
             <PillLink href="#">Clickable Pill</PillLink>

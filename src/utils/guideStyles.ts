@@ -38,6 +38,11 @@ const useStyles = makeStyles(
       padding: theme.spacing(3),
       rowGap: theme.spacing(3),
     },
+    gridCell: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: theme.spacing(3),
+    }
   }),
   { name: "Guide" }
 );
