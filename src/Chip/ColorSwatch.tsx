@@ -3,12 +3,12 @@ import React from "react";
 
 import useStyles from "./styles";
 
-export interface ChipSwatchProps {
+export interface ColorSwatchProps {
   color: string;
   className?: string;
 }
 
-export const ChipSwatch = ({ color, className }: ChipSwatchProps) => {
+export const ColorSwatch = ({ color, className }: ColorSwatchProps) => {
   const classes = useStyles();
 
   return (

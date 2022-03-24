@@ -15,11 +15,15 @@ const useStyles = makeStyles(
       cursor: "default",
       userSelect: "none",
       textAlign: "center",
+      "& > span": {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+      },
     },
-    addonLeft: {
+    startAdornment: {
       marginLeft: "-8px",
     },
-    addonRight: {
+    endAdornment: {
       marginRight: "-8px",
     },
     swatch: {
@@ -31,28 +35,6 @@ const useStyles = makeStyles(
       borderRadius: "4px",
       // default background when no style specified
       background: "transparent",
-    },
-    icon: {
-      color: theme.palette.primary.contrastText,
-      opacity: "60%",
-      cursor: "pointer",
-      transition: theme.transitions.create("opacity", {
-        duration: theme.transitions.duration.short,
-        easing: theme.transitions.easing.easeOut,
-      }),
-      "&:hover": {
-        opacity: "100%",
-      },
-    },
-    oneline: {
-      whiteSpace: "nowrap",
-      "& > span": {
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-      },
-    },
-    movable: {
-      cursor: "move",
     },
   }),
   { name: "Chip" }
