@@ -6,7 +6,6 @@ import React from "react";
 import {
   Button,
   DeleteIcon,
-  EditIcon,
   IconButton,
   LayoutButton,
   PillLink,
