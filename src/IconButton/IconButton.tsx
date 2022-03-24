@@ -38,8 +38,10 @@ export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
           ref={ref}
           className={clsx(classes.secondary, className, {
             [classes.hoverOutline]: hoverOutline && !props.disabled,
-            [classes.hover]: state === "hover",
-            [classes.active]: state === "active",
+            [classes.hover]: state === "hover" && !props.disabled,
+            [classes.active]: state === "active" && !props.disabled,
+            [classes.error]: error,
+            [classes.disabledError]: error && props.disabled,
           })}
           disableRipple
           {...props}
@@ -50,11 +52,11 @@ export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
     return (
       <MuiIconButton
         ref={ref}
-        className={clsx(className, {
+        className={clsx(classes.primary, className, {
+          [classes.hover]: state === "hover" && !props.disabled,
+          [classes.active]: state === "active" && !props.disabled,
           [classes.error]: error,
           [classes.disabledError]: error && props.disabled,
-          [classes.hover]: state === "hover",
-          [classes.active]: state === "active",
         })}
         disableRipple
         {...props}
