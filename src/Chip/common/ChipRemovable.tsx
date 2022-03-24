@@ -14,7 +14,6 @@ export const ChipRemovable = React.forwardRef<
 >(({ endAdornment, onRemove = () => {}, ...props }, ref) => {
   return (
     <Chip
-      ref={ref}
       endAdornment={
         <ChipAdornment>
           <CloseIcon role="button" onClick={() => onRemove()} />
@@ -22,6 +21,7 @@ export const ChipRemovable = React.forwardRef<
         </ChipAdornment>
       }
       {...props}
+      ref={ref}
     />
   );
 });

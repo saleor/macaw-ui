@@ -14,7 +14,6 @@ export const ChipSwatch = React.forwardRef<HTMLDivElement, ChipSwatchProps>(
   ({ endAdornment, color, onRemove = () => {}, ...props }, ref) => {
     return (
       <Chip
-        ref={ref}
         startAdornment={<ColorSwatch color={color} />}
         endAdornment={
           <ChipAdornment>
@@ -22,6 +21,7 @@ export const ChipSwatch = React.forwardRef<HTMLDivElement, ChipSwatchProps>(
           </ChipAdornment>
         }
         {...props}
+        ref={ref}
       />
     );
   }

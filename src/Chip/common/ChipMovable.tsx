@@ -24,7 +24,6 @@ export const ChipMovable = React.forwardRef<HTMLDivElement, ChipMovableProps>(
     return (
       <Chip
         className={clsx(classes.root, className)}
-        ref={ref}
         startAdornment={
           <ChipAdornment inheirtCursor>
             <DragIcon aria-hidden="true" />
@@ -32,6 +31,7 @@ export const ChipMovable = React.forwardRef<HTMLDivElement, ChipMovableProps>(
           </ChipAdornment>
         }
         {...props}
+        ref={ref}
       />
     );
   }
