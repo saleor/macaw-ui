@@ -11,14 +11,16 @@ export interface ChipSwatchProps extends Omit<ChipProps, "startAdornment"> {
 }
 
 export const ChipSwatch = React.forwardRef<HTMLDivElement, ChipSwatchProps>(
-  ({ endAdornment, color, onRemove = () => {}, ...props }, ref) => {
+  ({ endAdornment, color, onRemove, ...props }, ref) => {
     return (
       <Chip
         startAdornment={<ColorSwatch color={color} />}
         endAdornment={
-          <ChipAdornment>
-            <CloseIcon role="button" onClick={() => onRemove()} />
-          </ChipAdornment>
+          onRemove && (
+            <ChipAdornment>
+              <CloseIcon role="button" onClick={() => onRemove()} />
+            </ChipAdornment>
+          )
         }
         {...props}
         ref={ref}

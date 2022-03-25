@@ -1,21 +1,11 @@
 import { Typography } from "@material-ui/core";
 import { Story } from "@storybook/react";
 
-import {
-  Chip,
-  ChipMovable,
-  ChipProps,
-  ChipRemovable,
-  ChipSwatch,
-} from "../src/Chip";
+import { Chip, ChipMovable, ChipRemovable, ChipSwatch } from "../src/Chip";
 import { light } from "../src/theme";
 import { Decorator, GuideDecorator } from "../src/utils/Decorator";
 import useGuideStyles from "../src/utils/guideStyles";
 import { Cell } from "./utils/Cell";
-
-const props: ChipProps = {
-  children: "Chip",
-};
 
 const DefaultStory: React.FC = () => {
   const guideClasses = useGuideStyles();
@@ -29,19 +19,20 @@ const DefaultStory: React.FC = () => {
       <div className={guideClasses.grid}>
         <div>
           <Cell>
-            <Chip {...props}>Chip</Chip>
-            <ChipRemovable {...props}>Removable</ChipRemovable>
+            <Chip>Chip</Chip>
+            <ChipRemovable onRemove={() => {}}>Removable</ChipRemovable>
           </Cell>
         </div>
         <div>
           <Cell>
-            <ChipMovable {...props}>Movable</ChipMovable>
+            <ChipMovable>Movable</ChipMovable>
           </Cell>
         </div>
         <div>
           <Cell>
-            <ChipSwatch {...props} color={light.success.mid}>
-              Swatch
+            <ChipSwatch color={light.success.mid}>Swatch</ChipSwatch>
+            <ChipSwatch color={light.success.mid} onRemove={() => {}}>
+              Swatch Removable
             </ChipSwatch>
           </Cell>
         </div>
