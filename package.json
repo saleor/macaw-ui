@@ -35,7 +35,7 @@
     "build": "npm run build-esb && npm run build-tsc",
     "test": "jest",
     "lint": "npx eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix ; npx prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write",
-    "prepare": "npm run build",
+    "prepare": "npm run build && husky install",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
@@ -51,12 +51,6 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "react": "^16.8.0 || ^17.0.0",
     "react-helmet": "^6.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint"
-    }
   },
   "np": {
     "yarn": false
@@ -113,7 +107,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "faker": "^5.5.3",
-    "husky": "^6.0.0",
+    "husky": "^7.0.0",
     "hygen": "^6.1.0",
     "jest": "^27.2.4",
     "jest-file": "^1.0.0",
