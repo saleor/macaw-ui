@@ -7,7 +7,7 @@ const useStyles = makeStyles(
   (theme) => ({
     adornment: {
       color: theme.palette.primary.contrastText,
-      opacity: "60%",
+      opacity: 0.6,
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       }),
       lineHeight: 0,
       "&:hover": {
-        opacity: "100%",
+        opacity: 1,
       },
     },
     defaultCursor: {
