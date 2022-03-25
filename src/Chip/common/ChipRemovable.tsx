@@ -5,13 +5,13 @@ import { Chip, ChipProps } from "../Chip";
 import { ChipAdornment } from "../ChipAdornment";
 
 export interface ChipRemovableProps extends ChipProps {
-  onRemove?: () => void;
+  onRemove: () => void;
 }
 
 export const ChipRemovable = React.forwardRef<
   HTMLDivElement,
   ChipRemovableProps
->(({ endAdornment, onRemove = () => {}, ...props }, ref) => {
+>(({ endAdornment, onRemove, ...props }, ref) => {
   return (
     <Chip
       endAdornment={
