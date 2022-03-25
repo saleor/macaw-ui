@@ -1,1 +1,1 @@
-export * from './CircleIndicator';
+export * from "./CircleIndicator";
