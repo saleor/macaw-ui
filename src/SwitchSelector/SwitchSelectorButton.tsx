@@ -9,7 +9,7 @@ interface SwitchSelectorButtonProps {
 }
 
 const useSwitchSelectorButtonStyles = makeStyles((theme) => ({
-  button: {
+  root: {
     color: "#77738C",
     background: "none",
     borderColor: "transparent",
@@ -24,8 +24,12 @@ const useSwitchSelectorButtonStyles = makeStyles((theme) => ({
       color: theme.palette.saleor.active[1],
       border: `1px solid ${theme.palette.saleor.active[1]}`,
     },
+
+    "&:active": {
+      backgroundColor: theme.palette.saleor.active[5],
+    },
   },
-  buttonActive: {
+  buttonSelected: {
     color: theme.palette.common.white,
     backgroundColor: theme.palette.saleor.active[1],
   },
@@ -43,8 +47,8 @@ export const SwitchSelectorButton: React.FC<SwitchSelectorButtonProps> = ({
     <Button
       key={value}
       onClick={onClick}
-      className={clsx(classes.button, {
-        [classes.buttonActive]: value === activeTab,
+      className={clsx(classes.root, {
+        [classes.buttonSelected]: value === activeTab,
       })}
     >
       {children}
