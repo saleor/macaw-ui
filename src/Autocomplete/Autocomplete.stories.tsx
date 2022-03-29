@@ -12,12 +12,12 @@ export const Default: Story = () => {
 
   return (
     <Autocomplete
-      choices={results.slice(0, 10)}
-      label="Select employee of the month"
+      choices={results}
+      label="Employee of the month"
       onInputChange={search}
     >
       {({ highlightedIndex, getItemProps }) =>
-        results.slice(0, 10).map((choice, choiceIndex) => (
+        results.map((choice, choiceIndex) => (
           <MenuItem
             selected={highlightedIndex === choiceIndex}
             {...getItemProps({ item: choice, index: choiceIndex })}

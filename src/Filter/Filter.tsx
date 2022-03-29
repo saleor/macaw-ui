@@ -25,8 +25,10 @@ export const Filter: React.FC<FilterProps> = ({
   ...options
 }) => {
   const name = utils.getFilterName(nameProp, options);
-  const { register, set, unregister } = useFilters();
+  const { filters, register, set, unregister } = useFilters();
   const registered = React.useRef(false);
+  const filter = filters.find((fd) => fd.name === name);
+
   React.useEffect(() => {
     register(name, label, options);
     registered.current = true;
@@ -38,8 +40,10 @@ export const Filter: React.FC<FilterProps> = ({
     if (
       registered.current &&
       options.choices !== undefined &&
-      difference(options.choices, options.choices).length
+      filter &&
+      difference(options.choices, filter!.options.choices!).length
     ) {
+      console.log("update choices");
       set(name, {
         options: {
           ...options,

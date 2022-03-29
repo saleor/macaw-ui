@@ -2,18 +2,10 @@ import { Meta, Story } from "@storybook/react";
 import { debounce } from "lodash";
 import React from "react";
 
-import { Filter } from "./Filter";
-import { FilterBar } from "./FilterBar";
-import { FilterType } from "./types";
-
-const labels = {
-  addButton: "Add Filter",
-  header: "Filters",
-  where: "Where",
-  and: "and",
-  is: "is",
-  range: "between",
-};
+import { Filter } from "../Filter";
+import { FilterBar } from "../FilterBar";
+import { FilterType } from "../types";
+import { labels } from "./labels";
 
 export const Default: Story = () => (
   <FilterBar
@@ -147,5 +139,5 @@ export const WithInitialState: Story = () => (
 );
 
 export default {
-  title: "Filter",
+  title: "Filter / Dummy",
 } as Meta;

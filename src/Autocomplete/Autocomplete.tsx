@@ -1,9 +1,14 @@
 import Grow from "@material-ui/core/Grow";
 import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import { useCombobox } from "downshift";
+import Popper, { PopperPlacementType } from "@material-ui/core/Popper";
+import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
+import { useCombobox, UseComboboxGetItemPropsOptions } from "downshift";
 import React from "react";
+
+import { SyntheticChangeEvent } from "../../types/utils";
+import { ChevronIcon } from "../icons";
+import useStyles from "./styles";
 
 export type AutocompleteChoice = Record<"label" | "value", string>;
 
@@ -20,20 +25,34 @@ function mergeRefs<T>(...refs: React.Ref<T>[]) {
   };
 }
 
-export interface AutocompleteProps {
-  children: ({}) => React.ReactNode | React.ReactNodeArray;
+export interface AutocompleteProps extends StandardTextFieldProps {
+  children: (data: {
+    getItemProps: (
+      opts: UseComboboxGetItemPropsOptions<AutocompleteChoice>
+    ) => any;
+    highlightedIndex: number;
+    inputValue: string;
+  }) => React.ReactNode | React.ReactNodeArray;
+  className?: string;
+  styles?: React.CSSProperties;
   choices: AutocompleteChoice[];
   label?: string;
-  onInputChange: (value: string) => void;
+  popperPlacement?: PopperPlacementType;
+  onChange?: (event: SyntheticChangeEvent) => void;
+  onInputChange?: (value: string) => void;
 }
 
 export const Autocomplete: React.FC<AutocompleteProps> = ({
   choices,
   children,
-  label,
+  name,
+  InputProps,
+  popperPlacement = "bottom-start",
+  onChange,
   onInputChange,
+  ...rest
 }) => {
-  const anchor = React.useRef();
+  const anchor = React.useRef<HTMLDivElement>();
   const input = React.useRef<HTMLInputElement>();
   const {
     closeMenu,
@@ -46,14 +65,34 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     highlightedIndex,
     getItemProps,
     openMenu,
+    inputValue,
+    setInputValue,
   } = useCombobox({
     items: choices,
-    onInputValueChange: ({ inputValue }) => onInputChange(inputValue ?? ""),
-    onSelectedItemChange: () => {
+    onInputValueChange: ({ inputValue }) => {
+      if (onInputChange) {
+        onInputChange(inputValue ?? "");
+      }
+    },
+    onSelectedItemChange: ({ selectedItem }) => {
       closeMenu();
+      if (onChange) {
+        onChange({
+          target: {
+            name: name ?? "",
+            value: selectedItem?.value ?? "",
+          },
+        });
+      }
     },
     itemToString: (choice) => choice?.label ?? "",
+    onIsOpenChange: ({ selectedItem, inputValue, isOpen }) => {
+      if (!isOpen && selectedItem && selectedItem?.label !== inputValue) {
+        setInputValue(selectedItem!.label);
+      }
+    },
   });
+  const classes = useStyles();
 
   const labelProps = getLabelProps();
   const { ref: comboboxDownshiftRef, ...comboboxProps } = getComboboxProps();
@@ -68,25 +107,33 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
   const menuProps = getMenuProps();
 
   return (
-    <div>
-      <label {...labelProps}>{label}</label>
-      <div {...comboboxProps} ref={mergeRefs(comboboxDownshiftRef, anchor)}>
-        <input {...inputProps} ref={mergeRefs(downshiftRef, input)} />
-        <button
-          type="button"
-          {...getToggleButtonProps()}
-          aria-label="toggle menu"
-        >
-          &#8595;
-        </button>
-      </div>
+    <>
+      <TextField
+        {...rest}
+        {...comboboxProps}
+        name={name}
+        InputLabelProps={labelProps}
+        ref={mergeRefs(comboboxDownshiftRef, anchor)}
+        InputProps={{
+          ...InputProps,
+          ...inputProps,
+          endAdornment: (
+            <ChevronIcon
+              {...getToggleButtonProps()}
+              type="button"
+              aria-label="toggle menu"
+            />
+          ),
+        }}
+        inputProps={{ ref: mergeRefs(downshiftRef, input) }}
+      />
       <div {...menuProps}>
         <Popper
-          //   className={classes.popover}
+          className={classes.popper}
           open={isOpen}
           anchorEl={input.current}
           transition
-          placement="bottom-start"
+          placement={popperPlacement}
         >
           {({ TransitionProps, placement }) => (
             <Grow
@@ -96,11 +143,15 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                   placement === "bottom" ? "left top" : "left bottom",
               }}
             >
-              <Paper elevation={8}>
+              <Paper
+                elevation={8}
+                style={{ width: anchor.current?.clientWidth }}
+              >
                 <Menu disablePadding>
                   {children({
                     highlightedIndex,
                     getItemProps,
+                    inputValue,
                   })}
                 </Menu>
               </Paper>
@@ -108,6 +159,6 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
           )}
         </Popper>
       </div>
-    </div>
+    </>
   );
 };

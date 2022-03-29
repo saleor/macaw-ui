@@ -1,5 +1,6 @@
 import React from "react";
 
+import { AutocompleteFilterField } from "./FilterField/AutocompleteFilterField";
 import { MultipleSelectFilterField } from "./FilterField/MultipleSelectFilterField";
 import { RangeFilterField } from "./FilterField/RangeFilterField";
 import { SelectFilterField } from "./FilterField/SelectFilterField";
@@ -18,7 +19,9 @@ export const FilterContent: React.FC<FilterContentProps> = ({
   const { options, range } = filter;
   const { type, multiple } = options;
 
-  if (type === FilterType.Choice) {
+  if (type === FilterType.Autocomplete) {
+    return <AutocompleteFilterField filter={filter} />;
+  } else if (type === FilterType.Choice) {
     if (multiple) {
       return <MultipleSelectFilterField filter={filter} />;
     }

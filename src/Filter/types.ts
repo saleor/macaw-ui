@@ -4,6 +4,7 @@ export enum FilterType {
   Text,
   Choice,
   Range,
+  Autocomplete,
 }
 
 export type Choice = Record<"label" | "value", string>;
@@ -16,6 +17,7 @@ export interface FilterDetailedOptions {
   InputProps?: Partial<TextFieldProps>;
   group?: Record<"label" | "name", string>;
   displayValues?: Choice[];
+  onInputChange?: (value: string) => void;
 }
 export interface FilterOptions {
   name: string;
