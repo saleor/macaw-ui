@@ -1,2 +1,5 @@
 export * from "./Chip";
-export * from "./common";
+export * from "./ChipAdornment";
+export * from "./ChipMovable";
+export * from "./ChipRemovable";
+export * from "./ChipSwatch";

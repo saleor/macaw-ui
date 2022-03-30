@@ -1,9 +1,9 @@
 import React from "react";
 
-import { CloseIcon } from "../../icons";
-import { Chip, ChipProps } from "../Chip";
-import { ChipAdornment } from "../ChipAdornment";
-import { ColorSwatch } from "../ColorSwatch";
+import { CloseIcon } from "../icons";
+import { Chip, ChipProps } from "./Chip";
+import { ChipAdornment } from "./ChipAdornment";
+import { ColorSwatch } from "./private/ColorSwatch";
 
 export interface ChipSwatchProps extends Omit<ChipProps, "startAdornment"> {
   onRemove?: () => void;

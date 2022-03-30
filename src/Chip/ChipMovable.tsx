@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import React from "react";
 
-import { DragIcon } from "../../icons";
-import { makeStyles } from "../../theme";
-import { Chip, ChipProps } from "../Chip";
-import { ChipAdornment } from "../ChipAdornment";
+import { DragIcon } from "../icons";
+import { makeStyles } from "../theme";
+import { Chip, ChipProps } from "./Chip";
+import { ChipAdornment } from "./ChipAdornment";
 
 export interface ChipMovableProps extends ChipProps {}
 

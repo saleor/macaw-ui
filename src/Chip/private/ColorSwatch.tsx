@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import useStyles from "./styles";
+import useStyles from "../styles";
 
 export interface ColorSwatchProps {
   color: string;

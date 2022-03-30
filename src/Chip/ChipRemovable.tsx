@@ -1,8 +1,8 @@
 import React from "react";
 
-import { CloseIcon } from "../../icons";
-import { Chip, ChipProps } from "../Chip";
-import { ChipAdornment } from "../ChipAdornment";
+import { CloseIcon } from "../icons";
+import { Chip, ChipProps } from "./Chip";
+import { ChipAdornment } from "./ChipAdornment";
 
 export interface ChipRemovableProps extends ChipProps {
   onRemove: () => void;
