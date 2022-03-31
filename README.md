@@ -25,21 +25,21 @@ Take a look at our [storybook docs](https://macaw-ui.vercel.app). You can find g
 
 ### Development
 
-Install dependencies
+To begin, you need to install dependencies:
 
-```
+```sh
 npm install
 ```
 
-Install git hooks using husky:
+We use [husky](https://www.npmjs.com/package/husky) to provide precommit and prepush git hooks:
 
-```
+```sh
 npx husky install
 ```
 
-Run Storybook:
+To develop our components we utilize [Storybook](https://storybook.js.org/) which is playing very nicely with our development flow. To run storybook's developer server run:
 
-```
+```sh
 npm run storybook
 ```
 
