@@ -7,10 +7,9 @@ import { useCombobox, UseComboboxGetItemPropsOptions } from "downshift";
 import React from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
+import { Choice } from "../Filter";
 import { ChevronIcon } from "../icons";
 import useStyles from "./styles";
-
-export type AutocompleteChoice = Record<"label" | "value", string>;
 
 function mergeRefs<T>(...refs: React.Ref<T>[]) {
   return (node: T) => {
@@ -27,15 +26,13 @@ function mergeRefs<T>(...refs: React.Ref<T>[]) {
 
 export interface AutocompleteProps extends StandardTextFieldProps {
   children: (data: {
-    getItemProps: (
-      opts: UseComboboxGetItemPropsOptions<AutocompleteChoice>
-    ) => any;
+    getItemProps: (opts: UseComboboxGetItemPropsOptions<Choice>) => any;
     highlightedIndex: number;
     inputValue: string;
   }) => React.ReactNode | React.ReactNodeArray;
   className?: string;
   styles?: React.CSSProperties;
-  choices: AutocompleteChoice[];
+  choices: Choice[];
   label?: string;
   popperPlacement?: PopperPlacementType;
   onChange?: (event: SyntheticChangeEvent) => void;
@@ -68,6 +65,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     inputValue,
     setInputValue,
   } = useCombobox({
+    defaultHighlightedIndex: 0,
     items: choices,
     onInputValueChange: ({ inputValue }) => {
       if (onInputChange) {

@@ -32,5 +32,5 @@ export const Default: Story = () => {
 
 export default {
   decorators: [Decorator, GuideDecorator],
-  title: "Autocomplete",
+  title: "Autocomplete / Single choice",
 } as Meta;
