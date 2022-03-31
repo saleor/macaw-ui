@@ -9,12 +9,22 @@ export interface ChipProps
     HTMLDivElement
   > {
   startAdornment?: React.ReactElement;
+  startAdornmentClassName?: string;
   endAdornment?: React.ReactElement;
+  endAdornmnetClassName?: string;
 }
 
 export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
   (
-    { startAdornment, endAdornment, className, children, ...props }: ChipProps,
+    {
+      startAdornment,
+      startAdornmentClassName,
+      endAdornment,
+      endAdornmnetClassName,
+      className,
+      children,
+      ...props
+    }: ChipProps,
     ref
   ) => {
     const classes = useStyles();
@@ -22,11 +32,17 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
     return (
       <div className={clsx(classes.chip, className)} ref={ref} {...props}>
         {startAdornment && (
-          <span className={classes.startAdornment}>{startAdornment}</span>
+          <span
+            className={clsx(classes.startAdornment, startAdornmentClassName)}
+          >
+            {startAdornment}
+          </span>
         )}
         <span>{children}</span>
         {endAdornment && (
-          <span className={classes.endAdornment}>{endAdornment}</span>
+          <span className={clsx(classes.endAdornment, endAdornmnetClassName)}>
+            {endAdornment}
+          </span>
         )}
       </div>
     );

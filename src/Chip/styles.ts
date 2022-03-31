@@ -22,9 +22,11 @@ const useStyles = makeStyles(
     },
     startAdornment: {
       marginLeft: "-8px",
+      flexShrink: 0,
     },
     endAdornment: {
       marginRight: "-8px",
+      flexShrink: 0,
     },
     swatch: {
       width: theme.spacing(3),
