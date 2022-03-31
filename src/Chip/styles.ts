@@ -3,6 +3,7 @@ import { makeStyles } from "../theme";
 const useStyles = makeStyles(
   (theme) => ({
     chip: {
+      ...theme.typography.body2,
       background: theme.palette.saleor.active[1],
       color: theme.palette.primary.contrastText,
       borderRadius: "8px",

@@ -7,10 +7,10 @@ import { UseComboboxGetItemPropsOptions } from "downshift";
 import React from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
+import { ChipRemovable } from "../Chip";
 import { Choice } from "../Filter";
 import { IconButton } from "../IconButton";
 import { PlusIcon } from "../icons";
-import { Pill } from "../Pill";
 import useStyles from "./styles";
 import useMultipleValueAutocomplete from "./useMultipleValueAutocomplete";
 
@@ -86,12 +86,13 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
               input: classes.input,
             },
             startAdornment: selectedItems.map((item, index) => (
-              <Pill
+              <ChipRemovable
                 key={`selected-item-${index}`}
                 {...getSelectedItemProps({ selectedItem: item, index })}
-                label={item.label}
-                onClick={() => removeSelectedItem(item)}
-              />
+                onRemove={() => removeSelectedItem(item)}
+              >
+                {item.label}
+              </ChipRemovable>
             )),
             endAdornment: (
               <IconButton
