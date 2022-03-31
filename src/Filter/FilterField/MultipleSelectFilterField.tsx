@@ -1,10 +1,10 @@
 import Checkbox from "@material-ui/core/Checkbox";
-import Chip from "@material-ui/core/Chip";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import clsx from "clsx";
 import React from "react";
 
+import { Chip } from "../../Chip";
 import { useFilters } from "../context";
 import useStyles from "../styles";
 import { EventTarget, FilterData } from "../types";
@@ -41,7 +41,9 @@ export const MultipleSelectFilterField: React.FC<FilterContentProps> = ({
         return (
           <div className={classes.filterChipContainer}>
             {typedValues.map((value) => (
-              <Chip className={classes.filterChip} key={value} label={value} />
+              <Chip className={classes.filterChip} key={value}>
+                {value}
+              </Chip>
             ))}
           </div>
         );
