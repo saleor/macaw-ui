@@ -23,6 +23,26 @@ npm i @material-ui/core @material-ui/icons @material-ui/lab
 ## Documentation
 Take a look at our [storybook docs](https://macaw-ui.vercel.app). You can find guides, component overview, and project ideas there.
 
+### Development
+
+Install dependencies
+
+```
+npm install
+```
+
+Install git hooks using husky:
+
+```
+npx husky install
+```
+
+Run Storybook:
+
+```
+npm run storybook
+```
+
 ### Working with Material-UI
 MacawUI was created to integrate with [Material-UI](https://material-ui.com/) seamlessly. It exports a `ThemeProvider` that will override Material-UI component styles:
 ```jsx
