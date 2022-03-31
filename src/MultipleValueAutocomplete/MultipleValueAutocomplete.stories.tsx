@@ -17,17 +17,12 @@ export const Default: Story = () => {
       onInputChange={search}
       onChange={console.log}
     >
-      {({ highlightedIndex, getItemProps, selectedItems }) =>
-        results
-          .filter((choice) => !selectedItems.includes(choice.value))
-          .map((choice, choiceIndex) => (
-            <MenuItem
-              selected={highlightedIndex === choiceIndex}
-              {...getItemProps({ item: choice, index: choiceIndex })}
-            >
-              {choice.label}
-            </MenuItem>
-          ))
+      {({ choices, getItemProps }) =>
+        choices.map((choice, choiceIndex) => (
+          <MenuItem {...getItemProps({ item: choice, index: choiceIndex })}>
+            {choice.label}
+          </MenuItem>
+        ))
       }
     </MultipleValueAutocomplete>
   );
@@ -44,17 +39,12 @@ export const WithInitialState: Story = () => {
       initialValue={[results[1], results[4]]}
       onChange={console.log}
     >
-      {({ highlightedIndex, getItemProps, selectedItems }) =>
-        results
-          .filter((choice) => !selectedItems.includes(choice.value))
-          .map((choice, choiceIndex) => (
-            <MenuItem
-              selected={highlightedIndex === choiceIndex}
-              {...getItemProps({ item: choice, index: choiceIndex })}
-            >
-              {choice.label}
-            </MenuItem>
-          ))
+      {({ choices, getItemProps }) =>
+        choices.map((choice, choiceIndex) => (
+          <MenuItem {...getItemProps({ item: choice, index: choiceIndex })}>
+            {choice.label}
+          </MenuItem>
+        ))
       }
     </MultipleValueAutocomplete>
   );

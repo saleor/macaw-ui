@@ -3,11 +3,7 @@ import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper, { PopperPlacementType } from "@material-ui/core/Popper";
 import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
-import {
-  useCombobox,
-  UseComboboxGetItemPropsOptions,
-  useMultipleSelection,
-} from "downshift";
+import { UseComboboxGetItemPropsOptions } from "downshift";
 import React from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
@@ -16,19 +12,7 @@ import { IconButton } from "../IconButton";
 import { PlusIcon } from "../icons";
 import { Pill } from "../Pill";
 import useStyles from "./styles";
-
-function mergeRefs<T>(...refs: React.Ref<T>[]) {
-  return (node: T) => {
-    for (const ref of refs) {
-      if (typeof ref === "function") {
-        ref(node);
-      } else {
-        // ref.current is typed as readonly
-        (ref as any).current = node;
-      }
-    }
-  };
-}
+import useMultipleValueAutocomplete from "./useMultipleValueAutocomplete";
 
 export interface MultipleValueAutocompleteProps
   extends Omit<StandardTextFieldProps, "onChange"> {
@@ -36,7 +20,7 @@ export interface MultipleValueAutocompleteProps
     getItemProps: (opts: UseComboboxGetItemPropsOptions<Choice>) => any;
     highlightedIndex: number;
     inputValue: string;
-    selectedItems: string[];
+    choices: Choice[];
   }) => React.ReactNode | React.ReactNodeArray;
   className?: string;
   styles?: React.CSSProperties;
@@ -60,104 +44,31 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
     onInputChange,
     ...rest
   }) => {
-    const anchor = React.useRef<HTMLDivElement>();
-    const input = React.useRef<HTMLInputElement>();
-
+    const classes = useStyles();
     const {
+      anchor,
+      comboboxProps,
+      filteredChoices,
+      getItemProps,
       getSelectedItemProps,
-      getDropdownProps,
-      addSelectedItem,
+      getToggleButtonProps,
+      highlightedIndex,
+      inputProps,
+      inputRef,
+      inputValue,
+      isOpen,
+      labelProps,
+      menuProps,
+      ref,
       removeSelectedItem,
       selectedItems,
-    } = useMultipleSelection({
-      initialSelectedItems: initialValue,
-      onSelectedItemsChange: ({ selectedItems }) => {
-        if (onChange) {
-          onChange({
-            target: {
-              name: name ?? "",
-              value: selectedItems!.map((choice) => choice.value),
-            },
-          });
-        }
-      },
+    } = useMultipleValueAutocomplete({
+      choices,
+      initialValue,
+      name,
+      onChange,
+      onInputChange,
     });
-    const {
-      closeMenu,
-      isOpen,
-      getToggleButtonProps,
-      getLabelProps,
-      getMenuProps,
-      getInputProps,
-      getComboboxProps,
-      highlightedIndex,
-      getItemProps: baseGetItemProps,
-      openMenu,
-      inputValue,
-      setInputValue,
-      selectItem,
-    } = useCombobox({
-      defaultHighlightedIndex: 0,
-      items: choices.filter(
-        (choice) =>
-          !selectedItems.find(
-            (selectedChoice) => selectedChoice.value === choice.value
-          )
-      ),
-      onInputValueChange: ({ inputValue }) => {
-        if (onInputChange) {
-          onInputChange(inputValue ?? "");
-        }
-      },
-      onSelectedItemChange: ({ selectedItem }) => {
-        if (selectedItem) {
-          closeMenu();
-          addSelectedItem(selectedItem);
-          setInputValue("");
-        }
-      },
-      stateReducer: (_, actionAndChanges) => {
-        const { changes, type } = actionAndChanges;
-        switch (type) {
-          case useCombobox.stateChangeTypes.InputKeyDownEnter:
-          case useCombobox.stateChangeTypes.ItemClick:
-            return {
-              ...changes,
-              isOpen: true,
-            };
-        }
-        return changes;
-      },
-      selectedItem: null,
-      itemToString: () => "",
-    });
-    const classes = useStyles();
-    // Downshift doesn't like portals like popper
-    // https://github.com/downshift-js/downshift/issues/287
-    const getItemProps = React.useCallback(
-      (options: UseComboboxGetItemPropsOptions<Choice>) => {
-        const baseProps = baseGetItemProps(options);
-
-        return {
-          ...baseProps,
-          onClick: () => selectItem(options.item),
-        };
-      },
-      [baseGetItemProps]
-    );
-
-    const labelProps = getLabelProps();
-    const { ref: comboboxDownshiftRef, ...comboboxProps } = getComboboxProps();
-    const { ref: downshiftRef, ...inputProps } = getInputProps({
-      ...getDropdownProps({ preventKeyAction: isOpen }),
-      onFocus: () => {
-        if (!isOpen) {
-          input.current?.select();
-          openMenu();
-        }
-      },
-    });
-    const menuProps = getMenuProps();
 
     return (
       <>
@@ -166,7 +77,7 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
           {...comboboxProps}
           name={name}
           InputLabelProps={labelProps}
-          ref={mergeRefs(comboboxDownshiftRef, anchor)}
+          ref={ref}
           InputProps={{
             ...InputProps,
             ...inputProps,
@@ -195,7 +106,7 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
               </IconButton>
             ),
           }}
-          inputProps={{ ref: mergeRefs(downshiftRef, input) }}
+          inputProps={{ ref: inputRef }}
         />
         <div {...menuProps}>
           <Popper
@@ -219,12 +130,10 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
                 >
                   <Menu disablePadding>
                     {children({
+                      choices: filteredChoices,
                       highlightedIndex,
                       getItemProps,
                       inputValue,
-                      selectedItems: selectedItems.map(
-                        (choice) => choice.value
-                      ),
                     })}
                   </Menu>
                 </Paper>
