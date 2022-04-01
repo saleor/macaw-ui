@@ -13,6 +13,7 @@ const useStyles = makeStyles(
       gap: theme.spacing(1),
     },
     input: {
+      height: 32,
       minWidth: "3rem",
       padding: 0,
     },
