@@ -14,7 +14,7 @@ const useStyles = makeStyles(
     },
 
     filter: {
-      alignItems: "flex-end",
+      alignItems: "flex-start",
       display: "flex",
       columnGap: theme.spacing(2),
       marginBottom: theme.spacing(2),
@@ -49,8 +49,12 @@ const useStyles = makeStyles(
       width: 180,
     },
     filterValue: {
+      "& .MuiSelect-root": {
+        boxSizing: "border-box",
+      },
+      boxSizing: "border-box",
       minHeight: 51,
-      width: 400,
+      width: "100%",
     },
     filterRange: {
       width: 115,

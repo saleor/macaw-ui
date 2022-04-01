@@ -111,39 +111,38 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
           }}
           inputProps={{ ref: inputRef }}
         />
-        <div {...menuProps}>
-          <Popper
-            className={classes.popper}
-            open={isOpen}
-            anchorEl={anchor.current}
-            transition
-            placement={popperPlacement}
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "left top" : "left bottom",
-                }}
+        <Popper
+          {...menuProps}
+          className={clsx(classes.popper, menuProps.className)}
+          open={isOpen}
+          anchorEl={anchor.current}
+          transition
+          placement={popperPlacement}
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom" ? "left top" : "left bottom",
+              }}
+            >
+              <Paper
+                elevation={8}
+                style={{ width: anchor.current?.clientWidth }}
               >
-                <Paper
-                  elevation={8}
-                  style={{ width: anchor.current?.clientWidth }}
-                >
-                  <Menu disablePadding>
-                    {children({
-                      choices: filteredChoices,
-                      highlightedIndex,
-                      getItemProps,
-                      inputValue,
-                    })}
-                  </Menu>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
+                <Menu disablePadding>
+                  {children({
+                    choices: filteredChoices,
+                    highlightedIndex,
+                    getItemProps,
+                    inputValue,
+                  })}
+                </Menu>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
       </>
     );
   };

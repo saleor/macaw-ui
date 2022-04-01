@@ -3,6 +3,7 @@ import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper, { PopperPlacementType } from "@material-ui/core/Popper";
 import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
+import clsx from "clsx";
 import { useCombobox, UseComboboxGetItemPropsOptions } from "downshift";
 import React from "react";
 
@@ -125,38 +126,34 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
         }}
         inputProps={{ ref: mergeRefs(downshiftRef, input) }}
       />
-      <div {...menuProps}>
-        <Popper
-          className={classes.popper}
-          open={isOpen}
-          anchorEl={input.current}
-          transition
-          placement={popperPlacement}
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === "bottom" ? "left top" : "left bottom",
-              }}
-            >
-              <Paper
-                elevation={8}
-                style={{ width: anchor.current?.clientWidth }}
-              >
-                <Menu disablePadding>
-                  {children({
-                    highlightedIndex,
-                    getItemProps,
-                    inputValue,
-                  })}
-                </Menu>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+      <Popper
+        {...menuProps}
+        className={clsx(classes.popper, menuProps.className)}
+        open={isOpen}
+        anchorEl={input.current}
+        transition
+        placement={popperPlacement}
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === "bottom" ? "left top" : "left bottom",
+            }}
+          >
+            <Paper elevation={8} style={{ width: anchor.current?.clientWidth }}>
+              <Menu disablePadding>
+                {children({
+                  highlightedIndex,
+                  getItemProps,
+                  inputValue,
+                })}
+              </Menu>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
     </>
   );
 };
