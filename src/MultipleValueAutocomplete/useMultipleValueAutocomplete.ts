@@ -133,7 +133,7 @@ function useMultipleValueAutocomplete({
   const labelProps = getLabelProps();
   const { ref: comboboxDownshiftRef, ...comboboxProps } = getComboboxProps();
   const { ref: downshiftRef, ...inputProps } = getInputProps({
-    ...getDropdownProps({ preventKeyAction: isOpen }),
+    ...getDropdownProps(),
     onFocus: () => {
       if (!isOpen) {
         input.current?.select();
