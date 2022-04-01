@@ -80,6 +80,14 @@ export const Autocomplete: Story = () => {
         choices={results}
         onInputChange={search}
       />
+      <Filter
+        name="references"
+        label="Product references"
+        type={FilterType.Autocomplete}
+        multiple
+        choices={results}
+        onInputChange={search}
+      />
     </FilterBar>
   );
 };

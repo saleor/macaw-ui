@@ -3,6 +3,7 @@ import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper, { PopperPlacementType } from "@material-ui/core/Popper";
 import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
+import clsx from "clsx";
 import { UseComboboxGetItemPropsOptions } from "downshift";
 import React from "react";
 
@@ -82,8 +83,9 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
             ...InputProps,
             ...inputProps,
             classes: {
-              root: classes.inputContainer,
-              input: classes.input,
+              ...(InputProps?.classes ?? {}),
+              root: clsx(classes.inputContainer, InputProps?.classes?.root),
+              input: clsx(classes.input, InputProps?.classes?.input),
             },
             startAdornment: selectedItems.map((item, index) => (
               <ChipRemovable

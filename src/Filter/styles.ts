@@ -14,10 +14,15 @@ const useStyles = makeStyles(
     },
 
     filter: {
-      alignItems: "center",
+      alignItems: "flex-end",
       display: "flex",
       columnGap: theme.spacing(2),
       marginBottom: theme.spacing(2),
+    },
+    filterOptions: {
+      alignItems: "center",
+      columnGap: theme.spacing(2),
+      display: "flex",
     },
     filterChip: {
       borderRadius: 8,
@@ -28,8 +33,14 @@ const useStyles = makeStyles(
       display: "flex",
       columnGap: theme.spacing(1),
     },
-    filterDelete: {
+    filterDeleteContainer: {
+      alignItems: "center",
+      columnGap: theme.spacing(2),
+      display: "flex",
+      height: 51,
       marginLeft: "auto",
+    },
+    filterDelete: {
       position: "relative",
       left: 6,
     },
@@ -37,7 +48,7 @@ const useStyles = makeStyles(
       width: 180,
     },
     filterValue: {
-      height: 51,
+      minHeight: 51,
       width: 400,
     },
     filterRange: {

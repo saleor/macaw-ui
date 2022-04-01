@@ -112,53 +112,57 @@ export const FilterRow: React.FC<FilterRowProps> = ({
 
   return (
     <div className={classes.filter}>
-      <Typography className={classes.filterConjunction}>
-        {first ? labels.where : labels.and}
-      </Typography>
-      <Select
-        {...selectProps}
-        className={classes.filterName}
-        onChange={change}
-        value={filter.options.group?.name ?? filter.name}
-      >
-        {options.map((option) => (
-          <MenuItem key={option.name} value={option.name}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </Select>
-      {!!filter.options.group && (
+      <div className={classes.filterOptions}>
+        <Typography className={classes.filterConjunction}>
+          {first ? labels.where : labels.and}
+        </Typography>
         <Select
           {...selectProps}
           className={classes.filterName}
           onChange={change}
-          value={filter.name}
+          value={filter.options.group?.name ?? filter.name}
         >
-          {groupOptions.map((option) => (
+          {options.map((option) => (
             <MenuItem key={option.name} value={option.name}>
               {option.label}
             </MenuItem>
           ))}
         </Select>
-      )}
-      <Select
-        {...selectProps}
-        disabled={filter.options.type !== FilterType.Range}
-        className={classes.filterRange}
-        value={filter.range.toString()}
-        onChange={() => toggleRange(name)}
-      >
-        <MenuItem value="false">{labels.is}</MenuItem>
-        <MenuItem value="true">{labels.range}</MenuItem>
-      </Select>
+        {!!filter.options.group && (
+          <Select
+            {...selectProps}
+            className={classes.filterName}
+            onChange={change}
+            value={filter.name}
+          >
+            {groupOptions.map((option) => (
+              <MenuItem key={option.name} value={option.name}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        )}
+        <Select
+          {...selectProps}
+          disabled={filter.options.type !== FilterType.Range}
+          className={classes.filterRange}
+          value={filter.range.toString()}
+          onChange={() => toggleRange(name)}
+        >
+          <MenuItem value="false">{labels.is}</MenuItem>
+          <MenuItem value="true">{labels.range}</MenuItem>
+        </Select>
+      </div>
       <FilterContent filter={filter} labels={labels} />
-      <IconButton
-        variant="secondary"
-        className={classes.filterDelete}
-        onClick={() => toggle(name)}
-      >
-        <DeleteIcon />
-      </IconButton>
+      <div className={classes.filterDeleteContainer}>
+        <IconButton
+          variant="secondary"
+          className={classes.filterDelete}
+          onClick={() => toggle(name)}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </div>
     </div>
   );
 };
