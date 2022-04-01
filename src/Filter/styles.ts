@@ -66,6 +66,9 @@ const useStyles = makeStyles(
     },
     filterMultipleValueInputInner: {
       "&&": {
+        "& input": {
+          height: 32,
+        },
         minHeight: 51,
         padding: theme.spacing(1),
         paddingRight: theme.spacing(8),
