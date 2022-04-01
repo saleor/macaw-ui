@@ -68,6 +68,7 @@ const useStyles = makeStyles(
       "&&": {
         minHeight: 51,
         padding: theme.spacing(1),
+        paddingRight: theme.spacing(8),
       },
     },
     filterConjunction: {

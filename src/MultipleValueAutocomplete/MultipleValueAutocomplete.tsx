@@ -57,6 +57,7 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
       inputProps,
       inputRef,
       inputValue,
+      inputWidth,
       isOpen,
       labelProps,
       menuProps,
@@ -109,7 +110,7 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
               </IconButton>
             ),
           }}
-          inputProps={{ ref: inputRef }}
+          inputProps={{ ref: inputRef, style: { width: inputWidth } }}
         />
         <Popper
           {...menuProps}

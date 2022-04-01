@@ -13,7 +13,7 @@ const useStyles = makeStyles(
       gap: theme.spacing(1),
     },
     input: {
-      width: "auto",
+      minWidth: "3rem",
       padding: 0,
     },
     popper: {

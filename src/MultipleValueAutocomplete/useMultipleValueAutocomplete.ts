@@ -7,6 +7,7 @@ import { Ref, useCallback, useMemo, useRef } from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
 import { Choice } from "../Filter";
+import { useTextWidth } from "../tools/useTextWidth";
 
 function mergeRefs<T>(...refs: Ref<T>[]) {
   return (node: T) => {
@@ -38,6 +39,12 @@ function useMultipleValueAutocomplete({
 }: UseMultipleValueAutocomplete) {
   const anchor = useRef<HTMLDivElement>();
   const input = useRef<HTMLInputElement>();
+
+  const [inputWidth, setInputWidth] = useTextWidth(
+    window
+      .getComputedStyle(input.current ?? document.body, null)
+      .getPropertyValue("font")
+  );
 
   const {
     getSelectedItemProps,
@@ -85,6 +92,7 @@ function useMultipleValueAutocomplete({
     defaultHighlightedIndex: 0,
     items: filteredChoices,
     onInputValueChange: ({ inputValue }) => {
+      setInputWidth(inputValue || "");
       if (onInputChange && inputValue) {
         onInputChange(inputValue);
       }
@@ -154,6 +162,7 @@ function useMultipleValueAutocomplete({
     inputProps,
     inputRef: mergeRefs(downshiftRef, input),
     inputValue,
+    inputWidth,
     isOpen,
     labelProps,
     menuProps,
