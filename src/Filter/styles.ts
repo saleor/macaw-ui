@@ -31,7 +31,8 @@ const useStyles = makeStyles(
     },
     filterChipContainer: {
       display: "flex",
-      columnGap: theme.spacing(1),
+      flexWrap: "wrap",
+      gap: theme.spacing(1),
     },
     filterDeleteContainer: {
       alignItems: "center",
@@ -57,6 +58,12 @@ const useStyles = makeStyles(
     filterInputInner: {
       "&&": {
         padding: theme.spacing(2),
+      },
+    },
+    filterMultipleValueInputInner: {
+      "&&": {
+        minHeight: 51,
+        padding: theme.spacing(1),
       },
     },
     filterConjunction: {

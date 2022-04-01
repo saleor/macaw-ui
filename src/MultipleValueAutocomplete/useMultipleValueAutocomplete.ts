@@ -85,8 +85,8 @@ function useMultipleValueAutocomplete({
     defaultHighlightedIndex: 0,
     items: filteredChoices,
     onInputValueChange: ({ inputValue }) => {
-      if (onInputChange) {
-        onInputChange(inputValue ?? "");
+      if (onInputChange && inputValue) {
+        onInputChange(inputValue);
       }
     },
     onSelectedItemChange: ({ selectedItem }) => {

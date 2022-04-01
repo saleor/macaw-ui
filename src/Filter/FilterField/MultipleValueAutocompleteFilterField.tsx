@@ -36,7 +36,7 @@ export const MultipleValueAutocompleteFilterField: React.FC<FilterContentProps> 
         choices={options.choices!}
         InputProps={{
           classes: {
-            root: classes.filterInputInner,
+            root: classes.filterMultipleValueInputInner,
           },
         }}
         onChange={handleChoiceChange}
