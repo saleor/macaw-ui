@@ -135,16 +135,21 @@ export function change(
   );
 }
 
-export function toggle(filterData: FilterData[], name: string): FilterData[] {
+function getFilterOrGroup(filterData: FilterData[], name: string): FilterData {
   let selectedFilter = filterData.find((filter) => filter.name === name);
-  let filterName = name;
 
   if (!selectedFilter) {
     selectedFilter = filterData.find(
       (filter) => !filter.active && filter.options.group?.name === name
     )!;
-    filterName = selectedFilter.name;
   }
+
+  return selectedFilter;
+}
+
+export function toggle(filterData: FilterData[], name: string): FilterData[] {
+  const selectedFilter = getFilterOrGroup(filterData, name);
+  const { name: filterName } = selectedFilter;
 
   const sortIndex = selectedFilter.active
     ? selectedFilter.sortIndex
@@ -181,6 +186,30 @@ export function toggleRange(
             ...filter,
             range: !filter.range,
           }),
+        }
+      : filter
+  );
+}
+
+export function swap(
+  filterData: FilterData[],
+  previousFilterName: string,
+  nextFilterName: string
+): FilterData[] {
+  const previousFilter = getFilterOrGroup(filterData, previousFilterName);
+  const nextFilter = getFilterOrGroup(filterData, nextFilterName);
+
+  return filterData.map((filter) =>
+    filter.name === previousFilter.name
+      ? {
+          ...filter,
+          active: false,
+        }
+      : filter.name === nextFilter.name
+      ? {
+          ...filter,
+          active: true,
+          sortIndex: previousFilter.sortIndex,
         }
       : filter
   );

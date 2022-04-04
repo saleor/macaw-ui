@@ -1,7 +1,7 @@
 import MenuItem from "@material-ui/core/MenuItem";
 import Select, { SelectProps } from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
-import { difference } from "lodash";
+import { difference, uniqBy } from "lodash";
 import React from "react";
 
 import { IconButton } from "../IconButton";
@@ -43,7 +43,6 @@ export const Filter: React.FC<FilterProps> = ({
       filter &&
       difference(options.choices, filter!.options.choices!).length
     ) {
-      console.log("update choices");
       set(name, {
         options: {
           ...options,
@@ -67,7 +66,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   labels,
 }) => {
   const classes = useStyles();
-  const { filters, toggle, toggleRange, set } = useFilters();
+  const { filters, toggle, toggleRange, swap } = useFilters();
 
   const filter = filters.find((filter) => filter.name === name);
 
@@ -76,7 +75,10 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   }
 
   const availableFilters = utils.getAvailableFilters(filters);
-  const options = [filter.options.group ?? filter, ...availableFilters];
+  const options = uniqBy(
+    [filter.options.group ?? filter, ...availableFilters],
+    "name"
+  );
   const groupOptions = [
     filter,
     ...filters.filter(
@@ -90,17 +92,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
   const change = (event: React.ChangeEvent<EventTarget<unknown>>) => {
     const targetFilterName = event.target.value as string;
 
-    if (filter.options.group) {
-      toggle(name);
-      set(targetFilterName, {
-        active: true,
-        sortIndex: filter.sortIndex,
-      });
-    } else {
-      // Hide currently open
-      toggle(name);
-      toggle(targetFilterName);
-    }
+    swap(name, targetFilterName);
   };
 
   const selectProps: SelectProps = {

@@ -58,6 +58,8 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
       setFilterData((fd) =>
         fd.map((f) => (f.name === name ? { ...f, ...filter } : f))
       );
+    const swap = (previousFilterName: string, nextFilterName: string) =>
+      setFilterData((fd) => utils.swap(fd, previousFilterName, nextFilterName));
 
     const availableFilters = utils.getAvailableFilters(filterData);
 
@@ -75,6 +77,7 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
           toggle,
           toggleRange,
           unregister,
+          swap,
           onChange,
         }}
       >

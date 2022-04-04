@@ -58,6 +58,7 @@ export interface FilterContextType {
   toggle: (name: string) => void;
   toggleRange: (name: string) => void;
   unregister: (name: string) => void;
+  swap: (previousFilterName: string, nextFilterName: string) => void;
   onChange: (
     name: string,
     value: string | string[],
