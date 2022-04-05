@@ -82,7 +82,7 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
         }}
       >
         {children}
-        <Card className={classes.bar} ref={ref} elevation={20}>
+        <Card className={classes.bar} ref={ref} elevation={8}>
           <CardHeader
             title={labels.header}
             action={
