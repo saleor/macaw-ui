@@ -23,7 +23,9 @@ const useStyles = makeStyles(
       paddingBottom: theme.spacing(3),
     },
     logo: {
+      display: "block",
       margin: `36px 0 ${theme.spacing(3)} ${theme.spacing(2.5)}`,
+      color: "inherit",
     },
     root: {
       transition: "width 0.5s ease",
@@ -50,6 +52,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   menuItems,
   toolbar,
   onMenuItemClick,
+  logoHref,
+  linkComponent,
 }) => {
   const classes = useStyles({});
   const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
@@ -59,6 +63,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const isShrunk = isShrunkStr === "true";
   const { themeType } = useTheme();
 
+  const Link = linkComponent ?? "a";
+
   return (
     <div
       className={clsx(classes.root, {
@@ -66,9 +72,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
       })}
     >
       <div className={classes.float}>
-        <div className={classes.logo}>
+        <Link href={logoHref} className={classes.logo}>
           {themeType === "dark" ? <LogoDark /> : <Logo />}
-        </div>
+        </Link>
         {menuItems.map((menuItem) => (
           <MenuItem
             activeId={activeId}
@@ -76,6 +82,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             menuItem={menuItem}
             onClick={onMenuItemClick}
             key={menuItem.ariaLabel}
+            linkComponent={linkComponent}
           />
         ))}
         {toolbar && <div className={classes.toolbarContainer}>{toolbar}</div>}
