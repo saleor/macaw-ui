@@ -13,6 +13,7 @@ export const Default: Story = () => {
   return (
     <Autocomplete
       choices={results}
+      fullWidth
       label="Employee of the month"
       onInputChange={search}
     >
@@ -29,6 +30,12 @@ export const Default: Story = () => {
     </Autocomplete>
   );
 };
+
+export const Loading: Story = () => (
+  <Autocomplete fullWidth choices={[]} label="Employee of the month" loading>
+    {() => null}
+  </Autocomplete>
+);
 
 export default {
   decorators: [Decorator, GuideDecorator],

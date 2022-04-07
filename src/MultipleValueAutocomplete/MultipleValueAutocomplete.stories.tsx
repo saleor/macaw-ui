@@ -12,6 +12,7 @@ export const Default: Story = () => {
 
   return (
     <MultipleValueAutocomplete
+      fullWidth
       choices={results}
       label="Employees of the month"
       onInputChange={search}
@@ -28,15 +29,34 @@ export const Default: Story = () => {
   );
 };
 
+export const Loading: Story = () => (
+  <MultipleValueAutocomplete
+    fullWidth
+    choices={[]}
+    label="Employees of the month"
+    loading
+  >
+    {({ choices, getItemProps }) =>
+      choices.map((choice, choiceIndex) => (
+        <MenuItem {...getItemProps({ item: choice, index: choiceIndex })}>
+          {choice.label}
+        </MenuItem>
+      ))
+    }
+  </MultipleValueAutocomplete>
+);
+
 export const WithInitialState: Story = () => {
-  const { results, search } = useMockAutocomplete(choices);
+  const { results, search, more } = useMockAutocomplete(choices);
 
   return (
     <MultipleValueAutocomplete
+      fullWidth
       choices={results}
       label="Employees of the month"
       onInputChange={search}
       initialValue={[results[1], results[4]]}
+      onScrollToBottom={more}
       onChange={console.log}
     >
       {({ choices, getItemProps }) =>

@@ -1,5 +1,5 @@
+import { CircularProgress } from "@material-ui/core";
 import Grow from "@material-ui/core/Grow";
-import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper, { PopperPlacementType } from "@material-ui/core/Popper";
 import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
@@ -10,20 +10,9 @@ import React from "react";
 import { SyntheticChangeEvent } from "../../types/utils";
 import { Choice } from "../Filter";
 import { ChevronIcon } from "../icons";
+import { isScrolledToBottom, useElementScroll } from "../tools";
+import { mergeRefs } from "../utils/mergeRefs";
 import useStyles from "./styles";
-
-function mergeRefs<T>(...refs: React.Ref<T>[]) {
-  return (node: T) => {
-    for (const ref of refs) {
-      if (typeof ref === "function") {
-        ref(node);
-      } else {
-        // ref.current is typed as readonly
-        (ref as any).current = node;
-      }
-    }
-  };
-}
 
 export interface AutocompleteProps extends StandardTextFieldProps {
   children: (data: {
@@ -35,23 +24,29 @@ export interface AutocompleteProps extends StandardTextFieldProps {
   styles?: React.CSSProperties;
   choices: Choice[];
   label?: string;
+  loading?: boolean;
   popperPlacement?: PopperPlacementType;
   onChange?: (event: SyntheticChangeEvent) => void;
   onInputChange?: (value: string) => void;
+  onScrollToBottom?: () => void;
 }
 
 export const Autocomplete: React.FC<AutocompleteProps> = ({
   choices,
   children,
+  loading,
   name,
   InputProps,
   popperPlacement = "bottom-start",
   onChange,
   onInputChange,
+  onScrollToBottom,
   ...rest
 }) => {
+  const classes = useStyles();
   const anchor = React.useRef<HTMLDivElement>();
   const input = React.useRef<HTMLInputElement>();
+
   const {
     closeMenu,
     isOpen,
@@ -66,6 +61,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     inputValue,
     setInputValue,
   } = useCombobox({
+    circularNavigation: false,
     defaultHighlightedIndex: 0,
     items: choices,
     onInputValueChange: ({ inputValue }) => {
@@ -91,7 +87,19 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
       }
     },
   });
-  const classes = useStyles();
+
+  const { anchor: dropdownRef, position, setAnchor } = useElementScroll();
+
+  React.useEffect(() => {
+    if (
+      isOpen &&
+      onScrollToBottom &&
+      dropdownRef &&
+      isScrolledToBottom(dropdownRef, position!, 5)
+    ) {
+      onScrollToBottom();
+    }
+  }, [position?.y, dropdownRef]);
 
   const labelProps = getLabelProps();
   const { ref: comboboxDownshiftRef, ...comboboxProps } = getComboboxProps();
@@ -105,6 +113,17 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
   });
   const menuProps = getMenuProps();
 
+  React.useEffect(() => {
+    if (
+      isOpen &&
+      onScrollToBottom &&
+      dropdownRef &&
+      isScrolledToBottom(dropdownRef, position!, 5)
+    ) {
+      onScrollToBottom();
+    }
+  }, [position?.y, dropdownRef]);
+
   return (
     <>
       <TextField
@@ -117,17 +136,23 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
           ...InputProps,
           ...inputProps,
           endAdornment: (
-            <ChevronIcon
-              {...getToggleButtonProps()}
-              type="button"
-              aria-label="toggle menu"
-            />
+            <>
+              {loading && (
+                <div className={classes.loader}>
+                  <CircularProgress size={24} />
+                </div>
+              )}
+              <ChevronIcon
+                {...getToggleButtonProps()}
+                type="button"
+                aria-label="toggle menu"
+              />
+            </>
           ),
         }}
         inputProps={{ ref: mergeRefs(downshiftRef, input) }}
       />
       <Popper
-        {...menuProps}
         className={clsx(classes.popper, menuProps.className)}
         open={isOpen}
         anchorEl={input.current}
@@ -142,14 +167,17 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                 placement === "bottom" ? "left top" : "left bottom",
             }}
           >
-            <Paper elevation={8} style={{ width: anchor.current?.clientWidth }}>
-              <Menu disablePadding>
-                {children({
-                  highlightedIndex,
-                  getItemProps,
-                  inputValue,
-                })}
-              </Menu>
+            <Paper
+              className={classes.dropdown}
+              elevation={8}
+              style={{ width: anchor.current?.clientWidth }}
+              ref={mergeRefs(setAnchor, menuProps.ref)}
+            >
+              {children({
+                highlightedIndex,
+                getItemProps,
+                inputValue,
+              })}
             </Paper>
           </Grow>
         )}

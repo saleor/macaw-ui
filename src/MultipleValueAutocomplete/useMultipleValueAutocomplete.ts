@@ -3,27 +3,16 @@ import {
   UseComboboxGetItemPropsOptions,
   useMultipleSelection,
 } from "downshift";
-import { Ref, useCallback, useMemo, useRef } from "react";
+import { Ref, useCallback, useEffect, useMemo, useRef } from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
 import { Choice } from "../Filter";
 import { useTextWidth } from "../tools/useTextWidth";
-
-function mergeRefs<T>(...refs: Ref<T>[]) {
-  return (node: T) => {
-    for (const ref of refs) {
-      if (typeof ref === "function") {
-        ref(node);
-      } else {
-        // ref.current is typed as readonly
-        (ref as any).current = node;
-      }
-    }
-  };
-}
+import { mergeRefs } from "../utils/mergeRefs";
 
 export interface UseMultipleValueAutocomplete {
   choices: Choice[];
+  enableReinitialize?: boolean;
   name?: string;
   initialValue: Choice[];
   onChange?: (event: SyntheticChangeEvent<string[]>) => void;
@@ -32,6 +21,7 @@ export interface UseMultipleValueAutocomplete {
 
 function useMultipleValueAutocomplete({
   choices,
+  enableReinitialize,
   initialValue,
   name,
   onChange,
@@ -52,6 +42,7 @@ function useMultipleValueAutocomplete({
     addSelectedItem,
     removeSelectedItem,
     selectedItems,
+    setSelectedItems,
   } = useMultipleSelection({
     initialSelectedItems: initialValue,
     onSelectedItemsChange: ({ selectedItems }) => {
@@ -75,6 +66,11 @@ function useMultipleValueAutocomplete({
       ),
     [choices, selectedItems]
   );
+
+  useEffect(() => {
+    if (enableReinitialize) setSelectedItems(initialValue);
+  }, [initialValue]);
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -89,6 +85,7 @@ function useMultipleValueAutocomplete({
     setInputValue,
     selectItem,
   } = useCombobox({
+    circularNavigation: false,
     defaultHighlightedIndex: 0,
     items: filteredChoices,
     onInputValueChange: ({ inputValue }) => {
@@ -149,7 +146,7 @@ function useMultipleValueAutocomplete({
       }
     },
   });
-  const menuProps = getMenuProps();
+  const menuProps = getMenuProps({}, { suppressRefError: true });
 
   return {
     anchor,

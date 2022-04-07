@@ -1,5 +1,5 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Grow from "@material-ui/core/Grow";
-import Menu from "@material-ui/core/MenuList";
 import Paper from "@material-ui/core/Paper";
 import Popper, { PopperPlacementType } from "@material-ui/core/Popper";
 import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
@@ -12,6 +12,11 @@ import { ChipRemovable } from "../Chip";
 import { Choice } from "../Filter";
 import { IconButton } from "../IconButton";
 import { PlusIcon } from "../icons";
+import {
+  isScrolledToBottom,
+  useElementScroll,
+} from "../tools/useElementScroll";
+import { mergeRefs } from "../utils/mergeRefs";
 import useStyles from "./styles";
 import useMultipleValueAutocomplete from "./useMultipleValueAutocomplete";
 
@@ -24,25 +29,31 @@ export interface MultipleValueAutocompleteProps
     choices: Choice[];
   }) => React.ReactNode | React.ReactNodeArray;
   className?: string;
+  enableReinitialize?: boolean;
   styles?: React.CSSProperties;
   choices: Choice[];
   label?: string;
+  loading?: boolean;
   popperPlacement?: PopperPlacementType;
   initialValue?: Choice[];
   onChange?: (event: SyntheticChangeEvent<string[]>) => void;
   onInputChange?: (value: string) => void;
+  onScrollToBottom?: () => void;
 }
 
 export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps> =
   ({
     choices,
     children,
+    enableReinitialize,
     name,
     InputProps,
     initialValue = [],
+    loading,
     popperPlacement = "bottom-start",
     onChange,
     onInputChange,
+    onScrollToBottom,
     ...rest
   }) => {
     const classes = useStyles();
@@ -66,11 +77,24 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
       selectedItems,
     } = useMultipleValueAutocomplete({
       choices,
+      enableReinitialize,
       initialValue,
       name,
       onChange,
       onInputChange,
     });
+    const { anchor: dropdownRef, position, setAnchor } = useElementScroll();
+
+    React.useEffect(() => {
+      if (
+        isOpen &&
+        onScrollToBottom &&
+        dropdownRef &&
+        isScrolledToBottom(dropdownRef, position!, 5)
+      ) {
+        onScrollToBottom();
+      }
+    }, [position?.y, dropdownRef]);
 
     return (
       <>
@@ -98,22 +122,28 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
               </ChipRemovable>
             )),
             endAdornment: (
-              <IconButton
-                {...getToggleButtonProps()}
-                aria-label="toggle menu"
-                className={classes.icon}
-                hoverOutline={false}
-                type="button"
-                variant="secondary"
-              >
-                <PlusIcon />
-              </IconButton>
+              <>
+                {loading && (
+                  <div className={classes.loader}>
+                    <CircularProgress size={24} />
+                  </div>
+                )}
+                <IconButton
+                  {...getToggleButtonProps()}
+                  aria-label="toggle menu"
+                  className={classes.icon}
+                  hoverOutline={false}
+                  type="button"
+                  variant="secondary"
+                >
+                  <PlusIcon />
+                </IconButton>
+              </>
             ),
           }}
           inputProps={{ ref: inputRef, style: { width: inputWidth } }}
         />
         <Popper
-          {...menuProps}
           className={clsx(classes.popper, menuProps.className)}
           open={isOpen}
           anchorEl={anchor.current}
@@ -129,17 +159,18 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
               }}
             >
               <Paper
+                className={classes.dropdown}
                 elevation={8}
                 style={{ width: anchor.current?.clientWidth }}
+                {...menuProps}
+                ref={mergeRefs(setAnchor, menuProps.ref)}
               >
-                <Menu disablePadding>
-                  {children({
-                    choices: filteredChoices,
-                    highlightedIndex,
-                    getItemProps,
-                    inputValue,
-                  })}
-                </Menu>
+                {children({
+                  choices: filteredChoices,
+                  highlightedIndex,
+                  getItemProps,
+                  inputValue,
+                })}
               </Paper>
             </Grow>
           )}
