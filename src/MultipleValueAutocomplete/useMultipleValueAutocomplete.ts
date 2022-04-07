@@ -3,7 +3,7 @@ import {
   UseComboboxGetItemPropsOptions,
   useMultipleSelection,
 } from "downshift";
-import { Ref, useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
 import { Choice } from "../Filter";

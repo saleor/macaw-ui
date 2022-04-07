@@ -1,6 +1,6 @@
 import { score } from "fuzzaldrin";
 import { sortBy } from "lodash";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const pageSize = 10;
 
