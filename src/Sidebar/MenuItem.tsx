@@ -12,13 +12,23 @@ import { makeStyles } from "../theme";
 import { CustomLinkComponent, SidebarMenuItem } from "./types";
 import { getLinkComponent, getLinkProps } from "./utils";
 
-export interface MenuItemProps {
+export interface MenuItemCommonProps {
   activeId: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
-  onClick: (menuItem: SidebarMenuItem) => void;
-  linkComponent?: CustomLinkComponent;
 }
+
+export type MenuItemProps = MenuItemCommonProps &
+  (
+    | {
+        onClick: (menuItem: SidebarMenuItem) => void;
+        linkComponent?: never;
+      }
+    | {
+        onClick?: never;
+        linkComponent: CustomLinkComponent;
+      }
+  );
 
 export const menuWidth = 210;
 export const shrunkMenuWidth = 72;
@@ -152,7 +162,14 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     if (menuItem.children) {
       setOpen(true);
     } else {
-      onClick(menuItem);
+      if (onClick) {
+        onClick(menuItem);
+      }
+
+      if (menuItem.onClick) {
+        menuItem.onClick();
+      }
+
       setOpen(false);
     }
   };

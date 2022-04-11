@@ -75,16 +75,25 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <Link href={logoHref} className={classes.logo}>
           {themeType === "dark" ? <LogoDark /> : <Logo />}
         </Link>
-        {menuItems.map((menuItem) => (
-          <MenuItem
-            activeId={activeId}
-            isMenuShrunk={isShrunk}
-            menuItem={menuItem}
-            onClick={onMenuItemClick}
-            key={menuItem.ariaLabel}
-            linkComponent={linkComponent}
-          />
-        ))}
+        {menuItems.map((menuItem) =>
+          linkComponent ? (
+            <MenuItem
+              activeId={activeId}
+              isMenuShrunk={isShrunk}
+              menuItem={menuItem}
+              key={menuItem.ariaLabel}
+              linkComponent={linkComponent}
+            />
+          ) : (
+            <MenuItem
+              activeId={activeId}
+              isMenuShrunk={isShrunk}
+              menuItem={menuItem}
+              onClick={onMenuItemClick}
+              key={menuItem.ariaLabel}
+            />
+          )
+        )}
         {toolbar && <div className={classes.toolbarContainer}>{toolbar}</div>}
         <ExpandButton
           className={classes.expandButton}
