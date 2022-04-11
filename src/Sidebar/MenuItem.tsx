@@ -174,9 +174,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     }
   };
 
-  const RootNavComponent = menuItem.children
-    ? "div"
-    : linkComponent ?? "button";
+  const RootNavComponent = menuItem.children ? "div" : linkComponent ?? "div";
 
   return (
     <RootNavComponent
