@@ -8,7 +8,6 @@ export interface SidebarMenuItem {
   iconSrc?: string;
   url?: string;
   external?: boolean;
-  isButton?: boolean;
 }
 
 export type CustomLinkComponent = React.ForwardRefExoticComponent<{
