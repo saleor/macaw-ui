@@ -42,7 +42,7 @@ const useStyles = makeStyles(
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: theme.spacing(3),
-    }
+    },
   }),
   { name: "Guide" }
 );
