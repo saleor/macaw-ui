@@ -30,7 +30,7 @@ function useMultipleValueAutocomplete({
   const anchor = useRef<HTMLDivElement>();
   const input = useRef<HTMLInputElement>();
 
-  const [inputWidth, setInputWidth] = useTextWidth(
+  const [inputWidth, setInputText] = useTextWidth(
     window
       .getComputedStyle(input.current ?? document.body, null)
       .getPropertyValue("font")
@@ -89,7 +89,7 @@ function useMultipleValueAutocomplete({
     defaultHighlightedIndex: 0,
     items: filteredChoices,
     onInputValueChange: ({ inputValue }) => {
-      setInputWidth(inputValue || "");
+      setInputText(inputValue || "");
       if (onInputChange && inputValue) {
         onInputChange(inputValue);
       }
