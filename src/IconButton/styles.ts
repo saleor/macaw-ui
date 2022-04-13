@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       },
       "&:active, &$active": {
         background: theme.palette.saleor.active[5],
-      }
+      },
     },
     secondary: getSecondaryButtonStyles(theme.palette.saleor),
     hoverOutline: {
@@ -26,7 +26,6 @@ const useStyles = makeStyles(
     },
     error: {
       "&&&": {
-        
         "&:hover, &.Mui-focusVisible, &$hover": {
           borderColor: theme.palette.saleor.errorAction[1],
           color: theme.palette.saleor.errorAction[1],
@@ -36,7 +35,7 @@ const useStyles = makeStyles(
           color: theme.palette.saleor.errorAction[1],
           borderColor: theme.palette.saleor.errorAction[2],
         },
-        "&$secondary" : {
+        "&$secondary": {
           "&:hover, &.Mui-focusVisible, &$hover": {
             background: theme.palette.saleor.errorAction[5],
           },
@@ -44,9 +43,9 @@ const useStyles = makeStyles(
             background: theme.palette.saleor.errorAction[4],
             color: theme.palette.saleor.errorAction[1],
           },
-        }
+        },
       },
-      
+
       color: theme.palette.saleor.errorAction[2],
     },
     disabledError: {
