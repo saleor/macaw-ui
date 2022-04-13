@@ -6,9 +6,9 @@ import { ActionBar } from "./ActionBar";
 import { useActionBar } from "./context";
 
 const Wrapper: React.FC = ({ children }) => {
-  const { updateRef } = useActionBar();
+  const { anchor } = useActionBar();
 
-  return <div ref={updateRef}>{children}</div>;
+  return <div ref={anchor}>{children}</div>;
 };
 
 const labels: ConfirmButtonLabels = {
