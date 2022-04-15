@@ -19,6 +19,8 @@ export type SideBarDrawerProps = BaseSidebarProps;
 export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   menuItems,
   onMenuItemClick,
+  linkComponent,
+  logoHref,
 }) => {
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
@@ -42,6 +44,8 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
       top: 0,
     });
   };
+
+  const Link = linkComponent ?? "a";
 
   return (
     <>
@@ -67,9 +71,9 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
             })}
           >
             <div className={classes.content}>
-              <div className={classes.logo}>
+              <Link href={logoHref} className={classes.logo}>
                 {themeType === "dark" ? <LogoDark /> : <Logo />}
-              </div>
+              </Link>
               {menuItems.map((menuItem) => (
                 <MenuItemBtn
                   menuItem={menuItem}
@@ -78,6 +82,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
                       ? () => handleMenuItemWithChildrenClick(menuItem)
                       : handleMenuItemClick
                   }
+                  linkComponent={linkComponent}
                   key={menuItem.ariaLabel}
                 />
               ))}
@@ -104,6 +109,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
                         menuItem={subMenuItem}
                         onClick={handleMenuItemClick}
                         key={subMenuItem.ariaLabel}
+                        linkComponent={linkComponent}
                       />
                     );
                   }
