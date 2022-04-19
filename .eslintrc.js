@@ -4,6 +4,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["@typescript-eslint", "simple-import-sort"],
+  extends: ["plugin:storybook/recommended"],
   settings: {
     react: {
       version: "detect",
