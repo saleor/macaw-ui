@@ -1,7 +1,13 @@
 import React from "react";
 
+// Imitate object returned from useRef
+type AnchorFunction = {
+  (el: HTMLDivElement): void;
+  current: HTMLDivElement | null;
+};
+
 export interface ActionBarContextType {
-  anchor: React.RefObject<HTMLDivElement>;
+  anchor: AnchorFunction;
 }
 
 export const ActionBarContext = React.createContext<
@@ -19,7 +25,13 @@ export const useActionBar = () => {
 };
 
 export const ActionBarProvider: React.FC = ({ children }) => {
-  const anchor = React.useRef<HTMLDivElement | null>(null);
+  const [anchorState, setAnchor] = React.useState<HTMLDivElement | null>(null);
+
+  const anchor = React.useMemo(() => {
+    const fn = setAnchor as AnchorFunction;
+    fn.current = anchorState;
+    return fn;
+  }, [anchorState]);
 
   return (
     <ActionBarContext.Provider value={{ anchor }}>

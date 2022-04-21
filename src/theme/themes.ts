@@ -160,7 +160,7 @@ export const light: SaleorThemeColors = {
     5: "#FBDDD8",
   },
 
-  disabled: "#CCDDDD",
+  disabled: "#C2D1E4",
   paperBorder: "#EAEAEA",
   theme: "light",
 };

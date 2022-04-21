@@ -9,14 +9,26 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import { makeStyles } from "../theme";
-import { SidebarMenuItem } from "./types";
+import { CustomLinkComponent, SidebarMenuItem } from "./types";
+import { getLinkComponent, getLinkProps } from "./utils";
 
-export interface MenuItemProps {
+export interface MenuItemCommonProps {
   activeId: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
-  onClick: (menuItem: SidebarMenuItem) => void;
 }
+
+export type MenuItemProps = MenuItemCommonProps &
+  (
+    | {
+        onClick: (menuItem: SidebarMenuItem) => void;
+        linkComponent?: never;
+      }
+    | {
+        onClick?: never;
+        linkComponent: CustomLinkComponent;
+      }
+  );
 
 export const menuWidth = 210;
 export const shrunkMenuWidth = 72;
@@ -139,23 +151,33 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   menuItem,
   isMenuShrunk,
   onClick,
+  linkComponent,
 }) => {
   const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
-  const anchor = React.useRef<HTMLDivElement>(null);
+  const anchor = React.useRef<any>(null);
 
   const handleClick = (event: React.MouseEvent, menuItem: SidebarMenuItem) => {
     event.stopPropagation();
     if (menuItem.children) {
       setOpen(true);
     } else {
-      onClick(menuItem);
+      if (onClick) {
+        onClick(menuItem);
+      }
+
+      if (menuItem.onClick) {
+        menuItem.onClick();
+      }
+
       setOpen(false);
     }
   };
 
+  const RootNavComponent = menuItem.children ? "div" : linkComponent ?? "div";
+
   return (
-    <div
+    <RootNavComponent
       className={clsx(classes.root, {
         [classes.rootOpen]: open,
         [classes.rootActive]: [
@@ -165,9 +187,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         [classes.rootExpanded]: !isMenuShrunk,
       })}
       ref={anchor}
-      onClick={(event) => handleClick(event, menuItem)}
+      onClick={(event: React.MouseEvent) => handleClick(event, menuItem)}
+      {...getLinkProps(menuItem)}
     >
-      <button
+      <span
         className={classes.menuItemBtn}
         data-test="menu-item-label"
         data-test-id={menuItem.id}
@@ -184,7 +207,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         >
           {menuItem.label}
         </Typography>
-      </button>
+      </span>
       {menuItem.children && (
         <Popper
           className={clsx(classes.popper, {
@@ -199,14 +222,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({
             <Paper className={classes.paper}>
               {menuItem.children.map((subMenuItem) => {
                 if (subMenuItem.url || subMenuItem.children) {
-                  const linkProps = subMenuItem.external
-                    ? { href: subMenuItem.url, target: "_blank" }
-                    : {};
+                  const linkProps = getLinkProps(subMenuItem);
 
                   return (
                     <MuiMenuItem
                       aria-label={subMenuItem.ariaLabel}
-                      component={subMenuItem.external ? "a" : "button"}
+                      component={getLinkComponent(subMenuItem, linkComponent)}
                       className={clsx(classes.label, classes.subMenuLabel)}
                       key={subMenuItem.url}
                       onClick={(event: React.MouseEvent) =>
@@ -236,7 +257,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           </ClickAwayListener>
         </Popper>
       )}
-    </div>
+    </RootNavComponent>
   );
 };
 
