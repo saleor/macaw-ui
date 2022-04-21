@@ -8,13 +8,24 @@ import { useTheme } from "../theme";
 import { useBacklink } from "./context";
 import useStyles from "./styles";
 
-export interface AppHeaderProps extends LayoutButtonProps {
+interface BacklinkCommonProps extends LayoutButtonProps {
   children: React.ReactNode;
   disabled?: boolean;
-  onClick: () => void;
 }
 
-export const Backlink: React.FC<AppHeaderProps> = ({
+export type BacklinkProps = BacklinkCommonProps &
+  (
+    | {
+        onClick: () => void;
+        href?: never;
+      }
+    | {
+        onClick?: never;
+        href: string;
+      }
+  );
+
+export const Backlink: React.FC<BacklinkProps> = ({
   children,
   disabled,
   onClick,
