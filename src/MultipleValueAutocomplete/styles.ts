@@ -12,12 +12,15 @@ const useStyles = makeStyles(
       right: 4,
     },
     inputContainer: {
-      padding: "27px 80px 10px 12px",
+      padding: "23px 80px 10px 12px",
       flexWrap: "wrap",
       gap: theme.spacing(1),
     },
+    inputContainerWithChips: {
+      paddingTop: 27,
+    },
     input: {
-      height: 32,
+      height: "1.1875em",
       minWidth: "3rem",
       padding: 0,
     },
@@ -30,7 +33,7 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(1),
     },
   }),
-  { name: "Autocomplete" }
+  { name: "MultipleValueAutocomplete" }
 );
 
 export default useStyles;

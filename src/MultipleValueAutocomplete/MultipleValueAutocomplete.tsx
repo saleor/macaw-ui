@@ -102,14 +102,19 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
           {...rest}
           {...comboboxProps}
           name={name}
-          InputLabelProps={labelProps}
+          InputLabelProps={{
+            shrink: isOpen || selectedItems.length || inputValue.length,
+            ...labelProps,
+          }}
           ref={ref}
           InputProps={{
             ...InputProps,
             ...inputProps,
             classes: {
               ...(InputProps?.classes ?? {}),
-              root: clsx(classes.inputContainer, InputProps?.classes?.root),
+              root: clsx(classes.inputContainer, InputProps?.classes?.root, {
+                [classes.inputContainerWithChips]: selectedItems.length > 0,
+              }),
               input: clsx(classes.input, InputProps?.classes?.input),
             },
             startAdornment: selectedItems.map((item, index) => (
