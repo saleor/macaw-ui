@@ -17,6 +17,7 @@ export interface PillProps
     | "color"
     | "disabled"
     | "classes"
+    | "clickable"
   > {
   active?: boolean;
   color?: PillColor;
