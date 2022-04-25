@@ -34,3 +34,5 @@ export * from "./NavigationCard";
 export * from "./Pill";
 export * from "./CircleIndicator";
 export * from "./SwitchSelector";
+export * from "./Autocomplete";
+export * from "./MultipleValueAutocomplete";
