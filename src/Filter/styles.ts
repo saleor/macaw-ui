@@ -14,10 +14,15 @@ const useStyles = makeStyles(
     },
 
     filter: {
-      alignItems: "center",
+      alignItems: "flex-start",
       display: "flex",
       columnGap: theme.spacing(2),
       marginBottom: theme.spacing(2),
+    },
+    filterOptions: {
+      alignItems: "center",
+      columnGap: theme.spacing(2),
+      display: "flex",
     },
     filterChip: {
       borderRadius: 8,
@@ -26,17 +31,30 @@ const useStyles = makeStyles(
     },
     filterChipContainer: {
       display: "flex",
-      columnGap: theme.spacing(1),
+      flexWrap: "wrap",
+      gap: theme.spacing(1),
+    },
+    filterDeleteContainer: {
+      alignItems: "center",
+      columnGap: theme.spacing(2),
+      display: "flex",
+      height: 51,
+      marginLeft: "auto",
     },
     filterDelete: {
-      marginLeft: "auto",
+      position: "relative",
+      left: 6,
     },
     filterName: {
       width: 180,
     },
     filterValue: {
-      height: 51,
-      width: 400,
+      "& .MuiSelect-root": {
+        boxSizing: "border-box",
+      },
+      boxSizing: "border-box",
+      minHeight: 51,
+      width: "100%",
     },
     filterRange: {
       width: 115,
@@ -44,6 +62,13 @@ const useStyles = makeStyles(
     filterInputInner: {
       "&&": {
         padding: theme.spacing(2),
+      },
+    },
+    filterMultipleValueInputInner: {
+      "&&": {
+        minHeight: 51,
+        padding: theme.spacing(1),
+        paddingRight: theme.spacing(8),
       },
     },
     filterConjunction: {
@@ -65,7 +90,13 @@ const useStyles = makeStyles(
     },
 
     bar: {
-      minWidth: 600,
+      minWidth: 100,
+    },
+    barAddBtn: {
+      "& svg": {
+        marginLeft: theme.spacing(1),
+        marginRight: 0,
+      },
     },
 
     selectPaper: {

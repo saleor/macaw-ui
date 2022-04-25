@@ -4,14 +4,20 @@ export enum FilterType {
   Text,
   Choice,
   Range,
+  Autocomplete,
 }
+
+export type Choice = Record<"label" | "value", string>;
 
 export interface FilterDetailedOptions {
   type: FilterType;
-  choices?: Array<Record<"label" | "value", string>>;
+  choices?: Choice[];
   default?: string;
   multiple?: boolean;
   InputProps?: Partial<TextFieldProps>;
+  group?: Record<"label" | "name", string>;
+  displayValues?: Choice[];
+  onInputChange?: (value: string) => void;
 }
 export interface FilterOptions {
   name: string;
@@ -52,6 +58,7 @@ export interface FilterContextType {
   toggle: (name: string) => void;
   toggleRange: (name: string) => void;
   unregister: (name: string) => void;
+  swap: (previousFilterName: string, nextFilterName: string) => void;
   onChange: (
     name: string,
     value: string | string[],

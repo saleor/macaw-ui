@@ -163,7 +163,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "&$selected, &$selected:focus, &$selected:hover": {
             backgroundColor: [colors.active[5], "!important"] as any,
             color: colors.active[1],
-            fontWeight: 700,
           },
           "&:hover": {
             backgroundColor: [colors.active[5], "!important"] as any,
@@ -171,6 +170,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           "@media(min-width: 600px)": {
             minHeight: 48,
           },
+          cursor: "pointer",
         },
       },
       MuiSelect: {

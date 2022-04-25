@@ -1,11 +1,11 @@
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import IconButton from "@material-ui/core/IconButton";
-import Close from "@material-ui/icons/Close";
 import React from "react";
 
+import { Button } from "../Button";
+import { IconButton } from "../IconButton";
+import { CloseIcon, PlusIcon } from "../icons";
 import { FilterContext } from "./context";
 import { FilterRow } from "./Filter";
 import { FilterMenu, FilterMenuLabels } from "./FilterMenu";
@@ -56,8 +56,10 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
       setFilterData((fd) => fd.filter((filter) => filter.name !== name));
     const set = (name: string, filter: Partial<FilterData>) =>
       setFilterData((fd) =>
-        fd.map((f) => (f.name === name ? { ...f, filter } : f))
+        fd.map((f) => (f.name === name ? { ...f, ...filter } : f))
       );
+    const swap = (previousFilterName: string, nextFilterName: string) =>
+      setFilterData((fd) => utils.swap(fd, previousFilterName, nextFilterName));
 
     const availableFilters = utils.getAvailableFilters(filterData);
 
@@ -75,16 +77,17 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
           toggle,
           toggleRange,
           unregister,
+          swap,
           onChange,
         }}
       >
         {children}
-        <Card className={classes.bar} ref={ref} elevation={20}>
+        <Card className={classes.bar} ref={ref} elevation={8}>
           <CardHeader
             title={labels.header}
             action={
-              <IconButton onClick={onClose}>
-                <Close />
+              <IconButton variant="secondary" onClick={onClose}>
+                <CloseIcon />
               </IconButton>
             }
           />
@@ -105,11 +108,14 @@ export const FilterBar: React.FC<FilterBarProps> = React.forwardRef(
             {!!availableFilters.length && (
               <>
                 <Button
-                  color="primary"
+                  className={classes.barAddBtn}
+                  color="text"
+                  variant="secondary"
                   ref={button}
                   onClick={() => setMenuOpen(true)}
                 >
-                  + {labels.addButton}
+                  {labels.addButton}
+                  <PlusIcon />
                 </Button>
               </>
             )}

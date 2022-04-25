@@ -3,12 +3,13 @@ import { makeStyles } from "../theme";
 const useStyles = makeStyles(
   (theme) => ({
     chip: {
+      ...theme.typography.body2,
       background: theme.palette.saleor.active[1],
       color: theme.palette.primary.contrastText,
       borderRadius: "8px",
       display: "flex",
       alignItems: "center",
-      padding: `3px ${theme.spacing(2)}`,
+      padding: theme.spacing(0, 2),
       gap: "4px",
       lineHeight: 1,
       minHeight: theme.spacing(4),

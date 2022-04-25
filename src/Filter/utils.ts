@@ -1,4 +1,4 @@
-import { uniqBy } from "lodash";
+import { sortBy, uniqBy } from "lodash";
 
 import {
   FilterData,
@@ -8,8 +8,36 @@ import {
   OnFilterChangeOpts,
 } from "./types";
 
-export function getAvailableFilters(filterData: FilterData[]) {
-  return filterData.filter((filter) => !filter.active);
+export function getFilterName(
+  name: string,
+  options: FilterDetailedOptions
+): string {
+  return options.group ? `${options.group.name}:${name}` : name;
+}
+
+export function getAvailableFilterGroups(
+  filterData: FilterData[]
+): Array<Record<"name" | "label", string>> {
+  return uniqBy(
+    filterData
+      .filter((filter) => !filter.active && filter.options.group)
+      .map((filter) => filter.options.group!),
+    "name"
+  );
+}
+
+export function getAvailableFilters(
+  filterData: FilterData[]
+): Array<Record<"name" | "label", string>> {
+  return sortBy(
+    [
+      ...filterData.filter(
+        (filter) => !(filter.active || filter.options.group)
+      ),
+      ...getAvailableFilterGroups(filterData),
+    ],
+    "label"
+  );
 }
 export function getActiveFilters(filterData: FilterData[]) {
   return filterData.filter((filter) => filter.active);
@@ -107,15 +135,29 @@ export function change(
   );
 }
 
+function getFilterOrGroup(filterData: FilterData[], name: string): FilterData {
+  let selectedFilter = filterData.find((filter) => filter.name === name);
+
+  if (!selectedFilter) {
+    selectedFilter = filterData.find(
+      (filter) => !filter.active && filter.options.group?.name === name
+    )!;
+  }
+
+  return selectedFilter;
+}
+
 export function toggle(filterData: FilterData[], name: string): FilterData[] {
-  const selectedFilter = filterData.find((filter) => filter.name === name)!;
+  const selectedFilter = getFilterOrGroup(filterData, name);
+  const { name: filterName } = selectedFilter;
+
   const sortIndex = selectedFilter.active
     ? selectedFilter.sortIndex
     : getActiveFilters(filterData).length;
   const value = selectedFilter.active ? getDefaultValue(selectedFilter) : {};
 
   return filterData.map((filter) =>
-    filter.name === name
+    filter.name === filterName
       ? {
           ...filter,
           active: !filter.active,
@@ -144,6 +186,30 @@ export function toggleRange(
             ...filter,
             range: !filter.range,
           }),
+        }
+      : filter
+  );
+}
+
+export function swap(
+  filterData: FilterData[],
+  previousFilterName: string,
+  nextFilterName: string
+): FilterData[] {
+  const previousFilter = getFilterOrGroup(filterData, previousFilterName);
+  const nextFilter = getFilterOrGroup(filterData, nextFilterName);
+
+  return filterData.map((filter) =>
+    filter.name === previousFilter.name
+      ? {
+          ...filter,
+          active: false,
+        }
+      : filter.name === nextFilter.name
+      ? {
+          ...filter,
+          active: true,
+          sortIndex: previousFilter.sortIndex,
         }
       : filter
   );
