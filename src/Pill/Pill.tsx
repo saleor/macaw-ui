@@ -12,13 +12,11 @@ export interface PillProps
     ChipProps,
     | "onDelete"
     | "avatar"
-    | "icon"
     | "disabled"
     | "deleteIcon"
     | "color"
     | "disabled"
     | "classes"
-    | "clickable"
   > {
   active?: boolean;
   color?: PillColor;
