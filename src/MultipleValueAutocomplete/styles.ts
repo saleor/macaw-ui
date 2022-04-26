@@ -31,6 +31,7 @@ const useStyles = makeStyles(
     },
     popper: {
       marginTop: theme.spacing(1),
+      zIndex: 1301,
     },
   }),
   { name: "MultipleValueAutocomplete" }

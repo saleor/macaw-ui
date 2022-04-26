@@ -11,6 +11,8 @@ const useStyles = makeStyles(
     },
     popper: {
       marginTop: theme.spacing(1),
+      // Places popper above dialogs
+      zIndex: 1301,
     },
   }),
   { name: "Autocomplete" }
