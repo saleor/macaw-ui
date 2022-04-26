@@ -31,6 +31,7 @@ export const LayoutButtonInner = <T extends React.ElementType = "button">(
         [classes.hover]: state === "hover",
         [classes.active]: state === "active",
       })}
+      component={component}
       disableRipple
       ref={ref}
       {...rest}
