@@ -2,9 +2,9 @@ import { Typography } from "@material-ui/core";
 import { Meta, Story } from "@storybook/react";
 import React, { useState } from "react";
 
+import useGuideStyles from "../utils/guideStyles";
 import { SwitchSelector } from "./SwitchSelector";
 import { SwitchSelectorButton } from "./SwitchSelectorButton";
-import useGuideStyles from "../utils/guideStyles";
 
 type SwitchSelectorButtonOptions = {
   label: string | React.ReactNode;
