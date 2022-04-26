@@ -1,24 +1,40 @@
 import ButtonBase from "@material-ui/core/ButtonBase";
+import { IconButtonTypeMap as MuiIconButtonTypeMap } from "@material-ui/core/IconButton";
 import MuiIconButton, {
   IconButtonProps as MuiIconButtonProps,
 } from "@material-ui/core/IconButton";
+import { OverrideProps } from "@material-ui/core/OverridableComponent";
 import clsx from "clsx";
 import React from "react";
 
 import { UserInteraction } from "../../types/utils";
 import useStyles from "./styles";
 
-export type IconButtonProps<T extends React.ElementType = "button"> = Omit<
-  MuiIconButtonProps<T>,
-  "variant"
-> & {
+interface IconButtonInnerProps {
   error?: boolean;
   hoverOutline?: boolean;
   state?: UserInteraction;
   variant?: "primary" | "secondary";
-};
+}
 
-export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
+export interface IconButtonTypeMap<
+  P = {},
+  D extends React.ElementType = "button"
+> {
+  props: Omit<MuiIconButtonTypeMap<P, D>["props"], "variant"> &
+    IconButtonInnerProps & { href?: string } & OverrideProps<
+      MuiIconButtonTypeMap<P, D>,
+      "a"
+    >;
+  defaultComponent: D;
+  classKey: never;
+}
+
+export type IconButtonProps<T extends React.ElementType = "button"> =
+  MuiIconButtonProps<T, { component?: T }> &
+    IconButtonInnerProps & { href?: string };
+
+const _IconButton: React.FC<IconButtonProps> = React.forwardRef(
   (
     {
       className,
@@ -64,4 +80,10 @@ export const IconButton: React.FC<IconButtonProps> = React.forwardRef(
     );
   }
 );
-IconButton.displayName = "Button";
+_IconButton.displayName = "Button";
+
+export const IconButton = _IconButton as <
+  T extends React.ElementType = "button"
+>(
+  props: IconButtonProps<T> & { ref?: React.ForwardedRef<T> }
+) => ReturnType<typeof _IconButton>;
