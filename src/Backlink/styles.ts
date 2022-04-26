@@ -15,7 +15,7 @@ const useStyles = makeStyles(
     root: {
       alignItems: "center",
       cursor: "pointer",
-      display: "flex",
+      display: "inline-flex",
       marginTop: theme.spacing(0.5),
       [theme.breakpoints.down("sm")]: {
         margin: theme.spacing(4, 0, 0, 0),
