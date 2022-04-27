@@ -14,6 +14,7 @@ module.exports = {
     quotes: ["off"],
     "simple-import-sort/sort": ["error"],
     "sort-imports": "off", // imports are handled by simple-import-sort/sort
+    "no-console": "error",
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -44,6 +45,7 @@ module.exports = {
       files: ["**/*.stories.tsx"],
       rules: {
         "no-restricted-imports": "off",
+        "no-console": "off",
       },
     },
   ],
