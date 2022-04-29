@@ -111,7 +111,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
       }
     },
   });
-  const menuProps = getMenuProps();
+  const menuProps = getMenuProps({}, { suppressRefError: true });
 
   React.useEffect(() => {
     if (
@@ -171,6 +171,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
               className={classes.dropdown}
               elevation={8}
               style={{ width: anchor.current?.clientWidth }}
+              {...menuProps}
               ref={mergeRefs(setAnchor, menuProps.ref)}
             >
               {children({

@@ -1,3 +1,4 @@
+import { zIndex } from "../consts";
 import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
@@ -11,6 +12,8 @@ const useStyles = makeStyles(
     },
     popper: {
       marginTop: theme.spacing(1),
+      // Places popper above dialogs
+      zIndex: zIndex.popper,
     },
   }),
   { name: "Autocomplete" }
