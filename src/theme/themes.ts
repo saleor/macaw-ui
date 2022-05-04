@@ -45,6 +45,7 @@ export const dark: SaleorThemeColors = {
     3: "rgba(250, 250, 250, 0.6)",
     4: "rgba(250, 250, 250, 0.4)",
     5: "rgba(250, 250, 250, 0.1)",
+    6: "rgba(250, 250, 250, 0.1)",
   },
   fail: {
     verydark: "#9F2E2E",
@@ -108,7 +109,7 @@ export const light: SaleorThemeColors = {
   },
   autofill: "#f4f6c5",
   background: {
-    default: "#EFF5F8",
+    default: "#FAFBFA;",
     paper: "#FFFFFF",
   },
   checkbox: {
@@ -133,6 +134,7 @@ export const light: SaleorThemeColors = {
     3: "rgba(40, 35, 74, 0.6)",
     4: "rgba(40, 35, 74, 0.4)",
     5: "rgba(40, 35, 74, 0.1)",
+    6: "rgba(37, 41, 41, 0.1);",
   },
   fail: {
     verydark: "#9F2E2E",
