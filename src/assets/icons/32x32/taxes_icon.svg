@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="13" r="1" fill="#252929"/>
+<circle cx="16" cy="13" r="1" fill="#252929"/>
+<circle cx="20" cy="13" r="1" fill="#252929"/>
+<circle cx="12" cy="17" r="1" fill="#252929"/>
+<circle cx="16" cy="17" r="1" fill="#252929"/>
+<circle cx="20" cy="17" r="1" fill="#252929"/>
+<circle cx="12" cy="21" r="1" fill="#252929"/>
+<circle cx="16" cy="21" r="1" fill="#252929"/>
+<circle cx="16" cy="25" r="1" fill="#252929"/>
+<circle cx="20" cy="21" r="1" fill="#252929"/>
+<path d="M25 3H7C6.44772 3 6 3.44772 6 4V28C6 28.5523 6.44772 29 7 29H25C25.5523 29 26 28.5523 26 28V4C26 3.44772 25.5523 3 25 3Z" stroke="#252929" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<mask id="path-12-inside-1_11_2565" fill="white">
+<rect x="9" y="6" width="14" height="4" rx="1"/>
+</mask>
+<rect x="9" y="6" width="14" height="4" rx="1" stroke="#252929" stroke-width="3" mask="url(#path-12-inside-1_11_2565)"/>
+</svg>
