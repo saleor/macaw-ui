@@ -1,10 +1,9 @@
-<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="24" height="24" transform="translate(0 0.00195312)" fill="white"/>
-<path d="M2.99963 20.5V3.5C2.99963 3.22386 3.22349 3 3.49963 3H20.4996C20.7758 3 20.9996 3.22386 20.9996 3.5V20.5C20.9996 20.7761 20.7758 21 20.4996 21H3.49963C3.22349 21 2.99963 20.7761 2.99963 20.5Z" stroke="#252929" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<mask id="path-2-inside-1_11_2584" fill="white">
-<rect x="5.99963" y="6" width="6" height="4" rx="1"/>
-</mask>
-<rect x="5.99963" y="6" width="6" height="4" rx="1" stroke="#252929" stroke-width="3" stroke-linejoin="round" mask="url(#path-2-inside-1_11_2584)"/>
-<path d="M6.99963 13H16.9996" stroke="#252929" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.99963 17H16.9996" stroke="#252929" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" fill="none" viewBox="0 0 24 25">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 20.5v-17a.5.5 0 0 1 .5-.5h17a.5.5 0 0 1 .5.5v17a.5.5 0 0 1-.5.5h-17a.5.5 0 0 1-.5-.5Z"/>
+    <mask id="a" fill="currentColor">
+        <rect width="6" height="4" x="6" y="6" rx="1"/>
+    </mask>
+    <rect width="6" height="4" x="6" y="6" stroke="currentColor" stroke-linejoin="round" stroke-width="3" mask="url(#a)" rx="1"/>
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 13h10M7 17h10"/>
 </svg>
+
