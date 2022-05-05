@@ -1,6 +1,7 @@
 .*
 !.husky
 !.eslintrc.js
+!.svgrrc.js
 !.gitignore
 !.gitkeep
 !.storybook
