@@ -9,6 +9,7 @@ export const Decorator = (storyFn: any) => (
   <ThemeProvider defaultTheme={useDarkMode() ? "dark" : "light"}>
     <div
       style={{
+        isolation: "isolate",
         padding: 24,
       }}
     >
