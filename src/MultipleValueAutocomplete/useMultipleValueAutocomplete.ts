@@ -3,6 +3,7 @@ import {
   UseComboboxGetItemPropsOptions,
   useMultipleSelection,
 } from "downshift";
+import isEqual from "lodash/isEqual";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
@@ -68,7 +69,8 @@ function useMultipleValueAutocomplete({
   );
 
   useEffect(() => {
-    if (enableReinitialize) setSelectedItems(initialValue);
+    if (enableReinitialize && !isEqual(initialValue, selectedItems))
+      setSelectedItems(initialValue);
   }, [initialValue]);
 
   const {
