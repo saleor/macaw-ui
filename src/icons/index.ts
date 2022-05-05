@@ -23,6 +23,7 @@ export * from "./ImageIcon";
 export * from "./InfoIcon";
 export * from "./NotAllowedIcon";
 export * from "./NotAllowedInvertedIcon";
+export * from "./MoreIcon";
 export * from "./RadioCheckedIcon";
 export * from "./RadioIcon";
 export * from "./SettingsLargeIcon";
