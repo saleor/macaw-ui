@@ -4,18 +4,27 @@ import React from "react";
 import { SquareButton } from "../SquareButton";
 import { Tooltip, TooltipProps } from "./Tooltip";
 
-export const Info: Story<TooltipProps> = (args) => (
-  <Tooltip variant="info" {...args} />
-);
-export const Success: Story<TooltipProps> = (args) => (
-  <Tooltip variant="success" {...args} />
-);
-export const Error: Story<TooltipProps> = (args) => (
-  <Tooltip variant="error" {...args} />
-);
-export const Warning: Story<TooltipProps> = (args) => (
-  <Tooltip variant="warning" {...args} />
-);
+const Template: Story<TooltipProps> = (args) => <Tooltip {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  variant: undefined,
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  variant: "success",
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  variant: "error",
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  variant: "warning",
+};
 
 export default {
   title: "Tooltip",
@@ -27,5 +36,6 @@ export default {
     title: "Tooltip",
     open: true,
     children: <SquareButton>Hover</SquareButton>,
+    placement: "bottom-start",
   },
 } as Meta<TooltipProps>;
