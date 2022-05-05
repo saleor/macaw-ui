@@ -128,10 +128,12 @@
     "yargs": "^17.2.1"
   },
   "dependencies": {
+    "@floating-ui/react-dom-interactions": "^0.4.0",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
+    "polished": "^4.2.2",
     "react-inlinesvg": "^2.3.0"
   },
   "jest": {
