@@ -1,9 +1,18 @@
-import { rgba } from "polished";
+import { parseToRgb, rgba, tint, toColorString } from "polished";
+import { RgbaColor } from "polished/lib/types/color";
 
 import { makeStyles, SaleorTheme } from "../theme";
 import { TooltipProps } from "./Tooltip";
 
 type StyleProps = Pick<TooltipProps, "variant">;
+
+const removeAlpha = (color: string) => {
+  const parsed = parseToRgb(color) as RgbaColor;
+  return tint(
+    1 - parsed?.alpha ?? 0,
+    toColorString({ ...parsed, alpha: undefined })
+  );
+};
 
 export const getBorderColor =
   (isDark: boolean, theme: SaleorTheme) => (props: StyleProps) => {
@@ -28,7 +37,7 @@ export const getBorderColor =
       case "error":
         return theme.palette.error.light;
       default:
-        return rgba(theme.palette.saleor.main[3], 0.6);
+        return removeAlpha(theme.palette.saleor.main[3]);
     }
   };
 
@@ -39,9 +48,9 @@ const useStyles = makeStyles<
   | "dark"
   | "header"
   | "relative"
-  | "arrow"
-  | "arrowOverlay"
   | "arrowContainer"
+  | "borderPath"
+  | "backgroundPath"
 >(
   (theme) => ({
     dark: {},
@@ -78,29 +87,19 @@ const useStyles = makeStyles<
     relative: {
       position: "relative",
     },
-    arrow: {
-      position: "absolute",
-      zIndex: -1,
-
-      "& path": {
-        stroke: getBorderColor(false, theme),
-        strokeLinecap: "round",
-      },
+    borderPath: {
+      fill: getBorderColor(false, theme),
 
       "&$dark": {
-        stroke: getBorderColor(true, theme),
+        fill: getBorderColor(true, theme),
       },
     },
-    arrowOverlay: {
-      position: "absolute",
-      height: "7.5px",
-      top: "0.5px",
-      width: "100%",
-      zIndex: 1,
+    backgroundPath: {
+      fill: "white",
     },
     arrowContainer: {
-      width: "24px",
-      color: theme.palette.common.white,
+      width: "14px",
+      height: "8px",
       position: "absolute",
     },
   }),
