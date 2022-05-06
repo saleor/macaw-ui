@@ -72,15 +72,15 @@ export const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" fill="none">
           <path
             className={classes.backgroundPath}
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M12.25 7 8.6 2.133a2 2 0 0 0-3.2 0L1.75 7h10.5Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
           <path
             className={classes.borderPath}
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M5.8 2.433c.6-.8 1.8-.8 2.4 0L11.25 6.5h1.25L9 1.833a2.5 2.5 0 0 0-4 0L1.5 6.5h1.25L5.8 2.433Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
           <path
             className={classes.backgroundPath}
