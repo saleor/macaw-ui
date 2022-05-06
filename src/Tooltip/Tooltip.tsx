@@ -48,7 +48,7 @@ const mapSide: Record<Side, Side> = {
 
 export const Tooltip: React.FC<TooltipProps> = ({
   variant,
-  placement: initialPlacement = "bottom",
+  placement: initialPlacement = "bottom-start",
   arrow: hasArrow = true,
   onOpen,
   onClose,
@@ -60,7 +60,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
   header,
   title,
 }) => {
-  const classes = useStyles({ variant });
   const { themeType } = useTheme();
 
   const [stateOpen, setStateOpen] = useState(initialOpen);
@@ -117,9 +116,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     return placement.split("-")[0] as Side;
   }, [placement]);
 
-  const swappedSide = useMemo(() => {
-    return mapSide[side];
-  }, [side]);
+  const classes = useStyles({ variant, side });
 
   const mountArrow = useCallback(
     (node) => {
@@ -165,7 +162,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
           <div
             {...getFloatingProps({
               ref: mountFloating,
-              className: classes.tooltipContainer,
+              className: clsx(themeType === "dark" && classes.dark),
               style: {
                 position: strategy,
                 top: y ?? "",
@@ -184,7 +181,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
                 style={{
                   top: arrowY ?? "",
                   left: arrowX ?? "",
-                  [swappedSide]: "-13px",
                 }}
               >
                 <svg

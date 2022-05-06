@@ -1,10 +1,11 @@
+import { Side } from "@floating-ui/core";
 import { parseToRgb, rgba, tint, toColorString } from "polished";
 import { RgbaColor } from "polished/lib/types/color";
 
-import { makeStyles, SaleorTheme } from "../theme";
+import { dark, light, makeStyles, SaleorTheme } from "../theme";
 import { TooltipProps } from "./Tooltip";
 
-type StyleProps = Pick<TooltipProps, "variant">;
+type StyleProps = Pick<TooltipProps, "variant"> & { side: Side };
 
 const removeAlpha = (color: string) => {
   const parsed = parseToRgb(color) as RgbaColor;
@@ -13,38 +14,61 @@ const removeAlpha = (color: string) => {
     toColorString({ ...parsed, alpha: undefined })
   );
 };
+const mapSide: Record<Side, Side> = {
+  top: "bottom",
+  right: "left",
+  bottom: "top",
+  left: "right",
+} as const;
 
 export const getBorderColor =
   (isDark: boolean, theme: SaleorTheme) => (props: StyleProps) => {
     if (isDark) {
       switch (props.variant) {
         case "success":
-          return theme.palette.success.main;
+          return dark.success.light;
         case "warning":
-          return theme.palette.warning.main;
+          return dark.warning.light;
         case "error":
-          return theme.palette.error.main;
+          return dark.fail.light;
         default:
-          return theme.palette.common.white;
+          return removeAlpha(light.main[3]);
       }
     }
 
     switch (props.variant) {
       case "success":
-        return theme.palette.success.light;
+        return light.success.mid;
       case "warning":
-        return theme.palette.warning.light;
+        return light.warning.mid;
       case "error":
-        return theme.palette.error.light;
+        return light.fail.mid;
       default:
-        return removeAlpha(theme.palette.saleor.main[3]);
+        return removeAlpha(light.main[3]);
     }
+  };
+
+export const getBackgroundColor =
+  (isDark: boolean, theme: SaleorTheme) => (props: StyleProps) => {
+    if (isDark) {
+      switch (props.variant) {
+        case "success":
+          return dark.success.dark;
+        case "warning":
+          return dark.warning.dark;
+        case "error":
+          return dark.fail.dark;
+        default:
+          return dark.main[1];
+      }
+    }
+
+    return theme.palette.common.white;
   };
 
 const useStyles = makeStyles<
   StyleProps,
   | "tooltip"
-  | "tooltipContainer"
   | "dark"
   | "header"
   | "relative"
@@ -53,12 +77,25 @@ const useStyles = makeStyles<
   | "backgroundPath"
 >(
   (theme) => ({
-    dark: {},
-    tooltipContainer: {
-      zIndex: 0,
+    dark: {
+      "& $tooltip": {
+        color: (props) => {
+          return props.variant ? dark.main[2] : light.main[2];
+        },
+        backgroundColor: getBackgroundColor(true, theme),
+        borderColor: getBorderColor(true, theme),
+      },
+
+      "& $borderPath": {
+        fill: getBorderColor(true, theme),
+      },
+
+      "& $backgroundPath": {
+        fill: getBackgroundColor(true, theme),
+      },
     },
     tooltip: {
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: getBackgroundColor(false, theme),
       padding: theme.spacing(1.5),
       borderRadius: theme.spacing(1),
       border: `1px solid ${theme.palette.saleor.main[3]}`,
@@ -78,10 +115,6 @@ const useStyles = makeStyles<
             return theme.palette.saleor.main[1];
         }
       },
-      "&$dark": {
-        color: theme.palette.common.black,
-        backgroundColor: getBorderColor(true, theme),
-      },
     },
     header: {},
     relative: {
@@ -89,18 +122,30 @@ const useStyles = makeStyles<
     },
     borderPath: {
       fill: getBorderColor(false, theme),
-
-      "&$dark": {
-        fill: getBorderColor(true, theme),
-      },
     },
     backgroundPath: {
-      fill: "white",
+      fill: getBackgroundColor(false, theme),
     },
     arrowContainer: {
       width: "14px",
       height: "8px",
       position: "absolute",
+      transform: (props) => {
+        switch (props.side) {
+          case "top":
+            return "rotate(180deg)";
+          case "bottom":
+            return "rotate(0deg)";
+          case "left":
+            return "rotate(90deg)";
+          case "right":
+            return "rotate(-90deg)";
+        }
+      },
+      top: (props) => (props.side === "bottom" && "-13px") || "",
+      bottom: (props) => (props.side === "top" && "-13px") || "",
+      left: (props) => (props.side === "right" && "-16px") || "",
+      right: (props) => (props.side === "left" && "-16px") || "",
     },
   }),
   {
