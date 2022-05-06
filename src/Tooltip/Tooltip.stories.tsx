@@ -29,13 +29,25 @@ Warning.args = {
 export default {
   title: "Tooltip",
   component: Tooltip,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     title: "Tooltip",
     open: true,
     children: <SquareButton>Hover</SquareButton>,
-    placement: "bottom-start",
+    placement: "top-start",
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: "flex",
+          width: "125vw",
+          height: "150vh",
+        }}
+      >
+        <div style={{ paddingTop: "25%" }}>
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
 } as Meta<TooltipProps>;
