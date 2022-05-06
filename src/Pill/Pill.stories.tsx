@@ -36,7 +36,8 @@ const DefaultStory: React.FC = () => {
         paid or unpaid order, a VAT number awaiting verification, or a plugin
         that had been disabled.
       </Typography>
-      <div style={{ display: "flex", gap: "24px" }}>
+      <div style={{ display: "flex", gap: "24px", flexDirection: "column" }}>
+        <Typography variant="h5">Medium size</Typography>
         <div
           className={clsx(guideClasses.border, guideClasses.grid)}
           style={{
@@ -50,6 +51,21 @@ const DefaultStory: React.FC = () => {
           <PillGroup color="warning" label={labels.warning} />
           <PillGroup color="success" label={labels.success} />
           <PillGroup color="info" label={labels.info} />
+        </div>
+        <Typography variant="h5">Small size</Typography>
+        <div
+          className={clsx(guideClasses.border, guideClasses.grid)}
+          style={{
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 24,
+            margin: "auto",
+            padding: 24,
+          }}
+        >
+          <PillGroup color="error" label={labels.error} size="small" />
+          <PillGroup color="warning" label={labels.warning} size="small" />
+          <PillGroup color="success" label={labels.success} size="small" />
+          <PillGroup color="info" label={labels.info} size="small" />
         </div>
       </div>
     </div>
