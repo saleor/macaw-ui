@@ -77,7 +77,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     context,
     refs,
     update,
-    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
+    middlewareData: { arrow: { x: arrowX, y: arrowY, centerOffset } = {} },
   } = useFloating({
     placement: initialPlacement,
     open,
@@ -93,8 +93,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
     middleware: [
       offset(5),
       flip(),
+      // padding matches padding of tooltip box
       shift({ padding: 12 }),
-      arrow({ element: arrowRef }),
+      // padding matches border-radius of tooltip box
+      arrow({ element: arrowRef, padding: 8 }),
     ],
   });
 
