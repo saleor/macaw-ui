@@ -15,11 +15,12 @@ import {
   useRole,
 } from "@floating-ui/react-dom-interactions";
 import clsx from "clsx";
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 
 import { useTheme } from "../theme";
+import { useWatchRefMount } from "../utils/useWatchMountRef";
 import { Arrow } from "./Arrow";
 import useStyles from "./styles";
 
@@ -55,8 +56,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const { themeType } = useTheme();
 
   const [stateOpen, setStateOpen] = useState(initialOpen);
-  const [isMountedReference, setIsMountedReference] = useState(false);
-  const [isMountedFloating, setIsMountedFloating] = useState(false);
   const arrowRef = useRef<HTMLSpanElement | null>(null);
 
   const open = forceState ?? stateOpen;
@@ -91,6 +90,15 @@ export const Tooltip: React.FC<TooltipProps> = ({
       arrow({ element: arrowRef, padding: 8 }),
     ],
   });
+  const [isMountedReference, mountReference] = useWatchRefMount(
+    refs.reference,
+    update
+  );
+  const [isMountedFloating, mountFloating] = useWatchRefMount(
+    refs.floating,
+    update
+  );
+  const [, mountArrow] = useWatchRefMount(arrowRef, update);
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context),
@@ -111,32 +119,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
   }, [placement]);
 
   const classes = useStyles({ variant, side });
-
-  const mountArrow = useCallback(
-    (node) => {
-      arrowRef.current = node;
-      update();
-    },
-    [update]
-  );
-
-  const mountFloating = useCallback(
-    (node) => {
-      refs.floating.current = node;
-      update();
-      setIsMountedFloating(!!node);
-    },
-    [update]
-  );
-
-  const mountReference = useCallback(
-    (node) => {
-      refs.reference.current = node;
-      update();
-      setIsMountedReference(!!node);
-    },
-    [update]
-  );
 
   if (disabled) {
     return children;
