@@ -7,10 +7,13 @@ ${variables.imports};
 
 ${variables.interfaces};
 
-export const ${componentName} = (${variables.props}) => (
-  ${variables.jsx}
-);
-`;
+export const ${componentName} = forwardRef(
+  (${variables.props}) => (
+    ${variables.jsx}
+  )
+) as React.ForwardRefExoticComponent<
+  Partial<React.PropsWithoutRef<SVGProps<SVGSVGElement>>> & React.RefAttributes<SVGSVGElement>
+>;`;
 };
 
 function indexTemplate(filePaths) {
@@ -25,6 +28,8 @@ module.exports = {
   expandProps: "end",
   typescript: true,
   svgo: false,
+  ref: true,
   template,
   indexTemplate,
+  prettier: false,
 };
