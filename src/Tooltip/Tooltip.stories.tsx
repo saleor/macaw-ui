@@ -2,6 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import { SquareButton } from "../SquareButton";
+import { Decorator } from "../utils/Decorator";
 import { Tooltip, TooltipProps } from "./Tooltip";
 
 const Template: Story<TooltipProps> = (args) => <Tooltip {...args} />;
@@ -9,6 +10,12 @@ const Template: Story<TooltipProps> = (args) => <Tooltip {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   variant: undefined,
+};
+
+export const WithHeader = Template.bind({});
+WithHeader.args = {
+  variant: undefined,
+  header: "App Permissions",
 };
 
 export const Success = Template.bind({});
@@ -49,5 +56,6 @@ export default {
         </div>
       </div>
     ),
+    Decorator,
   ],
 } as Meta<TooltipProps>;

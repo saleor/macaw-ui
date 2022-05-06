@@ -92,7 +92,14 @@ const useStyles = makeStyles<StyleProps, "tooltip" | "dark" | "header">(
         }
       },
     },
-    header: {},
+    header: {
+      fontSize: theme.typography.caption.fontSize,
+      letterSpacing: "10%",
+      fontWeight: 500,
+      textTransform: "uppercase",
+      marginBottom: theme.spacing(0.5),
+      color: light.main[3],
+    },
   }),
   {
     name: "Tooltip",

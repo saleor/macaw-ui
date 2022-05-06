@@ -148,7 +148,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
             onClick={onClick}
           >
             <div className={classes.tooltip}>
-              {header && <div>{header}</div>}
+              {header && <div className={classes.header}>{header}</div>}
               {title}
             </div>
             {hasArrow && (
