@@ -1,5 +1,4 @@
 import {
-  AlignedPlacement,
   arrow,
   autoUpdate,
   flip,
@@ -16,12 +15,12 @@ import {
   useRole,
 } from "@floating-ui/react-dom-interactions";
 import clsx from "clsx";
-import React, { useEffect, useLayoutEffect, useMemo } from "react";
-import { useCallback } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 
 import { useTheme } from "../theme";
+import { Arrow } from "./Arrow";
 import useStyles from "./styles";
 
 export interface TooltipProps {
@@ -38,13 +37,6 @@ export interface TooltipProps {
   header?: string;
   title?: React.ReactNode;
 }
-
-const mapSide: Record<Side, Side> = {
-  top: "bottom",
-  right: "left",
-  bottom: "top",
-  left: "right",
-} as const;
 
 export const Tooltip: React.FC<TooltipProps> = ({
   variant,
@@ -77,7 +69,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     context,
     refs,
     update,
-    middlewareData: { arrow: { x: arrowX, y: arrowY, centerOffset } = {} },
+    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
     placement: initialPlacement,
     open,
@@ -171,43 +163,20 @@ export const Tooltip: React.FC<TooltipProps> = ({
                 left: x ?? "",
               },
             })}
+            onClick={onClick}
           >
             <div className={classes.tooltip}>
               {header && <div>{header}</div>}
               {title}
             </div>
             {hasArrow && (
-              <div
-                className={classes.arrowContainer}
+              <Arrow
                 ref={mountArrow}
-                style={{
-                  top: arrowY ?? "",
-                  left: arrowX ?? "",
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 14 8"
-                  fill="none"
-                >
-                  <path
-                    className={classes.backgroundPath}
-                    fill-rule="evenodd"
-                    d="M12.25 7 8.6 2.133a2 2 0 0 0-3.2 0L1.75 7h10.5Z"
-                    clip-rule="evenodd"
-                  />
-                  <path
-                    className={classes.borderPath}
-                    fill-rule="evenodd"
-                    d="M5.8 2.433c.6-.8 1.8-.8 2.4 0L11.25 6.5h1.25L9 1.833a2.5 2.5 0 0 0-4 0L1.5 6.5h1.25L5.8 2.433Z"
-                    clip-rule="evenodd"
-                  />
-                  <path
-                    className={classes.backgroundPath}
-                    d="M12.5 6.5h-11l-.75 1h12.5l-.75-1Z"
-                  />
-                </svg>
-              </div>
+                x={arrowX}
+                y={arrowY}
+                variant={variant}
+                side={side}
+              />
             )}
           </div>
         )}
