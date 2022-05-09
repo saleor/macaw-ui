@@ -35,7 +35,7 @@ export interface TooltipProps {
   initialOpen?: boolean;
   disabled?: boolean;
   children: React.ReactElement;
-  header?: string;
+  header?: React.ReactNode;
   title?: React.ReactNode;
 }
 
