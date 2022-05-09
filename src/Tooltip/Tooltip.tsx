@@ -15,9 +15,7 @@ import {
   useRole,
 } from "@floating-ui/react-dom-interactions";
 import clsx from "clsx";
-import React, { useEffect, useMemo } from "react";
-import { useRef } from "react";
-import { useState } from "react";
+import React from "react";
 
 import { useTheme } from "../theme";
 import { useWatchRefMount } from "../utils/useWatchMountRef";
@@ -55,8 +53,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const { themeType } = useTheme();
 
-  const [stateOpen, setStateOpen] = useState(initialOpen);
-  const arrowRef = useRef<HTMLSpanElement | null>(null);
+  const [stateOpen, setStateOpen] = React.useState(initialOpen);
+  const arrowRef = React.useRef<HTMLSpanElement | null>(null);
 
   const open = forceState ?? stateOpen;
 
@@ -107,14 +105,14 @@ export const Tooltip: React.FC<TooltipProps> = ({
     useDismiss(context),
   ]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!refs.reference.current || !refs.floating.current || !open) {
       return;
     }
     return autoUpdate(refs.reference.current, refs.floating.current, update);
   }, [isMountedFloating, isMountedReference, update, open]);
 
-  const side = useMemo<Side>(() => {
+  const side = React.useMemo<Side>(() => {
     return placement.split("-")[0] as Side;
   }, [placement]);
 
