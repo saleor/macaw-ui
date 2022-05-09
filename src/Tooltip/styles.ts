@@ -94,7 +94,7 @@ const useStyles = makeStyles<StyleProps, "tooltip" | "dark" | "header">(
     },
     header: {
       fontSize: theme.typography.caption.fontSize,
-      letterSpacing: "10%",
+      letterSpacing: "0.1em",
       fontWeight: 500,
       textTransform: "uppercase",
       marginBottom: theme.spacing(0.5),
