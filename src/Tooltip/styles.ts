@@ -1,19 +1,9 @@
 import { Side } from "@floating-ui/core";
-import { parseToRgb, tint, toColorString } from "polished";
-import { RgbaColor } from "polished/lib/types/color";
 
 import { dark, light, makeStyles, SaleorTheme } from "../theme";
 import { TooltipProps } from "./Tooltip";
 
 export type StyleProps = Pick<TooltipProps, "variant"> & { side: Side };
-
-const removeAlpha = (color: string) => {
-  const parsed = parseToRgb(color) as RgbaColor;
-  return tint(
-    1 - parsed?.alpha ?? 0,
-    toColorString({ ...parsed, alpha: undefined })
-  );
-};
 
 export const getBorderColor = (isDark: boolean) => (props: StyleProps) => {
   if (isDark) {
@@ -25,7 +15,7 @@ export const getBorderColor = (isDark: boolean) => (props: StyleProps) => {
       case "error":
         return dark.fail.light;
       default:
-        return removeAlpha(light.main[3]);
+        return "#797d7d"; // dark.main[3] without alpha
     }
   }
 
@@ -37,7 +27,7 @@ export const getBorderColor = (isDark: boolean) => (props: StyleProps) => {
     case "error":
       return light.fail.mid;
     default:
-      return removeAlpha(light.main[3]);
+      return "#7d7f7f"; // light.main[3] without alpha
   }
 };
 

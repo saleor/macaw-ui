@@ -73,7 +73,7 @@
   "size-limit": [
     {
       "path": "dist/cjs/index.js",
-      "limit": "85 KB"
+      "limit": "100 KB"
     },
     {
       "path": "dist/esm/index.js",
@@ -134,7 +134,6 @@
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "polished": "^4.2.2",
     "react-inlinesvg": "^2.3.0"
   },
   "jest": {
