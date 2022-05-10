@@ -117,7 +117,65 @@ const Default: React.FC = () => {
   );
 };
 
+export const Docs = () => {
+  const classes = useStyles();
+  const guideClasses = useGuideStyles();
+
+  return (
+    <div>
+      <Typography className={guideClasses.headline} variant="h1">
+        Icons
+      </Typography>
+      <Typography className={guideClasses.paragraph} component="p">
+        Here's how to add new icons to Macaw UI:
+      </Typography>
+
+      <SectionHeader>Add new icon</SectionHeader>
+      <ol>
+        <li>
+          Import icons SVG files into <code>src/assets/icons</code> directory
+          <ul>
+            <li>
+              <b>20x20</b> - for icons with 20px width and height
+            </li>
+            <li>
+              <b>24x24</b> - for icons with 24px width and height
+            </li>
+            <li>
+              <b>32x32</b> - for icons with 32px width and height
+            </li>
+          </ul>
+        </li>
+        <li>
+          Run <code>npm run generate-icons</code> to generate icon components
+        </li>
+        <li>
+          Icons should be visibile in Storybook. Check if the icons have correct
+          color
+        </li>
+      </ol>
+
+      <SectionHeader>Fixing colors</SectionHeader>
+      <p>
+        I case when an an icon wasn't exported with <code>currentColor</code>{" "}
+        use this script for converting them to use <code>currentColor</code>:
+        <pre>
+          npm run optimise-icons:remove-color --
+          src/assets/icons/20x20/my-icon-name.svg
+        </pre>
+        To convert entire folder use this script:
+        <pre>
+          npm run optimise-icons:remove-color -- -r -d src/assets/icons/20x20
+        </pre>
+        Note: some icons might use masks that need to be a specific color (for
+        example white). Converting entire folder might break that
+      </p>
+    </div>
+  );
+};
+
 storiesOf("Icons", module)
   .addDecorator(Decorator)
   .addDecorator(GuideDecorator)
-  .add("default", () => <Default />);
+  .add("default", () => <Default />)
+  .add("adding more", () => <Docs />);

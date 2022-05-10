@@ -47,6 +47,7 @@
     "generate-icons-20": "svgr --no-dimensions --no-prettier --out-dir src/icons/20x20 -- src/assets/icons/20x20/",
     "generate-icons": "npm run optimise-icons && npm run generate-icons-32 && npm run generate-icons-24 && npm run generate-icons-20 && npm run lint",
     "optimise-icons": "svgo -r -f src/assets/icons",
+    "optimise-icons:remove-color": "svgo --config svgo-colors.config.js",
     "generate-icon": "hygen icon new",
     "build-icons": "node scripts/icons.js"
   },
