@@ -133,6 +133,35 @@ export const Docs = () => {
       <SectionHeader>Add new icon</SectionHeader>
       <ol>
         <li>
+          Rename icons to match naming scheme: All icons should use snake case
+          (my_name_of_icon.svg) + some suffix (icon, small_icon or large_icon)
+          <ul>
+            <li>
+              <b>20x20</b> - <code>_small_icon.svg</code>
+            </li>
+            <li>
+              <b>24x24</b> - <code>_icon.svg</code>
+            </li>
+            <li>
+              <b>32x32</b> - <code>_large_icon.svg</code>
+            </li>
+          </ul>
+          Batch fixing the naming using <code>rename</code> command:
+          <ul>
+            <li>
+              Remove Figma variant prefixes:{" "}
+              <code>rename -v 's/.+=//a' *.svg</code>
+            </li>
+            <li>
+              To lower case: <code>rename -f -c *.svg</code>
+            </li>
+            <li>
+              Add _icon to the name:{" "}
+              <code>rename -f -c -v 's/.svg/_icon.svg/' *.svg</code>
+            </li>
+          </ul>
+        </li>
+        <li>
           Import icons SVG files into <code>src/assets/icons</code> directory
           <ul>
             <li>
