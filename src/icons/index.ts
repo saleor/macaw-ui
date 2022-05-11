@@ -1,6 +1,7 @@
 export * from "./20x20";
 export * from "./24x24";
 export * from "./32x32";
+export * from "./indicator";
 
 export * from "./Logo";
 export * from "./LogoDark";

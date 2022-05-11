@@ -50,8 +50,11 @@ const smallIcons = sortedIcons.filter((icon) =>
 const largeIcons = sortedIcons.filter((icon) =>
   /LargeIcon/.test(icon.displayName)
 );
+const indicators = sortedIcons.filter((icon) =>
+  /Indicator/.test(icon.displayName)
+);
 const mediumIcons = sortedIcons.filter(
-  (icon) => ![...smallIcons, ...largeIcons].includes(icon)
+  (icon) => ![...smallIcons, ...largeIcons, ...indicators].includes(icon)
 );
 
 const SectionHeader: React.FC = ({ children }) => {
@@ -102,11 +105,23 @@ const Default: React.FC = () => {
         ))}
       </div>
 
-      <SectionHeader>Small 32x32</SectionHeader>
+      <SectionHeader>Large 32x32</SectionHeader>
       <div className={classes.iconGrid}>
         {largeIcons.map((Icon) => (
           <div className={classes.iconContainer}>
             <Icon className={classes.iconLarge} />
+            <Typography variant="caption" color="textSecondary">
+              {Icon.displayName}
+            </Typography>
+          </div>
+        ))}
+      </div>
+
+      <SectionHeader>Indicators</SectionHeader>
+      <div className={classes.iconGrid}>
+        {indicators.map((Icon) => (
+          <div className={classes.iconContainer}>
+            <Icon className={classes.icon} />
             <Typography variant="caption" color="textSecondary">
               {Icon.displayName}
             </Typography>
@@ -118,7 +133,6 @@ const Default: React.FC = () => {
 };
 
 export const Docs = () => {
-  const classes = useStyles();
   const guideClasses = useGuideStyles();
 
   return (
