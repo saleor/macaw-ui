@@ -3,15 +3,17 @@ const path = require("path");
 const template = (variables, { tpl }) => {
   const componentName = variables.componentName.replace("Svg", "");
   return tpl`
-import { createSvgIcon } from "@material-ui/core/utils";
 ${variables.imports};
 
 ${variables.interfaces};
 
-export const ${componentName} = createSvgIcon(
-    ${variables.jsx},
-    "${componentName}"
-);`;
+export const ${componentName} = forwardRef(
+  (${variables.props}) => (
+    ${variables.jsx}
+  )
+) as React.ForwardRefExoticComponent<
+  Partial<React.PropsWithoutRef<SVGProps<SVGSVGElement>>> & React.RefAttributes<SVGSVGElement>
+>;`;
 };
 
 function indexTemplate(filePaths) {
@@ -23,9 +25,10 @@ function indexTemplate(filePaths) {
 }
 
 module.exports = {
-  expandProps: false,
+  expandProps: "end",
   typescript: true,
   svgo: false,
+  ref: true,
   template,
   indexTemplate,
   prettier: false,

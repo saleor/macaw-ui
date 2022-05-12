@@ -45,7 +45,7 @@
     "generate-icons:32": "svgr --no-dimensions --no-prettier --out-dir src/icons/32x32 -- src/assets/icons/32x32/",
     "generate-icons:24": "svgr --no-dimensions --no-prettier --out-dir src/icons/24x24 -- src/assets/icons/24x24/",
     "generate-icons:20": "svgr --no-dimensions --no-prettier --out-dir src/icons/20x20 -- src/assets/icons/20x20/",
-    "generate-icons:indicator": "svgr --no-dimensions --no-prettier --out-dir src/icons/indicator -- src/assets/icons/indicator/",
+    "generate-icons:indicator": "svgr --no-dimensions --no-prettier --config-file .svgrrc-nomaterial.js --out-dir src/icons/indicator -- src/assets/icons/indicator/",
     "generate-icons": "npm run optimise-icons && npm run generate-icons:32 && npm run generate-icons:24 && npm run generate-icons:20 && npm run generate-icons:indicator && npm run lint",
     "optimise-icons": "svgo -r -f src/assets/icons",
     "optimise-icons:remove-color": "svgo --config svgo-colors.config.js",
