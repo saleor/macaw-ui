@@ -2,48 +2,9 @@ import { Side } from "@floating-ui/react-dom-interactions";
 import clsx from "clsx";
 import React, { forwardRef } from "react";
 
-import { makeStyles, useTheme } from "../theme";
-import { getBackgroundColor, getBorderColor, StyleProps } from "./styles";
+import { useTheme } from "../theme";
+import { useArrowStyles } from "./styles";
 import { TooltipProps } from "./Tooltip";
-
-const useStyles = makeStyles<StyleProps>((theme) => ({
-  borderPath: {
-    fill: getBorderColor(false),
-  },
-  backgroundPath: {
-    fill: getBackgroundColor(false, theme),
-  },
-  arrowContainer: {
-    width: "14px",
-    height: "8px",
-    position: "absolute",
-    transform: (props) => {
-      switch (props.side) {
-        case "top":
-          return "rotate(180deg)";
-        case "bottom":
-          return "rotate(0deg)";
-        case "left":
-          return "rotate(90deg)";
-        case "right":
-          return "rotate(-90deg)";
-      }
-    },
-    top: (props) => (props.side === "bottom" && "-13px") || "",
-    bottom: (props) => (props.side === "top" && "-13px") || "",
-    left: (props) => (props.side === "right" && "-16px") || "",
-    right: (props) => (props.side === "left" && "-16px") || "",
-  },
-  dark: {
-    "& $borderPath": {
-      fill: getBorderColor(true),
-    },
-
-    "& $backgroundPath": {
-      fill: getBackgroundColor(true, theme),
-    },
-  },
-}));
 
 interface ArrowProps {
   x: number | undefined;
@@ -55,7 +16,7 @@ interface ArrowProps {
 export const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
   ({ x, y, side, variant }, ref) => {
     const { themeType } = useTheme();
-    const classes = useStyles({ variant, side });
+    const classes = useArrowStyles({ variant, side });
 
     return (
       <div

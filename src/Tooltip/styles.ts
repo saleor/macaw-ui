@@ -96,4 +96,45 @@ const useStyles = makeStyles<StyleProps, "tooltip" | "dark" | "header">(
   }
 );
 
+export const useArrowStyles = makeStyles<StyleProps>(
+  (theme) => ({
+    borderPath: {
+      fill: getBorderColor(false),
+    },
+    backgroundPath: {
+      fill: getBackgroundColor(false, theme),
+    },
+    arrowContainer: {
+      width: "14px",
+      height: "8px",
+      position: "absolute",
+      transform: (props) => {
+        switch (props.side) {
+          case "top":
+            return "rotate(180deg)";
+          case "bottom":
+            return "rotate(0deg)";
+          case "left":
+            return "rotate(90deg)";
+          case "right":
+            return "rotate(-90deg)";
+        }
+      },
+      top: (props) => (props.side === "bottom" && "-13px") || "",
+      bottom: (props) => (props.side === "top" && "-13px") || "",
+      left: (props) => (props.side === "right" && "-16px") || "",
+      right: (props) => (props.side === "left" && "-16px") || "",
+    },
+    dark: {
+      "& $borderPath": {
+        fill: getBorderColor(true),
+      },
+
+      "& $backgroundPath": {
+        fill: getBackgroundColor(true, theme),
+      },
+    },
+  }),
+  { name: "TooltipArrow" }
+);
 export default useStyles;
