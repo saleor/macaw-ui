@@ -1,28 +1,18 @@
+import { createSvgIcon } from "@material-ui/core/utils";
 import * as React from "react";
-import { forwardRef, Ref, SVGProps } from "react";
-export const EnvironmentIcon = forwardRef(
-  (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      ref={ref}
-      {...props}
-    >
-      <path
-        d="M3 10h18M3 10v5a2 2 0 0 0 2 2h7m-9-7V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5m0 0v5a2 2 0 0 1-2 2h-7m0 0v4m0 0H6m6 0h7"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8 13.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm0-7a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-) as React.ForwardRefExoticComponent<
-  Partial<React.PropsWithoutRef<SVGProps<SVGSVGElement>>> &
-    React.RefAttributes<SVGSVGElement>
->;
+export const EnvironmentIcon = createSvgIcon(
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M3 10h18M3 10v5a2 2 0 0 0 2 2h7m-9-7V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5m0 0v5a2 2 0 0 1-2 2h-7m0 0v4m0 0H6m6 0h7"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M8 13.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm0-7a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+      fill="currentColor"
+    />
+  </svg>,
+  "EnvironmentIcon"
+);
