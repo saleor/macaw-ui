@@ -129,7 +129,7 @@
     "yargs": "^17.2.1"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.4.0",
+    "@floating-ui/react-dom-interactions": "^0.5.0",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",

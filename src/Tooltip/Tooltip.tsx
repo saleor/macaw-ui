@@ -18,7 +18,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { useTheme } from "../theme";
-import { useWatchRefMount } from "../utils/useWatchMountRef";
+import { mergeRefs } from "../utils/mergeRefs";
 import { Arrow } from "./Arrow";
 import useStyles from "./styles";
 
@@ -35,6 +35,10 @@ export interface TooltipProps {
   children: React.ReactElement;
   header?: React.ReactNode;
   title?: React.ReactNode;
+  /** Ref for element that triggers opening the tooltip on hover */
+  referenceRef?: React.Ref<HTMLElement>;
+  /** Ref for tooltip div element */
+  floatingRef?: React.Ref<HTMLDivElement>;
 }
 
 export const Tooltip: React.FC<TooltipProps> = ({
@@ -50,6 +54,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
   children,
   header,
   title,
+  referenceRef,
+  floatingRef,
 }) => {
   const { themeType } = useTheme();
 
@@ -64,8 +70,9 @@ export const Tooltip: React.FC<TooltipProps> = ({
     placement,
     strategy,
     context,
-    refs,
     update,
+    reference,
+    floating,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
     placement: initialPlacement,
@@ -87,30 +94,15 @@ export const Tooltip: React.FC<TooltipProps> = ({
       // padding matches border-radius of tooltip box
       arrow({ element: arrowRef, padding: 8 }),
     ],
+    whileElementsMounted: autoUpdate,
   });
-  const [isMountedReference, mountReference] = useWatchRefMount(
-    refs.reference,
-    update
-  );
-  const [isMountedFloating, mountFloating] = useWatchRefMount(
-    refs.floating,
-    update
-  );
-  const [, mountArrow] = useWatchRefMount(arrowRef, update);
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
-    useHover(context),
+    useHover(context, { restMs: 10 }),
     useFocus(context),
     useRole(context, { role: "tooltip" }),
     useDismiss(context),
   ]);
-
-  React.useEffect(() => {
-    if (!refs.reference.current || !refs.floating.current || !open) {
-      return;
-    }
-    return autoUpdate(refs.reference.current, refs.floating.current, update);
-  }, [isMountedFloating, isMountedReference, update, open]);
 
   const side = React.useMemo<Side>(() => {
     return placement.split("-")[0] as Side;
@@ -121,6 +113,16 @@ export const Tooltip: React.FC<TooltipProps> = ({
   if (disabled) {
     return children;
   }
+
+  const mountReference = React.useCallback(
+    mergeRefs(reference, referenceRef),
+    []
+  );
+  const mountFloating = React.useCallback(mergeRefs(floating, floatingRef), []);
+  const mountArrow = React.useCallback((el: HTMLDivElement) => {
+    arrowRef.current = el;
+    update();
+  }, []);
 
   return (
     <>
