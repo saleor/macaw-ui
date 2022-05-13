@@ -50,8 +50,11 @@ const smallIcons = sortedIcons.filter((icon) =>
 const largeIcons = sortedIcons.filter((icon) =>
   /LargeIcon/.test(icon.displayName)
 );
+const indicators = sortedIcons.filter((icon) =>
+  /Indicator/.test(icon.displayName)
+);
 const mediumIcons = sortedIcons.filter(
-  (icon) => ![...smallIcons, ...largeIcons].includes(icon)
+  (icon) => ![...smallIcons, ...largeIcons, ...indicators].includes(icon)
 );
 
 const SectionHeader: React.FC = ({ children }) => {
@@ -102,7 +105,7 @@ const Default: React.FC = () => {
         ))}
       </div>
 
-      <SectionHeader>Small 32x32</SectionHeader>
+      <SectionHeader>Large 32x32</SectionHeader>
       <div className={classes.iconGrid}>
         {largeIcons.map((Icon) => (
           <div className={classes.iconContainer}>
@@ -113,6 +116,103 @@ const Default: React.FC = () => {
           </div>
         ))}
       </div>
+
+      <SectionHeader>Indicators</SectionHeader>
+      <div className={classes.iconGrid}>
+        {indicators.map((Icon) => (
+          <div className={classes.iconContainer}>
+            <Icon className={classes.icon} />
+            <Typography variant="caption" color="textSecondary">
+              {Icon.displayName}
+            </Typography>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const Docs = () => {
+  const guideClasses = useGuideStyles();
+
+  return (
+    <div>
+      <Typography className={guideClasses.headline} variant="h1">
+        Icons
+      </Typography>
+      <Typography className={guideClasses.paragraph} component="p">
+        Here's how to add new icons to Macaw UI:
+      </Typography>
+
+      <SectionHeader>Add new icon</SectionHeader>
+      <ol>
+        <li>
+          Rename icons to match naming scheme: All icons should use snake case
+          (my_name_of_icon.svg) + some suffix (icon, small_icon or large_icon)
+          <ul>
+            <li>
+              <b>20x20</b> - <code>_small_icon.svg</code>
+            </li>
+            <li>
+              <b>24x24</b> - <code>_icon.svg</code>
+            </li>
+            <li>
+              <b>32x32</b> - <code>_large_icon.svg</code>
+            </li>
+          </ul>
+          Batch fixing the naming using <code>rename</code> command:
+          <ul>
+            <li>
+              Remove Figma variant prefixes:{" "}
+              <code>rename -v 's/.+=//a' *.svg</code>
+            </li>
+            <li>
+              To lower case: <code>rename -f -c *.svg</code>
+            </li>
+            <li>
+              Add _icon to the name:{" "}
+              <code>rename -f -c -v 's/.svg/_icon.svg/' *.svg</code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Import icons SVG files into <code>src/assets/icons</code> directory
+          <ul>
+            <li>
+              <b>20x20</b> - for icons with 20px width and height
+            </li>
+            <li>
+              <b>24x24</b> - for icons with 24px width and height
+            </li>
+            <li>
+              <b>32x32</b> - for icons with 32px width and height
+            </li>
+          </ul>
+        </li>
+        <li>
+          Run <code>npm run generate-icons</code> to generate icon components
+        </li>
+        <li>
+          Icons should be visibile in Storybook. Check if the icons have correct
+          color
+        </li>
+      </ol>
+
+      <SectionHeader>Fixing colors</SectionHeader>
+      <p>
+        I case when an an icon wasn't exported with <code>currentColor</code>{" "}
+        use this script for converting them to use <code>currentColor</code>:
+        <pre>
+          npm run optimise-icons:remove-color --
+          src/assets/icons/20x20/my-icon-name.svg
+        </pre>
+        To convert entire folder use this script:
+        <pre>
+          npm run optimise-icons:remove-color -- -r -d src/assets/icons/20x20
+        </pre>
+        Note: some icons might use masks that need to be a specific color (for
+        example white). Converting entire folder might break that
+      </p>
     </div>
   );
 };
@@ -120,4 +220,5 @@ const Default: React.FC = () => {
 storiesOf("Icons", module)
   .addDecorator(Decorator)
   .addDecorator(GuideDecorator)
-  .add("default", () => <Default />);
+  .add("default", () => <Default />)
+  .add("adding more", () => <Docs />);
