@@ -50,7 +50,8 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "react": "^16.8.0 || ^17.0.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "np": {
     "yarn": false
@@ -72,7 +73,7 @@
   "size-limit": [
     {
       "path": "dist/cjs/index.js",
-      "limit": "85 KB"
+      "limit": "100 KB"
     },
     {
       "path": "dist/esm/index.js",
@@ -86,9 +87,11 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@size-limit/preset-small-lib": "^4.10.2",
+    "@storybook/addon-controls": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.4.22",
+    "@storybook/addon-storysource": "^6.4.22",
     "@storybook/addons": "^6.4.22",
     "@storybook/react": "^6.4.22",
     "@types/fuzzaldrin": "^2.1.4",
@@ -109,15 +112,15 @@
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "eslint-plugin-storybook": "^0.5.10",
     "faker": "^5.5.3",
-    "husky": "^7.0.0",
     "fuzzaldrin": "^2.1.0",
+    "husky": "^7.0.0",
     "hygen": "^6.1.0",
     "jest": "^27.2.4",
     "jest-file": "^1.0.0",
     "np": "^7.5.0",
     "prettier": "^2.4.1",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-is": "^17.0.2",
     "size-limit": "^4.10.2",
     "storybook-dark-mode": "^1.0.9",
@@ -126,6 +129,7 @@
     "yargs": "^17.2.1"
   },
   "dependencies": {
+    "@floating-ui/react-dom-interactions": "^0.5.0",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",
