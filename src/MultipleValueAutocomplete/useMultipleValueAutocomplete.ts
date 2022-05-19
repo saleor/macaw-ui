@@ -3,6 +3,7 @@ import {
   UseComboboxGetItemPropsOptions,
   useMultipleSelection,
 } from "downshift";
+import isEqual from "lodash/isEqual";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
@@ -17,6 +18,7 @@ export interface UseMultipleValueAutocomplete {
   initialValue: Choice[];
   onChange?: (event: SyntheticChangeEvent<string[]>) => void;
   onInputChange?: (value: string) => void;
+  allowSelectAll?: boolean;
 }
 
 function useMultipleValueAutocomplete({
@@ -26,6 +28,7 @@ function useMultipleValueAutocomplete({
   name,
   onChange,
   onInputChange,
+  allowSelectAll,
 }: UseMultipleValueAutocomplete) {
   const anchor = useRef<HTMLDivElement>();
   const input = useRef<HTMLInputElement>();
@@ -43,7 +46,9 @@ function useMultipleValueAutocomplete({
     removeSelectedItem,
     selectedItems,
     setSelectedItems,
+    reset,
   } = useMultipleSelection({
+    defaultSelectedItems: [],
     initialSelectedItems: initialValue,
     onSelectedItemsChange: ({ selectedItems }) => {
       if (onChange) {
@@ -56,20 +61,33 @@ function useMultipleValueAutocomplete({
       }
     },
   });
-  const filteredChoices = useMemo(
-    () =>
-      choices.filter(
-        (choice) =>
-          !selectedItems.find(
-            (selectedChoice) => selectedChoice.value === choice.value
-          )
-      ),
-    [choices, selectedItems]
-  );
 
   useEffect(() => {
-    if (enableReinitialize) setSelectedItems(initialValue);
+    if (
+      enableReinitialize &&
+      !isEqual(initialValue, selectedItems) &&
+      !allowSelectAll
+    ) {
+      setSelectedItems(initialValue);
+    }
   }, [initialValue]);
+
+  const selectAllItems = () => {
+    if (allowSelectAll && choices && !areAllItemsSelected) {
+      setSelectedItems(choices);
+    } else {
+      setSelectedItems([]);
+    }
+  };
+
+  const areAllItemsSelected = useMemo(
+    () => isEqual(choices, selectedItems),
+    [selectedItems]
+  );
+
+  const removeAllItems = () => {
+    reset();
+  };
 
   const {
     isOpen,
@@ -87,7 +105,7 @@ function useMultipleValueAutocomplete({
   } = useCombobox({
     circularNavigation: false,
     defaultHighlightedIndex: 0,
-    items: filteredChoices,
+    items: choices,
     onInputValueChange: ({ inputValue }) => {
       setInputText(inputValue || "");
       if (onInputChange && inputValue) {
@@ -96,7 +114,15 @@ function useMultipleValueAutocomplete({
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        addSelectedItem(selectedItem);
+        if (
+          selectedItems.map(({ value }) => value).includes(selectedItem.value)
+        ) {
+          setSelectedItems(
+            selectedItems.filter(({ value }) => value !== selectedItem.value)
+          );
+        } else {
+          addSelectedItem(selectedItem);
+        }
         setInputValue("");
       }
     },
@@ -105,12 +131,10 @@ function useMultipleValueAutocomplete({
       switch (type) {
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.FunctionSelectItem:
-          const index = filteredChoices.findIndex(
-            (choice) => choice.value === changes.selectedItem?.value
-          );
           return {
             ...changes,
-            highlightedIndex: index > 0 ? index - 1 : 0,
+            // Since the choices don't disappear, the index needs to stay
+            highlightedIndex: _.highlightedIndex,
             isOpen: true,
           };
       }
@@ -151,7 +175,6 @@ function useMultipleValueAutocomplete({
   return {
     anchor,
     comboboxProps,
-    filteredChoices,
     getItemProps,
     getSelectedItemProps,
     getToggleButtonProps,
@@ -166,6 +189,9 @@ function useMultipleValueAutocomplete({
     ref: mergeRefs(comboboxDownshiftRef, anchor),
     removeSelectedItem,
     selectedItems,
+    selectAllItems,
+    areAllItemsSelected,
+    removeAllItems,
   };
 }
 

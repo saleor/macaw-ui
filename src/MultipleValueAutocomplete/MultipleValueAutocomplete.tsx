@@ -4,7 +4,10 @@ import Paper from "@material-ui/core/Paper";
 import Popper, { PopperPlacementType } from "@material-ui/core/Popper";
 import TextField, { StandardTextFieldProps } from "@material-ui/core/TextField";
 import clsx from "clsx";
-import { UseComboboxGetItemPropsOptions } from "downshift";
+import {
+  UseComboboxGetItemPropsOptions,
+  UseMultipleSelectionGetSelectedItemPropsOptions,
+} from "downshift";
 import React from "react";
 
 import { SyntheticChangeEvent } from "../../types/utils";
@@ -27,6 +30,8 @@ export interface MultipleValueAutocompleteProps
     highlightedIndex: number;
     inputValue: string;
     choices: Choice[];
+    selectAllItems: () => void;
+    areAllItemsSelected: boolean;
   }) => React.ReactNode | React.ReactNodeArray;
   className?: string;
   enableReinitialize?: boolean;
@@ -39,6 +44,21 @@ export interface MultipleValueAutocompleteProps
   onChange?: (event: SyntheticChangeEvent<string[]>) => void;
   onInputChange?: (value: string) => void;
   onScrollToBottom?: () => void;
+  allowSelectAll?: boolean;
+  onSelectAll?: () => void;
+  removableChips?: ({
+    selectedItems,
+    removeSelectedItem,
+    getSelectedItemProps,
+    removeAllItems,
+  }: {
+    selectedItems: Choice[];
+    removeSelectedItem: (item: Choice) => void;
+    getSelectedItemProps: (
+      options: UseMultipleSelectionGetSelectedItemPropsOptions<Choice>
+    ) => any;
+    removeAllItems: () => void;
+  }) => React.ReactNode;
 }
 
 export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps> =
@@ -54,13 +74,14 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
     onChange,
     onInputChange,
     onScrollToBottom,
+    allowSelectAll,
+    removableChips,
     ...rest
   }) => {
     const classes = useStyles();
     const {
       anchor,
       comboboxProps,
-      filteredChoices,
       getItemProps,
       getSelectedItemProps,
       getToggleButtonProps,
@@ -75,6 +96,9 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
       ref,
       removeSelectedItem,
       selectedItems,
+      selectAllItems,
+      areAllItemsSelected,
+      removeAllItems,
     } = useMultipleValueAutocomplete({
       choices,
       enableReinitialize,
@@ -82,6 +106,7 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
       name,
       onChange,
       onInputChange,
+      allowSelectAll,
     });
     const { anchor: dropdownRef, position, setAnchor } = useElementScroll();
 
@@ -117,15 +142,22 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
               }),
               input: clsx(classes.input, InputProps?.classes?.input),
             },
-            startAdornment: selectedItems.map((item, index) => (
-              <ChipRemovable
-                key={`selected-item-${index}`}
-                {...getSelectedItemProps({ selectedItem: item, index })}
-                onRemove={() => removeSelectedItem(item)}
-              >
-                {item.label}
-              </ChipRemovable>
-            )),
+            startAdornment: removableChips
+              ? removableChips({
+                  selectedItems,
+                  removeSelectedItem,
+                  getSelectedItemProps,
+                  removeAllItems,
+                })
+              : selectedItems.map((item, index) => (
+                  <ChipRemovable
+                    key={`selected-item-${index}`}
+                    {...getSelectedItemProps({ selectedItem: item, index })}
+                    onRemove={() => removeSelectedItem(item)}
+                  >
+                    {item.label}
+                  </ChipRemovable>
+                )),
             endAdornment: (
               <>
                 {loading && (
@@ -171,10 +203,12 @@ export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps>
                 ref={mergeRefs(setAnchor, menuProps.ref)}
               >
                 {children({
-                  choices: filteredChoices,
+                  choices,
                   highlightedIndex,
                   getItemProps,
                   inputValue,
+                  selectAllItems,
+                  areAllItemsSelected,
                 })}
               </Paper>
             </Grow>
