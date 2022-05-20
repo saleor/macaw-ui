@@ -109,7 +109,7 @@ export const light: SaleorThemeColors = {
   },
   autofill: "#f4f6c5",
   background: {
-    default: "#FAFBFA;",
+    default: "#FAFBFA",
     paper: "#FFFFFF",
   },
   checkbox: {
