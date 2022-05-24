@@ -11,6 +11,8 @@ export interface CircleIndicatorProps {
   color: CircleIndicatorColor;
 }
 
+/**
+ * @deprecated use IndicatorCircle component instead */
 export const CircleIndicator: React.FC<CircleIndicatorProps> = ({ color }) => {
   const { themeType } = useTheme();
   const classes = useStyles();
