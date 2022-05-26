@@ -41,145 +41,146 @@ export interface MultipleValueAutocompleteProps
   onScrollToBottom?: () => void;
 }
 
-export const MultipleValueAutocomplete: React.FC<MultipleValueAutocompleteProps> =
-  ({
+export const MultipleValueAutocomplete: React.FC<
+  MultipleValueAutocompleteProps
+> = ({
+  choices,
+  children,
+  enableReinitialize,
+  name,
+  InputProps,
+  initialValue = [],
+  loading,
+  popperPlacement = "bottom-start",
+  onChange,
+  onInputChange,
+  onScrollToBottom,
+  ...rest
+}) => {
+  const classes = useStyles();
+  const {
+    anchor,
+    comboboxProps,
+    filteredChoices,
+    getItemProps,
+    getSelectedItemProps,
+    getToggleButtonProps,
+    highlightedIndex,
+    inputProps,
+    inputRef,
+    inputValue,
+    inputWidth,
+    isOpen,
+    labelProps,
+    menuProps,
+    ref,
+    removeSelectedItem,
+    selectedItems,
+  } = useMultipleValueAutocomplete({
     choices,
-    children,
     enableReinitialize,
+    initialValue,
     name,
-    InputProps,
-    initialValue = [],
-    loading,
-    popperPlacement = "bottom-start",
     onChange,
     onInputChange,
-    onScrollToBottom,
-    ...rest
-  }) => {
-    const classes = useStyles();
-    const {
-      anchor,
-      comboboxProps,
-      filteredChoices,
-      getItemProps,
-      getSelectedItemProps,
-      getToggleButtonProps,
-      highlightedIndex,
-      inputProps,
-      inputRef,
-      inputValue,
-      inputWidth,
-      isOpen,
-      labelProps,
-      menuProps,
-      ref,
-      removeSelectedItem,
-      selectedItems,
-    } = useMultipleValueAutocomplete({
-      choices,
-      enableReinitialize,
-      initialValue,
-      name,
-      onChange,
-      onInputChange,
-    });
-    const { anchor: dropdownRef, position, setAnchor } = useElementScroll();
+  });
+  const { anchor: dropdownRef, position, setAnchor } = useElementScroll();
 
-    React.useEffect(() => {
-      if (
-        isOpen &&
-        onScrollToBottom &&
-        dropdownRef &&
-        isScrolledToBottom(dropdownRef, position!, 5)
-      ) {
-        onScrollToBottom();
-      }
-    }, [position?.y, dropdownRef]);
+  React.useEffect(() => {
+    if (
+      isOpen &&
+      onScrollToBottom &&
+      dropdownRef &&
+      isScrolledToBottom(dropdownRef, position!, 5)
+    ) {
+      onScrollToBottom();
+    }
+  }, [position?.y, dropdownRef]);
 
-    return (
-      <>
-        <TextField
-          {...rest}
-          {...comboboxProps}
-          name={name}
-          InputLabelProps={{
-            shrink: isOpen || selectedItems.length || inputValue.length,
-            ...labelProps,
-          }}
-          ref={ref}
-          InputProps={{
-            ...InputProps,
-            ...inputProps,
-            classes: {
-              ...(InputProps?.classes ?? {}),
-              root: clsx(classes.inputContainer, InputProps?.classes?.root, {
-                [classes.inputContainerWithChips]: selectedItems.length > 0,
-              }),
-              input: clsx(classes.input, InputProps?.classes?.input),
-            },
-            startAdornment: selectedItems.map((item, index) => (
-              <ChipRemovable
-                key={`selected-item-${index}`}
-                {...getSelectedItemProps({ selectedItem: item, index })}
-                onRemove={() => removeSelectedItem(item)}
-              >
-                {item.label}
-              </ChipRemovable>
-            )),
-            endAdornment: (
-              <>
-                {loading && (
-                  <div className={classes.loader}>
-                    <CircularProgress size={24} />
-                  </div>
-                )}
-                <IconButton
-                  {...getToggleButtonProps()}
-                  aria-label="toggle menu"
-                  className={classes.icon}
-                  hoverOutline={false}
-                  type="button"
-                  variant="secondary"
-                >
-                  <PlusIcon />
-                </IconButton>
-              </>
-            ),
-          }}
-          inputProps={{ ref: inputRef, style: { width: inputWidth } }}
-        />
-        <Popper
-          className={clsx(classes.popper, menuProps.className)}
-          open={isOpen}
-          anchorEl={anchor.current}
-          transition
-          placement={popperPlacement}
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === "bottom" ? "left top" : "left bottom",
-              }}
+  return (
+    <>
+      <TextField
+        {...rest}
+        {...comboboxProps}
+        name={name}
+        InputLabelProps={{
+          shrink: isOpen || selectedItems.length || inputValue.length,
+          ...labelProps,
+        }}
+        ref={ref}
+        InputProps={{
+          ...InputProps,
+          ...inputProps,
+          classes: {
+            ...(InputProps?.classes ?? {}),
+            root: clsx(classes.inputContainer, InputProps?.classes?.root, {
+              [classes.inputContainerWithChips]: selectedItems.length > 0,
+            }),
+            input: clsx(classes.input, InputProps?.classes?.input),
+          },
+          startAdornment: selectedItems.map((item, index) => (
+            <ChipRemovable
+              key={`selected-item-${index}`}
+              {...getSelectedItemProps({ selectedItem: item, index })}
+              onRemove={() => removeSelectedItem(item)}
             >
-              <Paper
-                className={classes.dropdown}
-                elevation={8}
-                style={{ width: anchor.current?.clientWidth }}
-                {...menuProps}
-                ref={mergeRefs(setAnchor, menuProps.ref)}
+              {item.label}
+            </ChipRemovable>
+          )),
+          endAdornment: (
+            <>
+              {loading && (
+                <div className={classes.loader}>
+                  <CircularProgress size={24} />
+                </div>
+              )}
+              <IconButton
+                {...getToggleButtonProps()}
+                aria-label="toggle menu"
+                className={classes.icon}
+                hoverOutline={false}
+                type="button"
+                variant="secondary"
               >
-                {children({
-                  choices: filteredChoices,
-                  highlightedIndex,
-                  getItemProps,
-                  inputValue,
-                })}
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </>
-    );
-  };
+                <PlusIcon />
+              </IconButton>
+            </>
+          ),
+        }}
+        inputProps={{ ref: inputRef, style: { width: inputWidth } }}
+      />
+      <Popper
+        className={clsx(classes.popper, menuProps.className)}
+        open={isOpen}
+        anchorEl={anchor.current}
+        transition
+        placement={popperPlacement}
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === "bottom" ? "left top" : "left bottom",
+            }}
+          >
+            <Paper
+              className={classes.dropdown}
+              elevation={8}
+              style={{ width: anchor.current?.clientWidth }}
+              {...menuProps}
+              ref={mergeRefs(setAnchor, menuProps.ref)}
+            >
+              {children({
+                choices: filteredChoices,
+                highlightedIndex,
+                getItemProps,
+                inputValue,
+              })}
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </>
+  );
+};

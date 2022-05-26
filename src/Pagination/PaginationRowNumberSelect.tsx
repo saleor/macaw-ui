@@ -15,39 +15,40 @@ export interface PaginationRowNumberSelectProps {
   onChange?: (value: number) => void;
 }
 
-export const PaginationRowNumberSelect: React.FC<PaginationRowNumberSelectProps> =
-  ({ className, choices, disabled, labels, rowNumber, onChange }) => {
-    const classes = useStyles({});
+export const PaginationRowNumberSelect: React.FC<
+  PaginationRowNumberSelectProps
+> = ({ className, choices, disabled, labels, rowNumber, onChange }) => {
+  const classes = useStyles({});
 
-    return (
-      <div className={clsx(classes.rowNumber, className)}>
-        <span className={classes.rowNumberLabel}>{labels.noOfRows}</span>
-        {onChange ? (
-          <Select
-            data-test-id="PaginationRowNumberSelect"
-            disabled={disabled}
-            inputProps={{
-              className: classes.rowNumberSelectLabel,
-            }}
-            className={classes.rowNumberSelect}
-            value={rowNumber}
-            onChange={(event) => onChange(event.target.value as number)}
-          >
-            {choices.length > 0 &&
-              choices.map((choice) => (
-                <MenuItem
-                  value={choice}
-                  key={choice}
-                  data-test-id="rowNumberOption"
-                >
-                  {choice}
-                </MenuItem>
-              ))}
-          </Select>
-        ) : (
-          ` ${rowNumber}`
-        )}
-      </div>
-    );
-  };
+  return (
+    <div className={clsx(classes.rowNumber, className)}>
+      <span className={classes.rowNumberLabel}>{labels.noOfRows}</span>
+      {onChange ? (
+        <Select
+          data-test-id="PaginationRowNumberSelect"
+          disabled={disabled}
+          inputProps={{
+            className: classes.rowNumberSelectLabel,
+          }}
+          className={classes.rowNumberSelect}
+          value={rowNumber}
+          onChange={(event) => onChange(event.target.value as number)}
+        >
+          {choices.length > 0 &&
+            choices.map((choice) => (
+              <MenuItem
+                value={choice}
+                key={choice}
+                data-test-id="rowNumberOption"
+              >
+                {choice}
+              </MenuItem>
+            ))}
+        </Select>
+      ) : (
+        ` ${rowNumber}`
+      )}
+    </div>
+  );
+};
 PaginationRowNumberSelect.displayName = "PaginationRowNumberSelect";
