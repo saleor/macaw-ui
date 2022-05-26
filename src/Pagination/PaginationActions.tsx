@@ -18,8 +18,8 @@ export interface PaginationActionsProps<BProps = unknown> {
   hasPreviousPage: boolean;
   nextIconButtonProps?: BaseButtonProps<BProps>;
   prevIconButtonProps?: BaseButtonProps<BProps>;
-  onNextPage: () => void;
-  onPreviousPage: () => void;
+  onNextPage?: () => void;
+  onPreviousPage?: () => void;
 }
 
 export const PaginationActions = <BProps,>({
@@ -29,8 +29,8 @@ export const PaginationActions = <BProps,>({
   hasPreviousPage,
   nextIconButtonProps,
   prevIconButtonProps,
-  onNextPage,
-  onPreviousPage,
+  onNextPage = () => {},
+  onPreviousPage = () => {},
   ...other
 }: PaginationActionsProps<BProps>) => {
   const classes = useStyles();
