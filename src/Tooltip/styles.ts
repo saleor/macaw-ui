@@ -138,3 +138,15 @@ export const useArrowStyles = makeStyles<StyleProps>(
   { name: "TooltipArrow" }
 );
 export default useStyles;
+
+export const useMountWrapperStyles = makeStyles(
+  {
+    wrapper: {
+      all: "unset",
+      display: "inline-block",
+      lineHeight: 0,
+      pointerEvents: "all",
+    },
+  },
+  { name: "TooltipMountWrapper" }
+);

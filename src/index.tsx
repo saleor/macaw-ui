@@ -33,6 +33,7 @@ export * from "./List";
 export * from "./NavigationCard";
 export * from "./Pill";
 export * from "./CircleIndicator";
+export * from "./Indicator";
 export * from "./SwitchSelector";
 export * from "./Autocomplete";
 export * from "./MultipleValueAutocomplete";
