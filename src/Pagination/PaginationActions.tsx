@@ -1,4 +1,4 @@
-import ButtonBase from "@material-ui/core/ButtonBase";
+import ButtonBase, { ButtonBaseTypeMap } from "@material-ui/core/ButtonBase";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ChevronRight from "@material-ui/icons/ChevronRight";
 import clsx from "clsx";
@@ -7,26 +7,32 @@ import React from "react";
 import { useTheme } from "../theme";
 import useStyles from "./styles";
 
-export interface PaginationActionsProps {
+type BaseButtonProps<M = unknown> = M extends Object
+  ? ButtonBaseTypeMap<M & { component: React.ElementType }>["props"]
+  : ButtonBaseTypeMap<{ href?: string }>["props"];
+
+export interface PaginationActionsProps<BProps = unknown> {
   className?: string;
   disabled?: boolean;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
-  nextIconButtonProps?: any;
+  nextIconButtonProps?: BaseButtonProps<BProps>;
+  prevIconButtonProps?: BaseButtonProps<BProps>;
   onNextPage: () => void;
   onPreviousPage: () => void;
 }
 
-export const PaginationActions: React.FC<PaginationActionsProps> = ({
+export const PaginationActions = <BProps,>({
   className,
   disabled,
   hasNextPage,
   hasPreviousPage,
   nextIconButtonProps,
+  prevIconButtonProps,
   onNextPage,
   onPreviousPage,
   ...other
-}) => {
+}: PaginationActionsProps<BProps>) => {
   const classes = useStyles();
 
   const { direction, themeType } = useTheme();
@@ -47,6 +53,7 @@ export const PaginationActions: React.FC<PaginationActionsProps> = ({
         disabled={previousDisabled}
         data-test="button-pagination-back"
         aria-label="previous page"
+        {...prevIconButtonProps}
       >
         {direction === "rtl" ? <ChevronRight /> : <ChevronLeft />}
       </ButtonBase>
