@@ -8,8 +8,8 @@ import {
 } from "./PaginationRowNumberSelect";
 import useStyles from "./styles";
 
-export interface PaginationProps
-  extends PaginationActionsProps,
+export interface PaginationProps<ActionProps = {}>
+  extends PaginationActionsProps<ActionProps>,
     Omit<
       PaginationRowNumberSelectProps,
       "className" | "choices" | "onChange" | "rowNumber"
@@ -20,19 +20,20 @@ export interface PaginationProps
   onRowNumberUpdate?: (rowNumber: number) => void;
 }
 
-export const Pagination: React.FC<PaginationProps> = ({
+export const Pagination = <ActionProps,>({
   choices = [10, 20, 30, 50, 100],
   disabled,
   hasNextPage,
   hasPreviousPage,
   nextIconButtonProps,
+  prevIconButtonProps,
   labels,
   rowNumber,
   onNextPage,
   onPreviousPage,
   onRowNumberUpdate,
   ...other
-}) => {
+}: PaginationProps<ActionProps>): React.ReactElement => {
   const classes = useStyles();
 
   return (
@@ -53,6 +54,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         hasNextPage={hasNextPage}
         hasPreviousPage={hasPreviousPage}
         nextIconButtonProps={nextIconButtonProps}
+        prevIconButtonProps={prevIconButtonProps}
         onNextPage={onNextPage}
         onPreviousPage={onPreviousPage}
       />
