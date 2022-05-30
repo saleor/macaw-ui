@@ -1,13 +1,31 @@
-import { createSvgIcon } from "@material-ui/core/utils";
+import SvgIcon from "@material-ui/core/SvgIcon";
 import * as React from "react";
-export const SortBigSmallIcon = createSvgIcon(
-  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M10 4v12m0-12L6 8m4-4 4 4"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-    />
-  </svg>,
-  "SortBigSmallIcon"
+
+import { useIconStyles } from "../styles";
+import { IconProps } from "../types";
+export const SortBigSmallIcon = React.forwardRef(
+  (props: IconProps, ref: React.Ref<SVGSVGElement>) => {
+    const classes = useIconStyles();
+    return (
+      <SvgIcon
+        width={20}
+        height={20}
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        classes={{
+          root: classes.root,
+        }}
+        {...props}
+        ref={ref}
+      >
+        <path
+          d="M10 4v12m0-12L6 8m4-4 4 4"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+        />
+      </SvgIcon>
+    );
+  }
 );
