@@ -26,7 +26,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       ...overrides(colors, fontFamily),
       MuiCard: {
         root: {
-          border: `1px solid ${colors.main[6]}`,
+          border: `1px solid ${colors.border.paper}`,
           borderRadius: 6,
           overflow: "visible",
         },
