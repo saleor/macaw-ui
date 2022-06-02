@@ -24,6 +24,7 @@ export * from "./EditIcon";
 export * from "./EnvironmentIcon";
 export * from "./ExpandIcon";
 export * from "./ExpendableIcon";
+export * from "./EyeClosedIcon";
 export * from "./EyeIcon";
 export * from "./FilteringIcon";
 export * from "./GenerateIcon";
