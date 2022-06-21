@@ -10,13 +10,20 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(1),
     },
     icon: {
-      "& svg": {
+      "& svg, img": {
         height: 32,
         width: 32,
       },
       transition: theme.transitions.create("color", {
         duration: theme.transitions.duration.shorter,
       }),
+    },
+    largeIcon: {
+      "& svg, img": {
+        height: "100%",
+        maxHeight: 64,
+        width: "auto",
+      },
     },
     card: {
       "&:hover": {
