@@ -110,10 +110,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   const classes = useStyles({ variant, side });
 
-  if (disabled) {
-    return children;
-  }
-
   const mountReference = React.useCallback(
     mergeRefs(reference, referenceRef),
     []
@@ -123,6 +119,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
     arrowRef.current = el;
     update();
   }, []);
+
+  if (disabled) {
+    return children;
+  }
 
   return (
     <>
