@@ -54,6 +54,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onMenuItemClick,
   logoHref,
   linkComponent,
+  className,
 }) => {
   const classes = useStyles({});
   const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
@@ -67,7 +68,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className={clsx(classes.root, {
+      className={clsx(className, classes.root, {
         [classes.rootShrink]: isShrunk,
       })}
     >
