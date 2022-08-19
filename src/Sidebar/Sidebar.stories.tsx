@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
+import { ImageIcon } from "../icons/ImageIcon";
 import { SquareButton } from "../SquareButton";
 import * as fixtures from "./fixtures";
 import { Sidebar, SidebarProps } from "./Sidebar";
@@ -17,6 +18,10 @@ export const SubmenuSelected: Story = () => (
 );
 export const WithToolbar: Story = () => (
   <Sidebar {...props} toolbar={<SquareButton>tool</SquareButton>} />
+);
+
+export const WithCustomLogo: Story = () => (
+  <Sidebar {...props} logo={<ImageIcon />} />
 );
 
 export default {

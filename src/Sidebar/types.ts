@@ -24,4 +24,5 @@ export interface BaseSidebarProps {
   onMenuItemClick: (menuItem: SidebarMenuItem) => void;
   linkComponent?: CustomLinkComponent;
   logoHref?: string;
+  logo?: React.SVGProps<SVGSVGElement>;
 }

@@ -55,6 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   logoHref,
   linkComponent,
   className,
+  logo,
 }) => {
   const classes = useStyles({});
   const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
@@ -74,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       <div className={classes.float}>
         <Link href={logoHref} className={classes.logo}>
-          {themeType === "dark" ? <LogoDark /> : <Logo />}
+          {!!logo ? logo : themeType === "dark" ? <LogoDark /> : <Logo />}
         </Link>
         {menuItems.map((menuItem) =>
           linkComponent ? (
