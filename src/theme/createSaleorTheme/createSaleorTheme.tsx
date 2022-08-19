@@ -18,7 +18,7 @@ import { SaleorTheme, SaleorThemeColors } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
-const fontFamily = '"Inter", "roboto", "sans-serif"';
+const fontFamily = "'Source Sans Pro', sans-serif";
 
 export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
   createMuiTheme({
