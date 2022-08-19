@@ -57,7 +57,7 @@ const _Button: React.FC<ButtonProps> = React.forwardRef(
     return (
       <MuiButton
         ref={ref}
-        className={clsx(className, {
+        className={clsx(className, classes.buttonDefault, {
           [classes.primary]: variant === "primary" && error,
           [classes.primaryDisabled]:
             variant === "primary" && error && props.disabled,

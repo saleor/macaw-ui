@@ -2,6 +2,12 @@ import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
   (theme) => ({
+    buttonDefault: {
+      "& span": {
+        fontWeight: 600,
+      },
+    },
+
     primary: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
@@ -24,15 +30,15 @@ const useStyles = makeStyles(
     secondary: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
-          borderColor: theme.palette.saleor.errorAction[1],
-          color: theme.palette.saleor.errorAction[1],
+          borderColor: theme.palette.saleor.active[1],
+          color: theme.palette.saleor.active[1],
         },
         "&:active": {
           background: theme.palette.saleor.errorAction[5],
           borderColor: theme.palette.saleor.errorAction[1],
         },
       },
-      borderColor: theme.palette.saleor.errorAction[4],
+      borderColor: theme.palette.saleor.main[4],
       color: theme.palette.saleor.errorAction[2],
     },
     secondaryDisabled: {
@@ -58,7 +64,7 @@ const useStyles = makeStyles(
     },
     tertiaryDisabled: {
       "&&&": {
-        borderColor: theme.palette.saleor.errorAction[5],
+        borderColor: "transparent",
         color: theme.palette.saleor.errorAction[5],
       },
     },

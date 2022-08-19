@@ -27,7 +27,7 @@ export type SaleorThemeColors = Record<
   warning: VariantColors;
   success: VariantColors;
   info: VariantColors;
-  main: Record<1 | 2 | 3 | 4 | 5, string>;
+  main: Record<1 | 2 | 3 | 4 | 5 | 6, string>;
   active: Record<1 | 2 | 3 | 4 | 5, string>;
   errorAction: Record<1 | 2 | 3 | 4 | 5, string>;
 };
