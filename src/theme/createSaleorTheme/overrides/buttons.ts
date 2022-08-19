@@ -7,8 +7,8 @@ export const buttonOverrides = (
 ): ThemeOptions["overrides"] => {
   const containedPrimaryHover = {
     backgroundColor: colors.background.paper,
-    color: colors.active[2],
-    borderColor: colors.active[2],
+    color: colors.active[1],
+    borderColor: colors.active[1],
   };
 
   return {
@@ -55,7 +55,7 @@ export const buttonOverrides = (
         "&:hover": {
           backgroundColor: undefined,
         },
-        border: `1px solid ${colors.active[1]}`,
+        border: `1px solid ${colors.main[1]}`,
         borderRadius: 4,
         fontSize: "1.6rem",
         lineHeight: 1.55,
