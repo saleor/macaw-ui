@@ -7,7 +7,8 @@ export const buttonOverrides = (
 ): ThemeOptions["overrides"] => {
   const containedPrimaryHover = {
     backgroundColor: colors.background.paper,
-    color: colors.active[1],
+    color: colors.active[2],
+    borderColor: colors.active[2],
   };
 
   return {
