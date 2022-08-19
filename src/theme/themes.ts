@@ -115,8 +115,8 @@ export const light: SaleorThemeColors = {
   },
 
   active: {
-    1: "#056DFF",
-    2: "#378AFF",
+    1: "rgba(37, 41, 41, 1)",
+    2: "#056DFF",
     3: "#68A7FF",
     4: "#C1DBFF",
     5: "#E6F0FF",
