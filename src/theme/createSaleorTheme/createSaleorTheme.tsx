@@ -248,6 +248,11 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           disableRipple: true,
         },
       },
+      MuiLink: {
+        style: {
+          color: colors.active[1],
+        },
+      },
       MuiTypography: {
         component: "div",
       } as TypographyProps,
