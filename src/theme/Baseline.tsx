@@ -59,7 +59,7 @@ const useStyles = makeStyles(
         fontSize: "58.4%",
       },
       a: {
-        color: theme.palette.primary.main,
+        color: theme.palette.saleor.active[1],
         textDecoration: "none",
       },
     },
