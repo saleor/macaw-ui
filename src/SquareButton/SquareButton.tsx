@@ -1,4 +1,4 @@
-import ButtonBase, { ButtonBaseProps } from "@material-ui/core/ButtonBase";
+import ButtonBase, { ButtonBaseProps } from "@mui/material/ButtonBase";
 import clsx from "clsx";
 import React from "react";
 

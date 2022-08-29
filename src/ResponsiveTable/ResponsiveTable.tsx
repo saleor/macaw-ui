@@ -1,4 +1,4 @@
-import Table from "@material-ui/core/Table";
+import Table from "@mui/material/Table";
 import React from "react";
 
 import useStyles from "./styles";

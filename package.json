@@ -35,6 +35,7 @@
     "build": "npm run build-esb && npm run build-tsc",
     "test": "jest",
     "lint": "eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix ; prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write",
+    "lint-storybook": "eslint \"stories/**/*.@(tsx|ts|jsx|js)\" --fix ; prettier --check \"stories/**/*.@(tsx|ts|jsx|js)\" --write",
     "prepare": "npm run build",
     "size": "size-limit",
     "analyze": "size-limit --why",
@@ -90,9 +91,6 @@
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@linjiajian999/esbuild-plugin-import": "^1.0.2",
-    "@material-ui/core": "^4.11.2",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.58",
     "@size-limit/preset-small-lib": "^4.10.2",
     "@storybook/addon-controls": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
@@ -138,7 +136,11 @@
     "yargs": "^17.2.1"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
     "@floating-ui/react-dom-interactions": "^0.5.0",
+    "@mui/icons-material": "^5.10.2",
+    "@mui/material": "^5.10.2",
+    "@mui/styles": "^5.10.2",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",

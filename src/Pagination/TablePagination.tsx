@@ -1,5 +1,5 @@
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import React from "react";
 
 import { Pagination, PaginationProps } from "./Pagination";

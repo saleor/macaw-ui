@@ -7,7 +7,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Meta } from "@storybook/react";
 import React from "react";
 

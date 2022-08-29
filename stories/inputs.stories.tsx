@@ -1,8 +1,4 @@
-import {
-  StandardTextFieldProps,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { StandardTextFieldProps, TextField, Typography } from "@mui/material";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 

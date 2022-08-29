@@ -1,4 +1,4 @@
-import { MenuItem } from "@material-ui/core";
+import { MenuItem } from "@mui/material";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 

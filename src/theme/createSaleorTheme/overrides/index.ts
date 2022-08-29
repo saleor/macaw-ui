@@ -1,4 +1,4 @@
-import type { ThemeOptions } from "@material-ui/core/styles";
+import type { ThemeOptions } from "@mui/material/styles";
 
 import { SaleorThemeColors } from "../types";
 import { buttonOverrides } from "./buttons";
@@ -9,7 +9,7 @@ import { tableOverrides } from "./tables";
 export const overrides = (
   colors: SaleorThemeColors,
   fontFamily: string
-): ThemeOptions["overrides"] => ({
+): ThemeOptions["components"] => ({
   ...inputOverrides(colors),
   ...tableOverrides(colors, fontFamily),
   ...buttonOverrides(colors),

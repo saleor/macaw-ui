@@ -26,7 +26,7 @@ export const createPalette = (
   },
   text: {
     disabled: colors.main[4],
-    hint: colors.main[3],
+    // hint: colors.main[3],
     primary: colors.main[1],
     secondary: colors.main[3],
   },
@@ -34,6 +34,6 @@ export const createPalette = (
     active: colors.active[1],
     inactive: colors.highlightInactive.default,
   },
-  type: colors.theme,
+  // type: colors.theme,
   saleor: colors,
 });

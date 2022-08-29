@@ -1,6 +1,6 @@
-import MenuItem from "@material-ui/core/MenuItem";
-import Select, { SelectProps } from "@material-ui/core/Select";
-import Typography from "@material-ui/core/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent, SelectProps } from "@mui/material/Select";
+import Typography from "@mui/material/Typography";
 import { difference, uniqBy } from "lodash";
 import React from "react";
 
@@ -10,7 +10,6 @@ import { useFilters } from "./context";
 import { FilterContent } from "./FilterContent";
 import useStyles from "./styles";
 import {
-  EventTarget,
   FilterDetailedOptions,
   FilterLabels,
   FilterOptions,
@@ -89,7 +88,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
     ),
   ];
 
-  const change = (event: React.ChangeEvent<EventTarget<unknown>>) => {
+  const change = (event: SelectChangeEvent<unknown>) => {
     const targetFilterName = event.target.value as string;
 
     swap(name, targetFilterName);
@@ -97,6 +96,8 @@ export const FilterRow: React.FC<FilterRowProps> = ({
 
   const selectProps: SelectProps = {
     classes: {
+      // TO-DO
+      // @ts-ignore
       selectMenu: classes.filterInputInner,
     },
     variant: "outlined",

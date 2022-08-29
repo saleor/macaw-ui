@@ -1,5 +1,5 @@
-import { FormControlLabel, Typography } from "@material-ui/core";
-import { ArrowDownward } from "@material-ui/icons";
+import { ArrowDownward } from "@mui/icons-material";
+import { FormControlLabel, Typography } from "@mui/material";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 

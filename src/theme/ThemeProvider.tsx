@@ -1,5 +1,5 @@
-import type { Theme } from "@material-ui/core/styles";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import type { Theme } from "@mui/material/styles";
+import { ThemeProvider as MuiThemeProvider } from "@mui/styles";
 import { merge } from "lodash";
 import React, { useEffect } from "react";
 

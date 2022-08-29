@@ -1,9 +1,9 @@
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import MuiMenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import { fade } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import MuiMenuItem from "@mui/material/MenuItem";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import { alpha } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import clsx from "clsx";
 import React from "react";
 import SVG from "react-inlinesvg";
@@ -97,7 +97,7 @@ const useStyles = makeStyles(
       },
       borderBottomRightRadius: 4,
       borderTopRightRadius: 4,
-      color: fade(theme.palette.text.primary, 0.6),
+      color: alpha(theme.palette.text.primary, 0.6),
       cursor: "pointer",
       display: "flex",
       height: 56,
@@ -122,7 +122,9 @@ const useStyles = makeStyles(
     rootOpen: {},
     subMenuHeader: {
       textTransform: "uppercase",
-      color: theme.palette.text.hint,
+      // TO-DO
+      // @ts-ignore
+      // color: theme.palette.text.hint,
       padding: theme.spacing(2, 2, 0.5, 2),
     },
     subMenuLabel: {

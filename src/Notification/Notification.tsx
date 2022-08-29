@@ -1,5 +1,5 @@
-import SnackbarContent from "@material-ui/core/SnackbarContent";
-import Typography from "@material-ui/core/Typography";
+import SnackbarContent from "@mui/material/SnackbarContent";
+import Typography from "@mui/material/Typography";
 import clsx from "clsx";
 import React, { useState } from "react";
 

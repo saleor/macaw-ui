@@ -1,13 +1,13 @@
-import Checkbox from "@material-ui/core/Checkbox";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import Checkbox from "@mui/material/Checkbox";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import clsx from "clsx";
 import React from "react";
 
 import { Chip } from "../../Chip";
 import { useFilters } from "../context";
 import useStyles from "../styles";
-import { EventTarget, FilterData } from "../types";
+import { FilterData } from "../types";
 
 export interface FilterContentProps {
   filter: FilterData;
@@ -25,13 +25,15 @@ export const MultipleSelectFilterField: React.FC<FilterContentProps> = ({
   const { name, options } = filter;
   const { choices } = options;
 
-  const handleChoiceChange = (event: React.ChangeEvent<EventTarget>) =>
+  const handleChoiceChange = (event: SelectChangeEvent<string[] | null>) =>
     onChange(name, event.target.value as string);
 
   return (
     <Select
       className={classes.filterValue}
       classes={{
+        // TO-DO
+        // @ts-ignore
         root: classes.filterMultipleValueInputInner,
       }}
       multiple

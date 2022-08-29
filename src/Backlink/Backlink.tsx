@@ -1,5 +1,5 @@
-import Portal from "@material-ui/core/Portal";
-import Skeleton from "@material-ui/lab/Skeleton";
+import { Skeleton } from "@mui/material";
+import Portal from "@mui/material/Portal";
 import React from "react";
 
 import { ArrowRightIcon } from "../icons";

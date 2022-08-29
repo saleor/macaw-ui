@@ -1,7 +1,9 @@
-import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
-import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
-import MenuIcon from "@material-ui/icons/Menu";
+import {
+  ArrowLeft as ArrowLeftIcon,
+  Menu as MenuIcon,
+} from "@mui/icons-material";
+import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
 import clsx from "clsx";
 import React from "react";
 import SVG from "react-inlinesvg";

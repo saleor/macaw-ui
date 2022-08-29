@@ -1,4 +1,4 @@
-import CloseIcon from "@material-ui/icons/Close";
+import { Close as CloseIcon } from "@mui/icons-material";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 

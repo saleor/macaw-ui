@@ -1,11 +1,11 @@
-import Avatar from "@material-ui/core/Avatar";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Hidden from "@material-ui/core/Hidden";
-import Menu from "@material-ui/core/MenuList";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import Typography from "@material-ui/core/Typography";
+import Avatar from "@mui/material/Avatar";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Hidden from "@mui/material/Hidden";
+import Menu from "@mui/material/MenuList";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import Typography from "@mui/material/Typography";
 import React from "react";
 
 import { LayoutButton } from "..";

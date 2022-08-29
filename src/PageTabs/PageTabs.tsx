@@ -1,4 +1,4 @@
-import Tabs, { TabsProps } from "@material-ui/core/Tabs";
+import Tabs, { TabsProps } from "@mui/material/Tabs";
 import React from "react";
 
 import useStyles from "./styles";

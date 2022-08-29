@@ -1,4 +1,4 @@
-import type { ThemeOptions } from "@material-ui/core/styles";
+import type { ThemeOptions } from "@mui/material/styles";
 
 const createShadow = (pv: number, pb: number, ps: number) =>
   `0 ${pv}px ${pb}px ${ps}px rgba(0, 0, 0, 0.15)`;

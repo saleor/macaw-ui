@@ -1,10 +1,10 @@
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import React from "react";
 
 import { useFilters } from "../context";
 import useStyles from "../styles";
-import { EventTarget, FilterData } from "../types";
+import { FilterData } from "../types";
 
 export interface FilterContentProps {
   filter: FilterData;
@@ -17,13 +17,15 @@ export const SelectFilterField: React.FC<FilterContentProps> = ({ filter }) => {
   const { name, options } = filter;
   const { choices } = options;
 
-  const handleChoiceChange = (event: React.ChangeEvent<EventTarget>) =>
+  const handleChoiceChange = (event: SelectChangeEvent<string | null>) =>
     onChange(name, event.target.value as string);
 
   return (
     <Select
       className={classes.filterValue}
       classes={{
+        // TO-DO
+        // @ts-ignore
         selectMenu: classes.filterInputInner,
       }}
       variant="outlined"

@@ -1,9 +1,9 @@
-import ButtonBase from "@material-ui/core/ButtonBase";
-import { IconButtonTypeMap as MuiIconButtonTypeMap } from "@material-ui/core/IconButton";
+import ButtonBase from "@mui/material/ButtonBase";
+import { IconButtonTypeMap as MuiIconButtonTypeMap } from "@mui/material/IconButton";
 import MuiIconButton, {
   IconButtonProps as MuiIconButtonProps,
-} from "@material-ui/core/IconButton";
-import { OverrideProps } from "@material-ui/core/OverridableComponent";
+} from "@mui/material/IconButton";
+import { OverrideProps } from "@mui/material/OverridableComponent";
 import clsx from "clsx";
 import React from "react";
 

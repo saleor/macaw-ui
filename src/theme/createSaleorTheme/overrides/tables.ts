@@ -1,77 +1,85 @@
-import { ThemeOptions } from "@material-ui/core/styles";
+import { ThemeOptions } from "@mui/material/styles";
 
 import { SaleorThemeColors } from "../types";
 
 export const tableOverrides = (
   colors: SaleorThemeColors,
   fontFamily: string
-): ThemeOptions["overrides"] => ({
+): ThemeOptions["components"] => ({
   MuiTable: {
-    root: {
-      fontFamily,
-      fontFeatureSettings: '"tnum"',
+    styleOverrides: {
+      root: {
+        fontFamily,
+        fontFeatureSettings: '"tnum"',
+      },
     },
   },
   MuiTableCell: {
-    body: {
-      fontSize: "1.6rem",
-    },
-    head: {
-      fontSize: "1.4rem",
-      fontWeight: 400,
-      color: colors.main[3],
-    },
-    paddingCheckbox: {
-      "&:first-child": {
-        padding: "0 18px",
-        width: 72,
+    styleOverrides: {
+      body: {
+        fontSize: "1.6rem",
       },
-      "&:not(first-child)": {
-        padding: 0,
-        width: 52,
+      head: {
+        fontSize: "1.4rem",
+        fontWeight: 400,
+        color: colors.main[3],
       },
-      "&:last-child": {
-        paddingRight: 20,
-      },
-    },
-    root: {
-      "&:first-child": {
-        "&:not($paddingCheckbox)": {
-          paddingLeft: 32,
-          paddingRight: 32,
-          textAlign: "left",
+      paddingCheckbox: {
+        "&:first-child": {
+          padding: "0 18px",
+          width: 72,
+        },
+        "&:not(first-child)": {
+          padding: 0,
+          width: 52,
+        },
+        "&:last-child": {
+          paddingRight: 20,
         },
       },
-      borderBottomColor: colors.background.default,
-      padding: "24px 32px",
+      root: {
+        "&:first-child": {
+          "&:not($paddingCheckbox)": {
+            paddingLeft: 32,
+            paddingRight: 32,
+            textAlign: "left",
+          },
+        },
+        borderBottomColor: colors.background.default,
+        padding: "24px 32px",
+      },
     },
   },
   MuiTablePagination: {
-    input: {
-      color: colors.active[1],
-      fontSize: "1.4rem",
+    styleOverrides: {
+      input: {
+        color: colors.active[1],
+        fontSize: "1.4rem",
+      },
     },
   },
   MuiTableRow: {
-    footer: {
-      "$root$hover&:hover": {
-        background: "none",
+    styleOverrides: {
+      footer: {
+        "$root$hover&:hover": {
+          background: "none",
+        },
       },
-    },
-    head: {
-      "$root$hover&:hover": {
-        background: "none",
+      head: {
+        "$root$hover&:hover": {
+          background: "none",
+        },
+        color: colors.main[3],
       },
-      color: colors.main[3],
-    },
-    hover: {
-      "$root&:hover": {
-        background: colors.active[5],
+      hover: {
+        "$root&:hover": {
+          background: colors.active[5],
+        },
+        transition: "200ms",
       },
-      transition: "200ms",
-    },
-    root: {
-      position: "relative",
+      root: {
+        position: "relative",
+      },
     },
   },
 });

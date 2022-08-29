@@ -1,6 +1,5 @@
-import ButtonBase, { ButtonBaseTypeMap } from "@material-ui/core/ButtonBase";
-import ChevronLeft from "@material-ui/icons/ChevronLeft";
-import ChevronRight from "@material-ui/icons/ChevronRight";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import ButtonBase, { ButtonBaseTypeMap } from "@mui/material/ButtonBase";
 import clsx from "clsx";
 import React from "react";
 

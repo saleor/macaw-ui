@@ -1,6 +1,6 @@
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import Checkbox from "@material-ui/core/Checkbox";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import Checkbox from "@mui/material/Checkbox";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 

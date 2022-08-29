@@ -1,4 +1,4 @@
-import Chip, { ChipProps } from "@material-ui/core/Chip";
+import Chip, { ChipProps } from "@mui/material/Chip";
 import clsx from "clsx";
 import React from "react";
 

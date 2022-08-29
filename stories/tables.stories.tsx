@@ -1,13 +1,13 @@
 import {
   Checkbox,
+  Skeleton,
   TableBody,
   TableCell,
   TableFooter,
   TableHead,
   TableRow,
   Typography,
-} from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton";
+} from "@mui/material";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 

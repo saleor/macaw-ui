@@ -1,5 +1,5 @@
-import TextField, { TextFieldProps } from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import clsx from "clsx";
 import React from "react";
 

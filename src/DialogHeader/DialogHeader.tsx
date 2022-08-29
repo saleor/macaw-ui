@@ -1,5 +1,5 @@
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Typography, { TypographyProps } from "@material-ui/core/Typography";
+import DialogTitle from "@mui/material/DialogTitle";
+import Typography, { TypographyProps } from "@mui/material/Typography";
 import React from "react";
 
 import { CloseIcon } from "../icons";
@@ -21,7 +21,8 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
       <DialogTitle
         className={classes.wrapper}
         id="alert-dialog-title"
-        disableTypography
+        // TO-DO
+        // disableTypography
       >
         <Typography variant="h5" component="h5" {...props}>
           {children}

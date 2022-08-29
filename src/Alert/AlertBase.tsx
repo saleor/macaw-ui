@@ -1,5 +1,5 @@
-import Card, { CardProps } from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import Card, { CardProps } from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import clsx from "clsx";
 import React from "react";
 

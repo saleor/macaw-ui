@@ -1,5 +1,4 @@
-import { fade } from "@material-ui/core/styles/colorManipulator";
-
+import { alpha } from "@mui/material";
 import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
@@ -33,7 +32,7 @@ const useStyles = makeStyles(
     dark: {
       "&:focus, &:hover": {
         "& > span:first-of-type": {
-          backgroundColor: fade(theme.palette.primary.main, 0.2),
+          backgroundColor: alpha(theme.palette.primary.main, 0.2),
         },
       },
       "&:not($actionsButtonDisabled)": {

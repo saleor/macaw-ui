@@ -1,12 +1,8 @@
 import {
   makeStyles as muiMakeStyles,
   useTheme as useMuiTheme,
-} from "@material-ui/core/styles";
-import type {
-  ClassNameMap,
-  Styles,
-  WithStylesOptions,
-} from "@material-ui/styles/withStyles";
+} from "@mui/styles";
+import type { ClassNameMap, Styles, WithStylesOptions } from "@mui/styles";
 import { useContext } from "react";
 
 import { ThemeContext } from "./context";

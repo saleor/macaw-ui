@@ -1,5 +1,5 @@
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { fade } from "@material-ui/core/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+// import { fade } from "@mui/material";
 import React from "react";
 
 import { makeStyles } from "./styles";
@@ -52,9 +52,10 @@ const useStyles = makeStyles(
 
       // For some reason @import clause must be put on top
       // eslint-disable-next-line sort-keys
-      "::selection": {
-        background: fade(theme.palette.primary.main, 0.2),
-      },
+      // TO-DO
+      // "::selection": {
+      //   background: fade(theme.palette.primary.main, 0.2),
+      // },
       html: {
         fontSize: "62.5%",
       },

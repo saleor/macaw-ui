@@ -1,5 +1,5 @@
-import { Button, Link, Typography } from "@material-ui/core";
-import { lighten } from "@material-ui/core/styles";
+import { Button, Link, Typography } from "@mui/material";
+import { lighten } from "@mui/material/styles";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import SVG from "react-inlinesvg";

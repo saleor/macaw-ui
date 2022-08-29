@@ -1,4 +1,4 @@
-import Checkbox from "@material-ui/core/Checkbox";
+import Checkbox from "@mui/material/Checkbox";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 

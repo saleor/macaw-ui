@@ -1,4 +1,4 @@
-import { Divider, Typography } from "@material-ui/core";
+import { Divider, Typography } from "@mui/material";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 

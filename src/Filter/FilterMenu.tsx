@@ -1,8 +1,8 @@
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import MenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import Typography from "@material-ui/core/Typography";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import MenuItem from "@mui/material/MenuItem";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import Typography from "@mui/material/Typography";
 import React from "react";
 
 import { useFilters } from "./context";

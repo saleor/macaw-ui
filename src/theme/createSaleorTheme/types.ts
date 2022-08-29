@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unified-signatures */
-import type { Theme, ThemeOptions } from "@material-ui/core/styles";
+import type { Theme, ThemeOptions } from "@mui/material/styles";
 
 export type ThemeType = "light" | "dark";
 

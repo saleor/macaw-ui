@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import { Story } from "@storybook/react";
 
 import { Chip, ChipMovable, ChipRemovable, ChipSwatch } from "../src/Chip";

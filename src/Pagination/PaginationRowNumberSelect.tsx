@@ -1,5 +1,5 @@
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import clsx from "clsx";
 import React from "react";
 

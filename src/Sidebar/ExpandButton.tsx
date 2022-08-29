@@ -1,4 +1,4 @@
-import { ButtonProps } from "@material-ui/core/Button";
+import { ButtonProps } from "@mui/material/Button";
 import clsx from "clsx";
 import React from "react";
 

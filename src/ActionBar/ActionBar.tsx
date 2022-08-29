@@ -1,7 +1,7 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Container from "@material-ui/core/Container";
-import Portal from "@material-ui/core/Portal";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Container from "@mui/material/Container";
+import Portal from "@mui/material/Portal";
 import clsx from "clsx";
 import React from "react";
 

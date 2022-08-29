@@ -1,8 +1,8 @@
 import MuiButton, {
   ButtonProps as MuiButtonProps,
   ButtonTypeMap as MuiButtonTypeMap,
-} from "@material-ui/core/Button";
-import { OverridableComponent } from "@material-ui/core/OverridableComponent";
+} from "@mui/material/Button";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import clsx from "clsx";
 import React from "react";
 
@@ -35,7 +35,7 @@ function getButtonProps(
   colorProp: ButtonColor,
   variant: ButtonVariant
 ): Partial<MuiButtonProps> {
-  const color = colorProp === "text" ? "default" : colorProp;
+  const color = colorProp === "text" ? "primary" : colorProp;
 
   switch (variant) {
     case "primary":

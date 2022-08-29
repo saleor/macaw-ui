@@ -1,4 +1,4 @@
-import Table, { TableProps } from "@material-ui/core/Table";
+import Table, { TableProps } from "@mui/material/Table";
 import React from "react";
 
 import { useStyles } from "./styles";

@@ -1,7 +1,7 @@
 import {
   OverridableComponent,
   OverrideProps,
-} from "@material-ui/core/OverridableComponent";
+} from "@mui/material/OverridableComponent";
 import clsx from "clsx";
 import React from "react";
 

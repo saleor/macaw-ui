@@ -1,4 +1,4 @@
-import MenuItem, { MenuItemProps } from "@material-ui/core/MenuItem";
+import MenuItem, { MenuItemProps } from "@mui/material/MenuItem";
 import React from "react";
 
 import { useUserChipMenu } from "./context";
@@ -26,7 +26,7 @@ export const UserChipMenuItem: React.FC<UserChipMenuItemProps> = ({
     <MenuItem
       {...props}
       onClick={leaveOpen ? onClick : handleClickWithClose}
-      button
+      // button
     />
   );
 };
