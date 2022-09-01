@@ -77,6 +77,12 @@ export const dark: SaleorThemeColors = {
     4: "rgba(235, 43, 89, 0.4)",
     5: "rgba(235, 43, 89, 0.2)",
   },
+  generic: {
+    light: "#F1F1F1",
+    mid: "#EAEAEA",
+    dark: "#7C7F7F",
+    verydark: "#252929",
+  },
 
   disabled: "#5D6D83",
   paperBorder: "#252728",
@@ -158,6 +164,12 @@ export const light: SaleorThemeColors = {
     3: "#E9878B",
     4: "#F7B6B2",
     5: "#FBDDD8",
+  },
+  generic: {
+    light: "#F1F1F1",
+    mid: "#EAEAEA",
+    dark: "#7C7F7F",
+    verydark: "#252929",
   },
 
   disabled: "#C2D1E4",

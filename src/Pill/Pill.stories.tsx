@@ -12,7 +12,8 @@ const labels = {
   warning: "Warning",
   success: "Success",
   info: "Info",
-};
+  generic: "Generic",
+} as const;
 
 const PillGroup: React.FC<PillProps> = (props) => (
   <>
@@ -50,6 +51,7 @@ const DefaultStory: React.FC = () => {
           <PillGroup color="warning" label={labels.warning} />
           <PillGroup color="success" label={labels.success} />
           <PillGroup color="info" label={labels.info} />
+          <PillGroup color="generic" label={labels.generic} />
         </div>
       </div>
     </div>

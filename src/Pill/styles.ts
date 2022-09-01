@@ -48,6 +48,25 @@ const useStyles = makeStyles(
       borderStyle: "dashed",
     },
     error: colorProps(theme.palette.saleor.fail),
+    generic: {
+      borderColor: theme.palette.saleor.generic.light,
+      backgroundColor: theme.palette.saleor.generic.light,
+      "&$outlined": {
+        borderColor: theme.palette.saleor.generic.dark,
+        backgroundColor: "transparent",
+        color: theme.palette.saleor.generic.verydark,
+      },
+      "&:not($outlined)": {
+        "&:hover": {
+          backgroundColor: theme.palette.saleor.generic.mid,
+        },
+
+        "&$active": {
+          borderColor: theme.palette.saleor.generic.mid,
+          backgroundColor: theme.palette.saleor.generic.mid,
+        },
+      },
+    },
     labelSmall: {
       "&&": {
         fontSize: "1.2rem",
