@@ -36,6 +36,7 @@ const useStyles = makeStyles(
     root: {
       border: `1px solid ${theme.palette.saleor.info.mid}`,
       transition: theme.transitions.duration.shorter + "ms",
+      borderRadius: "4px",
     },
     dark: {
       color: theme.palette.saleor.main[1],
