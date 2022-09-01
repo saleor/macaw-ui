@@ -122,9 +122,7 @@ const useStyles = makeStyles(
     rootOpen: {},
     subMenuHeader: {
       textTransform: "uppercase",
-      // TO-DO
-      // @ts-ignore
-      // color: theme.palette.text.hint,
+      color: theme.palette.text.secondary,
       padding: theme.spacing(2, 2, 0.5, 2),
     },
     subMenuLabel: {

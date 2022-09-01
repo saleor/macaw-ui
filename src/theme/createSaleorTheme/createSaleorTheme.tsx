@@ -1,5 +1,14 @@
 import { createTheme as createMuiTheme } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
+import React from "react";
+import { getSecondaryButtonStyles } from "../../IconButton/partials";
+import {
+  CheckboxCheckedIcon,
+  CheckboxIcon,
+  CheckboxIndeterminateIcon,
+  RadioCheckedIcon,
+  RadioIcon,
+} from "../../icons";
 
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
@@ -8,12 +17,120 @@ import { SaleorTheme, SaleorThemeColors } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
-const fontFamily = "'Source Sans Pro', sans-serif";
+const fontFamily = ["'Source Sans Pro'", "sans-serif"].join(",");
 
-export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
+export const createTheme = (colors: SaleorThemeColors) =>
   createMuiTheme({
+    typography: {
+      allVariants: {
+        letterSpacing: "0.02rem",
+        fontFamily,
+      },
+    },
     components: {
       ...overrides(colors, fontFamily),
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontFamily,
+          },
+          body1: {
+            color: colors.main[1],
+            fontSize: "1.6rem",
+          },
+          body2: {
+            fontSize: "1.4rem",
+            lineHeight: 1.56,
+          },
+          button: {
+            fontSize: "1.4rem",
+          },
+          caption: {
+            fontSize: "1.2rem",
+            letterSpacing: 0,
+          },
+          h1: {
+            fontSize: "4rem",
+            fontWeight: 700,
+            fontFamily,
+          },
+          h4: {
+            fontSize: "3.4rem",
+            color: colors.main[1],
+          },
+          h5: {
+            fontSize: "2.1rem",
+            fontWeight: 500,
+          },
+          h6: {
+            fontSize: "2rem",
+            fontWeight: 500,
+          },
+          subtitle1: {
+            fontSize: "1.6rem",
+          },
+          subtitle2: {
+            fontSize: "1.4rem",
+          },
+        },
+        defaultProps: {
+          fontFamily: '"Source Sans Pro", sans-serif',
+        },
+      },
+      MuiButton: {
+        defaultProps: {
+          disableRipple: true,
+        },
+      },
+      MuiFormControl: {
+        defaultProps: {
+          variant: "filled",
+        },
+      },
+      MuiTextField: {
+        defaultProps: {
+          variant: "outlined",
+        },
+      },
+      MuiLink: {
+        defaultProps: {
+          color: colors.active[1],
+        },
+      },
+      MuiCheckbox: {
+        defaultProps: {
+          color: "primary",
+          disableRipple: true,
+          checkedIcon: <CheckboxCheckedIcon />,
+          icon: <CheckboxIcon />,
+          indeterminateIcon: <CheckboxIndeterminateIcon />,
+        },
+      },
+      MuiTableRow: {
+        defaultProps: {
+          hover: true,
+        },
+      },
+      MuiList: {
+        defaultProps: {
+          disablePadding: true,
+        },
+      },
+      MuiRadio: {
+        defaultProps: {
+          color: "primary",
+          disableRipple: true,
+          icon: <RadioIcon />,
+          checkedIcon: <RadioCheckedIcon />,
+        },
+      },
+      MuiSwitch: {
+        defaultProps: {
+          color: "primary",
+          disableRipple: true,
+        },
+      },
+      // xd
       MuiCard: {
         styleOverrides: {
           root: {
@@ -21,6 +138,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
             borderWidth: 0,
             overflow: "visible",
           },
+        },
+        defaultProps: {
+          elevation: 0,
         },
       },
       MuiCardActions: {
@@ -112,15 +232,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           },
         },
       },
-      //   MuiExpansionPanelSummary: {
-      // styleOverrides: {
-
-      //     // expandIcon: {
-      //     //   ...getSecondaryButtonStyles(colors),
-      //     //   border: "none",
-      //     // },
-      //   }
-      //   },
       MuiFormControlLabel: {
         styleOverrides: {
           label: {
@@ -182,6 +293,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         },
       },
       MuiMenuItem: {
+        defaultProps: {
+          // button: false,
+        },
         styleOverrides: {
           root: {
             "&$selected, &$selected:focus, &$selected:hover": {
@@ -200,11 +314,26 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiSelect: {
         styleOverrides: {
+          select: {
+            "&.Mui-disabled": {
+              backgroundColor: colors.background.default,
+            },
+          },
           // root: {
-          //   "&:disabled": {
-          //     backgroundColor: colors.background.default,
-          //   },
           // },
+        },
+        defaultProps: {
+          MenuProps: {
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left",
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+            // getContentAnchorEl: null,
+          },
         },
       },
       MuiSnackbarContent: {
@@ -234,6 +363,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         },
       },
       MuiTooltip: {
+        defaultProps: {
+          placement: "right-end",
+        },
         styleOverrides: {
           arrow: {
             color: colors.alert.icon.info,
@@ -265,119 +397,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
     palette: createPalette(colors),
     // TO-DO
     // renamed to "components"
-    // props: {
-    //   MuiButton: {
-    //     disableRipple: true,
-    //   },
-    //   MuiFormControl: {
-    //     variant: "filled",
-    //   },
-    //   MuiTextField: {
-    //     variant: "outlined",
-    //   },
-    //   MuiCard: {
-    //     elevation: 0,
-    //   },
-    //   MuiExpansionPanelSummary: {
-    //     IconButtonProps: {
-    //       disableRipple: true,
-    //     },
-    //   },
-    //   MuiLink: {
-    //     style: {
-    //       color: colors.active[1],
-    //     },
-    //   },
-    //   MuiTypography: {
-    //     component: "div",
-    //   } as TypographyProps,
-    //   MuiCheckbox: {
-    //     color: "primary",
-    //     disableRipple: true,
-    //     checkedIcon: <CheckboxCheckedIcon />,
-    //     icon: <CheckboxIcon />,
-    //     indeterminateIcon: <CheckboxIndeterminateIcon />,
-    //   },
-    //   MuiMenuItem: {
-    //     button: false,
-    //   },
-    //   MuiTableRow: {
-    //     hover: true,
-    //   },
-    //   MuiTooltip: {
-    //     placement: "right-end",
-    //   },
-    //   MuiList: {
-    //     disablePadding: true,
-    //   },
-    //   MuiRadio: {
-    //     color: "primary",
-    //     disableRipple: true,
-    //     icon: <RadioIcon />,
-    //     checkedIcon: <RadioCheckedIcon />,
-    //   },
-    //   MuiSwitch: {
-    //     color: "primary",
-    //     disableRipple: true,
-    //   },
-    //   MuiSelect: {
-    //     MenuProps: {
-    //       anchorOrigin: {
-    //         vertical: "bottom",
-    //         horizontal: "left",
-    //       },
-    //       transformOrigin: {
-    //         vertical: "top",
-    //         horizontal: "left",
-    //       },
-    //       getContentAnchorEl: null,
-    //     },
-    //   },
-    // },
+
     shadows,
     spacing: (value: number = 1) => `${(value * 8) / 10}rem`,
-    typography: {
-      allVariants: {
-        fontFamily,
-        letterSpacing: "0.02rem",
-      },
-      body1: {
-        color: colors.main[1],
-        fontSize: "1.6rem",
-      },
-      body2: {
-        fontSize: "1.4rem",
-        lineHeight: 1.56,
-      },
-      button: {
-        fontSize: "1.4rem",
-      },
-      caption: {
-        fontSize: "1.2rem",
-        letterSpacing: 0,
-      },
-      fontFamily,
-      h1: {
-        fontSize: "4rem",
-        fontWeight: 700,
-      },
-      h4: {
-        fontSize: "3.4rem",
-        color: colors.main[1],
-      },
-      h5: {
-        fontSize: "2.1rem",
-        fontWeight: 500,
-      },
-      h6: {
-        fontSize: "2rem",
-        fontWeight: 500,
-      },
-      subtitle1: {
-        fontSize: "1.6rem",
-      },
-      subtitle2: {
-        fontSize: "1.4rem",
-      },
-    },
   }) as unknown as SaleorTheme;

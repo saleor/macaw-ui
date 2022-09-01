@@ -24,9 +24,7 @@ export const SelectFilterField: React.FC<FilterContentProps> = ({ filter }) => {
     <Select
       className={classes.filterValue}
       classes={{
-        // TO-DO
-        // @ts-ignore
-        selectMenu: classes.filterInputInner,
+        select: classes.filterInputInner,
       }}
       variant="outlined"
       onChange={handleChoiceChange}

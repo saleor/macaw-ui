@@ -96,9 +96,7 @@ export const FilterRow: React.FC<FilterRowProps> = ({
 
   const selectProps: SelectProps = {
     classes: {
-      // TO-DO
-      // @ts-ignore
-      selectMenu: classes.filterInputInner,
+      select: classes.filterInputInner,
     },
     variant: "outlined",
   };

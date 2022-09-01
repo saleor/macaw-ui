@@ -26,7 +26,6 @@ export const createPalette = (
   },
   text: {
     disabled: colors.main[4],
-    // hint: colors.main[3],
     primary: colors.main[1],
     secondary: colors.main[3],
   },

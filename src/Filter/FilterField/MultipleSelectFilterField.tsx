@@ -32,9 +32,7 @@ export const MultipleSelectFilterField: React.FC<FilterContentProps> = ({
     <Select
       className={classes.filterValue}
       classes={{
-        // TO-DO
-        // @ts-ignore
-        root: classes.filterMultipleValueInputInner,
+        nativeInput: classes.filterMultipleValueInputInner,
       }}
       multiple
       variant="outlined"

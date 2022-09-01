@@ -1,5 +1,5 @@
 import type { Theme } from "@mui/material/styles";
-import { ThemeProvider as MuiThemeProvider } from "@mui/styles";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { merge } from "lodash";
 import React, { useEffect } from "react";
 
@@ -17,6 +17,8 @@ import { ThemeContext } from "./context";
 import { createTheme, Themes, ThemeType } from "./createSaleorTheme";
 import { dark, light } from "./themes";
 import { changeColorMeta } from "./utils";
+
+import "../index.css";
 
 export interface ThemeProviderProps {
   defaultTheme?: ThemeType;

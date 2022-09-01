@@ -1,5 +1,5 @@
+import { alpha } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-// import { fade } from "@mui/material";
 import React from "react";
 
 import { makeStyles } from "./styles";
@@ -7,7 +7,9 @@ import { makeStyles } from "./styles";
 const useStyles = makeStyles(
   (theme) => ({
     "@global": {
-      "@import": "url('https://rsms.me/inter/inter.css')",
+      "@import":
+        "url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap')",
+      "font-family": "'Source Sans Pro', sans-serif",
 
       // Putting them here, because MUI doesn't let putting own keys in
       // `overrides` objects
@@ -52,12 +54,11 @@ const useStyles = makeStyles(
 
       // For some reason @import clause must be put on top
       // eslint-disable-next-line sort-keys
-      // TO-DO
-      // "::selection": {
-      //   background: fade(theme.palette.primary.main, 0.2),
-      // },
+      "::selection": {
+        background: alpha(theme.palette.primary.main, 0.2),
+      },
       html: {
-        fontSize: "62.5%",
+        fontSize: "100%",
       },
       a: {
         color: `${theme.palette.saleor.active[1]} !important`,
