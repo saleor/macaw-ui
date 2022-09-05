@@ -30,11 +30,15 @@ module.exports = (entryPoints, watch) => {
     entryPoints,
     loader: {
       ".svg": "text",
+      ".woff": "dataurl",
+      ".woff2": "dataurl",
     },
     bundle: true,
     external: [
       ...Object.keys(packageJson.peerDependencies),
       ...Object.keys(packageJson.dependencies),
+      ".woff",
+      ".woff2",
     ],
     sourcemap: true,
     minify: true,
