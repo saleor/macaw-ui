@@ -145,7 +145,8 @@
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "react-inlinesvg": "^2.3.0"
+    "react-inlinesvg": "^2.3.0",
+    "source-sans-pro": "^3.6.0"
   },
   "jest": {
     "testEnvironment": "jsdom",

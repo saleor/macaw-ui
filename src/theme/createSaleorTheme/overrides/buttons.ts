@@ -43,12 +43,9 @@ export const buttonOverrides = (
         containedPrimary: {
           "&&:hover": containedPrimaryHover,
           "&&:active": {
-            backgroundColor: colors.active[5],
+            backgroundColor: colors.active[1],
           },
         },
-        // label: {
-        //   fontWeight: 500,
-        // },
         root: {
           "&$disabled": {
             borderColor: colors.disabled,

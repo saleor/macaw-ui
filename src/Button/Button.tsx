@@ -58,16 +58,23 @@ const _Button: React.FC<ButtonProps> = React.forwardRef(
       <MuiButton
         ref={ref}
         className={clsx(className, classes.buttonDefault, {
-          [classes.primary]: variant === "primary" && error,
-          [classes.primaryDisabled]:
+          [classes.primary]: variant === "primary",
+          [classes.primaryDisabled]: variant === "primary" && props.disabled,
+          [classes.primaryError]: variant === "primary" && error,
+          [classes.primaryErrorDisabled]:
             variant === "primary" && error && props.disabled,
 
-          [classes.secondary]: variant === "secondary" && error,
+          [classes.secondary]: variant === "secondary",
           [classes.secondaryDisabled]:
+            variant === "secondary" && props.disabled,
+          [classes.secondaryError]: variant === "secondary" && error,
+          [classes.secondaryErrorDisabled]:
             variant === "secondary" && error && props.disabled,
 
-          [classes.tertiary]: variant === "tertiary" && error,
-          [classes.tertiaryDisabled]:
+          [classes.tertiary]: variant === "tertiary",
+          [classes.tertiaryDisabled]: variant === "tertiary" && props.disabled,
+          [classes.tertiaryError]: variant === "tertiary" && error,
+          [classes.tertiaryErrorDisabled]:
             variant === "tertiary" && error && props.disabled,
         })}
         {...getButtonProps(color, variant)}
