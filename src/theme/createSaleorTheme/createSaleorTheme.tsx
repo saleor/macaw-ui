@@ -1,7 +1,6 @@
 import { createTheme as createMuiTheme } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
 import React from "react";
-import { getSecondaryButtonStyles } from "../../IconButton/partials";
 import {
   CheckboxCheckedIcon,
   CheckboxIcon,
