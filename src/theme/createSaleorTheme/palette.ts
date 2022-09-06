@@ -19,7 +19,7 @@ export const createPalette = (
   },
   secondary: {
     contrastText: "#ffffff",
-    main: colors.background.paper,
+    main: colors.active[1],
   },
   success: {
     main: colors.success.mid,
