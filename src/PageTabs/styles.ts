@@ -1,5 +1,4 @@
-import { fade } from "@material-ui/core/styles";
-
+import { fade } from "@material-ui/core";
 import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
