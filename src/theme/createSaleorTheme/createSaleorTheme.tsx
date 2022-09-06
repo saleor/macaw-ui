@@ -275,6 +275,9 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiList: {
         disablePadding: true,
       },
+      MuiCircularProgress: {
+        color: "secondary",
+      },
       MuiRadio: {
         color: "secondary",
         disableRipple: true,
