@@ -257,7 +257,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         component: "div",
       } as TypographyProps,
       MuiCheckbox: {
-        color: "primary",
+        color: "secondary",
         disableRipple: true,
         checkedIcon: <CheckboxCheckedIcon />,
         icon: <CheckboxIcon />,
@@ -276,13 +276,13 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
         disablePadding: true,
       },
       MuiRadio: {
-        color: "primary",
+        color: "secondary",
         disableRipple: true,
         icon: <RadioIcon />,
         checkedIcon: <RadioCheckedIcon />,
       },
       MuiSwitch: {
-        color: "primary",
+        color: "secondary",
         disableRipple: true,
       },
       MuiSelect: {
