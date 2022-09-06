@@ -319,6 +319,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       button: {
         fontSize: "1.4rem",
+        fontWeight: 600,
       },
       caption: {
         fontSize: "1.2rem",
@@ -327,19 +328,28 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       fontFamily,
       h1: {
         fontSize: "4rem",
-        fontWeight: 700,
+        fontWeight: 600,
+      },
+      h2: {
+        fontWeight: 600,
+        fontSize: "3.2rem",
+      },
+      h3: {
+        fontWeight: 600,
+        fontSize: "2.1rem",
       },
       h4: {
-        fontSize: "3.4rem",
+        fontSize: "1.7rem",
         color: colors.main[1],
+        fontWeight: 600,
       },
       h5: {
-        fontSize: "2.1rem",
-        fontWeight: 500,
+        fontSize: "1.6rem",
+        fontWeight: 400,
       },
       h6: {
-        fontSize: "2rem",
-        fontWeight: 500,
+        fontSize: "1.4rem",
+        fontWeight: 600,
       },
       subtitle1: {
         fontSize: "1.6rem",
