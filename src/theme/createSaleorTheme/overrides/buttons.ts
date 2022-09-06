@@ -55,7 +55,6 @@ export const buttonOverrides = (
         "&:hover": {
           backgroundColor: undefined,
         },
-        // border: `1px solid ${colors.main[1]}`,
         borderRadius: 4,
         fontSize: "1.6rem",
         lineHeight: 1.55,
