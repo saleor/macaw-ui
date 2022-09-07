@@ -12,7 +12,6 @@ export interface PillProps
     ChipProps,
     | "onDelete"
     | "avatar"
-    | "icon"
     | "disabled"
     | "deleteIcon"
     | "color"
