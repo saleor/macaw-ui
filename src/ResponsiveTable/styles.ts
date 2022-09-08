@@ -1,9 +1,10 @@
 import { makeStyles } from "../theme";
+import { ResponsiveTableProps } from "./ResponsiveTable";
 
-const useStyles = makeStyles(
+const useStyles = makeStyles<Pick<ResponsiveTableProps, "flexBreakpoint">>(
   (theme) => ({
-    root: {
-      [theme.breakpoints.up("md")]: {
+    root: (props) => ({
+      [theme.breakpoints.up(props.flexBreakpoint ?? "md")]: {
         "&& table": {
           tableLayout: "fixed",
         },
@@ -13,7 +14,7 @@ const useStyles = makeStyles(
       },
       overflowX: "auto",
       width: "100%",
-    },
+    }),
   }),
   {
     name: "ResponsiveTable",
