@@ -28,6 +28,9 @@ function colorProps(color: VariantColors) {
       borderColor: color.mid,
       backgroundColor: color.mid,
     },
+    "& svg": {
+      color: "currentColor",
+    },
   };
 }
 
