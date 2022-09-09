@@ -54,11 +54,7 @@ const DefaultStory: React.FC = () => {
           <PillGroup color="success" label={labels.success} />
           <PillGroup color="info" label={labels.info} />
           <PillGroup color="generic" label={labels.generic} />
-          <PillGroup
-            icon={<CopyIcon color="inherit" />}
-            color="info"
-            label={labels.icon}
-          />
+          <PillGroup icon={<CopyIcon />} color="generic" label={labels.icon} />
         </div>
       </div>
     </div>
@@ -92,6 +88,13 @@ const SmallStory: React.FC = () => {
           <PillGroup size="small" color="warning" label={labels.warning} />
           <PillGroup size="small" color="success" label={labels.success} />
           <PillGroup size="small" color="info" label={labels.info} />
+          <PillGroup size="small" color="generic" label={labels.generic} />
+          <PillGroup
+            size="small"
+            icon={<CopyIcon />}
+            color="generic"
+            label={labels.icon}
+          />
         </div>
       </div>
     </div>
