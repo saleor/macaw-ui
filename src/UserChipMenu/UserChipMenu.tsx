@@ -1,4 +1,3 @@
-import Avatar from "@material-ui/core/Avatar";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
 import Hidden from "@material-ui/core/Hidden";
@@ -9,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 
 import { LayoutButton } from "..";
+import { Avatar } from "../Avatar";
 import { UserChipMenuContext } from "./context";
 import useStyles from "./styles";
 
@@ -45,13 +45,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
         state={isMenuOpened ? "active" : "default"}
         {...props}
       >
-        {avatar ? (
-          <Avatar className={classes.avatar} alt="user" src={avatar} />
-        ) : (
-          <div className={classes.avatarPlaceholder}>
-            <div className={classes.avatarInitials}>{initials}</div>
-          </div>
-        )}
+        <Avatar avatar={avatar as string | undefined} initials={initials} />
         <div className={classes.labelContainer}>
           <Hidden smDown>
             <div>
