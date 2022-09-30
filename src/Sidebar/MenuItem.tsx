@@ -51,7 +51,7 @@ const useStyles = makeStyles(
     label: {
       cursor: "pointer",
       display: "block",
-      fontSize: 16,
+      fontSize: "1.6rem",
       fontWeight: "bold",
       opacity: 1,
       transition: theme.transitions.duration.shortest + "ms",
