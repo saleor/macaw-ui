@@ -56,7 +56,7 @@ const useStyles = makeStyles(
         background: fade(theme.palette.primary.main, 0.2),
       },
       html: {
-        fontSize: "62.5%",
+        fontSize: "58.4%",
       },
       a: {
         color: theme.palette.primary.main,
