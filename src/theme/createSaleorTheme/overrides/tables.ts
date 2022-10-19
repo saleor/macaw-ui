@@ -42,7 +42,7 @@ export const tableOverrides = (
           textAlign: "left",
         },
       },
-      borderBottomColor: colors.background.default,
+      borderBottomColor: colors.border.paper,
       padding: "24px 32px",
     },
   },

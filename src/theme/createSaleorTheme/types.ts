@@ -28,9 +28,12 @@ export type SaleorThemeColors = Record<
   success: VariantColors;
   info: VariantColors;
   generic: VariantColors;
-  main: Record<1 | 2 | 3 | 4 | 5, string>;
+  main: Record<1 | 2 | 3 | 4 | 5 | 6, string>;
   active: Record<1 | 2 | 3 | 4 | 5, string>;
   errorAction: Record<1 | 2 | 3 | 4 | 5, string>;
+  border: {
+    paper: string;
+  };
 };
 
 export type AlertPalette = Record<

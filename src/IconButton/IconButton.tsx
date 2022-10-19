@@ -10,7 +10,7 @@ import React from "react";
 import { UserInteraction } from "../../types/utils";
 import useStyles from "./styles";
 
-interface IconButtonInnerProps {
+export interface IconButtonInnerProps {
   error?: boolean;
   hoverOutline?: boolean;
   state?: UserInteraction;
