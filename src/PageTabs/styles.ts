@@ -15,6 +15,7 @@ const useStyles = makeStyles(
       "&:hover": {
         background: fade(theme.palette.saleor.generic.mid, 0.6),
       },
+      color: theme.palette.saleor.main[3],
       borderRadius: 4,
       minHeight: 40,
       padding: theme.spacing(1, 2),
