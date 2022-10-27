@@ -20,7 +20,7 @@ export const inputOverrides = (
     input: {
       "&:-webkit-autofill": {
         WebkitTextFillColor: colors.main[1],
-        boxShadow: `inset 0 0 0px 9999px ${colors.active[5]}`,
+        boxShadow: `inset 0 0 0px 9999px ${colors.main[5]}`,
       },
       "&::placeholder": {
         opacity: "1 !important" as any,
@@ -29,7 +29,7 @@ export const inputOverrides = (
     },
     underline: {
       "&:after": {
-        borderBottomColor: colors.active[1],
+        borderBottomColor: colors.main[1],
       },
     },
   },
@@ -62,23 +62,21 @@ export const inputOverrides = (
     },
     root: {
       "&&$disabled": {
-        color: colors.main[4],
+        color: colors.main[5],
       },
-      "&$error": {
-        "&$focused": {
+      "&&&": {
+        color: `${colors.main[1]}`,
+
+        "&$disabled": {
+          color: colors.main[5],
+        },
+        "&$error": {
+          "&$focused": {
+            color: colors.fail.dark,
+          },
           color: colors.fail.dark,
         },
-        color: colors.fail.dark,
       },
-      "&&$focused": {
-        "&:not($error)": {
-          color: colors.active[1],
-        },
-      },
-      "&:not($error):hover label": {
-        color: colors.main[4],
-      },
-      color: colors.main[3],
     },
     shrink: {
       // Negates x0.75 scale
@@ -145,26 +143,31 @@ export const inputOverrides = (
       },
       "&$focused": {
         "&, &:hover": {
-          boxShadow: getInputBoxShadow(colors.active[3]),
+          boxShadow: getInputBoxShadow(colors.main[5]),
         },
         "& input": {
           "& fieldset": {
-            borderColor: colors.active[1],
+            borderColor: colors.main[1],
           },
           "&::placeholder": {
             opacity: [[1], "!important"] as any,
           },
           color: colors.main[1],
         },
+        "&&&": {
+          "& fieldset": {
+            borderColor: colors.main[1],
+          },
+        },
       },
       "&:hover": {
-        boxShadow: getInputBoxShadow(colors.active[5]),
+        boxShadow: getInputBoxShadow(colors.main[5]),
         "& input": {
           color: colors.main[1],
         },
         "&&&": {
           "& fieldset": {
-            borderColor: colors.active[1],
+            borderColor: colors.main[5],
           },
         },
       },
