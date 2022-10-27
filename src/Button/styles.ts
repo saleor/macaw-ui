@@ -66,7 +66,7 @@ const useStyles = makeStyles(
     tertiaryDisabled: {
       "&&&": {
         border: "none",
-        color: theme.palette.saleor.disabled,
+        color: theme.palette.saleor.main[5],
       },
     },
     tertiaryErrorAndDisabled: {

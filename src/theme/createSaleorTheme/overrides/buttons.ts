@@ -90,8 +90,8 @@ export const buttonOverrides = (
       outlined: {
         "&$disabled": {
           border: undefined,
-          borderColor: colors.disabled,
-          color: colors.disabled,
+          borderColor: colors.main[5],
+          color: colors.main[5],
         },
         "&$error": {
           color: "red",
@@ -119,8 +119,8 @@ export const buttonOverrides = (
       },
       outlinedPrimary: {
         "&:hover, &$focusVisible": {
-          borderColor: colors.active[1],
-          color: colors.active[1],
+          borderColor: colors.main[1],
+          color: colors.main[1],
         },
         "&:hover": {
           // Unsets border as it will require us to override borderWidth and
@@ -129,7 +129,7 @@ export const buttonOverrides = (
           backgroundColor: undefined,
         },
         "&:active": {
-          backgroundColor: colors.active[5],
+          backgroundColor: colors.main[5],
         },
         border: undefined,
         color: undefined,
