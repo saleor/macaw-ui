@@ -36,32 +36,35 @@ const DefaultStory: React.FC = () => {
             </Button>
           </Cell>
           <Cell>
-            <div className={guideClasses.gridCell}>
+            <div
+              className={guideClasses.gridCell}
+              style={{ gridTemplateColumns: "repeat(2, 1fr)" }}
+            >
               <IconButton variant="primary">
                 <DeleteIcon />
               </IconButton>
+              <IconButton variant="primary" disabled>
+                <DeleteIcon />
+              </IconButton>
+
+              <IconButton variant="primary" error>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="primary" disabled error>
+                <DeleteIcon />
+              </IconButton>
+
               <IconButton variant="secondary">
                 <DeleteIcon />
               </IconButton>
-              <IconButton disabled>
+              <IconButton variant="secondary" disabled>
                 <DeleteIcon />
               </IconButton>
-              <IconButton variant="primary" state="hover">
+
+              <IconButton variant="secondary" error>
                 <DeleteIcon />
               </IconButton>
-              <IconButton variant="secondary" state="hover">
-                <DeleteIcon />
-              </IconButton>
-              <IconButton disabled state="hover">
-                <DeleteIcon />
-              </IconButton>
-              <IconButton variant="primary" state="active">
-                <DeleteIcon />
-              </IconButton>
-              <IconButton variant="secondary" state="active">
-                <DeleteIcon />
-              </IconButton>
-              <IconButton disabled state="active">
+              <IconButton variant="secondary" disabled error>
                 <DeleteIcon />
               </IconButton>
             </div>
