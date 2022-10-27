@@ -67,8 +67,9 @@ const _Button: React.FC<ButtonProps> = React.forwardRef(
             variant === "secondary" && error && props.disabled,
 
           [classes.tertiary]: variant === "tertiary" && error,
-          [classes.tertiaryDisabled]:
-            variant === "tertiary" && error && props.disabled,
+          [classes.tertiaryDisabled]: variant === "tertiary" && props.disabled,
+          [classes.tertiaryErrorAndDisabled]:
+            variant === "tertiary" && props.disabled && error,
         })}
         {...getButtonProps(color, variant)}
         disableRipple

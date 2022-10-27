@@ -7,8 +7,8 @@ export const buttonOverrides = (
 ): ThemeOptions["overrides"] => {
   const containedPrimaryHover = {
     backgroundColor: colors.background.paper,
-    color: colors.active[1],
-    borderColor: colors.active[1],
+    color: colors.main[1],
+    borderColor: colors.main[1],
   };
 
   return {
@@ -17,7 +17,7 @@ export const buttonOverrides = (
         "&$disabled": {
           "&$containedPrimary": {
             color: colors.background.paper,
-            backgroundColor: colors.disabled,
+            backgroundColor: colors.main[5],
           },
           "&$containedSecondary": {
             background: colors.background.paper,
@@ -40,9 +40,11 @@ export const buttonOverrides = (
         boxShadow: "none",
       },
       containedPrimary: {
-        "&&:hover": containedPrimaryHover,
+        "&&:hover": {
+          ...containedPrimaryHover,
+        },
         "&&:active": {
-          backgroundColor: colors.active[5],
+          backgroundColor: colors.main[6],
         },
       },
       label: {
@@ -50,7 +52,7 @@ export const buttonOverrides = (
       },
       root: {
         "&$disabled": {
-          borderColor: colors.disabled,
+          borderColor: colors.main[5],
         },
         "&:hover": {
           backgroundColor: undefined,
@@ -60,6 +62,8 @@ export const buttonOverrides = (
         lineHeight: 1.55,
         padding: "7px 16px",
         textTransform: "none",
+        borderWidth: "1px",
+        borderStyle: "solid",
       },
       text: {
         "&&$disabled": {
@@ -88,6 +92,9 @@ export const buttonOverrides = (
           border: undefined,
           borderColor: colors.disabled,
           color: colors.disabled,
+        },
+        "&$error": {
+          color: "red",
         },
         "&:hover": {
           // Unsets border as it will require us to override borderWidth and
