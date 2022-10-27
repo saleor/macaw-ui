@@ -149,20 +149,21 @@ export const buttonOverrides = (
           // Unsets border as it will require us to override borderWidth and
           // borderStyle over and over
           border: undefined,
-          backgroundColor: undefined,
+          backgroundColor: colors.background.paper,
+          color: colors.main[1],
         },
         "&:active": {
-          backgroundColor: colors.active[5],
+          backgroundColor: colors.main[6],
         },
         "&$disabled": {
           border: undefined,
           borderColor: "transparent",
-          color: colors.disabled,
+          color: colors.main[5],
         },
-        background: colors.background.paper,
-        border: `1px solid ${colors.main[5]}`,
+        background: colors.main[1],
+        border: `1px solid ${colors.main[1]}`,
         borderRadius: 4,
-        color: colors.main[1],
+        color: colors.background.paper,
         padding: 7,
         transition: "200ms",
       },
