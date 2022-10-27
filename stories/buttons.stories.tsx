@@ -28,6 +28,12 @@ const DefaultStory: React.FC = () => {
             <Button disabled variant="primary">
               Primary
             </Button>
+            <Button variant="primary" error={true}>
+              Primary
+            </Button>
+            <Button disabled variant="primary" error={true}>
+              Primary
+            </Button>
           </Cell>
           <Cell>
             <div className={guideClasses.gridCell}>
@@ -86,10 +92,22 @@ const DefaultStory: React.FC = () => {
             <Button disabled variant="secondary">
               Secondary
             </Button>
+            <Button variant="secondary" error={true}>
+              Secondary
+            </Button>
+            <Button disabled variant="secondary" error={true}>
+              Secondary
+            </Button>
             <Button variant="secondary" color="text">
               Secondary Text
             </Button>
             <Button disabled variant="secondary" color="text">
+              Secondary Text
+            </Button>
+            <Button variant="secondary" color="text" error={true}>
+              Secondary Text
+            </Button>
+            <Button disabled variant="secondary" color="text" error={true}>
               Secondary Text
             </Button>
           </Cell>
@@ -105,10 +123,22 @@ const DefaultStory: React.FC = () => {
             <Button disabled variant="tertiary">
               Tertiary
             </Button>
+            <Button variant="tertiary" error={true}>
+              Tertiary
+            </Button>
+            <Button disabled variant="tertiary" error={true}>
+              Tertiary
+            </Button>
             <Button variant="tertiary" color="text">
               Tertiary Text
             </Button>
             <Button disabled variant="tertiary" color="text">
+              Tertiary Text
+            </Button>
+            <Button variant="tertiary" color="text" error={true}>
+              Tertiary Text
+            </Button>
+            <Button variant="tertiary" color="text" error={true} disabled>
               Tertiary Text
             </Button>
           </Cell>

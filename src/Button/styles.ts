@@ -11,6 +11,7 @@ const useStyles = makeStyles(
     primary: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
+          borderColor: theme.palette.saleor.errorAction[1],
           color: theme.palette.saleor.errorAction[1],
         },
         "&:active": {
@@ -30,15 +31,15 @@ const useStyles = makeStyles(
     secondary: {
       "&&": {
         "&:hover, &.Mui-focusVisible": {
-          borderColor: theme.palette.saleor.active[1],
-          color: theme.palette.saleor.active[1],
+          borderColor: theme.palette.saleor.errorAction[1],
+          color: theme.palette.saleor.errorAction[1],
         },
         "&:active": {
           background: theme.palette.saleor.errorAction[5],
           borderColor: theme.palette.saleor.errorAction[1],
         },
       },
-      borderColor: theme.palette.saleor.main[4],
+      borderColor: theme.palette.saleor.errorAction[4],
       color: theme.palette.saleor.errorAction[2],
     },
     secondaryDisabled: {
@@ -64,8 +65,13 @@ const useStyles = makeStyles(
     },
     tertiaryDisabled: {
       "&&&": {
-        borderColor: "transparent",
-        color: theme.palette.saleor.errorAction[5],
+        border: "none",
+        color: theme.palette.saleor.disabled,
+      },
+    },
+    tertiaryErrorAndDisabled: {
+      "&&": {
+        color: `${theme.palette.saleor.errorAction[5]} !important`,
       },
     },
   }),
