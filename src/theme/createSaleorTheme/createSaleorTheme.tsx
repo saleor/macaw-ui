@@ -348,7 +348,7 @@ export const createTheme = (
       },
       h5: {
         fontSize: "1.6rem",
-        fontWeight: 400,
+        fontWeight: 600,
       },
       h6: {
         fontSize: "1.4rem",
