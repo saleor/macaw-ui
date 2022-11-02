@@ -70,6 +70,8 @@ export const buttonOverrides = (
           backgroundColor: colors.main[1],
           borderColor: colors.main[1],
         }),
+
+        borderColor: colors.main[1],
       },
       containedSecondary: {
         ...(isDarkMode && {
