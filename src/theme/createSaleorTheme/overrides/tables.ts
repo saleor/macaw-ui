@@ -69,7 +69,7 @@ export const tableOverrides = (
     },
     hover: {
       "$root&:hover": {
-        background: colors.active[5],
+        background: colors.gray,
       },
       transition: "200ms",
     },
