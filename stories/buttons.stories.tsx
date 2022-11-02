@@ -28,43 +28,34 @@ const DefaultStory: React.FC = () => {
             <Button disabled variant="primary">
               Primary
             </Button>
-            <Button variant="primary" error={true}>
-              Primary
-            </Button>
-            <Button disabled variant="primary" error={true}>
-              Primary
-            </Button>
           </Cell>
           <Cell>
-            <div
-              className={guideClasses.gridCell}
-              style={{ gridTemplateColumns: "repeat(2, 1fr)" }}
-            >
+            <div className={guideClasses.gridCell}>
               <IconButton variant="primary">
                 <DeleteIcon />
               </IconButton>
-              <IconButton variant="primary" disabled>
-                <DeleteIcon />
-              </IconButton>
-
-              <IconButton variant="primary" error>
-                <DeleteIcon />
-              </IconButton>
-              <IconButton variant="primary" disabled error>
-                <DeleteIcon />
-              </IconButton>
-
               <IconButton variant="secondary">
                 <DeleteIcon />
               </IconButton>
-              <IconButton variant="secondary" disabled>
+              <IconButton disabled>
                 <DeleteIcon />
               </IconButton>
-
-              <IconButton variant="secondary" error>
+              <IconButton variant="primary" state="hover">
                 <DeleteIcon />
               </IconButton>
-              <IconButton variant="secondary" disabled error>
+              <IconButton variant="secondary" state="hover">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton disabled state="hover">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="primary" state="active">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton variant="secondary" state="active">
+                <DeleteIcon />
+              </IconButton>
+              <IconButton disabled state="active">
                 <DeleteIcon />
               </IconButton>
             </div>
@@ -95,22 +86,10 @@ const DefaultStory: React.FC = () => {
             <Button disabled variant="secondary">
               Secondary
             </Button>
-            <Button variant="secondary" error={true}>
-              Secondary
-            </Button>
-            <Button disabled variant="secondary" error={true}>
-              Secondary
-            </Button>
             <Button variant="secondary" color="text">
               Secondary Text
             </Button>
             <Button disabled variant="secondary" color="text">
-              Secondary Text
-            </Button>
-            <Button variant="secondary" color="text" error={true}>
-              Secondary Text
-            </Button>
-            <Button disabled variant="secondary" color="text" error={true}>
               Secondary Text
             </Button>
           </Cell>
@@ -126,22 +105,10 @@ const DefaultStory: React.FC = () => {
             <Button disabled variant="tertiary">
               Tertiary
             </Button>
-            <Button variant="tertiary" error={true}>
-              Tertiary
-            </Button>
-            <Button disabled variant="tertiary" error={true}>
-              Tertiary
-            </Button>
             <Button variant="tertiary" color="text">
               Tertiary Text
             </Button>
             <Button disabled variant="tertiary" color="text">
-              Tertiary Text
-            </Button>
-            <Button variant="tertiary" color="text" error={true}>
-              Tertiary Text
-            </Button>
-            <Button variant="tertiary" color="text" error={true} disabled>
               Tertiary Text
             </Button>
           </Cell>

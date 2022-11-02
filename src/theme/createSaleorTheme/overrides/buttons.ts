@@ -7,8 +7,7 @@ export const buttonOverrides = (
 ): ThemeOptions["overrides"] => {
   const containedPrimaryHover = {
     backgroundColor: colors.background.paper,
-    color: colors.main[1],
-    borderColor: colors.main[1],
+    color: colors.active[1],
   };
 
   return {
@@ -17,7 +16,7 @@ export const buttonOverrides = (
         "&$disabled": {
           "&$containedPrimary": {
             color: colors.background.paper,
-            backgroundColor: colors.main[5],
+            backgroundColor: colors.disabled,
           },
           "&$containedSecondary": {
             background: colors.background.paper,
@@ -40,11 +39,9 @@ export const buttonOverrides = (
         boxShadow: "none",
       },
       containedPrimary: {
-        "&&:hover": {
-          ...containedPrimaryHover,
-        },
+        "&&:hover": containedPrimaryHover,
         "&&:active": {
-          backgroundColor: colors.main[6],
+          backgroundColor: colors.active[5],
         },
       },
       label: {
@@ -52,18 +49,17 @@ export const buttonOverrides = (
       },
       root: {
         "&$disabled": {
-          borderColor: colors.main[5],
+          borderColor: colors.disabled,
         },
         "&:hover": {
           backgroundColor: undefined,
         },
+        border: `1px solid ${colors.active[1]}`,
         borderRadius: 4,
         fontSize: "1.6rem",
         lineHeight: 1.55,
         padding: "7px 16px",
         textTransform: "none",
-        borderWidth: "1px",
-        borderStyle: "solid",
       },
       text: {
         "&&$disabled": {
@@ -90,11 +86,8 @@ export const buttonOverrides = (
       outlined: {
         "&$disabled": {
           border: undefined,
-          borderColor: colors.main[5],
-          color: colors.main[5],
-        },
-        "&$error": {
-          color: "red",
+          borderColor: colors.disabled,
+          color: colors.disabled,
         },
         "&:hover": {
           // Unsets border as it will require us to override borderWidth and
@@ -119,8 +112,8 @@ export const buttonOverrides = (
       },
       outlinedPrimary: {
         "&:hover, &$focusVisible": {
-          borderColor: colors.main[1],
-          color: colors.main[1],
+          borderColor: colors.active[1],
+          color: colors.active[1],
         },
         "&:hover": {
           // Unsets border as it will require us to override borderWidth and
@@ -129,7 +122,7 @@ export const buttonOverrides = (
           backgroundColor: undefined,
         },
         "&:active": {
-          backgroundColor: colors.main[5],
+          backgroundColor: colors.active[5],
         },
         border: undefined,
         color: undefined,
@@ -149,21 +142,20 @@ export const buttonOverrides = (
           // Unsets border as it will require us to override borderWidth and
           // borderStyle over and over
           border: undefined,
-          backgroundColor: colors.background.paper,
-          color: colors.main[1],
+          backgroundColor: undefined,
         },
         "&:active": {
-          backgroundColor: colors.main[6],
+          backgroundColor: colors.active[5],
         },
         "&$disabled": {
           border: undefined,
           borderColor: "transparent",
-          color: colors.main[5],
+          color: colors.disabled,
         },
-        background: colors.main[1],
-        border: `1px solid ${colors.main[1]}`,
+        background: colors.background.paper,
+        border: `1px solid ${colors.main[5]}`,
         borderRadius: 4,
-        color: colors.background.paper,
+        color: colors.main[1],
         padding: 7,
         transition: "200ms",
       },
