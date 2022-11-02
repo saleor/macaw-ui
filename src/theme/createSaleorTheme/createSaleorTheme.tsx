@@ -248,16 +248,11 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           disableRipple: true,
         },
       },
-      MuiLink: {
-        style: {
-          color: colors.active[1],
-        },
-      },
       MuiTypography: {
         component: "div",
       } as TypographyProps,
       MuiCheckbox: {
-        color: "secondary",
+        color: "primary",
         disableRipple: true,
         checkedIcon: <CheckboxCheckedIcon />,
         icon: <CheckboxIcon />,
@@ -275,17 +270,14 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiList: {
         disablePadding: true,
       },
-      MuiCircularProgress: {
-        color: "secondary",
-      },
       MuiRadio: {
-        color: "secondary",
+        color: "primary",
         disableRipple: true,
         icon: <RadioIcon />,
         checkedIcon: <RadioCheckedIcon />,
       },
       MuiSwitch: {
-        color: "secondary",
+        color: "primary",
         disableRipple: true,
       },
       MuiSelect: {
@@ -319,7 +311,6 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       button: {
         fontSize: "1.4rem",
-        fontWeight: 600,
       },
       caption: {
         fontSize: "1.2rem",
@@ -328,28 +319,19 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       fontFamily,
       h1: {
         fontSize: "4rem",
-        fontWeight: 600,
-      },
-      h2: {
-        fontWeight: 600,
-        fontSize: "3.2rem",
-      },
-      h3: {
-        fontWeight: 600,
-        fontSize: "2.1rem",
+        fontWeight: 700,
       },
       h4: {
-        fontSize: "1.7rem",
+        fontSize: "3.4rem",
         color: colors.main[1],
-        fontWeight: 600,
       },
       h5: {
-        fontSize: "1.6rem",
-        fontWeight: 400,
+        fontSize: "2.1rem",
+        fontWeight: 500,
       },
       h6: {
-        fontSize: "1.4rem",
-        fontWeight: 600,
+        fontSize: "2rem",
+        fontWeight: 500,
       },
       subtitle1: {
         fontSize: "1.6rem",

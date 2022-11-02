@@ -15,11 +15,11 @@ export const createPalette = (
   primary: {
     contrastText: "#ffffff",
     dark: colors.main[4],
-    main: colors.main[1],
+    main: colors.active[1],
   },
   secondary: {
     contrastText: "#ffffff",
-    main: colors.active[1],
+    main: colors.background.paper,
   },
   success: {
     main: colors.success.mid,

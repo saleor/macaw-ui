@@ -101,7 +101,7 @@ export const controlOverrides = (
     },
   },
   MuiSwitch: {
-    colorSecondary: {
+    colorPrimary: {
       "&$disabled": {
         "& + $track": {
           backgroundColor: "transparent",
@@ -124,14 +124,6 @@ export const controlOverrides = (
           borderColor: colors.active[1],
         },
         color: colors.background.paper,
-      },
-      "&:hover": {
-        color: colors.active[1],
-
-        "& + $track": {
-          borderColor: colors.active[1],
-          backgroundColor: "transparent",
-        },
       },
       color: colors.main[3],
     },
