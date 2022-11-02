@@ -10,7 +10,7 @@ const useStyles = makeStyles(
         color: theme.palette.primary.main,
       },
       "&:active, &$active": {
-        background: theme.palette.saleor.active[4],
+        background: theme.palette.background.paper,
         color: theme.palette.primary.main,
       },
       ...theme.typography.body1,
