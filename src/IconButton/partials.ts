@@ -1,7 +1,10 @@
 import type { SaleorThemeColors } from "..";
 
 // Extracting it to separate file to avoid circular imports
-export function getSecondaryButtonStyles(colors: SaleorThemeColors) {
+export function getSecondaryButtonStyles(
+  colors: SaleorThemeColors,
+  isDarkMode: boolean
+) {
   return {
     "&:hover, &.Mui-focusVisible, &$hover, &$active": {
       color: colors.main[1],
@@ -9,6 +12,10 @@ export function getSecondaryButtonStyles(colors: SaleorThemeColors) {
     "&:disabled": {
       color: colors.main[5],
       borderColor: "transparent",
+
+      ...(isDarkMode && {
+        color: colors.main[2],
+      }),
     },
     background: "transparent",
     borderRadius: 4,
@@ -16,5 +23,10 @@ export function getSecondaryButtonStyles(colors: SaleorThemeColors) {
     border: `1px solid ${colors.main[6]}`,
     padding: 8,
     transition: "200ms",
+
+    ...(isDarkMode && {
+      border: `1px solid ${colors.main[4]}`,
+      color: colors.main[2],
+    }),
   };
 }

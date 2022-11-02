@@ -20,8 +20,8 @@ export const dark: SaleorThemeColors = {
   },
   autofill: "#5D5881",
   background: {
-    default: "#222431",
-    paper: "#34384B",
+    default: "rgba(34, 36, 49, 1)",
+    paper: "rgba(52, 56, 75, 1)",
   },
   checkbox: {
     default: "#FFFFFF",
@@ -39,12 +39,12 @@ export const dark: SaleorThemeColors = {
     5: "#283E5A",
   },
   main: {
-    1: "#FAFAFA",
-    2: "rgba(250, 250, 250, 0.8)",
-    3: "rgba(250, 250, 250, 0.6)",
-    4: "rgba(250, 250, 250, 0.4)",
-    5: "rgba(250, 250, 250, 0.1)",
-    6: "rgba(250, 250, 250, 0.1)",
+    1: "rgba(255, 255, 255, 1)",
+    2: "rgba(146, 148, 161, 1)",
+    3: "rgba(118, 120, 135, 1)",
+    4: "rgba(91, 93, 109, 1)",
+    5: "rgba(64, 66, 82, 1)",
+    6: "rgba(38, 40, 55, 1)",
   },
   fail: {
     verydark: "#9F2E2E",
@@ -71,7 +71,7 @@ export const dark: SaleorThemeColors = {
     light: "#D2F6FE",
   },
   errorAction: {
-    1: "#EB2B59",
+    1: "rgba(235, 43, 89, 1)",
     2: "rgba(235, 43, 89, 0.8)",
     3: "rgba(235, 43, 89, 0.6)",
     4: "rgba(235, 43, 89, 0.4)",

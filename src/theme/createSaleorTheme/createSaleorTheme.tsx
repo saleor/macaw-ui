@@ -14,16 +14,19 @@ import { getSecondaryButtonStyles } from "../../IconButton/partials";
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
 import { shadows } from "./shadows";
-import { SaleorTheme, SaleorThemeColors } from "./types";
+import { SaleorTheme, SaleorThemeColors, ThemeType } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
-export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
+export const createTheme = (
+  colors: SaleorThemeColors,
+  mode: ThemeType
+): SaleorTheme =>
   createMuiTheme({
     overrides: {
-      ...overrides(colors, fontFamily),
+      ...overrides(colors, fontFamily, mode),
       MuiCard: {
         root: {
           border: `1px solid ${colors.border.paper}`,
@@ -104,7 +107,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiExpansionPanelSummary: {
         expandIcon: {
-          ...getSecondaryButtonStyles(colors),
+          ...getSecondaryButtonStyles(colors, mode === "dark"),
           border: "none",
         },
       },

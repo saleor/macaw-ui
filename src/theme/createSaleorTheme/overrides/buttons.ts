@@ -1,14 +1,23 @@
 import type { ThemeOptions } from "@material-ui/core/styles";
 
-import { SaleorThemeColors } from "../types";
+import { SaleorThemeColors, ThemeType } from "../types";
 
 export const buttonOverrides = (
-  colors: SaleorThemeColors
+  colors: SaleorThemeColors,
+  mode: ThemeType
 ): ThemeOptions["overrides"] => {
+  const isDarkMode = mode === "dark";
+
   const containedPrimaryHover = {
     backgroundColor: colors.background.paper,
     color: colors.main[1],
     borderColor: colors.main[1],
+
+    ...(isDarkMode && {
+      backgroundColor: "transparent",
+      color: colors.main[1],
+      borderColor: colors.main[1],
+    }),
   };
 
   return {
@@ -18,10 +27,19 @@ export const buttonOverrides = (
           "&$containedPrimary": {
             color: colors.background.paper,
             backgroundColor: colors.main[5],
+
+            ...(isDarkMode && {
+              color: colors.main[2],
+              backgroundColor: colors.main[5],
+            }),
           },
           "&$containedSecondary": {
             background: colors.background.paper,
             color: colors.disabled,
+
+            ...(isDarkMode && {
+              color: colors.main[3],
+            }),
           },
         },
         "&$focusVisible": {
@@ -44,8 +62,25 @@ export const buttonOverrides = (
           ...containedPrimaryHover,
         },
         "&&:active": {
-          backgroundColor: colors.main[6],
+          backgroundColor: colors.main[5],
         },
+
+        ...(isDarkMode && {
+          color: colors.main[6],
+          backgroundColor: colors.main[1],
+          borderColor: colors.main[1],
+        }),
+      },
+      containedSecondary: {
+        ...(isDarkMode && {
+          color: colors.main[1],
+        }),
+      },
+      outlinedSecondary: {
+        ...(isDarkMode && {
+          color: colors.main[1],
+          borderColor: colors.main[4],
+        }),
       },
       label: {
         fontWeight: 500,
@@ -92,6 +127,11 @@ export const buttonOverrides = (
           border: undefined,
           borderColor: colors.main[5],
           color: colors.main[5],
+
+          ...(isDarkMode && {
+            color: colors.main[3],
+            borderColor: colors.main[3],
+          }),
         },
         "&$error": {
           color: "red",
@@ -106,6 +146,10 @@ export const buttonOverrides = (
         },
         "&:active": {
           backgroundColor: colors.main[5],
+
+          ...(isDarkMode && {
+            backgroundColor: colors.main[2],
+          }),
         },
         "& svg": {
           marginRight: 8,
@@ -116,11 +160,21 @@ export const buttonOverrides = (
         borderStyle: "solid",
         // 1px smaller because of border
         padding: "7px 12px",
+
+        ...(isDarkMode && {
+          color: colors.main[1],
+          borderColor: colors.main[4],
+        }),
       },
       outlinedPrimary: {
         "&:hover, &$focusVisible": {
           borderColor: colors.main[1],
           color: colors.main[1],
+
+          ...(isDarkMode && {
+            borderColor: colors.main[1],
+            color: colors.main[1],
+          }),
         },
         "&:hover": {
           // Unsets border as it will require us to override borderWidth and
