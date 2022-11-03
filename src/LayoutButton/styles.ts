@@ -1,4 +1,4 @@
-import { fade } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles";
 
 import { makeStyles } from "../theme";
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles(
         color: theme.palette.primary.main,
       },
       ...theme.typography.body1,
-      background: fade(theme.palette.background.paper, 0.4),
+      background: alpha(theme.palette.background.paper, 0.4),
       borderRadius: 4,
       color: theme.palette.text.secondary,
       fontSize: theme.typography.body1.fontSize,

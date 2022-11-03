@@ -1,5 +1,5 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles";
+import { createTheme as createMuiTheme } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles";
 import type { TypographyProps } from "@material-ui/core/Typography";
 import React from "react";
 
@@ -219,14 +219,14 @@ export const createTheme = (
       },
       MuiTouchRipple: {
         child: {
-          backgroundColor: fade(colors.active[1], 1),
+          backgroundColor: alpha(colors.active[1], 1),
         },
         childLeaving: {
-          backgroundColor: fade(colors.active[1], 1),
+          backgroundColor: alpha(colors.active[1], 1),
         },
         ripple: {
           "&$rippleVisible": {
-            backgroundColor: fade(colors.active[1], 1),
+            backgroundColor: alpha(colors.active[1], 1),
           },
           borderRadius: "100%",
         },

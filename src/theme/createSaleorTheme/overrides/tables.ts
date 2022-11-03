@@ -18,7 +18,7 @@ export const tableOverrides = (
     },
     head: {
       fontSize: "1.4rem",
-      fontWeight: 400,
+      fontWeight: 500,
       color: colors.main[3],
     },
     paddingCheckbox: {
@@ -43,10 +43,8 @@ export const tableOverrides = (
         },
       },
       height: 56,
-      paddingBottom: 6,
-      paddingTop: 6,
       borderBottomColor: colors.border.paper,
-      padding: "24px 32px",
+      padding: "0 32px",
     },
   },
   MuiTablePagination: {
@@ -69,7 +67,7 @@ export const tableOverrides = (
     },
     hover: {
       "$root&:hover": {
-        background: colors.active[5],
+        background: colors.gray,
       },
       transition: "200ms",
     },

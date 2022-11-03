@@ -1,5 +1,5 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { fade } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles";
 import React from "react";
 
 import { makeStyles } from "./styles";
@@ -53,7 +53,7 @@ const useStyles = makeStyles(
       // For some reason @import clause must be put on top
       // eslint-disable-next-line sort-keys
       "::selection": {
-        background: fade(theme.palette.primary.main, 0.2),
+        background: alpha(theme.palette.primary.main, 0.2),
       },
       html: {
         fontSize: "58.4%",
