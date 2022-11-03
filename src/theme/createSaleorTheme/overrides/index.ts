@@ -11,7 +11,7 @@ export const overrides = (
   fontFamily: string,
   mode: ThemeType
 ): ThemeOptions["overrides"] => ({
-  ...inputOverrides(colors),
+  ...inputOverrides(colors, mode),
   ...tableOverrides(colors, fontFamily),
   ...buttonOverrides(colors, mode),
   ...controlOverrides(colors),

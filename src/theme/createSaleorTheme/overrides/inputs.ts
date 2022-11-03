@@ -4,10 +4,11 @@ function getInputBoxShadow(color: string) {
   return `0 0 0 3px ${color}`;
 }
 
-import { SaleorThemeColors } from "../types";
+import { SaleorThemeColors, ThemeType } from "../types";
 
 export const inputOverrides = (
-  colors: SaleorThemeColors
+  colors: SaleorThemeColors,
+  mode: ThemeType
 ): ThemeOptions["overrides"] => ({
   MuiFormHelperText: {
     root: {
@@ -161,13 +162,13 @@ export const inputOverrides = (
         },
       },
       "&:hover": {
-        boxShadow: getInputBoxShadow(colors.main[5]),
+        boxShadow: getInputBoxShadow(mode === 'dark' ? colors.main[4] : colors.main[6]),
         "& input": {
           color: colors.main[1],
         },
         "&&&": {
           "& fieldset": {
-            borderColor: colors.main[5],
+            borderColor: mode === 'dark' ? colors.main[2] : colors.main[4],
           },
         },
       },

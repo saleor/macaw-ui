@@ -1,9 +1,7 @@
-import {
-  Accordion as MuiAccordion,
-  AccordionSummary as MuiAccordionSummary,
-  AccordionDetails as MuiAAccordionDetails,
-  AccordionSummaryProps
-} from "@material-ui/core";
+import { default as MuiAccordion } from "@material-ui/core/Accordion"
+import { default as MuiAccordionSummary, AccordionSummaryProps } from "@material-ui/core/AccordionSummary"
+import { default as MuiAAccordionDetails } from "@material-ui/core/AccordionDetails"
+
 import { ChevronIcon } from "../icons";
 import React from "react";
 import useStyles from "./styles";
