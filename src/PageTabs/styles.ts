@@ -1,4 +1,4 @@
-import { fade } from "@material-ui/core";
+import { alpha } from "@material-ui/core";
 import { makeStyles } from "../theme";
 
 const useStyles = makeStyles(
@@ -12,7 +12,7 @@ const useStyles = makeStyles(
         color: theme.palette.saleor.main[1],
       },
       "&:hover": {
-        background: fade(theme.palette.saleor.generic.mid, 0.6),
+        background: alpha(theme.palette.saleor.generic.mid, 0.6),
       },
       color: theme.palette.saleor.main[1],
       borderRadius: 4,

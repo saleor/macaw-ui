@@ -2,7 +2,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import MuiMenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
-import { fade } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import React from "react";
@@ -97,7 +97,7 @@ const useStyles = makeStyles(
       },
       borderBottomRightRadius: 4,
       borderTopRightRadius: 4,
-      color: fade(theme.palette.text.primary, 0.6),
+      color: alpha(theme.palette.text.primary, 0.6),
       cursor: "pointer",
       display: "flex",
       height: 56,
