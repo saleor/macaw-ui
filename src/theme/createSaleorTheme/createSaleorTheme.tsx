@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme as createMuiTheme } from "@material-ui/core/styles";
 import { alpha } from "@material-ui/core/styles";
 import type { TypographyProps } from "@material-ui/core/Typography";
 import React from "react";
