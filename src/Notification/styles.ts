@@ -34,6 +34,10 @@ const useStyles = makeStyles(
       position: "absolute",
       right: 5,
       top: 7,
+      border: "none",
+    },
+    apiErrorButton: {
+      border: "none",
     },
     error: {
       "& $icon": {
