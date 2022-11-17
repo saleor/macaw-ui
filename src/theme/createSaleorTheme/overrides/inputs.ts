@@ -66,7 +66,11 @@ export const inputOverrides = (
         color: colors.main[5],
       },
       "&&&": {
-        color: `${colors.main[1]}`,
+        color: colors.main[3],
+
+        "&$focused": {
+          color: colors.main[1],
+        },
 
         "&$disabled": {
           color: colors.main[5],
@@ -125,16 +129,20 @@ export const inputOverrides = (
         backgroundColor: colors.background.default,
       },
       "&$error": {
-        boxShadow: getInputBoxShadow(mode === 'dark' ? colors.fail.dark : colors.fail.light),
+        boxShadow: getInputBoxShadow(
+          mode === "dark" ? colors.fail.dark : colors.fail.light
+        ),
       },
       "&:not($error):hover": {
-        boxShadow: getInputBoxShadow(mode === 'dark' ? colors.main[4] : colors.main[6]),
+        boxShadow: getInputBoxShadow(
+          mode === "dark" ? colors.main[4] : colors.main[6]
+        ),
         "& input": {
           color: colors.main[1],
         },
         "&&&": {
           "& fieldset": {
-            borderColor: mode === 'dark' ? colors.main[2] : colors.main[4],
+            borderColor: mode === "dark" ? colors.main[2] : colors.main[4],
           },
         },
       },
