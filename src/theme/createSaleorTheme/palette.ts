@@ -13,7 +13,7 @@ export const createPalette = (
     main: colors.errorAction[1],
   },
   primary: {
-    contrastText: "#ffffff",
+    contrastText: colors.main[6],
     dark: colors.main[4],
     main: colors.main[1],
   },

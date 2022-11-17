@@ -79,7 +79,7 @@ export const dark: SaleorThemeColors = {
   },
   generic: {
     light: "#F1F1F1",
-    mid: "#EAEAEA",
+    mid: "#5B5D6D",
     dark: "#7C7F7F",
     verydark: "#252929",
   },
