@@ -30,3 +30,37 @@ export function getSecondaryButtonStyles(
     }),
   };
 }
+
+export function getGhostButtonStyles(
+  colors: SaleorThemeColors,
+  isDarkMode: boolean
+) {
+  return {
+    "&:hover, &.Mui-focusVisible, &$hover, &$active": {
+      color: colors.main[1],
+      background: colors.main[5],
+    },
+
+    "&$active": {
+      color: colors.main[1],
+      background: colors.main[4],
+    },
+
+    "&:disabled": {
+      color: colors.main[3],
+
+      ...(isDarkMode && {
+        color: colors.main[3],
+      }),
+    },
+    background: "transparent",
+    borderRadius: 4,
+    color: colors.main[5],
+    padding: 8,
+    transition: "200ms",
+
+    ...(isDarkMode && {
+      color: colors.main[2],
+    }),
+  };
+}

@@ -1,5 +1,5 @@
 import { makeStyles } from "../theme";
-import { getSecondaryButtonStyles } from "./partials";
+import { getGhostButtonStyles, getSecondaryButtonStyles } from "./partials";
 
 const useStyles = makeStyles(
   (theme) => {
@@ -20,6 +20,7 @@ const useStyles = makeStyles(
         },
       },
       secondary: getSecondaryButtonStyles(theme.palette.saleor, isDarkMode),
+      ghost: getGhostButtonStyles(theme.palette.saleor, isDarkMode),
       hoverOutline: {
         "&$secondary": {
           "&:hover, &:focus-visible, &$hover": {
@@ -62,6 +63,25 @@ const useStyles = makeStyles(
             backgroundColor: theme.palette.background.paper,
             color: theme.palette.saleor.errorAction[2],
             borderColor: theme.palette.saleor.errorAction[5],
+          },
+
+          "&$ghost": {
+            backgroundColor: theme.palette.background.default,
+            color: theme.palette.saleor.errorAction[2],
+
+            "&:hover, &.Mui-focusVisible, &$hover": {
+              color: theme.palette.saleor.errorAction[1],
+              backgroundColor: theme.palette.saleor.errorAction[4],
+            },
+
+            "&:active, &$active": {
+              background: theme.palette.saleor.errorAction[3],
+              color: theme.palette.saleor.errorAction[1],
+            },
+
+            "&:disabled": {
+              color: theme.palette.saleor.errorAction[3],
+            },
           },
 
           ...(isDarkMode && {

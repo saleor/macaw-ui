@@ -35,3 +35,14 @@ OutlineError.args = {
   variant: "secondary",
   error: true,
 };
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  variant: "ghost",
+};
+
+export const GhostError = Template.bind({});
+GhostError.args = {
+  variant: "ghost",
+  error: true,
+};
