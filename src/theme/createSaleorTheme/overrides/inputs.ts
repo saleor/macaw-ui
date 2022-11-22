@@ -40,7 +40,7 @@ export const inputOverrides = (
     },
     input: {
       "&$disabled": {
-        color: colors.disabled,
+        color: colors.main[2],
       },
       "&::placeholder": {
         color: colors.main[3],
@@ -63,7 +63,7 @@ export const inputOverrides = (
     },
     root: {
       "&&$disabled": {
-        color: colors.main[5],
+        color: colors.main[2],
       },
       "&&&": {
         color: colors.main[3],
@@ -73,7 +73,7 @@ export const inputOverrides = (
         },
 
         "&$disabled": {
-          color: colors.main[5],
+          color: mode === "dark" ? colors.main[2] : colors.main[4],
         },
         "&$error": {
           "&$focused": {
@@ -95,7 +95,9 @@ export const inputOverrides = (
         boxShadow: "0 0 0px 1000px rgba(19, 190, 187, 0.1) inset",
       },
       "&&$disabled": {
-        backgroundColor: undefined,
+        backgroundColor:
+          mode === "dark" ? colors.main[5] : colors.background.default,
+        borderColor: mode === "dark" ? colors.main[4] : colors.main[6],
       },
       color: colors.main[1],
       padding: "23px 12px 10px 12px",
@@ -107,7 +109,9 @@ export const inputOverrides = (
     },
     multiline: {
       "&$disabled": {
-        background: colors.background.default,
+        background:
+          mode === "dark" ? colors.main[5] : colors.background.default,
+        borderColor: mode === "dark" ? colors.main[4] : colors.main[6],
       },
     },
     root: {
