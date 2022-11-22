@@ -29,7 +29,7 @@ const useStyles = makeStyles(
         maxHeight: 20,
         maxWidth: 20,
       },
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.primary,
       padding: 10,
       position: "absolute",
       right: 5,
