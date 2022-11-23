@@ -1,5 +1,5 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles";
+import { createTheme as createMuiTheme } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles";
 import type { TypographyProps } from "@material-ui/core/Typography";
 import React from "react";
 
@@ -14,16 +14,19 @@ import { getSecondaryButtonStyles } from "../../IconButton/partials";
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
 import { shadows } from "./shadows";
-import { SaleorTheme, SaleorThemeColors } from "./types";
+import { SaleorTheme, SaleorThemeColors, ThemeType } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
-export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
+export const createTheme = (
+  colors: SaleorThemeColors,
+  mode: ThemeType
+): SaleorTheme =>
   createMuiTheme({
     overrides: {
-      ...overrides(colors, fontFamily),
+      ...overrides(colors, fontFamily, mode),
       MuiCard: {
         root: {
           border: `1px solid ${colors.border.paper}`,
@@ -104,7 +107,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiExpansionPanelSummary: {
         expandIcon: {
-          ...getSecondaryButtonStyles(colors),
+          ...getSecondaryButtonStyles(colors, mode === "dark"),
           border: "none",
         },
       },
@@ -216,14 +219,14 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiTouchRipple: {
         child: {
-          backgroundColor: fade(colors.active[1], 1),
+          backgroundColor: alpha(colors.active[1], 1),
         },
         childLeaving: {
-          backgroundColor: fade(colors.active[1], 1),
+          backgroundColor: alpha(colors.active[1], 1),
         },
         ripple: {
           "&$rippleVisible": {
-            backgroundColor: fade(colors.active[1], 1),
+            backgroundColor: alpha(colors.active[1], 1),
           },
           borderRadius: "100%",
         },
@@ -345,7 +348,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       h5: {
         fontSize: "1.6rem",
-        fontWeight: 400,
+        fontWeight: 600,
       },
       h6: {
         fontSize: "1.4rem",

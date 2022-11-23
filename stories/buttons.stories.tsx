@@ -40,6 +40,7 @@ const DefaultStory: React.FC = () => {
               className={guideClasses.gridCell}
               style={{ gridTemplateColumns: "repeat(2, 1fr)" }}
             >
+              <Typography style={{ gridColumn: "1/-1" }}>Primary</Typography>
               <IconButton variant="primary">
                 <DeleteIcon />
               </IconButton>
@@ -54,6 +55,7 @@ const DefaultStory: React.FC = () => {
                 <DeleteIcon />
               </IconButton>
 
+              <Typography style={{ gridColumn: "1/-1" }}>Secondary</Typography>
               <IconButton variant="secondary">
                 <DeleteIcon />
               </IconButton>
@@ -232,9 +234,6 @@ const ErrorStory: React.FC = () => {
                 <DeleteIcon />
               </IconButton>
               <IconButton error disabled>
-                <DeleteIcon />
-              </IconButton>
-              <IconButton error variant="primary" state="hover">
                 <DeleteIcon />
               </IconButton>
               <IconButton error variant="secondary" state="hover">

@@ -1,5 +1,5 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { fade } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles";
 import React from "react";
 
 import { makeStyles } from "./styles";
@@ -8,7 +8,6 @@ const useStyles = makeStyles(
   (theme) => ({
     "@global": {
       "@import": "url('https://rsms.me/inter/inter.css')",
-
       // Putting them here, because MUI doesn't let putting own keys in
       // `overrides` objects
       "@keyframes hoverControlStart": {
@@ -48,17 +47,19 @@ const useStyles = makeStyles(
       ":root": {
         "--background-paper": theme.palette.background.paper,
         "--background-default": theme.palette.background.default,
+        colorScheme: theme.palette.type
       },
 
       // For some reason @import clause must be put on top
       // eslint-disable-next-line sort-keys
       "::selection": {
-        background: fade(theme.palette.primary.main, 0.2),
+        background: alpha(theme.palette.primary.main, 0.2),
       },
       html: {
         fontSize: "58.4%",
       },
       a: {
+        color: "inherit",
         textDecoration: "none",
       },
     },

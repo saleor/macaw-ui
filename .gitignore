@@ -7,6 +7,7 @@
 !.gitkeep
 !.storybook
 !.github
+!.nvmrc
 *.log
 node_modules
 dist

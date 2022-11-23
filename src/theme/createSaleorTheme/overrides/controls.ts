@@ -11,6 +11,11 @@ export const controlOverrides = (
         backgroundColor: "transparent",
       },
     },
+    colorSecondary: {
+      "&&.Mui-checked:hover": {
+        backgroundColor: "transparent",
+      },
+    },
     root: {
       "&:hover, &.Mui-focusVisible": {
         "& > span::before": {
@@ -55,6 +60,11 @@ export const controlOverrides = (
     },
   },
   MuiRadio: {
+    colorSecondary: {
+      "&&.Mui-checked:hover": {
+        backgroundColor: "transparent",
+      },
+    },
     colorPrimary: {
       "&&.Mui-checked:hover": {
         backgroundColor: "transparent",
