@@ -24,7 +24,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=14 <16"
   },
   "scripts": {
     "watch-esb": "node scripts/build.js watch",
