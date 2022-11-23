@@ -1,7 +1,7 @@
 import ButtonBase from "@material-ui/core/ButtonBase";
-import { IconButtonTypeMap as MuiIconButtonTypeMap } from "@material-ui/core/IconButton";
 import MuiIconButton, {
   IconButtonProps as MuiIconButtonProps,
+  IconButtonTypeMap as MuiIconButtonTypeMap,
 } from "@material-ui/core/IconButton";
 import { OverrideProps } from "@material-ui/core/OverridableComponent";
 import clsx from "clsx";
@@ -14,7 +14,7 @@ export interface IconButtonInnerProps {
   error?: boolean;
   hoverOutline?: boolean;
   state?: UserInteraction;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "ghost";
 }
 
 export interface IconButtonTypeMap<
@@ -47,6 +47,23 @@ const _IconButton: React.FC<IconButtonProps> = React.forwardRef(
     ref
   ) => {
     const classes = useStyles();
+
+    if (variant === "ghost") {
+      return (
+        <ButtonBase
+          ref={ref}
+          className={clsx(classes.ghost, className, {
+            [classes.hoverOutline]: hoverOutline && !props.disabled,
+            [classes.hover]: state === "hover" && !props.disabled,
+            [classes.active]: state === "active" && !props.disabled,
+            [classes.error]: error,
+            [classes.disabledError]: error && props.disabled,
+          })}
+          disableRipple
+          {...props}
+        />
+      );
+    }
 
     if (variant === "secondary") {
       return (
