@@ -24,7 +24,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=14 <16"
+    "node": ">=16 <19"
   },
   "scripts": {
     "watch-esb": "node scripts/build.js watch",
@@ -57,8 +57,8 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "react": "^16.8.0 || ^17.0.0",
-    "react-helmet": "^6.1.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react-dom": "^16.8.0 || ^17.0.0",
+    "react-helmet": "^6.1.0"
   },
   "np": {
     "yarn": false
