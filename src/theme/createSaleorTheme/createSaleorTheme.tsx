@@ -1,5 +1,5 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles";
+import { createTheme as createMuiTheme } from "@material-ui/core/styles";
+import { alpha } from "@material-ui/core/styles";
 import type { TypographyProps } from "@material-ui/core/Typography";
 import React from "react";
 
@@ -14,16 +14,19 @@ import { getSecondaryButtonStyles } from "../../IconButton/partials";
 import { overrides } from "./overrides";
 import { createPalette } from "./palette";
 import { shadows } from "./shadows";
-import { SaleorTheme, SaleorThemeColors } from "./types";
+import { SaleorTheme, SaleorThemeColors, ThemeType } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
 const fontFamily = '"Inter", "roboto", "sans-serif"';
 
-export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
+export const createTheme = (
+  colors: SaleorThemeColors,
+  mode: ThemeType
+): SaleorTheme =>
   createMuiTheme({
     overrides: {
-      ...overrides(colors, fontFamily),
+      ...overrides(colors, fontFamily, mode),
       MuiCard: {
         root: {
           border: `1px solid ${colors.border.paper}`,
@@ -104,7 +107,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiExpansionPanelSummary: {
         expandIcon: {
-          ...getSecondaryButtonStyles(colors),
+          ...getSecondaryButtonStyles(colors, mode === "dark"),
           border: "none",
         },
       },
@@ -216,14 +219,14 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       MuiTouchRipple: {
         child: {
-          backgroundColor: fade(colors.active[1], 1),
+          backgroundColor: alpha(colors.active[1], 1),
         },
         childLeaving: {
-          backgroundColor: fade(colors.active[1], 1),
+          backgroundColor: alpha(colors.active[1], 1),
         },
         ripple: {
           "&$rippleVisible": {
-            backgroundColor: fade(colors.active[1], 1),
+            backgroundColor: alpha(colors.active[1], 1),
           },
           borderRadius: "100%",
         },
@@ -248,11 +251,16 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
           disableRipple: true,
         },
       },
+      MuiLink: {
+        style: {
+          color: colors.active[1],
+        },
+      },
       MuiTypography: {
         component: "div",
       } as TypographyProps,
       MuiCheckbox: {
-        color: "primary",
+        color: "secondary",
         disableRipple: true,
         checkedIcon: <CheckboxCheckedIcon />,
         icon: <CheckboxIcon />,
@@ -270,14 +278,17 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       MuiList: {
         disablePadding: true,
       },
+      MuiCircularProgress: {
+        color: "secondary",
+      },
       MuiRadio: {
-        color: "primary",
+        color: "secondary",
         disableRipple: true,
         icon: <RadioIcon />,
         checkedIcon: <RadioCheckedIcon />,
       },
       MuiSwitch: {
-        color: "primary",
+        color: "secondary",
         disableRipple: true,
       },
       MuiSelect: {
@@ -311,6 +322,7 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       },
       button: {
         fontSize: "1.4rem",
+        fontWeight: 600,
       },
       caption: {
         fontSize: "1.2rem",
@@ -319,19 +331,28 @@ export const createTheme = (colors: SaleorThemeColors): SaleorTheme =>
       fontFamily,
       h1: {
         fontSize: "4rem",
-        fontWeight: 700,
+        fontWeight: 600,
+      },
+      h2: {
+        fontWeight: 600,
+        fontSize: "3.2rem",
+      },
+      h3: {
+        fontWeight: 600,
+        fontSize: "2.1rem",
       },
       h4: {
-        fontSize: "3.4rem",
+        fontSize: "1.7rem",
         color: colors.main[1],
+        fontWeight: 600,
       },
       h5: {
-        fontSize: "2.1rem",
-        fontWeight: 500,
+        fontSize: "1.6rem",
+        fontWeight: 600,
       },
       h6: {
-        fontSize: "2rem",
-        fontWeight: 500,
+        fontSize: "1.4rem",
+        fontWeight: 600,
       },
       subtitle1: {
         fontSize: "1.6rem",

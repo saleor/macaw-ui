@@ -13,13 +13,13 @@ export const createPalette = (
     main: colors.errorAction[1],
   },
   primary: {
-    contrastText: "#ffffff",
+    contrastText: colors.main[6],
     dark: colors.main[4],
-    main: colors.active[1],
+    main: colors.main[1],
   },
   secondary: {
     contrastText: "#ffffff",
-    main: colors.background.paper,
+    main: colors.active[1],
   },
   success: {
     main: colors.success.mid,

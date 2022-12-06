@@ -105,6 +105,7 @@ export const Notification: React.FC<NotificationProps> = ({
                   onClick={() => setShowApiMessage((show) => !show)}
                   hoverOutline={false}
                   variant="secondary"
+                  className={classes.apiErrorButton}
                 >
                   <ExpandIcon
                     className={clsx({

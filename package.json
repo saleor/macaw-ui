@@ -1,5 +1,5 @@
 {
-  "version": "0.6.7",
+  "version": "0.6.8-1",
   "license": "CC-BY-4.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -24,7 +24,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=16 <19"
   },
   "scripts": {
     "watch-esb": "node scripts/build.js watch",
@@ -38,8 +38,8 @@
     "prepare": "npm run build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
+    "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
     "release": "np",
     "chromatic": "npx chromatic --exit-zero-on-changes --skip 'dependabot/**'",
     "generate-icons:32": "svgr --no-dimensions --no-prettier --out-dir src/icons/32x32 -- src/assets/icons/32x32/",
@@ -57,8 +57,8 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "react": "^16.8.0 || ^17.0.0",
-    "react-helmet": "^6.1.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react-dom": "^16.8.0 || ^17.0.0",
+    "react-helmet": "^6.1.0"
   },
   "np": {
     "yarn": false
@@ -90,9 +90,9 @@
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@linjiajian999/esbuild-plugin-import": "^1.0.2",
-    "@material-ui/core": "^4.11.2",
+    "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@size-limit/preset-small-lib": "^4.10.2",
     "@storybook/addon-controls": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
@@ -109,11 +109,11 @@
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.4",
     "@types/react-helmet": "^6.1.1",
-    "@types/react-inlinesvg": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "chromatic": "^6.0.4",
     "concurrently": "^6.3.0",
+    "cross-env": "^7.0.3",
     "esbuild": "^0.13.4",
     "esbuild-jest": "^0.5.0",
     "eslint": "^7.32.0",
@@ -126,14 +126,14 @@
     "jest": "^27.2.4",
     "jest-file": "^1.0.0",
     "np": "^7.5.0",
+    "prettier": "^2.6.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "prettier": "^2.6.2",
     "react-is": "^17.0.2",
     "size-limit": "^4.10.2",
     "storybook-dark-mode": "^1.0.9",
     "svgo": "^2.8.0",
-    "tslib": "^2.3.1",
+    "tslib": "^2.4.0",
     "typescript": "^4.2.4",
     "yargs": "^17.2.1"
   },
@@ -143,7 +143,7 @@
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "react-inlinesvg": "^2.3.0"
+    "react-inlinesvg": "^3.0.1"
   },
   "jest": {
     "testEnvironment": "jsdom",
