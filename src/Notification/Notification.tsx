@@ -5,8 +5,14 @@ import React, { useState } from "react";
 
 import { Button } from "../Button";
 import { IconButton } from "../IconButton";
-import { CloseIcon, ExpandIcon } from "../icons";
-import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
+import {
+  CloseIcon,
+  CompleteIcon,
+  ExpandIcon,
+  InfoIcon,
+  NotAllowedIcon,
+  WarningIcon,
+} from "../icons";
 import useStyles from "./styles";
 import type { NotificationProps, NotificationType } from "./types";
 
@@ -61,7 +67,10 @@ export const Notification: React.FC<NotificationProps> = ({
           [classes.warning]: type === "warning",
         })}
         message={
-          <div className={classes.container}>
+          <div
+            className={classes.container}
+            data-test-id="notification-message"
+          >
             <div>
               <Icon className={classes.icon} type={type} />
             </div>
@@ -79,7 +88,7 @@ export const Notification: React.FC<NotificationProps> = ({
           </div>
         }
         action={[
-          <div key="actions">
+          <div key="actions" data-test-id="notification-actions">
             {!!action && (
               <Button
                 className={classes.actionBtn}
@@ -92,7 +101,11 @@ export const Notification: React.FC<NotificationProps> = ({
               </Button>
             )}
           </div>,
-          <div key="api-action" className={classes.apiMessageAction}>
+          <div
+            key="api-action"
+            className={classes.apiMessageAction}
+            data-test-id="notification-api-action"
+          >
             {!!apiMessage && (
               <>
                 <Typography variant="body1">
