@@ -16,7 +16,7 @@ const _AccordionSmmary: React.FC<AccordionSummaryProps> = React.forwardRef(
     return (
       <MuiAccordionSummary
         ref={ref}
-        expandIcon={<ChevronIcon data-testid="expand-icon" />}
+        expandIcon={<ChevronIcon data-test-id="expand-icon" />}
         classes={classes}
         {...props}
       />
