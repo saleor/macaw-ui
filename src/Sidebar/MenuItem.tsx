@@ -217,7 +217,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           transition
           placement="right-start"
         >
-          <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <ClickAwayListener
+            onClickAway={() => setOpen(false)}
+            // https://github.com/mui/material-ui/issues/17402
+            mouseEvent="onMouseDown"
+            touchEvent="onTouchStart"
+          >
             <Paper className={classes.paper}>
               {menuItem.children.map((subMenuItem) => {
                 if (subMenuItem.url || subMenuItem.children) {
