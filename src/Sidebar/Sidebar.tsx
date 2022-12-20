@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useMemo } from "react";
 
+import { CustomLogo } from "../icons/CustomLogo";
 import { Logo } from "../icons/Logo";
 import { LogoDark } from "../icons/LogoDark";
 import { localStorageKeys } from "../localStorageKeys";
@@ -44,7 +45,9 @@ const useStyles = makeStyles(
 );
 
 export interface SidebarProps extends BaseSidebarProps {
-  activeId: string;
+  activeId: string
+  logoSrc?: string
+  logo?: React.ReactNode
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -55,14 +58,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
   logoHref,
   linkComponent,
   className,
+  logoSrc,
+  logo,
 }) => {
+  const { themeType } = useTheme();
   const classes = useStyles({});
   const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
     localStorageKeys.menuShrink,
     false.toString()
   );
+  const logoContent = useMemo(()=>{
+    if(logoSrc){
+      return <CustomLogo src= {logoSrc}/> 
+    }
+    if(logo){
+      return logo
+    }
+    return themeType === "dark" ? <LogoDark /> : <Logo/>
+  }, [logoSrc]);
   const isShrunk = isShrunkStr === "true";
-  const { themeType } = useTheme();
+  
 
   const Link = linkComponent ?? "a";
 
@@ -74,7 +89,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       <div className={classes.float}>
         <Link href={logoHref} className={classes.logo}>
-          {themeType === "dark" ? <LogoDark /> : <Logo />}
+          {logoContent}
         </Link>
         {menuItems.map((menuItem) =>
           linkComponent ? (
