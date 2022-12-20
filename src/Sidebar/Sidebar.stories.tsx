@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import { CustomLogo } from "../icons/CustomLogo";
 import { SquareButton } from "../SquareButton";
 import * as fixtures from "./fixtures";
 import { Sidebar, SidebarProps } from "./Sidebar";
