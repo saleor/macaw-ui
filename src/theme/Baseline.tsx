@@ -47,7 +47,7 @@ const useStyles = makeStyles(
       ":root": {
         "--background-paper": theme.palette.background.paper,
         "--background-default": theme.palette.background.default,
-        colorScheme: theme.palette.type
+        colorScheme: theme.palette.type,
       },
 
       // For some reason @import clause must be put on top
