@@ -20,13 +20,27 @@ export const WithToolbar: Story = () => (
 );
 
 export const WithCustomLogoSrc: Story = () => (
-  <Sidebar {...props} logoSrc='https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg' toolbar={<SquareButton>tool</SquareButton>} />
+  <Sidebar
+    {...props}
+    logoSrc="https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg"
+    toolbar={<SquareButton>tool</SquareButton>}
+  />
 );
 
-const logoContent = <img src='https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg' height={33} width={36}/>
+const logoContent = (
+  <img
+    src="https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg"
+    height={33}
+    width={36}
+  />
+);
 
 export const WithCustomLogo: Story = () => (
-  <Sidebar {...props} logo={logoContent} toolbar={<SquareButton>tool</SquareButton>} />
+  <Sidebar
+    {...props}
+    logo={logoContent}
+    toolbar={<SquareButton>tool</SquareButton>}
+  />
 );
 
 export default {

@@ -45,9 +45,9 @@ const useStyles = makeStyles(
 );
 
 export interface SidebarProps extends BaseSidebarProps {
-  activeId: string
-  logoSrc?: string
-  logo?: React.ReactNode
+  activeId: string;
+  logoSrc?: string;
+  logo?: React.ReactNode;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -67,17 +67,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
     localStorageKeys.menuShrink,
     false.toString()
   );
-  const logoContent = useMemo(()=>{
-    if(logoSrc){
-      return <CustomLogo src= {logoSrc}/> 
+  const logoContent = useMemo(() => {
+    if (logoSrc) {
+      return <CustomLogo src={logoSrc} />;
     }
-    if(logo){
-      return logo
+    if (logo) {
+      return logo;
     }
-    return themeType === "dark" ? <LogoDark /> : <Logo/>
-  }, [logoSrc]);
+    return themeType === "dark" ? <LogoDark /> : <Logo />;
+  }, [logoSrc, logo, themeType]);
   const isShrunk = isShrunkStr === "true";
-  
 
   const Link = linkComponent ?? "a";
 

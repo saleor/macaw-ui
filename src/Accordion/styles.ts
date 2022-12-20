@@ -3,9 +3,9 @@ import { makeStyles } from "../theme";
 const useStyles = makeStyles(
   (theme) => {
     const isDarkMode = theme.palette.type === "dark";
-    const colors = theme.palette.saleor
-    const borderColor = isDarkMode ? colors.main[4] : colors.main[6]
-  
+    const colors = theme.palette.saleor;
+    const borderColor = isDarkMode ? colors.main[4] : colors.main[6];
+
     return {
       expandIcon: {
         "&:hover, &.Mui-focusVisible, &$hover, &$active": {
@@ -18,8 +18,8 @@ const useStyles = makeStyles(
         border: `1px solid ${borderColor}`,
         padding: 3,
         transition: "200ms",
-      }
-    }
+      },
+    };
   },
   {
     name: "Accordion",

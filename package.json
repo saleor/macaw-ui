@@ -34,7 +34,9 @@
     "start": "concurrently -n w: npm:watch-* --prefix-colors=green,blue",
     "build": "npm run build-esb && npm run build-tsc",
     "test": "jest",
-    "lint": "eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix",
+    "lint": "npm run lint:eslint && npm run prettier-check",
+    "lint:eslint": "eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix",
+    "prettier-check": "prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write",
     "prepare": "npm run build",
     "size": "size-limit",
     "analyze": "size-limit --why",
@@ -139,7 +141,6 @@
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.5.0",
-    "@saleor/macaw-ui": "^0.7.1",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",
