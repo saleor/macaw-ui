@@ -18,20 +18,19 @@ export const SubmenuSelected: Story = () => (
 export const WithToolbar: Story = () => (
   <Sidebar {...props} toolbar={<SquareButton>tool</SquareButton>} />
 );
-
-export const WithCustomLogoSrc: Story = () => (
-  <Sidebar
-    {...props}
-    logoSrc="https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg"
-    toolbar={<SquareButton>tool</SquareButton>}
-  />
-);
-
 const logoContent = (
   <img
     src="https://funix.edu.vn/wp-content/uploads/2019/07/8.-NCC.jpg"
     height={33}
     width={36}
+  />
+);
+
+export const WithCustomLogoSrc: Story = () => (
+  <Sidebar
+    {...props}
+    toolbar={<SquareButton>tool</SquareButton>}
+    logo={logoContent}
   />
 );
 

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 
 import { CustomLogo } from "../icons/CustomLogo";
 import { Logo } from "../icons/Logo";
@@ -48,6 +48,7 @@ export interface SidebarProps extends BaseSidebarProps {
   activeId: string;
   logoSrc?: string;
   logo?: React.ReactNode;
+  onExpand?: (value: boolean) => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -60,6 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   className,
   logoSrc,
   logo,
+  onExpand,
 }) => {
   const { themeType } = useTheme();
   const classes = useStyles({});
@@ -79,6 +81,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const isShrunk = isShrunkStr === "true";
 
   const Link = linkComponent ?? "a";
+
+  useEffect(() => {
+    if (onExpand) {
+      onExpand(isShrunk);
+    }
+  }, [isShrunk]);
 
   return (
     <div
