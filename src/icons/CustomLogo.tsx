@@ -8,6 +8,12 @@ const useStyle = makeStyles(
     img: {
       maxWidth: "178px",
     },
+    "@media (max-width: 600px)": {
+      img: {
+        height: "36px"
+      }
+    },
+    
   }),
   {
     name: "CustomLogo",

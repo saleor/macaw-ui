@@ -3,9 +3,10 @@ import Typography from "@material-ui/core/Typography";
 import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
 import MenuIcon from "@material-ui/icons/Menu";
 import clsx from "clsx";
-import React from "react";
+import React, { useMemo } from "react";
 import SVG from "react-inlinesvg";
 
+import { CustomLogo } from "../icons/CustomLogo";
 import { Logo } from "../icons/Logo";
 import { LogoDark } from "../icons/LogoDark";
 import { BaseSidebarProps, SidebarMenuItem } from "../Sidebar/types";
@@ -14,13 +15,18 @@ import { useTheme } from "../theme";
 import { MenuItemBtn } from "./MenuItemBtn";
 import useStyles from "./styles";
 
-export type SideBarDrawerProps = BaseSidebarProps;
+export interface SideBarDrawerProps extends BaseSidebarProps {
+  logoSrc?: string;
+  logo?: React.ReactNode;
+}
 
 export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
   menuItems,
   onMenuItemClick,
   linkComponent,
   logoHref,
+  logoSrc,
+  logo,
 }) => {
   const [isOpened, setOpened] = React.useState(false);
   const classes = useStyles({});
@@ -45,7 +51,18 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
     });
   };
 
+  const logoContent = useMemo(() => {
+    if (logoSrc) {
+      return <CustomLogo src={logoSrc} />;
+    }
+    if (logo) {
+      return logo;
+    }
+    return themeType === "dark" ? <LogoDark /> : <Logo />;
+  }, [logoSrc, logo, themeType]);
+
   const Link = linkComponent ?? "a";
+
 
   return (
     <>
@@ -72,7 +89,7 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
           >
             <div className={classes.content}>
               <Link href={logoHref} className={classes.logo}>
-                {themeType === "dark" ? <LogoDark /> : <Logo />}
+                {logoContent}
               </Link>
               {menuItems.map((menuItem) => (
                 <MenuItemBtn
