@@ -63,7 +63,6 @@ export const SidebarDrawer: React.FC<SideBarDrawerProps> = ({
 
   const Link = linkComponent ?? "a";
 
-
   return (
     <>
       <SquareButton onClick={() => setOpened(true)}>
