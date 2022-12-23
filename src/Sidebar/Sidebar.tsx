@@ -69,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     localStorageKeys.menuShrink,
     false.toString()
   );
-  const getLogo = useMemo(() => {
+  const logoContent = useMemo(() => {
     if (logoSrc) {
       return <CustomLogo src={logoSrc} />;
     }
@@ -82,12 +82,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const Link = linkComponent ?? "a";
 
-  useEffect(()=>{
-    if (onExpand){
-      onExpand(isShrunk)
+  useEffect(() => {
+    if (onExpand) {
+      onExpand(isShrunk);
     }
-    
-  }, [isShrunk])
+  }, [isShrunk]);
 
   return (
     <div
@@ -97,7 +96,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       <div className={classes.float}>
         <Link href={logoHref} className={classes.logo}>
-          {getLogo}
+          {logoContent}
         </Link>
         {menuItems.map((menuItem) =>
           linkComponent ? (

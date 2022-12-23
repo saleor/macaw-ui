@@ -1,4 +1,3 @@
-
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
@@ -27,7 +26,6 @@ const logoContent = (
   />
 );
 
-
 export const WithCustomLogoSrc: Story = () => (
   <Sidebar
     {...props}
@@ -35,8 +33,6 @@ export const WithCustomLogoSrc: Story = () => (
     logo={logoContent}
   />
 );
-
-
 
 export const WithCustomLogo: Story = () => (
   <Sidebar
