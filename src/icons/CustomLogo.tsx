@@ -4,10 +4,10 @@ interface CustomLogoProps {
   src: string;
 }
 const useStyle = makeStyles(
-	() => ({
+  () => ({
     img: {
-      maxWidth: '178px'
-    }
+      maxWidth: "178px",
+    },
   }),
   {
     name: "CustomLogo",
@@ -15,6 +15,6 @@ const useStyle = makeStyles(
 );
 
 export const CustomLogo = ({ src }: CustomLogoProps): JSX.Element => {
-	const classes = useStyle({});
-  return <img src={src} className= {classes.img} />;
+  const classes = useStyle({});
+  return <img src={src} className={classes.img} />;
 };
