@@ -83,7 +83,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const Link = linkComponent ?? "a";
 
   useEffect(() => {
-    if (onExpand) {
+    if (typeof(onExpand) === "function") {
       onExpand(isShrunk);
     }
   }, [isShrunk]);
