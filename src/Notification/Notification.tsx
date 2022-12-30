@@ -48,7 +48,7 @@ export const Notification: React.FC<NotificationProps> = ({
   return (
     <div
       className={clsx(classes.snackbarContainer, className)}
-      data-test="notification"
+      data-test-id="notification"
       data-test-type={type}
       {...rest}
     >
@@ -95,7 +95,7 @@ export const Notification: React.FC<NotificationProps> = ({
                 key="action"
                 variant="tertiary"
                 onClick={action.onClick}
-                data-test="button-action"
+                data-test-id="button-action"
               >
                 {action.label}
               </Button>
@@ -135,7 +135,7 @@ export const Notification: React.FC<NotificationProps> = ({
             hoverOutline={false}
             variant="secondary"
             className={classes.closeBtn}
-            data-test="close"
+            data-test-id="close"
           >
             <CloseIcon />
           </IconButton>,

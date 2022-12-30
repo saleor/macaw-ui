@@ -27,7 +27,7 @@ export const AlertBase: React.FC<AlertBaseProps> = ({
         [classes.warning]: variant === "warning",
         [classes.success]: variant === "success",
       })}
-      data-test="alert"
+      data-test-id="alert"
       {...rest}
     >
       <CardContent>{children}</CardContent>

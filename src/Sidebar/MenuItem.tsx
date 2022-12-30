@@ -189,11 +189,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       onClick={(event: React.MouseEvent) => handleClick(event, menuItem)}
       {...getLinkProps(menuItem)}
     >
-      <span
-        className={classes.menuItemBtn}
-        data-test="menu-item-label"
-        data-test-id={menuItem.id}
-      >
+      <span className={classes.menuItemBtn} data-test-id="menu-item-label">
         {menuItem.iconSrc && (
           <SVG className={classes.icon} src={menuItem.iconSrc} />
         )}
@@ -237,8 +233,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                       onClick={(event: React.MouseEvent) =>
                         handleClick(event, subMenuItem)
                       }
-                      data-test="submenu-item-label"
-                      data-test-id={subMenuItem.id}
+                      data-test-id="submenu-item-label"
                       selected={activeId === subMenuItem.id}
                       {...linkProps}
                     >
