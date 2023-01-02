@@ -24,8 +24,7 @@ export const MenuItemBtn: React.FC<MenuItemBtnProps> = ({
   return (
     <Component
       className={classes.menuItemBtn}
-      data-test="menu-item-label"
-      data-test-id={menuItem.id}
+      data-test-id={`menu-item-label-${menuItem.id}`}
       onClick={() => onClick(menuItem)}
       {...linkProps}
     >

@@ -46,7 +46,7 @@ export const Savebar: React.FC<SavebarProps> = ({
             error
             variant="primary"
             onClick={onDelete}
-            data-test="button-bar-delete"
+            data-test-id="button-bar-delete"
           >
             {labels.delete}
           </Button>
@@ -58,7 +58,7 @@ export const Savebar: React.FC<SavebarProps> = ({
           color="text"
           variant="secondary"
           onClick={onCancel}
-          data-test="button-bar-cancel"
+          data-test-id="button-bar-cancel"
         >
           {labels.cancel}
         </Button>
@@ -69,7 +69,7 @@ export const Savebar: React.FC<SavebarProps> = ({
           labels={labels}
           onClick={onSubmit}
           transitionState={state}
-          data-test="button-bar-confirm"
+          data-test-id="button-bar-confirm"
         />
       </ButtonTooltipDecorator>
     </ActionBar>

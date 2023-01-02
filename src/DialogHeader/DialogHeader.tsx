@@ -30,7 +30,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
           className={classes.button}
           onClick={onClose}
           aria-label="Close modal"
-          data-test="close"
+          data-test-id="close"
         >
           <CloseIcon />
         </button>

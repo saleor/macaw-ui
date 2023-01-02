@@ -66,7 +66,7 @@ export const Alert: React.FC<AlertProps> = ({
                 hoverOutline={false}
                 variant="secondary"
                 onClick={() => setVisible(false)}
-                data-test="close"
+                data-test-id="close"
               >
                 <CloseIcon />
               </IconButton>

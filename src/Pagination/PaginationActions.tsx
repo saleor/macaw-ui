@@ -51,7 +51,7 @@ export const PaginationActions = <BProps,>({
         disableRipple
         onClick={onPreviousPage}
         disabled={previousDisabled}
-        data-test="button-pagination-back"
+        data-test-id="button-pagination-back"
         aria-label="previous page"
         {...prevIconButtonProps}
       >
@@ -66,7 +66,7 @@ export const PaginationActions = <BProps,>({
         disableRipple
         onClick={onNextPage}
         disabled={nextDisabled}
-        data-test="button-pagination-next"
+        data-test-id="button-pagination-next"
         aria-label="next page"
         {...nextIconButtonProps}
       >

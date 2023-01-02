@@ -41,7 +41,7 @@ export const UserChipMenu: React.FC<UserChipProps> = ({
         className={classes.userChip}
         ref={anchor}
         onClick={() => setMenuState(!isMenuOpened)}
-        data-test="userMenu"
+        data-test-id="userMenu"
         state={isMenuOpened ? "active" : "default"}
         {...props}
       >
