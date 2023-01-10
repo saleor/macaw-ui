@@ -47,7 +47,8 @@
     "test:legacy": "cd legacy && npm run test",
     "lint": "npm-run-all lint:*",
     "test": "npm-run-all test:*",
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006"
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
+    "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook"
   },
   "prettier": {
     "printWidth": 80,
