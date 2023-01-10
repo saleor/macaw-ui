@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "license": "CC-BY-4.0",
+  "homepage": "https://macaw-ui.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saleor/macaw-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saleor/macaw-ui/issues"
+  },
+  "exports": {
+    ".": {
+      "import": "legacy/dist/esm/index.js",
+      "require": "legacy/dist/cjs/index.js"
+    }
+  },
+  "keywords": [
+    "saleor",
+    "macaw",
+    "macaw-ui",
+    "react",
+    "ui components"
+  ],
+  "engines": {
+    "node": ">=16 <19"
+  },
+  "scripts": {},
+  "peerDependencies": {},
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": false,
+    "trailingComma": "es5"
+  },
+  "name": "@saleor/macaw-ui",
+  "description": "Saleor's UI component library",
+  "author": "Saleor Commerce",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "devDependencies": {},
+  "dependencies": {}
+}
