@@ -18,7 +18,8 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: latest
+          run_install: true
 
       - name: Lint
         run: pnpm lint
