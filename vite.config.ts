@@ -5,10 +5,10 @@ import dts from "vite-plugin-dts";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [react(), vanillaExtractPlugin(), dts()],
+  plugins: [dts(), react(), vanillaExtractPlugin()],
   build: {
     lib: {
-      entry: "src/index.ts",
+      entry: "src/index.tsx",
       formats: ["es", "cjs"],
     },
   },
