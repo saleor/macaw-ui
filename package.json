@@ -38,9 +38,15 @@
     "node": ">=16 <19"
   },
   "scripts": {
-    "prebuild": "cd legacy && npm run build",
-    "build": "tsc && vite build",
-    "release": "release-it"
+    "build:legacy": "cd legacy && npm run build",
+    "build:next": "tsc && vite build",
+    "build": "npm-run-all build:*",
+    "release": "npm-run-all build release-it",
+    "lint:legacy": "cd legacy && npm run lint",
+    "lint:next": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix --config .eslintrc.cjs",
+    "test:legacy": "cd legacy && npm run test",
+    "lint": "npm-run-all lint:*",
+    "test": "npm-run-all test:*"
   },
   "prettier": {
     "printWidth": 80,
@@ -55,13 +61,19 @@
   "publishConfig": {
     "access": "public"
   },
-  "sideEffects": false,
   "devDependencies": {
-    "vite": "^4.0.4",
-    "typescript": "^4.9.3",
-    "vite-plugin-dts": "^1.7.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "@vitejs/plugin-react-swc": "^3.0.0",
-    "release-it": "^15.6.0"
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-react": "^7.31.11",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.2",
+    "release-it": "^15.6.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.4",
+    "vite-plugin-dts": "^1.7.1"
   },
   "release-it": {
     "github": {
