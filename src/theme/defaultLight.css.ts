@@ -19,7 +19,9 @@ export const defaultLightTheme = createTheme(vars, {
     13: "5rem",
   },
   colors: {
-    foreground: {},
+    foreground: {
+      neutralTextPrimary: "hsla(211, 42%, 16%, 1)",
+    },
     background: {},
     border: {},
   },
