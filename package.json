@@ -39,22 +39,20 @@
   },
   "scripts": {
     "build:legacy": "cd legacy && npm run build",
-    "build:next": "tsc && vite build",
-    "build": "npm-run-all build:*",
-    "release": "npm-run-all build release-it",
+    "build:next": "npm-run-all check-types-next && vite build",
+    "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
     "lint:legacy": "cd legacy && npm run lint",
     "lint:next": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix --config .eslintrc.cjs",
+    "check-types:next": "tsc",
+    "check-types:legacy": "cd legacy && npm run build-tsc",
     "test:legacy": "cd legacy && npm run test",
     "lint": "npm-run-all lint:*",
+    "check-types": "npm-run-all check-types:*",
     "test": "npm-run-all test:*",
+    "build": "npm-run-all build:*",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
-    "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook"
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": false,
-    "trailingComma": "es5"
+    "release": "npm-run-all build release-it",
+    "prepare": "is-ci || husky install"
   },
   "name": "@saleor/macaw-ui",
   "description": "Saleor's UI component library",
@@ -64,18 +62,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.48.1",
-    "@typescript-eslint/parser": "^5.48.1",
-    "@vitejs/plugin-react": "^2.2.0",
-    "eslint": "^8.31.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-react": "^7.31.11",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.2",
-    "release-it": "^15.6.0",
-    "typescript": "^4.9.3",
-    "vite": "^3.2.5",
-    "vite-plugin-dts": "^1.7.1",
     "@babel/core": "^7.20.7",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
@@ -85,12 +71,30 @@
     "@storybook/react": "^6.5.15",
     "@types/react": "^17.0.50",
     "@types/react-dom": "^17.0.17",
-    "webpack": "^5.75.0",
-    "require-from-string": "^2.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "@vanilla-extract/vite-plugin": "^3.7.0",
+    "@vitejs/plugin-react": "^2.2.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "is-ci": "^3.0.1",
+    "lint-staged": "^13.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "cross-env": "^7.0.3",
-    "@vanilla-extract/vite-plugin": "^3.7.0"
+    "release-it": "^15.6.0",
+    "require-from-string": "^2.0.2",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.5",
+    "vite-plugin-dts": "^1.7.1",
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.9.2",
@@ -100,12 +104,5 @@
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
-  },
-  "release-it": {
-    "github": {
-      "release": true,
-      "draft": true,
-      "releaseName": "${version}"
-    }
   }
 }
