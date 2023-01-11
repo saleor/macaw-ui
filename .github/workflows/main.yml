@@ -2,7 +2,7 @@ name: CI
 on: [push]
 jobs:
   build:
-    name: Lint, test and build
+    name: Lint, check types and test
 
     runs-on: ubuntu-latest
 
@@ -28,8 +28,8 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Check types
+        run: pnpm check-types
+
       - name: Test
         run: pnpm test
-
-      - name: Build
-        run: pnpm build
