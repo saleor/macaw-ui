@@ -72,7 +72,7 @@
   "name": "@saleor/macaw-ui",
   "description": "Saleor's UI component library",
   "author": "Saleor Commerce",
-  "private": false,
+  "private": true,
   "publishConfig": {
     "access": "public"
   },
