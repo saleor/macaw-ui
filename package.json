@@ -11,8 +11,8 @@
   },
   "type": "module",
   "files": [
-    "dist",
-    "legacy/dist"
+    "dist/*",
+    "legacy/dist/*"
   ],
   "typesVersions": {
     "*": {
