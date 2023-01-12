@@ -1,8 +1,6 @@
 const { mergeConfig } = require("vite");
 const { resolve } = require("path");
 
-console.log("RESOLVE", resolve);
-
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
