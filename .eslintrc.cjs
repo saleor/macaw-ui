@@ -37,6 +37,12 @@ module.exports = {
     "import/order": [
       "error",
       {
+        pathGroups: [
+          {
+            pattern: "~/**",
+            group: "internal",
+          },
+        ],
         groups: [
           "external",
           "builtin",
