@@ -59,7 +59,7 @@
     "build": "npm-run-all build:*",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "release": "npm-run-all build release-it",
-    "prepare": "is-ci || husky install"
+    "prepare": "npm run build && is-ci || husky install"
   },
   "name": "@saleor/macaw-ui",
   "description": "Saleor's UI component library",
