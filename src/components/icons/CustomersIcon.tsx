@@ -1,7 +1,7 @@
-import { SVGWrapper } from "./SVGWrapper";
+import { createSVGWrapper } from "./SVGWrapper";
 
-export const CustomersIcon = () => (
-  <SVGWrapper>
+export const CustomersIcon = createSVGWrapper(
+  <>
     <path
       d="M5 5.5C5 3.567 6.56701 2 8.5 2C10.0513 2 11.3669 3.0093 11.826 4.40707C10.705 5.41394 10 6.87464 10 8.5V9.5C10 9.55421 10.0008 9.60824 10.0023 9.66207C9.54712 9.87874 9.03772 10 8.5 10C6.56701 10 5 8.433 5 6.5V5.5Z"
       fill="currentColor"
@@ -18,5 +18,5 @@ export const CustomersIcon = () => (
       d="M9.70891 19.5445C9.30632 17.5316 10.4929 15.5406 12.4549 14.9369L12.5591 14.9049C14.4754 14.3152 16.5246 14.3152 18.4409 14.9049L18.5451 14.9369C20.5071 15.5406 21.6937 17.5316 21.2911 19.5445L21.1608 20.1961C21.0673 20.6635 20.6569 21 20.1802 21H10.8198C10.3431 21 9.93271 20.6635 9.83923 20.1961L9.70891 19.5445Z"
       fill="currentColor"
     />
-  </SVGWrapper>
+  </>
 );

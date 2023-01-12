@@ -1,7 +1,7 @@
-import { SVGWrapper } from "./SVGWrapper";
+import { createSVGWrapper } from "./SVGWrapper";
 
-export const HomeIcon = () => (
-  <SVGWrapper>
+export const HomeIcon = createSVGWrapper(
+  <>
     <path
       d="M14 3C13.4477 3 13 3.44772 13 4V8C13 8.55228 13.4477 9 14 9H19C19.5523 9 20 8.55228 20 8V4C20 3.44772 19.5523 3 19 3L14 3Z"
       fill="currentColor"
@@ -18,5 +18,5 @@ export const HomeIcon = () => (
       d="M5 3C4.44772 3 4 3.44772 4 4V12C4 12.5523 4.44772 13 5 13H10C10.5523 13 11 12.5523 11 12V4C11 3.44772 10.5523 3 10 3H5Z"
       fill="currentColor"
     />
-  </SVGWrapper>
+  </>
 );

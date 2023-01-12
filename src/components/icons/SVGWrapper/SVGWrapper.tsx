@@ -1,32 +1,22 @@
 import { ReactNode, forwardRef } from "react";
+import { svgWrapper, SCVWrapperVaraints } from "./SVGWrapper.css";
 
-export interface SVGWrapperProps {
+export type SVGWrapperProps = SCVWrapperVaraints & {
   className?: string;
-  width?: number;
-  height?: number;
   viewBox?: string;
   color?: string;
   children: ReactNode;
-}
+};
 
 export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
   (
-    {
-      className,
-      width = 24,
-      height = 24,
-      viewBox = "0 0 24 24",
-      color = "black",
-      children,
-    },
+    { className, size, viewBox = "0 0 24 24", color = "black", children },
     ref
   ) => {
     return (
       <svg
         ref={ref}
-        width={width}
-        height={height}
-        className={className}
+        className={`${svgWrapper({ size })} ${className}`}
         viewBox={viewBox}
         style={{
           color,

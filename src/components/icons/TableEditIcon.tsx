@@ -1,7 +1,7 @@
-import { SVGWrapper } from "./SVGWrapper";
+import { createSVGWrapper } from "./SVGWrapper";
 
-export const TableEditIcon = () => (
-  <SVGWrapper>
+export const TableEditIcon = createSVGWrapper(
+  <>
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -12,5 +12,5 @@ export const TableEditIcon = () => (
       d="M21.6121 11.7075C21.2218 11.3168 20.5887 11.3164 20.1979 11.7067L13.1226 18.7735L12.4134 22.3086L15.9493 21.6036L23.0246 14.5368C23.4154 14.1465 23.4158 13.5134 23.0255 13.1226L21.6121 11.7075Z"
       fill="currentColor"
     />
-  </SVGWrapper>
+  </>
 );

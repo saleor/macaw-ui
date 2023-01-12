@@ -20,8 +20,8 @@ import {
 
 const defaultComponent = () => (
   <div>
-    <ArrowDownIcon />
-    <ArrowUpIcon />
+    <ArrowDownIcon size="small" />
+    <ArrowUpIcon size="large" />
     <ChervonDownIcon />
     <ChervonUpIcon />
     <ConfigurationIcon />
