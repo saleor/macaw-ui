@@ -1,7 +1,7 @@
-import { createSVGWrapper } from "./createSVGWrapper";
+import { SVGWrapper } from "./SVGWrapper";
 
-export const MarketplaceIcon = createSVGWrapper(
-  <>
+export const MarketplaceIcon = () => (
+  <SVGWrapper>
     <path
       d="M4 5C4 4.44772 4.44771 4 5 4H10C10.5523 4 11 4.44772 11 5V10C11 10.5523 10.5523 11 10 11H5C4.44771 11 4 10.5523 4 10V5Z"
       fill="currentColor"
@@ -15,5 +15,5 @@ export const MarketplaceIcon = createSVGWrapper(
       fill="currentColor"
     />
     <path d="M15 4H17V7H20V9H17V12H15V9H12V7H15V4Z" fill="currentColor" />
-  </>
+  </SVGWrapper>
 );
