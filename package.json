@@ -51,7 +51,8 @@
     "test": "npm-run-all test:*",
     "build": "npm-run-all build:*",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
-    "release": "npm-run-all build release-it",
+    "make-release": "release-it pre",
+    "release": "npm-run-all build make-release",
     "prepare": "is-ci || husky install"
   },
   "name": "@saleor/macaw-ui",
