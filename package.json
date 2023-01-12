@@ -1,15 +1,31 @@
 {
-  "version": "0.7.2",
+  "version": "8.0.0-pre",
   "license": "CC-BY-4.0",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
   "homepage": "https://macaw-ui.vercel.app/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mirumee/macaw-ui.git"
+    "url": "git://github.com/saleor/macaw-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/mirumee/macaw-ui/issues"
+    "url": "https://github.com/saleor/macaw-ui/issues"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "legacy/dist"
+  ],
+  "main": "./dist/macaw-ui.cjs",
+  "module": "./dist/macaw-ui.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./next": {
+      "import": "./dist/macaw-ui.js",
+      "require": "./dist/macaw-ui.umd.cjs"
+    },
+    ".": {
+      "import": "./legacy/dist/esm/index.js",
+      "require": "./legacy/dist/cjs/index.js"
+    }
   },
   "keywords": [
     "saleor",
@@ -18,56 +34,26 @@
     "react",
     "ui components"
   ],
-  "typings": "dist/types/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
   "engines": {
     "node": ">=16 <19"
   },
   "scripts": {
-    "watch-esb": "node scripts/build.js watch",
-    "build-esb": "node scripts/build.js",
-    "watch-tsc": "tsc --watch --preserveWatchOutput",
-    "build-tsc": "tsc",
-    "start": "concurrently -n w: npm:watch-* --prefix-colors=green,blue",
-    "build": "npm run build-esb && npm run build-tsc",
-    "test": "jest",
-    "lint": "eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix ; prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write",
-    "prepare": "npm run build",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
+    "build:legacy": "cd legacy && npm run build",
+    "build:next": "npm-run-all check-types-next && vite build",
     "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
-    "release": "np",
-    "chromatic": "npx chromatic --exit-zero-on-changes --skip 'dependabot/**'",
-    "generate-icons:32": "svgr --no-dimensions --no-prettier --out-dir src/icons/32x32 -- src/assets/icons/32x32/",
-    "generate-icons:24": "svgr --no-dimensions --no-prettier --out-dir src/icons/24x24 -- src/assets/icons/24x24/",
-    "generate-icons:20": "svgr --no-dimensions --no-prettier --out-dir src/icons/20x20 -- src/assets/icons/20x20/",
-    "generate-icons:indicator": "svgr --no-dimensions --no-prettier --config-file .svgrrc-nomaterial.js --out-dir src/icons/indicator -- src/assets/icons/indicator/",
-    "generate-icons": "npm run optimise-icons && npm run generate-icons:32 && npm run generate-icons:24 && npm run generate-icons:20 && npm run generate-icons:indicator && npm run lint",
-    "optimise-icons": "svgo -r -f src/assets/icons",
-    "optimise-icons:remove-color": "svgo --config svgo-colors.config.js",
-    "generate-icon": "hygen icon new",
-    "build-icons": "node scripts/icons.js"
-  },
-  "peerDependencies": {
-    "@material-ui/core": "^4.11.2",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.58",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0",
-    "react-helmet": "^6.1.0"
-  },
-  "np": {
-    "yarn": false
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": false,
-    "trailingComma": "es5"
+    "lint:legacy": "cd legacy && npm run lint",
+    "lint:next": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix --config .eslintrc.cjs",
+    "check-types:next": "tsc",
+    "check-types:legacy": "cd legacy && npm run build-tsc",
+    "test:legacy": "cd legacy && npm run test",
+    "lint": "npm-run-all lint:*",
+    "check-types": "npm-run-all check-types:*",
+    "test": "npm-run-all test:*",
+    "build": "npm-run-all build:*",
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
+    "make-release": "release-it pre",
+    "release": "npm-run-all build make-release",
+    "prepare": "is-ci || husky install"
   },
   "name": "@saleor/macaw-ui",
   "description": "Saleor's UI component library",
@@ -76,87 +62,48 @@
   "publishConfig": {
     "access": "public"
   },
-  "sideEffects": false,
-  "size-limit": [
-    {
-      "path": "dist/cjs/index.js",
-      "limit": "100 KB"
-    },
-    {
-      "path": "dist/esm/index.js",
-      "limit": "85 KB"
-    }
-  ],
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@linjiajian999/esbuild-plugin-import": "^1.0.2",
-    "@material-ui/core": "^4.12.4",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.61",
-    "@size-limit/preset-small-lib": "^4.10.2",
-    "@storybook/addon-controls": "^6.4.22",
-    "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "^6.4.22",
-    "@storybook/addon-storysource": "^6.4.22",
-    "@storybook/addons": "^6.4.22",
-    "@storybook/react": "^6.4.22",
-    "@svgr/cli": "^6.2.1",
-    "@types/fuzzaldrin": "^2.1.4",
-    "@types/jest": "^27.0.2",
-    "@types/lodash": "^4.14.170",
-    "@types/lodash-es": "^4.17.5",
-    "@types/react": "^17.0.5",
-    "@types/react-dom": "^17.0.4",
-    "@types/react-helmet": "^6.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.12.0",
-    "@typescript-eslint/parser": "^5.12.0",
-    "chromatic": "^6.0.4",
-    "concurrently": "^6.3.0",
+    "@babel/core": "^7.20.7",
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/builder-vite": "^0.2.6",
+    "@storybook/react": "^6.5.15",
+    "@types/react": "^17.0.50",
+    "@types/react-dom": "^17.0.17",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "@vanilla-extract/vite-plugin": "^3.7.0",
+    "@vitejs/plugin-react": "^2.2.0",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.13.4",
-    "esbuild-jest": "^0.5.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-simple-import-sort": "^5.0.3",
-    "eslint-plugin-storybook": "^0.5.10",
-    "faker": "^5.5.3",
-    "fuzzaldrin": "^2.1.0",
-    "husky": "^7.0.0",
-    "hygen": "^6.1.0",
-    "jest": "^27.2.4",
-    "jest-file": "^1.0.0",
-    "np": "^7.5.0",
-    "prettier": "^2.6.2",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-is": "^17.0.2",
-    "size-limit": "^4.10.2",
-    "storybook-dark-mode": "^1.0.9",
-    "svgo": "^2.8.0",
-    "tslib": "^2.4.0",
-    "typescript": "^4.2.4",
-    "yargs": "^17.2.1"
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "is-ci": "^3.0.1",
+    "lint-staged": "^13.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "release-it": "^15.6.0",
+    "require-from-string": "^2.0.2",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.5",
+    "vite-plugin-dts": "^1.7.1",
+    "webpack": "^5.75.0"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.5.0",
-    "clsx": "^1.1.1",
-    "downshift": "^6.1.7",
-    "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
-    "react-inlinesvg": "^3.0.1"
+    "@vanilla-extract/css": "^1.9.2",
+    "@vanilla-extract/recipes": "^0.3.0",
+    "@vanilla-extract/sprinkles": "^1.5.1"
   },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "resetMocks": false,
-    "transform": {
-      "^.+\\.(jsx?|tsx?)$": "esbuild-jest",
-      "^.+\\.(png|svg|jpe?g)$": "jest-file"
-    },
-    "testRegex": ".*\\.test\\.tsx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   }
 }
