@@ -1,48 +1,34 @@
-import {
-  ArrowDownIcon,
-  ArrowUpIcon,
-  ChervonDownIcon,
-  ChervonUpIcon,
-  ConfigurationIcon,
-  CustomersIcon,
-  HomeIcon,
-  MarketplaceIcon,
-  MenuIcon,
-  MoreOptionsIcon,
-  OrdersIcon,
-  ProductsIcons,
-  SellsIcon,
-  StorefrontIcon,
-  TableEditIcon,
-  TranslationsIcon,
-  VouchersIcon,
-} from "./index";
+import { SCVWrapperVaraints } from "./SVGWrapper/SVGWrapper.css";
+import * as icons from "./index";
 
-const defaultComponent = () => (
-  <div>
-    <ArrowDownIcon size="small" />
-    <ArrowUpIcon size="large" />
-    <ChervonDownIcon />
-    <ChervonUpIcon />
-    <ConfigurationIcon />
-    <CustomersIcon />
-    <HomeIcon />
-    <MarketplaceIcon />
-    <MenuIcon />
-    <MoreOptionsIcon />
-    <OrdersIcon />
-    <ProductsIcons />
-    <SellsIcon />
-    <StorefrontIcon />
-    <TableEditIcon />
-    <TranslationsIcon />
-    <VouchersIcon />
-  </div>
-);
+const macawIcons = Object.values(icons);
 
 export default {
-  title: "Icons/test",
-  omponents: defaultComponent,
+  title: "components/Icons",
 };
 
-export const Default = defaultComponent.bind({});
+export const Default = () =>
+  ["Small", "Medium", "Large"].map((size) => (
+    <>
+      <h3>{size}</h3>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
+        {macawIcons.map((Icon, idx) => (
+          <div
+            style={{
+              margin: "10px",
+            }}
+            key={idx}
+          >
+            <Icon size={size.toLowerCase() as keyof SCVWrapperVaraints} />
+          </div>
+        ))}
+      </div>
+    </>
+  ));
