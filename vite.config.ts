@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [dts(), react(), vanillaExtractPlugin()],
   build: {
     lib: {
-      entry: "src/index.tsx",
+      entry: "src/index.ts",
       formats: ["es", "cjs"],
     },
   },

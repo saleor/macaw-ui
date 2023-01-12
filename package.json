@@ -14,17 +14,24 @@
     "dist",
     "legacy/dist"
   ],
-  "main": "./dist/macaw-ui.cjs",
-  "module": "./dist/macaw-ui.js",
-  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "next": [
+        "dist/index.d.ts"
+      ],
+      "*": [
+        "legacy/dist/types/*"
+      ]
+    }
+  },
   "exports": {
-    "./next": {
-      "import": "./dist/macaw-ui.js",
-      "require": "./dist/macaw-ui.umd.cjs"
-    },
     ".": {
       "import": "./legacy/dist/esm/index.js",
       "require": "./legacy/dist/cjs/index.js"
+    },
+    "./next": {
+      "import": "./dist/macaw-ui.js",
+      "require": "./dist/macaw-ui.umd.cjs"
     }
   },
   "keywords": [
