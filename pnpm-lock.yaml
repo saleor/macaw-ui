@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   "@babel/core": ^7.20.7
+  "@dessert-box/react": ^0.4.0
   "@storybook/addon-actions": ^6.5.15
   "@storybook/addon-essentials": ^6.5.15
   "@storybook/addon-interactions": ^6.5.15
@@ -38,13 +39,9 @@ specifiers:
   vite-plugin-dts: ^1.7.1
   webpack: ^5.75.0
 
-dependencies:
-  "@vanilla-extract/css": 1.9.2
-  "@vanilla-extract/recipes": 0.3.0_@vanilla-extract+css@1.9.2
-  "@vanilla-extract/sprinkles": 1.5.1_@vanilla-extract+css@1.9.2
-
 devDependencies:
   "@babel/core": 7.20.12
+  "@dessert-box/react": 0.4.0_react@17.0.2
   "@storybook/addon-actions": 6.5.15_sfoxds7t5ydpegc3knd667wn6m
   "@storybook/addon-essentials": 6.5.15_6lhkwun5er34363e67mvj72zfi
   "@storybook/addon-interactions": 6.5.15_xx2mlsbrbfvqo7way5bw5lf2oa
@@ -55,6 +52,9 @@ devDependencies:
   "@types/react-dom": 17.0.18
   "@typescript-eslint/eslint-plugin": 5.48.1_3jon24igvnqaqexgwtxk6nkpse
   "@typescript-eslint/parser": 5.48.1_iukboom6ndih5an6iafl45j2fe
+  "@vanilla-extract/css": 1.9.2
+  "@vanilla-extract/recipes": 0.3.0_@vanilla-extract+css@1.9.2
+  "@vanilla-extract/sprinkles": 1.5.1_@vanilla-extract+css@1.9.2
   "@vanilla-extract/vite-plugin": 3.7.0_vite@3.2.5
   "@vitejs/plugin-react": 2.2.0_vite@3.2.5
   cross-env: 7.0.3
@@ -1872,6 +1872,7 @@ packages:
     engines: { node: ">=6.9.0" }
     dependencies:
       regenerator-runtime: 0.13.11
+    dev: true
 
   /@babel/runtime/7.5.5:
     resolution:
@@ -1991,6 +1992,25 @@ packages:
       react-merge-refs: 1.1.0
     dev: true
 
+  /@dessert-box/core/0.2.0:
+    resolution:
+      {
+        integrity: sha512-Vqaec6i0cvS1r54kU6CfOQECi6dPWzz6DVVxJABOxqPmVk8fOSy6pIKsK0YyPFGRpZK/FXkJ1YhURUOW1OxOVQ==,
+      }
+    dev: true
+
+  /@dessert-box/react/0.4.0_react@17.0.2:
+    resolution:
+      {
+        integrity: sha512-r2sqkX4y+fDLtRGGpCitI5ckzLZl3DPMUhKBstf3qoZbfoAVHB0HRHgrfRni3F0qZZgXowR880lL8IDpPpRiGg==,
+      }
+    peerDependencies:
+      react: ">=16.8.0"
+    dependencies:
+      "@dessert-box/core": 0.2.0
+      react: 17.0.2
+    dev: true
+
   /@devtools-ds/object-inspector/1.2.1_gzv7pa6nrbev3fs6gyzn7sadkq:
     resolution:
       {
@@ -2066,6 +2086,7 @@ packages:
       {
         integrity: sha512-14FtKiHhy2QoPIzdTcvh//8OyBlknNs2nXRwIhG904opCby3l+9Xaf/wuPvICBF0rc1ZCNBd3nKe9cd2mecVkQ==,
       }
+    dev: true
 
   /@esbuild/android-arm/0.15.18:
     resolution:
@@ -4860,6 +4881,7 @@ packages:
       deepmerge: 4.2.2
       media-query-parser: 2.0.2
       outdent: 0.8.0
+    dev: true
 
   /@vanilla-extract/integration/6.0.1:
     resolution:
@@ -4886,6 +4908,7 @@ packages:
       {
         integrity: sha512-17kVyLq3ePTKOkveHxXuIJZtGYs+cSoev7BlP+Lf4916qfDhk/HBjvlYDe8egrea7LNPHKwSZJK/bzZC+Q6AwQ==,
       }
+    dev: true
 
   /@vanilla-extract/recipes/0.3.0_@vanilla-extract+css@1.9.2:
     resolution:
@@ -4896,7 +4919,7 @@ packages:
       "@vanilla-extract/css": ^1.0.0
     dependencies:
       "@vanilla-extract/css": 1.9.2
-    dev: false
+    dev: true
 
   /@vanilla-extract/sprinkles/1.5.1_@vanilla-extract+css@1.9.2:
     resolution:
@@ -4907,7 +4930,7 @@ packages:
       "@vanilla-extract/css": ^1.0.0
     dependencies:
       "@vanilla-extract/css": 1.9.2
-    dev: false
+    dev: true
 
   /@vanilla-extract/vite-plugin/3.7.0_vite@3.2.5:
     resolution:
@@ -5417,6 +5440,7 @@ packages:
       {
         integrity: sha512-hCOfMzbFx5IDutmWLAt6MZwOUjIfSM9G9FyVxytmE4Rs/5YDPWQrD/+IR1w+FweD9H2oOZEnv36TmkjhNURBVA==,
       }
+    dev: true
 
   /airbnb-js-shims/2.2.1:
     resolution:
@@ -5573,6 +5597,7 @@ packages:
     engines: { node: ">=8" }
     dependencies:
       color-convert: 2.0.1
+    dev: true
 
   /ansi-styles/6.2.1:
     resolution:
@@ -6787,6 +6812,7 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
 
   /chalk/5.1.2:
     resolution:
@@ -7113,6 +7139,7 @@ packages:
     engines: { node: ">=7.0.0" }
     dependencies:
       color-name: 1.1.4
+    dev: true
 
   /color-name/1.1.3:
     resolution:
@@ -7126,6 +7153,7 @@ packages:
       {
         integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==,
       }
+    dev: true
 
   /color-support/1.1.3:
     resolution:
@@ -7628,6 +7656,7 @@ packages:
         integrity: sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==,
       }
     engines: { node: ">= 6" }
+    dev: true
 
   /css-what/6.1.0:
     resolution:
@@ -7644,12 +7673,14 @@ packages:
       }
     engines: { node: ">=4" }
     hasBin: true
+    dev: true
 
   /csstype/3.1.1:
     resolution:
       {
         integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==,
       }
+    dev: true
 
   /currently-unhandled/0.4.1:
     resolution:
@@ -7782,6 +7813,7 @@ packages:
       {
         integrity: sha512-Rn+RuwkmkDwCi2/oXOFS9Gsr5lJZu/yTGpK7wAaAIE75CC+LCGEZHpY6VQJa/RoJcrmaA/docWJZvYohlNkWPA==,
       }
+    dev: true
 
   /deepmerge/4.2.2:
     resolution:
@@ -7789,6 +7821,7 @@ packages:
         integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==,
       }
     engines: { node: ">=0.10.0" }
+    dev: true
 
   /default-browser-id/1.0.4:
     resolution:
@@ -10460,6 +10493,7 @@ packages:
         integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==,
       }
     engines: { node: ">=8" }
+    dev: true
 
   /has-glob/1.0.0:
     resolution:
@@ -12693,6 +12727,7 @@ packages:
       }
     dependencies:
       "@babel/runtime": 7.20.7
+    dev: true
 
   /media-typer/0.3.0:
     resolution:
@@ -13752,6 +13787,7 @@ packages:
       {
         integrity: sha512-KiOAIsdpUTcAXuykya5fnVVT+/5uS0Q1mrkRHcF89tpieSmY33O/tmc54CqwA+bfhbtEfZUNLHaPUiB9X3jt1A==,
       }
+    dev: true
 
   /p-all/2.1.0:
     resolution:
@@ -15243,6 +15279,7 @@ packages:
       {
         integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==,
       }
+    dev: true
 
   /regenerator-transform/0.15.1:
     resolution:
@@ -16785,6 +16822,7 @@ packages:
     engines: { node: ">=8" }
     dependencies:
       has-flag: 4.0.0
+    dev: true
 
   /supports-color/8.1.1:
     resolution:
