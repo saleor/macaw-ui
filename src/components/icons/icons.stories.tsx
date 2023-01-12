@@ -1,10 +1,48 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { SVGWrapperProps } from "./createSVGWrapper";
-import { ArrowDownIcon } from "./index";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  ChervonDownIcon,
+  ChervonUpIcon,
+  ConfigurationIcon,
+  CustomersIcon,
+  HomeIcon,
+  MarketplaceIcon,
+  MenuIcon,
+  MoreOptionsIcon,
+  OrdersIcon,
+  ProductsIcons,
+  SellsIcon,
+  StorefrontIcon,
+  TableEditIcon,
+  TranslationsIcon,
+  VouchersIcon,
+} from "./index";
 
-const defaultComponent = () => <ArrowDownIcon />;
+const defaultComponent = () => (
+  <div>
+    <ArrowDownIcon />
+    <ArrowUpIcon />
+    <ChervonDownIcon />
+    <ChervonUpIcon />
+    <ConfigurationIcon />
+    <CustomersIcon />
+    <HomeIcon />
+    <MarketplaceIcon />
+    <MenuIcon />
+    <MoreOptionsIcon />
+    <OrdersIcon />
+    <ProductsIcons />
+    <SellsIcon />
+    <StorefrontIcon />
+    <TableEditIcon />
+    <TranslationsIcon />
+    <VouchersIcon />
+  </div>
+);
 
 export default {
   title: "Icons/test",
   omponents: defaultComponent,
 };
+
+export const Default = defaultComponent.bind({});
