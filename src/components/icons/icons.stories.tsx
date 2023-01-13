@@ -16,23 +16,17 @@ export const Default = () =>
         {size}
       </Text>
       <Box
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "row",
-          flexWrap: "wrap",
-        }}
+        display="flex"
+        alignItems="center"
+        flexDirection="row"
+        flexWrap="wrap"
       >
         {macawIcons.map((Icon, idx) => (
-          <Box
-            style={{
-              margin: "10px",
-            }}
-            key={idx}
-          >
+          <Box margin={3} key={idx}>
             <Icon size={size} />
           </Box>
         ))}
       </Box>
+      ;
     </>
   ));
