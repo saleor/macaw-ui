@@ -1,17 +1,21 @@
-import { SCVWrapperVaraints } from "./SVGWrapper/SVGWrapper.css";
+import { Text } from "~/components/Text";
+import { Box } from "~/components/Box";
 import * as icons from "./index";
 
 const macawIcons = Object.values(icons);
+const sizes = ["small", "medium", "large"] as const;
 
 export default {
   title: "components/Icons",
 };
 
 export const Default = () =>
-  ["Small", "Medium", "Large"].map((size) => (
+  sizes.map((size) => (
     <>
-      <h3>{size}</h3>
-      <div
+      <Text as="h3" color="neutralTextPrimary">
+        {size}
+      </Text>
+      <Box
         style={{
           display: "flex",
           alignItems: "center",
@@ -20,15 +24,15 @@ export const Default = () =>
         }}
       >
         {macawIcons.map((Icon, idx) => (
-          <div
+          <Box
             style={{
               margin: "10px",
             }}
             key={idx}
           >
-            <Icon size={size.toLowerCase() as keyof SCVWrapperVaraints} />
-          </div>
+            <Icon size={size} />
+          </Box>
         ))}
-      </div>
+      </Box>
     </>
   ));

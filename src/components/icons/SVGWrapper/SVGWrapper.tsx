@@ -16,7 +16,7 @@ export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
     return (
       <svg
         ref={ref}
-        className={`${svgWrapper({ size })} ${className}`}
+        className={[svgWrapper({ size }), className].join(" ")}
         viewBox={viewBox}
         style={{
           color,
