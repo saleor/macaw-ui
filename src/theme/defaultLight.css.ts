@@ -12,11 +12,13 @@ export const defaultLightTheme = createTheme(vars, {
     6: "1rem",
     7: "1.25rem",
     8: "1.5rem",
-    9: "2rem",
-    10: "2.5rem",
-    11: "3rem",
-    12: "4rem",
-    13: "5rem",
+    9: "1.875rem",
+    10: "2rem",
+    11: "2.25rem",
+    12: "2.5rem",
+    13: "3rem",
+    14: "4rem",
+    15: "5rem",
   },
   colors: {
     foreground: {
