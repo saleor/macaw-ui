@@ -1,2 +1,2 @@
 export * from "./Box";
-export * from "./icons";
+export * from "./Icons";
