@@ -1,5 +1,6 @@
 import { ReactNode, forwardRef } from "react";
 import { sprinkles, Sprinkles } from "~/theme";
+import { classNames } from "~/utils";
 import { svgWrapper, SCVWrapperVaraints } from "./SVGWrapper.css";
 
 export type SVGWrapperProps = SCVWrapperVaraints & {
@@ -14,8 +15,10 @@ export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
     return (
       <svg
         ref={ref}
-        className={[svgWrapper({ size }), sprinkles({ color }), className].join(
-          " "
+        className={classNames(
+          svgWrapper({ size }),
+          sprinkles({ color }),
+          className
         )}
         viewBox={viewBox}
         fill="none"
