@@ -1,22 +1,22 @@
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 
-import { sprinkles } from "~/theme";
+import { sprinkles, vars } from "~/theme";
 
 export const svgWrapper = recipe({
   base: [sprinkles({ color: "neutralTextPrimary" })],
   variants: {
     size: {
       small: {
-        width: 20,
-        height: 20,
+        width: vars.space[6],
+        height: vars.space[6],
       },
       medium: {
-        width: 24,
-        height: 24,
+        width: vars.space[8],
+        height: vars.space[8],
       },
       large: {
-        width: 32,
-        height: 32,
+        width: vars.space[10],
+        height: vars.space[10],
       },
     },
   },
