@@ -19,5 +19,6 @@ export default defineConfig({
   },
   test: {
     include: ["src/**/*.{test,spec}.{ts,tsx}"],
+    watch: false,
   },
 });
