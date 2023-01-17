@@ -54,7 +54,7 @@ const responsiveProperties = defineProperties({
   },
 });
 
-const colorsProperties = defineProperties({
+const stateProperties = defineProperties({
   conditions: {
     default: {},
     hover: { selector: "&:hover" },
@@ -72,9 +72,6 @@ const colorsProperties = defineProperties({
   },
 });
 
-export const sprinkles = createSprinkles(
-  responsiveProperties,
-  colorsProperties
-);
+export const sprinkles = createSprinkles(responsiveProperties, stateProperties);
 
 export type Sprinkles = Parameters<typeof sprinkles>[0];
