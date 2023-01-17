@@ -23,8 +23,17 @@ export const defaultLightTheme = createTheme(vars, {
   colors: {
     foreground: {
       neutralTextPrimary: "hsla(211, 42%, 16%, 1)",
+      disabled: "hsla(210, 13%, 56%, 100%)",
+      inherit: "inherit",
     },
-    background: {},
+    background: {
+      // FIXME: #208 migrate to proper color names when they are ready
+      default: "hsla(0, 0%, 100%, 100%)",
+      hover: "hsla(211, 42%, 16%, 0.1)",
+      active: "hsla(211, 42%, 16%, 0.16)",
+      disabled: "hsla(210, 13%, 56%, 100%)",
+      focus: "hsla(211, 42%, 16%, 0.06)",
+    },
     border: {},
   },
   fontSize: {

@@ -25,8 +25,16 @@ export const vars = createGlobalThemeContract(
     colors: {
       foreground: {
         neutralTextPrimary: null,
+        disabled: null,
+        inherit: null,
       },
-      background: {},
+      background: {
+        default: null,
+        hover: null,
+        active: null,
+        disabled: null,
+        focus: null,
+      },
       border: {},
     },
     fontSize: {
