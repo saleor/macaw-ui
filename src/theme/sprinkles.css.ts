@@ -12,7 +12,15 @@ const responsiveProperties = defineProperties({
     display: ["none", "flex"],
     flexDirection: ["row", "column"],
     alignItems: ["stretch", "flex-start", "center", "flex-end"],
-    justifyContent: ["stretch", "flex-start", "center", "flex-end"],
+    justifyContent: [
+      "stretch",
+      "flex-start",
+      "center",
+      "flex-end",
+      "space-between",
+      "space-around",
+      "space-evenly",
+    ],
     flexWrap: ["nowrap", "wrap"],
     gap: vars.space,
     paddingTop: vars.space,
@@ -46,22 +54,24 @@ const responsiveProperties = defineProperties({
   },
 });
 
-const colorsProperties = defineProperties({
+const stateProperties = defineProperties({
   conditions: {
-    lightMode: {},
-    darkMode: { "@media": "(prefers-color-scheme: dark)" },
+    default: {},
+    hover: { selector: "&:hover" },
+    focus: { selector: "&:focus" },
+    active: { selector: "&:active" },
+    disabled: { selector: "&[disabled]" },
   },
-  defaultCondition: "lightMode",
+  defaultCondition: "default",
   properties: {
     borderColor: vars.colors.border,
     color: vars.colors.foreground,
     backgroundColor: vars.colors.background,
+    pointerEvents: ["none", "auto"],
+    cursor: ["pointer", "not-allowed", "auto"],
   },
 });
 
-export const sprinkles = createSprinkles(
-  responsiveProperties,
-  colorsProperties
-);
+export const sprinkles = createSprinkles(responsiveProperties, stateProperties);
 
 export type Sprinkles = Parameters<typeof sprinkles>[0];

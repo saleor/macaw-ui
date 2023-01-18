@@ -28,3 +28,8 @@ globalStyle("p, h1, h2, h3, h4, h5, h6", {
 globalStyle("#macaw-ui-root", {
   isolation: "isolate",
 });
+
+globalStyle("ul, ol", {
+  listStyle: "none",
+  padding: 0,
+});
