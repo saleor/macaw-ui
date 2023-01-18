@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof List.Item> = (args) => (
   <List>
-    <List.Item {...args}>
+    <List.Item {...args} paddingX={4} paddingY={4} gap={5} borderRadius={3}>
       <HomeIcon size="large" />
       <Text>List component</Text>
     </List.Item>
