@@ -24,3 +24,15 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
 };
+
+export const MoreItems = () => (
+  <List>
+    <List.Item>
+      <HomeIcon size="large" />
+      <Text>Home</Text>
+    </List.Item>
+    <List.Item>
+      <Text>List element</Text>
+    </List.Item>
+  </List>
+);
