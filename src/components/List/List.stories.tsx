@@ -47,3 +47,26 @@ export const ListGroup = () => (
     </List.ItemGroup>
   </List>
 );
+
+export const ListDivider = () => (
+  <List>
+    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+      <HomeIcon />
+      <Text>Item 1</Text>
+    </List.Item>
+    <List.Divider paddingX={4} paddingY={4} />
+    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+      <HomeIcon />
+      <Text>Item 2</Text>
+    </List.Item>
+    <List.Divider paddingX={4} paddingY={4}>
+      <Text variant="caption" size="medium">
+        List heading
+      </Text>
+    </List.Divider>
+    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+      <HomeIcon />
+      <Text>Item 3</Text>
+    </List.Item>
+  </List>
+);

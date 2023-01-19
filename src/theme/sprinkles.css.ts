@@ -41,6 +41,7 @@ const responsiveProperties = defineProperties({
     borderWidth: vars.space,
     borderStyle: ["solid"],
     fontWeight: vars.fontWeight,
+    textTransform: ["uppercase"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

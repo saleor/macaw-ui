@@ -9,6 +9,7 @@ export const text = recipe({
     variant: {
       body1: sprinkles({ lineHeight: "text" }),
       body2: sprinkles({ lineHeight: "text" }),
+      caption: sprinkles({ lineHeight: "text", textTransform: "uppercase" }),
     },
     size: {
       small: {},
@@ -65,6 +66,28 @@ export const text = recipe({
         size: "small",
       },
       style: sprinkles({ fontSize: 2 }),
+    },
+
+    {
+      variants: {
+        variant: "caption",
+        size: "large",
+      },
+      style: sprinkles({ fontSize: 3 }),
+    },
+    {
+      variants: {
+        variant: "caption",
+        size: "medium",
+      },
+      style: sprinkles({ fontSize: 2 }),
+    },
+    {
+      variants: {
+        variant: "caption",
+        size: "small",
+      },
+      style: sprinkles({ fontSize: 1 }),
     },
   ],
 
