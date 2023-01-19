@@ -108,7 +108,8 @@
     "@vanilla-extract/recipes": "^0.3.0",
     "@vanilla-extract/sprinkles": "^1.5.1",
     "@dessert-box/react": "^0.4.0",
-    "vitest": "^0.27.2"
+    "vitest": "^0.27.2",
+    "@radix-ui/react-accordion": "^1.0.1"
   },
   "dependencies": {},
   "peerDependencies": {

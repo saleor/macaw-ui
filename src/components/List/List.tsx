@@ -1,15 +1,21 @@
+import { forwardRef, ReactNode } from "react";
+
 import { Box } from "../Box";
 
 type ListProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   as?: "ul" | "ol";
   className?: string;
 };
 
-export const List = ({ children, as = "ul", className }: ListProps) => {
-  return (
-    <Box as={as} className={className}>
-      {children}
-    </Box>
-  );
-};
+export const List = forwardRef<HTMLUListElement | HTMLUListElement, ListProps>(
+  ({ children, as = "ul", className }, ref) => {
+    return (
+      <Box as={as} ref={ref} className={className}>
+        {children}
+      </Box>
+    );
+  }
+);
+
+List.displayName = "List";

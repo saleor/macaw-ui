@@ -24,4 +24,4 @@ export const svgWrapper = recipe({
   },
 });
 
-export type SCVWrapperVaraints = RecipeVariants<typeof svgWrapper>;
+export type SVGWrapperVariants = RecipeVariants<typeof svgWrapper>;

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { classNames } from ".";
+import { classNames } from "./css";
 
 describe("classNames", () => {
   test("should join class names", () => {

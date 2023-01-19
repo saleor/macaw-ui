@@ -42,6 +42,10 @@ module.exports = {
             pattern: "~/**",
             group: "internal",
           },
+          {
+            pattern: "./*.css",
+            group: "index",
+          },
         ],
         groups: [
           "external",

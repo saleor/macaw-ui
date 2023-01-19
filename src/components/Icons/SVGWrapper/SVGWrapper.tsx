@@ -1,9 +1,9 @@
 import { ReactNode, forwardRef } from "react";
 import { sprinkles, Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
-import { svgWrapper, SCVWrapperVaraints } from "./SVGWrapper.css";
+import { svgWrapper, SVGWrapperVariants } from "./SVGWrapper.css";
 
-export type SVGWrapperProps = SCVWrapperVaraints & {
+export type SVGWrapperProps = SVGWrapperVariants & {
   className?: string;
   viewBox?: string;
   children: ReactNode;

@@ -1,11 +1,14 @@
+import { ReactNode } from "react";
+
 import { Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
-import { text, TextVariants } from "./Text.css";
 import { Box } from "../Box";
 
+import { text, TextVariants } from "./Text.css";
+
 type TextProps = TextVariants & {
-  children: React.ReactNode;
+  children: ReactNode;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
   color?: Sprinkles["color"];
   className?: string;
