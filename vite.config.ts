@@ -17,6 +17,9 @@ export default defineConfig({
       entry: "src/index.tsx",
       formats: ["es", "cjs"],
     },
+    rollupOptions: {
+      external: ["react", "react-dom"],
+    },
   },
   test: {
     include: ["src/**/*.{test,spec}.{ts,tsx}"],

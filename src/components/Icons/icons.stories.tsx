@@ -27,6 +27,5 @@ export const Default = () =>
           </Box>
         ))}
       </Box>
-      ;
     </>
   ));
