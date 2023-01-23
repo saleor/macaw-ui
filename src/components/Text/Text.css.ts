@@ -7,65 +7,152 @@ export const text = recipe({
 
   variants: {
     variant: {
-      body1: sprinkles({ lineHeight: "text" }),
-      body2: sprinkles({ lineHeight: "text" }),
-      caption: sprinkles({ lineHeight: "text", textTransform: "uppercase" }),
+      hero: {},
+      title: {},
+      heading: {},
+      bodyEmp: {},
+      body: {},
+      button: {},
+      caption: {},
     },
     size: {
       small: {},
       medium: {},
       large: {},
     },
-    fontWeight: {
-      light: sprinkles({ fontWeight: "light" }),
-      regular: sprinkles({ fontWeight: "regular" }),
-      medium: sprinkles({ fontWeight: "medium" }),
-    },
   },
 
   compoundVariants: [
     {
       variants: {
-        variant: "body1",
+        variant: "hero",
         size: "large",
       },
-      style: sprinkles({ fontSize: 6 }),
+      style: sprinkles({ typeSize: "heroLarge" }),
     },
     {
       variants: {
-        variant: "body1",
+        variant: "hero",
         size: "medium",
       },
-      style: sprinkles({ fontSize: 5 }),
+      style: sprinkles({ typeSize: "heroMedium" }),
     },
     {
       variants: {
-        variant: "body1",
+        variant: "hero",
         size: "small",
       },
-      style: sprinkles({ fontSize: 4 }),
+      style: sprinkles({ typeSize: "heroSmall" }),
     },
 
     {
       variants: {
-        variant: "body2",
+        variant: "title",
         size: "large",
       },
-      style: sprinkles({ fontSize: 4 }),
+      style: sprinkles({ typeSize: "titleLarge" }),
     },
     {
       variants: {
-        variant: "body2",
+        variant: "title",
         size: "medium",
       },
-      style: sprinkles({ fontSize: 3 }),
+      style: sprinkles({ typeSize: "titleMedium" }),
     },
     {
       variants: {
-        variant: "body2",
+        variant: "title",
         size: "small",
       },
-      style: sprinkles({ fontSize: 2 }),
+      style: sprinkles({ typeSize: "titleSmall" }),
+    },
+
+    {
+      variants: {
+        variant: "heading",
+        size: "large",
+      },
+      style: sprinkles({ typeSize: "headingLarge" }),
+    },
+    {
+      variants: {
+        variant: "heading",
+        size: "medium",
+      },
+      style: sprinkles({ typeSize: "headingMedium" }),
+    },
+    {
+      variants: {
+        variant: "heading",
+        size: "small",
+      },
+      style: sprinkles({ typeSize: "headingSmall" }),
+    },
+
+    {
+      variants: {
+        variant: "bodyEmp",
+        size: "large",
+      },
+      style: sprinkles({ typeSize: "bodyEmpLarge" }),
+    },
+    {
+      variants: {
+        variant: "bodyEmp",
+        size: "medium",
+      },
+      style: sprinkles({ typeSize: "bodyEmpMedium" }),
+    },
+    {
+      variants: {
+        variant: "bodyEmp",
+        size: "small",
+      },
+      style: sprinkles({ typeSize: "bodyEmpSmall" }),
+    },
+
+    {
+      variants: {
+        variant: "body",
+        size: "large",
+      },
+      style: sprinkles({ typeSize: "bodyLarge" }),
+    },
+    {
+      variants: {
+        variant: "body",
+        size: "medium",
+      },
+      style: sprinkles({ typeSize: "bodyMedium" }),
+    },
+    {
+      variants: {
+        variant: "body",
+        size: "small",
+      },
+      style: sprinkles({ typeSize: "bodySmall" }),
+    },
+
+    {
+      variants: {
+        variant: "button",
+        size: "large",
+      },
+      style: sprinkles({ typeSize: "buttonLarge" }),
+    },
+    {
+      variants: {
+        variant: "button",
+        size: "medium",
+      },
+      style: sprinkles({ typeSize: "buttonMedium" }),
+    },
+    {
+      variants: {
+        variant: "button",
+        size: "small",
+      },
+      style: sprinkles({ typeSize: "buttonSmall" }),
     },
 
     {
@@ -73,28 +160,27 @@ export const text = recipe({
         variant: "caption",
         size: "large",
       },
-      style: sprinkles({ fontSize: 3 }),
+      style: sprinkles({ typeSize: "captionLarge" }),
     },
     {
       variants: {
         variant: "caption",
         size: "medium",
       },
-      style: sprinkles({ fontSize: 2 }),
+      style: sprinkles({ typeSize: "captionMedium" }),
     },
     {
       variants: {
         variant: "caption",
         size: "small",
       },
-      style: sprinkles({ fontSize: 1 }),
+      style: sprinkles({ typeSize: "captionSmall" }),
     },
   ],
 
   defaultVariants: {
-    variant: "body1",
+    variant: "body",
     size: "medium",
-    fontWeight: "regular",
   },
 });
 

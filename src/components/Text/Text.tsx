@@ -12,6 +12,7 @@ type TextProps = TextVariants & {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
   color?: Sprinkles["color"];
   className?: string;
+  textTransform?: Sprinkles["textTransform"];
 };
 
 export const Text = ({
@@ -19,15 +20,16 @@ export const Text = ({
   as = "span",
   variant,
   size,
-  fontWeight,
   color = "textNeutralDefault",
+  textTransform,
   className,
 }: TextProps) => {
   return (
     <Box
       as={as}
-      className={classNames(text({ variant, size, fontWeight }), className)}
+      className={classNames(text({ variant, size }), className)}
       color={color}
+      textTransform={textTransform}
     >
       {children}
     </Box>

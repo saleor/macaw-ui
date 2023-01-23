@@ -61,7 +61,12 @@ export const ListDivider = () => (
       <Text>Item 2</Text>
     </List.Item>
     <List.Divider paddingX={4} paddingY={4}>
-      <Text variant="caption" size="medium" color="textNeutralSubdued">
+      <Text
+        variant="caption"
+        size="small"
+        color="textNeutralSubdued"
+        textTransform="uppercase"
+      >
         List heading
       </Text>
     </List.Divider>

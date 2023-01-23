@@ -42,6 +42,7 @@ const responsiveProperties = defineProperties({
     borderStyle: ["solid"],
     fontWeight: vars.fontWeight,
     textTransform: ["uppercase"],
+    letterSpacing: vars.letterSpacing,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -51,7 +52,7 @@ const responsiveProperties = defineProperties({
     marginX: ["marginLeft", "marginRight"],
     marginY: ["marginTop", "marginBottom"],
     placeItems: ["alignItems", "justifyContent"],
-    typeSize: ["fontSize", "lineHeight"],
+    typeSize: ["fontSize", "lineHeight", "fontWeight", "letterSpacing"],
   },
 });
 
