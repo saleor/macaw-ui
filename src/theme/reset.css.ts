@@ -16,7 +16,7 @@ globalStyle("input, button, textarea, select", {
   fontFamily: "inherit",
 });
 
-globalStyle("img, picture, video, canvas, svg", {
+globalStyle("img, picture, video, canvas", {
   display: "block",
   maxWidth: "100%",
 });

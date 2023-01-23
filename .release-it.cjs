@@ -1,7 +1,8 @@
 module.exports = {
+  git: {
+    tag: false,
+  },
   github: {
-    release: true,
-    draft: true,
-    releaseName: "${version}",
+    release: false,
   },
 };
