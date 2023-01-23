@@ -19,14 +19,13 @@ export const Text = ({
   as = "span",
   variant,
   size,
-  fontWeight,
   color = "textNeutralDefault",
   className,
 }: TextProps) => {
   return (
     <Box
       as={as}
-      className={classNames(text({ variant, size, fontWeight }), className)}
+      className={classNames(text({ variant, size }), className)}
       color={color}
     >
       {children}

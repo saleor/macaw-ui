@@ -1,6 +1,7 @@
 import { defaultLightTheme } from "./defaultLight.css";
 
 import "./reset.css";
+import "./fonts.css";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
