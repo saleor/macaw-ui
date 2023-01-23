@@ -10,7 +10,7 @@ export default {
 export const Item = () => (
   <List>
     <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-      <HomeIcon size="medium" />
+      <HomeIcon color="iconNeutralSubdued" />
       <Text>List component</Text>
     </List.Item>
   </List>
@@ -35,13 +35,13 @@ export const ListGroup = () => (
         justifyContent="space-between"
       >
         <Box display="flex" alignItems="center" gap={5}>
-          <MenuIcon size="large" />
+          <MenuIcon />
           <Text>Trigger</Text>
         </Box>
       </List.ItemGroup.Trigger>
       <List.ItemGroup.Content>
         <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-          <HomeIcon size="large" />
+          <HomeIcon />
           <Text>Content</Text>
         </List.Item>
       </List.ItemGroup.Content>
@@ -61,7 +61,7 @@ export const ListDivider = () => (
       <Text>Item 2</Text>
     </List.Item>
     <List.Divider paddingX={4} paddingY={4}>
-      <Text variant="caption" size="medium">
+      <Text variant="caption" size="medium" color="textNeutralSubdued">
         List heading
       </Text>
     </List.Divider>
