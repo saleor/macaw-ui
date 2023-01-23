@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof Text> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  color: "neutralTextPrimary",
+  color: "textNeutralDefault",
   size: "medium",
   variant: "body1",
   fontWeight: "regular",

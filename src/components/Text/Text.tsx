@@ -20,7 +20,7 @@ export const Text = ({
   variant,
   size,
   fontWeight,
-  color = "inherit",
+  color = "textNeutralDefault",
   className,
 }: TextProps) => {
   return (
