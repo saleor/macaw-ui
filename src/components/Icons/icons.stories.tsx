@@ -12,9 +12,7 @@ export default {
 export const Default = () =>
   sizes.map((size) => (
     <>
-      <Text as="h3" color="neutralTextPrimary">
-        {size}
-      </Text>
+      <Text as="h3">{size}</Text>
       <Box
         display="flex"
         alignItems="center"

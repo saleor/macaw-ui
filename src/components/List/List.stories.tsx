@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentMeta } from "@storybook/react";
 
 import { Text, HomeIcon, Box, MenuIcon } from "~/components";
 import { List } from ".";
@@ -7,22 +7,23 @@ export default {
   component: List.Item,
 } as ComponentMeta<typeof List.Item>;
 
-const Template: ComponentStory<typeof List.Item> = (args) => (
+export const Item = () => (
   <List>
-    <List.Item {...args} paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-      <HomeIcon size="large" />
+    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+      <HomeIcon color="iconNeutralSubdued" />
       <Text>List component</Text>
     </List.Item>
   </List>
 );
 
-export const Item = Template.bind({});
-Item.args = {};
-
-export const ItemDisabled = Template.bind({});
-ItemDisabled.args = {
-  disabled: true,
-};
+export const ItemDisabled = () => (
+  <List>
+    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3} disabled>
+      <HomeIcon color="iconNeutralDisabled" />
+      <Text color="textNeutralDisabled">List component</Text>
+    </List.Item>
+  </List>
+);
 
 export const ListGroup = () => (
   <List>
@@ -34,13 +35,13 @@ export const ListGroup = () => (
         justifyContent="space-between"
       >
         <Box display="flex" alignItems="center" gap={5}>
-          <MenuIcon size="large" />
+          <MenuIcon />
           <Text>Trigger</Text>
         </Box>
       </List.ItemGroup.Trigger>
       <List.ItemGroup.Content>
         <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-          <HomeIcon size="large" />
+          <HomeIcon />
           <Text>Content</Text>
         </List.Item>
       </List.ItemGroup.Content>
@@ -60,7 +61,7 @@ export const ListDivider = () => (
       <Text>Item 2</Text>
     </List.Item>
     <List.Divider paddingX={4} paddingY={4}>
-      <Text variant="caption" size="medium">
+      <Text variant="caption" size="medium" color="textNeutralSubdued">
         List heading
       </Text>
     </List.Divider>

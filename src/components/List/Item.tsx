@@ -24,13 +24,10 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
         cursor="pointer"
         disabled={disabled}
         backgroundColor={{
-          default: "default",
-          active: "active",
-          hover: "hover",
-          focus: "focus",
-        }}
-        color={{
-          disabled: "disabled",
+          default: "surfaceNeutralPlain",
+          active: "interactiveNeutralHighlightPressing",
+          hover: "interactiveNeutralHighlightHovering",
+          focus: "interactiveNeutralHighlightFocused",
         }}
         pointerEvents={{ default: "auto", disabled: "none" }}
         onClick={onClick}
