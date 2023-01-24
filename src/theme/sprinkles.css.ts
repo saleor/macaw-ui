@@ -34,6 +34,8 @@ const responsiveProperties = defineProperties({
     marginRight: vars.space,
     width: ["100vw"],
     height: ["100vh"],
+    minHeight: ["auto", "100%", "0px"],
+    minWidth: ["auto", "100%", "0px"],
     borderRadius: vars.borderRadius,
     fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
