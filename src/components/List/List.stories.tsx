@@ -25,6 +25,15 @@ export const ItemDisabled = () => (
   </List>
 );
 
+export const ItemActive = () => (
+  <List>
+    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3} active>
+      <HomeIcon color="iconNeutralSubdued" />
+      <Text>List component</Text>
+    </List.Item>
+  </List>
+);
+
 export const ListGroup = () => (
   <List>
     <List.ItemGroup>

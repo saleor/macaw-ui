@@ -11,10 +11,11 @@ type ListItemProps = Pick<
   disabled?: boolean;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
+  active?: boolean;
 };
 
 export const Item = forwardRef<HTMLLIElement, ListItemProps>(
-  ({ children, disabled, onClick, className, ...rest }, ref) => {
+  ({ children, disabled, onClick, className, active, ...rest }, ref) => {
     return (
       <Box
         {...rest}
@@ -24,7 +25,9 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
         cursor="pointer"
         disabled={disabled}
         backgroundColor={{
-          default: "interactiveNeutralDefault",
+          default: active
+            ? "interactiveNeutralHighlightFocused"
+            : "interactiveNeutralHighlightDefault",
           active: "interactiveNeutralHighlightPressing",
           hover: "interactiveNeutralHighlightHovering",
           focus: "interactiveNeutralHighlightFocused",

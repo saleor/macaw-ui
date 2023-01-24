@@ -19,7 +19,7 @@ export const Trigger = ({ children, ...rest }: ItemGroupTriggerProps) => (
   <AccordionTrigger asChild>
     <Item {...rest}>
       {children}
-      <ChervonDownIcon className={icon} />
+      <ChervonDownIcon className={icon} borderRadius={2} />
     </Item>
   </AccordionTrigger>
 );
