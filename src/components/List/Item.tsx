@@ -24,7 +24,7 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
         cursor="pointer"
         disabled={disabled}
         backgroundColor={{
-          default: "surfaceNeutralPlain",
+          default: "interactiveNeutralDefault",
           active: "interactiveNeutralHighlightPressing",
           hover: "interactiveNeutralHighlightHovering",
           focus: "interactiveNeutralHighlightFocused",

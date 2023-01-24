@@ -9,7 +9,7 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: "mobile",
   properties: {
-    display: ["none", "flex", "grid"],
+    display: ["none", "flex", "grid", "block"],
     flexDirection: ["row", "column"],
     alignItems: ["stretch", "flex-start", "center", "flex-end"],
     justifyContent: [
@@ -32,8 +32,10 @@ const responsiveProperties = defineProperties({
     marginBottom: vars.space,
     marginLeft: vars.space,
     marginRight: vars.space,
-    width: ["100vw"],
-    height: ["100vh"],
+    width: ["100vw", "100%"],
+    height: ["100vh", "100%"],
+    minHeight: ["auto", "100%", "0px"],
+    minWidth: ["auto", "100%", "0px"],
     borderRadius: vars.borderRadius,
     fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
