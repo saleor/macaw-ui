@@ -4,6 +4,7 @@ import { vars } from "./contract.css";
 
 export const defaultLightTheme = createTheme(vars, {
   space: {
+    0: "0px",
     1: "1px",
     2: "2px",
     3: "4px",
