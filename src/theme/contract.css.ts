@@ -6,6 +6,7 @@ const toKebabCase = (str: string) =>
 export const vars = createGlobalThemeContract(
   {
     space: {
+      0: null,
       1: null,
       2: null,
       3: null,
