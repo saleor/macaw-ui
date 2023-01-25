@@ -6,5 +6,7 @@ export const createSVGWrapper = (node: ReactNode) => {
     <SVGWrapper {...props}>{node}</SVGWrapper>
   );
 
+  Wrapper.displayName = "withSVGWrapper";
+
   return Wrapper;
 };
