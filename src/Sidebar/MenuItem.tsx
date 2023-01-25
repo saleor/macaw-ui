@@ -16,6 +16,7 @@ export interface MenuItemCommonProps {
   activeId: string;
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
+  popover?: boolean;
 }
 
 export type MenuItemProps = MenuItemCommonProps &
@@ -48,6 +49,9 @@ const useStyles = makeStyles(
       marginRight: theme.spacing(1.5),
       transition: theme.transitions.duration.shortest + "ms",
     },
+    rootFlat: {
+      height: "auto",
+    },
     label: {
       cursor: "pointer",
       display: "block",
@@ -75,6 +79,11 @@ const useStyles = makeStyles(
       display: "inline-flex",
       margin: 0,
       padding: 0,
+    },
+    subMemuPanel: {
+      display: "flex",
+      flexDirection: "column",
+      marginTop: 18,
     },
     paper: {
       borderRadius: 4,
@@ -105,6 +114,12 @@ const useStyles = makeStyles(
       padding: theme.spacing(2, 3, 2, 3),
       transition: theme.transitions.duration.shortest + "ms",
       width: shrunkMenuWidth,
+      "&$rootFlat": {
+        height: "auto !important",
+      },
+      "& $subMenuLabel": {
+        paddingLeft: 0,
+      }
     },
     rootActive: {
       "&$root": {
@@ -148,6 +163,7 @@ const useStyles = makeStyles(
 export const MenuItem: React.FC<MenuItemProps> = ({
   activeId,
   menuItem,
+  popover,
   isMenuShrunk,
   onClick,
   linkComponent,
@@ -179,6 +195,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     <RootNavComponent
       className={clsx(classes.root, {
         [classes.rootOpen]: open,
+        [classes.rootFlat]: popover === false,
         [classes.rootActive]: [
           menuItem.id,
           ...(menuItem.children?.map((subMenu) => subMenu.id) || []),
@@ -207,7 +224,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           {menuItem.label}
         </Typography>
       </span>
-      {menuItem.children && (
+      {menuItem.children && popover === true && (
         <Popper
           className={clsx(classes.popper, {
             [classes.popperShrink]: isMenuShrunk,
@@ -260,6 +277,43 @@ export const MenuItem: React.FC<MenuItemProps> = ({
             </Paper>
           </ClickAwayListener>
         </Popper>
+      )}
+      {menuItem.children && popover === false && (
+        <div className={classes.subMemuPanel}>
+          {menuItem.children.map((subMenuItem) => {
+            if (subMenuItem.url || subMenuItem.children) {
+              const linkProps = getLinkProps(subMenuItem);
+
+              return (
+                <MuiMenuItem
+                  aria-label={subMenuItem.ariaLabel}
+                  component={getLinkComponent(subMenuItem, linkComponent)}
+                  className={clsx(classes.label, classes.subMenuLabel)}
+                  key={subMenuItem.url}
+                  onClick={(event: React.MouseEvent) =>
+                    handleClick(event, subMenuItem)
+                  }
+                  data-test="submenu-item-label"
+                  data-test-id={subMenuItem.id}
+                  selected={activeId === subMenuItem.id}
+                  {...linkProps}
+                >
+                  {subMenuItem.label}
+                </MuiMenuItem>
+              );
+            }
+
+            return (
+              <Typography
+                key={subMenuItem.label}
+                variant="caption"
+                className={classes.subMenuHeader}
+              >
+                {subMenuItem.label}
+              </Typography>
+            );
+          })}
+        </div>
       )}
     </RootNavComponent>
   );

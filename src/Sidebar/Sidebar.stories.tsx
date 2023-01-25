@@ -42,6 +42,16 @@ export const WithCustomLogo: Story = () => (
   />
 );
 
+
+export const WithFlatItems: Story = () => (
+  <Sidebar
+    {...props}
+    popover={false}
+    logo={logoContent}
+    toolbar={<SquareButton>tool</SquareButton>}
+  />
+);
+
 export default {
   title: "Sidebar",
 } as Meta;

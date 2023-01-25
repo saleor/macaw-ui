@@ -48,6 +48,7 @@ export interface SidebarProps extends BaseSidebarProps {
   activeId: string;
   logoSrc?: string;
   logo?: React.ReactNode;
+  popover?: boolean;
   onExpand?: (value: boolean) => void;
 }
 
@@ -60,6 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   linkComponent,
   className,
   logoSrc,
+  popover,
   logo,
   onExpand,
 }) => {
@@ -105,6 +107,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               isMenuShrunk={isShrunk}
               menuItem={menuItem}
               key={menuItem.ariaLabel}
+              popover={popover}
               linkComponent={linkComponent}
             />
           ) : (
@@ -112,6 +115,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               activeId={activeId}
               isMenuShrunk={isShrunk}
               menuItem={menuItem}
+              popover={popover}
               onClick={onMenuItemClick}
               key={menuItem.ariaLabel}
             />
