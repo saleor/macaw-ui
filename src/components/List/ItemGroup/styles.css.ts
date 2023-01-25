@@ -8,6 +8,13 @@ export const icon = style({
   selectors: {
     [`${trigger}[data-state="open"] &`]: {
       transform: "rotate(180deg)",
+    },
+  },
+});
+
+export const button = style({
+  selectors: {
+    [`${trigger}[data-state="open"] &`]: {
       // using vars here as sprinkles do not work currently in selectors
       // https://github.com/vanilla-extract-css/vanilla-extract/discussions/824
       backgroundColor:

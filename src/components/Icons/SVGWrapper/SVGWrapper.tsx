@@ -8,8 +8,6 @@ export type SVGWrapperProps = SVGWrapperVariants & {
   viewBox?: string;
   children: ReactNode;
   color?: Sprinkles["color"];
-  backgroundColor?: Sprinkles["backgroundColor"];
-  borderRadius?: Sprinkles["borderRadius"];
 };
 
 export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
@@ -19,8 +17,6 @@ export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
       size,
       viewBox = "0 0 24 24",
       color = "iconNeutralDefault",
-      backgroundColor,
-      borderRadius,
       children,
     },
     ref
@@ -30,7 +26,7 @@ export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
         ref={ref}
         className={classNames(
           svgWrapper({ size }),
-          sprinkles({ color, backgroundColor, borderRadius }),
+          sprinkles({ color }),
           className
         )}
         viewBox={viewBox}
