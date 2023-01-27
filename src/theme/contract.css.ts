@@ -17,6 +17,7 @@ export const vars = createGlobalThemeContract(
       8: null,
       9: null,
       10: null,
+      11: null,
     },
     colors: {
       foreground: {

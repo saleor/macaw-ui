@@ -15,6 +15,7 @@ export const defaultLightTheme = createTheme(vars, {
     8: "24px",
     9: "30px",
     10: "32px",
+    11: "38px",
   },
   colors: {
     foreground: {
