@@ -96,6 +96,7 @@ const stateProperties = defineProperties({
     backgroundColor: vars.colors.background,
     pointerEvents: ["none", "auto"],
     cursor: ["pointer", "not-allowed", "auto"],
+    boxShadow: vars.boxShadow,
   },
 });
 
