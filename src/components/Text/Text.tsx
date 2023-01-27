@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 
 import { Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
@@ -14,21 +14,29 @@ type TextProps = TextVariants & {
   className?: string;
 };
 
-export const Text = ({
-  children,
-  as = "span",
-  variant,
-  size,
-  color = "textNeutralDefault",
-  className,
-}: TextProps) => {
-  return (
-    <Box
-      as={as}
-      className={classNames(text({ variant, size }), className)}
-      color={color}
-    >
-      {children}
-    </Box>
-  );
-};
+export const Text = forwardRef<HTMLSpanElement, TextProps>(
+  (
+    {
+      children,
+      as = "span",
+      variant,
+      size,
+      color = "textNeutralDefault",
+      className,
+    },
+    ref
+  ) => {
+    return (
+      <Box
+        as={as}
+        className={classNames(text({ variant, size }), className)}
+        color={color}
+        ref={ref}
+      >
+        {children}
+      </Box>
+    );
+  }
+);
+
+Text.displayName = "Text";

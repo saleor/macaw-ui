@@ -6,12 +6,9 @@ import { Box, ChervonDownIcon } from "~/components";
 
 import { Item } from "../Item";
 
-import { button, icon } from "./styles.css";
+import { button, icon } from "./common.css";
 
-type ItemGroupTriggerProps = Pick<
-  Sprinkles,
-  "gap" | "paddingY" | "paddingX" | "borderRadius" | "justifyContent"
-> & {
+type ItemGroupTriggerProps = Sprinkles & {
   children: ReactNode;
   active?: boolean;
 };

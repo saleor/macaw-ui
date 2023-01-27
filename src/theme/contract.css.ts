@@ -233,5 +233,5 @@ export const vars = createGlobalThemeContract(
       modal: null,
     },
   },
-  (_value, path) => `${path.map(toKebabCase).join("-")}`
+  (_value, path) => `mu-${path.map(toKebabCase).join("-")}`
 );

@@ -3,10 +3,7 @@ import { forwardRef, ReactNode } from "react";
 import { Sprinkles } from "~/theme";
 import { Box } from "../Box";
 
-type ListItemProps = Pick<
-  Sprinkles,
-  "paddingX" | "paddingY" | "gap" | "borderRadius" | "justifyContent"
-> & {
+type ListItemProps = Sprinkles & {
   children: ReactNode;
   disabled?: boolean;
   className?: string;
@@ -18,7 +15,6 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
   ({ children, disabled, onClick, className, active, ...rest }, ref) => {
     return (
       <Box
-        {...rest}
         as="li"
         display="flex"
         alignItems="center"
@@ -36,6 +32,7 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
         onClick={onClick}
         className={className}
         ref={ref}
+        {...rest}
       >
         {children}
       </Box>

@@ -1,8 +1,8 @@
-import { createTheme } from "@vanilla-extract/css";
+import { createGlobalTheme } from "@vanilla-extract/css";
 
 import { vars } from "./contract.css";
 
-export const defaultLightTheme = createTheme(vars, {
+export const defaultLightTheme = createGlobalTheme(":root", vars, {
   space: {
     0: "0px",
     1: "1px",
