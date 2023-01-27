@@ -113,7 +113,8 @@
     "vite": "^3.2.5",
     "vite-plugin-dts": "^1.7.1",
     "vitest": "^0.27.2",
-    "webpack": "^5.75.0"
+    "webpack": "^5.75.0",
+    "@radix-ui/react-dropdown-menu": "^2.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

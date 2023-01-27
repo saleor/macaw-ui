@@ -21,3 +21,5 @@ export * from "./CloseIcon";
 export * from "./FileExportIcon";
 export * from "./RemoveIcon";
 export * from "./SearchIcon";
+export * from "./DarkModeIcon";
+export * from "./LightModeIcon";

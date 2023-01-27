@@ -6,7 +6,7 @@ import {
 
 import { List } from "../List";
 
-import { trigger } from "./styles.css";
+import { trigger } from "./common.css";
 
 type ItemGroupRootProps = {
   children: ReactNode;

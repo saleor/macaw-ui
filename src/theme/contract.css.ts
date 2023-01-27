@@ -226,6 +226,12 @@ export const vars = createGlobalThemeContract(
       captionMedium: null,
       captionSmall: null,
     },
+    boxShadow: {
+      interactiveDefaultFocused: null,
+      interactiveDefaultHovering: null,
+      overlay: null,
+      modal: null,
+    },
   },
-  (_value, path) => `${path.map(toKebabCase).join("-")}`
+  (_value, path) => `mu-${path.map(toKebabCase).join("-")}`
 );

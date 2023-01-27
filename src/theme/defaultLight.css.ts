@@ -1,8 +1,8 @@
-import { createTheme } from "@vanilla-extract/css";
+import { createGlobalTheme } from "@vanilla-extract/css";
 
 import { vars } from "./contract.css";
 
-export const defaultLightTheme = createTheme(vars, {
+export const defaultLightTheme = createGlobalTheme(":root", vars, {
   space: {
     0: "0px",
     1: "1px",
@@ -223,5 +223,11 @@ export const defaultLightTheme = createTheme(vars, {
     captionLarge: "0.01em",
     captionMedium: "0.015em",
     captionSmall: "0.025em",
+  },
+  boxShadow: {
+    interactiveDefaultFocused: "0px 1px 1px 0px hsla(212, 44%, 13%, 0.16)",
+    interactiveDefaultHovering: "0px 2px 3px 0px hsla(211, 42%, 16%, 0.1)",
+    overlay: "0px 3px 8px 0px hsla(211, 42%, 16%, 0.08)",
+    modal: "0px 8px 16px 0px hsla(211, 42%, 16%, 0.08)",
   },
 });

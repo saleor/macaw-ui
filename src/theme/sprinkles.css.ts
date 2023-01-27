@@ -21,6 +21,9 @@ const responsiveProperties = defineProperties({
       "space-around",
       "space-evenly",
     ],
+    gridArea: ["auto"],
+    gridTemplateAreas: ["none"],
+    gridTemplateRows: ["repeat(2,1fr)", "repeat(3,1fr)"],
     gridTemplateColumns: ["repeat(2,1fr)", "repeat(3,1fr)"],
     flexWrap: ["nowrap", "wrap"],
     gap: vars.space,
@@ -96,6 +99,7 @@ const stateProperties = defineProperties({
     backgroundColor: vars.colors.background,
     pointerEvents: ["none", "auto"],
     cursor: ["pointer", "not-allowed", "auto"],
+    boxShadow: vars.boxShadow,
   },
 });
 

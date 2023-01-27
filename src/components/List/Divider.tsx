@@ -3,7 +3,7 @@ import { Sprinkles } from "~/theme";
 
 import { Box } from "../Box";
 
-type ListDividerProps = Pick<Sprinkles, "paddingX" | "paddingY"> & {
+type ListDividerProps = Sprinkles & {
   children?: ReactNode;
 };
 
