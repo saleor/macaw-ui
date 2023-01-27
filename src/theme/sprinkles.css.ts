@@ -21,6 +21,7 @@ const responsiveProperties = defineProperties({
       "space-around",
       "space-evenly",
     ],
+    position: ["static", "relative", "absolute", "fixed", "sticky"],
     gridArea: ["auto"],
     gridTemplateAreas: ["none"],
     gridTemplateRows: ["repeat(2,1fr)", "repeat(3,1fr)"],

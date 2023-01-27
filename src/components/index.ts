@@ -3,3 +3,4 @@ export * from "./Icons";
 export * from "./List";
 export * from "./Text";
 export * from "./Avatar";
+export * from "./Dropdown";
