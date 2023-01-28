@@ -63,6 +63,7 @@ const responsiveProperties = defineProperties({
     bottom: vars.space,
     left: vars.space,
     right: vars.space,
+    overflow: ["hidden", "visible", "scroll", "auto"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

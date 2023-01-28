@@ -15,11 +15,3 @@ export const showContent = style({
   willChange: "opacity",
   animationName: changeOpacity,
 });
-
-export const focusVisible = style({
-  selectors: {
-    "&:focus-visible": {
-      outline: "none",
-    },
-  },
-});

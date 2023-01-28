@@ -3,7 +3,7 @@ import { Sprinkles } from "~/theme";
 import { Box } from "../Box";
 import { CloseIcon } from "../Icons";
 
-import { showContent, focusVisible } from "./common.css";
+import { showContent } from "./Content.css";
 
 type DrawerContentProps = Sprinkles & {
   children: React.ReactNode;
@@ -29,7 +29,7 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
           {...rest}
         >
           {children}
-          <Dialog.Close asChild className={focusVisible}>
+          <Dialog.Close asChild>
             {/* TODO: migrate to proper button */}
             <Box
               as="button"
