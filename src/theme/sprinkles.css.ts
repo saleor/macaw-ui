@@ -40,7 +40,10 @@ const responsiveProperties = defineProperties({
     height: { ...vars.space, "100%": "100%", "100vh": "100vh" },
     minHeight: ["auto", "100%", "0px"],
     minWidth: ["auto", "100%", "0px"],
-    borderRadius: { ...vars.borderRadius, "50%": "50%" },
+    borderTopRightRadius: { ...vars.borderRadius, "50%": "50%" },
+    borderTopLeftRadius: { ...vars.borderRadius, "50%": "50%" },
+    borderBottomRightRadius: { ...vars.borderRadius, "50%": "50%" },
+    borderBottomLeftRadius: { ...vars.borderRadius, "50%": "50%" },
     fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
     lineHeight: vars.lineHeight,
@@ -56,6 +59,10 @@ const responsiveProperties = defineProperties({
     fontWeight: vars.fontWeight,
     textTransform: ["uppercase"],
     letterSpacing: vars.letterSpacing,
+    top: vars.space,
+    bottom: vars.space,
+    left: vars.space,
+    right: vars.space,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -82,6 +89,13 @@ const responsiveProperties = defineProperties({
     ],
     borderXStyle: ["borderLeftStyle", "borderRightStyle"],
     borderYStyle: ["borderTopStyle", "borderBottomStyle"],
+    inset: ["top", "bottom", "left", "right"],
+    borderRadius: [
+      "borderTopLeftRadius",
+      "borderTopRightRadius",
+      "borderBottomLeftRadius",
+      "borderBottomRightRadius",
+    ],
   },
 });
 
