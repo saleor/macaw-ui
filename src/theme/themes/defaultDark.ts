@@ -227,6 +227,7 @@ export const defaultDark = {
     modal: "0px 8px 16px 0px hsla(0, 0%, 0%, 0.2)",
   },
   borderWidth: {
+    0: "0px",
     1: "1px",
   },
 };

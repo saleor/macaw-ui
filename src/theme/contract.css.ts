@@ -233,6 +233,7 @@ export const vars = createGlobalThemeContract(
       modal: null,
     },
     borderWidth: {
+      0: null,
       1: null,
     },
   },

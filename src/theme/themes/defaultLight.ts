@@ -227,6 +227,7 @@ export const defaultLight = {
     modal: "0px 8px 16px 0px hsla(211, 42%, 16%, 0.08)",
   },
   borderWidth: {
+    0: "0px",
     1: "1px",
   },
 };
