@@ -11,16 +11,7 @@ export type SVGWrapperProps = SVGWrapperVariants & {
 };
 
 export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
-  (
-    {
-      className,
-      size,
-      viewBox = "0 0 24 24",
-      color = "iconNeutralDefault",
-      children,
-    },
-    ref
-  ) => {
+  ({ className, size, viewBox = "0 0 24 24", color, children }, ref) => {
     return (
       <svg
         ref={ref}

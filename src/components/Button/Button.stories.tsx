@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import { Button, ButtonProps } from "./Button";
 import { Box } from "../Box";
 import { RemoveIcon, SearchIcon } from "../Icons";
-import { Text } from "../Text";
 
 export default {
   component: Button,
@@ -65,35 +64,35 @@ const IconButtonVariants = () => (
   <>
     <ButtonSetWrapper>
       <Button fixedWidth variant="primary" size="lg">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
       <Button fixedWidth variant="primary" size="md">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
       <Button fixedWidth variant="primary" size="sm">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button fixedWidth variant="secondary" size="lg">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
       <Button fixedWidth variant="secondary" size="md">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
       <Button fixedWidth variant="secondary" size="sm">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button fixedWidth variant="tertiary" size="lg">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
       <Button fixedWidth variant="tertiary" size="md">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
       <Button fixedWidth variant="tertiary" size="sm">
-        <RemoveIcon color="inherit" />
+        <RemoveIcon />
       </Button>
     </ButtonSetWrapper>
   </>
@@ -103,43 +102,43 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
   <>
     <ButtonSetWrapper>
       <Button variant="primary" size="lg" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon />
         Button
       </Button>
       <Button variant="primary" size="md" {...props}>
-        <SearchIcon color="inherit" size="small" />
+        <SearchIcon size="small" />
         Button
       </Button>
       <Button variant="primary" size="sm" {...props}>
-        <SearchIcon color="inherit" size="xsmall" />
+        <SearchIcon size="xsmall" />
         Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button variant="secondary" size="lg" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon />
         Button
       </Button>
       <Button variant="secondary" size="md" {...props}>
-        <SearchIcon color="inherit" size="small" />
+        <SearchIcon size="small" />
         Button
       </Button>
       <Button variant="secondary" size="sm" {...props}>
-        <SearchIcon color="inherit" size="xsmall" />
+        <SearchIcon size="xsmall" />
         Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button variant="tertiary" size="lg" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon />
         Button
       </Button>
       <Button variant="tertiary" size="md" {...props}>
-        <SearchIcon color="inherit" size="small" />
+        <SearchIcon size="small" />
         Button
       </Button>
       <Button variant="tertiary" size="sm" {...props}>
-        <SearchIcon color="inherit" size="xsmall" />
+        <SearchIcon size="xsmall" />
         Button
       </Button>
     </ButtonSetWrapper>
