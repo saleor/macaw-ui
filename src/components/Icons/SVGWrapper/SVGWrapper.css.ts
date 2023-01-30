@@ -5,6 +5,10 @@ import { vars } from "~/theme";
 export const svgWrapper = recipe({
   variants: {
     size: {
+      xsmall: {
+        width: vars.space[6],
+        height: vars.space[6],
+      },
       small: {
         width: vars.space[7],
         height: vars.space[7],

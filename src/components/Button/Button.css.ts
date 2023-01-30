@@ -121,6 +121,7 @@ export const button = recipe({
         height: 8,
         borderRadius: 2,
         paddingX: 4,
+        paddingY: 0,
       }),
     },
     {
@@ -132,6 +133,7 @@ export const button = recipe({
         height: 10,
         borderRadius: 3,
         paddingX: 5,
+        paddingY: 3,
       }),
     },
     {
@@ -143,6 +145,7 @@ export const button = recipe({
         height: 12,
         borderRadius: 3,
         paddingX: 6,
+        paddingY: 4,
       }),
     },
   ],

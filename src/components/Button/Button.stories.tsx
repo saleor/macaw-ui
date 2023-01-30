@@ -127,13 +127,13 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
         </Text>
       </Button>
       <Button variant="primary" size="md" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon color="inherit" size="small" />
         <Text variant="button" size="medium" color="inherit">
           Button
         </Text>
       </Button>
       <Button variant="primary" size="sm" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon color="inherit" size="xsmall" />
         <Text variant="button" size="small" color="inherit">
           Button
         </Text>
@@ -147,13 +147,13 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
         </Text>
       </Button>
       <Button variant="secondary" size="md" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon color="inherit" size="small" />
         <Text variant="button" size="medium" color="inherit">
           Button
         </Text>
       </Button>
       <Button variant="secondary" size="sm" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon color="inherit" size="xsmall" />
         <Text variant="button" size="small" color="inherit">
           Button
         </Text>
@@ -167,13 +167,13 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
         </Text>
       </Button>
       <Button variant="tertiary" size="md" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon color="inherit" size="small" />
         <Text variant="button" size="medium" color="inherit">
           Button
         </Text>
       </Button>
       <Button variant="tertiary" size="sm" {...props}>
-        <SearchIcon color="inherit" />
+        <SearchIcon color="inherit" size="xsmall" />
         <Text variant="button" size="small" color="inherit">
           Button
         </Text>
