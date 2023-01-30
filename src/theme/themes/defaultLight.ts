@@ -226,4 +226,7 @@ export const defaultLight = {
     overlay: "0px 3px 8px 0px hsla(211, 42%, 16%, 0.08)",
     modal: "0px 8px 16px 0px hsla(211, 42%, 16%, 0.08)",
   },
+  borderWidth: {
+    1: "1px",
+  },
 };

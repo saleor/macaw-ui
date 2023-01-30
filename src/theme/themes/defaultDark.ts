@@ -226,4 +226,7 @@ export const defaultDark = {
     overlay: "0px 3px 8px 0px hsla(0, 0%, 0%, 0.24)",
     modal: "0px 8px 16px 0px hsla(0, 0%, 0%, 0.2)",
   },
+  borderWidth: {
+    1: "1px",
+  },
 };
