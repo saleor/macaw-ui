@@ -1,80 +1,185 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ReactNode } from "react";
 import { Button, ButtonProps } from "./Button";
 import { Box } from "../Box";
 import { RemoveIcon, SearchIcon } from "../Icons";
+import { Text } from "../Text";
 
 export default {
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-const TextButtonVariants = () => (
+const ButtonSetWrapper = ({ children }: { children: ReactNode }) => {
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      placeItems="center"
+      gap={4}
+      marginX={6}
+    >
+      {children}
+    </Box>
+  );
+};
+
+const TextButtonVariants = (props: Omit<ButtonProps, "children">) => (
   <>
-    <ButtonSet variant="primary">Refund</ButtonSet>
-    <ButtonSet variant="secondary">Refund</ButtonSet>
-    <ButtonSet variant="tertiary">Refund</ButtonSet>
+    <ButtonSetWrapper>
+      <Button variant="primary" size="lg" {...props}>
+        <Text variant="button" size="large" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="primary" size="md" {...props}>
+        <Text variant="button" size="medium" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="primary" size="sm" {...props}>
+        <Text variant="button" size="small" color="inherit">
+          Button
+        </Text>
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button variant="secondary" size="lg" {...props}>
+        <Text variant="button" size="large" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="secondary" size="md" {...props}>
+        <Text variant="button" size="medium" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="secondary" size="sm" {...props}>
+        <Text variant="button" size="small" color="inherit">
+          Button
+        </Text>
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button variant="tertiary" size="lg" {...props}>
+        <Text variant="button" size="large" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="tertiary" size="md" {...props}>
+        <Text variant="button" size="medium" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="tertiary" size="sm" {...props}>
+        <Text variant="button" size="small" color="inherit">
+          Button
+        </Text>
+      </Button>
+    </ButtonSetWrapper>
   </>
 );
 
 const IconButtonVariants = () => (
   <>
-    <ButtonSet icon variant="primary">
-      <RemoveIcon color="iconNeutralContrasted" />
-    </ButtonSet>
-    <ButtonSet icon variant="secondary">
-      <RemoveIcon />
-    </ButtonSet>
-    <ButtonSet icon variant="tertiary">
-      <RemoveIcon />
-    </ButtonSet>
+    <ButtonSetWrapper>
+      <Button fixedWidth variant="primary" size="lg">
+        <RemoveIcon color="inherit" />
+      </Button>
+      <Button fixedWidth variant="primary" size="md">
+        <RemoveIcon color="inherit" />
+      </Button>
+      <Button fixedWidth variant="primary" size="sm">
+        <RemoveIcon color="inherit" />
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button fixedWidth variant="secondary" size="lg">
+        <RemoveIcon color="inherit" />
+      </Button>
+      <Button fixedWidth variant="secondary" size="md">
+        <RemoveIcon color="inherit" />
+      </Button>
+      <Button fixedWidth variant="secondary" size="sm">
+        <RemoveIcon color="inherit" />
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button fixedWidth variant="tertiary" size="lg">
+        <RemoveIcon color="inherit" />
+      </Button>
+      <Button fixedWidth variant="tertiary" size="md">
+        <RemoveIcon color="inherit" />
+      </Button>
+      <Button fixedWidth variant="tertiary" size="sm">
+        <RemoveIcon color="inherit" />
+      </Button>
+    </ButtonSetWrapper>
   </>
 );
 
-const DisabledButtonVariants = () => (
+const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
   <>
-    <ButtonSet disabled variant="primary">
-      Disabled
-    </ButtonSet>
-    <ButtonSet disabled variant="secondary">
-      Disabled
-    </ButtonSet>
-    <ButtonSet disabled variant="tertiary">
-      Disabled
-    </ButtonSet>
+    <ButtonSetWrapper>
+      <Button variant="primary" size="lg" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="large" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="primary" size="md" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="medium" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="primary" size="sm" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="small" color="inherit">
+          Button
+        </Text>
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button variant="secondary" size="lg" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="large" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="secondary" size="md" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="medium" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="secondary" size="sm" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="small" color="inherit">
+          Button
+        </Text>
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button variant="tertiary" size="lg" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="large" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="tertiary" size="md" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="medium" color="inherit">
+          Button
+        </Text>
+      </Button>
+      <Button variant="tertiary" size="sm" {...props}>
+        <SearchIcon color="inherit" />
+        <Text variant="button" size="small" color="inherit">
+          Button
+        </Text>
+      </Button>
+    </ButtonSetWrapper>
   </>
-);
-
-const TextIconButtonVariants = () => (
-  <>
-    <ButtonSet variant="primary">
-      <SearchIcon color="iconNeutralContrasted" /> Search
-    </ButtonSet>
-    <ButtonSet variant="secondary">
-      <SearchIcon /> Search
-    </ButtonSet>
-    <ButtonSet variant="tertiary">
-      <SearchIcon /> Search
-    </ButtonSet>
-  </>
-);
-
-const ButtonSet = ({ children, ...args }: ButtonProps) => (
-  <Box
-    display="flex"
-    flexDirection="column"
-    placeItems="center"
-    gap={4}
-    marginX={6}
-  >
-    <Button size="lg" {...args}>
-      {children}
-    </Button>
-    <Button size="md" {...args}>
-      {children}
-    </Button>
-    <Button size="sm" {...args}>
-      {children}
-    </Button>
-  </Box>
 );
 
 const Template: ComponentStory<typeof Button> = () => (
@@ -84,7 +189,7 @@ const Template: ComponentStory<typeof Button> = () => (
       <IconButtonVariants />
     </Box>
     <Box display="flex" flexDirection="row">
-      <DisabledButtonVariants />
+      <TextButtonVariants disabled />
       <TextIconButtonVariants />
     </Box>
   </>

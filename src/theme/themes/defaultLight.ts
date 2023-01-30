@@ -107,10 +107,10 @@ export const defaultLight = {
       decorativeSurfaceSubdued3: "hsla(234, 100%, 91%, 1)",
     },
     border: {
-      neutralPlain: "hsla(210, 15%, 87%, 1)",
       neutralDefault: "hsla(212, 14%, 77%, 1)",
       neutralSubdued: "hsla(211, 13%, 66%, 1)",
       neutralHighlight: "hsla(212, 44%, 13%, 0.08)",
+      neutralPlain: "hsla(210, 15%, 87%, 1)",
       brandPlain: "hsla(215, 100%, 88%, 1)",
       brandDefault: "hsla(215, 100%, 74%, 1)",
       brandSubdued: "hsla(215, 100%, 61%, 1)",

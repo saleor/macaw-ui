@@ -15,14 +15,14 @@ export const Button = ({
   children,
   size,
   variant,
-  icon,
+  fixedWidth = false,
   disabled,
   className,
 }: ButtonProps) => {
   return (
     <Box
       as="button"
-      className={classNames(button({ variant, size, icon }), className)}
+      className={classNames(button({ variant, size, fixedWidth }), className)}
       disabled={disabled}
     >
       {children}

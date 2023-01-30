@@ -9,6 +9,7 @@ export const button = recipe({
       display: "flex",
       placeItems: "center",
       cursor: "auto",
+      padding: 0,
     }),
   ],
 
@@ -23,8 +24,8 @@ export const button = recipe({
           disabled: "interactiveNeutralDisabled",
         },
         color: {
-          default: "iconNeutralContrasted",
-          disabled: "iconNeutralDisabled",
+          default: "textNeutralContrasted",
+          disabled: "textNeutralDisabled",
         },
         borderStyle: "none",
       }),
@@ -34,14 +35,21 @@ export const button = recipe({
           hover: "interactiveNeutralSecondaryHovering",
           focusVisible: "interactiveNeutralSecondaryFocused",
           active: "interactiveNeutralSecondaryPressing",
+          disabled: "interactiveNeutralSecondaryDisabled",
         },
         color: {
-          default: "iconNeutralDefault",
-          disabled: "iconNeutralDisabled",
+          default: "textNeutralDefault",
+          disabled: "textNeutralDisabled",
         },
         borderStyle: "solid",
         borderWidth: 1,
-        borderColor: "neutralDefault",
+        borderColor: {
+          default: "neutralDefault",
+          hover: "neutralSubdued",
+          focusVisible: "neutralDefault",
+          active: "neutralSubdued",
+          disabled: "neutralPlain",
+        },
       }),
       tertiary: sprinkles({
         backgroundColor: {
@@ -49,6 +57,7 @@ export const button = recipe({
           hover: "interactiveNeutralHighlightHovering",
           focusVisible: "interactiveNeutralHighlightFocused",
           active: "interactiveNeutralHighlightPressing",
+          disabled: "interactiveNeutralHighlightDisabled",
         },
         color: {
           default: "iconNeutralDefault",
@@ -58,11 +67,11 @@ export const button = recipe({
       }),
     },
     size: {
-      sm: sprinkles({ height: 8, borderRadius: 2, padding: 4 }),
-      md: sprinkles({ height: 10, borderRadius: 3, padding: 4 }),
-      lg: sprinkles({ height: 12, borderRadius: 3, padding: 4 }),
+      sm: {},
+      md: {},
+      lg: {},
     },
-    icon: {
+    fixedWidth: {
       true: {},
     },
   },
@@ -70,23 +79,71 @@ export const button = recipe({
     {
       variants: {
         size: "sm",
-        icon: true,
+        fixedWidth: true,
       },
-      style: sprinkles({ height: 8, width: 8, borderRadius: 2, padding: 4 }),
+      style: sprinkles({
+        height: 8,
+        width: 8,
+        borderRadius: 2,
+        padding: 2,
+      }),
     },
     {
       variants: {
         size: "md",
-        icon: true,
+        fixedWidth: true,
       },
-      style: sprinkles({ height: 10, width: 10, borderRadius: 3, padding: 4 }),
+      style: sprinkles({
+        height: 10,
+        width: 10,
+        borderRadius: 3,
+        padding: 3,
+      }),
     },
     {
       variants: {
         size: "lg",
-        icon: true,
+        fixedWidth: true,
       },
-      style: sprinkles({ height: 12, width: 12, borderRadius: 3, padding: 4 }),
+      style: sprinkles({
+        height: 12,
+        width: 12,
+        borderRadius: 3,
+        padding: 4,
+      }),
+    },
+    {
+      variants: {
+        size: "sm",
+        fixedWidth: false,
+      },
+      style: sprinkles({
+        height: 8,
+        borderRadius: 2,
+        paddingX: 4,
+      }),
+    },
+    {
+      variants: {
+        size: "md",
+        fixedWidth: false,
+      },
+      style: sprinkles({
+        height: 10,
+        borderRadius: 3,
+        paddingX: 5,
+      }),
+    },
+    {
+      variants: {
+        size: "lg",
+        fixedWidth: false,
+      },
+      style: sprinkles({
+        height: 12,
+        borderRadius: 3,
+        paddingX: 6,
+      }),
     },
   ],
   defaultVariants: {
