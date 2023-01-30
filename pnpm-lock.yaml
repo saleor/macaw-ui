@@ -17,6 +17,7 @@ specifiers:
   "@typescript-eslint/eslint-plugin": ^5.48.1
   "@typescript-eslint/parser": ^5.48.1
   "@vanilla-extract/css": ^1.9.2
+  "@vanilla-extract/dynamic": ^2.0.3
   "@vanilla-extract/recipes": ^0.3.0
   "@vanilla-extract/sprinkles": ^1.5.1
   "@vanilla-extract/vite-plugin": ^3.7.0
@@ -60,6 +61,7 @@ devDependencies:
   "@typescript-eslint/eslint-plugin": 5.48.1_3jon24igvnqaqexgwtxk6nkpse
   "@typescript-eslint/parser": 5.48.1_iukboom6ndih5an6iafl45j2fe
   "@vanilla-extract/css": 1.9.2
+  "@vanilla-extract/dynamic": 2.0.3
   "@vanilla-extract/recipes": 0.3.0_@vanilla-extract+css@1.9.2
   "@vanilla-extract/sprinkles": 1.5.1_@vanilla-extract+css@1.9.2
   "@vanilla-extract/vite-plugin": 3.7.0_vite@3.2.5
@@ -5401,6 +5403,15 @@ packages:
       deepmerge: 4.2.2
       media-query-parser: 2.0.2
       outdent: 0.8.0
+    dev: true
+
+  /@vanilla-extract/dynamic/2.0.3:
+    resolution:
+      {
+        integrity: sha512-Rglfw2gXAYiBzAQ4jgUG7rBgE2c88e/zcG27ZVoIqMHVq56wf2C1katGMm1yFMNBgzqM7oBNYzz4YOMzznydkg==,
+      }
+    dependencies:
+      "@vanilla-extract/private": 1.0.3
     dev: true
 
   /@vanilla-extract/integration/6.0.1:
