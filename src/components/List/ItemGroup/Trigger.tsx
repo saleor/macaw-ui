@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { Sprinkles } from "~/theme";
 import { Box, ChervonDownIcon } from "~/components";
 
-import { Item } from "../Item";
+import { List } from "..";
 
 import { button, icon } from "./common.css";
 
@@ -15,7 +15,8 @@ type ItemGroupTriggerProps = Sprinkles & {
 
 export const Trigger = ({ children, ...rest }: ItemGroupTriggerProps) => (
   <AccordionTrigger asChild>
-    <Item {...rest}>
+    {/* Importing List.Item instead of Item fixes vite HMR */}
+    <List.Item {...rest}>
       {children}
       {/* TODO: use Button component when it will be ready at */}
       {/* https://github.com/saleor/saleor-dashboard/issues/3000 */}
@@ -28,6 +29,6 @@ export const Trigger = ({ children, ...rest }: ItemGroupTriggerProps) => (
       >
         <ChervonDownIcon className={icon} />
       </Box>
-    </Item>
+    </List.Item>
   </AccordionTrigger>
 );
