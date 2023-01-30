@@ -87,6 +87,7 @@ export const button = recipe({
         borderRadius: 2,
         padding: 2,
         typeSize: "buttonSmall",
+        gap: 3,
       }),
     },
     {
@@ -100,6 +101,7 @@ export const button = recipe({
         borderRadius: 3,
         padding: 3,
         typeSize: "buttonMedium",
+        gap: 3,
       }),
     },
     {
@@ -113,6 +115,7 @@ export const button = recipe({
         borderRadius: 3,
         padding: 4,
         typeSize: "buttonLarge",
+        gap: 4,
       }),
     },
     {
@@ -126,6 +129,7 @@ export const button = recipe({
         paddingX: 4,
         paddingY: 0,
         typeSize: "buttonSmall",
+        gap: 3,
       }),
     },
     {
@@ -139,6 +143,7 @@ export const button = recipe({
         paddingX: 5,
         paddingY: 3,
         typeSize: "buttonMedium",
+        gap: 3,
       }),
     },
     {
@@ -152,6 +157,7 @@ export const button = recipe({
         paddingX: 6,
         paddingY: 4,
         typeSize: "buttonLarge",
+        gap: 4,
       }),
     },
   ],
