@@ -27,53 +27,35 @@ const TextButtonVariants = (props: Omit<ButtonProps, "children">) => (
   <>
     <ButtonSetWrapper>
       <Button variant="primary" size="lg" {...props}>
-        <Text variant="button" size="large" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="primary" size="md" {...props}>
-        <Text variant="button" size="medium" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="primary" size="sm" {...props}>
-        <Text variant="button" size="small" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button variant="secondary" size="lg" {...props}>
-        <Text variant="button" size="large" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="secondary" size="md" {...props}>
-        <Text variant="button" size="medium" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="secondary" size="sm" {...props}>
-        <Text variant="button" size="small" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button variant="tertiary" size="lg" {...props}>
-        <Text variant="button" size="large" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="tertiary" size="md" {...props}>
-        <Text variant="button" size="medium" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="tertiary" size="sm" {...props}>
-        <Text variant="button" size="small" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
     </ButtonSetWrapper>
   </>
@@ -122,61 +104,43 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
     <ButtonSetWrapper>
       <Button variant="primary" size="lg" {...props}>
         <SearchIcon color="inherit" />
-        <Text variant="button" size="large" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="primary" size="md" {...props}>
         <SearchIcon color="inherit" size="small" />
-        <Text variant="button" size="medium" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="primary" size="sm" {...props}>
         <SearchIcon color="inherit" size="xsmall" />
-        <Text variant="button" size="small" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button variant="secondary" size="lg" {...props}>
         <SearchIcon color="inherit" />
-        <Text variant="button" size="large" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="secondary" size="md" {...props}>
         <SearchIcon color="inherit" size="small" />
-        <Text variant="button" size="medium" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="secondary" size="sm" {...props}>
         <SearchIcon color="inherit" size="xsmall" />
-        <Text variant="button" size="small" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
       <Button variant="tertiary" size="lg" {...props}>
         <SearchIcon color="inherit" />
-        <Text variant="button" size="large" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="tertiary" size="md" {...props}>
         <SearchIcon color="inherit" size="small" />
-        <Text variant="button" size="medium" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
       <Button variant="tertiary" size="sm" {...props}>
         <SearchIcon color="inherit" size="xsmall" />
-        <Text variant="button" size="small" color="inherit">
-          Button
-        </Text>
+        Button
       </Button>
     </ButtonSetWrapper>
   </>
