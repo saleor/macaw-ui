@@ -33,7 +33,7 @@ export const ThemeContextProvider = ({
 export const useTheme = () => {
   const context = useContext(ThemeContext);
 
-  if (context === undefined) {
+  if (context === null) {
     throw new Error("useTheme must be used within a MacawUI ThemeContext");
   }
   return context;
