@@ -25,35 +25,35 @@ const ButtonSetWrapper = ({ children }: { children: ReactNode }) => {
 const TextButtonVariants = (props: Omit<ButtonProps, "children">) => (
   <>
     <ButtonSetWrapper>
-      <Button variant="primary" size="lg" {...props}>
+      <Button variant="primary" size="large" {...props}>
         Button
       </Button>
-      <Button variant="primary" size="md" {...props}>
+      <Button variant="primary" size="medium" {...props}>
         Button
       </Button>
-      <Button variant="primary" size="sm" {...props}>
-        Button
-      </Button>
-    </ButtonSetWrapper>
-    <ButtonSetWrapper>
-      <Button variant="secondary" size="lg" {...props}>
-        Button
-      </Button>
-      <Button variant="secondary" size="md" {...props}>
-        Button
-      </Button>
-      <Button variant="secondary" size="sm" {...props}>
+      <Button variant="primary" size="small" {...props}>
         Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button variant="tertiary" size="lg" {...props}>
+      <Button variant="secondary" size="large" {...props}>
         Button
       </Button>
-      <Button variant="tertiary" size="md" {...props}>
+      <Button variant="secondary" size="medium" {...props}>
         Button
       </Button>
-      <Button variant="tertiary" size="sm" {...props}>
+      <Button variant="secondary" size="small" {...props}>
+        Button
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button variant="tertiary" size="large" {...props}>
+        Button
+      </Button>
+      <Button variant="tertiary" size="medium" {...props}>
+        Button
+      </Button>
+      <Button variant="tertiary" size="small" {...props}>
         Button
       </Button>
     </ButtonSetWrapper>
@@ -63,35 +63,35 @@ const TextButtonVariants = (props: Omit<ButtonProps, "children">) => (
 const IconButtonVariants = () => (
   <>
     <ButtonSetWrapper>
-      <Button fixedWidth variant="primary" size="lg">
+      <Button fixedWidth variant="primary" size="large">
         <RemoveIcon />
       </Button>
-      <Button fixedWidth variant="primary" size="md">
+      <Button fixedWidth variant="primary" size="medium">
         <RemoveIcon />
       </Button>
-      <Button fixedWidth variant="primary" size="sm">
-        <RemoveIcon />
-      </Button>
-    </ButtonSetWrapper>
-    <ButtonSetWrapper>
-      <Button fixedWidth variant="secondary" size="lg">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="secondary" size="md">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="secondary" size="sm">
+      <Button fixedWidth variant="primary" size="small">
         <RemoveIcon />
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button fixedWidth variant="tertiary" size="lg">
+      <Button fixedWidth variant="secondary" size="large">
         <RemoveIcon />
       </Button>
-      <Button fixedWidth variant="tertiary" size="md">
+      <Button fixedWidth variant="secondary" size="medium">
         <RemoveIcon />
       </Button>
-      <Button fixedWidth variant="tertiary" size="sm">
+      <Button fixedWidth variant="secondary" size="small">
+        <RemoveIcon />
+      </Button>
+    </ButtonSetWrapper>
+    <ButtonSetWrapper>
+      <Button fixedWidth variant="tertiary" size="large">
+        <RemoveIcon />
+      </Button>
+      <Button fixedWidth variant="tertiary" size="medium">
+        <RemoveIcon />
+      </Button>
+      <Button fixedWidth variant="tertiary" size="small">
         <RemoveIcon />
       </Button>
     </ButtonSetWrapper>
@@ -101,43 +101,43 @@ const IconButtonVariants = () => (
 const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
   <>
     <ButtonSetWrapper>
-      <Button variant="primary" size="lg" {...props}>
+      <Button variant="primary" size="large" {...props}>
         <SearchIcon />
         Button
       </Button>
-      <Button variant="primary" size="md" {...props}>
+      <Button variant="primary" size="medium" {...props}>
         <SearchIcon size="small" />
         Button
       </Button>
-      <Button variant="primary" size="sm" {...props}>
+      <Button variant="primary" size="small" {...props}>
         <SearchIcon size="xsmall" />
         Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button variant="secondary" size="lg" {...props}>
+      <Button variant="secondary" size="large" {...props}>
         <SearchIcon />
         Button
       </Button>
-      <Button variant="secondary" size="md" {...props}>
+      <Button variant="secondary" size="medium" {...props}>
         <SearchIcon size="small" />
         Button
       </Button>
-      <Button variant="secondary" size="sm" {...props}>
+      <Button variant="secondary" size="small" {...props}>
         <SearchIcon size="xsmall" />
         Button
       </Button>
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button variant="tertiary" size="lg" {...props}>
+      <Button variant="tertiary" size="large" {...props}>
         <SearchIcon />
         Button
       </Button>
-      <Button variant="tertiary" size="md" {...props}>
+      <Button variant="tertiary" size="medium" {...props}>
         <SearchIcon size="small" />
         Button
       </Button>
-      <Button variant="tertiary" size="sm" {...props}>
+      <Button variant="tertiary" size="small" {...props}>
         <SearchIcon size="xsmall" />
         Button
       </Button>

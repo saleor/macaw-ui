@@ -67,9 +67,9 @@ export const button = recipe({
       }),
     },
     size: {
-      sm: {},
-      md: {},
-      lg: {},
+      small: {},
+      medium: {},
+      large: {},
     },
     fixedWidth: {
       true: {},
@@ -78,7 +78,7 @@ export const button = recipe({
   compoundVariants: [
     {
       variants: {
-        size: "sm",
+        size: "small",
         fixedWidth: true,
       },
       style: sprinkles({
@@ -92,7 +92,7 @@ export const button = recipe({
     },
     {
       variants: {
-        size: "md",
+        size: "medium",
         fixedWidth: true,
       },
       style: sprinkles({
@@ -106,7 +106,7 @@ export const button = recipe({
     },
     {
       variants: {
-        size: "lg",
+        size: "large",
         fixedWidth: true,
       },
       style: sprinkles({
@@ -120,7 +120,7 @@ export const button = recipe({
     },
     {
       variants: {
-        size: "sm",
+        size: "small",
         fixedWidth: false,
       },
       style: sprinkles({
@@ -134,7 +134,7 @@ export const button = recipe({
     },
     {
       variants: {
-        size: "md",
+        size: "medium",
         fixedWidth: false,
       },
       style: sprinkles({
@@ -148,7 +148,7 @@ export const button = recipe({
     },
     {
       variants: {
-        size: "lg",
+        size: "large",
         fixedWidth: false,
       },
       style: sprinkles({
@@ -163,7 +163,7 @@ export const button = recipe({
   ],
   defaultVariants: {
     variant: "primary",
-    size: "md",
+    size: "medium",
   },
 });
 
