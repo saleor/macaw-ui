@@ -145,7 +145,7 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
   </>
 );
 
-const Template: ComponentStory<typeof Button> = () => (
+export const Template: ComponentStory<typeof Button> = () => (
   <>
     <Box display="flex" flexDirection="row" marginBottom={10}>
       <TextButtonVariants />
@@ -157,5 +157,3 @@ const Template: ComponentStory<typeof Button> = () => (
     </Box>
   </>
 );
-
-export const Default = Template.bind({});
