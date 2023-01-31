@@ -27,7 +27,8 @@
   "exports": {
     "./next": {
       "import": "./dist/macaw-ui.js",
-      "require": "./dist/macaw-ui.umd.cjs"
+      "require": "./dist/macaw-ui.umd.cjs",
+      "types": "./dist/index.d.ts"
     },
     "./next/style": {
       "import": "./dist/style.css",
@@ -35,7 +36,8 @@
     },
     ".": {
       "import": "./legacy/dist/esm/index.js",
-      "require": "./legacy/dist/cjs/index.js"
+      "require": "./legacy/dist/cjs/index.js",
+      "types": "./legacy/dist/types/index.d.ts"
     }
   },
   "keywords": [
@@ -117,6 +119,14 @@
     "@radix-ui/react-dropdown-menu": "^2.0.2",
     "@radix-ui/react-dialog": "^1.0.2",
     "@vanilla-extract/dynamic": "^2.0.3"
+  },
+  "dependencies": {
+    "@floating-ui/react-dom-interactions": "^0.5.0",
+    "clsx": "^1.1.1",
+    "downshift": "^6.1.7",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "react-inlinesvg": "^3.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
