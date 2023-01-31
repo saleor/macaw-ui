@@ -33,12 +33,10 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
           <Dialog.Close asChild>
             <Button
               variant="tertiary"
-              fixedWidth
+              icon={<CloseIcon />}
               size="small"
               className={sprinkles({ position: "absolute", top: 3, right: 3 })}
-            >
-              <CloseIcon />
-            </Button>
+            />
           </Dialog.Close>
         </Box>
       </Dialog.Content>

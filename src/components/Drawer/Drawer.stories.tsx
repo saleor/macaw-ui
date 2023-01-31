@@ -10,9 +10,7 @@ export default {
 export const Default = () => (
   <Drawer>
     <Drawer.Trigger>
-      <Button variant="tertiary" fixedWidth>
-        <MenuIcon />
-      </Button>
+      <Button variant="tertiary" icon={<MenuIcon />} />
     </Drawer.Trigger>
     <Drawer.Content paddingLeft={4} paddingRight={4}>
       <List>

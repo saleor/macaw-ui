@@ -17,9 +17,7 @@ const commonProps = {
 export const Default = () => (
   <Dropdown>
     <Dropdown.Trigger>
-      <Button fixedWidth variant="tertiary">
-        <MoreOptionsIcon />
-      </Button>
+      <Button icon={<MoreOptionsIcon />} variant="tertiary" />
     </Dropdown.Trigger>
     <Dropdown.Content align="start">
       <List

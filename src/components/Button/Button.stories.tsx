@@ -63,37 +63,19 @@ const TextButtonVariants = (props: Omit<ButtonProps, "children">) => (
 const IconButtonVariants = () => (
   <>
     <ButtonSetWrapper>
-      <Button fixedWidth variant="primary" size="large">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="primary" size="medium">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="primary" size="small">
-        <RemoveIcon />
-      </Button>
+      <Button icon={<RemoveIcon />} variant="primary" size="large" />
+      <Button icon={<RemoveIcon />} variant="primary" size="medium" />
+      <Button icon={<RemoveIcon />} variant="primary" size="small" />
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button fixedWidth variant="secondary" size="large">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="secondary" size="medium">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="secondary" size="small">
-        <RemoveIcon />
-      </Button>
+      <Button icon={<RemoveIcon />} variant="secondary" size="large" />
+      <Button icon={<RemoveIcon />} variant="secondary" size="medium" />
+      <Button icon={<RemoveIcon />} variant="secondary" size="small" />
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button fixedWidth variant="tertiary" size="large">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="tertiary" size="medium">
-        <RemoveIcon />
-      </Button>
-      <Button fixedWidth variant="tertiary" size="small">
-        <RemoveIcon />
-      </Button>
+      <Button icon={<RemoveIcon />} variant="tertiary" size="large" />
+      <Button icon={<RemoveIcon />} variant="tertiary" size="medium" />
+      <Button icon={<RemoveIcon />} variant="tertiary" size="small" />
     </ButtonSetWrapper>
   </>
 );
