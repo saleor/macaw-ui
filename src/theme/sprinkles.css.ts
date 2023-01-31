@@ -48,10 +48,10 @@ const responsiveProperties = defineProperties({
     fontSize: vars.fontSize,
     lineHeight: vars.lineHeight,
     textAlign: ["center"],
-    borderLeftWidth: vars.space,
-    borderRightWidth: vars.space,
-    borderTopWidth: vars.space,
-    borderBottomWidth: vars.space,
+    borderLeftWidth: vars.borderWidth,
+    borderRightWidth: vars.borderWidth,
+    borderTopWidth: vars.borderWidth,
+    borderBottomWidth: vars.borderWidth,
     borderLeftStyle: ["none", "solid"],
     borderRightStyle: ["none", "solid"],
     borderTopStyle: ["none", "solid"],
@@ -63,7 +63,8 @@ const responsiveProperties = defineProperties({
     bottom: vars.space,
     left: vars.space,
     right: vars.space,
-    overflow: ["hidden", "visible", "scroll", "auto"],
+    overflowX: ["hidden", "visible", "scroll", "auto"],
+    overflowY: ["hidden", "visible", "scroll", "auto"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -97,6 +98,7 @@ const responsiveProperties = defineProperties({
       "borderBottomLeftRadius",
       "borderBottomRightRadius",
     ],
+    overflow: ["overflowX", "overflowY"],
   },
 });
 

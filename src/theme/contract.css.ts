@@ -232,6 +232,10 @@ export const vars = createGlobalThemeContract(
       overlay: null,
       modal: null,
     },
+    borderWidth: {
+      0: null,
+      1: null,
+    },
   },
   (_value, path) => `mu-${path.map(toKebabCase).join("-")}`
 );

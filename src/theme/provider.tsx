@@ -1,11 +1,19 @@
 import "./reset.css";
 import "./fonts.css";
-import "./defaultLight.css";
+
+import { ThemeContextProvider } from "./context";
+import { DefaultTheme } from "./themes";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
+  defaultTheme?: DefaultTheme;
 };
 
-export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  return <main id="macaw-ui-root">{children}</main>;
-};
+export const ThemeProvider = ({
+  children,
+  defaultTheme = "defaultLight",
+}: ThemeProviderProps) => (
+  <ThemeContextProvider defaultTheme={defaultTheme}>
+    <main id="macaw-ui-root">{children}</main>
+  </ThemeContextProvider>
+);

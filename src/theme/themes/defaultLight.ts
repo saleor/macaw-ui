@@ -1,8 +1,4 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
-
-import { vars } from "./contract.css";
-
-export const defaultLightTheme = createGlobalTheme(":root", vars, {
+export const defaultLight = {
   space: {
     0: "0px",
     1: "1px",
@@ -230,4 +226,8 @@ export const defaultLightTheme = createGlobalTheme(":root", vars, {
     overlay: "0px 3px 8px 0px hsla(211, 42%, 16%, 0.08)",
     modal: "0px 8px 16px 0px hsla(211, 42%, 16%, 0.08)",
   },
-});
+  borderWidth: {
+    0: "0px",
+    1: "1px",
+  },
+};
