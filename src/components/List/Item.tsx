@@ -2,16 +2,14 @@ import { forwardRef, ReactNode } from "react";
 
 import { Sprinkles } from "~/theme";
 import { Box } from "../Box";
-import { DataAttributes } from "../types";
 
-type ListItemProps = Sprinkles &
-  DataAttributes & {
-    children: ReactNode;
-    disabled?: boolean;
-    className?: string;
-    onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
-    active?: boolean;
-  };
+type ListItemProps = Sprinkles & {
+  children: ReactNode;
+  disabled?: boolean;
+  className?: string;
+  onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
+  active?: boolean;
+};
 
 export const Item = forwardRef<HTMLLIElement, ListItemProps>(
   ({ children, disabled, onClick, className, active, ...rest }, ref) => {

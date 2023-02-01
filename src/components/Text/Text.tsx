@@ -4,17 +4,15 @@ import { Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
 import { Box } from "../Box";
-import { DataAttributes } from "../types";
 
 import { text, TextVariants } from "./Text.css";
 
-type TextProps = TextVariants &
-  DataAttributes & {
-    children: ReactNode;
-    as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-    color?: Sprinkles["color"];
-    className?: string;
-  };
+type TextProps = TextVariants & {
+  children: ReactNode;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  color?: Sprinkles["color"];
+  className?: string;
+};
 
 export const Text = forwardRef<HTMLSpanElement, TextProps>(
   (
