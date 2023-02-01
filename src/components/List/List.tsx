@@ -7,6 +7,7 @@ type ListProps = Sprinkles & {
   children: ReactNode;
   as?: "ul" | "ol";
   className?: string;
+  [key: `data-${string}`]: string;
 };
 
 export const List = forwardRef<HTMLUListElement | HTMLUListElement, ListProps>(

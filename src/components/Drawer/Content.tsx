@@ -8,6 +8,7 @@ import { showContent } from "./Content.css";
 
 type DrawerContentProps = Sprinkles & {
   children: React.ReactNode;
+  [key: `data-${string}`]: string;
 };
 
 export const Content = ({ children, ...rest }: DrawerContentProps) => {

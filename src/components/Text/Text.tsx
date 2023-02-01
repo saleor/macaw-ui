@@ -12,6 +12,7 @@ type TextProps = TextVariants & {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
   color?: Sprinkles["color"];
   className?: string;
+  [key: `data-${string}`]: string;
 };
 
 export const Text = forwardRef<HTMLSpanElement, TextProps>(
@@ -23,6 +24,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
       size,
       color = "textNeutralDefault",
       className,
+      ...rest
     },
     ref
   ) => {
@@ -32,6 +34,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
         className={classNames(text({ variant, size }), className)}
         color={color}
         ref={ref}
+        {...rest}
       >
         {children}
       </Box>

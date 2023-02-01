@@ -9,6 +9,7 @@ type ListItemProps = Sprinkles & {
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
   active?: boolean;
+  [key: `data-${string}`]: string;
 };
 
 export const Item = forwardRef<HTMLLIElement, ListItemProps>(
@@ -27,6 +28,7 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
           active: "interactiveNeutralHighlightPressing",
           hover: "interactiveNeutralHighlightHovering",
           focus: "interactiveNeutralHighlightFocused",
+          disabled: "interactiveCriticalPressing",
         }}
         boxShadow={{
           hover: "interactiveDefaultHovering",

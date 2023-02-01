@@ -12,6 +12,7 @@ type ItemGroupRootProps = {
   children: ReactNode;
   defaultExpanded?: boolean;
   as?: "ul" | "ol";
+  [key: `data-${string}`]: string;
 };
 
 const expandedValue = "list-item-group-value";
@@ -20,6 +21,7 @@ export const ItemGroupRoot = ({
   children,
   defaultExpanded = false,
   as = "ul",
+  ...rest
 }: ItemGroupRootProps) => (
   <AccordionRoot
     asChild
@@ -27,7 +29,7 @@ export const ItemGroupRoot = ({
     collapsible
     defaultValue={defaultExpanded ? expandedValue : undefined}
   >
-    <List as={as}>
+    <List as={as} {...rest}>
       <AccordionItem value={expandedValue} className={trigger}>
         {children}
       </AccordionItem>

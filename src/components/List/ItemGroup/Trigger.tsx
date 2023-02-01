@@ -11,6 +11,7 @@ import { button, icon } from "./common.css";
 type ItemGroupTriggerProps = Sprinkles & {
   children: ReactNode;
   active?: boolean;
+  [key: `data-${string}`]: string;
 };
 
 export const Trigger = ({ children, ...rest }: ItemGroupTriggerProps) => (

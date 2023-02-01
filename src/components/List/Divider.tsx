@@ -5,6 +5,7 @@ import { Box } from "../Box";
 
 type ListDividerProps = Sprinkles & {
   children?: ReactNode;
+  [key: `data-${string}`]: string;
 };
 
 export const Divider = ({ children, ...rest }: ListDividerProps) => {
