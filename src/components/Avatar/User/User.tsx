@@ -1,3 +1,4 @@
+import { DataAttributes } from "~/components/types";
 import { classNames } from "~/utils";
 
 import { Box } from "../../Box";
@@ -5,17 +6,17 @@ import { Text } from "../../Text";
 
 import { userAvatar, UserAvatarVariants } from "./User.css";
 
-type InitialsAvatarProps = UserAvatarVariants & {
-  className?: string;
-  initials: string;
-  [key: `data-${string}`]: string;
-};
+type InitialsAvatarProps = UserAvatarVariants &
+  DataAttributes & {
+    className?: string;
+    initials: string;
+  };
 
-type ImageAvatarProps = UserAvatarVariants & {
-  className?: string;
-  src: string;
-  [key: `data-${string}`]: string;
-};
+type ImageAvatarProps = UserAvatarVariants &
+  DataAttributes & {
+    className?: string;
+    src: string;
+  };
 
 export const User = (props: InitialsAvatarProps | ImageAvatarProps) => {
   if ("initials" in props) {

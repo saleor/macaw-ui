@@ -3,16 +3,18 @@ import { ReactNode } from "react";
 
 import { Sprinkles } from "~/theme";
 import { Box, ChervonDownIcon } from "~/components";
+import { DataAttributes } from "~/components/types";
 
 import { List } from "..";
 
 import { button, icon } from "./common.css";
 
-type ItemGroupTriggerProps = Sprinkles & {
-  children: ReactNode;
-  active?: boolean;
-  [key: `data-${string}`]: string;
-};
+type ItemGroupTriggerProps = Sprinkles &
+  DataAttributes & {
+    children: ReactNode;
+    active?: boolean;
+    [key: `data-${string}`]: string;
+  };
 
 export const Trigger = ({ children, ...rest }: ItemGroupTriggerProps) => (
   <AccordionTrigger asChild>

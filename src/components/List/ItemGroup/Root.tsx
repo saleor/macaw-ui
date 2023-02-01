@@ -4,15 +4,16 @@ import {
   Item as AccordionItem,
 } from "@radix-ui/react-accordion";
 
+import { DataAttributes } from "~/components/types";
+
 import { List } from "../List";
 
 import { trigger } from "./common.css";
 
-type ItemGroupRootProps = {
+type ItemGroupRootProps = DataAttributes & {
   children: ReactNode;
   defaultExpanded?: boolean;
   as?: "ul" | "ol";
-  [key: `data-${string}`]: string;
 };
 
 const expandedValue = "list-item-group-value";

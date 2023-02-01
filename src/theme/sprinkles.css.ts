@@ -21,6 +21,9 @@ const responsiveProperties = defineProperties({
       "space-around",
       "space-evenly",
     ],
+    flexGrow: ["0", "1"],
+    flexShrink: ["0", "1"],
+    flexBasis: ["auto", "0"],
     position: ["static", "relative", "absolute", "fixed", "sticky"],
     gridArea: ["auto"],
     gridTemplateAreas: ["none"],
@@ -100,6 +103,7 @@ const responsiveProperties = defineProperties({
       "borderBottomRightRadius",
     ],
     overflow: ["overflowX", "overflowY"],
+    flex: ["flexGrow", "flexShrink", "flexBasis"],
   },
 });
 
