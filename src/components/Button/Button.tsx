@@ -2,6 +2,7 @@ import { forwardRef, ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
+import { isFixedWidth } from "./utils";
 import { Box } from "../Box";
 import { button, ButtonVariants } from "./Button.css";
 
@@ -33,8 +34,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           button({
             variant,
             size,
-            fixedWidth:
-              fixedWidth === undefined ? !!icon && !children : fixedWidth,
+            fixedWidth: isFixedWidth({ icon, children, fixedWidth }),
           }),
           className
         )}
