@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from "react";
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
@@ -6,12 +6,13 @@ import { isFixedWidth } from "./utils";
 import { Box } from "../Box";
 import { button, ButtonVariants } from "./Button.css";
 
-export type ButtonProps = ButtonVariants & {
-  children?: ReactNode;
-  icon?: ReactNode;
-  disabled?: boolean;
-  className?: string;
-};
+export type ButtonProps = ButtonVariants &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> & {
+    children?: ReactNode;
+    icon?: ReactNode;
+    disabled?: boolean;
+    className?: string;
+  };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
