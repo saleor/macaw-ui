@@ -1,7 +1,9 @@
 import { ReactNode, forwardRef } from "react";
+
 import { DataAttributes } from "~/components/types";
 import { sprinkles, Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
+
 import { svgWrapper, SVGWrapperVariants } from "./SVGWrapper.css";
 
 export type SVGWrapperProps = SVGWrapperVariants &
@@ -14,14 +16,7 @@ export type SVGWrapperProps = SVGWrapperVariants &
 
 export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
   (
-    {
-      className,
-      size,
-      viewBox = "0 0 24 24",
-      color = "iconNeutralDefault",
-      children,
-      ...rest
-    },
+    { className, size, viewBox = "0 0 24 24", color, children, ...rest },
     ref
   ) => {
     return (
