@@ -3,12 +3,14 @@ import { sprinkles, Sprinkles } from "~/theme";
 import { Box } from "../Box";
 import { Button } from "../Button";
 import { CloseIcon } from "../Icons";
+import { DataAttributes } from "../types";
 
 import { showContent } from "./Content.css";
 
-type DrawerContentProps = Sprinkles & {
-  children: React.ReactNode;
-};
+type DrawerContentProps = Sprinkles &
+  DataAttributes & {
+    children: React.ReactNode;
+  };
 
 export const Content = ({ children, ...rest }: DrawerContentProps) => {
   return (

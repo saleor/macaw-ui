@@ -27,6 +27,7 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
           active: "interactiveNeutralHighlightPressing",
           hover: "interactiveNeutralHighlightHovering",
           focus: "interactiveNeutralHighlightFocused",
+          disabled: "interactiveCriticalPressing",
         }}
         boxShadow={{
           hover: "interactiveDefaultHovering",

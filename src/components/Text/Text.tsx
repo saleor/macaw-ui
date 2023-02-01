@@ -23,6 +23,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
       size,
       color = "textNeutralDefault",
       className,
+      ...rest
     },
     ref
   ) => {
@@ -32,6 +33,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
         className={classNames(text({ variant, size }), className)}
         color={color}
         ref={ref}
+        {...rest}
       >
         {children}
       </Box>
