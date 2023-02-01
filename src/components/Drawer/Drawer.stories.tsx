@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 
-import { Text, Box, List, MenuIcon } from "~/components";
+import { Text, List, MenuIcon, Button } from "~/components";
 import { Drawer } from ".";
 
 export default {
@@ -10,14 +10,7 @@ export default {
 export const Default = () => (
   <Drawer>
     <Drawer.Trigger>
-      <Box
-        as="button"
-        borderWidth={0}
-        backgroundColor="interactiveNeutralHighlightDefault"
-        cursor="pointer"
-      >
-        <MenuIcon />
-      </Box>
+      <Button variant="tertiary" icon={<MenuIcon />} />
     </Drawer.Trigger>
     <Drawer.Content paddingLeft={4} paddingRight={4}>
       <List>

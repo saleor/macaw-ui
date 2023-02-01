@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 
-import { Text, Box, MoreOptionsIcon, List } from "~/components";
+import { Text, Button, MoreOptionsIcon, List } from "~/components";
 import { Dropdown } from ".";
 
 export default {
@@ -17,9 +17,7 @@ const commonProps = {
 export const Default = () => (
   <Dropdown>
     <Dropdown.Trigger>
-      <Box as="button" borderRadius={2} borderWidth={0} cursor="pointer">
-        <MoreOptionsIcon />
-      </Box>
+      <Button icon={<MoreOptionsIcon />} variant="tertiary" />
     </Dropdown.Trigger>
     <Dropdown.Content align="start">
       <List

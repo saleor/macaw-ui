@@ -12,6 +12,7 @@ export const defaultDark = {
     9: "30px",
     10: "32px",
     11: "38px",
+    12: "40px",
   },
   colors: {
     foreground: {

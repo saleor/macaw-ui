@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { Sprinkles } from "~/theme";
+import { sprinkles, Sprinkles } from "~/theme";
 import { Box } from "../Box";
+import { Button } from "../Button";
 import { CloseIcon } from "../Icons";
 
 import { showContent } from "./Content.css";
@@ -30,18 +31,12 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
         >
           {children}
           <Dialog.Close asChild>
-            {/* TODO: migrate to proper button */}
-            <Box
-              as="button"
-              borderWidth={0}
-              backgroundColor="interactiveNeutralHighlightDefault"
-              position="absolute"
-              top={0}
-              right={0}
-              cursor="pointer"
-            >
-              <CloseIcon />
-            </Box>
+            <Button
+              variant="tertiary"
+              icon={<CloseIcon />}
+              size="small"
+              className={sprinkles({ position: "absolute", top: 3, right: 3 })}
+            />
           </Dialog.Close>
         </Box>
       </Dialog.Content>

@@ -18,6 +18,7 @@ export const vars = createGlobalThemeContract(
       9: null,
       10: null,
       11: null,
+      12: null,
     },
     colors: {
       foreground: {
@@ -112,10 +113,10 @@ export const vars = createGlobalThemeContract(
         decorativeSurfaceSubdued3: null,
       },
       border: {
-        neutralPlain: null,
         neutralDefault: null,
         neutralSubdued: null,
         neutralHighlight: null,
+        neutralPlain: null,
         brandPlain: null,
         brandDefault: null,
         brandSubdued: null,

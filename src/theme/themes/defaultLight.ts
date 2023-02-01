@@ -12,6 +12,7 @@ export const defaultLight = {
     9: "30px",
     10: "32px",
     11: "38px",
+    12: "40px",
   },
   colors: {
     foreground: {
@@ -54,9 +55,9 @@ export const defaultLight = {
       surfaceCriticalDepressed: "hsla(11, 100%, 88%, 1)",
       surfaceCriticalHighlight: "hsla(11, 100%, 46%, 0.08)",
       interactiveNeutralDefault: "hsla(211, 45%, 13%, 1)",
-      interactiveNeutralHovering: "hsla(211, 45%, 26%, 1)",
+      interactiveNeutralHovering: "hsla(211, 22%, 26%, 1)",
       interactiveNeutralPressing: "hsla(211, 45%, 3%, 1)",
-      interactiveNeutralFocused: "hsla(211, 45%, 26%, 1)",
+      interactiveNeutralFocused: "hsla(211, 22%, 26%, 1)",
       interactiveNeutralDisabled: "hsla(211, 16%, 94%, 1)",
       interactiveBrandDefault: "hsla(215, 100%, 51%, 1)",
       interactiveBrandHovering: "hsla(215, 100%, 62%, 1)",
@@ -106,10 +107,10 @@ export const defaultLight = {
       decorativeSurfaceSubdued3: "hsla(234, 100%, 91%, 1)",
     },
     border: {
-      neutralPlain: "hsla(210, 15%, 87%, 1)",
       neutralDefault: "hsla(212, 14%, 77%, 1)",
       neutralSubdued: "hsla(211, 13%, 66%, 1)",
       neutralHighlight: "hsla(212, 44%, 13%, 0.08)",
+      neutralPlain: "hsla(210, 15%, 87%, 1)",
       brandPlain: "hsla(215, 100%, 88%, 1)",
       brandDefault: "hsla(215, 100%, 74%, 1)",
       brandSubdued: "hsla(215, 100%, 61%, 1)",
