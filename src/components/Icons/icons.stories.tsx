@@ -3,7 +3,7 @@ import { Box } from "~/components/Box";
 import * as icons from "./index";
 
 const macawIcons = Object.values(icons);
-const sizes = ["small", "medium", "large"] as const;
+const sizes = ["xsmall", "small", "medium", "large"] as const;
 
 export default {
   title: "components/Icons",
@@ -24,7 +24,7 @@ export const Default = () =>
       >
         {macawIcons.map((Icon, idx) => (
           <Box margin={3} key={idx} display="flex" flexDirection="column">
-            <Icon size={size} />
+            <Icon size={size} color="iconNeutralDefault" />
             <Text>{Icon.displayName}</Text>
           </Box>
         ))}

@@ -5,6 +5,9 @@ import { List } from ".";
 
 export default {
   component: List.Item,
+  parameters: {
+    layout: "centered",
+  },
 } as ComponentMeta<typeof List.Item>;
 
 export const Item = () => (
@@ -42,15 +45,16 @@ export const ListGroup = () => (
         paddingY={4}
         borderRadius={3}
         justifyContent="space-between"
+        gap={5}
       >
         <Box display="flex" alignItems="center" gap={5}>
-          <MenuIcon />
+          <MenuIcon color="iconNeutralDefault" />
           <Text>Trigger</Text>
         </Box>
       </List.ItemGroup.Trigger>
       <List.ItemGroup.Content>
         <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-          <HomeIcon />
+          <HomeIcon color="iconNeutralDefault" />
           <Text>Content</Text>
         </List.Item>
       </List.ItemGroup.Content>
@@ -61,12 +65,12 @@ export const ListGroup = () => (
 export const ListDivider = () => (
   <List>
     <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-      <HomeIcon />
+      <HomeIcon color="iconNeutralDefault" />
       <Text>Item 1</Text>
     </List.Item>
     <List.Divider paddingX={4} paddingY={4} />
     <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-      <HomeIcon />
+      <HomeIcon color="iconNeutralDefault" />
       <Text>Item 2</Text>
     </List.Item>
     <List.Divider paddingX={4} paddingY={4}>
@@ -75,7 +79,7 @@ export const ListDivider = () => (
       </Text>
     </List.Divider>
     <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
-      <HomeIcon />
+      <HomeIcon color="iconNeutralDefault" />
       <Text>Item 3</Text>
     </List.Item>
   </List>
