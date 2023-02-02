@@ -63,17 +63,32 @@ const TextButtonVariants = (props: Omit<ButtonProps, "children">) => (
 const IconButtonVariants = () => (
   <>
     <ButtonSetWrapper>
-      <Button icon={<RemoveIcon />} variant="primary" size="large" />
+      <Button
+        onClick={() => undefined}
+        icon={<RemoveIcon />}
+        variant="primary"
+        size="large"
+      />
       <Button icon={<RemoveIcon />} variant="primary" size="medium" />
       <Button icon={<RemoveIcon />} variant="primary" size="small" />
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button icon={<RemoveIcon />} variant="secondary" size="large" />
+      <Button
+        type="button"
+        icon={<RemoveIcon />}
+        variant="secondary"
+        size="large"
+      />
       <Button icon={<RemoveIcon />} variant="secondary" size="medium" />
       <Button icon={<RemoveIcon />} variant="secondary" size="small" />
     </ButtonSetWrapper>
     <ButtonSetWrapper>
-      <Button icon={<RemoveIcon />} variant="tertiary" size="large" />
+      <Button
+        name="remove"
+        icon={<RemoveIcon />}
+        variant="tertiary"
+        size="large"
+      />
       <Button icon={<RemoveIcon />} variant="tertiary" size="medium" />
       <Button icon={<RemoveIcon />} variant="tertiary" size="small" />
     </ButtonSetWrapper>
