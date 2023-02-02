@@ -2,7 +2,7 @@ import { AccordionTrigger } from "@radix-ui/react-accordion";
 import { ReactNode } from "react";
 
 import { Sprinkles } from "~/theme";
-import { Box, ChervonDownIcon } from "~/components";
+import { Button, ChervonDownIcon } from "~/components";
 import { DataAttributes } from "~/components/types";
 
 import { List } from "..";
@@ -14,24 +14,20 @@ type ItemGroupTriggerProps = Sprinkles &
     children: ReactNode;
     active?: boolean;
     [key: `data-${string}`]: string;
+    size?: "small" | "medium" | "large";
   };
 
-export const Trigger = ({ children, ...rest }: ItemGroupTriggerProps) => (
+export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => (
   <AccordionTrigger asChild>
     {/* Importing List.Item instead of Item fixes vite HMR */}
     <List.Item {...rest}>
       {children}
-      {/* TODO: use Button component when it will be ready at */}
-      {/* https://github.com/saleor/saleor-dashboard/issues/3000 */}
-      <Box
-        as="button"
-        borderRadius={2}
-        backgroundColor="interactiveNeutralHighlightDefault"
+      <Button
+        icon={<ChervonDownIcon className={icon} color="iconNeutralDefault" />}
+        variant="tertiary"
+        size={size}
         className={button}
-        borderWidth={0}
-      >
-        <ChervonDownIcon className={icon} />
-      </Box>
+      />
     </List.Item>
   </AccordionTrigger>
 );
