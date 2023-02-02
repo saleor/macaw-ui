@@ -12,9 +12,9 @@ export const Default = () => (
     <Drawer.Trigger>
       <Button variant="tertiary" icon={<MenuIcon />} />
     </Drawer.Trigger>
-    <Drawer.Content paddingLeft={4} paddingRight={4}>
+    <Drawer.Content paddingLeft={5} paddingRight={5}>
       <List>
-        <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+        <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
           <Text>Drawer content!</Text>
         </List.Item>
       </List>

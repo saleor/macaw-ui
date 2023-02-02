@@ -29,10 +29,6 @@ export const Item = forwardRef<HTMLLIElement, ListItemProps>(
           focus: "interactiveNeutralHighlightFocused",
           disabled: "interactiveCriticalPressing",
         }}
-        boxShadow={{
-          hover: "interactiveDefaultHovering",
-          focus: "interactiveDefaultFocused",
-        }}
         pointerEvents={{ default: "auto", disabled: "none" }}
         onClick={onClick}
         className={className}

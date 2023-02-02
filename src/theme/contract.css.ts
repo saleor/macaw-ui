@@ -19,6 +19,7 @@ export const vars = createGlobalThemeContract(
       10: null,
       11: null,
       12: null,
+      13: null,
     },
     colors: {
       foreground: {
@@ -154,6 +155,7 @@ export const vars = createGlobalThemeContract(
       1: null,
       2: null,
       3: null,
+      4: null,
     },
     fontFamily: {
       body: null,

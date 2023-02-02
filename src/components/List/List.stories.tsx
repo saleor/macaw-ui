@@ -12,7 +12,7 @@ export default {
 
 export const Item = () => (
   <List>
-    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
       <HomeIcon color="iconNeutralSubdued" />
       <Text>List component</Text>
     </List.Item>
@@ -21,7 +21,7 @@ export const Item = () => (
 
 export const ItemDisabled = () => (
   <List>
-    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3} disabled>
+    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3} disabled>
       <HomeIcon color="iconNeutralDisabled" />
       <Text color="textNeutralDisabled">List component</Text>
     </List.Item>
@@ -30,7 +30,7 @@ export const ItemDisabled = () => (
 
 export const ItemActive = () => (
   <List>
-    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3} active>
+    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3} active>
       <HomeIcon color="iconNeutralSubdued" />
       <Text>List component</Text>
     </List.Item>
@@ -41,19 +41,19 @@ export const ListGroup = () => (
   <List>
     <List.ItemGroup>
       <List.ItemGroup.Trigger
-        paddingX={4}
-        paddingY={4}
+        paddingX={5}
+        paddingY={5}
         borderRadius={3}
         justifyContent="space-between"
-        gap={5}
+        gap={6}
       >
-        <Box display="flex" alignItems="center" gap={5}>
+        <Box display="flex" alignItems="center" gap={6}>
           <MenuIcon color="iconNeutralDefault" />
           <Text>Trigger</Text>
         </Box>
       </List.ItemGroup.Trigger>
       <List.ItemGroup.Content>
-        <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+        <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
           <HomeIcon color="iconNeutralDefault" />
           <Text>Content</Text>
         </List.Item>
@@ -64,21 +64,21 @@ export const ListGroup = () => (
 
 export const ListDivider = () => (
   <List>
-    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
       <HomeIcon color="iconNeutralDefault" />
       <Text>Item 1</Text>
     </List.Item>
-    <List.Divider paddingX={4} paddingY={4} />
-    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+    <List.Divider paddingX={5} paddingY={5} />
+    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
       <HomeIcon color="iconNeutralDefault" />
       <Text>Item 2</Text>
     </List.Item>
-    <List.Divider paddingX={4} paddingY={4}>
+    <List.Divider paddingX={5} paddingY={5}>
       <Text variant="caption" size="small" color="textNeutralSubdued">
         List heading
       </Text>
     </List.Divider>
-    <List.Item paddingX={4} paddingY={4} gap={5} borderRadius={3}>
+    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
       <HomeIcon color="iconNeutralDefault" />
       <Text>Item 3</Text>
     </List.Item>
