@@ -8,9 +8,9 @@ export default {
 } as ComponentMeta<typeof Dropdown>;
 
 const commonProps = {
-  paddingX: 4,
-  paddingY: 4,
-  gap: 5,
+  paddingX: 5,
+  paddingY: 5,
+  gap: 6,
   borderRadius: 3,
 } as const;
 

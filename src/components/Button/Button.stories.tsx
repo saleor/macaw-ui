@@ -14,8 +14,8 @@ const ButtonSetWrapper = ({ children }: { children: ReactNode }) => {
       display="flex"
       flexDirection="column"
       placeItems="center"
-      gap={4}
-      marginX={6}
+      gap={5}
+      marginX={7}
     >
       {children}
     </Box>
@@ -144,7 +144,7 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
 
 export const Template: ComponentStory<typeof Button> = () => (
   <>
-    <Box display="flex" flexDirection="row" marginBottom={10} paddingTop={10}>
+    <Box display="flex" flexDirection="row" marginBottom={11} paddingTop={11}>
       <TextButtonVariants />
       <IconButtonVariants />
     </Box>

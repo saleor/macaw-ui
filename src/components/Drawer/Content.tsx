@@ -28,7 +28,7 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
           borderTopRightRadius={3}
           borderBottomRightRadius={3}
           position="fixed"
-          paddingTop={9}
+          paddingTop={10}
           {...rest}
         >
           {children}

@@ -11,7 +11,7 @@ export default {
 
 export const Default = () =>
   sizes.map((size) => (
-    <Box marginTop={5} key={size}>
+    <Box marginTop={6} key={size}>
       <Text as="h3" variant="title">
         {size}
       </Text>
@@ -20,7 +20,7 @@ export const Default = () =>
         alignItems="center"
         flexDirection="row"
         flexWrap="wrap"
-        gap={5}
+        gap={6}
       >
         {macawIcons.map((Icon, idx) => (
           <Box margin={3} key={idx} display="flex" flexDirection="column">
