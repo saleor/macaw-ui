@@ -15,5 +15,5 @@ Default.args = {
   color: "textNeutralDefault",
   size: "medium",
   variant: "body",
-  as: "span",
+  as: "p",
 };
