@@ -10,12 +10,12 @@ export const svgWrapper = recipe({
         height: vars.space[7],
       },
       medium: {
-        width: vars.space[9],
-        height: vars.space[9],
+        width: vars.space[8],
+        height: vars.space[8],
       },
       large: {
-        width: vars.space[10],
-        height: vars.space[10],
+        width: vars.space[9],
+        height: vars.space[9],
       },
     },
   },
