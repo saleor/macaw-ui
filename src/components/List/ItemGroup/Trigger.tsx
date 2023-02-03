@@ -23,7 +23,13 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => (
     <List.Item {...rest}>
       {children}
       <Button
-        icon={<ChervonDownIcon className={icon} color="iconNeutralDefault" />}
+        icon={
+          <ChervonDownIcon
+            className={icon}
+            color="iconNeutralDefault"
+            size={size}
+          />
+        }
         variant="tertiary"
         size={size}
         className={button}

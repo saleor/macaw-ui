@@ -5,13 +5,9 @@ import { vars } from "~/theme";
 export const svgWrapper = recipe({
   variants: {
     size: {
-      xsmall: {
+      small: {
         width: vars.space[7],
         height: vars.space[7],
-      },
-      small: {
-        width: vars.space[8],
-        height: vars.space[8],
       },
       medium: {
         width: vars.space[9],
