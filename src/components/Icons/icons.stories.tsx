@@ -3,7 +3,7 @@ import { Box } from "~/components/Box";
 import * as icons from "./index";
 
 const macawIcons = Object.values(icons);
-const sizes = ["xsmall", "small", "medium", "large"] as const;
+const sizes = ["small", "medium", "large"] as const;
 
 export default {
   title: "components/Icons",

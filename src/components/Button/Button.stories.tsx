@@ -107,7 +107,7 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
         Button
       </Button>
       <Button variant="primary" size="small" {...props}>
-        <SearchIcon size="xsmall" />
+        <SearchIcon size="small" />
         Button
       </Button>
     </ButtonSetWrapper>
@@ -121,7 +121,7 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
         Button
       </Button>
       <Button variant="secondary" size="small" {...props}>
-        <SearchIcon size="xsmall" />
+        <SearchIcon size="small" />
         Button
       </Button>
     </ButtonSetWrapper>
@@ -135,14 +135,14 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
         Button
       </Button>
       <Button variant="tertiary" size="small" {...props}>
-        <SearchIcon size="xsmall" />
+        <SearchIcon size="small" />
         Button
       </Button>
     </ButtonSetWrapper>
   </>
 );
 
-export const Template: ComponentStory<typeof Button> = () => (
+export const Default: ComponentStory<typeof Button> = () => (
   <>
     <Box display="flex" flexDirection="row" marginBottom={11} paddingTop={11}>
       <TextButtonVariants />
