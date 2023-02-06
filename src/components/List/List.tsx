@@ -12,7 +12,7 @@ type ListProps = Sprinkles & {
 export const List = forwardRef<HTMLUListElement | HTMLUListElement, ListProps>(
   ({ children, as = "ul", className, ...rest }, ref) => {
     return (
-      <Box as={as} ref={ref} className={className} {...rest}>
+      <Box as={as} ref={ref} className={className} margin={0} {...rest}>
         {children}
       </Box>
     );

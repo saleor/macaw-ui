@@ -4,10 +4,6 @@ globalStyle("*, *::before, *::after", {
   boxSizing: "border-box",
 });
 
-globalStyle("*", {
-  margin: 0,
-});
-
 globalStyle("html, body", {
   height: "100%",
 });
