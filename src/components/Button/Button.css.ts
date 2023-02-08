@@ -30,6 +30,13 @@ export const button = recipe({
           default: "textNeutralContrasted",
           disabled: "textNeutralDisabled",
         },
+        boxShadow: {
+          default: "interactiveDefaultFocused",
+          hover: "interactiveDefaultHovering",
+          focusVisible: "interactiveDefaultFocused",
+          active: "none",
+          disabled: "none",
+        },
         borderStyle: "none",
       }),
       secondary: sprinkles({
@@ -43,6 +50,13 @@ export const button = recipe({
         color: {
           default: "textNeutralDefault",
           disabled: "textNeutralDisabled",
+        },
+        boxShadow: {
+          default: "interactiveDefaultFocused",
+          hover: "interactiveDefaultHovering",
+          focusVisible: "interactiveDefaultFocused",
+          active: "none",
+          disabled: "none",
         },
         borderStyle: "solid",
         borderWidth: 1,
