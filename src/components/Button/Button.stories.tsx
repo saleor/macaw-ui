@@ -143,7 +143,7 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
 );
 
 export const Default: ComponentStory<typeof Button> = () => (
-  <>
+  <Box display="flex" flexDirection="column" alignItems="center">
     <Box display="flex" flexDirection="row" marginBottom={11} paddingTop={11}>
       <TextButtonVariants />
       <IconButtonVariants />
@@ -152,5 +152,5 @@ export const Default: ComponentStory<typeof Button> = () => (
       <TextButtonVariants disabled />
       <TextIconButtonVariants />
     </Box>
-  </>
+  </Box>
 );
