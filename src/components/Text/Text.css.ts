@@ -10,6 +10,7 @@ export const text = recipe({
       hero: {},
       title: {},
       heading: {},
+      bodyStrong: {},
       bodyEmp: {},
       body: {},
       button: {},
@@ -87,6 +88,28 @@ export const text = recipe({
         size: "small",
       },
       style: sprinkles({ typeSize: "headingSmall" }),
+    },
+
+    {
+      variants: {
+        variant: "bodyStrong",
+        size: "large",
+      },
+      style: sprinkles({ typeSize: "bodyStrongLarge" }),
+    },
+    {
+      variants: {
+        variant: "bodyStrong",
+        size: "medium",
+      },
+      style: sprinkles({ typeSize: "bodyStrongMedium" }),
+    },
+    {
+      variants: {
+        variant: "bodyStrong",
+        size: "small",
+      },
+      style: sprinkles({ typeSize: "bodyStrongSmall" }),
     },
 
     {
