@@ -25,3 +25,4 @@ export * from "./RemoveIcon";
 export * from "./SearchIcon";
 export * from "./DarkModeIcon";
 export * from "./LightModeIcon";
+export * from "./InfoIcon";
