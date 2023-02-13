@@ -1,5 +1,6 @@
 export * from "./Box";
 export * from "./Button";
+export * from "./Chip";
 export * from "./Icons";
 export * from "./List";
 export * from "./Text";
