@@ -51,7 +51,7 @@ export const defaultDark = {
       subdued: "hsla(231, 17%, 16%, 1)",
       highlightDim: "hsla(0, 0%, 0%, 0.6)",
       highlightPale: "hsla(211, 42%, 16%, 0.6)",
-      surfaceNeutralPlain: "hsla(211, 42%, 16%, 1)",
+      surfaceNeutralPlain: "hsla(232, 17%, 18%, 1)",
       surfaceNeutralSubdued: "hsla(211, 42%, 14%, 1)",
       surfaceNeutralDepressed: "hsla(211, 42%, 12%, 1)",
       surfaceNeutralHighlight: "hsla(0, 0%, 100%, 0.04)",
