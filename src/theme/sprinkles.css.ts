@@ -1,11 +1,13 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+
+import { desktopMediaQuery, tabletMediaQuery } from "./media-queries";
 import { vars } from "./contract.css";
 
 const responsiveProperties = defineProperties({
   conditions: {
     mobile: {},
-    tablet: { "@media": "screen and (min-width: 768px)" },
-    desktop: { "@media": "screen and (min-width: 1024px)" },
+    tablet: { "@media": tabletMediaQuery },
+    desktop: { "@media": desktopMediaQuery },
   },
   defaultCondition: "mobile",
   properties: {
