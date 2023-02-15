@@ -26,3 +26,4 @@ export * from "./SearchIcon";
 export * from "./DarkModeIcon";
 export * from "./LightModeIcon";
 export * from "./InfoIcon";
+export * from "./WarningIcon";
