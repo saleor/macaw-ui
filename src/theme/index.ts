@@ -4,3 +4,4 @@ export * from "./sprinkles.css";
 export { useTheme } from "./context";
 export { themes } from "./themes";
 export type { DefaultTheme } from "./themes";
+export * from "./media-queries";
