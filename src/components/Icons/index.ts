@@ -27,3 +27,5 @@ export * from "./DarkModeIcon";
 export * from "./LightModeIcon";
 export * from "./InfoIcon";
 export * from "./WarningIcon";
+export * from "./TrashBinIcon";
+export * from "./MailIcon";
