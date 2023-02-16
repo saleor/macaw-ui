@@ -29,3 +29,4 @@ export * from "./InfoIcon";
 export * from "./WarningIcon";
 export * from "./TrashBinIcon";
 export * from "./MailIcon";
+export * from "./GripIcon";
