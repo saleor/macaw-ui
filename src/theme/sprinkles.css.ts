@@ -3,6 +3,55 @@ import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 import { desktopMediaQuery, tabletMediaQuery } from "./media-queries";
 import { vars } from "./contract.css";
 
+const baseGridTemplates = {
+  1: "repeat(1, minmax(0, 1fr))",
+  2: "repeat(2, minmax(0, 1fr))",
+  3: "repeat(3, minmax(0, 1fr))",
+  4: "repeat(4, minmax(0, 1fr))",
+  5: "repeat(5, minmax(0, 1fr))",
+  6: "repeat(6, minmax(0, 1fr))",
+  7: "repeat(7, minmax(0, 1fr))",
+  8: "repeat(8, minmax(0, 1fr))",
+  9: "repeat(9, minmax(0, 1fr))",
+  10: "repeat(10, minmax(0, 1fr))",
+  11: "repeat(11, minmax(0, 1fr))",
+  12: "repeat(12, minmax(0, 1fr))",
+  none: "none",
+};
+
+const baseGridTracksSpans = {
+  auto: "auto",
+  "1": "span 1 / span 1",
+  "2": "span 2 / span 2",
+  "3": "span 3 / span 3",
+  "4": "span 4 / span 4",
+  "5": "span 5 / span 5",
+  "6": "span 6 / span 6",
+  "7": "span 7 / span 7",
+  "8": "span 8 / span 8",
+  "9": "span 9 / span 9",
+  "10": "span 10 / span 10",
+  "11": "span 11 / span 11",
+  "12": "span 12 / span 12",
+  full: "1 / -1",
+};
+
+const baseGridTracks = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "auto",
+] as const;
+
 const responsiveProperties = defineProperties({
   conditions: {
     mobile: {},
@@ -29,8 +78,15 @@ const responsiveProperties = defineProperties({
     position: ["static", "relative", "absolute", "fixed", "sticky"],
     gridArea: ["auto"],
     gridTemplateAreas: ["none"],
-    gridTemplateRows: ["repeat(2,1fr)", "repeat(3,1fr)"],
-    gridTemplateColumns: ["repeat(2,1fr)", "repeat(3,1fr)"],
+    gridTemplateRows: baseGridTemplates,
+    gridRow: baseGridTracksSpans,
+    gridRowStart: baseGridTracks,
+    gridRowEnd: baseGridTracks,
+    gridTemplateColumns: baseGridTemplates,
+    gridColumn: baseGridTracksSpans,
+    gridColumnStart: baseGridTracks,
+    gridColumnEnd: baseGridTracks,
+    order: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     flexWrap: ["nowrap", "wrap"],
     gap: vars.space,
     paddingTop: vars.space,
@@ -73,6 +129,7 @@ const responsiveProperties = defineProperties({
     right: vars.space,
     overflowX: ["hidden", "visible", "scroll", "auto"],
     overflowY: ["hidden", "visible", "scroll", "auto"],
+    zIndex: ["auto", "1", "2", "3"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
