@@ -20,3 +20,43 @@ Default.args = {
   borderStyle: "solid",
   borderColor: "neutralDefault",
 };
+
+export const Layout = () => (
+  <Box
+    display="grid"
+    alignItems="center"
+    gridTemplateColumns={{
+      mobile: 1,
+      tablet: 3,
+    }}
+    gap={5}
+  >
+    <Box
+      padding={3}
+      backgroundColor="decorativeSurfaceSubdued1"
+      __width={100}
+      display="flex"
+      justifyContent="center"
+    >
+      <Text color="text1Decorative">1</Text>
+    </Box>
+    <Box
+      padding={3}
+      backgroundColor="decorativeSurfaceSubdued1"
+      __width={100}
+      display="flex"
+      justifyContent="center"
+    >
+      <Text color="text1Decorative">2</Text>
+    </Box>
+    <Box
+      padding={3}
+      backgroundColor="decorativeSurfaceSubdued1"
+      __width={100}
+      display="flex"
+      justifyContent="center"
+    >
+      <Text color="text1Decorative">3</Text>
+    </Box>
+  </Box>
+);
