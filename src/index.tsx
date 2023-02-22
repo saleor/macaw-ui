@@ -10,6 +10,7 @@ export * from "./SquareButton";
 export * from "./Alert";
 export * from "./Notification";
 export * from "./UserChipMenu";
+export * from "./PopoverCustom";
 export * from "./ResponsiveTable";
 export * from "./Tooltip";
 export * from "./ActionBar";
