@@ -15,13 +15,14 @@ type ItemGroupTriggerProps = Sprinkles &
     active?: boolean;
     [key: `data-${string}`]: string;
     size?: "small" | "medium" | "large";
+    url?: string;
   };
 
 export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => (
-  <AccordionTrigger asChild>
-    {/* Importing List.Item instead of Item fixes vite HMR */}
-    <List.Item {...rest}>
-      {children}
+  // Importing List.Item instead of Item fixes vite HMR
+  <List.Item {...rest}>
+    {children}
+    <AccordionTrigger asChild>
       <Button
         icon={
           <ChervonDownIcon
@@ -34,6 +35,6 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => (
         size={size}
         className={button}
       />
-    </List.Item>
-  </AccordionTrigger>
+    </AccordionTrigger>
+  </List.Item>
 );

@@ -185,6 +185,7 @@ const stateProperties = defineProperties({
     pointerEvents: ["none", "auto"],
     cursor: ["pointer", "not-allowed", "auto"],
     boxShadow: { ...vars.boxShadow, none: "none" },
+    textDecoration: ["none", "underline"],
   },
 });
 
