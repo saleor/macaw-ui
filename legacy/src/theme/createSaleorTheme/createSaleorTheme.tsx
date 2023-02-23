@@ -18,7 +18,7 @@ import { SaleorTheme, SaleorThemeColors, ThemeType } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
-const fontFamily = '"Inter", "roboto", "sans-serif"';
+const fontFamily = '"Inter var", "sans-serif"';
 
 export const createTheme = (
   colors: SaleorThemeColors,
