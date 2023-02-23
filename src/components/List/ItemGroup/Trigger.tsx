@@ -18,24 +18,23 @@ type ItemGroupTriggerProps = Sprinkles &
     url?: string;
   };
 
-export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
-  return (
-    <List.Item {...rest}>
-      {children}
-      <AccordionTrigger asChild>
-        <Button
-          icon={
-            <ChervonDownIcon
-              className={icon}
-              color="iconNeutralDefault"
-              size={size}
-            />
-          }
-          variant="tertiary"
-          size={size}
-          className={button}
-        />
-      </AccordionTrigger>
-    </List.Item>
-  );
-};
+export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => (
+  // Importing List.Item instead of Item fixes vite HMR
+  <List.Item {...rest}>
+    {children}
+    <AccordionTrigger asChild>
+      <Button
+        icon={
+          <ChervonDownIcon
+            className={icon}
+            color="iconNeutralDefault"
+            size={size}
+          />
+        }
+        variant="tertiary"
+        size={size}
+        className={button}
+      />
+    </AccordionTrigger>
+  </List.Item>
+);
