@@ -9,7 +9,10 @@ import {
 } from "./Input.css";
 
 export type InputProps = InputVariants &
-  Omit<InputHTMLAttributes<HTMLInputElement>, "color" | "width" | "height"> & {
+  Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "color" | "width" | "height" | "size"
+  > & {
     children?: ReactNode;
     disabled?: boolean;
     label?: string;
@@ -51,16 +54,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <Box
         as="label"
         htmlFor={id}
-        className={classNames(labelStyle({ typed, active, disabled }))}
+        className={classNames(labelStyle({ typed, active, disabled, size }))}
       >
-        <Box as="span" className={classNames(spanStyle({ typed }))}>
+        <Box
+          as="span"
+          className={classNames(spanStyle({ typed, size, disabled }))}
+        >
           {label}
         </Box>
         <Box
           id={id}
           as="input"
           type={type}
-          className={classNames(inputStyle())}
+          className={classNames(inputStyle({ size }))}
           disabled={disabled}
           value={inputValue}
           onChange={handleChange}

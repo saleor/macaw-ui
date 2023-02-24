@@ -7,18 +7,44 @@ export default {
 } as ComponentMeta<typeof Input>;
 
 export const Default: ComponentStory<typeof Input> = () => (
-  <Box display="flex" flexDirection="column" alignItems="center">
-    <Box paddingY={9}>
-      <Input id="inp1" value="Input content" label="Label" />
+  <Box display="flex" flexDirection="column">
+    <Box paddingY={9} display="flex" gap={9} alignItems="center">
+      <Input id="inp11" value="Input content" label="Label" size="large" />
+      <Input id="inp12" value="Input content" label="Label" size="medium" />
+      <Input id="inp13" value="Input content" label="Label" size="small" />
     </Box>
-    <Box paddingY={9}>
-      <Input id="inp2" label="Label" />
+    <Box paddingY={9} display="flex" gap={9} alignItems="center">
+      <Input id="inp21" label="Label" size="large" />
+      <Input id="inp22" label="Label" size="medium" />
+      <Input id="inp23" label="Label" size="small" />
     </Box>
-    <Box paddingY={9}>
-      <Input label="Label" disabled />
+    <Box paddingY={9} display="flex" gap={9} alignItems="center">
+      <Input id="inp31" label="Label" disabled size="large" />
+      <Input id="inp32" label="Label" disabled size="medium" />
+      <Input id="inp33" label="Label" disabled size="small" />
     </Box>
-    <Box paddingY={9}>
-      <Input id="inp3" value="Input content" label="Label" disabled />
+    <Box paddingY={9} display="flex" gap={9} alignItems="center">
+      <Input
+        id="inp41"
+        value="Input content"
+        label="Label"
+        size="large"
+        disabled
+      />
+      <Input
+        id="inp42"
+        value="Input content"
+        label="Label"
+        size="medium"
+        disabled
+      />
+      <Input
+        id="inp43"
+        value="Input content"
+        label="Label"
+        size="small"
+        disabled
+      />
     </Box>
   </Box>
 );

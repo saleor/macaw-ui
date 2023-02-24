@@ -11,15 +11,20 @@ export const label = recipe({
       flexWrap: "wrap",
       color: "textNeutralSubdued",
       borderRadius: 3,
-      paddingY: 6,
       paddingX: 4,
     }),
   ],
   variants: {
     size: {
-      small: {},
-      medium: {},
-      large: {},
+      small: sprinkles({
+        paddingY: 5,
+      }),
+      medium: sprinkles({
+        paddingY: 5,
+      }),
+      large: sprinkles({
+        paddingY: 6,
+      }),
     },
     active: {
       true: {},
@@ -118,28 +123,36 @@ export const span = recipe({
     }),
     sprinkles({
       color: "textNeutralSubdued",
-      fontSize: "bodyLarge",
-      fontWeight: "captionMedium",
-      lineHeight: "captionMedium",
     }),
   ],
   variants: {
     size: {
-      small: {},
-      medium: {},
-      large: {},
+      small: sprinkles({
+        fontSize: "captionLarge",
+        lineHeight: "captionMedium",
+      }),
+      medium: sprinkles({
+        fontSize: "bodyMedium",
+        lineHeight: "captionLarge",
+      }),
+      large: sprinkles({
+        fontSize: "bodyLarge",
+        lineHeight: "bodyLarge",
+      }),
+    },
+    disabled: {
+      true: sprinkles({ color: "textNeutralDisabled" }),
     },
     typed: {
       true: [
-        sprinkles({
-          fontWeight: "captionLarge",
-          lineHeight: "captionMedium",
-        }),
         style({
-          transform: "translate(-8%, 0) scale(0.813)",
+          transform: "translate(-3%, 0) scale(0.813)",
         }),
       ],
     },
+  },
+  defaultVariants: {
+    size: "medium",
   },
 });
 
@@ -160,10 +173,22 @@ export const input = recipe({
   ],
   variants: {
     size: {
-      small: {},
-      medium: {},
-      large: {},
+      small: sprinkles({
+        fontSize: "bodySmall",
+        lineHeight: "captionMedium",
+      }),
+      medium: sprinkles({
+        fontSize: "bodyMedium",
+        lineHeight: "bodySmall",
+      }),
+      large: sprinkles({
+        fontSize: "bodyLarge",
+        lineHeight: "bodyLarge",
+      }),
     },
+  },
+  defaultVariants: {
+    size: "medium",
   },
 });
 
