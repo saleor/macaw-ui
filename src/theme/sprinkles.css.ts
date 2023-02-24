@@ -186,6 +186,7 @@ const stateProperties = defineProperties({
     cursor: ["pointer", "not-allowed", "auto"],
     boxShadow: { ...vars.boxShadow, none: "none" },
     transition: { ease: "transform 0.3s" },
+    textDecoration: ["none", "underline"],
   },
 });
 
