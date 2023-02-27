@@ -35,6 +35,9 @@ export const label = recipe({
     disabled: {
       true: {},
     },
+    error: {
+      true: {},
+    },
   },
   compoundVariants: [
     {
@@ -42,6 +45,7 @@ export const label = recipe({
         typed: true,
         active: true,
         disabled: false,
+        error: false,
       },
       style: sprinkles({
         borderStyle: "solid",
@@ -58,6 +62,7 @@ export const label = recipe({
         typed: true,
         active: false,
         disabled: false,
+        error: false,
       },
       style: sprinkles({
         backgroundColor: {
@@ -75,6 +80,7 @@ export const label = recipe({
       variants: {
         typed: false,
         active: true,
+        error: false,
       },
       style: sprinkles({
         backgroundColor: "interactiveNeutralHighlightDefault",
@@ -88,6 +94,7 @@ export const label = recipe({
         typed: false,
         active: false,
         disabled: false,
+        error: false,
       },
       style: sprinkles({
         backgroundColor: {
@@ -112,6 +119,18 @@ export const label = recipe({
         borderColor: "neutralHighlight",
       }),
     },
+    {
+      variants: {
+        error: true,
+        typed: false,
+      },
+      style: sprinkles({
+        backgroundColor: {
+          default: "surfaceCriticalSubdued",
+          hover: "surfaceCriticalSubdued",
+        },
+      }),
+    },
   ],
 });
 
@@ -119,6 +138,7 @@ export const span = recipe({
   base: [
     style({
       transition: "transform 0.3s",
+      transformOrigin: "left",
       transform: "translate(0, 50%) scale(1)",
     }),
     sprinkles({
@@ -146,9 +166,14 @@ export const span = recipe({
     typed: {
       true: [
         style({
-          transform: "translate(-3%, 0) scale(0.813)",
+          transform: "translate(0, 0) scale(0.813)",
         }),
       ],
+    },
+    error: {
+      true: sprinkles({
+        color: "textCriticalSubdued",
+      }),
     },
   },
   defaultVariants: {
@@ -165,6 +190,7 @@ export const input = recipe({
       lineHeight: "bodyLarge",
       borderWidth: 0,
       outlineStyle: "none",
+      padding: 0,
       color: {
         default: "textNeutralDefault",
         disabled: "textNeutralSubdued",
@@ -184,6 +210,11 @@ export const input = recipe({
       large: sprinkles({
         fontSize: "bodyLarge",
         lineHeight: "bodyLarge",
+      }),
+    },
+    error: {
+      true: sprinkles({
+        color: "textCriticalDefault",
       }),
     },
   },

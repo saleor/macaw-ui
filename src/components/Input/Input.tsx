@@ -8,7 +8,7 @@ export type InputProps = InputVariants &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     "color" | "width" | "height" | "size"
-  > & { label?: string };
+  > & { label?: string; error?: boolean };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -21,6 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       label,
       id,
       type,
+      error = false,
       onChange,
       ...props
     },
@@ -41,13 +42,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         disabled={disabled}
         size={size}
         label={label}
+        error={error}
         className={className}
       >
         <Box
           id={id}
           as="input"
           type={type}
-          className={classNames(inputStyle({ size }))}
+          className={classNames(inputStyle({ size, error }))}
           disabled={disabled}
           value={inputValue}
           ref={ref}

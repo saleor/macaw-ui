@@ -44,6 +44,7 @@ type InputWrapperProps = LabelVariants & {
   id?: string;
   label?: string;
   className?: string;
+  error?: boolean;
   children: ReactNode;
 };
 
@@ -55,6 +56,7 @@ export const InputWrapper = ({
   disabled,
   size,
   label,
+  error,
   className,
 }: InputWrapperProps) => {
   return (
@@ -62,13 +64,13 @@ export const InputWrapper = ({
       as="label"
       htmlFor={id}
       className={classNames(
-        labelStyle({ typed, active, disabled, size }),
+        labelStyle({ typed, active, disabled, size, error }),
         className
       )}
     >
       <Box
         as="span"
-        className={classNames(spanStyle({ typed, size, disabled }))}
+        className={classNames(spanStyle({ typed, size, disabled, error }))}
       >
         {label}
       </Box>
