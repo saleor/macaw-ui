@@ -7,7 +7,6 @@ import { makeStyles } from "./styles";
 const useStyles = makeStyles(
   (theme) => ({
     "@global": {
-      "@import": "url('https://rsms.me/inter/inter.css')",
       // Putting them here, because MUI doesn't let putting own keys in
       // `overrides` objects
       "@keyframes hoverControlStart": {
