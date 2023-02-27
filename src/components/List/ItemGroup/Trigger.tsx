@@ -2,9 +2,10 @@ import { AccordionTrigger } from "@radix-ui/react-accordion";
 import { ReactNode } from "react";
 
 import { Sprinkles } from "~/theme";
-import { Button, ChervonDownIcon } from "~/components";
+import { Box, Button, ChervonDownIcon } from "~/components";
 import { DataAttributes } from "~/components/types";
 
+import { useItemGroupContext } from "./context";
 import { List } from "..";
 
 import { button, icon } from "./common.css";
@@ -18,23 +19,29 @@ type ItemGroupTriggerProps = Sprinkles &
     url?: string;
   };
 
-export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => (
-  // Importing List.Item instead of Item fixes vite HMR
-  <List.Item {...rest}>
-    {children}
-    <AccordionTrigger asChild>
-      <Button
-        icon={
-          <ChervonDownIcon
-            className={icon}
-            color="iconNeutralDefault"
-            size={size}
-          />
-        }
-        variant="tertiary"
-        size={size}
-        className={button}
-      />
-    </AccordionTrigger>
-  </List.Item>
-);
+export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
+  const { triggerOpen } = useItemGroupContext();
+
+  return (
+    // Importing List.Item instead of Item fixes vite HMR
+    <List.Item {...rest}>
+      <Box width="100%" height="100%" onClick={triggerOpen}>
+        {children}
+      </Box>
+      <AccordionTrigger asChild>
+        <Button
+          icon={
+            <ChervonDownIcon
+              className={icon}
+              color="iconNeutralDefault"
+              size={size}
+            />
+          }
+          variant="tertiary"
+          size={size}
+          className={button}
+        />
+      </AccordionTrigger>
+    </List.Item>
+  );
+};
