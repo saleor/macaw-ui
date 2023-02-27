@@ -42,9 +42,9 @@ export const Default: ComponentStory<typeof Input> = () => (
       <Input id="inp23" label="Label" size="small" />
     </Box>
     <Box paddingY={9} display="flex" gap={9} alignItems="center">
-      <Input id="inp21e" label="Label error" size="large" error />
-      <Input id="inp22e" label="Label error" size="medium" error />
-      <Input id="inp23e" label="Label error" size="small" error />
+      <Input id="inp21e" label="Label errored" size="large" error />
+      <Input id="inp22e" label="Label errored" size="medium" error />
+      <Input id="inp23e" label="Label errored" size="small" error />
     </Box>
     <Box paddingY={9} display="flex" gap={9} alignItems="center">
       <Input id="inp31" label="Label" disabled size="large" />

@@ -138,6 +138,7 @@ export const span = recipe({
   base: [
     style({
       transition: "transform 0.3s",
+      transformOrigin: "left",
       transform: "translate(0, 50%) scale(1)",
     }),
     sprinkles({
@@ -165,7 +166,7 @@ export const span = recipe({
     typed: {
       true: [
         style({
-          transform: "translate(-3%, 0) scale(0.813)",
+          transform: "translate(0, 0) scale(0.813)",
         }),
       ],
     },
@@ -189,6 +190,7 @@ export const input = recipe({
       lineHeight: "bodyLarge",
       borderWidth: 0,
       outlineStyle: "none",
+      padding: 0,
       color: {
         default: "textNeutralDefault",
         disabled: "textNeutralSubdued",
