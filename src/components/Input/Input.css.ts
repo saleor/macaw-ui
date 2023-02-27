@@ -35,6 +35,9 @@ export const label = recipe({
     disabled: {
       true: {},
     },
+    error: {
+      true: {},
+    },
   },
   compoundVariants: [
     {
@@ -42,6 +45,7 @@ export const label = recipe({
         typed: true,
         active: true,
         disabled: false,
+        error: false,
       },
       style: sprinkles({
         borderStyle: "solid",
@@ -58,6 +62,7 @@ export const label = recipe({
         typed: true,
         active: false,
         disabled: false,
+        error: false,
       },
       style: sprinkles({
         backgroundColor: {
@@ -75,6 +80,7 @@ export const label = recipe({
       variants: {
         typed: false,
         active: true,
+        error: false,
       },
       style: sprinkles({
         backgroundColor: "interactiveNeutralHighlightDefault",
@@ -88,6 +94,7 @@ export const label = recipe({
         typed: false,
         active: false,
         disabled: false,
+        error: false,
       },
       style: sprinkles({
         backgroundColor: {
@@ -110,6 +117,18 @@ export const label = recipe({
         borderStyle: "solid",
         borderWidth: 1,
         borderColor: "neutralHighlight",
+      }),
+    },
+    {
+      variants: {
+        error: true,
+        typed: false,
+      },
+      style: sprinkles({
+        backgroundColor: {
+          default: "surfaceCriticalSubdued",
+          hover: "surfaceCriticalSubdued",
+        },
       }),
     },
   ],
@@ -150,6 +169,11 @@ export const span = recipe({
         }),
       ],
     },
+    error: {
+      true: sprinkles({
+        color: "textCriticalSubdued",
+      }),
+    },
   },
   defaultVariants: {
     size: "medium",
@@ -184,6 +208,11 @@ export const input = recipe({
       large: sprinkles({
         fontSize: "bodyLarge",
         lineHeight: "bodyLarge",
+      }),
+    },
+    error: {
+      true: sprinkles({
+        color: "textCriticalDefault",
       }),
     },
   },
