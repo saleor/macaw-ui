@@ -192,4 +192,5 @@ export const input = recipe({
   },
 });
 
+export type LabelVariants = RecipeVariants<typeof label>;
 export type InputVariants = RecipeVariants<typeof input>;

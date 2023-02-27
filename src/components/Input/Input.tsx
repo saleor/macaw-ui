@@ -1,23 +1,14 @@
-import { forwardRef, InputHTMLAttributes, ReactNode, useState } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
 import { classNames } from "~/utils";
+import { InputWrapper, useStateEvents } from "./InputWrapper";
 import { Box } from "../Box";
-import {
-  input as inputStyle,
-  span as spanStyle,
-  label as labelStyle,
-  InputVariants,
-} from "./Input.css";
+import { input as inputStyle, InputVariants } from "./Input.css";
 
 export type InputProps = InputVariants &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     "color" | "width" | "height" | "size"
-  > & {
-    children?: ReactNode;
-    disabled?: boolean;
-    label?: string;
-    className?: string;
-  };
+  > & { label?: string };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -35,33 +26,23 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [inputValue, setInputValue] = useState(value);
-    const [active, setActive] = useState(false);
-    const typed = Boolean(inputValue || active);
-
-    const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(evt.target.value);
-
-      if (onChange) {
-        onChange(evt);
-      }
-    };
-
-    const handleFocus = () => setActive(true);
-    const handleBlur = () => setActive(false);
+    const {
+      handlers,
+      value: inputValue,
+      active,
+      typed,
+    } = useStateEvents(value, onChange);
 
     return (
-      <Box
-        as="label"
-        htmlFor={id}
-        className={classNames(labelStyle({ typed, active, disabled, size }))}
+      <InputWrapper
+        id={id}
+        typed={typed}
+        active={active}
+        disabled={disabled}
+        size={size}
+        label={label}
+        className={className}
       >
-        <Box
-          as="span"
-          className={classNames(spanStyle({ typed, size, disabled }))}
-        >
-          {label}
-        </Box>
         <Box
           id={id}
           as="input"
@@ -69,14 +50,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={classNames(inputStyle({ size }))}
           disabled={disabled}
           value={inputValue}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           ref={ref}
+          {...handlers}
           {...props}
         />
         {children}
-      </Box>
+      </InputWrapper>
     );
   }
 );
