@@ -1,10 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import {
   Root as AccordionRoot,
   Item as AccordionItem,
 } from "@radix-ui/react-accordion";
 
 import { DataAttributes } from "~/components/types";
+import { Provider } from "./context";
 
 import { List } from "../List";
 
@@ -23,17 +24,24 @@ export const ItemGroupRoot = ({
   defaultExpanded = false,
   as = "ul",
   ...rest
-}: ItemGroupRootProps) => (
-  <AccordionRoot
-    asChild
-    type="single"
-    collapsible
-    defaultValue={defaultExpanded ? expandedValue : undefined}
-  >
-    <List as={as} {...rest}>
-      <AccordionItem value={expandedValue} className={trigger}>
-        {children}
-      </AccordionItem>
-    </List>
-  </AccordionRoot>
-);
+}: ItemGroupRootProps) => {
+  const [value, setValue] = useState(defaultExpanded ? expandedValue : "");
+
+  return (
+    <AccordionRoot
+      asChild
+      type="single"
+      collapsible
+      value={value}
+      onValueChange={setValue}
+    >
+      <Provider value={{ triggerOpen: () => setValue(expandedValue) }}>
+        <List as={as} {...rest}>
+          <AccordionItem value={expandedValue} className={trigger}>
+            {children}
+          </AccordionItem>
+        </List>
+      </Provider>
+    </AccordionRoot>
+  );
+};
