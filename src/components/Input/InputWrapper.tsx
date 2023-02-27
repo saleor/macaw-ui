@@ -1,7 +1,7 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
 import {
@@ -44,6 +44,7 @@ type InputWrapperProps = LabelVariants & {
   id?: string;
   label?: string;
   className?: string;
+  children: ReactNode;
 };
 
 export const InputWrapper = ({
