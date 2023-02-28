@@ -42,7 +42,6 @@ export const WithCustomLogo: Story = () => (
   />
 );
 
-
 export const WithFlatItems: Story = () => (
   <Sidebar
     {...props}

@@ -119,7 +119,7 @@ const useStyles = makeStyles(
       },
       "& $subMenuLabel": {
         paddingLeft: 0,
-      }
+      },
     },
     rootActive: {
       "&$root": {

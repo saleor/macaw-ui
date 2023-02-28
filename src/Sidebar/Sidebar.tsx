@@ -82,6 +82,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
   }, [logoSrc, logo, themeType]);
   const isShrunk = isShrunkStr === "true";
 
+  const checkPopover = useMemo(() => {
+    if (isShrunk) {
+      return !popover;
+    }
+    return popover;
+  }, [isShrunk]);
   const Link = linkComponent ?? "a";
 
   useEffect(() => {
@@ -107,7 +113,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               isMenuShrunk={isShrunk}
               menuItem={menuItem}
               key={menuItem.ariaLabel}
-              popover={popover}
+              popover={checkPopover}
               linkComponent={linkComponent}
             />
           ) : (
@@ -115,7 +121,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               activeId={activeId}
               isMenuShrunk={isShrunk}
               menuItem={menuItem}
-              popover={popover}
+              popover={checkPopover}
               onClick={onMenuItemClick}
               key={menuItem.ariaLabel}
             />
