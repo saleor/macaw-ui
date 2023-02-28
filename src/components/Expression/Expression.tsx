@@ -43,15 +43,44 @@ const OperandAutocomplete = () => {
 };
 
 const OperandText = () => {
-  return <Box>OperandText</Box>;
+  return (
+    <Box
+      as="input"
+      type="text"
+      borderWidth={0}
+      padding={0}
+      color="textNeutralDefault"
+      fontSize="bodySmall"
+    />
+  );
 };
 
 const OperandNumber = () => {
-  return <Box>OperandNumber</Box>;
+  return (
+    <Box>
+      <Box as="span">$</Box>
+      <Box
+        as="input"
+        type="number"
+        borderWidth={0}
+        padding={0}
+        color="textNeutralDefault"
+        fontSize="bodySmall"
+      />
+    </Box>
+  );
 };
 
 const OperandRange = () => {
-  return <Box>OperandRange</Box>;
+  return (
+    <Box display="flex">
+      <OperandNumber />
+      <Box as="span" paddingX={5}>
+        -
+      </Box>
+      <OperandNumber />
+    </Box>
+  );
 };
 
 interface ExpressionProps {
