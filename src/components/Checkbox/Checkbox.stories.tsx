@@ -1,7 +1,7 @@
 import { ComponentMeta } from "@storybook/react";
 
 import { useEffect, useState } from "react";
-import { DecorativeBox } from "./DecorativeBox";
+import { DecorativeBox } from "~/utils/DecorativeBox";
 import { Box } from "../Box";
 import { Text } from "../Text";
 import { Checkbox, CheckedState } from ".";
