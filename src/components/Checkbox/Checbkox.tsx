@@ -3,7 +3,7 @@ import {
   CheckboxProps as RadixCheckboxProps,
   Indicator,
 } from "@radix-ui/react-checkbox";
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { classNames } from "~/utils";
 import { CheckedIcon } from "./CheckedIcon";
 import { IndeterminateIcon } from "./IndeterminateIcon";
@@ -17,35 +17,37 @@ export type CheckboxProps = RadixCheckboxProps & {
 
 export type CheckedState = boolean | "indeterminate";
 
-export const Checkbox = ({
-  error = false,
-  checked,
-  disabled,
-  children,
-  ...props
-}: CheckboxProps) => {
-  const iconColor = disabled ? "iconNeutralSubdued" : "iconNeutralContrasted";
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
+  (
+    { error = false, checked, disabled, children, ...props }: CheckboxProps,
+    ref
+  ) => {
+    const iconColor = disabled ? "iconNeutralSubdued" : "iconNeutralContrasted";
 
-  return (
-    <Box display="flex" alignItems="center" gap={4}>
-      <RadixCheckbox
-        className={classNames(
-          commonCheckbox,
-          error ? errorCheckbox : defaultCheckbox
-        )}
-        checked={checked}
-        disabled={disabled}
-        {...props}
-      >
-        <Indicator asChild>
-          {checked === "indeterminate" ? (
-            <IndeterminateIcon color={iconColor} />
-          ) : (
-            <CheckedIcon color={iconColor} />
+    return (
+      <Box display="flex" alignItems="center" gap={4}>
+        <RadixCheckbox
+          ref={ref}
+          className={classNames(
+            commonCheckbox,
+            error ? errorCheckbox : defaultCheckbox
           )}
-        </Indicator>
-      </RadixCheckbox>
-      {children}
-    </Box>
-  );
-};
+          checked={checked}
+          disabled={disabled}
+          {...props}
+        >
+          <Indicator asChild>
+            {checked === "indeterminate" ? (
+              <IndeterminateIcon color={iconColor} />
+            ) : (
+              <CheckedIcon color={iconColor} />
+            )}
+          </Indicator>
+        </RadixCheckbox>
+        {children}
+      </Box>
+    );
+  }
+);
+
+Checkbox.displayName = "Checkbox";
