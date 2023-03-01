@@ -31,3 +31,4 @@ export * from "./TrashBinIcon";
 export * from "./MailIcon";
 export * from "./GripIcon";
 export * from "./GenericAppIcon";
+export * from "./CopyIcon";
