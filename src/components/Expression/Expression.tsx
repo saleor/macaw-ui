@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { Dropdown, DropdownItem } from "./Dropdown";
 import { Box } from "../Box";
 
 // import { button, ButtonVariants } from "./Button.css";
@@ -22,24 +23,15 @@ const Condition = () => {
   );
 };
 
-const OperandDropdown = () => {
-  return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <Box>OperandDropdown</Box>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content>
-          <DropdownMenu.Item>operand 1</DropdownMenu.Item>
-          <DropdownMenu.Item>operand 1</DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
-  );
-};
-
 const OperandAutocomplete = () => {
-  return <Box>OperandAutocomplete</Box>;
+  return (
+    <Box>
+      asd
+      <Dropdown>
+        <DropdownItem>item 1</DropdownItem>
+      </Dropdown>
+    </Box>
+  );
 };
 
 const OperandText = () => {
@@ -107,12 +99,12 @@ export const Expression = ({ children }: ExpressionProps) => {
     </Box>
   );
 };
+Expression.displayName = "Expression";
+Expression.OperandDropdown = Dropdown;
+Expression.OperandItem = DropdownItem;
 
 Expression.Condition = Condition;
-Expression.OperandDropdown = OperandDropdown;
 Expression.OperandAutocomplete = OperandAutocomplete;
 Expression.OperandText = OperandText;
 Expression.OperandNumber = OperandNumber;
 Expression.OperandRange = OperandRange;
-
-Expression.displayName = "Expression";
