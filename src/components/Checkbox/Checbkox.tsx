@@ -8,7 +8,7 @@ import { classNames } from "~/utils";
 import { CheckedIcon } from "./CheckedIcon";
 import { IndeterminateIcon } from "./IndeterminateIcon";
 import { Box } from "../Box";
-import { checkbox, commonCheckbox } from "./Checkbox.css";
+import { defaultCheckbox, errorCheckbox, commonCheckbox } from "./Checkbox.css";
 
 export type CheckboxProps = RadixCheckboxProps & {
   error?: boolean;
@@ -29,7 +29,10 @@ export const Checkbox = ({
   return (
     <Box display="flex" alignItems="center" gap={4}>
       <RadixCheckbox
-        className={classNames(commonCheckbox, checkbox)}
+        className={classNames(
+          commonCheckbox,
+          error ? errorCheckbox : defaultCheckbox
+        )}
         checked={checked}
         disabled={disabled}
         {...props}

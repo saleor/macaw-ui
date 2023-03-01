@@ -78,7 +78,10 @@ export const Default = () => {
       <DecorativeBox>
         <Text variant="heading">Default checkboxes</Text>
         <Checkbox>
-          <Text variant="body">Option</Text>
+          <Text variant="body">Option 1</Text>
+        </Checkbox>
+        <Checkbox defaultChecked>
+          <Text variant="body">Option 2</Text>
         </Checkbox>
         <Checkbox disabled>
           <Text variant="body" color="textNeutralDisabled">
@@ -93,6 +96,22 @@ export const Default = () => {
       </DecorativeBox>
       <DecorativeBox>
         <Text variant="heading">Error checkboxes</Text>
+        <Checkbox error>
+          <Text variant="body">Option 1</Text>
+        </Checkbox>
+        <Checkbox error defaultChecked>
+          <Text variant="body">Option 2</Text>
+        </Checkbox>
+        <Checkbox error disabled>
+          <Text variant="body" color="textNeutralDisabled">
+            Disabled option
+          </Text>
+        </Checkbox>
+        <Checkbox error disabled checked={true}>
+          <Text variant="body" color="textNeutralDisabled">
+            Checked disabled option
+          </Text>
+        </Checkbox>
       </DecorativeBox>
     </Box>
   );
