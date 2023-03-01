@@ -20,6 +20,7 @@ export const DropdownItem = ({ children }: DropdownItemProps) => (
 type DropdownProps = DropdownTriggerVariants & {
   children: ReactNode;
   triggerText?: string;
+  open?: boolean;
 };
 
 export const Dropdown = ({ children, triggerText }: DropdownProps) => {

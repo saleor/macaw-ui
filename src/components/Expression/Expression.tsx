@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Dropdown, DropdownItem } from "./Dropdown";
 import { Box } from "../Box";
+import { OperandAutocomplete } from "./OperandAutocomplete";
 
 // import { button, ButtonVariants } from "./Button.css";
 
@@ -23,16 +24,6 @@ const Condition = () => {
   );
 };
 
-const OperandAutocomplete = () => {
-  return (
-    <Box>
-      asd
-      <Dropdown>
-        <DropdownItem>item 1</DropdownItem>
-      </Dropdown>
-    </Box>
-  );
-};
 
 const OperandText = () => {
   return (
@@ -102,9 +93,11 @@ export const Expression = ({ children }: ExpressionProps) => {
 Expression.displayName = "Expression";
 Expression.OperandDropdown = Dropdown;
 Expression.OperandItem = DropdownItem;
+Expression.OperandAutocomplete = OperandAutocomplete;
+Expression.AutocompleteItem = DropdownItem;
+
 
 Expression.Condition = Condition;
-Expression.OperandAutocomplete = OperandAutocomplete;
 Expression.OperandText = OperandText;
 Expression.OperandNumber = OperandNumber;
 Expression.OperandRange = OperandRange;

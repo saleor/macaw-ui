@@ -63,7 +63,11 @@ export const Default: ComponentStory<typeof Expression> = () => (
           <Expression.OperandItem>type 3</Expression.OperandItem>
         </Expression.OperandDropdown>
         <Expression.Condition />
-        <Expression.OperandAutocomplete />
+        <Expression.OperandAutocomplete>
+          <Expression.AutocompleteItem>item 1</Expression.AutocompleteItem>
+          <Expression.AutocompleteItem>item 2</Expression.AutocompleteItem>
+          <Expression.AutocompleteItem>item 3</Expression.AutocompleteItem>
+        </Expression.OperandAutocomplete>
       </Expression>
     </Box>
     {/* <Box paddingY={9}>

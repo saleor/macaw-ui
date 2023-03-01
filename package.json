@@ -80,6 +80,8 @@
     "@babel/core": "^7.20.7",
     "@dessert-box/react": "^0.4.0",
     "@radix-ui/react-accordion": "^1.0.1",
+    "@radix-ui/react-dialog": "^1.0.2",
+    "@radix-ui/react-dropdown-menu": "^2.0.2",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
     "@storybook/addon-interactions": "^6.5.15",
@@ -91,6 +93,7 @@
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "@vanilla-extract/css": "^1.9.2",
+    "@vanilla-extract/dynamic": "^2.0.3",
     "@vanilla-extract/recipes": "^0.3.0",
     "@vanilla-extract/sprinkles": "^1.5.1",
     "@vanilla-extract/vite-plugin": "^3.7.0",
@@ -115,13 +118,11 @@
     "vite": "^3.2.5",
     "vite-plugin-dts": "^1.7.1",
     "vitest": "^0.27.2",
-    "webpack": "^5.75.0",
-    "@radix-ui/react-dropdown-menu": "^2.0.2",
-    "@radix-ui/react-dialog": "^1.0.2",
-    "@vanilla-extract/dynamic": "^2.0.3"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.5.0",
+    "@radix-ui/react-select": "^1.2.0",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",

@@ -40,4 +40,15 @@ export const dropdownTrigger = recipe({
   },
 });
 
+export const input = recipe({
+  base: [
+    sprinkles({
+      borderWidth: 0,
+      padding: 0,
+      color: "textNeutralDefault",
+      fontSize: "bodySmall"
+    })
+  ]
+})
+
 export type DropdownTriggerVariants = RecipeVariants<typeof dropdownTrigger>;
