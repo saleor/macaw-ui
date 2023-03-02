@@ -46,6 +46,7 @@ const {
       interactiveCriticalHovering,
       interactiveCriticalFocused,
       interactiveNeutralDisabled,
+      interactiveNeutralHighlightPressing,
     },
     border: { neutralHighlight },
   },
@@ -95,10 +96,10 @@ export const itemRecipe = recipe({
         "&:hover:after": {
           backgroundColor: interactiveNeutralHighlightHovering,
         },
-        "&:focus": {
+        "&:focus-visible": {
           backgroundColor: interactiveNeutralSecondaryFocused,
         },
-        "&:focus:after": {
+        "&:focus-visible:after": {
           backgroundColor: interactiveNeutralHighlightFocused,
         },
         "&[data-state='checked']": {
@@ -111,10 +112,10 @@ export const itemRecipe = recipe({
         "&[data-state='checked']:hover:after": {
           backgroundColor: interactiveBrandHighlightHovering,
         },
-        "&[data-state='checked']:focus": {
+        "&[data-state='checked']:focus-visible": {
           backgroundColor: interactiveBrandFocused,
         },
-        "&[data-state='checked']:focus:after": {
+        "&[data-state='checked']:focus-visible:after": {
           backgroundColor: interactiveBrandHighlightFocused,
         },
       },
@@ -140,10 +141,10 @@ export const itemRecipe = recipe({
           "&:hover:after": {
             backgroundColor: interactiveCriticalHighlightHovering,
           },
-          "&:focus": {
+          "&:focus-visible": {
             backgroundColor: interactiveCriticalSecondaryFocused,
           },
-          "&:focus:after": {
+          "&:focus-visible:after": {
             backgroundColor: interactiveCriticalHighlightFocused,
           },
           "&[data-state='checked']": {
@@ -156,10 +157,10 @@ export const itemRecipe = recipe({
           "&[data-state='checked']:hover:after": {
             backgroundColor: interactiveCriticalHighlightHovering,
           },
-          "&[data-state='checked']:focus": {
+          "&[data-state='checked']:focus-visible": {
             backgroundColor: interactiveCriticalFocused,
           },
-          "&[data-state='checked']:focus:after": {
+          "&[data-state='checked']:focus-visible:after": {
             backgroundColor: interactiveCriticalHighlightFocused,
           },
         },
@@ -170,6 +171,12 @@ export const itemRecipe = recipe({
         selectors: {
           "&:hover": {
             backgroundColor: interactiveNeutralDisabled,
+          },
+          "&:active": {
+            backgroundColor: interactiveNeutralDisabled,
+          },
+          "&:active:after": {
+            backgroundColor: interactiveNeutralHighlightPressing,
           },
           "&[data-state='checked']:hover": {
             backgroundColor: interactiveNeutralDisabled,

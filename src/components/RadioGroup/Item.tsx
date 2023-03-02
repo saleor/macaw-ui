@@ -47,7 +47,7 @@ export const RadioGroupItem = ({
         </svg>
       </RadioGroup.Indicator>
     </RadioGroup.Item>
-    <Box as="label" htmlFor={id}>
+    <Box as="label" htmlFor={id} cursor={disabled ? "not-allowed" : "pointer"}>
       {children}
     </Box>
   </Box>
