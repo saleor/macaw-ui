@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Box } from "../components/Box";
+import { Box } from "~/components";
 
 interface DecorativeBoxProps {
   children: ReactNode;
