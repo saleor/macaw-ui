@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { Sprinkles } from "~/theme";
 
 import { Box } from "../Box";
-import { indicatorRecipe, itemRecipe } from "./RadioGroup.css";
+import { indicator, item } from "./Item.css";
 
 type RadioGroupItemProps = {
   value: string;
@@ -31,12 +31,12 @@ export const RadioGroupItem = ({
     className={className}
   >
     <RadioGroup.Item
-      className={itemRecipe({ error, disabled })}
+      className={item({ error, disabled })}
       value={value}
       id={id}
       disabled={disabled}
     >
-      <RadioGroup.Indicator className={indicatorRecipe({ disabled })} asChild>
+      <RadioGroup.Indicator className={indicator({ disabled })} asChild>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="6"

@@ -1,7 +1,7 @@
 import { recipe } from "@vanilla-extract/recipes";
 import { sprinkles, vars } from "~/theme";
 
-export const indicatorRecipe = recipe({
+export const indicator = recipe({
   base: [
     sprinkles({
       position: "absolute",
@@ -52,7 +52,7 @@ const {
   },
 } = vars;
 
-export const itemRecipe = recipe({
+export const item = recipe({
   base: [
     sprinkles({
       position: "relative",
