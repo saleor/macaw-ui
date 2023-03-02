@@ -1,9 +1,9 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { ReactNode } from "react";
-import { Sprinkles, vars } from "~/theme";
+import { Sprinkles } from "~/theme";
 
 import { Box } from "../Box";
-import { indicator, item } from "./RadioGroup.css";
+import { indicatorRecipe, itemRecipe } from "./RadioGroup.css";
 
 type RadioGroupItemProps = {
   value: string;
@@ -20,6 +20,7 @@ export const RadioGroupItem = ({
   disabled,
   children,
   className,
+  error,
   ...rest
 }: RadioGroupItemProps) => (
   <Box
@@ -29,24 +30,24 @@ export const RadioGroupItem = ({
     {...rest}
     className={className}
   >
-    <RadioGroup.Item className={item} value={value} id={id} disabled={disabled}>
-      <RadioGroup.Indicator className={indicator} asChild>
+    <RadioGroup.Item
+      className={itemRecipe({ error, disabled })}
+      value={value}
+      id={id}
+      disabled={disabled}
+    >
+      <RadioGroup.Indicator className={indicatorRecipe({ disabled })} asChild>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="6"
           height="6"
           fill="currentColor"
-          color={
-            disabled
-              ? vars.colors.foreground.iconNeutralSubdued
-              : vars.colors.background.surfaceNeutralPlain
-          }
         >
           <circle cx="3" cy="3" r="3" fill="currentColor" />
         </svg>
       </RadioGroup.Indicator>
     </RadioGroup.Item>
-    <Box as="label" htmlFor={id} pointerEvents={disabled ? "none" : "auto"}>
+    <Box as="label" htmlFor={id}>
       {children}
     </Box>
   </Box>

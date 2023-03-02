@@ -1,79 +1,188 @@
-import { style } from "@vanilla-extract/css";
-import { vars } from "~/theme";
+import { recipe } from "@vanilla-extract/recipes";
+import { sprinkles, vars } from "~/theme";
 
-export const item = style({
-  width: "14px",
-  height: "14px",
-  borderRadius: "100%",
-  backgroundColor: vars.colors.background.interactiveNeutralSecondaryDefault,
-  border: "1px solid",
-  borderColor: vars.colors.border.neutralDefault,
-  cursor: "pointer",
-  boxShadow: vars.boxShadow.interactiveDefaultFocused,
-  position: "relative",
-
-  selectors: {
-    "&:after": {
-      content: "",
-      width: "20px",
-      height: "20px",
-      display: "block",
-      borderRadius: "50%",
+export const indicatorRecipe = recipe({
+  base: [
+    sprinkles({
       position: "absolute",
-      top: "-4px",
-      left: "-4px",
+      display: "block",
+      zIndex: "1",
+      inset: 2,
+    }),
+  ],
+  variants: {
+    disabled: {
+      true: sprinkles({ color: "iconNeutralDisabled" }),
+      false: sprinkles({ color: "iconNeutralContrasted" }),
     },
-    "&:hover": {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralSecondaryHovering,
-    },
-    "&:active": {
-      backgroundColor: vars.colors.background.interactiveBrandPressing,
-    },
-    "&[data-disabled]": {
-      pointerEvents: "none",
-    },
-    "&[data-state='checked'][data-disabled]": {
-      backgroundColor: vars.colors.background.interactiveBrandDisabled,
-    },
-    "&:active:after": {
-      backgroundColor: vars.colors.background.interactiveBrandHighlightPressing,
-    },
-    "&:hover:after": {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralHighlightHovering,
-    },
-    "&:focus": {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralSecondaryFocused,
-    },
-    "&:focus:after": {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralHighlightFocused,
-    },
-    "&[data-state='checked']": {
-      backgroundColor: vars.colors.background.interactiveBrandDefault,
-      borderColor: vars.colors.border.neutralHighlight,
-    },
-    "&[data-state='checked']:hover": {
-      backgroundColor: vars.colors.background.interactiveBrandHovering,
-    },
-    "&[data-state='checked']:hover:after": {
-      backgroundColor: vars.colors.background.interactiveBrandHighlightHovering,
-    },
-    "&[data-state='checked']:focus": {
-      backgroundColor: vars.colors.background.interactiveBrandFocused,
-    },
-    "&[data-state='checked']:focus:after": {
-      backgroundColor: vars.colors.background.interactiveBrandHighlightFocused,
-    },
+  },
+  defaultVariants: {
+    disabled: false,
   },
 });
 
-export const indicator = style({
-  position: "absolute",
-  top: "3px",
-  left: "3px",
-  display: "block",
-  zIndex: 1,
+const {
+  colors: {
+    background: {
+      interactiveNeutralSecondaryHovering,
+      interactiveBrandPressing,
+      interactiveBrandDisabled,
+      interactiveBrandHighlightPressing,
+      interactiveNeutralHighlightHovering,
+      interactiveNeutralSecondaryFocused,
+      interactiveNeutralHighlightFocused,
+      interactiveBrandDefault,
+      interactiveBrandHovering,
+      interactiveBrandHighlightHovering,
+      interactiveBrandFocused,
+      interactiveBrandHighlightFocused,
+      interactiveCriticalSecondaryHovering,
+      interactiveCriticalSecondaryPressing,
+      interactiveCriticalHighlightPressing,
+      interactiveCriticalHighlightHovering,
+      interactiveCriticalSecondaryFocused,
+      interactiveCriticalHighlightFocused,
+      interactiveCriticalDefault,
+      interactiveCriticalHovering,
+      interactiveCriticalFocused,
+      interactiveNeutralDisabled,
+    },
+    border: { neutralHighlight },
+  },
+} = vars;
+
+export const itemRecipe = recipe({
+  base: [
+    sprinkles({
+      position: "relative",
+      boxShadow: "interactiveDefaultFocused",
+      borderColor: "neutralDefault",
+      cursor: "pointer",
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: "100%",
+      width: 6,
+      height: 6,
+      padding: 0,
+      backgroundColor: "interactiveNeutralSecondaryDefault",
+    }),
+    {
+      selectors: {
+        "&:after": {
+          content: "",
+          width: vars.space[8],
+          height: vars.space[8],
+          display: "block",
+          borderRadius: "50%",
+          position: "absolute",
+          inset: "-5px",
+        },
+        "&:hover": {
+          backgroundColor: interactiveNeutralSecondaryHovering,
+        },
+        "&:active": {
+          backgroundColor: interactiveBrandPressing,
+        },
+        "&[data-disabled]": {
+          cursor: "not-allowed",
+        },
+        "&[data-state='checked'][data-disabled]": {
+          backgroundColor: interactiveBrandDisabled,
+        },
+        "&:active:after": {
+          backgroundColor: interactiveBrandHighlightPressing,
+        },
+        "&:hover:after": {
+          backgroundColor: interactiveNeutralHighlightHovering,
+        },
+        "&:focus": {
+          backgroundColor: interactiveNeutralSecondaryFocused,
+        },
+        "&:focus:after": {
+          backgroundColor: interactiveNeutralHighlightFocused,
+        },
+        "&[data-state='checked']": {
+          backgroundColor: interactiveBrandDefault,
+          borderColor: neutralHighlight,
+        },
+        "&[data-state='checked']:hover": {
+          backgroundColor: interactiveBrandHovering,
+        },
+        "&[data-state='checked']:hover:after": {
+          backgroundColor: interactiveBrandHighlightHovering,
+        },
+        "&[data-state='checked']:focus": {
+          backgroundColor: interactiveBrandFocused,
+        },
+        "&[data-state='checked']:focus:after": {
+          backgroundColor: interactiveBrandHighlightFocused,
+        },
+      },
+    },
+  ],
+
+  variants: {
+    error: {
+      true: {
+        selectors: {
+          "&:hover": {
+            backgroundColor: interactiveCriticalSecondaryHovering,
+          },
+          "&:active": {
+            backgroundColor: interactiveCriticalSecondaryPressing,
+          },
+          "&[data-state='checked'][data-disabled]": {
+            backgroundColor: interactiveBrandDisabled,
+          },
+          "&:active:after": {
+            backgroundColor: interactiveCriticalHighlightPressing,
+          },
+          "&:hover:after": {
+            backgroundColor: interactiveCriticalHighlightHovering,
+          },
+          "&:focus": {
+            backgroundColor: interactiveCriticalSecondaryFocused,
+          },
+          "&:focus:after": {
+            backgroundColor: interactiveCriticalHighlightFocused,
+          },
+          "&[data-state='checked']": {
+            backgroundColor: interactiveCriticalDefault,
+            borderColor: vars.colors.border.neutralHighlight,
+          },
+          "&[data-state='checked']:hover": {
+            backgroundColor: interactiveCriticalHovering,
+          },
+          "&[data-state='checked']:hover:after": {
+            backgroundColor: interactiveCriticalHighlightHovering,
+          },
+          "&[data-state='checked']:focus": {
+            backgroundColor: interactiveCriticalFocused,
+          },
+          "&[data-state='checked']:focus:after": {
+            backgroundColor: interactiveCriticalHighlightFocused,
+          },
+        },
+      },
+    },
+    disabled: {
+      true: {
+        selectors: {
+          "&:hover": {
+            backgroundColor: interactiveNeutralDisabled,
+          },
+          "&[data-state='checked']:hover": {
+            backgroundColor: interactiveNeutralDisabled,
+          },
+          "&[data-state='checked']:hover:after": {
+            backgroundColor: interactiveNeutralHighlightHovering,
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    error: false,
+    disabled: false,
+  },
 });
