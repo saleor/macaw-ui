@@ -18,8 +18,18 @@ export const item = style({
         vars.colors.background.interactiveNeutralSecondaryHovering,
     },
     "&:active": {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralHighlightPressing,
+      backgroundColor: vars.colors.background.interactiveBrandPressing,
+    },
+    "&:active:after": {
+      content: "",
+      backgroundColor: vars.colors.background.interactiveBrandHighlightPressing,
+      width: "20px",
+      height: "20px",
+      display: "block",
+      borderRadius: "50%",
+      position: "absolute",
+      top: "-4px",
+      left: "-4px",
     },
     "&:hover:after": {
       content: "",
@@ -89,4 +99,5 @@ export const indicator = style({
   top: "3px",
   left: "3px",
   display: "block",
+  zIndex: 1,
 });

@@ -26,7 +26,25 @@ export const RadioGroupItem = () => (
         </RadioGroup.Indicator>
       </RadioGroup.Item>
       <label className="Label" htmlFor="r1">
-        Default
+        Default 1
+      </label>
+    </Box>
+
+    <Box display="flex" alignItems="center" gap={5}>
+      <RadioGroup.Item className={item} value="default2" id="r2">
+        <RadioGroup.Indicator className={indicator} asChild>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="6"
+            height="6"
+            fill="none"
+          >
+            <circle cx="3" cy="3" r="3" fill="#fff" />
+          </svg>
+        </RadioGroup.Indicator>
+      </RadioGroup.Item>
+      <label className="Label" htmlFor="r2">
+        Default 2
       </label>
     </Box>
   </RadioGroup.Root>
