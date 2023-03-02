@@ -1,4 +1,4 @@
 import { RadioGroupRoot } from "./Group";
-import { RadioGroupItem } from "./Item";
+import { RadioGroupItem as Item } from "./Item";
 
-export const RadioGroup = Object.assign(RadioGroupRoot, { RadioGroupItem });
+export const RadioGroup = Object.assign(RadioGroupRoot, { Item });

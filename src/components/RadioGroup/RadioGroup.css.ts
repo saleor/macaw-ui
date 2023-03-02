@@ -13,6 +13,16 @@ export const item = style({
   position: "relative",
 
   selectors: {
+    "&:after": {
+      content: "",
+      width: "20px",
+      height: "20px",
+      display: "block",
+      borderRadius: "50%",
+      position: "absolute",
+      top: "-4px",
+      left: "-4px",
+    },
     "&:hover": {
       backgroundColor:
         vars.colors.background.interactiveNeutralSecondaryHovering,
@@ -20,44 +30,26 @@ export const item = style({
     "&:active": {
       backgroundColor: vars.colors.background.interactiveBrandPressing,
     },
+    "&[data-disabled]": {
+      pointerEvents: "none",
+    },
+    "&[data-state='checked'][data-disabled]": {
+      backgroundColor: vars.colors.background.interactiveBrandDisabled,
+    },
     "&:active:after": {
-      content: "",
       backgroundColor: vars.colors.background.interactiveBrandHighlightPressing,
-      width: "20px",
-      height: "20px",
-      display: "block",
-      borderRadius: "50%",
-      position: "absolute",
-      top: "-4px",
-      left: "-4px",
     },
     "&:hover:after": {
-      content: "",
       backgroundColor:
         vars.colors.background.interactiveNeutralHighlightHovering,
-      width: "20px",
-      height: "20px",
-      display: "block",
-      borderRadius: "50%",
-      position: "absolute",
-      top: "-4px",
-      left: "-4px",
     },
     "&:focus": {
       backgroundColor:
         vars.colors.background.interactiveNeutralSecondaryFocused,
     },
     "&:focus:after": {
-      content: "",
       backgroundColor:
         vars.colors.background.interactiveNeutralHighlightFocused,
-      width: "20px",
-      height: "20px",
-      display: "block",
-      borderRadius: "50%",
-      position: "absolute",
-      top: "-4px",
-      left: "-4px",
     },
     "&[data-state='checked']": {
       backgroundColor: vars.colors.background.interactiveBrandDefault,
@@ -67,29 +59,13 @@ export const item = style({
       backgroundColor: vars.colors.background.interactiveBrandHovering,
     },
     "&[data-state='checked']:hover:after": {
-      content: "",
       backgroundColor: vars.colors.background.interactiveBrandHighlightHovering,
-      width: "20px",
-      height: "20px",
-      display: "block",
-      borderRadius: "50%",
-      position: "absolute",
-      top: "-4px",
-      left: "-4px",
     },
     "&[data-state='checked']:focus": {
       backgroundColor: vars.colors.background.interactiveBrandFocused,
     },
     "&[data-state='checked']:focus:after": {
-      content: "",
       backgroundColor: vars.colors.background.interactiveBrandHighlightFocused,
-      width: "20px",
-      height: "20px",
-      display: "block",
-      borderRadius: "50%",
-      position: "absolute",
-      top: "-4px",
-      left: "-4px",
     },
   },
 });
