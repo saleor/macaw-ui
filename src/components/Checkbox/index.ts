@@ -1,1 +1,1 @@
-export * from "./Checbkox";
+export * from "./Checkbox";
