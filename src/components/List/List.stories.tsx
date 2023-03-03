@@ -14,7 +14,7 @@ export const Item = () => (
   <List>
     <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
       <HomeIcon color="iconNeutralSubdued" />
-      <Text>List component</Text>
+      <Text color={"textNeutralPlain"}>List component</Text>
     </List.Item>
   </List>
 );
