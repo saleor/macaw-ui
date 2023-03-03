@@ -1,5 +1,5 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 
 import { Sprinkles } from "~/theme";
 
@@ -17,41 +17,42 @@ type RadioGroupItemProps = {
 } & Sprinkles &
   DataAttributes;
 
-export const RadioGroupItem = ({
-  value,
-  id,
-  disabled,
-  children,
-  className,
-  error,
-  ...rest
-}: RadioGroupItemProps) => (
-  <Box
-    display="flex"
-    alignItems="center"
-    gap={4}
-    {...rest}
-    className={className}
-  >
-    <RadioGroup.Item
-      className={item({ error, disabled })}
-      value={value}
-      id={id}
-      disabled={disabled}
+export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
+  ({ value, id, disabled, children, className, error, ...rest }, ref) => (
+    <Box
+      display="flex"
+      alignItems="center"
+      gap={4}
+      {...rest}
+      className={className}
+      ref={ref}
     >
-      <RadioGroup.Indicator className={indicator({ disabled })} asChild>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="6"
-          height="6"
-          fill="currentColor"
-        >
-          <circle cx="3" cy="3" r="3" fill="currentColor" />
-        </svg>
-      </RadioGroup.Indicator>
-    </RadioGroup.Item>
-    <Box as="label" htmlFor={id} cursor={disabled ? "not-allowed" : "pointer"}>
-      {children}
+      <RadioGroup.Item
+        className={item({ error, disabled })}
+        value={value}
+        id={id}
+        disabled={disabled}
+      >
+        <RadioGroup.Indicator className={indicator({ disabled })} asChild>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="6"
+            height="6"
+            fill="currentColor"
+          >
+            <circle cx="3" cy="3" r="3" fill="currentColor" />
+          </svg>
+        </RadioGroup.Indicator>
+      </RadioGroup.Item>
+      <Box
+        as="label"
+        htmlFor={id}
+        cursor={disabled ? "not-allowed" : "pointer"}
+      >
+        {children}
+      </Box>
     </Box>
-  </Box>
+  )
 );
+
+RadioGroupItem.displayName = "RadioGroup.Item";
