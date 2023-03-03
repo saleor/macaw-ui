@@ -1,6 +1,5 @@
 export * from "./Box";
 export * from "./Button";
-export * from "./Checkbox";
 export * from "./Chip";
 export * from "./Icons";
 export * from "./List";
@@ -9,3 +8,5 @@ export * from "./Avatar";
 export * from "./Dropdown";
 export * from "./Drawer";
 export * from "./Input";
+export * from "./Checkbox";
+export * from "./RadioGroup";

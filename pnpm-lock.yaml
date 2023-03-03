@@ -8,6 +8,7 @@ specifiers:
   "@radix-ui/react-checkbox": ^1.0.2
   "@radix-ui/react-dialog": ^1.0.2
   "@radix-ui/react-dropdown-menu": ^2.0.2
+  "@radix-ui/react-radio-group": ^1.1.1
   "@storybook/addon-actions": ^6.5.15
   "@storybook/addon-essentials": ^6.5.15
   "@storybook/addon-interactions": ^6.5.15
@@ -53,6 +54,7 @@ specifiers:
 
 dependencies:
   "@floating-ui/react-dom-interactions": 0.5.0_gzv7pa6nrbev3fs6gyzn7sadkq
+  "@radix-ui/react-radio-group": 1.1.1_sfoxds7t5ydpegc3knd667wn6m
   clsx: 1.2.1
   downshift: 6.1.12_react@17.0.2
   lodash: 4.17.21
@@ -2826,7 +2828,6 @@ packages:
       }
     dependencies:
       "@babel/runtime": 7.20.7
-    dev: true
 
   /@radix-ui/react-accordion/1.0.1_sfoxds7t5ydpegc3knd667wn6m:
     resolution:
@@ -2925,7 +2926,6 @@ packages:
       "@radix-ui/react-slot": 1.0.1_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-    dev: true
 
   /@radix-ui/react-compose-refs/1.0.0_react@17.0.2:
     resolution:
@@ -2937,7 +2937,6 @@ packages:
     dependencies:
       "@babel/runtime": 7.20.7
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-context/1.0.0_react@17.0.2:
     resolution:
@@ -2949,7 +2948,6 @@ packages:
     dependencies:
       "@babel/runtime": 7.20.7
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-dialog/1.0.2_gzv7pa6nrbev3fs6gyzn7sadkq:
     resolution:
@@ -2991,7 +2989,6 @@ packages:
     dependencies:
       "@babel/runtime": 7.20.7
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-dismissable-layer/1.0.2_sfoxds7t5ydpegc3knd667wn6m:
     resolution:
@@ -3075,7 +3072,6 @@ packages:
       "@babel/runtime": 7.20.7
       "@radix-ui/react-use-layout-effect": 1.0.0_react@17.0.2
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-menu/2.0.2_gzv7pa6nrbev3fs6gyzn7sadkq:
     resolution:
@@ -3166,7 +3162,6 @@ packages:
       "@radix-ui/react-use-layout-effect": 1.0.0_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-    dev: true
 
   /@radix-ui/react-primitive/1.0.1_sfoxds7t5ydpegc3knd667wn6m:
     resolution:
@@ -3181,7 +3176,30 @@ packages:
       "@radix-ui/react-slot": 1.0.1_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-    dev: true
+
+  /@radix-ui/react-radio-group/1.1.1_sfoxds7t5ydpegc3knd667wn6m:
+    resolution:
+      {
+        integrity: sha512-fmg1CuDKt3GAkL3YnHekmdOicyrXlbp/s/D0MrHa+YB2Un+umpJGheiRowlQtxSpb1eeehKNTINgNESi8WK5rA==,
+      }
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      "@babel/runtime": 7.20.7
+      "@radix-ui/primitive": 1.0.0
+      "@radix-ui/react-compose-refs": 1.0.0_react@17.0.2
+      "@radix-ui/react-context": 1.0.0_react@17.0.2
+      "@radix-ui/react-direction": 1.0.0_react@17.0.2
+      "@radix-ui/react-presence": 1.0.0_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-primitive": 1.0.1_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-roving-focus": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-use-controllable-state": 1.0.0_react@17.0.2
+      "@radix-ui/react-use-previous": 1.0.0_react@17.0.2
+      "@radix-ui/react-use-size": 1.0.0_react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /@radix-ui/react-roving-focus/1.0.2_sfoxds7t5ydpegc3knd667wn6m:
     resolution:
@@ -3204,7 +3222,6 @@ packages:
       "@radix-ui/react-use-controllable-state": 1.0.0_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-    dev: true
 
   /@radix-ui/react-slot/1.0.1_react@17.0.2:
     resolution:
@@ -3217,7 +3234,6 @@ packages:
       "@babel/runtime": 7.20.7
       "@radix-ui/react-compose-refs": 1.0.0_react@17.0.2
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-use-callback-ref/1.0.0_react@17.0.2:
     resolution:
@@ -3229,7 +3245,6 @@ packages:
     dependencies:
       "@babel/runtime": 7.20.7
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-use-controllable-state/1.0.0_react@17.0.2:
     resolution:
@@ -3242,7 +3257,6 @@ packages:
       "@babel/runtime": 7.20.7
       "@radix-ui/react-use-callback-ref": 1.0.0_react@17.0.2
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-use-escape-keydown/1.0.2_react@17.0.2:
     resolution:
@@ -3267,7 +3281,6 @@ packages:
     dependencies:
       "@babel/runtime": 7.20.7
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-use-previous/1.0.0_react@17.0.2:
     resolution:
@@ -3279,7 +3292,6 @@ packages:
     dependencies:
       "@babel/runtime": 7.20.7
       react: 17.0.2
-    dev: true
 
   /@radix-ui/react-use-rect/1.0.0_react@17.0.2:
     resolution:
@@ -3305,7 +3317,6 @@ packages:
       "@babel/runtime": 7.20.7
       "@radix-ui/react-use-layout-effect": 1.0.0_react@17.0.2
       react: 17.0.2
-    dev: true
 
   /@radix-ui/rect/1.0.0:
     resolution:
