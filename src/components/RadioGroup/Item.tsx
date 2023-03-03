@@ -1,8 +1,10 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { ReactNode } from "react";
+
 import { Sprinkles } from "~/theme";
 
 import { Box } from "../Box";
+import { DataAttributes } from "../types";
 import { indicator, item } from "./Item.css";
 
 type RadioGroupItemProps = {
@@ -12,7 +14,8 @@ type RadioGroupItemProps = {
   children: ReactNode;
   className?: string;
   error?: boolean;
-} & Sprinkles;
+} & Sprinkles &
+  DataAttributes;
 
 export const RadioGroupItem = ({
   value,
