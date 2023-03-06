@@ -129,6 +129,8 @@ const responsiveProperties = defineProperties({
     right: vars.space,
     overflowX: ["hidden", "visible", "scroll", "auto"],
     overflowY: ["hidden", "visible", "scroll", "auto"],
+    textOverflow: ["none", "ellipsis"],
+    whiteSpace: ["normal", "nowrap"],
     zIndex: ["auto", "1", "2", "3"],
   },
   shorthands: {
