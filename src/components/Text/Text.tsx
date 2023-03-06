@@ -21,6 +21,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
       as = "span",
       variant,
       size,
+      ellipsis,
       color = "textNeutralDefault",
       className,
       ...rest
@@ -30,7 +31,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
     return (
       <Box
         as={as}
-        className={classNames(text({ variant, size }), className)}
+        className={classNames(text({ variant, size, ellipsis }), className)}
         color={color}
         ref={ref}
         margin={0}

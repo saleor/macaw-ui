@@ -21,6 +21,15 @@ export const text = recipe({
       medium: {},
       large: {},
     },
+    ellipsis: {
+      multiline: sprinkles({ overflow: "hidden", textOverflow: "ellipsis" }),
+      true: sprinkles({
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+      }),
+      false: {},
+    },
   },
 
   compoundVariants: [
