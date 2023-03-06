@@ -51,4 +51,20 @@ export const input = recipe({
   ]
 })
 
+export const autocompleteContainer = sprinkles({
+  position: "relative"
+});
+
+export const autocompleteInput = sprinkles({
+  borderWidth: 0,
+  padding: 0,
+  color: "textNeutralDefault",
+  fontSize: "bodySmall"
+});
+
+export const autocompleteContent = sprinkles({
+  position: "absolute"
+});
+
+
 export type DropdownTriggerVariants = RecipeVariants<typeof dropdownTrigger>;
