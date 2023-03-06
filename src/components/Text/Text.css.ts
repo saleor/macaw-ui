@@ -213,6 +213,7 @@ export const text = recipe({
   defaultVariants: {
     variant: "body",
     size: "medium",
+    ellipsis: false,
   },
 });
 
