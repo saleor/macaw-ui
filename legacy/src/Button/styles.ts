@@ -7,7 +7,7 @@ const useStyles = makeStyles(
     return {
       buttonDefault: {
         "& span": {
-          fontWeight: 580,
+          fontWeight: 600,
         },
       },
 
