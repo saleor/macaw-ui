@@ -8,7 +8,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
   ],
-  staticDirs: ["../public"],
+  staticDirs: [{ from: "../public", to: "/assets" }],
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-vite",
