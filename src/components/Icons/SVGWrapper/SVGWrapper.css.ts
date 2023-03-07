@@ -17,6 +17,7 @@ export const svgWrapper = recipe({
         width: vars.space[9],
         height: vars.space[9],
       },
+      fill: {},
     },
   },
   defaultVariants: {
