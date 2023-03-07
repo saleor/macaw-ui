@@ -3,7 +3,7 @@ import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { sprinkles } from "~/theme";
 
 export const text = recipe({
-  base: [],
+  base: [sprinkles({ fontFamily: "body" })],
 
   variants: {
     variant: {

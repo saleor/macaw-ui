@@ -195,7 +195,7 @@ export const vars = createGlobalThemeContract(
       captionMedium: null,
       captionSmall: null,
     },
-    fontWeight: {
+    fontVariationWeight: {
       heroLarge: null,
       heroMedium: null,
       heroSmall: null,

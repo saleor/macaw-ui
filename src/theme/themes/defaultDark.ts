@@ -3,7 +3,7 @@ import {
   borderWidth,
   fontFamily,
   fontSize,
-  fontWeight,
+  fontVariationWeight,
   letterSpacing,
   lineHeight,
   space,
@@ -128,7 +128,7 @@ export const defaultDark = {
   borderRadius,
   fontFamily,
   lineHeight,
-  fontWeight,
+  fontVariationWeight,
   letterSpacing,
   boxShadow: {
     interactiveDefaultFocused: "0px 1px 1px 0px hsla(0, 0%, 0%, 0.32)",

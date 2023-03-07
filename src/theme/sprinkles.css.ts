@@ -132,7 +132,6 @@ const responsiveProperties = defineProperties({
     borderTopStyle: ["none", "solid"],
     borderBottomStyle: ["none", "solid"],
     outlineStyle: ["none"],
-    fontWeight: vars.fontWeight,
     textTransform: ["uppercase"],
     letterSpacing: vars.letterSpacing,
     top: vars.space,
@@ -146,6 +145,7 @@ const responsiveProperties = defineProperties({
     zIndex: ["auto", "1", "2", "3"],
     aspectRatio: ["1 / 1"],
     objectFit: ["contain", "cover", "fill", "none", "scale-down"],
+    fontVariationSettings: vars.fontVariationWeight,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -155,7 +155,12 @@ const responsiveProperties = defineProperties({
     marginX: ["marginLeft", "marginRight"],
     marginY: ["marginTop", "marginBottom"],
     placeItems: ["alignItems", "justifyContent"],
-    typeSize: ["fontSize", "lineHeight", "fontWeight", "letterSpacing"],
+    typeSize: [
+      "fontSize",
+      "lineHeight",
+      "fontVariationSettings",
+      "letterSpacing",
+    ],
     borderWidth: [
       "borderTopWidth",
       "borderBottomWidth",
