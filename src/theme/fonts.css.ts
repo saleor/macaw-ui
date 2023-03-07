@@ -1,7 +1,7 @@
 import { globalFontFace, globalStyle } from "@vanilla-extract/css";
 
-const interVar = "Inter var";
-const inter = "Inter";
+const interVar = "'Inter var'";
+const inter = "'Inter'";
 
 globalStyle(":root", {
   fontFamily: inter,
