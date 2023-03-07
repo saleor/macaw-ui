@@ -144,6 +144,8 @@ const responsiveProperties = defineProperties({
     textOverflow: ["none", "ellipsis"],
     whiteSpace: ["normal", "nowrap"],
     zIndex: ["auto", "1", "2", "3"],
+    aspectRatio: ["1 / 1"],
+    objectFit: ["contain", "cover", "fill", "none", "scale-down"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
