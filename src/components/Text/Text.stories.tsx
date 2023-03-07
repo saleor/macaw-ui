@@ -14,6 +14,6 @@ export const Default = Template.bind({});
 Default.args = {
   color: "textNeutralDefault",
   size: "medium",
-  variant: "body",
+  variant: "bodyStrong",
   as: "p",
 };
