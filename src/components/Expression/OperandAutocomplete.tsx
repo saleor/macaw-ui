@@ -58,7 +58,6 @@ export const OperandAutocomplete = ({
     });
   };
 
-  console.log({ open });
   return (
     <Box className={autocompleteContainer}>
       <InputContainer>
@@ -73,7 +72,7 @@ export const OperandAutocomplete = ({
         <Portal.Root asChild>
           <Box
             className={classNames(dropdownContentStyles, autocompleteContent)}
-            transform={`translate(${pos.x}px, ${pos.y}px)`}
+            __transform={`translate(${pos.x}px, ${pos.y}px)`}
             __minWidth="128px"
           >
             {children}
