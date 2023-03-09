@@ -30,7 +30,6 @@ module.exports = (entryPoints, watch) => {
     entryPoints,
     loader: {
       ".svg": "text",
-      ".woff2": "file",
     },
     bundle: true,
     external: [
