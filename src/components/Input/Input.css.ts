@@ -6,7 +6,6 @@ export const label = recipe({
   base: [
     sprinkles({
       position: "relative",
-      fontFamily: "body",
       display: "flex",
       flexWrap: "wrap",
       color: "textNeutralSubdued",

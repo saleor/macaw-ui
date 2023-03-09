@@ -1,7 +1,6 @@
 import {
   borderRadius,
   borderWidth,
-  fontFamily,
   fontSize,
   fontWeight,
   letterSpacing,
@@ -126,7 +125,6 @@ export const defaultLight = {
   },
   fontSize,
   borderRadius,
-  fontFamily,
   lineHeight,
   fontWeight,
   letterSpacing,

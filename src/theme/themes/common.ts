@@ -49,10 +49,6 @@ export const borderRadius = {
   4: "8px",
 };
 
-export const fontFamily = {
-  body: "Inter var, sans-serif",
-};
-
 export const lineHeight = {
   heroLarge: "40px",
   heroMedium: "36px",
