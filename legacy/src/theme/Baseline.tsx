@@ -3,10 +3,44 @@ import { alpha } from "@material-ui/core/styles";
 import React from "react";
 
 import { makeStyles } from "./styles";
+import InterRegular from "./fonts/Inter-Regular.woff2";
+import InterMedium from "./fonts/Inter-Medium.woff2";
+import InterSemiBold from "./fonts/Inter-SemiBold.woff2";
+import InterBold from "./fonts/Inter-Bold.woff2";
 
 const useStyles = makeStyles(
   (theme) => ({
     "@global": {
+      "@font-face": [
+        {
+          fontFamily: "Inter",
+          fontStyle: "normal",
+          fontWeight: 400,
+          src: `url(${InterRegular}) format("woff2")`,
+          fontDisplay: "swap",
+        },
+        {
+          fontFamily: "Inter",
+          fontStyle: "normal",
+          fontWeight: 500,
+          src: `url(${InterMedium}) format("woff2")`,
+          fontDisplay: "swap",
+        },
+        {
+          fontFamily: "Inter",
+          fontStyle: "normal",
+          fontWeight: 600,
+          src: `url(${InterSemiBold}) format("woff2")`,
+          fontDisplay: "swap",
+        },
+        {
+          fontFamily: "Inter",
+          fontStyle: "normal",
+          fontWeight: 700,
+          src: `url(${InterBold}) format("woff2")`,
+          fontDisplay: "swap",
+        },
+      ],
       // Putting them here, because MUI doesn't let putting own keys in
       // `overrides` objects
       "@keyframes hoverControlStart": {
