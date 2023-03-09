@@ -122,6 +122,7 @@
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.5.0",
+    "@radix-ui/react-portal": "^1.0.2",
     "@radix-ui/react-select": "^1.2.0",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",

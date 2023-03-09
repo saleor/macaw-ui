@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { useState, ChangeEvent } from "react";
 import { Expression } from "./Expression";
 import { Box } from "../Box";
 
@@ -6,90 +7,204 @@ export default {
   component: Expression,
 } as ComponentMeta<typeof Expression>;
 
-/*
+const SingleDropdownDemo = () => {
+  const [value, setValue] = useState("T-shirt");
 
-   <Expression>
-      <Expression.OperandDropdown>
-        <Expression.OperandTrigger>
-          selected option
-        </Expression.OperandItem>
-        <Expression.OperandItem>
-          operand 1
-        </Expression.OperandItem>
-        <Expression.OperandItem>
-          operand 1
-        </Expression.OperantItem>
+  const handleClick = (currentValue: string) => () => {
+    setValue(currentValue);
+  };
+
+  return (
+    <Expression>
+      <Expression.OperandDropdown triggerText="Product type">
+        <Expression.OperantDropdownItem>type 1</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 2</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
       </Expression.OperandDropdown>
-      <Expression.Condition>
+      <Expression.Condition currentConditon="is">
+        <Expression.ConditionItem>is</Expression.ConditionItem>
+        <Expression.ConditionItem>equal to</Expression.ConditionItem>
+        <Expression.ConditionItem>is between</Expression.ConditionItem>
       </Expression.Condition>
-      <Expression.OperandDropdown>
-        <Expression.OperandTrigger>
-          selected option
-        </Expression.OperandItem>
-        <Expression.OperandItem>
-          operand 1
-        </Expression.OperandItem>
-        <Expression.OperandItem>
-          operand 1
-        </Expression.OperantItem>
+      <Expression.OperandDropdown triggerText={value}>
+        <Expression.OperantDropdownItem onClick={handleClick("T-Shirt")}>
+          T-Shirt
+        </Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem onClick={handleClick("Shoes")}>
+          Shoes
+        </Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem onClick={handleClick("Pants")}>
+          Pants
+        </Expression.OperantDropdownItem>
       </Expression.OperandDropdown>
     </Expression>
+  );
+};
 
+const AutocompleteDemo = () => {
+  const [value, setValue] = useState("");
+  const [open, setOpen] = useState(false);
 
-*/
+  const handleKeyDown = () => setOpen(true);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  const handleClickItem = (itemName: string) => () => {
+    setValue((c) =>
+      c
+        .split(",")
+        .slice(0, -1)
+        .concat(itemName + ", ")
+        .join(", ")
+    );
+    setOpen(false);
+  };
+
+  return (
+    <Expression>
+      <Expression.OperandDropdown triggerText="Product type">
+        <Expression.OperantDropdownItem>type 1</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 2</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+      </Expression.OperandDropdown>
+      <Expression.Condition currentConditon="equal to">
+        <Expression.ConditionItem>is</Expression.ConditionItem>
+        <Expression.ConditionItem>equal to</Expression.ConditionItem>
+        <Expression.ConditionItem>is between</Expression.ConditionItem>
+      </Expression.Condition>
+      <Expression.OperandAutocomplete
+        placeholder="Set value"
+        open={open}
+        value={value}
+        onKeyDown={handleKeyDown}
+        onChange={handleChange}
+      >
+        <Expression.AutocompleteItem onClick={handleClickItem("Item1")}>
+          item 1
+        </Expression.AutocompleteItem>
+        <Expression.AutocompleteItem onClick={handleClickItem("Item2")}>
+          item 2
+        </Expression.AutocompleteItem>
+        <Expression.AutocompleteItem onClick={handleClickItem("Item3")}>
+          item 3
+        </Expression.AutocompleteItem>
+      </Expression.OperandAutocomplete>
+    </Expression>
+  );
+};
+
+const TextDemo = () => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <Expression>
+      <Expression.OperandDropdown triggerText="Product type">
+        <Expression.OperantDropdownItem>type 1</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 2</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+      </Expression.OperandDropdown>
+      <Expression.Condition currentConditon="is between">
+        <Expression.ConditionItem>is</Expression.ConditionItem>
+        <Expression.ConditionItem>equal to</Expression.ConditionItem>
+        <Expression.ConditionItem>is between</Expression.ConditionItem>
+      </Expression.Condition>
+      <Expression.OperandText
+        onChange={handleChange}
+        value={value}
+        placeholder="Set value"
+      />
+    </Expression>
+  );
+};
+
+const NumberDemo = () => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <Expression>
+      <Expression.OperandDropdown triggerText="Product type">
+        <Expression.OperantDropdownItem>type 1</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 2</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+      </Expression.OperandDropdown>
+      <Expression.Condition currentConditon="is">
+        <Expression.ConditionItem>is</Expression.ConditionItem>
+        <Expression.ConditionItem>equal to</Expression.ConditionItem>
+        <Expression.ConditionItem>is between</Expression.ConditionItem>
+      </Expression.Condition>
+      <Expression.OperandNumber
+        sign="$"
+        onChange={handleChange}
+        value={value}
+        placeholder="Set value"
+      />
+    </Expression>
+  );
+};
+
+const RangeDemo = () => {
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+
+  const handleChangeFrom = (event: ChangeEvent<HTMLInputElement>) => {
+    setFrom(event.target.value);
+  };
+
+  const handleChangeTo = (event: ChangeEvent<HTMLInputElement>) => {
+    setTo(event.target.value);
+  };
+
+  return (
+    <Expression>
+      <Expression.OperandDropdown triggerText="Product type">
+        <Expression.OperantDropdownItem>type 1</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 2</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+      </Expression.OperandDropdown>
+      <Expression.Condition currentConditon="is between">
+        <Expression.ConditionItem>is</Expression.ConditionItem>
+        <Expression.ConditionItem>equal to</Expression.ConditionItem>
+        <Expression.ConditionItem>is between</Expression.ConditionItem>
+      </Expression.Condition>
+      <Expression.OperandRange
+        sign="$"
+        onFromChange={handleChangeFrom}
+        onToChange={handleChangeTo}
+        placeholderFrom="From"
+        placeholderTo="To"
+        from={from}
+        to={to}
+      />
+    </Expression>
+  );
+};
 
 export const Default: ComponentStory<typeof Expression> = () => (
   <Box display="flex" flexDirection="column" alignItems="center">
     <Box paddingY={9}>
-      <Expression>
-        <Expression.OperandDropdown triggerText="Product type">
-          <Expression.OperandItem>type 1</Expression.OperandItem>
-          <Expression.OperandItem>type 2</Expression.OperandItem>
-          <Expression.OperandItem>type 3</Expression.OperandItem>
-        </Expression.OperandDropdown>
-        <Expression.Condition />
-        <Expression.OperandDropdown triggerText="T-shirt">
-          <Expression.OperandItem>Shirt</Expression.OperandItem>
-          <Expression.OperandItem>Shoes</Expression.OperandItem>
-          <Expression.OperandItem>Pants</Expression.OperandItem>
-        </Expression.OperandDropdown>
-      </Expression>
+      <SingleDropdownDemo />
     </Box>
     <Box paddingY={9}>
-      <Expression>
-        <Expression.OperandDropdown triggerText="Product type">
-          <Expression.OperandItem>type 1</Expression.OperandItem>
-          <Expression.OperandItem>type 2</Expression.OperandItem>
-          <Expression.OperandItem>type 3</Expression.OperandItem>
-        </Expression.OperandDropdown>
-        <Expression.Condition />
-        <Expression.OperandAutocomplete>
-          <Expression.AutocompleteItem>item 1</Expression.AutocompleteItem>
-          <Expression.AutocompleteItem>item 2</Expression.AutocompleteItem>
-          <Expression.AutocompleteItem>item 3</Expression.AutocompleteItem>
-        </Expression.OperandAutocomplete>
-      </Expression>
-    </Box>
-    {/* <Box paddingY={9}>
-      <Expression>
-        <Expression.OperandDropdown />
-        <Expression.Condition />
-        <Expression.OperandText />
-      </Expression>
+      <AutocompleteDemo />
     </Box>
     <Box paddingY={9}>
-      <Expression>
-        <Expression.OperandDropdown />
-        <Expression.Condition />
-        <Expression.OperandNumber />
-      </Expression>
+      <TextDemo />
     </Box>
     <Box paddingY={9}>
-      <Expression>
-        <Expression.OperandDropdown />
-        <Expression.Condition />
-        <Expression.OperandRange />
-      </Expression>
-    </Box> */}
+      <NumberDemo />
+    </Box>
+    <Box paddingY={9}>
+      <RangeDemo />
+    </Box>
   </Box>
 );

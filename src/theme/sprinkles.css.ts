@@ -173,6 +173,7 @@ const stateProperties = defineProperties({
     default: {},
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },
+    focusWithin: { selector: "&:focus-within" },
     focusVisible: { selector: "&:focus-visible" },
     active: { selector: "&:active" },
     disabled: { selector: "&[disabled]" },

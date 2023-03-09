@@ -1,43 +1,63 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { ReactNode } from "react";
+import { forwardRef, ReactNode, useState, MouseEvent } from "react";
+import { Box } from "../Box";
 import {
   dropdownContent as dropdownContentStyles,
   dropdownItem as dropdownItemStyles,
   dropdownTrigger as dropdownTriggerStyles,
-  DropdownTriggerVariants,
 } from "./Expression.css";
 
 interface DropdownItemProps {
   children: ReactNode;
+  onClick?: (event: MouseEvent<HTMLElement, MouseEvent>) => void;
+  condition?: boolean;
 }
 
-export const DropdownItem = ({ children }: DropdownItemProps) => (
-  <DropdownMenu.Item className={dropdownItemStyles}>
-    {children}
-  </DropdownMenu.Item>
+export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
+  ({ children, onClick, condition = false }, ref) => (
+    <DropdownMenu.Item
+      className={dropdownItemStyles({ condition })}
+      onClick={onClick}
+      ref={ref}
+    >
+      {children}
+    </DropdownMenu.Item>
+  )
 );
 
-type DropdownProps = DropdownTriggerVariants & {
+DropdownItem.displayName = "DropdownItem";
+
+export interface DropdownProps {
   children: ReactNode;
   triggerText?: string;
-  open?: boolean;
-};
+  variant: "operand" | "condition";
+}
 
-export const Dropdown = ({ children, triggerText }: DropdownProps) => {
+export const Dropdown = ({ children, triggerText, variant }: DropdownProps) => {
+  const [opened, setOpened] = useState(false);
+
+  const handleOpenChange = (opened: boolean) => {
+    setOpened(opened);
+  };
+
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root onOpenChange={handleOpenChange}>
       {triggerText && (
         <DropdownMenu.Trigger
-          className={dropdownTriggerStyles({ variant: "operand" })}
+          className={dropdownTriggerStyles({ variant, opened })}
         >
           {triggerText}
         </DropdownMenu.Trigger>
       )}
       <DropdownMenu.Portal>
-        <DropdownMenu.Content align="start" className={dropdownContentStyles}>
-          {children}
+        <DropdownMenu.Content align="start" asChild>
+          <Box className={dropdownContentStyles} __minWidth="128px">
+            {children}
+          </Box>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
   );
 };
+
+Dropdown.displayName = "Dropdown";

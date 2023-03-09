@@ -1,71 +1,89 @@
-import { Box } from "../Box";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
-  input as inputStyles,
+  InputHTMLAttributes,
+  forwardRef,
+  ComponentProps,
+  useState,
+} from "react";
+import * as Portal from "@radix-ui/react-portal";
+import { classNames } from "~/utils";
+import { AutosizeInput, InputContainer } from "./AutosizeInput";
+import { Box } from "../Box";
+import {
   dropdownContent as dropdownContentStyles,
   dropdownItem as dropdownItemStyles,
   autocompleteContainer,
-  autocompleteInput,
-  autocompleteContent
+  autocompleteContent,
 } from "./Expression.css";
-import React, { useEffect, useRef, useState } from "react";
-import { classNames } from "~/utils";
 
-
-export const AutocompleteItem = ({ children }) => {
+export const AutocompleteItem = forwardRef<
+  HTMLElement,
+  ComponentProps<typeof Box>
+>(({ children, ...props }, ref) => {
   return (
-    <Box className={dropdownItemStyles}>{children}</Box>
-  )
-}
+    <Box className={dropdownItemStyles()} {...props} ref={ref}>
+      {children}
+    </Box>
+  );
+});
 
-export const OperandAutocomplete = ({ children }) => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
-  const [pos, setPos] = useState("");
-  const [width, setWidth] = useState("");
-  const inputRef = useRef();
+AutocompleteItem.displayName = "AutocompleteItem";
 
-  const calc = (text) => {
-    // const font = window.getComputedStyle(document.body, null).getPropertyValue("font-family")
+type OperandAutocompleteProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "color" | "width" | "height" | "size"
+> & {
+  children: React.ReactNode;
+  open?: boolean;
+  value?: string;
+};
 
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-    context.font = "400 13px Inter var, sans-serif";
-    const metrics = context.measureText(text);
-    return metrics.width;
-  }
+export const OperandAutocomplete = ({
+  children,
+  open,
+  value,
+  ...props
+}: OperandAutocompleteProps) => {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
 
-  const handleChange = (evt) => {  
-    setValue(evt.target.value)
-    setWidth(`${calc(evt.target.value)}px`)
-    const newPos = calc(evt.target.value.slice(0, evt.target.selectionStart))
+  const handleCalculationChange = ({
+    left,
+    rect,
+  }: {
+    left: number;
+    rect: DOMRect;
+  }) => {
+    setPos({
+      x: rect.x + left,
+      y: rect.y + rect.height + window.scrollY,
+    });
+  };
 
-    // console.log(window.getComputedStyle(evt.target, null).getPropertyValue("font-weight"))
-    setPos(`${newPos}px`)
-  } 
-
-  const handleKeyDown = (evt) => {
-    setOpen(true)
-  }
-
-
+  console.log({ open });
   return (
     <Box className={autocompleteContainer}>
-      <Box
-        as="input"
-        type="text"
-        className={inputStyles()}
-        onKeyDown={handleKeyDown}
-        onChange={handleChange}
-        value={value}
-        __width={width}
-      />
+      <InputContainer>
+        <AutosizeInput
+          type="text"
+          value={value}
+          onCalculationChange={handleCalculationChange}
+          {...props}
+        />
+      </InputContainer>
       {open && (
-        <Box className={classNames(dropdownContentStyles, autocompleteContent)} __left={pos}>
-          {children}
-        </Box>
+        <Portal.Root asChild>
+          <Box
+            className={classNames(dropdownContentStyles, autocompleteContent)}
+            top={0}
+            left={0}
+            __minWidth="128px"
+            __transform={`translate(${pos.x}px, ${pos.y}px)`}
+          >
+            {children}
+          </Box>
+        </Portal.Root>
       )}
     </Box>
-
   );
 };
+
+OperandAutocomplete.displayName = "Expression.OperandAutocomplete";
