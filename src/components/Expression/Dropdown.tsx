@@ -9,7 +9,7 @@ import {
 
 interface DropdownItemProps {
   children: ReactNode;
-  onClick?: (event: MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick?: (event: MouseEvent) => void;
   condition?: boolean;
 }
 
