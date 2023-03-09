@@ -2,11 +2,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { alpha } from "@material-ui/core/styles";
 import React from "react";
 
-import { makeStyles } from "./styles";
-import InterRegular from "./fonts/Inter-Regular.woff2";
-import InterMedium from "./fonts/Inter-Medium.woff2";
-import InterSemiBold from "./fonts/Inter-SemiBold.woff2";
 import InterBold from "./fonts/Inter-Bold.woff2";
+import InterMedium from "./fonts/Inter-Medium.woff2";
+import InterRegular from "./fonts/Inter-Regular.woff2";
+import InterSemiBold from "./fonts/Inter-SemiBold.woff2";
+import { makeStyles } from "./styles";
 
 const useStyles = makeStyles(
   (theme) => ({
