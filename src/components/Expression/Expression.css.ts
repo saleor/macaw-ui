@@ -155,6 +155,8 @@ export const autocompleteInput = sprinkles({
 
 export const autocompleteContent = sprinkles({
   position: "absolute",
+  top: 0,
+  left: 0,
 });
 
 export const rangeItem = sprinkles({

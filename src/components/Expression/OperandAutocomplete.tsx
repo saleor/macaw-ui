@@ -73,10 +73,8 @@ export const OperandAutocomplete = ({
         <Portal.Root asChild>
           <Box
             className={classNames(dropdownContentStyles, autocompleteContent)}
-            top={0}
-            left={0}
+            transform={`translate(${pos.x}px, ${pos.y}px)`}
             __minWidth="128px"
-            __transform={`translate(${pos.x}px, ${pos.y}px)`}
           >
             {children}
           </Box>
