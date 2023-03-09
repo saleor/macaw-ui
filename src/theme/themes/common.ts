@@ -49,10 +49,6 @@ export const borderRadius = {
   4: "8px",
 };
 
-export const fontFamily = {
-  body: "Inter var, sans-serif",
-};
-
 export const lineHeight = {
   heroLarge: "40px",
   heroMedium: "36px",
@@ -80,31 +76,31 @@ export const lineHeight = {
   captionSmall: "16px",
 };
 
-export const fontVariationWeight = {
-  heroLarge: '"wght" 580',
-  heroMedium: '"wght" 580',
-  heroSmall: '"wght" 500',
-  titleLarge: '"wght" 380',
-  titleMedium: '"wght" 380',
-  titleSmall: '"wght" 380',
-  headingLarge: '"wght" 600',
-  headingMedium: '"wght" 600',
-  headingSmall: '"wght" 600',
-  bodyStrongLarge: '"wght" 600',
-  bodyStrongMedium: '"wght" 600',
-  bodyStrongSmall: '"wght" 600',
-  bodyEmpLarge: '"wght" 500',
-  bodyEmpMedium: '"wght" 500',
-  bodyEmpSmall: '"wght" 500',
-  bodyLarge: '"wght" 440',
-  bodyMedium: '"wght" 440',
-  bodySmall: '"wght" 440',
-  buttonLarge: '"wght" 580',
-  buttonMedium: '"wght" 580',
-  buttonSmall: '"wght" 580',
-  captionLarge: '"wght" 380',
-  captionMedium: '"wght" 440',
-  captionSmall: '"wght" 480',
+export const fontWeight = {
+  heroLarge: "580",
+  heroMedium: "580",
+  heroSmall: "500",
+  titleLarge: "380",
+  titleMedium: "380",
+  titleSmall: "380",
+  headingLarge: "600",
+  headingMedium: "600",
+  headingSmall: "600",
+  bodyStrongLarge: "600",
+  bodyStrongMedium: "600",
+  bodyStrongSmall: "600",
+  bodyEmpLarge: "500",
+  bodyEmpMedium: "500",
+  bodyEmpSmall: "500",
+  bodyLarge: "440",
+  bodyMedium: "440",
+  bodySmall: "440",
+  buttonLarge: "580",
+  buttonMedium: "580",
+  buttonSmall: "580",
+  captionLarge: "380",
+  captionMedium: "440",
+  captionSmall: "480",
 };
 
 export const letterSpacing = {

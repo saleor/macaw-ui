@@ -166,9 +166,6 @@ export const vars = createGlobalThemeContract(
       3: null,
       4: null,
     },
-    fontFamily: {
-      body: null,
-    },
     lineHeight: {
       heroLarge: null,
       heroMedium: null,
@@ -195,7 +192,7 @@ export const vars = createGlobalThemeContract(
       captionMedium: null,
       captionSmall: null,
     },
-    fontVariationWeight: {
+    fontWeight: {
       heroLarge: null,
       heroMedium: null,
       heroSmall: null,

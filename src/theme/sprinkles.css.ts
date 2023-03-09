@@ -119,7 +119,6 @@ const responsiveProperties = defineProperties({
       "50%": "50%",
       "100%": "100%",
     },
-    fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
     lineHeight: vars.lineHeight,
     textAlign: ["center"],
@@ -145,7 +144,7 @@ const responsiveProperties = defineProperties({
     zIndex: ["auto", "1", "2", "3"],
     aspectRatio: ["1 / 1"],
     objectFit: ["contain", "cover", "fill", "none", "scale-down"],
-    fontVariationSettings: vars.fontVariationWeight,
+    fontWeight: vars.fontWeight,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -155,12 +154,7 @@ const responsiveProperties = defineProperties({
     marginX: ["marginLeft", "marginRight"],
     marginY: ["marginTop", "marginBottom"],
     placeItems: ["alignItems", "justifyContent"],
-    typeSize: [
-      "fontSize",
-      "lineHeight",
-      "fontVariationSettings",
-      "letterSpacing",
-    ],
+    typeSize: ["fontSize", "lineHeight", "fontWeight", "letterSpacing"],
     borderWidth: [
       "borderTopWidth",
       "borderBottomWidth",
