@@ -8,3 +8,4 @@ export * from "./Avatar";
 export * from "./Dropdown";
 export * from "./Drawer";
 export * from "./Input";
+export * from "./Expression";

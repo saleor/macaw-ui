@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useState, ChangeEvent } from "react";
-import { Expression } from "./Expression";
+import { Expression } from "~/components";
 import { Box } from "../Box";
 
 export default {
