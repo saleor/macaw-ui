@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Dropdown, DropdownItem } from "./Dropdown";
 
-interface ConditionItemProps {
+export interface ConditionItemProps {
   children: React.ReactNode;
 }
 
@@ -15,7 +15,7 @@ export const ConditionItem = forwardRef<HTMLDivElement, ConditionItemProps>(
 
 ConditionItem.displayName = "ConditionItem";
 
-interface ConditionProps {
+export interface ConditionProps {
   currentConditon: string;
   children: React.ReactNode;
 }

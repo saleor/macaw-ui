@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Box } from "../Box";
 import { expression as expressionStyles } from "./Expression.css";
 
-interface ExpressionProps {
+export interface ExpressionProps {
   children: ReactNode;
 }
 

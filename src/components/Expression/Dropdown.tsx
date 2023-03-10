@@ -7,7 +7,7 @@ import {
   dropdownTrigger as dropdownTriggerStyles,
 } from "./Expression.css";
 
-interface DropdownItemProps {
+export interface DropdownItemProps {
   children: ReactNode;
   onClick?: (event: MouseEvent) => void;
   condition?: boolean;
