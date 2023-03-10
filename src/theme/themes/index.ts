@@ -7,3 +7,5 @@ export const themes = {
 };
 
 export type DefaultTheme = "defaultLight" | "defaultDark";
+
+export type ThemeTokensValues = (typeof themes)[DefaultTheme];
