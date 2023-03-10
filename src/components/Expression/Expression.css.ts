@@ -7,7 +7,6 @@ export const dropdownContent = sprinkles({
   paddingBottom: 4,
   color: "textNeutralDefault",
   fontSize: "bodySmall",
-  fontFamily: "body",
   borderWidth: 1,
   borderTopWidth: 0,
   borderStyle: "solid",
