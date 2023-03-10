@@ -173,7 +173,6 @@ export const expression = sprinkles({
   borderStyle: "solid",
   borderColor: "neutralPlain",
   boxShadow: "interactiveDefaultFocused",
-  fontFamily: "body",
   borderRadius: 3,
   overflow: "hidden",
 });
