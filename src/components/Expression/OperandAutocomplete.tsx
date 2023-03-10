@@ -11,8 +11,8 @@ import { Box } from "../Box";
 import {
   dropdownContent as dropdownContentStyles,
   dropdownItem as dropdownItemStyles,
-  autocompleteContainer,
-  autocompleteContent,
+  autocompleteContainer as autocompleteContainerStyles,
+  autocompleteContent as autocompleteContentStyles,
 } from "./Expression.css";
 
 export const AutocompleteItem = forwardRef<
@@ -59,7 +59,7 @@ export const OperandAutocomplete = ({
   };
 
   return (
-    <Box className={autocompleteContainer}>
+    <Box className={autocompleteContainerStyles}>
       <InputContainer>
         <AutosizeInput
           type="text"
@@ -71,7 +71,10 @@ export const OperandAutocomplete = ({
       {open && (
         <Portal.Root asChild>
           <Box
-            className={classNames(dropdownContentStyles, autocompleteContent)}
+            className={classNames(
+              dropdownContentStyles,
+              autocompleteContentStyles
+            )}
             __transform={`translate(${pos.x}px, ${pos.y}px)`}
             __minWidth="128px"
           >

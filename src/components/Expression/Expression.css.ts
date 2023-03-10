@@ -178,5 +178,3 @@ export const expression = sprinkles({
   borderRadius: 3,
   overflow: "hidden",
 });
-
-export type DropdownTriggerVariants = RecipeVariants<typeof dropdownTrigger>;
