@@ -1,13 +1,14 @@
 import { createContext, useContext, useState } from "react";
 import { setElementVars } from "@vanilla-extract/dynamic";
 
-import { DefaultTheme, themes } from "./themes";
+import { DefaultTheme, themes, ThemeTokensValues } from "./themes";
 
 import { vars } from "./contract.css";
 
 const ThemeContext = createContext<{
   theme: DefaultTheme;
   setTheme: (to: DefaultTheme) => void;
+  themeValues: ThemeTokensValues;
 } | null>(null);
 
 type ThemeProviderProps = {
@@ -24,7 +25,9 @@ export const ThemeContextProvider = ({
   setElementVars(document.documentElement, vars, themes[theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, setTheme, themeValues: themes[theme] }}
+    >
       {children}
     </ThemeContext.Provider>
   );
