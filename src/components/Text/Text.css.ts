@@ -3,8 +3,6 @@ import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { sprinkles } from "~/theme";
 
 export const text = recipe({
-  base: [sprinkles({ fontFamily: "body" })],
-
   variants: {
     variant: {
       hero: {},
@@ -20,6 +18,15 @@ export const text = recipe({
       small: {},
       medium: {},
       large: {},
+    },
+    ellipsis: {
+      multiline: sprinkles({ overflow: "hidden", textOverflow: "ellipsis" }),
+      true: sprinkles({
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+      }),
+      false: {},
     },
   },
 
@@ -204,6 +211,7 @@ export const text = recipe({
   defaultVariants: {
     variant: "body",
     size: "medium",
+    ellipsis: false,
   },
 });
 

@@ -4,7 +4,6 @@ import { sprinkles } from "~/theme";
 export const button = recipe({
   base: [
     sprinkles({
-      fontFamily: "body",
       outlineStyle: "none",
       display: "flex",
       placeItems: "center",

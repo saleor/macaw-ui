@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+import { recipe } from "@vanilla-extract/recipes";
 import { sprinkles } from "~/theme";
 
 export const dropdownContent = sprinkles({
