@@ -19,7 +19,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ id, className, size, ...props }, ref) => {
     return (
       <Box id={id} className={classNames(inputContainer({ size }), className)}>
-        <SearchIcon size="large" className={searchIcon()} />
+        <SearchIcon size="medium" className={searchIcon()} />
         <Box as="input" className={input()} ref={ref} type="text" {...props} />
       </Box>
     );
