@@ -11,5 +11,11 @@ export const Default: ComponentStory<typeof SearchInput> = () => (
     <Box paddingY={9} display="flex" gap={9} alignItems="center">
       <SearchInput size="small" placeholder="Search for products" />
     </Box>
+    <Box paddingY={9} display="flex" gap={9} alignItems="center">
+      <SearchInput size="medium" placeholder="Search for products" />
+    </Box>
+    <Box paddingY={9} display="flex" gap={9} alignItems="center">
+      <SearchInput size="large" placeholder="Search for products" />
+    </Box>
   </Box>
 );

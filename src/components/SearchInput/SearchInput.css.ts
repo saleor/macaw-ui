@@ -9,7 +9,6 @@ export const inputContainer = recipe({
       alignItems: "center",
       color: "textNeutralDefault",
       borderRadius: 3,
-      paddingX: 4,
       transition: "all",
       backgroundColor: {
         default: "interactiveNeutralHighlightDefault",
@@ -21,18 +20,16 @@ export const inputContainer = recipe({
   variants: {
     size: {
       small: sprinkles({
-        paddingY: 5,
+        paddingY: 4,
+        paddingX: 5,
       }),
       medium: sprinkles({
         paddingY: 5,
+        paddingX: 5,
       }),
       large: sprinkles({
         paddingY: 6,
-      }),
-    },
-    active: {
-      true: sprinkles({
-        backgroundColor: "interactiveBrandHighlightFocused",
+        paddingX: 6,
       }),
     },
   },
@@ -43,8 +40,6 @@ export const input = recipe({
     sprinkles({
       width: "100%",
       backgroundColor: "transparent",
-      fontSize: "bodyMedium",
-      lineHeight: "bodyMedium",
       borderWidth: 0,
       outlineStyle: "none",
       padding: 0,
@@ -61,8 +56,6 @@ export const searchIcon = recipe({
   base: [
     sprinkles({
       color: "textNeutralSubdued",
-      width: 7,
-      height: 7,
       marginRight: 5,
     }),
   ],
