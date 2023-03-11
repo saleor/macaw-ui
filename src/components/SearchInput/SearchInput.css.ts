@@ -8,6 +8,7 @@ export const inputContainer = recipe({
       display: "flex",
       alignItems: "center",
       color: "textNeutralDefault",
+      width: "100%",
       borderRadius: 3,
       transition: "all",
       backgroundColor: {
