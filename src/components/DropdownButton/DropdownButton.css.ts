@@ -17,7 +17,7 @@ export const dropdownButton = recipe({
       backgroundColor: {
         default: "surfaceNeutralHighlight",
         hover: "surfaceNeutralDepressed",
-        focusVisible: "interactiveNeutralHighlightFocused",
+        focusVisible: "surfaceNeutralDepressed",
         active: "interactiveNeutralHighlightPressing",
         disabled: "interactiveNeutralHighlightDisabled",
       },
