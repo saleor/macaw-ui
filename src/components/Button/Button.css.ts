@@ -81,20 +81,6 @@ export const button = recipe({
         },
         borderStyle: "none",
       }),
-      dropdown: sprinkles({
-        backgroundColor: {
-          default: "surfaceNeutralHighlight",
-          hover: "surfaceNeutralDepressed",
-          focusVisible: "interactiveNeutralHighlightFocused",
-          active: "interactiveNeutralHighlightPressing",
-          disabled: "interactiveNeutralHighlightDisabled",
-        },
-        color: {
-          default: "iconNeutralDefault",
-          disabled: "iconNeutralDisabled",
-        },
-        borderStyle: "none",
-      }),
     },
     size: {
       small: {},

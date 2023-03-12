@@ -57,17 +57,6 @@ const TextButtonVariants = (props: Omit<ButtonProps, "children">) => (
         Button
       </Button>
     </ButtonSetWrapper>
-    <ButtonSetWrapper>
-      <Button variant="dropdown" size="large" {...props}>
-        Button
-      </Button>
-      <Button variant="dropdown" size="medium" {...props}>
-        Button
-      </Button>
-      <Button variant="dropdown" size="small" {...props}>
-        Button
-      </Button>
-    </ButtonSetWrapper>
   </>
 );
 
@@ -102,16 +91,6 @@ const IconButtonVariants = () => (
       />
       <Button icon={<RemoveIcon />} variant="tertiary" size="medium" />
       <Button icon={<RemoveIcon />} variant="tertiary" size="small" />
-    </ButtonSetWrapper>
-    <ButtonSetWrapper>
-      <Button
-        name="remove"
-        icon={<RemoveIcon />}
-        variant="dropdown"
-        size="large"
-      />
-      <Button icon={<RemoveIcon />} variant="dropdown" size="medium" />
-      <Button icon={<RemoveIcon />} variant="dropdown" size="small" />
     </ButtonSetWrapper>
   </>
 );
@@ -156,20 +135,6 @@ const TextIconButtonVariants = (props: Omit<ButtonProps, "children">) => (
         Button
       </Button>
       <Button variant="tertiary" size="small" {...props}>
-        <SearchIcon size="small" />
-        Button
-      </Button>
-    </ButtonSetWrapper>
-    <ButtonSetWrapper>
-      <Button variant="dropdown" size="large" {...props}>
-        <SearchIcon />
-        Button
-      </Button>
-      <Button variant="dropdown" size="medium" {...props}>
-        <SearchIcon size="small" />
-        Button
-      </Button>
-      <Button variant="dropdown" size="small" {...props}>
         <SearchIcon size="small" />
         Button
       </Button>
