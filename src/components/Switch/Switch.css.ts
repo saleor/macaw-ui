@@ -29,6 +29,7 @@ export const switchChild = recipe({
       height: "100%",
       padding: 3,
       borderRadius: 2,
+      cursor: "pointer",
     }),
     {
       selectors: {
