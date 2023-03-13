@@ -20,9 +20,9 @@ export const SwitchRoot = forwardRef<HTMLDivElement, SwitchItemProps>(
   ({ children, className, defaultValue, onValueChange, ...rest }, ref) => (
     <Root asChild defaultValue={defaultValue} onValueChange={onValueChange}>
       <Box
-        {...rest}
         className={classNames(switchParent(), className)}
         ref={ref}
+        {...rest}
       >
         {children}
       </Box>
