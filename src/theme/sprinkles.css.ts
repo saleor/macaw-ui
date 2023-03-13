@@ -189,8 +189,10 @@ const stateProperties = defineProperties({
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },
     focusVisible: { selector: "&:focus-visible" },
+    focusWithin: { selector: "&:focus-within" },
     active: { selector: "&:active" },
     disabled: { selector: "&[disabled]" },
+    placeholder: { selector: "&::placeholder" },
   },
   defaultCondition: "default",
   properties: {
@@ -200,7 +202,7 @@ const stateProperties = defineProperties({
     pointerEvents: ["none", "auto"],
     cursor: ["pointer", "not-allowed", "auto"],
     boxShadow: { ...vars.boxShadow, none: "none" },
-    transition: { ease: "transform 0.3s" },
+    transition: { ease: "transform 0.3s", all: "all 0.3s ease-in-out" },
     textDecoration: ["none", "underline"],
   },
 });
