@@ -12,3 +12,4 @@ export * from "./Checkbox";
 export * from "./RadioGroup";
 export * from "./SearchInput";
 export * from "./DropdownButton";
+export * from "./Switch";
