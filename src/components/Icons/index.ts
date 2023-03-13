@@ -32,3 +32,5 @@ export * from "./MailIcon";
 export * from "./GripIcon";
 export * from "./GenericAppIcon";
 export * from "./CopyIcon";
+export * from "./ViewTableIcon";
+export * from "./ViewWideTilesIcon";
