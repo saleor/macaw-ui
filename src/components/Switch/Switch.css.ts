@@ -3,7 +3,11 @@ import { sprinkles, vars } from "~/theme";
 
 const {
   colors: {
-    background: { surfaceNeutralPlain },
+    background: {
+      surfaceNeutralPlain,
+      interactiveBrandHighlightDefault,
+      interactiveNeutralHighlightPressing,
+    },
     foreground: { iconNeutralPlain, iconNeutralDefault },
   },
   boxShadow: { interactiveDefaultFocused },
@@ -12,7 +16,7 @@ const {
 export const switchParent = recipe({
   base: [
     sprinkles({
-      backgroundColor: "surfaceNeutralHighlight",
+      backgroundColor: "surfaceNeutralDepressed",
       borderRadius: 3,
       borderColor: "neutralHighlight",
       height: 11,
@@ -30,6 +34,7 @@ export const switchChild = recipe({
       padding: 3,
       borderRadius: 2,
       cursor: "pointer",
+      outlineStyle: "none",
     }),
     {
       selectors: {
@@ -38,6 +43,16 @@ export const switchChild = recipe({
           borderStyle: "none",
           boxShadow: interactiveDefaultFocused,
           color: iconNeutralDefault,
+        },
+
+        "&[data-state='unchecked']:hover": {
+          backgroundColor: interactiveBrandHighlightDefault,
+        },
+        "&[data-state='unchecked']:active": {
+          backgroundColor: interactiveNeutralHighlightPressing,
+        },
+        "&[data-state='unchecked']:focus": {
+          backgroundColor: interactiveNeutralHighlightPressing,
         },
         "&[data-state='unchecked']": {
           backgroundColor: "transparent",

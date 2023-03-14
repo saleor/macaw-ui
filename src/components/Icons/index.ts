@@ -34,3 +34,5 @@ export * from "./GenericAppIcon";
 export * from "./CopyIcon";
 export * from "./ViewTableIcon";
 export * from "./ViewWideTilesIcon";
+export * from "./ViewTilesIcon";
+export * from "./ViewListIcon";
