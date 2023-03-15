@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
+import { Box, Text } from "~/components";
 import { ProductsIcons, TableEditIcon } from "../Icons";
-import { Box } from "../Box";
 import { Switch } from ".";
 
 export default {
@@ -9,6 +9,7 @@ export default {
 
 export const Default = () => (
   <Box display="flex" flexDirection="column" gap={4}>
+    <Text>Active</Text>
     <Switch defaultValue="1">
       <Switch.Item id="1" value="1">
         <TableEditIcon size="medium" />
@@ -17,6 +18,7 @@ export const Default = () => (
         <ProductsIcons size="medium" />
       </Switch.Item>
     </Switch>
+    <Text>Disabled</Text>
     <Switch defaultValue="2">
       <Switch.Item id="1" value="1" disabled>
         <TableEditIcon size="medium" />
