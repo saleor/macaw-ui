@@ -23,7 +23,6 @@ export const switchParent = recipe({
       borderColor: "neutralHighlight",
       height: 11,
       padding: 2,
-      cursor: "pointer",
     }),
   ],
   defaultVariants: {},
@@ -46,7 +45,6 @@ export const switchChild = recipe({
           boxShadow: interactiveDefaultFocused,
           color: iconNeutralDefault,
         },
-
         "&[data-state='unchecked']:hover": {
           backgroundColor: interactiveBrandHighlightDefault,
         },
@@ -56,13 +54,14 @@ export const switchChild = recipe({
         "&[data-state='unchecked']:focus-visible": {
           backgroundColor: interactiveNeutralHighlightPressing,
         },
-        "&[data-state='unchecked'][disabled]": {
-          color: iconNeutralDisabled,
-        },
         "&[data-state='unchecked']": {
           backgroundColor: "transparent",
           borderStyle: "none",
           color: iconNeutralPlain,
+        },
+        "&[disabled]": {
+          color: iconNeutralDisabled,
+          pointerEvents: "none",
         },
       },
     },
