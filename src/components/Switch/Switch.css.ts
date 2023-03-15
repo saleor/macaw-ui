@@ -5,8 +5,10 @@ const {
   colors: {
     background: {
       surfaceNeutralPlain,
-      interactiveBrandHighlightDefault,
+      interactiveNeutralHighlightDefault,
+      interactiveNeutralHighlightHovering,
       interactiveNeutralHighlightPressing,
+      interactiveNeutralHighlightFocused,
     },
     foreground: { iconNeutralPlain, iconNeutralDefault, iconNeutralDisabled },
   },
@@ -35,7 +37,6 @@ export const switchChild = recipe({
       padding: 3,
       borderRadius: 2,
       cursor: "pointer",
-      outlineStyle: "none",
     }),
     {
       selectors: {
@@ -46,16 +47,16 @@ export const switchChild = recipe({
           color: iconNeutralDefault,
         },
         "&[data-state='unchecked']:hover": {
-          backgroundColor: interactiveBrandHighlightDefault,
+          backgroundColor: interactiveNeutralHighlightHovering,
         },
         "&[data-state='unchecked']:active": {
           backgroundColor: interactiveNeutralHighlightPressing,
         },
         "&[data-state='unchecked']:focus-visible": {
-          backgroundColor: interactiveNeutralHighlightPressing,
+          backgroundColor: interactiveNeutralHighlightFocused,
         },
         "&[data-state='unchecked']": {
-          backgroundColor: "transparent",
+          backgroundColor: interactiveNeutralHighlightDefault,
           borderStyle: "none",
           color: iconNeutralPlain,
         },
