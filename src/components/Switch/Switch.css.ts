@@ -8,7 +8,7 @@ const {
       interactiveBrandHighlightDefault,
       interactiveNeutralHighlightPressing,
     },
-    foreground: { iconNeutralPlain, iconNeutralDefault },
+    foreground: { iconNeutralPlain, iconNeutralDefault, iconNeutralDisabled },
   },
   boxShadow: { interactiveDefaultFocused },
 } = vars;
@@ -16,6 +16,8 @@ const {
 export const switchParent = recipe({
   base: [
     sprinkles({
+      display: "flex",
+      gap: 2,
       backgroundColor: "surfaceNeutralDepressed",
       borderRadius: 3,
       borderColor: "neutralHighlight",
@@ -51,8 +53,11 @@ export const switchChild = recipe({
         "&[data-state='unchecked']:active": {
           backgroundColor: interactiveNeutralHighlightPressing,
         },
-        "&[data-state='unchecked']:focus": {
+        "&[data-state='unchecked']:focus-visible": {
           backgroundColor: interactiveNeutralHighlightPressing,
+        },
+        "&[data-state='unchecked'][disabled]": {
+          color: iconNeutralDisabled,
         },
         "&[data-state='unchecked']": {
           backgroundColor: "transparent",
