@@ -62,7 +62,7 @@ const responsiveProperties = defineProperties({
   properties: {
     display: ["none", "flex", "grid", "block", "contents"],
     flexDirection: ["row", "column"],
-    alignItems: ["stretch", "flex-start", "center", "flex-end"],
+    alignItems: ["stretch", "flex-start", "center", "flex-end", "start", "end"],
     justifyContent: [
       "stretch",
       "flex-start",
@@ -90,6 +90,8 @@ const responsiveProperties = defineProperties({
     order: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     flexWrap: ["nowrap", "wrap"],
     gap: vars.space,
+    rowGap: vars.space,
+    columnGap: vars.space,
     paddingTop: vars.space,
     paddingBottom: vars.space,
     paddingLeft: vars.space,
