@@ -1,7 +1,7 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
 import {
@@ -20,6 +20,10 @@ export const useStateEvents = (
   const [inputValue, setInputValue] = useState(value);
   const [active, setActive] = useState(false);
   const typed = Boolean(inputValue || active);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   const onFocus = () => setActive(true);
   const onBlur = () => setActive(false);
