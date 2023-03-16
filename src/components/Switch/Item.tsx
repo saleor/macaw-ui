@@ -8,15 +8,23 @@ type SwitchItemProps = {
   value: string;
   id: string;
   children: ReactNode;
+  disabled?: boolean;
 } & DataAttributes;
 
 export const SwitchItem = ({
   value,
   id,
+  disabled = false,
   children,
   ...rest
 }: SwitchItemProps) => (
-  <Switch.Item value={value} id={id} className={switchChild()} {...rest}>
+  <Switch.Item
+    value={value}
+    id={id}
+    disabled={disabled}
+    className={switchChild()}
+    {...rest}
+  >
     {children}
   </Switch.Item>
 );

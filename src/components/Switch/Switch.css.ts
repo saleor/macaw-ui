@@ -5,10 +5,12 @@ const {
   colors: {
     background: {
       surfaceNeutralPlain,
-      interactiveBrandHighlightDefault,
+      interactiveNeutralHighlightDefault,
+      interactiveNeutralHighlightHovering,
       interactiveNeutralHighlightPressing,
+      interactiveNeutralHighlightFocused,
     },
-    foreground: { iconNeutralPlain, iconNeutralDefault },
+    foreground: { iconNeutralPlain, iconNeutralDefault, iconNeutralDisabled },
   },
   boxShadow: { interactiveDefaultFocused },
 } = vars;
@@ -16,12 +18,13 @@ const {
 export const switchParent = recipe({
   base: [
     sprinkles({
+      display: "flex",
+      gap: 2,
       backgroundColor: "surfaceNeutralDepressed",
       borderRadius: 3,
       borderColor: "neutralHighlight",
       height: 11,
       padding: 2,
-      cursor: "pointer",
     }),
   ],
   defaultVariants: {},
@@ -34,7 +37,6 @@ export const switchChild = recipe({
       padding: 3,
       borderRadius: 2,
       cursor: "pointer",
-      outlineStyle: "none",
     }),
     {
       selectors: {
@@ -44,20 +46,23 @@ export const switchChild = recipe({
           boxShadow: interactiveDefaultFocused,
           color: iconNeutralDefault,
         },
-
         "&[data-state='unchecked']:hover": {
-          backgroundColor: interactiveBrandHighlightDefault,
+          backgroundColor: interactiveNeutralHighlightHovering,
         },
         "&[data-state='unchecked']:active": {
           backgroundColor: interactiveNeutralHighlightPressing,
         },
-        "&[data-state='unchecked']:focus": {
-          backgroundColor: interactiveNeutralHighlightPressing,
+        "&[data-state='unchecked']:focus-visible": {
+          backgroundColor: interactiveNeutralHighlightFocused,
         },
         "&[data-state='unchecked']": {
-          backgroundColor: "transparent",
+          backgroundColor: interactiveNeutralHighlightDefault,
           borderStyle: "none",
           color: iconNeutralPlain,
+        },
+        "&[disabled]": {
+          color: iconNeutralDisabled,
+          pointerEvents: "none",
         },
       },
     },
