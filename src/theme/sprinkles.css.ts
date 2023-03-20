@@ -193,7 +193,6 @@ const stateProperties = defineProperties({
     focus: { selector: "&:focus" },
     focusWithin: { selector: "&:focus-within" },
     focusVisible: { selector: "&:focus-visible" },
-    focusWithin: { selector: "&:focus-within" },
     active: { selector: "&:active" },
     disabled: { selector: "&[disabled]" },
     placeholder: { selector: "&::placeholder" },
