@@ -10,9 +10,8 @@ import { text, TextVariants } from "./Text.css";
 type TextProps = TextVariants & {
   children: ReactNode;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-  color?: Sprinkles["color"];
   className?: string;
-};
+} & Pick<Sprinkles, "color" | "textAlign" | "textTransform">;
 
 export const Text = forwardRef<HTMLSpanElement, TextProps>(
   (
