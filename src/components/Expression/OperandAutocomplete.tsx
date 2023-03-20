@@ -3,6 +3,9 @@ import {
   forwardRef,
   ComponentProps,
   useState,
+  useEffect,
+  useRef,
+  Ref,
 } from "react";
 import * as Portal from "@radix-ui/react-portal";
 import { classNames } from "~/utils";
@@ -14,6 +17,25 @@ import {
   autocompleteContainer as autocompleteContainerStyles,
   autocompleteContent as autocompleteContentStyles,
 } from "./Expression.css";
+
+const useOutsideClick = (onClickOutside?: () => void) => {
+  const boxRef = useRef<HTMLElement>();
+
+  useEffect(() => {
+    if (!onClickOutside) return;
+
+    const handleClick = (event: MouseEvent) => {
+      if (boxRef.current && !boxRef.current.contains(event.target as Node)) {
+        onClickOutside();
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [boxRef]);
+
+  return boxRef as Ref<HTMLElement>;
+};
 
 export const AutocompleteItem = forwardRef<
   HTMLElement,
@@ -32,6 +54,7 @@ type OperandAutocompleteProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "color" | "width" | "height" | "size"
 > & {
+  onClickOutside?: () => void;
   children: React.ReactNode;
   open?: boolean;
   value?: string;
@@ -41,8 +64,10 @@ export const OperandAutocomplete = ({
   children,
   open,
   value,
+  onClickOutside,
   ...props
 }: OperandAutocompleteProps) => {
+  const boxRef = useOutsideClick(onClickOutside);
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
   const handleCalculationChange = ({
@@ -71,12 +96,15 @@ export const OperandAutocomplete = ({
       {open && (
         <Portal.Root asChild>
           <Box
+            ref={boxRef}
             className={classNames(
               dropdownContentStyles,
               autocompleteContentStyles
             )}
+            __pointerEvents="auto"
             __transform={`translate(${pos.x}px, ${pos.y}px)`}
             __minWidth="128px"
+            __maxHeight="150px"
           >
             {children}
           </Box>

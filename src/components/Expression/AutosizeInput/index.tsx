@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useRef } from "react";
+import { InputHTMLAttributes, useEffect, useRef } from "react";
 import { useTextMetrics } from "./useTextMetrics";
 import { Box } from "../../Box";
 import {
@@ -45,11 +45,18 @@ export const AutosizeInput = ({
   type = "text",
   ...props
 }: AutosizeInputProps) => {
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>();
   const { measureText } = useTextMetrics(inputRef);
-  const currentTextWidth = measureText(value || "");
-  const width =
-    currentTextWidth > defaultWidth ? currentTextWidth : defaultWidth;
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    const currentTextWidth = measureText(value || "");
+    const width =
+      currentTextWidth > defaultWidth ? currentTextWidth : defaultWidth;
+
+    inputRef.current.style.width = `${width}px`;
+  }, [value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (onCalculationChange) {
@@ -79,7 +86,7 @@ export const AutosizeInput = ({
       ref={inputRef as unknown as React.Ref<HTMLInputElement>}
       value={value}
       onChange={handleChange}
-      __width={`${width}px`}
+      // __width={`${width}px`}
       {...props}
     />
   );

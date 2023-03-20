@@ -51,7 +51,11 @@ export const Dropdown = ({ children, triggerText, variant }: DropdownProps) => {
       )}
       <DropdownMenu.Portal>
         <DropdownMenu.Content align="start" asChild>
-          <Box className={dropdownContentStyles} __minWidth="128px">
+          <Box
+            className={dropdownContentStyles}
+            __minWidth="128px"
+            __maxHeight="150px"
+          >
             {children}
           </Box>
         </DropdownMenu.Content>

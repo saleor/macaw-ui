@@ -20,6 +20,13 @@ const SingleDropdownDemo = () => {
         <Expression.OperantDropdownItem>type 1</Expression.OperantDropdownItem>
         <Expression.OperantDropdownItem>type 2</Expression.OperantDropdownItem>
         <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
+        <Expression.OperantDropdownItem>type 3</Expression.OperantDropdownItem>
       </Expression.OperandDropdown>
       <Expression.Condition currentConditon="is">
         <Expression.ConditionItem>is</Expression.ConditionItem>
@@ -81,15 +88,14 @@ const AutocompleteDemo = () => {
         onKeyDown={handleKeyDown}
         onChange={handleChange}
       >
-        <Expression.AutocompleteItem onClick={handleClickItem("Item1")}>
-          item 1
-        </Expression.AutocompleteItem>
-        <Expression.AutocompleteItem onClick={handleClickItem("Item2")}>
-          item 2
-        </Expression.AutocompleteItem>
-        <Expression.AutocompleteItem onClick={handleClickItem("Item3")}>
-          item 3
-        </Expression.AutocompleteItem>
+        {Array.from(Array(100).keys()).map((k) => (
+          <Expression.AutocompleteItem
+            key={k}
+            onClick={handleClickItem("Item1")}
+          >
+            item {k}
+          </Expression.AutocompleteItem>
+        ))}
       </Expression.OperandAutocomplete>
     </Expression>
   );

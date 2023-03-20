@@ -14,6 +14,7 @@ export const dropdownContent = sprinkles({
   backgroundColor: "surfaceNeutralPlain",
   borderColor: "neutralHighlight",
   boxShadow: "interactiveDefaultFocused",
+  overflowY: "scroll",
 });
 
 export const dropdownItem = recipe({

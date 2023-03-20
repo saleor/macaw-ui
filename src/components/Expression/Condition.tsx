@@ -1,13 +1,14 @@
 import { forwardRef } from "react";
-import { Dropdown, DropdownItem } from "./Dropdown";
+import { Dropdown, DropdownItem, DropdownItemProps } from "./Dropdown";
 
-export interface ConditionItemProps {
+export interface ConditionItemProps
+  extends Omit<DropdownItemProps, "condition"> {
   children: React.ReactNode;
 }
 
 export const ConditionItem = forwardRef<HTMLDivElement, ConditionItemProps>(
-  ({ children }, ref) => (
-    <DropdownItem ref={ref} condition>
+  ({ children, onClick }, ref) => (
+    <DropdownItem ref={ref} onClick={onClick} condition>
       {children}
     </DropdownItem>
   )
