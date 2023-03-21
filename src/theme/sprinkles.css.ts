@@ -147,6 +147,7 @@ const responsiveProperties = defineProperties({
     zIndex: ["auto", "1", "2", "3"],
     aspectRatio: ["1 / 1"],
     objectFit: ["contain", "cover", "fill", "none", "scale-down"],
+    opacity: ["0", "0.2", "0.4", "0.6", "0.8", "1"],
     fontWeight: vars.fontWeight,
   },
   shorthands: {
