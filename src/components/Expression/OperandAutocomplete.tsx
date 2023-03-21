@@ -6,9 +6,14 @@ import {
   useEffect,
   useRef,
   Ref,
+  ReactNode,
 } from "react";
 import * as Portal from "@radix-ui/react-portal";
-import { AutosizeInput, InputContainer } from "./AutosizeInput";
+import {
+  AutosizeInput,
+  CalculationChange,
+  InputContainer,
+} from "./AutosizeInput";
 import { DropdownContent } from "./Dropdown";
 import { Box } from "../Box";
 import {
@@ -53,7 +58,7 @@ type OperandAutocompleteProps = Omit<
   "color" | "width" | "height" | "size"
 > & {
   onClickOutside?: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
   open?: boolean;
   value?: string;
 };
@@ -68,13 +73,7 @@ export const OperandAutocomplete = ({
   const boxRef = useOutsideClick(onClickOutside);
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
-  const handleCalculationChange = ({
-    left,
-    rect,
-  }: {
-    left: number;
-    rect: DOMRect;
-  }) => {
+  const handleCalculationChange = ({ left, rect }: CalculationChange) => {
     setPos({
       x: rect.x + left,
       y: rect.y + rect.height + window.scrollY,

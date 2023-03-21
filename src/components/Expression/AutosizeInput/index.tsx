@@ -6,19 +6,18 @@ import {
   inputContainer as inputContainerStyles,
 } from "../Expression.css";
 
+export interface CalculationChange {
+  left: number;
+  rect: DOMRect;
+}
+
 type AutosizeInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "color" | "width" | "height" | "size"
 > & {
   value?: string;
   defaultWidth?: number;
-  onCalculationChange?: ({
-    left,
-    rect,
-  }: {
-    left: number;
-    rect: DOMRect;
-  }) => void;
+  onCalculationChange?: ({ left, rect }: CalculationChange) => void;
 };
 
 interface InputContainerProps {
