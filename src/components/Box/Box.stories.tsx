@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof Box>;
 
 const Template: ComponentStory<typeof Box> = (args) => (
-  <Box {...args}>
+  <Box {...args} __transform="scale(2)">
     <Text>Box component</Text>
   </Box>
 );
