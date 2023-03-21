@@ -1,5 +1,11 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { forwardRef, ReactNode, useState, MouseEvent } from "react";
+import {
+  forwardRef,
+  ReactNode,
+  useState,
+  MouseEvent,
+  ComponentProps,
+} from "react";
 import { Sprinkles } from "~/theme";
 import { Box } from "../Box";
 import {
@@ -9,7 +15,7 @@ import {
   dropdownContentScroller as dropdownContentScrollerStyles,
 } from "./Expression.css";
 
-type DropdownContentProps = Sprinkles & {
+type DropdownContentProps = ComponentProps<typeof Box> & {
   children: ReactNode;
   absolute?: boolean;
 };
