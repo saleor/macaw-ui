@@ -58,6 +58,10 @@ const AutocompleteDemo = () => {
     setValue(event.target.value);
   };
 
+  const handleOutsideClick = () => {
+    setOpen(false);
+  };
+
   const handleClickItem = (itemName: string) => () => {
     setValue((c) =>
       c
@@ -87,11 +91,12 @@ const AutocompleteDemo = () => {
         value={value}
         onKeyDown={handleKeyDown}
         onChange={handleChange}
+        onClickOutside={handleOutsideClick}
       >
         {[...Array(100).keys()].map((k) => (
           <Expression.AutocompleteItem
             key={k}
-            onClick={handleClickItem("Item1")}
+            onClick={handleClickItem(`item${k}`)}
           >
             item {k}
           </Expression.AutocompleteItem>
