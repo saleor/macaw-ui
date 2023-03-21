@@ -1,7 +1,7 @@
 import { Root as DropdownMenuRoot } from "@radix-ui/react-dropdown-menu";
 import { ReactNode } from "react";
 
-type DropdownRootProps = {
+export type DropdownRootProps = {
   children: ReactNode;
 };
 

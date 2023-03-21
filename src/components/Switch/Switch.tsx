@@ -1,22 +1,22 @@
 import { Root } from "@radix-ui/react-radio-group";
 import { forwardRef, ReactNode } from "react";
 
-import { Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 import { DataAttributes } from "../types";
 import { switchParent } from "./Switch.css";
 
-type SwitchItemProps = {
-  children: ReactNode;
-  className?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
-} & Sprinkles &
-  DataAttributes;
+export type SwitchRootProps = PropsWithBox<
+  {
+    children: ReactNode;
+    className?: string;
+    defaultValue?: string;
+    onValueChange?: (value: string) => void;
+  } & DataAttributes
+>;
 
-export const SwitchRoot = forwardRef<HTMLDivElement, SwitchItemProps>(
+export const SwitchRoot = forwardRef<HTMLDivElement, SwitchRootProps>(
   ({ children, className, defaultValue, onValueChange, ...rest }, ref) => (
     <Root asChild defaultValue={defaultValue} onValueChange={onValueChange}>
       <Box

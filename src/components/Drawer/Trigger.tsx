@@ -1,6 +1,6 @@
 import { Trigger as DialogTrigger } from "@radix-ui/react-dialog";
 
-type DrawerTriggerProps = {
+export type DrawerTriggerProps = {
   children: React.ReactNode;
 };
 

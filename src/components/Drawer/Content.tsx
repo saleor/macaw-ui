@@ -1,16 +1,17 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { sprinkles, Sprinkles } from "~/theme";
-import { Box } from "../Box";
+import { sprinkles } from "~/theme";
+import { Box, PropsWithBox } from "../Box";
 import { Button } from "../Button";
 import { CloseIcon } from "../Icons";
 import { DataAttributes } from "../types";
 
 import { showContent } from "./Content.css";
 
-type DrawerContentProps = Sprinkles &
+export type DrawerContentProps = PropsWithBox<
   DataAttributes & {
     children: React.ReactNode;
-  };
+  }
+>;
 
 export const Content = ({ children, ...rest }: DrawerContentProps) => {
   return (

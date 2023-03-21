@@ -9,7 +9,7 @@ import {
   searchIcon,
 } from "./SearchInput.css";
 
-type SearchInputProps = InputContainerVariants &
+export type SearchInputProps = InputContainerVariants &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     "color" | "width" | "height" | "size"

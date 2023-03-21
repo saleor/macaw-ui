@@ -11,7 +11,7 @@ import { List } from "../List";
 
 import { trigger } from "./common.css";
 
-type ItemGroupRootProps = DataAttributes & {
+export type ItemGroupRootProps = DataAttributes & {
   children: ReactNode;
   defaultExpanded?: boolean;
   as?: "ul" | "ol";

@@ -7,7 +7,7 @@ import {
 
 import { content } from "./common.css";
 
-type DropdownContentProps = {
+export type DropdownContentProps = {
   children: ReactNode;
   align?: DropdownMenuContentProps["align"];
   side?: DropdownMenuContentProps["side"];
