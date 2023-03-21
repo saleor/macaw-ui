@@ -39,6 +39,7 @@ InputContainer.displayName = "InputContainer";
 
 export const AutosizeInput = ({
   value,
+  placeholder,
   defaultWidth = 71,
   onChange,
   onCalculationChange,
@@ -46,31 +47,34 @@ export const AutosizeInput = ({
   ...props
 }: AutosizeInputProps) => {
   const inputRef = useRef<HTMLInputElement>();
-  const { measureText } = useTextMetrics(inputRef);
+  const { measureText, measureTextWithPaddings } = useTextMetrics(inputRef);
 
   useEffect(() => {
     if (!inputRef.current) return;
-
-    const currentTextWidth = measureText(value || "");
+    const content = value || placeholder || "";
+    const currentTextWidth = measureTextWithPaddings(content);
     const width =
       currentTextWidth > defaultWidth ? currentTextWidth : defaultWidth;
 
     inputRef.current.style.width = `${width}px`;
-  }, [value]);
+  }, [value, placeholder]);
+
+  const calculateLeftPosition = (
+    value: string,
+    selectionStart: number | null
+  ) => {
+    if (!selectionStart) return 0;
+
+    return measureText(value.slice(0, selectionStart));
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (onCalculationChange) {
       const { value, selectionStart } = event.target;
       const rect = event.target.getBoundingClientRect();
+      const left = calculateLeftPosition(value, selectionStart);
 
-      onCalculationChange({
-        left: selectionStart
-          ? measureText(value.slice(0, selectionStart), {
-              includePaddings: false,
-            })
-          : 0,
-        rect,
-      });
+      onCalculationChange({ left, rect });
     }
 
     if (onChange) {
@@ -86,7 +90,7 @@ export const AutosizeInput = ({
       ref={inputRef as unknown as React.Ref<HTMLInputElement>}
       value={value}
       onChange={handleChange}
-      // __width={`${width}px`}
+      placeholder={placeholder}
       {...props}
     />
   );

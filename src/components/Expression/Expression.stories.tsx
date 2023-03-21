@@ -82,7 +82,7 @@ const AutocompleteDemo = () => {
         <Expression.ConditionItem>is between</Expression.ConditionItem>
       </Expression.Condition>
       <Expression.OperandAutocomplete
-        placeholder="Set value"
+        placeholder="Set asdasdasdasd eeeeeeeeee"
         open={open}
         value={value}
         onKeyDown={handleKeyDown}

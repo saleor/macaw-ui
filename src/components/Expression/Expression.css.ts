@@ -1,20 +1,50 @@
 import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
-import { sprinkles } from "~/theme";
+import { sprinkles, vars } from "~/theme";
 
-export const dropdownContent = sprinkles({
-  padding: 4,
-  paddingBottom: 4,
-  color: "textNeutralDefault",
-  fontSize: "bodySmall",
-  borderWidth: 1,
-  borderTopWidth: 0,
-  borderStyle: "solid",
-  borderRadius: 3,
-  backgroundColor: "surfaceNeutralPlain",
-  borderColor: "neutralHighlight",
-  boxShadow: "interactiveDefaultFocused",
+export const dropdownContent = recipe({
+  base: [
+    sprinkles({
+      padding: 4,
+      paddingBottom: 4,
+      color: "textNeutralDefault",
+      fontSize: "bodySmall",
+      borderWidth: 1,
+      borderTopWidth: 0,
+      borderStyle: "solid",
+      borderRadius: 3,
+      backgroundColor: "surfaceNeutralPlain",
+      borderColor: "neutralHighlight",
+      boxShadow: "interactiveDefaultFocused",
+      pointerEvents: "auto",
+    }),
+  ],
+  variants: {
+    absolute: {
+      true: sprinkles({
+        position: "absolute",
+        top: 0,
+        left: 0,
+      }),
+      false: {},
+    },
+  },
+});
+
+export const dropdownContentScroller = style({
   overflowY: "scroll",
+  selectors: {
+    "&::-webkit-scrollbar": {
+      width: vars.space[3],
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "none",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: vars.colors.background.surfaceNeutralDepressed,
+      borderRadius: vars.borderRadius[4],
+    },
+  },
 });
 
 export const dropdownItem = recipe({
@@ -151,12 +181,6 @@ export const autocompleteInput = sprinkles({
   padding: 0,
   color: "textNeutralDefault",
   fontSize: "bodySmall",
-});
-
-export const autocompleteContent = sprinkles({
-  position: "absolute",
-  top: 0,
-  left: 0,
 });
 
 export const rangeItem = sprinkles({

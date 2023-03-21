@@ -8,14 +8,12 @@ import {
   Ref,
 } from "react";
 import * as Portal from "@radix-ui/react-portal";
-import { classNames } from "~/utils";
 import { AutosizeInput, InputContainer } from "./AutosizeInput";
+import { DropdownContent } from "./Dropdown";
 import { Box } from "../Box";
 import {
-  dropdownContent as dropdownContentStyles,
   dropdownItem as dropdownItemStyles,
   autocompleteContainer as autocompleteContainerStyles,
-  autocompleteContent as autocompleteContentStyles,
 } from "./Expression.css";
 
 const useOutsideClick = (onClickOutside?: () => void) => {
@@ -34,7 +32,7 @@ const useOutsideClick = (onClickOutside?: () => void) => {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [boxRef]);
 
-  return boxRef as Ref<HTMLElement>;
+  return boxRef;
 };
 
 export const AutocompleteItem = forwardRef<
@@ -95,19 +93,13 @@ export const OperandAutocomplete = ({
       </InputContainer>
       {open && (
         <Portal.Root asChild>
-          <Box
-            ref={boxRef}
-            className={classNames(
-              dropdownContentStyles,
-              autocompleteContentStyles
-            )}
-            __pointerEvents="auto"
+          <DropdownContent
+            ref={boxRef as Ref<HTMLDivElement>}
             __transform={`translate(${pos.x}px, ${pos.y}px)`}
-            __minWidth="128px"
-            __maxHeight="150px"
+            absolute
           >
             {children}
-          </Box>
+          </DropdownContent>
         </Portal.Root>
       )}
     </Box>

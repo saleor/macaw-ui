@@ -207,7 +207,6 @@ const stateProperties = defineProperties({
     boxShadow: { ...vars.boxShadow, none: "none" },
     transition: { ease: "transform 0.3s", all: "all 0.3s ease-in-out" },
     textDecoration: ["none", "underline"],
-    transform: {},
   },
 });
 

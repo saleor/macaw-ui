@@ -1,40 +1,57 @@
-import { MutableRefObject } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 
-const paddings = (styles: CSSStyleDeclaration) => {
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
+
+const FONT_PARAMETERS = [
+  "font-style",
+  "font-variant",
+  "font-weight",
+  "font-size",
+  "font-family",
+];
+
+const paddings = (styles?: CSSStyleDeclaration) => {
+  if (!styles) return 0;
+
   const paddingLeft = parseInt(styles.getPropertyValue("padding-left"), 10);
   const paddingRight = parseInt(styles.getPropertyValue("padding-right"), 10);
 
   return paddingLeft + paddingRight;
 };
 
+const obtainFontString = (styles: CSSStyleDeclaration) => {
+  return FONT_PARAMETERS.reduce(
+    (fontString, cssKey) => `${fontString} ${styles.getPropertyValue(cssKey)}`,
+    ""
+  );
+};
+
+const calculateLength = (text: string) => {
+  if (!context) return 0;
+
+  return context.measureText(text).width;
+};
+
 export const useTextMetrics = (
   elementRef: MutableRefObject<HTMLElement | undefined>
 ) => {
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
+  const styles = useRef<CSSStyleDeclaration | undefined>(undefined);
 
-  const measureText = (
-    text: string,
-    { includePaddings } = { includePaddings: true }
-  ) => {
-    if (!context || !elementRef || !elementRef.current) return 0;
+  useEffect(() => {
+    if (!context || !elementRef || !elementRef.current) return;
 
-    const computedStyle = window.getComputedStyle(elementRef.current, null);
-    const fontStyle = computedStyle.getPropertyValue("font-style");
-    const fontVariant = computedStyle.getPropertyValue("font-variant");
-    const fontWeight = computedStyle.getPropertyValue("font-weight");
-    const fontSize = computedStyle.getPropertyValue("font-size");
-    const fontFamily = computedStyle.getPropertyValue("font-family");
-    context.font = `${fontStyle} ${fontVariant} ${fontWeight} ${fontSize} ${fontFamily}`;
+    styles.current = window.getComputedStyle(elementRef.current, null);
+    context.font = obtainFontString(styles.current);
+  }, [elementRef, context]);
 
-    const rawLegth = context.measureText(text).width;
-
-    if (includePaddings) {
-      return rawLegth + paddings(computedStyle);
-    }
-
-    return rawLegth;
+  const measureText = (text: string) => {
+    return calculateLength(text);
   };
 
-  return { measureText };
+  const measureTextWithPaddings = (text: string) => {
+    return calculateLength(text) + paddings(styles.current);
+  };
+
+  return { measureText, measureTextWithPaddings };
 };

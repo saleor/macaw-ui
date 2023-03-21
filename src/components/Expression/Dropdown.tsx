@@ -1,11 +1,35 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef, ReactNode, useState, MouseEvent } from "react";
+import { Sprinkles } from "~/theme";
 import { Box } from "../Box";
 import {
   dropdownContent as dropdownContentStyles,
   dropdownItem as dropdownItemStyles,
   dropdownTrigger as dropdownTriggerStyles,
+  dropdownContentScroller as dropdownContentScrollerStyles,
 } from "./Expression.css";
+
+type DropdownContentProps = Sprinkles & {
+  children: ReactNode;
+  absolute?: boolean;
+};
+
+export const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(
+  ({ children, absolute = false, ...props }, ref) => {
+    return (
+      <Box ref={ref} {...props} className={dropdownContentStyles({ absolute })}>
+        <Box
+          className={dropdownContentScrollerStyles}
+          __minWidth="128px"
+          __maxHeight="150px"
+        >
+          {children}
+        </Box>
+      </Box>
+    );
+  }
+);
+DropdownContent.displayName = "DropdownContent";
 
 export interface DropdownItemProps {
   children: ReactNode;
@@ -51,13 +75,7 @@ export const Dropdown = ({ children, triggerText, variant }: DropdownProps) => {
       )}
       <DropdownMenu.Portal>
         <DropdownMenu.Content align="start" asChild>
-          <Box
-            className={dropdownContentStyles}
-            __minWidth="128px"
-            __maxHeight="150px"
-          >
-            {children}
-          </Box>
+          <DropdownContent>{children}</DropdownContent>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
