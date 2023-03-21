@@ -27,12 +27,6 @@ const obtainFontString = (styles: CSSStyleDeclaration) => {
   );
 };
 
-const calculateLength = (text: string) => {
-  if (!context) return 0;
-
-  return context.measureText(text).width;
-};
-
 export const useTextMetrics = (
   elementRef: MutableRefObject<HTMLElement | undefined>
 ) => {
@@ -46,11 +40,13 @@ export const useTextMetrics = (
   }, [elementRef, context]);
 
   const measureText = (text: string) => {
-    return calculateLength(text);
+    if (!context) return 0;
+
+    return context.measureText(text).width;
   };
 
   const measureTextWithPaddings = (text: string) => {
-    return calculateLength(text) + paddings(styles.current);
+    return measureText(text) + paddings(styles.current);
   };
 
   return { measureText, measureTextWithPaddings };

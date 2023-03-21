@@ -82,13 +82,13 @@ const AutocompleteDemo = () => {
         <Expression.ConditionItem>is between</Expression.ConditionItem>
       </Expression.Condition>
       <Expression.OperandAutocomplete
-        placeholder="Set asdasdasdasd eeeeeeeeee"
+        placeholder="Set autocomplete value"
         open={open}
         value={value}
         onKeyDown={handleKeyDown}
         onChange={handleChange}
       >
-        {Array.from(Array(100).keys()).map((k) => (
+        {[...Array(100).keys()].map((k) => (
           <Expression.AutocompleteItem
             key={k}
             onClick={handleClickItem("Item1")}

@@ -63,6 +63,11 @@ type OperandAutocompleteProps = Omit<
   value?: string;
 };
 
+interface ContentPositon {
+  x: number;
+  y: number;
+}
+
 export const OperandAutocomplete = ({
   children,
   open,
@@ -71,7 +76,7 @@ export const OperandAutocomplete = ({
   ...props
 }: OperandAutocompleteProps) => {
   const boxRef = useOutsideClick(onClickOutside);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [pos, setPos] = useState<ContentPositon>({ x: 0, y: 0 });
 
   const handleCalculationChange = ({ left, rect }: CalculationChange) => {
     setPos({
