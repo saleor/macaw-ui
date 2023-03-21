@@ -37,7 +37,7 @@ export const useTextMetrics = (
 
     styles.current = window.getComputedStyle(elementRef.current, null);
     context.font = obtainFontString(styles.current);
-  }, [elementRef, context]);
+  }, [elementRef]);
 
   const measureText = (text: string) => {
     if (!context) return 0;

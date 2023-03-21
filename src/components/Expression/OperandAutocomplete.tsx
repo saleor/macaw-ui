@@ -35,7 +35,7 @@ const useOutsideClick = (onClickOutside?: () => void) => {
     document.addEventListener("mousedown", handleClick);
 
     return () => document.removeEventListener("mousedown", handleClick);
-  }, [boxRef]);
+  }, [boxRef, onClickOutside]);
 
   return boxRef;
 };

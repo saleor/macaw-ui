@@ -56,7 +56,7 @@ export const AutosizeInput = ({
       currentTextWidth > defaultWidth ? currentTextWidth : defaultWidth;
 
     inputRef.current.style.width = `${width}px`;
-  }, [value, placeholder]);
+  }, [value, placeholder, defaultWidth, measureTextWithPaddings]);
 
   const calculateLeftPosition = (
     value: string,

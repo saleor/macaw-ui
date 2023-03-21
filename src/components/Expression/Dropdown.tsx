@@ -6,7 +6,6 @@ import {
   MouseEvent,
   ComponentProps,
 } from "react";
-import { Sprinkles } from "~/theme";
 import { Box } from "../Box";
 import {
   dropdownContent as dropdownContentStyles,
