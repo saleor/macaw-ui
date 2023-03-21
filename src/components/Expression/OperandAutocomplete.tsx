@@ -3,12 +3,11 @@ import {
   forwardRef,
   ComponentProps,
   useState,
-  useEffect,
-  useRef,
   Ref,
   ReactNode,
 } from "react";
 import * as Portal from "@radix-ui/react-portal";
+import { useOutsideClick } from "~/utils/useClickOutside";
 import {
   AutosizeInput,
   CalculationChange,
@@ -21,31 +20,12 @@ import {
   autocompleteContainer as autocompleteContainerStyles,
 } from "./Expression.css";
 
-const useOutsideClick = (onClickOutside?: () => void) => {
-  const boxRef = useRef<HTMLElement>();
-
-  useEffect(() => {
-    if (!onClickOutside) return;
-
-    const handleClick = (event: MouseEvent) => {
-      if (boxRef.current && !boxRef.current.contains(event.target as Node)) {
-        onClickOutside();
-      }
-    };
-    document.addEventListener("mousedown", handleClick);
-
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [boxRef, onClickOutside]);
-
-  return boxRef;
-};
-
 export const AutocompleteItem = forwardRef<
   HTMLElement,
   ComponentProps<typeof Box>
 >(({ children, ...props }, ref) => {
   return (
-    <Box className={dropdownItemStyles()} {...props} ref={ref}>
+    <Box className={dropdownItemStyles()} ref={ref} {...props}>
       {children}
     </Box>
   );

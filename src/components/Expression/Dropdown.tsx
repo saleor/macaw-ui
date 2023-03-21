@@ -22,7 +22,7 @@ type DropdownContentProps = ComponentProps<typeof Box> & {
 export const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(
   ({ children, absolute = false, ...props }, ref) => {
     return (
-      <Box ref={ref} {...props} className={dropdownContentStyles({ absolute })}>
+      <Box ref={ref} className={dropdownContentStyles({ absolute })} {...props}>
         <Box
           className={dropdownContentScrollerStyles}
           __minWidth="128px"

@@ -1,4 +1,10 @@
-import { InputHTMLAttributes, useEffect, useRef } from "react";
+import {
+  ChangeEvent,
+  InputHTMLAttributes,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
 import { useTextMetrics } from "./useTextMetrics";
 import { Box } from "../../Box";
 import {
@@ -21,7 +27,7 @@ type AutosizeInputProps = Omit<
 };
 
 interface InputContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   focused?: boolean;
 }
 
@@ -67,7 +73,7 @@ export const AutosizeInput = ({
     return measureText(value.slice(0, selectionStart));
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (onCalculationChange) {
       const { value, selectionStart } = event.target;
       const rect = event.target.getBoundingClientRect();
