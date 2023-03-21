@@ -1,8 +1,7 @@
 import { AccordionTrigger } from "@radix-ui/react-accordion";
 import { ReactNode } from "react";
 
-import { Sprinkles } from "~/theme";
-import { Box, Button, ChervonDownIcon } from "~/components";
+import { Box, Button, ChervonDownIcon, PropsWithBox } from "~/components";
 import { DataAttributes } from "~/components/types";
 
 import { useItemGroupContext } from "./context";
@@ -10,14 +9,15 @@ import { List } from "..";
 
 import { button, icon } from "./common.css";
 
-type ItemGroupTriggerProps = Sprinkles &
+export type ItemGroupTriggerProps = PropsWithBox<
   DataAttributes & {
     children: ReactNode;
     active?: boolean;
     [key: `data-${string}`]: string;
     size?: "small" | "medium" | "large";
     url?: string;
-  };
+  }
+>;
 
 export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
   const { triggerOpen } = useItemGroupContext();

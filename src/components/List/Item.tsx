@@ -1,17 +1,16 @@
 import { forwardRef, ReactNode } from "react";
 
-import { Sprinkles } from "~/theme";
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 
-type ListItemProps = Sprinkles & {
+export type ListItemProps = PropsWithBox<{
   children: ReactNode;
   disabled?: boolean;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
   active?: boolean;
-};
+}>;
 
-export const Item = forwardRef<HTMLLIElement, ListItemProps>(
+export const Item = forwardRef<HTMLElement, ListItemProps>(
   ({ children, disabled, onClick, className, active, ...rest }, ref) => {
     return (
       <Box

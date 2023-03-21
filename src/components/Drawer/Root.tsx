@@ -1,6 +1,6 @@
 import { Root as DialogRoot } from "@radix-ui/react-dialog";
 
-type DrawerRootProps = {
+export type DrawerRootProps = {
   children: React.ReactNode;
 };
 

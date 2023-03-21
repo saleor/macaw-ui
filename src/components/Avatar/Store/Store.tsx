@@ -6,19 +6,21 @@ import { Text } from "../../Text";
 
 import { storeAvatar, StoreAvatarVariants } from "./Store.css";
 
-type InitialsAvatarProps = StoreAvatarVariants &
+export type InitialsStoreAvatarProps = StoreAvatarVariants &
   DataAttributes & {
     className?: string;
     initials: string;
   };
 
-type ImageAvatarProps = StoreAvatarVariants &
+export type ImageStoreAvatarProps = StoreAvatarVariants &
   DataAttributes & {
     className?: string;
     src: string;
   };
 
-export const Store = (props: InitialsAvatarProps | ImageAvatarProps) => {
+export const Store = (
+  props: InitialsStoreAvatarProps | ImageStoreAvatarProps
+) => {
   if ("initials" in props) {
     const { size, scheme, className, initials, ...rest } = props;
     return (

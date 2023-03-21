@@ -7,7 +7,7 @@ import { Box } from "../Box";
 
 import { text, TextVariants } from "./Text.css";
 
-type TextProps = TextVariants & {
+export type TextProps = TextVariants & {
   children: ReactNode;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
   className?: string;

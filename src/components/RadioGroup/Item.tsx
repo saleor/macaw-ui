@@ -1,21 +1,20 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { forwardRef, ReactNode } from "react";
 
-import { Sprinkles } from "~/theme";
-
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 import { DataAttributes } from "../types";
 import { indicator, item } from "./Item.css";
 
-type RadioGroupItemProps = {
-  value: string;
-  id: string;
-  disabled?: boolean;
-  children: ReactNode;
-  className?: string;
-  error?: boolean;
-} & Sprinkles &
-  DataAttributes;
+export type RadioGroupItemProps = PropsWithBox<
+  {
+    value: string;
+    id: string;
+    disabled?: boolean;
+    children: ReactNode;
+    className?: string;
+    error?: boolean;
+  } & DataAttributes
+>;
 
 export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
   ({ value, id, disabled, children, className, error, ...rest }, ref) => (

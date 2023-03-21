@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { DataAttributes } from "../types";
 import { switchChild } from "./Switch.css";
 
-type SwitchItemProps = {
+export type SwitchItemProps = {
   value: string;
   id: string;
   children: ReactNode;
