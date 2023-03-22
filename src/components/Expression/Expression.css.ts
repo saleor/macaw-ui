@@ -12,7 +12,7 @@ export const dropdownContent = recipe({
       borderWidth: 1,
       borderTopWidth: 0,
       borderStyle: "solid",
-      borderRadius: 3,
+      borderRadius: 4,
       backgroundColor: "surfaceNeutralPlain",
       borderColor: "neutralHighlight",
       boxShadow: "interactiveDefaultFocused",
