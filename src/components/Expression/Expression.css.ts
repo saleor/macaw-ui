@@ -64,7 +64,7 @@ export const dropdownItem = recipe({
       fontSize: "bodySmall",
       fontWeight: "bodySmall",
       lineHeight: "captionMedium",
-      borderRadius: 3,
+      borderRadius: 2,
       backgroundColor: {
         default: "surfaceNeutralPlain",
         hover: "interactiveNeutralHighlightHovering",
