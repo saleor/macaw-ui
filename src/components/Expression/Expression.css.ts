@@ -33,6 +33,9 @@ export const dropdownContent = recipe({
 
 export const dropdownContentScroller = style({
   overflowY: "scroll",
+  scrollbarColor: `${vars.colors.background.surfaceNeutralDepressed} none`,
+  scrollbarWidth: "thin",
+  paddingRight: vars.space[4],
   selectors: {
     "&::-webkit-scrollbar": {
       width: vars.space[3],
@@ -116,8 +119,8 @@ export const inputContainer = recipe({
     sprinkles({
       borderWidth: 0,
       padding: 0,
-      fontSize: "bodySmall",
       display: "flex",
+      height: "100%",
       alignItems: "center",
       backgroundColor: {
         default: "surfaceNeutralPlain",
@@ -145,10 +148,24 @@ export const input = recipe({
       outlineStyle: "none",
       paddingX: 4,
       paddingY: 3,
+      fontSize: "bodySmall",
       backgroundColor: "transparent",
       color: {
         default: "textNeutralDefault",
         focus: "textBrandDefault",
+      },
+    }),
+    style({
+      MozAppearance: "textfield",
+      selectors: {
+        "&::-webkit-outer-spin-button": {
+          WebkitAppearance: "none",
+          margin: 0,
+        },
+        "&::-webkit-inner-spin-button": {
+          WebkitAppearance: "none",
+          margin: 0,
+        },
       },
     }),
   ],
