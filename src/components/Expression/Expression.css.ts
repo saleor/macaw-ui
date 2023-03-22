@@ -32,10 +32,9 @@ export const dropdownContent = recipe({
 });
 
 export const dropdownContentScroller = style({
-  overflowY: "scroll",
+  overflow: "overlay",
   scrollbarColor: `${vars.colors.background.surfaceNeutralDepressed} none`,
   scrollbarWidth: "thin",
-  paddingRight: vars.space[4],
   selectors: {
     "&::-webkit-scrollbar": {
       width: vars.space[3],
@@ -44,7 +43,7 @@ export const dropdownContentScroller = style({
       background: "none",
     },
     "&::-webkit-scrollbar-thumb": {
-      background: vars.colors.background.surfaceNeutralDepressed,
+      background: vars.colors.background.surfaceNeutralHighlight,
       borderRadius: vars.borderRadius[4],
     },
   },
