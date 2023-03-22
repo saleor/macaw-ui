@@ -192,8 +192,8 @@ const stateProperties = defineProperties({
     default: {},
     hover: { selector: "&:hover" },
     focus: { selector: "&:focus" },
-    focusVisible: { selector: "&:focus-visible" },
     focusWithin: { selector: "&:focus-within" },
+    focusVisible: { selector: "&:focus-visible" },
     active: { selector: "&:active" },
     disabled: { selector: "&[disabled]" },
     placeholder: { selector: "&::placeholder" },
@@ -208,6 +208,7 @@ const stateProperties = defineProperties({
     boxShadow: { ...vars.boxShadow, none: "none" },
     transition: { ease: "transform 0.3s", all: "all 0.3s ease-in-out" },
     textDecoration: ["none", "underline"],
+    transform: [],
   },
 });
 
