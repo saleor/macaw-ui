@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { StyleRule, style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 import { sprinkles, vars } from "~/theme";
 
@@ -32,9 +32,14 @@ export const dropdownContent = recipe({
 });
 
 export const dropdownContentScroller = style({
-  overflow: "overlay",
-  scrollbarColor: `${vars.colors.background.surfaceNeutralDepressed} none`,
+  overflowY: "scroll",
+  scrollbarColor: `${vars.colors.background.surfaceNeutralHighlight} #0000`,
   scrollbarWidth: "thin",
+  "@supports": {
+    "(overflow: overlay)": {
+      "overflow-y": "overlay",
+    } as StyleRule,
+  },
   selectors: {
     "&::-webkit-scrollbar": {
       width: vars.space[3],
