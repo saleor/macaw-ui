@@ -13,9 +13,8 @@ export type ItemGroupTriggerProps = PropsWithBox<
   DataAttributes & {
     children: ReactNode;
     active?: boolean;
-    [key: `data-${string}`]: string;
-    size?: "small" | "medium" | "large";
     url?: string;
+    size?: "small" | "medium" | "large";
   }
 >;
 
