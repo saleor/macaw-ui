@@ -46,6 +46,7 @@ export const ListGroup = () => (
         borderRadius={3}
         justifyContent="space-between"
         gap={6}
+        size="medium"
       >
         <Box display="flex" alignItems="center" gap={6}>
           <MenuIcon color="iconNeutralDefault" />
