@@ -36,3 +36,4 @@ export * from "./ViewTableIcon";
 export * from "./ViewWideTilesIcon";
 export * from "./ViewTilesIcon";
 export * from "./ViewListIcon";
+export * from "./PlusIcon";
