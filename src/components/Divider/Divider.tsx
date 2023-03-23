@@ -6,21 +6,18 @@ export type DividerProps = PropsWithBox<{
 }>;
 
 export const Divider = forwardRef<HTMLHRElement, DividerProps>(
-  ({ className, ...rest }, ref) => {
-    console.log(rest);
-    return (
-      <Box
-        ref={ref}
-        as="hr"
-        className={className}
-        backgroundColor="surfaceNeutralDepressed"
-        borderWidth={0}
-        width="100%"
-        height={1}
-        {...rest}
-      />
-    );
-  }
+  ({ className, ...rest }, ref) => (
+    <Box
+      ref={ref}
+      as="hr"
+      className={className}
+      backgroundColor="surfaceNeutralDepressed"
+      borderWidth={0}
+      width="100%"
+      height={1}
+      {...rest}
+    />
+  )
 );
 
 Divider.displayName = "Divider";
