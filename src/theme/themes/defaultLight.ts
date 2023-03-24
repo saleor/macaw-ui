@@ -48,7 +48,9 @@ export const defaultLight = {
       highlightPale: "hsla(0, 0%, 100%, 0.6)",
       surfaceNeutralPlain: "hsla(0, 0%, 100%, 1)",
       surfaceNeutralSubdued: "hsla(120, 11%, 98%, 1)",
-      surfaceNeutralDepressed: "hsla(210, 15%, 85%, 1)",
+      // Temporary replace this color to match with rest of old macaw
+      // surfaceNeutralDepressed: "hsla(210, 15%, 85%, 1)",
+      surfaceNeutralDepressed: "hsla(180, 1%, 85%, 1)",
       surfaceNeutralHighlight: "hsla(212, 44%, 13%, 0.06)",
       surfaceBrandSubdued: "hsla(215, 100%, 96%, 1)",
       surfaceBrandDepressed: "hsla(215, 100%, 88%, 1)",
