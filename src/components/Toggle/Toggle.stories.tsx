@@ -17,7 +17,7 @@ export const Default = () => {
         <Toggle>
           <Text variant="body">Option 1</Text>
         </Toggle>
-        <Toggle defaultChecked>
+        <Toggle defaultPressed>
           <Text variant="body">Option 2</Text>
         </Toggle>
         <Toggle disabled>
@@ -36,7 +36,7 @@ export const Default = () => {
         <Toggle error>
           <Text variant="body">Option 1</Text>
         </Toggle>
-        <Toggle error defaultChecked>
+        <Toggle error defaultPressed>
           <Text variant="body">Option 2</Text>
         </Toggle>
         <Toggle error disabled>
