@@ -9,7 +9,13 @@ export default {
 export const Default: ComponentStory<typeof Input> = () => (
   <Box display="flex" flexDirection="column">
     <Box paddingY={9} display="flex" gap={9} alignItems="center">
-      <Input id="inp11" value="Input content" label="Label" size="large" />
+      <Input
+        id="inp11"
+        value="Input content"
+        label="Label"
+        size="large"
+        placeholder="Input placeholder"
+      />
       <Input id="inp12" value="Input content" label="Label" size="medium" />
       <Input id="inp13" value="Input content" label="Label" size="small" />
     </Box>
@@ -21,6 +27,7 @@ export const Default: ComponentStory<typeof Input> = () => (
         size="large"
         error
       />
+
       <Input
         id="inp12e"
         value="Input content error"
@@ -72,6 +79,31 @@ export const Default: ComponentStory<typeof Input> = () => (
         label="Label"
         size="small"
         disabled
+      />
+    </Box>
+    <Box paddingY={9} display="flex" gap={9} alignItems="center">
+      <Input
+        id="inp413"
+        value="Input content"
+        label="Label"
+        size="large"
+        helperText="Default helper text"
+      />
+      <Input
+        id="inp423"
+        value="Input content"
+        label="Label"
+        size="medium"
+        error
+        helperText="Error helper text"
+      />
+      <Input
+        id="inp433"
+        value="Input content"
+        label="Label"
+        size="small"
+        disabled
+        helperText="Disabled helper text"
       />
     </Box>
   </Box>
