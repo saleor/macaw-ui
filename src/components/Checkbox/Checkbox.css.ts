@@ -14,7 +14,6 @@ export const commonCheckbox = sprinkles({
   borderRadius: 1,
   borderWidth: 1,
   color: "iconNeutralContrasted",
-  position: "relative",
 });
 
 export const defaultCheckbox = style({
