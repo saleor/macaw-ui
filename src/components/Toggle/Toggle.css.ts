@@ -15,6 +15,7 @@ export const toggle = recipe({
       position: "relative",
       padding: 1,
       outlineStyle: "none",
+      cursor: "pointer",
     }),
   ],
   variants: {
@@ -34,6 +35,7 @@ export const toggle = recipe({
           "&[disabled]::before": {
             // Token mismatch
             backgroundColor: vars.colors.foreground.iconNeutralDisabled,
+            boxShadow: "none",
           },
 
           // Ghost element for positioning
@@ -76,12 +78,7 @@ export const toggle = recipe({
           '&[data-state="off"][disabled]': {
             backgroundColor:
               vars.colors.background.interactiveNeutralSecondaryDisabled,
-            pointerEvents: "none",
-            boxShadow: "none",
-          },
-          '&[data-state="off"][disabled]::before': {
-            // Token mismatch
-            backgroundColor: vars.colors.foreground.iconNeutralDisabled,
+            pointer: "not-allowed",
             pointerEvents: "none",
             boxShadow: "none",
           },
@@ -112,6 +109,7 @@ export const toggle = recipe({
           },
           '&[data-state="on"][disabled]': {
             backgroundColor: vars.colors.background.interactiveBrandDisabled,
+            pointer: "not-allowed",
             pointerEvents: "none",
             boxShadow: "none",
           },
