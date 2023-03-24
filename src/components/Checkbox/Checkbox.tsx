@@ -25,7 +25,13 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
     const iconColor = disabled ? "iconNeutralSubdued" : "iconNeutralContrasted";
 
     return (
-      <Box as="label" display="flex" alignItems="center" gap={4}>
+      <Box
+        as="label"
+        display="flex"
+        alignItems="center"
+        gap={4}
+        position="relative"
+      >
         <RadixCheckbox
           ref={ref}
           className={classNames(

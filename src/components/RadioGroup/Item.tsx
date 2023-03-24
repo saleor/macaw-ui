@@ -22,6 +22,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
       display="flex"
       alignItems="center"
       gap={4}
+      position="relative"
       {...rest}
       className={className}
       ref={ref}
