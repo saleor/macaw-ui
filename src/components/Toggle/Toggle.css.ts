@@ -30,7 +30,7 @@ export const toggle = recipe({
             // Token mismatch
             backgroundColor: vars.colors.foreground.iconNeutralContrasted,
             borderRadius: 4,
-            transition: "all 0.1s ease-in-out",
+            transition: "all 40ms ease-in-out",
           },
           "&[disabled]::before": {
             // Token mismatch
@@ -44,7 +44,7 @@ export const toggle = recipe({
             visibility: "hidden",
             width: vars.space[5],
             height: vars.space[5],
-            transition: "all 0.1s ease-in-out",
+            transition: "all 40ms ease-in-out",
           },
           // Transition from dot to pill on press
           "&:not([disabled]):active::before": {
