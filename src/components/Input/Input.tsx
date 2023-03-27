@@ -1,19 +1,26 @@
-import { forwardRef, InputHTMLAttributes } from "react";
+import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
+
 import { classNames } from "~/utils";
+
 import { InputWrapper, useStateEvents } from "./InputWrapper";
 import { Box } from "../Box";
+import { Text } from "../Text";
 import { input as inputStyle, InputVariants } from "./Input.css";
 
 export type InputProps = InputVariants &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "color" | "width" | "height" | "size"
-  > & { label?: string; error?: boolean };
+    "color" | "width" | "height" | "size" | "type" | "children"
+  > & {
+    label?: ReactNode;
+    error?: boolean;
+    type?: "text" | "number";
+    helperText?: ReactNode;
+  };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      children,
       size,
       disabled = false,
       className,
@@ -23,6 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type,
       error = false,
       onChange,
+      helperText,
       ...props
     },
     ref
@@ -35,29 +43,41 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     } = useStateEvents(value, onChange);
 
     return (
-      <InputWrapper
-        id={id}
-        typed={typed}
-        active={active}
-        disabled={disabled}
-        size={size}
-        label={label}
-        error={error}
-        className={className}
-      >
-        <Box
+      <Box display="flex" flexDirection="column">
+        <InputWrapper
           id={id}
-          as="input"
-          type={type}
-          className={classNames(inputStyle({ size, error }))}
+          typed={typed}
+          active={active}
           disabled={disabled}
-          value={inputValue}
-          ref={ref}
-          {...handlers}
-          {...props}
-        />
-        {children}
-      </InputWrapper>
+          size={size}
+          label={label}
+          error={error}
+          className={className}
+        >
+          <Box
+            id={id}
+            as="input"
+            type={type}
+            className={classNames(inputStyle({ size, error }))}
+            disabled={disabled}
+            value={inputValue}
+            ref={ref}
+            {...handlers}
+            {...props}
+          />
+        </InputWrapper>
+        {helperText && (
+          <Box paddingLeft={4}>
+            <Text
+              variant="caption"
+              size={size}
+              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
+            >
+              {helperText}
+            </Text>
+          </Box>
+        )}
+      </Box>
     );
   }
 );

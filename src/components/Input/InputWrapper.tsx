@@ -46,7 +46,7 @@ export const useStateEvents = (
 
 type InputWrapperProps = LabelVariants & {
   id?: string;
-  label?: string;
+  label?: ReactNode;
   className?: string;
   error?: boolean;
   children: ReactNode;

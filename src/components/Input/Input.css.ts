@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { sprinkles } from "~/theme";
+import { sprinkles, vars } from "~/theme";
 
 export const label = recipe({
   base: [
@@ -195,6 +195,22 @@ export const input = recipe({
         disabled: "textNeutralSubdued",
       },
     }),
+    {
+      selectors: {
+        "&::-webkit-input-placeholder": {
+          color: "transparent",
+        },
+        "&::-moz-placeholder": {
+          color: "transparent",
+        },
+        "&:focus::-webkit-input-placeholder": {
+          color: vars.colors.foreground.textNeutralSubdued,
+        },
+        "&:focus::-moz-placeholder": {
+          color: vars.colors.foreground.textNeutralSubdued,
+        },
+      },
+    },
   ],
   variants: {
     size: {
