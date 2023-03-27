@@ -31,25 +31,6 @@ export const Default = () => {
           </Text>
         </Toggle>
       </DecorativeBox>
-      <DecorativeBox>
-        <Text variant="heading">Error toggles</Text>
-        <Toggle error>
-          <Text variant="body">Option 1</Text>
-        </Toggle>
-        <Toggle error defaultPressed>
-          <Text variant="body">Option 2</Text>
-        </Toggle>
-        <Toggle error disabled>
-          <Text variant="body" color="textNeutralDisabled">
-            Disabled option
-          </Text>
-        </Toggle>
-        <Toggle error disabled pressed={true}>
-          <Text variant="body" color="textNeutralDisabled">
-            Checked disabled option
-          </Text>
-        </Toggle>
-      </DecorativeBox>
     </Box>
   );
 };

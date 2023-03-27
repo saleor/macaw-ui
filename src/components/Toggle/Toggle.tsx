@@ -1,22 +1,12 @@
-import {
-  Root as RadixToggle,
-  ToggleProps as RadixToggleProps,
-} from "@radix-ui/react-toggle";
+import { Root as RadixToggle, ToggleProps } from "@radix-ui/react-toggle";
 import { forwardRef } from "react";
 import { Box } from "../Box";
 import { toggle } from "./Toggle.css";
-
-export type ToggleProps = RadixToggleProps & {
-  error?: boolean;
-};
-
-export type CheckedState = boolean | "indeterminate";
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
   (
     {
       disabled = false,
-      error = false,
       pressed,
       onPressedChange,
       children,
@@ -34,7 +24,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
       >
         <RadixToggle
           ref={ref}
-          className={toggle({ error })}
+          className={toggle()}
           pressed={pressed}
           onPressedChange={onPressedChange}
           disabled={disabled}
