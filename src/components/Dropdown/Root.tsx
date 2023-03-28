@@ -1,10 +1,10 @@
-import { Root as DropdownMenuRoot } from "@radix-ui/react-dropdown-menu";
-import { ReactNode } from "react";
+import {
+  Root as DropdownMenuRoot,
+  DropdownMenuProps,
+} from "@radix-ui/react-dropdown-menu";
 
-export type DropdownRootProps = {
-  children: ReactNode;
-};
+export type DropdownRootProps = DropdownMenuProps;
 
-export const DropdownRoot = ({ children }: DropdownRootProps) => {
-  return <DropdownMenuRoot>{children}</DropdownMenuRoot>;
+export const DropdownRoot = ({ children, ...props }: DropdownRootProps) => {
+  return <DropdownMenuRoot {...props}>{children}</DropdownMenuRoot>;
 };
