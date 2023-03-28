@@ -3,8 +3,11 @@ import { ReactNode } from "react";
 
 export type DropdownRootProps = {
   children: ReactNode;
+  onOpenChange?: (open: boolean) => void;
 };
 
-export const DropdownRoot = ({ children }: DropdownRootProps) => {
-  return <DropdownMenuRoot>{children}</DropdownMenuRoot>;
+export const DropdownRoot = ({ children, onOpenChange }: DropdownRootProps) => {
+  return (
+    <DropdownMenuRoot onOpenChange={onOpenChange}>{children}</DropdownMenuRoot>
+  );
 };
