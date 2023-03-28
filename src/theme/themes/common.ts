@@ -47,6 +47,11 @@ export const borderRadius = {
   2: "4px",
   3: "6px",
   4: "8px",
+  5: "12px",
+  6: "14px",
+  7: "16px",
+  8: "18px",
+  9: "20px",
 };
 
 export const lineHeight = {
