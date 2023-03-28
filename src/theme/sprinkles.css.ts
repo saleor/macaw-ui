@@ -62,7 +62,15 @@ const responsiveProperties = defineProperties({
   properties: {
     display: ["none", "flex", "grid", "block", "contents"],
     flexDirection: ["row", "column"],
-    alignItems: ["stretch", "flex-start", "center", "flex-end", "start", "end"],
+    alignItems: [
+      "stretch",
+      "flex-start",
+      "center",
+      "flex-end",
+      "start",
+      "end",
+      "baseline",
+    ],
     justifyContent: [
       "stretch",
       "flex-start",

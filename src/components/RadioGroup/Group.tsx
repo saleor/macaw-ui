@@ -8,14 +8,14 @@ export type RadioGroupRootProps = PropsWithBox<
   {
     children: ReactNode;
     className?: string;
-    defaultValue?: string;
+    value?: string;
     onValueChange?: (value: string) => void;
   } & DataAttributes
 >;
 
 export const RadioGroupRoot = forwardRef<HTMLDivElement, RadioGroupRootProps>(
-  ({ children, className, defaultValue, onValueChange, ...rest }, ref) => (
-    <Root asChild defaultValue={defaultValue} onValueChange={onValueChange}>
+  ({ children, className, value, onValueChange, ...rest }, ref) => (
+    <Root asChild value={value} onValueChange={onValueChange}>
       <Box {...rest} className={className} ref={ref}>
         {children}
       </Box>
