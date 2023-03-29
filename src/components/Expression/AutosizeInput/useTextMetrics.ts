@@ -1,8 +1,5 @@
 import { MutableRefObject, useEffect, useRef } from "react";
 
-const canvas = document.createElement("canvas");
-const context = canvas.getContext("2d");
-
 const FONT_PARAMETERS = [
   "font-style",
   "font-variant",
@@ -31,13 +28,15 @@ export const useTextMetrics = (
   elementRef: MutableRefObject<HTMLElement | undefined>
 ) => {
   const styles = useRef<CSSStyleDeclaration | undefined>(undefined);
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
 
   useEffect(() => {
     if (!context || !elementRef || !elementRef.current) return;
 
     styles.current = window.getComputedStyle(elementRef.current, null);
     context.font = obtainFontString(styles.current);
-  }, [elementRef]);
+  }, [elementRef, context]);
 
   const measureText = (text: string) => {
     if (!context) return 0;
