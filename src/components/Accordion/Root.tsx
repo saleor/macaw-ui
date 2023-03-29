@@ -1,31 +1,25 @@
-import {
-  Root as AccordionRoot,
-  Item as AccordionItem,
-} from "@radix-ui/react-accordion";
-import { ReactNode, useState } from "react";
-import { trigger } from "./common.css";
+import { Root as AccordionRoot } from "@radix-ui/react-accordion";
+import { forwardRef, ReactNode } from "react";
+import { Box, PropsWithBox } from "../Box";
 
-export type AccordionProps = {
+export type AccordionRootProps = PropsWithBox<{
   children: ReactNode;
-  defaultExpanded?: boolean;
-};
+  defaultValue?: string;
+}>;
 
-const expandedValue = "accordion-value";
-
-export const Root = ({ children, defaultExpanded = false }: AccordionProps) => {
-  const [value, setValue] = useState(defaultExpanded ? expandedValue : "");
-
-  return (
+export const Root = forwardRef<HTMLElement, AccordionRootProps>(
+  ({ children, defaultValue, ...rest }, ref) => (
     <AccordionRoot
-      asChild
       type="single"
       collapsible
-      value={value}
-      onValueChange={setValue}
+      defaultValue={defaultValue}
+      asChild
     >
-      <AccordionItem value={expandedValue} className={trigger}>
+      <Box {...rest} ref={ref}>
         {children}
-      </AccordionItem>
+      </Box>
     </AccordionRoot>
-  );
-};
+  )
+);
+
+Root.displayName = "Accordion";
