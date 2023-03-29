@@ -14,21 +14,40 @@ export const dropdownButton = recipe({
       pointerEvents: {
         disabled: "none",
       },
-      backgroundColor: {
-        default: "surfaceNeutralHighlight",
-        hover: "surfaceNeutralDepressed",
-        focusVisible: "surfaceNeutralDepressed",
-        active: "interactiveNeutralHighlightPressing",
-        disabled: "interactiveNeutralHighlightDisabled",
+      borderColor: {
+        default: "transparent",
+        focus: "brandDefault",
+        active: "brandDefault",
       },
+      borderStyle: "solid",
+      borderWidth: 1,
       color: {
         default: "iconNeutralDefault",
         disabled: "iconNeutralDisabled",
       },
-      borderStyle: "none",
     }),
   ],
   variants: {
+    variant: {
+      contained: sprinkles({
+        backgroundColor: {
+          default: "surfaceNeutralHighlight",
+          hover: "surfaceNeutralDepressed",
+          focusVisible: "surfaceNeutralHighlight",
+          active: "surfaceNeutralHighlight",
+          disabled: "interactiveNeutralHighlightDisabled",
+        },
+      }),
+      text: sprinkles({
+        backgroundColor: {
+          default: "surfaceNeutralPlain",
+          hover: "interactiveBrandHighlightDefault",
+          focusVisible: "surfaceNeutralPlain",
+          active: "surfaceNeutralPlain",
+          disabled: "interactiveNeutralHighlightDisabled",
+        },
+      }),
+    },
     size: {
       small: sprinkles({
         borderRadius: 2,
