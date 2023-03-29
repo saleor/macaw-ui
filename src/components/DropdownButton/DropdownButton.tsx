@@ -15,29 +15,35 @@ export type DropdownButtonProps = DropdownButtonVariants &
 export const DropdownButton = forwardRef<
   HTMLButtonElement,
   DropdownButtonProps
->(({ children, size, disabled, className, ...props }, ref) => {
-  return (
-    <Box
-      as="button"
-      className={classNames(
-        dropdownButton({
-          size,
-        }),
-        className
-      )}
-      disabled={disabled}
-      ref={ref}
-      {...props}
-    >
-      {children}
-      <ArrowDownIcon
-        size="small"
-        className={sprinkles({
-          color: "textNeutralSubdued",
-        })}
-      />
-    </Box>
-  );
-});
+>(
+  (
+    { children, size, variant = "contained", disabled, className, ...props },
+    ref
+  ) => {
+    return (
+      <Box
+        as="button"
+        className={classNames(
+          dropdownButton({
+            size,
+            variant,
+          }),
+          className
+        )}
+        disabled={disabled}
+        ref={ref}
+        {...props}
+      >
+        {children}
+        <ArrowDownIcon
+          size="small"
+          className={sprinkles({
+            color: "textNeutralSubdued",
+          })}
+        />
+      </Box>
+    );
+  }
+);
 
 DropdownButton.displayName = "DropdownButton";
