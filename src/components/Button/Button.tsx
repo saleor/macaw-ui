@@ -24,6 +24,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant,
       disabled,
       className,
+      type = "button",
       ...props
     },
     ref
@@ -41,6 +42,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         disabled={disabled}
         ref={ref}
+        type={type}
         {...props}
       >
         {icon}
