@@ -1,6 +1,6 @@
 import { forwardRef, InputHTMLAttributes } from "react";
 import { classNames } from "~/utils";
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 import { SearchIcon } from "../Icons";
 import {
   InputContainerVariants,
@@ -9,11 +9,13 @@ import {
   searchIcon,
 } from "./SearchInput.css";
 
-export type SearchInputProps = InputContainerVariants &
+export type SearchInputProps = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "color" | "width" | "height" | "size"
-  >;
+    "color" | "width" | "height" | "size" | "nonce"
+  >
+> &
+  InputContainerVariants;
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ id, className, size, ...props }, ref) => {

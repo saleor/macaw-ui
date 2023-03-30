@@ -6,13 +6,12 @@ import { Box, PropsWithBox } from "../Box";
 
 import { text, TextVariants } from "./Text.css";
 
-export type TextProps = PropsWithBox<
-  TextVariants & {
-    children: ReactNode;
-    as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-    className?: string;
-  }
->;
+export type TextProps = PropsWithBox<{
+  children: ReactNode;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  className?: string;
+}> &
+  TextVariants;
 
 export const Text = forwardRef<HTMLSpanElement, TextProps>(
   (

@@ -44,6 +44,16 @@ export const Default = () => {
           Name and label
         </Text>
       </Box>
+      <Text variant="hero" size="medium">
+        Best eCommerce Platform
+      </Text>
+      <Text>Dashboard</Text>
+      <Text variant="heading" size="medium">
+        Product Details
+      </Text>
+      <Text variant="bodyStrong" size="medium">
+        Sapien parturient in fringilla.
+      </Text>
 
       <Box display="flex" flexDirection="column" gap={5}>
         <Box as="pre" paddingBottom={2} borderBottomStyle="solid">

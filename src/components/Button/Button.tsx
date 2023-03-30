@@ -3,18 +3,20 @@ import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 import { classNames } from "~/utils";
 
 import { isFixedWidth } from "./utils";
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 import { button, ButtonVariants } from "./Button.css";
 
-export type ButtonProps = ButtonVariants &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> & {
+export type ButtonProps = PropsWithBox<
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "nonce"> & {
     children?: ReactNode;
     icon?: ReactNode;
     disabled?: boolean;
     className?: string;
-  };
+  }
+> &
+  ButtonVariants;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLElement, ButtonProps>(
   (
     {
       children,

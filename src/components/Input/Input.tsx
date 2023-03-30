@@ -3,11 +3,11 @@ import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 import { classNames } from "~/utils";
 
 import { InputWrapper, useStateEvents } from "./InputWrapper";
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 import { Text } from "../Text";
 import { input as inputStyle, InputVariants } from "./Input.css";
 
-export type InputProps = InputVariants &
+export type InputProps = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     "color" | "width" | "height" | "size" | "type" | "children"
@@ -16,7 +16,9 @@ export type InputProps = InputVariants &
     error?: boolean;
     type?: "text" | "number";
     helperText?: ReactNode;
-  };
+  }
+> &
+  InputVariants;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
