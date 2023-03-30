@@ -18,7 +18,7 @@ export const Content = ({
   ...props
 }: PopoverContentProps) => {
   return (
-    <RadixPopoverContent {...props} className={classNames(popover, className)}>
+    <RadixPopoverContent className={classNames(popover, className)} {...props}>
       {children}
     </RadixPopoverContent>
   );

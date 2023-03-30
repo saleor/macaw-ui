@@ -13,14 +13,9 @@ export const Arrow = ({
   className,
   backgroundColor = vars.colors.background.subdued,
   borderColor = vars.colors.border.neutralPlain,
-  ...props
 }: PopoverArrowProps) => {
   return (
-    <RadixPopoverArrow
-      {...props}
-      className={classNames(arrow, className)}
-      asChild
-    >
+    <RadixPopoverArrow className={classNames(arrow, className)} asChild>
       <svg
         width="20"
         height="9"

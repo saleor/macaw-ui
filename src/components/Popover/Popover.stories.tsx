@@ -14,7 +14,7 @@ export default {
 export const Default = () => {
   return (
     <Popover>
-      <Popover.Trigger asChild>
+      <Popover.Trigger>
         <Button fixedWidth variant="secondary">
           <ConfigurationIcon />
         </Button>
