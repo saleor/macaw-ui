@@ -1,10 +1,10 @@
-import {
-  Anchor as RadixPopoverAnchor,
-  PopoverAnchorProps as RadixPopoverAnchorProps,
-} from "@radix-ui/react-popover";
+import { Anchor as RadixPopoverAnchor } from "@radix-ui/react-popover";
 
-export type PopoverAnchorProps = RadixPopoverAnchorProps;
+export interface PopoverAnchorProps {
+  asChild?: boolean;
+  children?: React.ReactNode;
+}
 
-export const Anchor = ({ children, ...props }: PopoverAnchorProps) => {
-  return <RadixPopoverAnchor {...props}>{children}</RadixPopoverAnchor>;
+export const Anchor = ({ asChild, children }: PopoverAnchorProps) => {
+  return <RadixPopoverAnchor asChild={asChild}>{children}</RadixPopoverAnchor>;
 };

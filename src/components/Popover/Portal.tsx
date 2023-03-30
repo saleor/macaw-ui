@@ -1,9 +1,9 @@
-import {
-  Portal as RadixPopoverPortal,
-  PopoverPortalProps as RadixPopoverPortalProps,
-} from "@radix-ui/react-popover";
+import { Portal as RadixPopoverPortal } from "@radix-ui/react-popover";
 
-export type PopoverPortalProps = RadixPopoverPortalProps;
+export interface PopoverPortalProps {
+  children: React.ReactNode;
+  container?: HTMLElement;
+}
 
 export const Portal = ({ children, ...props }: PopoverPortalProps) => {
   return <RadixPopoverPortal {...props}>{children}</RadixPopoverPortal>;

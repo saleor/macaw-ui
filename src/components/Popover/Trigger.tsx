@@ -1,9 +1,9 @@
-import {
-  Trigger as RadixPopoverTrigger,
-  PopoverTriggerProps as RadixPopoverTriggerProps,
-} from "@radix-ui/react-popover";
+import { Trigger as RadixPopoverTrigger } from "@radix-ui/react-popover";
 
-export type PopoverTriggerProps = RadixPopoverTriggerProps;
+export interface PopoverTriggerProps {
+  asChild?: boolean;
+  children: React.ReactNode;
+}
 
 export const Trigger = ({ children, ...props }: PopoverTriggerProps) => {
   return <RadixPopoverTrigger {...props}>{children}</RadixPopoverTrigger>;

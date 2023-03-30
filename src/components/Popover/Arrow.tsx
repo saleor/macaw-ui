@@ -1,14 +1,12 @@
-import {
-  Arrow as RadixPopoverArrow,
-  PopoverArrowProps as RadixPopoverArrowProps,
-} from "@radix-ui/react-popover";
+import { Arrow as RadixPopoverArrow } from "@radix-ui/react-popover";
 import { vars } from "~/theme";
 import { classNames } from "~/utils";
 import { arrow } from "./Popover.css";
 
-export type PopoverArrowProps = RadixPopoverArrowProps & {
+export type PopoverArrowProps = {
   backgroundColor?: string;
   borderColor?: string;
+  className?: string;
 };
 
 export const Arrow = ({

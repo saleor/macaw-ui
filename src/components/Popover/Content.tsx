@@ -1,11 +1,16 @@
-import {
-  Content as RadixPopoverContent,
-  PopoverContentProps as RadixPopoverContentProps,
-} from "@radix-ui/react-popover";
+import { Content as RadixPopoverContent } from "@radix-ui/react-popover";
 import { classNames } from "~/utils";
 import { popover } from "./Popover.css";
 
-export type PopoverContentProps = RadixPopoverContentProps;
+export interface PopoverContentProps {
+  className?: string;
+  side?: "top" | "right" | "bottom" | "left";
+  sideOffset?: number;
+  align?: "start" | "center" | "end";
+  alignOffset?: number;
+  avoidCollisions?: boolean;
+  children: React.ReactNode;
+}
 
 export const Content = ({
   children,
