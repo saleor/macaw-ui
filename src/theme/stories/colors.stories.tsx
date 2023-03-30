@@ -7,9 +7,15 @@ export default {
 };
 
 export const Background = () => (
-  <Box display="grid" gridTemplateColumns={3} gap={4}>
+  <Box style={{ columnCount: 3 }}>
     {Object.entries(vars.colors.background).map(([key, entry]) => (
-      <Box key={key} display="flex" gap={4} alignItems="center">
+      <Box
+        key={key}
+        display="flex"
+        gap={4}
+        alignItems="center"
+        style={{ breakInside: "avoid" }}
+      >
         <Box
           __backgroundColor={entry}
           width={10}
@@ -26,9 +32,15 @@ export const Background = () => (
 );
 
 export const Foreground = () => (
-  <Box display="grid" gridTemplateColumns={3} gap={4}>
+  <Box style={{ columnCount: 3 }}>
     {Object.entries(vars.colors.foreground).map(([key, entry]) => (
-      <Box key={key} display="flex" gap={4} alignItems="center">
+      <Box
+        key={key}
+        display="flex"
+        gap={4}
+        alignItems="center"
+        style={{ breakInside: "avoid" }}
+      >
         <Box
           __backgroundColor={entry}
           width={10}
@@ -45,9 +57,15 @@ export const Foreground = () => (
 );
 
 export const Border = () => (
-  <Box display="grid" gridTemplateColumns={3} gap={4}>
+  <Box style={{ columnCount: 3 }}>
     {Object.entries(vars.colors.border).map(([key, entry]) => (
-      <Box key={key} display="flex" gap={4} alignItems="center">
+      <Box
+        key={key}
+        display="flex"
+        gap={4}
+        alignItems="center"
+        style={{ breakInside: "avoid" }}
+      >
         <Box
           __backgroundColor={entry}
           width={10}
