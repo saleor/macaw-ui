@@ -1,13 +1,15 @@
 import { forwardRef, ReactNode } from "react";
 import { classNames } from "~/utils";
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 
 import { chip, ChipVariants } from "./Chip.css";
 
-export type ChipProps = ChipVariants & {
+export type ChipProps = PropsWithBox<{
   children: ReactNode;
   className?: string;
-};
+}> &
+  ChipVariants;
+
 export const Chip = forwardRef<HTMLDivElement, ChipProps>(
   ({ children, size, className, ...props }, ref) => {
     return (

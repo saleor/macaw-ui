@@ -1,17 +1,17 @@
 import { forwardRef, ReactNode } from "react";
 
-import { Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 
 import { text, TextVariants } from "./Text.css";
 
-export type TextProps = TextVariants & {
+export type TextProps = PropsWithBox<{
   children: ReactNode;
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "a";
   className?: string;
-} & Pick<Sprinkles, "color" | "textAlign" | "textTransform">;
+}> &
+  TextVariants;
 
 export const Text = forwardRef<HTMLSpanElement, TextProps>(
   (

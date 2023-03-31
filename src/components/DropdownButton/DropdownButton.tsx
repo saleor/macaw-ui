@@ -1,16 +1,18 @@
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 import { sprinkles } from "~/theme";
 import { classNames } from "~/utils";
-import { Box } from "../Box";
+import { Box, PropsWithBox } from "../Box";
 import { ArrowDownIcon } from "../Icons";
 import { dropdownButton, DropdownButtonVariants } from "./DropdownButton.css";
 
-export type DropdownButtonProps = DropdownButtonVariants &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> & {
+export type DropdownButtonProps = PropsWithBox<
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "nonce"> & {
     children?: ReactNode;
     disabled?: boolean;
     className?: string;
-  };
+  }
+> &
+  DropdownButtonVariants;
 
 export const DropdownButton = forwardRef<
   HTMLButtonElement,
