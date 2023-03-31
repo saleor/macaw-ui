@@ -17,6 +17,7 @@ export interface MenuItemCommonProps {
   isMenuShrunk: boolean;
   menuItem: SidebarMenuItem;
   popover?: boolean;
+  customMenuWidth?: number;
 }
 
 export type MenuItemProps = MenuItemCommonProps &
@@ -30,6 +31,10 @@ export type MenuItemProps = MenuItemCommonProps &
         linkComponent: CustomLinkComponent;
       }
   );
+
+export interface MenuItemStylesProps {
+  menuItemWidth: number;
+}
 
 export const menuWidth = 210;
 export const shrunkMenuWidth = 72;
@@ -131,7 +136,7 @@ const useStyles = makeStyles(
       },
     },
     rootExpanded: {
-      width: menuWidth,
+      width: (props: MenuItemStylesProps) => props.menuItemWidth,
     },
     rootOpen: {},
     subMenuHeader: {
@@ -167,8 +172,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   isMenuShrunk,
   onClick,
   linkComponent,
+  customMenuWidth,
 }) => {
-  const classes = useStyles({});
+  const menuItemWidth = customMenuWidth ?? menuWidth;
+  const classes = useStyles({ menuItemWidth });
   const [open, setOpen] = React.useState(false);
   const anchor = React.useRef<any>(null);
 

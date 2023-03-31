@@ -11,9 +11,14 @@ import { ExpandButton } from "./ExpandButton";
 import { MenuItem, menuWidth, shrunkMenuWidth } from "./MenuItem";
 import { BaseSidebarProps } from "./types";
 
+export interface SidebarStylesProps {
+  sidebarWidth: number;
+}
+
 const useStyles = makeStyles(
   (theme) => ({
     expandButton: {
+      marginTop: theme.spacing(1),
       marginLeft: theme.spacing(1.5),
     },
     float: {
@@ -30,7 +35,7 @@ const useStyles = makeStyles(
     },
     root: {
       transition: "width 0.5s ease",
-      width: menuWidth,
+      width: (props: SidebarStylesProps) => props.sidebarWidth,
     },
     rootShrink: {
       width: shrunkMenuWidth,
@@ -50,6 +55,7 @@ export interface SidebarProps extends BaseSidebarProps {
   logo?: React.ReactNode;
   popover?: boolean;
   onExpand?: (value: boolean) => void;
+  customSidebarWidth?: number;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -64,9 +70,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   popover,
   logo,
   onExpand,
+  customSidebarWidth,
 }) => {
+  const sidebarWidth = customSidebarWidth ?? menuWidth;
   const { themeType } = useTheme();
-  const classes = useStyles({});
+  const classes = useStyles({ sidebarWidth });
   const { value: isShrunkStr, setValue: setShrink } = useLocalStorage(
     localStorageKeys.menuShrink,
     false.toString()
@@ -115,6 +123,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               key={menuItem.ariaLabel}
               popover={checkPopover}
               linkComponent={linkComponent}
+              customMenuWidth={sidebarWidth}
             />
           ) : (
             <MenuItem
@@ -124,6 +133,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               popover={checkPopover}
               onClick={onMenuItemClick}
               key={menuItem.ariaLabel}
+              customMenuWidth={sidebarWidth}
             />
           )
         )}

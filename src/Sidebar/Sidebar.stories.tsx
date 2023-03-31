@@ -47,6 +47,7 @@ export const WithFlatItems: Story = () => (
     {...props}
     popover={false}
     logo={logoContent}
+    customSidebarWidth={300}
     toolbar={<SquareButton>tool</SquareButton>}
   />
 );
