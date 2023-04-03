@@ -17,3 +17,4 @@ export * from "./Switch";
 export * from "./Divider";
 export * from "./Toggle";
 export * from "./Accordion";
+export * from "./Popover";
