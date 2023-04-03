@@ -19,3 +19,4 @@ export * from "./Toggle";
 export * from "./Accordion";
 export * from "./Popover";
 export * from "./Tooltip";
+export * from "./Combobox";

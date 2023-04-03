@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
+import { forwardRef, InputHTMLAttributes, ReactNode, useState } from "react";
 
 import { classNames } from "~/utils";
 
@@ -6,9 +6,10 @@ import { InputWrapper, useStateEvents } from "./InputWrapper";
 import { Box } from "../Box";
 import { Text } from "../Text";
 import { input as inputStyle, InputVariants } from "./Input.css";
-import { Dropdown } from "../Dropdown";
+import { useCombobox, UseComboboxStateChange } from "downshift";
+import { List } from "../List";
 
-export type InputProps = InputVariants &
+export type ComboboxProps = InputVariants &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     "color" | "width" | "height" | "size" | "type" | "children"
@@ -17,9 +18,11 @@ export type InputProps = InputVariants &
     error?: boolean;
     type?: "text" | "number";
     helperText?: ReactNode;
+    options?: string[];
+    onChange: (changes: UseComboboxStateChange<string>) => void;
   };
 
-export const Combobox = forwardRef<HTMLInputElement, InputProps>(
+export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
   (
     {
       size,
@@ -32,19 +35,27 @@ export const Combobox = forwardRef<HTMLInputElement, InputProps>(
       error = false,
       onChange,
       helperText,
+      options,
       ...props
     },
     ref
   ) => {
     const {
       handlers,
-      value: inputValue,
       active,
       typed,
-    } = useStateEvents(value, onChange);
+      isOpen,
+      getToggleButtonProps,
+      getLabelProps,
+      getMenuProps,
+      getInputProps,
+      highlightedIndex,
+      getItemProps,
+      inputOptions,
+    } = useStateEvents(value, options, onChange);
 
     return (
-      <Dropdown>
+      <Box position="relative">
         <InputWrapper
           id={id}
           typed={typed}
@@ -54,26 +65,60 @@ export const Combobox = forwardRef<HTMLInputElement, InputProps>(
           label={label}
           error={error}
           className={className}
+          getLabelProps={getLabelProps}
+          getToggleButtonProps={getToggleButtonProps}
+          isOpen={isOpen}
         >
-          <Dropdown.Trigger>
-            <Box
-              id={id}
-              as="input"
-              type={type}
-              className={classNames(inputStyle({ size, error }))}
-              disabled={disabled}
-              value={inputValue}
-              {...handlers}
-              {...props}
-            />
-          </Dropdown.Trigger>
+          <Box
+            id={id}
+            as="input"
+            type={type}
+            className={classNames(inputStyle({ size, error }))}
+            disabled={disabled}
+            {...props}
+            {...getInputProps({
+              ...handlers,
+            })}
+          />
         </InputWrapper>
-        <Dropdown.Content>
-          <Dropdown.Item>
-            <Box>Some item!</Box>
-          </Dropdown.Item>
-        </Dropdown.Content>
-      </Dropdown>
+
+        <List
+          {...getMenuProps()}
+          as="ul"
+          position="absolute"
+          backgroundColor="surfaceNeutralPlain"
+          boxShadow="overlay"
+          borderColor="neutralHighlight"
+          __borderRadius="10px"
+          padding={3}
+          width="100%"
+          __top="80px"
+          left={0}
+          __display={isOpen ? "block" : "none"}
+        >
+          {isOpen &&
+            inputOptions?.map((item, index) => (
+              <List.Item
+                as="li"
+                paddingX={5}
+                paddingY={5}
+                __borderRadius="6px"
+                key={`${item}${index}`}
+                backgroundColor={
+                  highlightedIndex === index
+                    ? "surfaceNeutralHighlight"
+                    : "surfaceNeutralPlain"
+                }
+                {...getItemProps({
+                  item,
+                  index,
+                })}
+              >
+                <Text size="large">{item}</Text>
+              </List.Item>
+            ))}
+        </List>
+      </Box>
     );
   }
 );
