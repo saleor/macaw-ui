@@ -13,41 +13,63 @@ export default {
 
 export const Default = () => {
   return (
-    <Popover>
-      <Popover.Trigger>
-        <Button fixedWidth variant="secondary">
-          <ConfigurationIcon />
-        </Button>
-      </Popover.Trigger>
-      <Popover.Content
-        className={sprinkles({
-          padding: 5,
-          backgroundColor: "subdued",
-        })}
-      >
-        <Popover.Arrow />
-        <Text size="small" variant="heading">
-          Settings
-        </Text>
-        <Box
-          padding={3}
-          display="flex"
-          flexDirection="column"
-          gap={6}
-          marginTop={5}
+    <Box display="flex" gap={12}>
+      <Popover>
+        <Popover.Trigger>
+          <Button fixedWidth variant="secondary">
+            <ConfigurationIcon />
+          </Button>
+        </Popover.Trigger>
+        <Popover.Content
+          className={sprinkles({
+            padding: 5,
+            backgroundColor: "subdued",
+          })}
         >
-          <Toggle>
-            <Text size="small" variant="body">
-              Popover content 1
-            </Text>
-          </Toggle>
-          <Toggle>
-            <Text size="small" variant="body">
-              Popover content 2
-            </Text>
-          </Toggle>
-        </Box>
-      </Popover.Content>
-    </Popover>
+          <Popover.Arrow />
+          <Settings />
+        </Popover.Content>
+      </Popover>
+      <Popover>
+        <Popover.Trigger>
+          <Button variant="secondary">Without arrow</Button>
+        </Popover.Trigger>
+        <Popover.Content
+          className={sprinkles({
+            padding: 5,
+            backgroundColor: "subdued",
+            marginTop: 3,
+          })}
+        >
+          <Settings />
+        </Popover.Content>
+      </Popover>
+    </Box>
   );
 };
+
+const Settings = () => (
+  <>
+    <Text size="small" variant="heading">
+      Settings
+    </Text>
+    <Box
+      padding={3}
+      display="flex"
+      flexDirection="column"
+      gap={6}
+      marginTop={5}
+    >
+      <Toggle>
+        <Text size="small" variant="body">
+          Popover content 1
+        </Text>
+      </Toggle>
+      <Toggle>
+        <Text size="small" variant="body">
+          Popover content 2
+        </Text>
+      </Toggle>
+    </Box>
+  </>
+);
