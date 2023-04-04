@@ -8,7 +8,7 @@ export const content = sprinkles({
   backgroundColor: "surfaceNeutralSubdued",
   padding: 5,
   borderRadius: 3,
-  typeSize: "bodySmall",
+  typeSize: "bodyEmpSmall",
   color: "textNeutralPlain",
   boxShadow: "overlay",
 });
@@ -28,6 +28,13 @@ export const arrow = style({
       transform: "translateY(-1px)",
     },
   },
+});
+
+export const contentTitle = sprinkles({
+  typeSize: "captionSmall",
+  color: "textNeutralSubdued",
+  display: "block",
+  marginBottom: 2,
 });
 
 export const arrowPath = style({

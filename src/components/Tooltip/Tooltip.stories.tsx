@@ -9,53 +9,166 @@ export default {
 
 export const Default = () => {
   return (
-    <Box display="flex" gap={13} alignItems="center" justifyContent="center">
-      <Box>
-        <Tooltip>
-          <Tooltip.Trigger>
-            <Button>Left</Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content side="left">
-            Some hidden text
-            <Tooltip.Arrow />
-          </Tooltip.Content>
-        </Tooltip>
+    <Box display="grid">
+      <Box display="flex" gap={13} alignItems="center" justifyContent="center">
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Left</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="left">
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Righ</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="right">
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Top</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="top">
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Bottom</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="bottom">
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+      </Box>
+      <Box display="flex" gap={13} alignItems="center" justifyContent="center">
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Left</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="left">
+              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Righ</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="right">
+              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Top</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="top">
+              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Bottom</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="bottom">
+              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
+              Tooltip content
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
       </Box>
 
-      <Box>
-        <Tooltip>
-          <Tooltip.Trigger>
-            <Button>Righ</Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content side="right">
-            Some hidden text
-            <Tooltip.Arrow />
-          </Tooltip.Content>
-        </Tooltip>
-      </Box>
+      <Box display="flex" gap={13} alignItems="center" justifyContent="center">
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Left</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="left">
+              <Tooltip.ContentHeading>
+                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
+              </Tooltip.ContentHeading>
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
 
-      <Box>
-        <Tooltip>
-          <Tooltip.Trigger>
-            <Button>Top</Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content side="top">
-            Some hidden text
-            <Tooltip.Arrow />
-          </Tooltip.Content>
-        </Tooltip>
-      </Box>
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Righ</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="right">
+              <Tooltip.ContentHeading>
+                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
+              </Tooltip.ContentHeading>
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
 
-      <Box>
-        <Tooltip>
-          <Tooltip.Trigger>
-            <Button>Bottom</Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content side="bottom">
-            Some hidden text
-            <Tooltip.Arrow />
-          </Tooltip.Content>
-        </Tooltip>
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Top</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="top">
+              <Tooltip.ContentHeading>
+                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
+              </Tooltip.ContentHeading>
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
+
+        <Box>
+          <Tooltip>
+            <Tooltip.Trigger>
+              <Button>Bottom</Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content side="bottom">
+              <Tooltip.ContentHeading>
+                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
+              </Tooltip.ContentHeading>
+              <Tooltip.Arrow />
+            </Tooltip.Content>
+          </Tooltip>
+        </Box>
       </Box>
     </Box>
   );
