@@ -8,25 +8,25 @@ export default {
   component: Combobox,
 } as ComponentMeta<typeof Combobox>;
 
+const options = [
+  { value: "Black", label: "Black" },
+  { value: "Red", label: "Red" },
+  { value: "Green", label: "Green" },
+  { value: "Blue", label: "Blue" },
+  { value: "Orange", label: "Orange" },
+  { value: "Purple", label: "Purple" },
+  { value: "Pink", label: "Pink" },
+  { value: "Orchid", label: "Orchid" },
+  { value: "Aqua", label: "Aqua" },
+  { value: "Lime", label: "Lime" },
+  { value: "Gray", label: "Gray" },
+  { value: "Brown", label: "Brown" },
+  { value: "Teal", label: "Teal" },
+  { value: "Skyblue", label: "Skyblue" },
+];
+
 export const Default: ComponentStory<typeof Combobox> = () => {
   const [value, setValue] = useState("");
-
-  const options = [
-    "Black",
-    "Red",
-    "Green",
-    "Blue",
-    "Orange",
-    "Purple",
-    "Pink",
-    "Orchid",
-    "Aqua",
-    "Lime",
-    "Gray",
-    "Brown",
-    "Teal",
-    "Skyblue",
-  ];
 
   return (
     <Box display="flex" flexDirection="column">
@@ -34,13 +34,12 @@ export const Default: ComponentStory<typeof Combobox> = () => {
         <Combobox
           id="inp11"
           value={value}
-          onChange={(value) => {
-            setValue(value ?? "");
+          onChange={(item) => {
+            setValue(item?.value ?? "");
           }}
           label="Label"
           size="large"
           options={options}
-          // placeholder="Input placeholder"
         />
       </Box>
     </Box>
