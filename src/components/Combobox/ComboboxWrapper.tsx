@@ -16,7 +16,7 @@ import {
   trigger,
 } from "./Combobox.css";
 
-type InputValue = string | number | readonly string[] | undefined;
+type InputValue = string | undefined;
 export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
 export type Option = { label: string; value: string };
 
@@ -59,6 +59,7 @@ export const useComboboxEvents = (
     onInputValueChange: ({ inputValue }) => {
       setItemOptions(items.filter(getItemsFilter(inputValue)));
     },
+    defaultInputValue: value,
   });
 
   const onFocus = () => setActive(true);
@@ -110,6 +111,8 @@ export const InputWrapper = ({
         className
       )}
       alignItems="center"
+      justifyContent="space-between"
+      disabled={disabled}
       {...getLabelProps({ htmlFor: id })}
     >
       <Box display="flex" flexDirection="column">
@@ -128,6 +131,7 @@ export const InputWrapper = ({
         type="button"
         aria-label="toggle menu"
         className={trigger}
+        disabled={disabled}
         {...getToggleButtonProps()}
       />
     </Box>

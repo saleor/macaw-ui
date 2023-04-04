@@ -25,23 +25,53 @@ const options = [
   { value: "Skyblue", label: "Skyblue" },
 ];
 
-export const Default: ComponentStory<typeof Combobox> = () => {
-  const [value, setValue] = useState("");
+const ComboboxExample = ({
+  id,
+  defaultValue = "",
+  size,
+  error,
+  disabled,
+  helperText,
+}: {
+  id: string;
+  defaultValue?: string;
+  size: "small" | "medium" | "large";
+  error?: boolean;
+  disabled?: boolean;
+  helperText?: string;
+}) => {
+  const [value, setValue] = useState(defaultValue);
 
   return (
-    <Box display="flex" flexDirection="column">
-      <Box paddingY={9} display="flex" gap={9} alignItems="center">
-        <Combobox
-          id="inp11"
-          value={value}
-          onChange={(item) => {
-            setValue(item?.value ?? "");
-          }}
-          label="Label"
-          size="large"
-          options={options}
-        />
-      </Box>
+    <Combobox
+      id={id}
+      value={value}
+      onChange={(item) => {
+        setValue(item?.value ?? "");
+      }}
+      label="Colors"
+      size={size}
+      error={error}
+      disabled={disabled}
+      options={options}
+      helperText={helperText}
+    />
+  );
+};
+
+export const Default: ComponentStory<typeof Combobox> = () => {
+  return (
+    <Box display="flex" flexDirection="column" gap={5}>
+      <ComboboxExample id="combobox-1" defaultValue="Gray" size="large" />
+      <ComboboxExample id="combobox-2" size="medium" />
+      <ComboboxExample id="combobox-3" size="small" />
+      <ComboboxExample id="combobox-4" size="large" error />
+      <ComboboxExample id="combobox-5" size="large" disabled />
+      <ComboboxExample
+        id="combobox-5"
+        size="large"
+        helperText={"Helper text"}
+      />
     </Box>
   );
 };

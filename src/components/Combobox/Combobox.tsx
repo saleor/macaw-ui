@@ -16,7 +16,14 @@ import { input as inputStyle, InputVariants } from "./Combobox.css";
 export type ComboboxProps = InputVariants &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "color" | "width" | "height" | "size" | "type" | "children" | "onChange"
+    | "color"
+    | "width"
+    | "height"
+    | "size"
+    | "type"
+    | "children"
+    | "onChange"
+    | "value"
   > & {
     label?: ReactNode;
     error?: boolean;
@@ -24,6 +31,7 @@ export type ComboboxProps = InputVariants &
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
+    value?: string;
   };
 
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
@@ -87,19 +95,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           />
         </InputWrapper>
 
-        {helperText && (
-          <Box paddingLeft={4}>
-            <Text
-              variant="caption"
-              size={size}
-              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
-            >
-              {helperText}
-            </Text>
-          </Box>
-        )}
-
-        <Box position="relative">
+        <Box position="relative" display={isOpen ? "block" : "none"}>
           <List
             {...getMenuProps()}
             as="ul"
@@ -111,7 +107,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             padding={3}
             width="100%"
             left={0}
-            display={isOpen ? "block" : "none"}
+            zIndex={3}
           >
             {isOpen &&
               items?.map((item, index) => (
@@ -130,11 +126,23 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     index,
                   })}
                 >
-                  <Text size={size}>{item}</Text>
+                  <Text size={size}>{item.label}</Text>
                 </List.Item>
               ))}
           </List>
         </Box>
+
+        {helperText && (
+          <Box paddingLeft={4}>
+            <Text
+              variant="caption"
+              size={size}
+              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
+            >
+              {helperText}
+            </Text>
+          </Box>
+        )}
       </Box>
     );
   }
