@@ -1,5 +1,7 @@
-import { style } from "@vanilla-extract/css";
+import { createVar, style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+import { calc } from "@vanilla-extract/css-utils";
+
 import { sprinkles, vars } from "~/theme";
 
 export const label = recipe({
@@ -249,5 +251,81 @@ export const button = style({
     [`${trigger}[aria-expanded="true"] &`]: {
       transform: "rotate(180deg)",
     },
+  },
+});
+
+const listItemBorderRadius = createVar();
+const spaceBetweenListItemAndBorder = createVar();
+
+export const setupRecipe = recipe({
+  base: [
+    {
+      borderRadius: listItemBorderRadius,
+    },
+  ],
+
+  variants: {
+    size: {
+      small: {
+        vars: {
+          [listItemBorderRadius]: vars.borderRadius[1],
+        },
+      },
+      medium: {
+        vars: {
+          [listItemBorderRadius]: vars.borderRadius[2],
+        },
+      },
+      large: {
+        vars: {
+          [listItemBorderRadius]: vars.borderRadius[2],
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "medium",
+  },
+});
+
+export const list = style([
+  sprinkles({
+    position: "absolute",
+    backgroundColor: "surfaceNeutralPlain",
+    boxShadow: "overlay",
+    borderColor: "neutralHighlight",
+    width: "100%",
+    padding: 3,
+    left: 0,
+    zIndex: "3",
+  }),
+  {
+    borderRadius: calc.add(listItemBorderRadius, spaceBetweenListItemAndBorder),
+    vars: {
+      [spaceBetweenListItemAndBorder]: vars.space[3],
+    },
+  },
+]);
+
+export const listItemRecipe = recipe({
+  base: [
+    sprinkles({
+      padding: 5,
+    }),
+    {
+      borderRadius: listItemBorderRadius,
+    },
+  ],
+
+  variants: {
+    highlighted: {
+      true: sprinkles({ backgroundColor: "surfaceNeutralHighlight" }),
+      false: sprinkles({ backgroundColor: "surfaceNeutralPlain" }),
+    },
+  },
+
+  defaultVariants: {
+    highlighted: false,
   },
 });

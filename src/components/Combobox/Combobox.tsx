@@ -1,7 +1,9 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
+import { calc } from "@vanilla-extract/css-utils";
 
 import { classNames } from "~/utils";
 
+import { vars } from "~/theme";
 import {
   ChangeHandler,
   InputWrapper,
@@ -11,7 +13,14 @@ import {
 import { Box } from "../Box";
 import { Text } from "../Text";
 import { List } from "../List";
-import { input as inputStyle, InputVariants } from "./Combobox.css";
+import {
+  input as inputStyle,
+  InputVariants,
+  list,
+  listItemRecipe,
+  setup,
+  setupRecipe,
+} from "./Combobox.css";
 
 export type ComboboxProps = InputVariants &
   Omit<
@@ -95,32 +104,19 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           />
         </InputWrapper>
 
-        <Box position="relative" display={isOpen ? "block" : "none"}>
-          <List
-            {...getMenuProps()}
-            as="ul"
-            position="absolute"
-            backgroundColor="surfaceNeutralPlain"
-            boxShadow="overlay"
-            borderColor="neutralHighlight"
-            __borderRadius="10px"
-            padding={3}
-            width="100%"
-            left={0}
-            zIndex={3}
-          >
+        <Box
+          position="relative"
+          display={isOpen ? "block" : "none"}
+          className={setupRecipe({ size })}
+        >
+          <List as="ul" className={list} {...getMenuProps()}>
             {isOpen &&
               items?.map((item, index) => (
                 <List.Item
-                  paddingX={5}
-                  paddingY={5}
-                  borderRadius={3}
-                  key={`${item}${index}`}
-                  backgroundColor={
-                    highlightedIndex === index
-                      ? "surfaceNeutralHighlight"
-                      : "surfaceNeutralPlain"
-                  }
+                  key={`${id}-${item}-${index}`}
+                  className={listItemRecipe({
+                    highlighted: highlightedIndex === index,
+                  })}
                   {...getItemProps({
                     item,
                     index,

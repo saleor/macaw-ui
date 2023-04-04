@@ -57,7 +57,11 @@ export const useComboboxEvents = (
       }
     },
     onInputValueChange: ({ inputValue }) => {
-      setItemOptions(items.filter(getItemsFilter(inputValue)));
+      if (!inputValue) {
+        setItemOptions(options);
+      } else {
+        setItemOptions(items.filter(getItemsFilter(inputValue)));
+      }
     },
     defaultInputValue: value,
   });
