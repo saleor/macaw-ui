@@ -3,10 +3,11 @@
 */
 import { ReactNode, useState } from "react";
 import { useCombobox, UseComboboxPropGetters } from "downshift";
+
 import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
 import { Button } from "../Button";
-import { ArrowDownIcon, ArrowUpIcon } from "../Icons";
+import { ArrowDownIcon } from "../Icons";
 import {
   span as spanStyle,
   label as labelStyle,
