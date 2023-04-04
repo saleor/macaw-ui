@@ -5,7 +5,7 @@ export const content = sprinkles({
   borderStyle: "solid",
   borderWidth: 1,
   borderColor: "neutralPlain",
-  backgroundColor: "surfaceNeutralPlain",
+  backgroundColor: "surfaceNeutralSubdued",
   padding: 5,
   borderRadius: 3,
   typeSize: "bodySmall",
@@ -31,6 +31,6 @@ export const arrow = style({
 });
 
 export const arrowPath = style({
-  fill: vars.colors.background.surfaceNeutralPlain,
+  fill: vars.colors.background.surfaceNeutralSubdued,
   stroke: vars.colors.border.neutralPlain,
 });
