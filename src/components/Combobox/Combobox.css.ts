@@ -240,3 +240,14 @@ export const input = recipe({
 
 export type LabelVariants = RecipeVariants<typeof label>;
 export type InputVariants = RecipeVariants<typeof input>;
+
+export const trigger = style({});
+
+export const button = style({
+  transition: "transform 300ms",
+  selectors: {
+    [`${trigger}[aria-expanded="true"] &`]: {
+      transform: "rotate(180deg)",
+    },
+  },
+});

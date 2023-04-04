@@ -1,8 +1,8 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-
 import { useState } from "react";
-import { Combobox } from "./Input";
+
 import { Box } from "../Box";
+import { Combobox } from ".";
 
 export default {
   component: Combobox,
@@ -34,9 +34,8 @@ export const Default: ComponentStory<typeof Combobox> = () => {
         <Combobox
           id="inp11"
           value={value}
-          onChange={(changes) => {
-            console.log(changes);
-            setValue(changes);
+          onChange={(value) => {
+            setValue(value ?? "");
           }}
           label="Label"
           size="large"

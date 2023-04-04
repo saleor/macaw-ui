@@ -1,31 +1,43 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { ReactNode, forwardRef, useEffect, useState } from "react";
-import { UseComboboxStateChange, useCombobox } from "downshift";
+import { ReactNode, useState } from "react";
+import { useCombobox, UseComboboxPropGetters } from "downshift";
 import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
+import { Button } from "../Button";
+import { ArrowDownIcon, ArrowUpIcon } from "../Icons";
 import {
   span as spanStyle,
   label as labelStyle,
   LabelVariants,
-} from "./Input.css";
-import { Dropdown } from "../Dropdown";
-import { Button } from "../Button";
-import { ArrowDownIcon, ArrowUpIcon } from "../Icons";
+  button,
+  trigger,
+} from "./Combobox.css";
 
 type InputValue = string | number | readonly string[] | undefined;
-type ChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
+export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
+export type Option = { label: string; value: string };
 
-export const useStateEvents = (
+const getItemsFilter = (inputValue: string | undefined) => {
+  if (!inputValue) {
+    return () => false;
+  }
+
+  const lowerCasedInputValue = inputValue.toLowerCase();
+
+  return (item: Option) =>
+    !inputValue || item.label.toLowerCase().includes(lowerCasedInputValue);
+};
+
+export const useComboboxEvents = (
   value: InputValue,
-  options: string[] | undefined = [],
-  changeHandler?: (changes: any) => void
+  options: Option[],
+  changeHandler?: ChangeHandler
 ) => {
-  const [inputValue, setInputValue] = useState(value);
-  const [inputOptions, setInputOptions] = useState(options);
+  const [items, setItemOptions] = useState(options);
   const [active, setActive] = useState(false);
-  const typed = Boolean(inputValue || active);
+  const typed = Boolean(value || active);
 
   const {
     isOpen,
@@ -36,21 +48,15 @@ export const useStateEvents = (
     highlightedIndex,
     getItemProps,
   } = useCombobox({
-    items: inputOptions,
+    items,
+    itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: (changes) => {
       if (changeHandler) {
         changeHandler(changes.selectedItem);
       }
     },
-    onInputValueChange: (changes) => {
-      setInputValue(changes.inputValue);
-      const selectedItems = options.filter((item) =>
-        item.toLowerCase().startsWith(changes.inputValue?.toLowerCase() ?? "")
-      );
-      setInputOptions(selectedItems);
-      if (changeHandler) {
-        changeHandler(selectedItems);
-      }
+    onInputValueChange: ({ inputValue }) => {
+      setItemOptions(items.filter(getItemsFilter(inputValue)));
     },
   });
 
@@ -60,7 +66,7 @@ export const useStateEvents = (
   return {
     handlers: { onFocus, onBlur },
     active,
-    inputOptions,
+    items,
     typed,
     isOpen,
     getToggleButtonProps,
@@ -78,9 +84,8 @@ type InputWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getToggleButtonProps: any;
-  isOpen: any;
-  getLabelProps: any;
+  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
+  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
 export const InputWrapper = ({
@@ -90,7 +95,6 @@ export const InputWrapper = ({
   error,
   children,
   getToggleButtonProps,
-  isOpen,
   getLabelProps,
   typed,
   active,
@@ -99,14 +103,13 @@ export const InputWrapper = ({
 }: InputWrapperProps) => {
   return (
     <Box
-      {...getLabelProps()}
       as="label"
-      htmlFor={id}
       className={classNames(
         labelStyle({ typed, active, disabled, size, error }),
         className
       )}
       alignItems="center"
+      {...getLabelProps({ htmlFor: id })}
     >
       <Box display="flex" flexDirection="column">
         <Box
@@ -120,10 +123,10 @@ export const InputWrapper = ({
 
       <Button
         variant="tertiary"
-        // TODO: convert to data-state='open' & animate this
-        icon={isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+        icon={<ArrowDownIcon className={button} />}
         type="button"
         aria-label="toggle menu"
+        className={trigger}
         {...getToggleButtonProps()}
       />
     </Box>
