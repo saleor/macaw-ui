@@ -8,6 +8,7 @@ specifiers:
   "@radix-ui/react-checkbox": ^1.0.2
   "@radix-ui/react-dialog": ^1.0.2
   "@radix-ui/react-dropdown-menu": ^2.0.2
+  "@radix-ui/react-popover": ^1.0.5
   "@radix-ui/react-portal": ^1.0.2
   "@radix-ui/react-radio-group": ^1.1.1
   "@radix-ui/react-select": ^1.2.0
@@ -63,6 +64,7 @@ dependencies:
   "@radix-ui/react-checkbox": 1.0.3_sfoxds7t5ydpegc3knd667wn6m
   "@radix-ui/react-dialog": 1.0.2_gzv7pa6nrbev3fs6gyzn7sadkq
   "@radix-ui/react-dropdown-menu": 2.0.2_gzv7pa6nrbev3fs6gyzn7sadkq
+  "@radix-ui/react-popover": 1.0.5_gzv7pa6nrbev3fs6gyzn7sadkq
   "@radix-ui/react-portal": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
   "@radix-ui/react-radio-group": 1.1.2_sfoxds7t5ydpegc3knd667wn6m
   "@radix-ui/react-select": 1.2.0_gzv7pa6nrbev3fs6gyzn7sadkq
@@ -2887,6 +2889,21 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /@radix-ui/react-arrow/1.0.2_sfoxds7t5ydpegc3knd667wn6m:
+    resolution:
+      {
+        integrity: sha512-fqYwhhI9IarZ0ll2cUSfKuXHlJK0qE4AfnRrPBbRwEH/4mGQn04/QFGomLi8TXWIdv9WJk//KgGm+aDxVIr1wA==,
+      }
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      "@babel/runtime": 7.20.7
+      "@radix-ui/react-primitive": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /@radix-ui/react-checkbox/1.0.3_sfoxds7t5ydpegc3knd667wn6m:
     resolution:
       {
@@ -3052,6 +3069,25 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /@radix-ui/react-dismissable-layer/1.0.3_sfoxds7t5ydpegc3knd667wn6m:
+    resolution:
+      {
+        integrity: sha512-nXZOvFjOuHS1ovumntGV7NNoLaEp9JEvTht3MBjP44NSW5hUKj/8OnfN3+8WmB+CEhN44XaGhpHoSsUIEl5P7Q==,
+      }
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      "@babel/runtime": 7.20.7
+      "@radix-ui/primitive": 1.0.0
+      "@radix-ui/react-compose-refs": 1.0.0_react@17.0.2
+      "@radix-ui/react-primitive": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-use-callback-ref": 1.0.0_react@17.0.2
+      "@radix-ui/react-use-escape-keydown": 1.0.2_react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /@radix-ui/react-dropdown-menu/2.0.2_gzv7pa6nrbev3fs6gyzn7sadkq:
     resolution:
       {
@@ -3104,6 +3140,23 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /@radix-ui/react-focus-scope/1.0.2_sfoxds7t5ydpegc3knd667wn6m:
+    resolution:
+      {
+        integrity: sha512-spwXlNTfeIprt+kaEWE/qYuYT3ZAqJiAGjN/JgdvgVDTu8yc+HuX+WOWXrKliKnLnwck0F6JDkqIERncnih+4A==,
+      }
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      "@babel/runtime": 7.20.7
+      "@radix-ui/react-compose-refs": 1.0.0_react@17.0.2
+      "@radix-ui/react-primitive": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-use-callback-ref": 1.0.0_react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /@radix-ui/react-id/1.0.0_react@17.0.2:
     resolution:
       {
@@ -3151,6 +3204,37 @@ packages:
       - "@types/react"
     dev: false
 
+  /@radix-ui/react-popover/1.0.5_gzv7pa6nrbev3fs6gyzn7sadkq:
+    resolution:
+      {
+        integrity: sha512-GRHZ8yD12MrN2NLobHPE8Rb5uHTxd9x372DE9PPNnBjpczAQHcZ5ne0KXG4xpf+RDdXSzdLv9ym6mYJCDTaUZg==,
+      }
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      "@babel/runtime": 7.20.7
+      "@radix-ui/primitive": 1.0.0
+      "@radix-ui/react-compose-refs": 1.0.0_react@17.0.2
+      "@radix-ui/react-context": 1.0.0_react@17.0.2
+      "@radix-ui/react-dismissable-layer": 1.0.3_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-focus-guards": 1.0.0_react@17.0.2
+      "@radix-ui/react-focus-scope": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-id": 1.0.0_react@17.0.2
+      "@radix-ui/react-popper": 1.1.1_gzv7pa6nrbev3fs6gyzn7sadkq
+      "@radix-ui/react-portal": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-presence": 1.0.0_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-primitive": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-slot": 1.0.1_react@17.0.2
+      "@radix-ui/react-use-controllable-state": 1.0.0_react@17.0.2
+      aria-hidden: 1.2.2_q5o373oqrklnndq2vhekyuzhxi
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-remove-scroll: 2.5.5_q5o373oqrklnndq2vhekyuzhxi
+    transitivePeerDependencies:
+      - "@types/react"
+    dev: false
+
   /@radix-ui/react-popper/1.1.0_gzv7pa6nrbev3fs6gyzn7sadkq:
     resolution:
       {
@@ -3166,6 +3250,32 @@ packages:
       "@radix-ui/react-compose-refs": 1.0.0_react@17.0.2
       "@radix-ui/react-context": 1.0.0_react@17.0.2
       "@radix-ui/react-primitive": 1.0.1_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-use-callback-ref": 1.0.0_react@17.0.2
+      "@radix-ui/react-use-layout-effect": 1.0.0_react@17.0.2
+      "@radix-ui/react-use-rect": 1.0.0_react@17.0.2
+      "@radix-ui/react-use-size": 1.0.0_react@17.0.2
+      "@radix-ui/rect": 1.0.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - "@types/react"
+    dev: false
+
+  /@radix-ui/react-popper/1.1.1_gzv7pa6nrbev3fs6gyzn7sadkq:
+    resolution:
+      {
+        integrity: sha512-keYDcdMPNMjSC8zTsZ8wezUMiWM9Yj14wtF3s0PTIs9srnEPC9Kt2Gny1T3T81mmSeyDjZxsD9N5WCwNNb712w==,
+      }
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      "@babel/runtime": 7.20.7
+      "@floating-ui/react-dom": 0.7.2_gzv7pa6nrbev3fs6gyzn7sadkq
+      "@radix-ui/react-arrow": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
+      "@radix-ui/react-compose-refs": 1.0.0_react@17.0.2
+      "@radix-ui/react-context": 1.0.0_react@17.0.2
+      "@radix-ui/react-primitive": 1.0.2_sfoxds7t5ydpegc3knd667wn6m
       "@radix-ui/react-use-callback-ref": 1.0.0_react@17.0.2
       "@radix-ui/react-use-layout-effect": 1.0.0_react@17.0.2
       "@radix-ui/react-use-rect": 1.0.0_react@17.0.2
