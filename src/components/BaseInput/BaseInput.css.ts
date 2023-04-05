@@ -21,7 +21,7 @@ export const labelRecipe = recipe({
           paddingX: 5,
         }),
         {
-          height: "42px",
+          height: "48px",
         },
       ],
       medium: [

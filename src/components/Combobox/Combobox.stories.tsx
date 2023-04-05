@@ -53,7 +53,7 @@ const ComboboxExample = ({
 
 export const Default: ComponentStory<typeof Combobox> = () => {
   return (
-    <Box display="flex" flexDirection="column" gap={5}>
+    <Box display="grid" gap={5} gridTemplateColumns={3}>
       <ComboboxExample id="combobox-1" defaultValue="Gray" size="large" />
       <ComboboxExample id="combobox-2" size="medium" />
       <ComboboxExample id="combobox-3" size="small" />
