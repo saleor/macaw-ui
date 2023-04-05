@@ -4,12 +4,10 @@ import { calc } from "@vanilla-extract/css-utils";
 
 import { sprinkles, vars } from "~/theme";
 
-export const trigger = style({});
-
-export const button = style({
+export const icon = style({
   transition: "transform 300ms",
   selectors: {
-    [`${trigger}[aria-expanded="true"] &`]: {
+    '&[aria-expanded="true"]': {
       transform: "rotate(180deg)",
     },
   },

@@ -1,11 +1,13 @@
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 import { SVGWrapper, SVGWrapperProps } from "./SVGWrapper";
 
 export const createSVGWrapper = (node: ReactNode, viewBox?: string) => {
-  const Wrapper = (props: Omit<SVGWrapperProps, "children">) => (
-    <SVGWrapper viewBox={viewBox} {...props}>
-      {node}
-    </SVGWrapper>
+  const Wrapper = forwardRef<SVGSVGElement, Omit<SVGWrapperProps, "children">>(
+    (props, ref) => (
+      <SVGWrapper viewBox={viewBox} ref={ref} {...props}>
+        {node}
+      </SVGWrapper>
+    )
   );
 
   Wrapper.displayName = "withSVGWrapper";

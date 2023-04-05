@@ -60,7 +60,7 @@ export const Default: ComponentStory<typeof Combobox> = () => {
       <ComboboxExample id="combobox-4" size="large" error />
       <ComboboxExample id="combobox-5" size="large" disabled />
       <ComboboxExample
-        id="combobox-5"
+        id="combobox-6"
         size="large"
         helperText={"Helper text"}
       />

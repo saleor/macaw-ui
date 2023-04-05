@@ -11,20 +11,35 @@ export const labelRecipe = recipe({
       flexWrap: "wrap",
       color: "textNeutralSubdued",
       borderRadius: 3,
-      paddingX: 4,
+      paddingY: 3,
     }),
   ],
   variants: {
     size: {
-      small: sprinkles({
-        paddingY: 5,
-      }),
-      medium: sprinkles({
-        paddingY: 5,
-      }),
-      large: sprinkles({
-        paddingY: 6,
-      }),
+      small: [
+        sprinkles({
+          paddingX: 5,
+        }),
+        {
+          height: "42px",
+        },
+      ],
+      medium: [
+        sprinkles({
+          paddingX: 5,
+        }),
+        {
+          height: "52px",
+        },
+      ],
+      large: [
+        sprinkles({
+          paddingX: 6,
+        }),
+        {
+          height: "64px",
+        },
+      ],
     },
     active: {
       true: {},
@@ -148,16 +163,13 @@ export const spanRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        fontSize: "captionLarge",
-        lineHeight: "captionMedium",
+        typeSize: "bodySmall",
       }),
       medium: sprinkles({
-        fontSize: "bodyMedium",
-        lineHeight: "captionLarge",
+        typeSize: "bodyMedium",
       }),
       large: sprinkles({
-        fontSize: "bodyLarge",
-        lineHeight: "bodyLarge",
+        typeSize: "bodyLarge",
       }),
     },
     disabled: {
@@ -165,9 +177,9 @@ export const spanRecipe = recipe({
     },
     typed: {
       true: [
-        style({
-          transform: "translate(0, 0) scale(0.813)",
-        }),
+        {
+          transform: "translate(0, 0) scale(0.84)",
+        },
       ],
     },
     error: {

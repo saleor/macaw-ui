@@ -12,10 +12,9 @@ import {
 import { classNames } from "~/utils";
 
 import { Box } from "../Box";
-import { Button } from "../Button";
 import { ArrowDownIcon } from "../Icons";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { button, trigger } from "./Combobox.css";
+import { icon } from "./Combobox.css";
 
 type InputValue = string | undefined;
 export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
@@ -132,15 +131,7 @@ export const InputWrapper = ({
         {children}
       </Box>
 
-      <Button
-        variant="tertiary"
-        icon={<ArrowDownIcon className={button} />}
-        type="button"
-        aria-label="toggle menu"
-        className={trigger}
-        disabled={disabled}
-        {...getToggleButtonProps()}
-      />
+      <ArrowDownIcon className={icon} size={size} {...getToggleButtonProps()} />
     </Box>
   );
 };
