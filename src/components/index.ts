@@ -18,3 +18,4 @@ export * from "./Divider";
 export * from "./Toggle";
 export * from "./Accordion";
 export * from "./Popover";
+export * from "./Tooltip";

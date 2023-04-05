@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { Text } from "../Text";
 
-interface ContentHeadingProps {
+export interface TooltipContentHeadingProps {
   children: ReactNode;
 }
 
-export const ContentHeading = ({ children }: ContentHeadingProps) => {
+export const ContentHeading = ({ children }: TooltipContentHeadingProps) => {
   return (
     <Text
       display="block"

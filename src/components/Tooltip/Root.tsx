@@ -4,7 +4,7 @@ import {
 } from "@radix-ui/react-tooltip";
 import { ReactNode } from "react";
 
-interface TooltipRootProps {
+export interface TooltipProps {
   children: ReactNode;
   className?: string;
   defaultOpen?: boolean;
@@ -17,7 +17,7 @@ export const TooltipRoot = ({
   children,
   delayDuration = 250,
   ...props
-}: TooltipRootProps) => {
+}: TooltipProps) => {
   return (
     <RadixTooltipProvider>
       <RadixTooltipRoot delayDuration={delayDuration} {...props}>

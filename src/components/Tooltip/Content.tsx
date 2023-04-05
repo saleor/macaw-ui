@@ -6,7 +6,7 @@ import {
 import { classNames } from "~/utils";
 import { content } from "./Tooltip.css";
 
-interface ContentProps {
+export interface TooltipContentProps {
   children: ReactNode;
   className?: string;
   side?: "top" | "right" | "bottom" | "left";
@@ -22,7 +22,7 @@ export const Content = ({
   sideOffset = 2,
   avoidCollisions = true,
   ...props
-}: ContentProps) => {
+}: TooltipContentProps) => {
   return (
     <RadixTooltipPortal>
       <RadixTooltipContent

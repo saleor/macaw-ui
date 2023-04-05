@@ -3,7 +3,7 @@ import { vars } from "~/theme";
 import { classNames } from "~/utils";
 import { arrow } from "./Tooltip.css";
 
-interface ArrowProps {
+export interface TooltipArrowProps {
   className?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -13,7 +13,7 @@ export const Arrow = ({
   className,
   backgroundColor = vars.colors.background.surfaceNeutralPlain,
   borderColor = vars.colors.border.neutralPlain,
-}: ArrowProps) => {
+}: TooltipArrowProps) => {
   return (
     <RadixTooltipArrow asChild className={classNames(arrow, className)}>
       <svg
