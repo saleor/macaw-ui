@@ -4,7 +4,6 @@ specifiers:
   "@babel/core": ^7.20.7
   "@dessert-box/react": ^0.4.0
   "@floating-ui/react-dom-interactions": ^0.5.0
-  "@headlessui/react": ^1.7.13
   "@radix-ui/react-accordion": ^1.0.1
   "@radix-ui/react-checkbox": ^1.0.2
   "@radix-ui/react-dialog": ^1.0.2
@@ -60,7 +59,6 @@ specifiers:
 dependencies:
   "@dessert-box/react": 0.4.0_react@17.0.2
   "@floating-ui/react-dom-interactions": 0.5.0_gzv7pa6nrbev3fs6gyzn7sadkq
-  "@headlessui/react": 1.7.13_sfoxds7t5ydpegc3knd667wn6m
   "@radix-ui/react-accordion": 1.0.1_sfoxds7t5ydpegc3knd667wn6m
   "@radix-ui/react-checkbox": 1.0.3_sfoxds7t5ydpegc3knd667wn6m
   "@radix-ui/react-dialog": 1.0.2_gzv7pa6nrbev3fs6gyzn7sadkq
@@ -2224,21 +2222,6 @@ packages:
         integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==,
       }
     dev: true
-
-  /@headlessui/react/1.7.13_sfoxds7t5ydpegc3knd667wn6m:
-    resolution:
-      {
-        integrity: sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==,
-      }
-    engines: { node: ">=10" }
-    peerDependencies:
-      react: ^16 || ^17 || ^18
-      react-dom: ^16 || ^17 || ^18
-    dependencies:
-      client-only: 0.0.1
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
 
   /@humanwhocodes/config-array/0.11.8:
     resolution:
@@ -7913,13 +7896,6 @@ packages:
       }
     engines: { node: ">= 12" }
     dev: true
-
-  /client-only/0.0.1:
-    resolution:
-      {
-        integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==,
-      }
-    dev: false
 
   /cliui/7.0.4:
     resolution:
