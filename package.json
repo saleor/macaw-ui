@@ -128,6 +128,7 @@
     "@radix-ui/react-radio-group": "^1.1.1",
     "@radix-ui/react-select": "^1.2.0",
     "@radix-ui/react-toggle": "^1.0.2",
+    "@radix-ui/react-tooltip": "^1.0.5",
     "clsx": "^1.1.1",
     "downshift": "^6.1.7",
     "lodash": "^4.17.21",
