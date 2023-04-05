@@ -3,17 +3,34 @@ import {
   Portal as RadixTooltipPortal,
   Content as RadixTooltipContent,
 } from "@radix-ui/react-tooltip";
+import { classNames } from "~/utils";
 import { content } from "./Tooltip.css";
 
 interface ContentProps {
   children: ReactNode;
+  className?: string;
   side?: "top" | "right" | "bottom" | "left";
+  sideOffset?: number;
+  align?: "start" | "center" | "end";
+  alignOffset?: number;
+  avoidCollisions?: boolean;
 }
 
-export const Content = ({ children, side = "bottom" }: ContentProps) => {
+export const Content = ({
+  children,
+  className,
+  sideOffset = 2,
+  avoidCollisions = true,
+  ...props
+}: ContentProps) => {
   return (
     <RadixTooltipPortal>
-      <RadixTooltipContent side={side} sideOffset={2} className={content}>
+      <RadixTooltipContent
+        className={classNames(content, className)}
+        sideOffset={sideOffset}
+        avoidCollisions={avoidCollisions}
+        {...props}
+      >
         {children}
       </RadixTooltipContent>
     </RadixTooltipPortal>

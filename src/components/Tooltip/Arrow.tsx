@@ -1,9 +1,21 @@
 import { Arrow as RadixTooltipArrow } from "@radix-ui/react-tooltip";
-import { arrow, arrowPath } from "./Tooltip.css";
+import { vars } from "~/theme";
+import { classNames } from "~/utils";
+import { arrow } from "./Tooltip.css";
 
-export const Arrow = () => {
+interface ArrowProps {
+  className?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+}
+
+export const Arrow = ({
+  className,
+  backgroundColor = vars.colors.background.surfaceNeutralPlain,
+  borderColor = vars.colors.border.neutralPlain,
+}: ArrowProps) => {
   return (
-    <RadixTooltipArrow asChild className={arrow}>
+    <RadixTooltipArrow asChild className={classNames(arrow, className)}>
       <svg
         width="20"
         height="9"
@@ -12,7 +24,8 @@ export const Arrow = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          className={arrowPath}
+          fill={backgroundColor}
+          stroke={borderColor}
           d="M8.086 7.086.5-.5h18l-7.586 7.586a2 2 0 0 1-2.828 0Z"
         />
       </svg>

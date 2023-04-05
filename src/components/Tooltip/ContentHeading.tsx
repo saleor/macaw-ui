@@ -1,10 +1,19 @@
 import { ReactNode } from "react";
-import { contentTitle } from "./Tooltip.css";
+import { Text } from "../Text";
 
 interface ContentHeadingProps {
   children: ReactNode;
 }
 
 export const ContentHeading = ({ children }: ContentHeadingProps) => {
-  return <span className={contentTitle}>{children}</span>;
+  return (
+    <Text
+      display="block"
+      variant="caption"
+      color="textNeutralSubdued"
+      marginBottom={2}
+    >
+      {children}
+    </Text>
+  );
 };
