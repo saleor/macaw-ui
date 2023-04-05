@@ -1,8 +1,9 @@
 import { style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+
 import { sprinkles, vars } from "~/theme";
 
-export const label = recipe({
+export const labelRecipe = recipe({
   base: [
     sprinkles({
       position: "relative",
@@ -133,7 +134,7 @@ export const label = recipe({
   ],
 });
 
-export const span = recipe({
+export const spanRecipe = recipe({
   base: [
     style({
       transition: "transform 0.3s",
@@ -180,7 +181,7 @@ export const span = recipe({
   },
 });
 
-export const input = recipe({
+export const inputRecipe = recipe({
   base: [
     sprinkles({
       width: "100%",
@@ -238,5 +239,5 @@ export const input = recipe({
   },
 });
 
-export type LabelVariants = RecipeVariants<typeof label>;
-export type InputVariants = RecipeVariants<typeof input>;
+export type LabelVariants = RecipeVariants<typeof labelRecipe>;
+export type InputVariants = RecipeVariants<typeof inputRecipe>;

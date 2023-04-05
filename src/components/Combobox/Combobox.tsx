@@ -1,9 +1,7 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
-import { calc } from "@vanilla-extract/css-utils";
 
 import { classNames } from "~/utils";
 
-import { vars } from "~/theme";
 import {
   ChangeHandler,
   InputWrapper,
@@ -13,14 +11,8 @@ import {
 import { Box } from "../Box";
 import { Text } from "../Text";
 import { List } from "../List";
-import {
-  input as inputStyle,
-  InputVariants,
-  list,
-  listItemRecipe,
-  setup,
-  setupRecipe,
-} from "./Combobox.css";
+import { inputRecipe, InputVariants } from "../BaseInput";
+import { list, listItem, listWrapperRecipe } from "./Combobox.css";
 
 export type ComboboxProps = InputVariants &
   Omit<
@@ -62,7 +54,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     ref
   ) => {
     const {
-      handlers,
       active,
       typed,
       isOpen,
@@ -93,11 +84,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             id={id}
             as="input"
             type={type}
-            className={classNames(inputStyle({ size, error }))}
+            className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
             {...props}
             {...getInputProps({
-              ...handlers,
               id,
               ref,
             })}
@@ -107,20 +97,19 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         <Box
           position="relative"
           display={isOpen ? "block" : "none"}
-          className={setupRecipe({ size })}
+          className={listWrapperRecipe({ size })}
         >
           <List as="ul" className={list} {...getMenuProps()}>
             {isOpen &&
               items?.map((item, index) => (
                 <List.Item
                   key={`${id}-${item}-${index}`}
-                  className={listItemRecipe({
-                    highlighted: highlightedIndex === index,
-                  })}
+                  className={listItem}
                   {...getItemProps({
                     item,
                     index,
                   })}
+                  active={highlightedIndex === index}
                 >
                   <Text size={size}>{item.label}</Text>
                 </List.Item>

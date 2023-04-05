@@ -15,14 +15,6 @@ const options = [
   { value: "Blue", label: "Blue" },
   { value: "Orange", label: "Orange" },
   { value: "Purple", label: "Purple" },
-  { value: "Pink", label: "Pink" },
-  { value: "Orchid", label: "Orchid" },
-  { value: "Aqua", label: "Aqua" },
-  { value: "Lime", label: "Lime" },
-  { value: "Gray", label: "Gray" },
-  { value: "Brown", label: "Brown" },
-  { value: "Teal", label: "Teal" },
-  { value: "Skyblue", label: "Skyblue" },
 ];
 
 const ComboboxExample = ({

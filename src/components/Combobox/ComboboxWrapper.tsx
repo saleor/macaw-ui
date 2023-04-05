@@ -2,19 +2,20 @@
   Do not expose this file, it's for internal purposes only.
 */
 import { ReactNode, useState } from "react";
-import { useCombobox, UseComboboxPropGetters } from "downshift";
+import {
+  GetPropsCommonOptions,
+  useCombobox,
+  UseComboboxGetInputPropsOptions,
+  UseComboboxPropGetters,
+} from "downshift";
 
-import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
+
+import { Box } from "../Box";
 import { Button } from "../Button";
 import { ArrowDownIcon } from "../Icons";
-import {
-  span as spanStyle,
-  label as labelStyle,
-  LabelVariants,
-  button,
-  trigger,
-} from "./Combobox.css";
+import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
+import { button, trigger } from "./Combobox.css";
 
 type InputValue = string | undefined;
 export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
@@ -70,7 +71,6 @@ export const useComboboxEvents = (
   const onBlur = () => setActive(false);
 
   return {
-    handlers: { onFocus, onBlur },
     active,
     items,
     typed,
@@ -78,7 +78,10 @@ export const useComboboxEvents = (
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
-    getInputProps,
+    getInputProps: (
+      options?: UseComboboxGetInputPropsOptions,
+      otherOptions?: GetPropsCommonOptions
+    ) => getInputProps({ onFocus, onBlur, ...options }, otherOptions),
     highlightedIndex,
     getItemProps,
   };
@@ -111,7 +114,7 @@ export const InputWrapper = ({
     <Box
       as="label"
       className={classNames(
-        labelStyle({ typed, active, disabled, size, error }),
+        labelRecipe({ typed, active, disabled, size, error }),
         className
       )}
       alignItems="center"
@@ -122,7 +125,7 @@ export const InputWrapper = ({
       <Box display="flex" flexDirection="column">
         <Box
           as="span"
-          className={classNames(spanStyle({ typed, size, disabled, error }))}
+          className={classNames(spanRecipe({ typed, size, disabled, error }))}
         >
           {label}
         </Box>
