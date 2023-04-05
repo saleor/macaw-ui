@@ -1,6 +1,7 @@
 import { ComponentMeta } from "@storybook/react";
 import { Box } from "../Box";
 import { Button } from "../Button";
+import { Text } from "../Text";
 import { Tooltip } from ".";
 
 export default {
@@ -9,9 +10,12 @@ export default {
 
 export const Default = () => {
   return (
-    <Box display="grid">
-      <Box display="flex" gap={13} alignItems="center" justifyContent="center">
-        <Box>
+    <Box>
+      <Box>
+        <Text marginBottom={5} display="block">
+          Tooltip with only content
+        </Text>
+        <Box display="flex" gap={13} marginBottom={10}>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Left</Button>
@@ -21,9 +25,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Righ</Button>
@@ -33,9 +35,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Top</Button>
@@ -45,9 +45,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Bottom</Button>
@@ -59,8 +57,12 @@ export const Default = () => {
           </Tooltip>
         </Box>
       </Box>
-      <Box display="flex" gap={13} alignItems="center" justifyContent="center">
-        <Box>
+
+      <Box>
+        <Text marginBottom={5} display="block">
+          Tooltip with content and heading
+        </Text>
+        <Box display="flex" gap={13} marginBottom={10}>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Left</Button>
@@ -71,9 +73,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Righ</Button>
@@ -84,9 +84,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Top</Button>
@@ -97,9 +95,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Bottom</Button>
@@ -113,8 +109,11 @@ export const Default = () => {
         </Box>
       </Box>
 
-      <Box display="flex" gap={13} alignItems="center" justifyContent="center">
-        <Box>
+      <Box>
+        <Text marginBottom={5} display="block">
+          Tooltip with only heading
+        </Text>
+        <Box display="flex" gap={13} marginBottom={10}>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Left</Button>
@@ -126,9 +125,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Righ</Button>
@@ -140,9 +137,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Top</Button>
@@ -154,9 +149,7 @@ export const Default = () => {
               <Tooltip.Arrow />
             </Tooltip.Content>
           </Tooltip>
-        </Box>
 
-        <Box>
           <Tooltip>
             <Tooltip.Trigger>
               <Button>Bottom</Button>
