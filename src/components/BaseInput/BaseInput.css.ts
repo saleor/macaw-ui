@@ -12,6 +12,7 @@ export const labelRecipe = recipe({
       color: "textNeutralSubdued",
       borderRadius: 3,
       paddingY: 3,
+      cursor: "text",
     }),
   ],
   variants: {

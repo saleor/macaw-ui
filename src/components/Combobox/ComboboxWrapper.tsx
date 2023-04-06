@@ -6,6 +6,7 @@ import { UseComboboxPropGetters } from "downshift";
 
 import { classNames } from "~/utils";
 
+import { sprinkles } from "~/theme";
 import { Option } from "./useComboboxEvents";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
@@ -57,7 +58,11 @@ export const ComboboxWrapper = ({
         {children}
       </Box>
 
-      <ArrowDownIcon className={icon} size={size} {...getToggleButtonProps()} />
+      <ArrowDownIcon
+        className={classNames(icon, sprinkles({ cursor: "pointer" }))}
+        size={size}
+        {...getToggleButtonProps()}
+      />
     </Box>
   );
 };
