@@ -1,92 +1,18 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { ReactNode, useState } from "react";
-import {
-  GetPropsCommonOptions,
-  useCombobox,
-  UseComboboxGetInputPropsOptions,
-  UseComboboxPropGetters,
-} from "downshift";
+import { ReactNode } from "react";
+import { UseComboboxPropGetters } from "downshift";
 
 import { classNames } from "~/utils";
 
+import { Option } from "./useComboboxEvents";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { icon } from "./Combobox.css";
 
-type InputValue = string | undefined;
-export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
-export type Option = { label: string; value: string };
-
-const getItemsFilter = (inputValue: string | undefined) => {
-  if (!inputValue) {
-    return () => false;
-  }
-
-  const lowerCasedInputValue = inputValue.toLowerCase();
-
-  return (item: Option) =>
-    !inputValue || item.label.toLowerCase().includes(lowerCasedInputValue);
-};
-
-export const useComboboxEvents = (
-  value: InputValue,
-  options: Option[],
-  changeHandler?: ChangeHandler
-) => {
-  const [items, setItemOptions] = useState(options);
-  const [active, setActive] = useState(false);
-  const typed = Boolean(value || active);
-
-  const {
-    isOpen,
-    getToggleButtonProps,
-    getLabelProps,
-    getMenuProps,
-    getInputProps,
-    highlightedIndex,
-    getItemProps,
-  } = useCombobox({
-    items,
-    itemToString: (item) => item?.label ?? "",
-    onSelectedItemChange: (changes) => {
-      if (changeHandler) {
-        changeHandler(changes.selectedItem);
-      }
-    },
-    onInputValueChange: ({ inputValue }) => {
-      if (!inputValue) {
-        setItemOptions(options);
-      } else {
-        setItemOptions(items.filter(getItemsFilter(inputValue)));
-      }
-    },
-    defaultInputValue: value,
-  });
-
-  const onFocus = () => setActive(true);
-  const onBlur = () => setActive(false);
-
-  return {
-    active,
-    items,
-    typed,
-    isOpen,
-    getToggleButtonProps,
-    getLabelProps,
-    getMenuProps,
-    getInputProps: (
-      options?: UseComboboxGetInputPropsOptions,
-      otherOptions?: GetPropsCommonOptions
-    ) => getInputProps({ onFocus, onBlur, ...options }, otherOptions),
-    highlightedIndex,
-    getItemProps,
-  };
-};
-
-type InputWrapperProps = LabelVariants & {
+type ComboboxWrapperProps = LabelVariants & {
   id?: string;
   label?: ReactNode;
   className?: string;
@@ -96,7 +22,7 @@ type InputWrapperProps = LabelVariants & {
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
-export const InputWrapper = ({
+export const ComboboxWrapper = ({
   id,
   label,
   className,
@@ -108,7 +34,7 @@ export const InputWrapper = ({
   active,
   disabled,
   size,
-}: InputWrapperProps) => {
+}: ComboboxWrapperProps) => {
   return (
     <Box
       as="label"
@@ -136,4 +62,4 @@ export const InputWrapper = ({
   );
 };
 
-InputWrapper.displayName = "InputWrapper";
+ComboboxWrapper.displayName = "InputWrapper";

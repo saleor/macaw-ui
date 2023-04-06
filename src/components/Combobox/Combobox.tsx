@@ -2,19 +2,13 @@ import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import {
-  ChangeHandler,
-  InputWrapper,
-  Option,
-  useComboboxEvents,
-} from "./ComboboxWrapper";
-import { Box } from "../Box";
-import { Text } from "../Text";
-import { List } from "../List";
+import { Option, ChangeHandler, useComboboxEvents } from "./useComboboxEvents";
+import { ComboboxWrapper } from "./ComboboxWrapper";
+import { List, Text, Box, PropsWithBox } from "..";
 import { inputRecipe, InputVariants } from "../BaseInput";
 import { list, listItem, listWrapperRecipe } from "./Combobox.css";
 
-export type ComboboxProps = InputVariants &
+export type ComboboxProps = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -25,6 +19,7 @@ export type ComboboxProps = InputVariants &
     | "children"
     | "onChange"
     | "value"
+    | "nonce"
   > & {
     label?: ReactNode;
     error?: boolean;
@@ -33,7 +28,9 @@ export type ComboboxProps = InputVariants &
     options: Option[];
     onChange?: ChangeHandler;
     value?: string;
-  };
+  }
+> &
+  InputVariants;
 
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
   (
@@ -68,7 +65,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
     return (
       <Box display="flex" flexDirection="column" gap={3}>
-        <InputWrapper
+        <ComboboxWrapper
           id={id}
           typed={typed}
           active={active}
@@ -92,7 +89,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
               ref,
             })}
           />
-        </InputWrapper>
+        </ComboboxWrapper>
 
         <Box
           position="relative"
