@@ -10,7 +10,7 @@ import { input as inputStyle, InputVariants } from "./Input.css";
 export type InputProps = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "color" | "width" | "height" | "size" | "type" | "children"
+    "color" | "width" | "height" | "size" | "type" | "children" | "nonce"
   > & {
     label?: ReactNode;
     error?: boolean;
