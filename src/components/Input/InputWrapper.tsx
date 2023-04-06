@@ -63,6 +63,7 @@ export const InputWrapper = ({
     <Box
       as="label"
       htmlFor={id}
+      flexWrap="wrap"
       className={classNames(
         labelRecipe({ typed, active, disabled, size, error }),
         className

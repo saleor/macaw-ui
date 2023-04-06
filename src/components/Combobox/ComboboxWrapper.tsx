@@ -46,6 +46,8 @@ export const ComboboxWrapper = ({
       alignItems="center"
       justifyContent="space-between"
       disabled={disabled}
+      flexWrap="nowrap"
+      gap={6}
       {...getLabelProps({ htmlFor: id })}
     >
       <Box display="flex" flexDirection="column">

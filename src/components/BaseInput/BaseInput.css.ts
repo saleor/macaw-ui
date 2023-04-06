@@ -8,39 +8,23 @@ export const labelRecipe = recipe({
     sprinkles({
       position: "relative",
       display: "flex",
-      flexWrap: "wrap",
       color: "textNeutralSubdued",
       borderRadius: 3,
-      paddingY: 3,
+      paddingY: 4,
       cursor: "text",
     }),
   ],
   variants: {
     size: {
-      small: [
-        sprinkles({
-          paddingX: 5,
-        }),
-        {
-          height: "48px",
-        },
-      ],
-      medium: [
-        sprinkles({
-          paddingX: 5,
-        }),
-        {
-          height: "52px",
-        },
-      ],
-      large: [
-        sprinkles({
-          paddingX: 6,
-        }),
-        {
-          height: "64px",
-        },
-      ],
+      small: sprinkles({
+        paddingX: 5,
+      }),
+      medium: sprinkles({
+        paddingX: 5,
+      }),
+      large: sprinkles({
+        paddingX: 6,
+      }),
     },
     active: {
       true: {},
