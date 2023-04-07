@@ -57,13 +57,22 @@ export const Default: ComponentStory<typeof Combobox> = () => {
       <ComboboxExample id="combobox-1" defaultValue="Gray" size="large" />
       <ComboboxExample id="combobox-2" size="medium" />
       <ComboboxExample id="combobox-3" size="small" />
-      <ComboboxExample id="combobox-4" size="large" error />
-      <ComboboxExample id="combobox-5" size="large" disabled />
-      <ComboboxExample
-        id="combobox-6"
-        size="large"
-        helperText={"Helper text"}
-      />
+      <Box>
+        <pre>Error state</pre>
+        <ComboboxExample id="combobox-4" size="large" error />
+      </Box>
+      <Box>
+        <pre>Disabled state</pre>
+        <ComboboxExample id="combobox-5" size="large" disabled />
+      </Box>
+      <Box>
+        <pre>With helper text</pre>
+        <ComboboxExample
+          id="combobox-6"
+          size="large"
+          helperText={"Helper text"}
+        />
+      </Box>
     </Box>
   );
 };
