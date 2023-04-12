@@ -21,6 +21,7 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:import/typescript",
     "prettier",
+    "plugin:storybook/recommended",
   ],
   overrides: [],
   parser: "@typescript-eslint/parser",
