@@ -12,6 +12,8 @@ export const labelRecipe = recipe({
       borderRadius: 3,
       paddingY: 4,
       cursor: "text",
+      borderWidth: 1,
+      borderStyle: "solid",
     }),
   ],
   variants: {
@@ -49,7 +51,6 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "brandSubdued",
         backgroundColor: {
           default: "interactiveNeutralHighlightDefault",
@@ -68,8 +69,6 @@ export const labelRecipe = recipe({
         backgroundColor: {
           default: "interactiveNeutralHighlightDefault",
         },
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: {
           default: "transparent",
           hover: "neutralHighlight",
@@ -84,8 +83,6 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         backgroundColor: "interactiveNeutralHighlightDefault",
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "transparent",
       }),
     },
@@ -102,8 +99,6 @@ export const labelRecipe = recipe({
           focus: "interactiveNeutralHighlightDefault",
           hover: "interactiveNeutralHighlightHovering",
         },
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "transparent",
       }),
     },
@@ -114,8 +109,6 @@ export const labelRecipe = recipe({
       style: sprinkles({
         color: "textNeutralDisabled",
         backgroundColor: "interactiveNeutralHighlightDefault",
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "neutralHighlight",
       }),
     },
@@ -129,6 +122,16 @@ export const labelRecipe = recipe({
           default: "surfaceCriticalSubdued",
           hover: "surfaceCriticalSubdued",
         },
+        borderColor: "transparent",
+      }),
+    },
+    {
+      variants: {
+        error: true,
+        typed: true,
+      },
+      style: sprinkles({
+        borderColor: "transparent",
       }),
     },
   ],
@@ -233,6 +236,22 @@ export const inputRecipe = recipe({
   },
   defaultVariants: {
     size: "medium",
+  },
+});
+
+export const helperTextRecipe = recipe({
+  variants: {
+    size: {
+      small: sprinkles({
+        paddingX: 5,
+      }),
+      medium: sprinkles({
+        paddingX: 5,
+      }),
+      large: sprinkles({
+        paddingX: 6,
+      }),
+    },
   },
 });
 

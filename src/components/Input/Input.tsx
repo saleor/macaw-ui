@@ -5,7 +5,7 @@ import { classNames } from "~/utils";
 import { InputWrapper, useStateEvents } from "./InputWrapper";
 import { Box, PropsWithBox } from "../Box";
 import { Text } from "../Text";
-import { inputRecipe, InputVariants } from "../BaseInput";
+import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 
 export type InputProps = PropsWithBox<
   Omit<
@@ -69,7 +69,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
         </InputWrapper>
         {helperText && (
-          <Box paddingLeft={4}>
+          <Box className={helperTextRecipe({ size })}>
             <Text
               variant="caption"
               size={size}

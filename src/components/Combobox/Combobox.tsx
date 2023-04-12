@@ -5,7 +5,7 @@ import { classNames } from "~/utils";
 import { Option, ChangeHandler, useComboboxEvents } from "./useComboboxEvents";
 import { ComboboxWrapper } from "./ComboboxWrapper";
 import { List, Text, Box, PropsWithBox } from "..";
-import { inputRecipe, InputVariants } from "../BaseInput";
+import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 import { list, listItem, listWrapperRecipe } from "./Combobox.css";
 
 export type ComboboxProps = PropsWithBox<
@@ -115,7 +115,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         </Box>
 
         {helperText && (
-          <Box paddingLeft={4}>
+          <Box className={helperTextRecipe({ size })}>
             <Text
               variant="caption"
               size={size}
