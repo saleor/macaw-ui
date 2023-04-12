@@ -1,10 +1,14 @@
+import { forwardRef } from "react";
 import { sprinkles, Sprinkles } from "~/theme";
 
 interface IndeterminateIconProps {
   color?: Sprinkles["color"];
 }
 
-export const IndeterminateIcon = ({ color }: IndeterminateIconProps) => (
+export const IndeterminateIcon = forwardRef<
+  SVGSVGElement,
+  IndeterminateIconProps
+>(({ color }, ref) => (
   <svg
     viewBox="0 0 8 2"
     width="8"
@@ -12,6 +16,7 @@ export const IndeterminateIcon = ({ color }: IndeterminateIconProps) => (
     className={sprinkles({ color })}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    ref={ref}
   >
     <path
       fillRule="evenodd"
@@ -20,4 +25,6 @@ export const IndeterminateIcon = ({ color }: IndeterminateIconProps) => (
       fill="currentColor"
     />
   </svg>
-);
+));
+
+IndeterminateIcon.displayName = "IndeterminateIcon";
