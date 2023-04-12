@@ -1,5 +1,6 @@
 import "./reset.css";
 import "./fonts.css";
+import "./global.css";
 
 import { ThemeContextProvider } from "./context";
 import { DefaultTheme } from "./themes";
