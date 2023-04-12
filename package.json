@@ -48,12 +48,13 @@
     "ui components"
   ],
   "engines": {
-    "node": ">=16 <19"
+    "node": ">=16 <19",
+    "pnpm": ">=8"
   },
   "scripts": {
     "build:legacy": "cd legacy && npm run build",
     "build:next": "npm-run-all check-types:next && vite build",
-    "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider storybook build",
+    "build-storybook": "storybook build",
     "lint:legacy": "cd legacy && npm run lint",
     "lint:next": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix",
     "check-types:next": "tsc",
@@ -64,7 +65,7 @@
     "check-types": "npm-run-all check-types:*",
     "test": "npm-run-all test:*",
     "build": "npm-run-all build:*",
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider storybook dev -p 6006",
+    "dev": "storybook dev -p 6006",
     "make-release": "release-it pre",
     "release": "npm-run-all build make-release",
     "prepare": "is-ci || husky install"
@@ -95,7 +96,6 @@
     "@vanilla-extract/sprinkles": "^1.5.1",
     "@vanilla-extract/vite-plugin": "^3.7.0",
     "@vitejs/plugin-react": "^2.2.0",
-    "cross-env": "^7.0.3",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.5.2",
