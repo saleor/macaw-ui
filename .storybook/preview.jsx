@@ -1,6 +1,17 @@
 import React from "react";
-
 import { Box, ThemeProvider, useTheme } from "../src";
+
+import { DocsContainer } from "@storybook/blocks";
+
+const MacawDocsContainer = ({ children, ...props }) => {
+  return (
+    <ThemeProvider defaultTheme={props.context.store.globals.globals.theme}>
+      <ThemeSwitcher theme={props.context.store.globals.globals.theme}>
+        <DocsContainer {...props}>{children}</DocsContainer>
+      </ThemeSwitcher>
+    </ThemeProvider>
+  );
+};
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -8,6 +19,10 @@ export const parameters = {
     matchers: {
       date: /Date$/,
     },
+  },
+  docs: {
+    autodocs: "tag",
+    container: MacawDocsContainer,
   },
 };
 
@@ -24,11 +39,11 @@ export const globalTypes = {
   },
 };
 
-const ThemeSwitcher = ({ children, context }) => {
+const ThemeSwitcher = ({ children, theme }) => {
   const { setTheme } = useTheme();
   React.useEffect(() => {
-    setTheme(context.globals.theme);
-  }, [context.globals.theme]);
+    setTheme(theme);
+  }, [theme]);
 
   return (
     <Box
@@ -46,7 +61,7 @@ const ThemeSwitcher = ({ children, context }) => {
 export const decorators = [
   (Story, context) => (
     <ThemeProvider defaultTheme={context.globals.theme}>
-      <ThemeSwitcher context={context}>
+      <ThemeSwitcher theme={context.globals.theme}>
         <Story />
       </ThemeSwitcher>
     </ThemeProvider>

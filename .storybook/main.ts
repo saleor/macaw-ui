@@ -1,7 +1,8 @@
-const { mergeConfig } = require("vite");
-const { resolve } = require("path");
-module.exports = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+import { mergeConfig } from "vite";
+import { resolve } from "path";
+
+export default {
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -30,8 +31,5 @@ module.exports = {
       },
       plugins: [require("@vanilla-extract/vite-plugin").vanillaExtractPlugin()],
     });
-  },
-  docs: {
-    autodocs: false,
   },
 };
