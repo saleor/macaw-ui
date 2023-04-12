@@ -22,7 +22,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 7.30
+          version: 8.2.0
           run_install: true
 
       - name: Lint
