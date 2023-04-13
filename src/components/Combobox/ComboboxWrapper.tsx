@@ -63,7 +63,9 @@ export const ComboboxWrapper = ({
       <ArrowDownIcon
         className={classNames(icon, sprinkles({ cursor: "pointer" }))}
         size={size}
-        {...getToggleButtonProps()}
+        {...getToggleButtonProps({
+          disabled,
+        })}
       />
     </Box>
   );
