@@ -1,8 +1,8 @@
 import { Box } from "~/components";
-import { useRawThemeValues } from "~/utils";
+import { useTheme } from "~/theme";
 
 export const SpacingsPresentation = () => {
-  const vars = useRawThemeValues();
+  const { themeValues: vars } = useTheme();
 
   return (
     <Box display="flex" flexDirection="row" flexWrap="wrap" rowGap={10}>

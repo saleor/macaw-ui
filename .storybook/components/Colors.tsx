@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Box, Text } from "~/components";
-import { useRawThemeValues } from "~/utils";
+import { useTheme } from "~/theme";
 
 const getColorsBy = (colors: Record<string, string>, field: string) =>
   Object.entries(colors)
@@ -52,7 +52,7 @@ const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
 };
 
 export const ColorPresentation = () => {
-  const vars = useRawThemeValues();
+  const { themeValues: vars } = useTheme();
 
   const backgroundsInteractive = getColorsBy(
     vars.colors.background,
