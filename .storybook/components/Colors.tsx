@@ -1,13 +1,20 @@
+import { ReactNode } from "react";
 import { Box, Text } from "~/components";
 import { vars } from "~/theme/contract.css";
 import { useVarValues } from "~/utils";
 
-const getColorsBy = (colors: object, field: string) =>
+const getColorsBy = (colors: Record<string, string>, field: string) =>
   Object.entries(colors)
     .filter(([key]) => key.startsWith(field))
     .sort();
 
-const ColorItem = ({ sectionName, colors, children }: any) => {
+interface ColorItemProps {
+  sectionName: string;
+  colors: [string, string][];
+  children: ReactNode;
+}
+
+const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
   const { getVarValue } = useVarValues();
 
   return (
@@ -19,7 +26,7 @@ const ColorItem = ({ sectionName, colors, children }: any) => {
         {children}
       </Text>
       <Box display="flex" flexWrap="wrap" rowGap={13} columnGap={10}>
-        {colors.map(([name, value]: [any, any]) => (
+        {colors.map(([name, value]) => (
           <Box
             key={name}
             display="flex"
