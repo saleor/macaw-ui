@@ -67,7 +67,7 @@ export const defaultCheckbox = style({
       borderColor: vars.colors.border.neutralPlain,
       backgroundColor:
         vars.colors.background.interactiveNeutralSecondaryDisabled,
-      pointerEvents: "none",
+      cursor: "not-allowed",
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
       backgroundColor: vars.colors.background.interactiveBrandDefault,
@@ -103,7 +103,7 @@ export const defaultCheckbox = style({
     '&:is([data-state="checked"],[data-state="indeterminate"])[disabled]': {
       backgroundColor: vars.colors.background.interactiveBrandDisabled,
       borderColor: vars.colors.border.neutralHighlight,
-      pointerEvents: "none",
+      cursor: "not-allowed",
       color: vars.colors.foreground.iconNeutralDisabled,
     },
   },
@@ -160,7 +160,7 @@ export const errorCheckbox = style({
       borderColor: vars.colors.border.neutralPlain,
       backgroundColor:
         vars.colors.background.interactiveCriticalSecondaryDisabled,
-      pointerEvents: "none",
+      cursor: "not-allowed",
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
       backgroundColor: vars.colors.background.interactiveCriticalDefault,
@@ -198,8 +198,8 @@ export const errorCheckbox = style({
     '&:is([data-state="checked"],[data-state="indeterminate"])[disabled]': {
       backgroundColor: vars.colors.background.interactiveCriticalDisabled,
       borderColor: vars.colors.border.neutralHighlight,
-      pointerEvents: "none",
       color: vars.colors.foreground.iconCriticalDisabled,
+      cursor: "not-allowed",
     },
   },
 });

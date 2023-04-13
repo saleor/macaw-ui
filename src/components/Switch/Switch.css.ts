@@ -62,7 +62,7 @@ export const switchChild = recipe({
         },
         "&[disabled]": {
           color: iconNeutralDisabled,
-          pointerEvents: "none",
+          cursor: "not-allowed",
         },
       },
     },
