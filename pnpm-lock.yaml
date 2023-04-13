@@ -108,9 +108,6 @@ devDependencies:
   "@vitejs/plugin-react":
     specifier: ^2.2.0
     version: 2.2.0(vite@3.2.5)
-  cross-env:
-    specifier: ^7.0.3
-    version: 7.0.3
   eslint:
     specifier: ^8.31.0
     version: 8.31.0
@@ -7527,17 +7524,6 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
-    dev: true
-
-  /cross-env@7.0.3:
-    resolution:
-      {
-        integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==,
-      }
-    engines: { node: ">=10.14", npm: ">=6", yarn: ">=1" }
-    hasBin: true
-    dependencies:
-      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn@6.0.5:

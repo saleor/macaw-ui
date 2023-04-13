@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, ThemeProvider, useTheme } from "../src";
-
 import { DocsContainer } from "@storybook/blocks";
+import { Box, ThemeProvider, useTheme } from "../src";
 
 const MacawDocsContainer = ({ children, ...props }) => {
   return (
@@ -46,13 +45,7 @@ const ThemeSwitcher = ({ children, theme }) => {
   }, [theme]);
 
   return (
-    <Box
-      backgroundColor="plain"
-      width="100vw"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-    >
+    <Box width="100vw" height="100vh" display="flex" justifyContent="center">
       {children}
     </Box>
   );

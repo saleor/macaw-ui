@@ -22,8 +22,10 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 7.30
-          run_install: true
+          version: 8.2.0
+          run_install: |
+            - recursive: false
+              args: [--frozen-lockfile]
 
       - name: Lint
         run: pnpm lint
