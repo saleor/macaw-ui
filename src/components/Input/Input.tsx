@@ -14,7 +14,7 @@ export type InputProps = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
-    type?: "text" | "number";
+    type?: "text" | "number" | "url" | "email" | "password";
     helperText?: ReactNode;
   }
 > &
