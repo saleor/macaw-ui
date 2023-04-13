@@ -31,13 +31,7 @@ const ThemeSwitcher = ({ children, context }) => {
   }, [context.globals.theme]);
 
   return (
-    <Box
-      backgroundColor="plain"
-      width="100vw"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-    >
+    <Box width="100vw" height="100vh" display="flex" justifyContent="center">
       {children}
     </Box>
   );
