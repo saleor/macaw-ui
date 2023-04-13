@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Box, Text } from "~/components";
-import { vars } from "~/theme/contract.css";
-import { useVarValues } from "~/utils";
+import { useRawThemeValues } from "~/utils";
 
 const getColorsBy = (colors: Record<string, string>, field: string) =>
   Object.entries(colors)
@@ -15,8 +14,6 @@ interface ColorItemProps {
 }
 
 const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
-  const { getVarValue } = useVarValues();
-
   return (
     <Box paddingY={10}>
       <Text paddingY={5} variant="title" as="h3">
@@ -36,7 +33,7 @@ const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
           >
             <Box width="100%">{name}</Box>
             <Box color="textNeutralPlain" fontSize="buttonSmall">
-              {getVarValue(value)}
+              {value}
             </Box>
             <Box
               __backgroundColor={value}
@@ -55,6 +52,8 @@ const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
 };
 
 export const ColorPresentation = () => {
+  const vars = useRawThemeValues();
+
   const backgroundsInteractive = getColorsBy(
     vars.colors.background,
     "interactive"

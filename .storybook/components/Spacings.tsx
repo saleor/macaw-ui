@@ -1,9 +1,8 @@
 import { Box } from "~/components";
-import { vars } from "~/theme/contract.css";
-import { useVarValues } from "~/utils";
+import { useRawThemeValues } from "~/utils";
 
 export const SpacingsPresentation = () => {
-  const { getVarValue } = useVarValues();
+  const vars = useRawThemeValues();
 
   return (
     <Box display="flex" flexDirection="row" flexWrap="wrap" rowGap={10}>
@@ -11,7 +10,7 @@ export const SpacingsPresentation = () => {
         return (
           <Box width="100%" key={key}>
             <Box>space-{key}</Box>
-            <Box color="textNeutralPlain">{getVarValue(value)}</Box>
+            <Box color="textNeutralPlain">{value}</Box>
             <Box
               key={key}
               backgroundColor="interactiveBrandHighlightDefault"
