@@ -20,6 +20,6 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", ".storybook/components"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
