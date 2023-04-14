@@ -1,6 +1,5 @@
 import React from "react";
 import { DocsContainer } from "@storybook/blocks";
-import { create } from "@storybook/theming/create";
 import { Box, ThemeProvider, useTheme } from "../src";
 
 const MacawDocsContainer = ({ children, ...props }) => {
