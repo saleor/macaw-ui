@@ -1,12 +1,6 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { Box } from "../Box";
 import { Combobox } from ".";
-
-export default {
-  component: Combobox,
-} as ComponentMeta<typeof Combobox>;
 
 const options = [
   { value: "Black", label: "Black" },
@@ -17,62 +11,97 @@ const options = [
   { value: "Purple", label: "Purple" },
 ];
 
-const ComboboxExample = ({
-  id,
-  defaultValue = "",
-  size,
-  error,
-  disabled,
-  helperText,
-}: {
-  id: string;
-  defaultValue?: string;
-  size: "small" | "medium" | "large";
-  error?: boolean;
-  disabled?: boolean;
-  helperText?: string;
-}) => {
-  const [value, setValue] = useState(defaultValue);
-
-  return (
-    <Combobox
-      id={id}
-      value={value}
-      onChange={(item) => {
-        setValue(item?.value ?? "");
-      }}
-      label="Colors"
-      size={size}
-      error={error}
-      disabled={disabled}
-      options={options}
-      helperText={helperText}
-    />
-  );
+const meta: Meta<typeof Combobox> = {
+  title: "Components / Combobox",
+  tags: ["autodocs"],
+  component: Combobox,
+  args: {
+    options,
+    label: "Pick a color",
+    id: "combobox",
+  },
 };
 
-export const Default: ComponentStory<typeof Combobox> = () => {
-  return (
-    <Box display="grid" gap={5} gridTemplateColumns={3}>
-      <ComboboxExample id="combobox-1" defaultValue="Gray" size="large" />
-      <ComboboxExample id="combobox-2" size="medium" />
-      <ComboboxExample id="combobox-3" size="small" />
-      <Box>
-        <pre>Error state</pre>
-        <ComboboxExample id="combobox-4" size="large" error />
-      </Box>
-      <Box>
-        <pre>Disabled state</pre>
-        <ComboboxExample id="combobox-5" size="large" disabled />
-      </Box>
-      <Box>
-        <pre>With helper text</pre>
-        <ComboboxExample
-          id="combobox-6"
-          size="large"
-          helperText={"Helper text"}
-        />
-      </Box>
-    </Box>
-  );
+export default meta;
+type Story = StoryObj<typeof Combobox>;
+
+export const Large: Story = {
+  args: {
+    size: "large",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    size: "medium",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "small",
+  },
+};
+
+export const LargeError: Story = {
+  args: {
+    ...Large.args,
+    error: true,
+  },
+};
+
+export const MediumError: Story = {
+  args: {
+    ...Medium.args,
+    error: true,
+  },
+};
+
+export const SmallError: Story = {
+  args: {
+    ...Small.args,
+    error: true,
+  },
+};
+
+export const LargeDisabled: Story = {
+  args: {
+    ...Large.args,
+    disabled: true,
+  },
+};
+
+export const MediumDisabled: Story = {
+  args: {
+    ...Medium.args,
+    disabled: true,
+  },
+};
+
+export const SmallDisabled: Story = {
+  args: {
+    ...Small.args,
+    disabled: true,
+  },
+};
+
+export const LargeHelperText: Story = {
+  args: {
+    ...Large.args,
+    helperText: "Helper text",
+  },
+};
+
+export const MediumHelperText: Story = {
+  args: {
+    ...Medium.args,
+    helperText: "Helper text",
+  },
+};
+
+export const SmallHelperText: Story = {
+  args: {
+    ...Small.args,
+    helperText: "Helper text",
+  },
 };
