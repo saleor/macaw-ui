@@ -1,43 +1,91 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
+import { Avatar } from "./index";
 
-import { Avatar } from ".";
+const User = Avatar.User
+const Store = Avatar.Store
+Object.assign(User, { displayName: "Avatar.User"})
+Object.assign(Store, { displayName: "Avatar.Store"})
 
-export default {
-  component: Avatar.User,
-} as ComponentMeta<typeof Avatar.User>;
 
-const UserTemplate: ComponentStory<typeof Avatar.User> = (args) => (
-  <Avatar.User {...args} />
-);
-
-export const UserWithInitials = UserTemplate.bind({});
-UserWithInitials.args = {
-  initials: "LI",
-  scheme: "decorative1",
-  size: "medium",
+const meta: Meta<typeof Avatar> = {
+  title: "Components / Avatar",
+  tags: ["autodocs"],
+  component: User,
 };
 
-export const UserWithImage = UserTemplate.bind({});
-UserWithImage.args = {
-  src: "https://source.unsplash.com/random/32x32",
-  scheme: "decorative1",
-  size: "medium",
+export default meta
+type Story = StoryObj<typeof User>;
+
+export const Primary: Story = {
+  name: "With initials",
+  args: {
+    initials: "LI",
+    scheme: "decorative1",
+    size: "medium",
+  },
 };
 
-const StoreTemplate: ComponentStory<typeof Avatar.Store> = (args) => (
-  <Avatar.Store {...args} />
-);
-
-export const StoreWithInitials = StoreTemplate.bind({});
-StoreWithInitials.args = {
-  initials: "A",
-  scheme: "decorative1",
-  size: "medium",
+export const WithImage: Story = {
+  args: {
+    src: "https://source.unsplash.com/random/32x32",
+    scheme: "decorative1",
+    size: "medium",
+  },
 };
 
-export const StoreWithImage = StoreTemplate.bind({});
-StoreWithImage.args = {
-  src: "https://source.unsplash.com/random/32x32",
-  scheme: "decorative1",
-  size: "medium",
+export const AsStoreInitials: Story = {
+  args: {
+    initials: "LI",
+    scheme: "decorative1",
+    size: "medium",
+  },
+  render: (args) => <Store {...args} />
 };
+
+export const AsStoreImage: Story = {
+  args: {
+    src: "https://source.unsplash.com/random/32x32",
+    scheme: "decorative1",
+    size: "medium",
+  },
+  render: (args) => <Store {...args} />
+};
+
+
+
+
+// const UserTemplate: ComponentStory<typeof Avatar.User> = (args) => (
+//   <Avatar.User {...args} />
+// );
+
+// export const UserWithInitials = UserTemplate.bind({});
+// UserWithInitials.args = {
+//   initials: "LI",
+//   scheme: "decorative1",
+//   size: "medium",
+// };
+
+// export const UserWithImage = UserTemplate.bind({});
+// UserWithImage.args = {
+//   src: "https://source.unsplash.com/random/32x32",
+//   scheme: "decorative1",
+//   size: "medium",
+// };
+
+// const StoreTemplate: ComponentStory<typeof Avatar.Store> = (args) => (
+//   <Avatar.Store {...args} />
+// );
+
+// export const StoreWithInitials = StoreTemplate.bind({});
+// StoreWithInitials.args = {
+//   initials: "A",
+//   scheme: "decorative1",
+//   size: "medium",
+// };
+
+// export const StoreWithImage = StoreTemplate.bind({});
+// StoreWithImage.args = {
+//   src: "https://source.unsplash.com/random/32x32",
+//   scheme: "decorative1",
+//   size: "medium",
+// };
