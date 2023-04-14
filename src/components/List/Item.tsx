@@ -17,7 +17,7 @@ export const Item = forwardRef<HTMLElement, ListItemProps>(
         as="li"
         display="flex"
         alignItems="center"
-        cursor="pointer"
+        cursor={{ default: "pointer", disabled: "not-allowed" }}
         disabled={disabled}
         backgroundColor={{
           default: active
@@ -27,7 +27,6 @@ export const Item = forwardRef<HTMLElement, ListItemProps>(
           hover: "interactiveNeutralHighlightHovering",
           focus: "interactiveNeutralHighlightFocused",
         }}
-        pointerEvents={{ default: "auto", disabled: "none" }}
         onClick={onClick}
         className={className}
         ref={ref}

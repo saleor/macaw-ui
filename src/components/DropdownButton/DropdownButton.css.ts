@@ -10,9 +10,9 @@ export const dropdownButton = recipe({
       justifyContent: "space-between",
       placeItems: "center",
       padding: 0,
-      cursor: "pointer",
-      pointerEvents: {
-        disabled: "none",
+      cursor: {
+        default: "pointer",
+        disabled: "not-allowed",
       },
       borderColor: {
         default: "transparent",

@@ -75,7 +75,7 @@ export const toggle = recipe({
         '&[data-state="off"][disabled]': {
           backgroundColor:
             vars.colors.background.interactiveNeutralSecondaryDisabled,
-          pointerEvents: "none",
+          cursor: "not-allowed",
           boxShadow: "none",
         },
 
@@ -105,7 +105,7 @@ export const toggle = recipe({
         },
         '&[data-state="on"][disabled]': {
           backgroundColor: vars.colors.background.interactiveBrandDisabled,
-          pointerEvents: "none",
+          cursor: "not-allowed",
           boxShadow: "none",
         },
       },
