@@ -45,7 +45,7 @@ const ThemeSwitcher = ({ children, theme }) => {
   }, [theme]);
 
   return (
-    <Box width="100vw" height="100vh" display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center">
       {children}
     </Box>
   );
