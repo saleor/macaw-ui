@@ -26,4 +26,4 @@ jobs:
               args: [--frozen-lockfile]
 
       - name: Validate PR title
-        run: echo "${{ github.event.pull_request.title }}" | npx commitlint --verbose
+        run: echo "${{ github.event.pull_request.title }}" | pnpm dlx commitlint --verbose

@@ -66,7 +66,7 @@
     "test": "npm-run-all test:*",
     "build": "npm-run-all build:*",
     "dev": "storybook dev -p 6006",
-    "make-release": "release-it pre",
+    "make-release": "release-it pre --dry-run",
     "release": "npm-run-all build make-release",
     "prepare": "is-ci || husky install"
   },
@@ -81,6 +81,7 @@
     "@babel/core": "^7.20.7",
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
+    "@release-it/conventional-changelog": "^5.1.1",
     "@storybook/addon-actions": "^7.0.3",
     "@storybook/addon-essentials": "^7.0.3",
     "@storybook/addon-interactions": "^7.0.3",
