@@ -31,9 +31,10 @@ export const Disabled: Story = {
     ...Primary.args,
     disabled: true,
     children: [
+      // eslint-disable-next-line react/jsx-key
       <Text variant="body" color="textNeutralDisabled">
         Option 1
-      </Text>, // eslint-disable-line react/jsx-key
+      </Text>,
     ],
   },
 };

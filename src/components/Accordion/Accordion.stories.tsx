@@ -7,7 +7,7 @@ const meta: Meta<typeof Accordion> = {
   component: Accordion,
 };
 
-export default meta
+export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 export const Primary: Story = {
@@ -17,15 +17,16 @@ export const Primary: Story = {
     gap: 5,
     flexDirection: "column",
     children: [
+      // eslint-disable-next-line react/jsx-key
       <Accordion.Item value="first-item">
         <Accordion.Item.Trigger>Trigger 1</Accordion.Item.Trigger>
         <Accordion.Item.Content>Content 1</Accordion.Item.Content>
       </Accordion.Item>,
+      // eslint-disable-next-line react/jsx-key
       <Accordion.Item value="second-item">
         <Accordion.Item.Trigger>Trigger 2</Accordion.Item.Trigger>
         <Accordion.Item.Content>Content 2</Accordion.Item.Content>
-      </Accordion.Item>
-    ]
+      </Accordion.Item>,
+    ],
   },
 };
-
