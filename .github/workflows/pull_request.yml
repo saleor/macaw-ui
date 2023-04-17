@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    name: Check pull request
+    name: Check pull request title
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
