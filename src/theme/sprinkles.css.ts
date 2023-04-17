@@ -213,7 +213,7 @@ const stateProperties = defineProperties({
     color: { ...vars.colors.foreground, inherit: "inherit" },
     backgroundColor: { ...vars.colors.background, transparent: "transparent" },
     pointerEvents: ["none", "auto"],
-    cursor: ["pointer", "not-allowed", "auto"],
+    cursor: ["pointer", "not-allowed", "auto", "text"],
     boxShadow: { ...vars.boxShadow, none: "none" },
     transition: { ease: "transform 0.3s", all: "all 0.3s ease-in-out" },
     textDecoration: ["none", "underline"],

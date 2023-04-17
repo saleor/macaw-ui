@@ -8,9 +8,9 @@ export const button = recipe({
       display: "flex",
       placeItems: "center",
       padding: 0,
-      cursor: "pointer",
-      pointerEvents: {
-        disabled: "none",
+      cursor: {
+        default: "pointer",
+        disabled: "not-allowed",
       },
     }),
   ],

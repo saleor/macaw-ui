@@ -5,7 +5,7 @@ import { classNames } from "~/utils";
 import { InputWrapper, useStateEvents } from "./InputWrapper";
 import { Box, PropsWithBox } from "../Box";
 import { Text } from "../Text";
-import { input as inputStyle, InputVariants } from "./Input.css";
+import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 
 export type InputProps = PropsWithBox<
   Omit<
@@ -60,7 +60,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             as="input"
             type={type}
-            className={classNames(inputStyle({ size, error }))}
+            className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
             value={inputValue}
             ref={ref}
@@ -69,7 +69,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
         </InputWrapper>
         {helperText && (
-          <Box paddingLeft={4}>
+          <Box className={helperTextRecipe({ size })}>
             <Text
               variant="caption"
               size={size}

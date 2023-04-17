@@ -1,28 +1,31 @@
 import { style } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+
 import { sprinkles, vars } from "~/theme";
 
-export const label = recipe({
+export const labelRecipe = recipe({
   base: [
     sprinkles({
       position: "relative",
       display: "flex",
-      flexWrap: "wrap",
       color: "textNeutralSubdued",
       borderRadius: 3,
-      paddingX: 4,
+      paddingY: 4,
+      cursor: "text",
+      borderWidth: 1,
+      borderStyle: "solid",
     }),
   ],
   variants: {
     size: {
       small: sprinkles({
-        paddingY: 5,
+        paddingX: 5,
       }),
       medium: sprinkles({
-        paddingY: 5,
+        paddingX: 5,
       }),
       large: sprinkles({
-        paddingY: 6,
+        paddingX: 6,
       }),
     },
     active: {
@@ -48,7 +51,6 @@ export const label = recipe({
       },
       style: sprinkles({
         borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "brandSubdued",
         backgroundColor: {
           default: "interactiveNeutralHighlightDefault",
@@ -67,8 +69,6 @@ export const label = recipe({
         backgroundColor: {
           default: "interactiveNeutralHighlightDefault",
         },
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: {
           default: "transparent",
           hover: "neutralHighlight",
@@ -83,8 +83,6 @@ export const label = recipe({
       },
       style: sprinkles({
         backgroundColor: "interactiveNeutralHighlightDefault",
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "transparent",
       }),
     },
@@ -101,8 +99,6 @@ export const label = recipe({
           focus: "interactiveNeutralHighlightDefault",
           hover: "interactiveNeutralHighlightHovering",
         },
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "transparent",
       }),
     },
@@ -113,8 +109,6 @@ export const label = recipe({
       style: sprinkles({
         color: "textNeutralDisabled",
         backgroundColor: "interactiveNeutralHighlightDefault",
-        borderStyle: "solid",
-        borderWidth: 1,
         borderColor: "neutralHighlight",
       }),
     },
@@ -128,12 +122,22 @@ export const label = recipe({
           default: "surfaceCriticalSubdued",
           hover: "surfaceCriticalSubdued",
         },
+        borderColor: "transparent",
+      }),
+    },
+    {
+      variants: {
+        error: true,
+        typed: true,
+      },
+      style: sprinkles({
+        borderColor: "transparent",
       }),
     },
   ],
 });
 
-export const span = recipe({
+export const spanRecipe = recipe({
   base: [
     style({
       transition: "transform 0.3s",
@@ -147,16 +151,13 @@ export const span = recipe({
   variants: {
     size: {
       small: sprinkles({
-        fontSize: "captionLarge",
-        lineHeight: "captionMedium",
+        typeSize: "bodySmall",
       }),
       medium: sprinkles({
-        fontSize: "bodyMedium",
-        lineHeight: "captionLarge",
+        typeSize: "bodyMedium",
       }),
       large: sprinkles({
-        fontSize: "bodyLarge",
-        lineHeight: "bodyLarge",
+        typeSize: "bodyLarge",
       }),
     },
     disabled: {
@@ -164,9 +165,9 @@ export const span = recipe({
     },
     typed: {
       true: [
-        style({
-          transform: "translate(0, 0) scale(0.813)",
-        }),
+        {
+          transform: "translate(0, 0) scale(0.84)",
+        },
       ],
     },
     error: {
@@ -180,7 +181,7 @@ export const span = recipe({
   },
 });
 
-export const input = recipe({
+export const inputRecipe = recipe({
   base: [
     sprinkles({
       width: "100%",
@@ -238,5 +239,21 @@ export const input = recipe({
   },
 });
 
-export type LabelVariants = RecipeVariants<typeof label>;
-export type InputVariants = RecipeVariants<typeof input>;
+export const helperTextRecipe = recipe({
+  variants: {
+    size: {
+      small: sprinkles({
+        paddingX: 5,
+      }),
+      medium: sprinkles({
+        paddingX: 5,
+      }),
+      large: sprinkles({
+        paddingX: 6,
+      }),
+    },
+  },
+});
+
+export type LabelVariants = RecipeVariants<typeof labelRecipe>;
+export type InputVariants = RecipeVariants<typeof inputRecipe>;

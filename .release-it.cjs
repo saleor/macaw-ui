@@ -1,8 +1,13 @@
 module.exports = {
   git: {
-    tag: false,
+    tag: true,
   },
   github: {
-    release: false,
+    release: true,
+  },
+  plugins: {
+    "@release-it/conventional-changelog": {
+      preset: "conventionalcommits",
+    },
   },
 };

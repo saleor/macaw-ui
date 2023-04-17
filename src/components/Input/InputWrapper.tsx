@@ -4,11 +4,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
-import {
-  span as spanStyle,
-  label as labelStyle,
-  LabelVariants,
-} from "./Input.css";
+import { spanRecipe, labelRecipe, LabelVariants } from "../BaseInput";
 
 type InputValue = string | number | readonly string[] | undefined;
 type ChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -67,14 +63,15 @@ export const InputWrapper = ({
     <Box
       as="label"
       htmlFor={id}
+      flexWrap="wrap"
       className={classNames(
-        labelStyle({ typed, active, disabled, size, error }),
+        labelRecipe({ typed, active, disabled, size, error }),
         className
       )}
     >
       <Box
         as="span"
-        className={classNames(spanStyle({ typed, size, disabled, error }))}
+        className={classNames(spanRecipe({ typed, size, disabled, error }))}
       >
         {label}
       </Box>

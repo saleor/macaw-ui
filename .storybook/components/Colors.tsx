@@ -32,9 +32,7 @@ const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
             __flexBasis="30%"
           >
             <Box width="100%">{name}</Box>
-            <Box color="textNeutralPlain" fontSize="buttonSmall">
-              {value}
-            </Box>
+            <Box fontSize="buttonSmall">{value}</Box>
             <Box
               __backgroundColor={value}
               width="100%"

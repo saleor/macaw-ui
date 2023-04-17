@@ -1,8 +1,18 @@
 import React from "react";
-import { DocsContainer } from "@storybook/blocks";
+import { DocsContainer, DocsContainerProps } from "@storybook/blocks";
 import { Box, ThemeProvider, useTheme } from "../src";
+import { PropsWithChildren } from "react";
 
-const MacawDocsContainer = ({ children, ...props }) => {
+type MacawDocsContainerProps = {
+  [K in keyof DocsContainerProps]: K extends "context"
+    ? DocsContainerProps[K] & { store: Record<string, any> }
+    : DocsContainerProps[K];
+};
+
+const MacawDocsContainer = ({
+  children,
+  ...props
+}: PropsWithChildren<MacawDocsContainerProps>) => {
   return (
     <ThemeProvider defaultTheme={props.context.store.globals.globals.theme}>
       <ThemeSwitcher theme={props.context.store.globals.globals.theme}>
@@ -45,7 +55,7 @@ const ThemeSwitcher = ({ children, theme }) => {
   }, [theme]);
 
   return (
-    <Box display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center" __backgroundColor="white">
       {children}
     </Box>
   );
