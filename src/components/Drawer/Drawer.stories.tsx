@@ -2,7 +2,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Text } from "../Text";
 import { MenuIcon } from "../Icons";
 import { Button } from "../Button";
-import { List } from "../List";
 import { Drawer } from "./index";
 
 const meta: Meta<typeof Drawer> = {
