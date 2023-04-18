@@ -1,9 +1,15 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
+import { Divider } from "./Divider";
 
-import { Divider } from ".";
-
-export default {
+const meta: Meta<typeof Divider> = {
+  title: "Components / Divider",
+  tags: ["autodocs"],
   component: Divider,
-} as ComponentMeta<typeof Divider>;
+};
 
-export const Default = <Divider />;
+export default meta;
+type Story = StoryObj<typeof Divider>;
+
+export const Primary: Story = {
+  args: {},
+};
