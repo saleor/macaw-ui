@@ -1,21 +1,18 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { SearchInput } from "./SearchInput";
-import { Box } from "../Box";
 
-export default {
+const meta: Meta<typeof SearchInput> = {
+  title: "Components / SearchInput",
+  tags: ["autodocs"],
   component: SearchInput,
-} as ComponentMeta<typeof SearchInput>;
+};
 
-export const Default: ComponentStory<typeof SearchInput> = () => (
-  <Box display="flex" flexDirection="column">
-    <Box paddingY={9} display="flex" gap={9} alignItems="center">
-      <SearchInput size="small" placeholder="Search for products" />
-    </Box>
-    <Box paddingY={9} display="flex" gap={9} alignItems="center">
-      <SearchInput size="medium" placeholder="Search for products" />
-    </Box>
-    <Box paddingY={9} display="flex" gap={9} alignItems="center">
-      <SearchInput size="large" placeholder="Search for products" />
-    </Box>
-  </Box>
-);
+export default meta;
+type Story = StoryObj<typeof SearchInput>;
+
+export const Primary: Story = {
+  args: {
+    size: "large",
+    placeholder: "Search for products",
+  },
+};
