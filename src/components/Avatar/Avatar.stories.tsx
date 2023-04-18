@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Avatar } from "./index";
 
-const User = Avatar.User
-const Store = Avatar.Store
-Object.assign(User, { displayName: "Avatar.User"})
-Object.assign(Store, { displayName: "Avatar.Store"})
-
+const User = Avatar.User;
+const Store = Avatar.Store;
+Object.assign(User, { displayName: "Avatar.User" });
+Object.assign(Store, { displayName: "Avatar.Store" });
 
 const meta: Meta<typeof Avatar> = {
   title: "Components / Avatar",
@@ -13,7 +12,7 @@ const meta: Meta<typeof Avatar> = {
   component: User,
 };
 
-export default meta
+export default meta;
 type Story = StoryObj<typeof User>;
 
 export const Primary: Story = {
@@ -39,7 +38,7 @@ export const AsStoreInitials: Story = {
     scheme: "decorative1",
     size: "medium",
   },
-  render: (args) => <Store {...args} />
+  render: (args) => <Store {...args} />,
 };
 
 export const AsStoreImage: Story = {
@@ -48,44 +47,5 @@ export const AsStoreImage: Story = {
     scheme: "decorative1",
     size: "medium",
   },
-  render: (args) => <Store {...args} />
+  render: (args) => <Store {...args} />,
 };
-
-
-
-
-// const UserTemplate: ComponentStory<typeof Avatar.User> = (args) => (
-//   <Avatar.User {...args} />
-// );
-
-// export const UserWithInitials = UserTemplate.bind({});
-// UserWithInitials.args = {
-//   initials: "LI",
-//   scheme: "decorative1",
-//   size: "medium",
-// };
-
-// export const UserWithImage = UserTemplate.bind({});
-// UserWithImage.args = {
-//   src: "https://source.unsplash.com/random/32x32",
-//   scheme: "decorative1",
-//   size: "medium",
-// };
-
-// const StoreTemplate: ComponentStory<typeof Avatar.Store> = (args) => (
-//   <Avatar.Store {...args} />
-// );
-
-// export const StoreWithInitials = StoreTemplate.bind({});
-// StoreWithInitials.args = {
-//   initials: "A",
-//   scheme: "decorative1",
-//   size: "medium",
-// };
-
-// export const StoreWithImage = StoreTemplate.bind({});
-// StoreWithImage.args = {
-//   src: "https://source.unsplash.com/random/32x32",
-//   scheme: "decorative1",
-//   size: "medium",
-// };
