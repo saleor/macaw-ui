@@ -1,168 +1,96 @@
-import { ComponentMeta } from "@storybook/react";
-import { Box } from "../Box";
-import { Button } from "../Button";
+import { Meta, StoryObj } from "@storybook/react";
 import { Text } from "../Text";
-import { Tooltip } from ".";
+import { MoreOptionsIcon } from "../Icons";
+import { Button } from "../Button";
+import { List } from "../List";
+import { Tooltip } from "./index";
 
-export default {
+const meta: Meta<typeof Tooltip> = {
+  title: "Components / Tooltip",
+  tags: ["autodocs"],
   component: Tooltip,
-} as ComponentMeta<typeof Tooltip>;
+};
 
-export const Default = () => {
-  return (
-    <Box>
-      <Box>
-        <Text marginBottom={5} display="block">
-          Tooltip with only content
-        </Text>
-        <Box display="flex" gap={13} marginBottom={10}>
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Left</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="left">
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
+export default meta;
+type Story = StoryObj<typeof Tooltip>;
 
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Righ</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="right">
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
+export const Primary: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Trigger>
+        <Button>Left</Button>
+      </Tooltip.Trigger>,
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Content side="left">
+        Tooltip content
+        <Tooltip.Arrow />
+      </Tooltip.Content>,
+    ],
+  },
+};
 
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Top</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="top">
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
+export const RightSide: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Trigger>
+        <Button>Right</Button>
+      </Tooltip.Trigger>,
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Content side="right">
+        Tooltip content
+        <Tooltip.Arrow />
+      </Tooltip.Content>,
+    ],
+  },
+};
 
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Bottom</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="bottom">
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-        </Box>
-      </Box>
+export const Top: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Trigger>
+        <Button>Top</Button>
+      </Tooltip.Trigger>,
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Content side="top">
+        Tooltip content
+        <Tooltip.Arrow />
+      </Tooltip.Content>,
+    ],
+  },
+};
 
-      <Box>
-        <Text marginBottom={5} display="block">
-          Tooltip with content and heading
-        </Text>
-        <Box display="flex" gap={13} marginBottom={10}>
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Left</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="left">
-              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
+export const Bottom: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Trigger>
+        <Button>Bottom</Button>
+      </Tooltip.Trigger>,
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Content side="bottom">
+        Tooltip content
+        <Tooltip.Arrow />
+      </Tooltip.Content>,
+    ],
+  },
+};
 
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Righ</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="right">
-              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Top</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="top">
-              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Bottom</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="bottom">
-              <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
-              Tooltip content
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-        </Box>
-      </Box>
-
-      <Box>
-        <Text marginBottom={5} display="block">
-          Tooltip with only heading
-        </Text>
-        <Box display="flex" gap={13} marginBottom={10}>
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Left</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="left">
-              <Tooltip.ContentHeading>
-                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
-              </Tooltip.ContentHeading>
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Righ</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="right">
-              <Tooltip.ContentHeading>
-                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
-              </Tooltip.ContentHeading>
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Top</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="top">
-              <Tooltip.ContentHeading>
-                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
-              </Tooltip.ContentHeading>
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-
-          <Tooltip>
-            <Tooltip.Trigger>
-              <Button>Bottom</Button>
-            </Tooltip.Trigger>
-            <Tooltip.Content side="bottom">
-              <Tooltip.ContentHeading>
-                Nunc augue nunc enim mattis ultricies morbi turpis cras amet.
-              </Tooltip.ContentHeading>
-              <Tooltip.Arrow />
-            </Tooltip.Content>
-          </Tooltip>
-        </Box>
-      </Box>
-    </Box>
-  );
+export const WithHeading: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Trigger>
+        <Button>With heading</Button>
+      </Tooltip.Trigger>,
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Content side="left">
+        <Tooltip.ContentHeading>Heading</Tooltip.ContentHeading>
+        Tooltip content
+        <Tooltip.Arrow />
+      </Tooltip.Content>,
+    ],
+  },
 };

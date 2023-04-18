@@ -1,36 +1,52 @@
-import { ComponentMeta } from "@storybook/react";
-
-import { Toggle } from "./Toggle";
-import { DecorativeBox } from "../../../.storybook//DecorativeBox";
-import { Box } from "../Box";
+import { Meta, StoryObj } from "@storybook/react";
 import { Text } from "../Text";
+import { Toggle } from "./index";
 
-export default {
+const meta: Meta<typeof Toggle> = {
+  title: "Components / Toggle",
+  tags: ["autodocs"],
   component: Toggle,
-} as ComponentMeta<typeof Toggle>;
+};
 
-export const Default = () => {
-  return (
-    <Box display="flex" gap={8}>
-      <DecorativeBox>
-        <Text variant="heading">Default toggles</Text>
-        <Toggle>
-          <Text variant="body">Option 1</Text>
-        </Toggle>
-        <Toggle defaultPressed>
-          <Text variant="body">Option 2</Text>
-        </Toggle>
-        <Toggle disabled>
-          <Text variant="body" color="textNeutralDisabled">
-            Disabled option
-          </Text>
-        </Toggle>
-        <Toggle disabled pressed={true}>
-          <Text variant="body" color="textNeutralDisabled">
-            Checked disabled option
-          </Text>
-        </Toggle>
-      </DecorativeBox>
-    </Box>
-  );
+export default meta;
+type Story = StoryObj<typeof Toggle>;
+
+export const Primary: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Text variant="body">Option 1</Text>,
+    ],
+  },
+};
+
+export const DefaultPressed: Story = {
+  args: {
+    defaultPressed: true,
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Text variant="body">Option 1</Text>,
+    ],
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Text variant="body">Option 1</Text>,
+    ],
+  },
+};
+
+export const DisabledAndPressed: Story = {
+  args: {
+    disabled: true,
+    pressed: true,
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Text variant="body">Option 1</Text>,
+    ],
+  },
 };
