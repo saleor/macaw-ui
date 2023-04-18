@@ -1,28 +1,23 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Chip } from "./Chip";
 import { Text } from "../Text";
-import { Box } from "../Box";
 
-export default {
+const meta: Meta<typeof Chip> = {
+  title: "Components / Chip",
+  tags: ["autodocs"],
   component: Chip,
-} as ComponentMeta<typeof Chip>;
+};
 
-export const Default: ComponentStory<typeof Chip> = () => (
-  <Box display="flex" flexDirection="column" alignItems="center" gap={5}>
-    <Chip size="large">
+export default meta;
+type Story = StoryObj<typeof Chip>;
+
+export const Primary: Story = {
+  args: {
+    size: "large",
+    children: (
       <Text variant="caption" size="small" color="textNeutralPlain">
-        Text
+        Example
       </Text>
-    </Chip>
-    <Chip size="medium">
-      <Text variant="caption" size="small" color="textNeutralPlain">
-        Text
-      </Text>
-    </Chip>
-    <Chip size="small">
-      <Text variant="caption" size="small" color="textNeutralPlain">
-        Text
-      </Text>
-    </Chip>
-  </Box>
-);
+    ),
+  },
+};
