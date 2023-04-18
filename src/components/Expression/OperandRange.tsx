@@ -12,8 +12,8 @@ type OperandRangeProps = Omit<
   to?: string;
   placeholderFrom?: string;
   placeholderTo?: string;
-  onFromChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onToChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onFromChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onToChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   sign?: string;
 };
 
