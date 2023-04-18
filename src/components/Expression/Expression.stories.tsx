@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Expression } from "./index";
 
 const meta: Meta<typeof Expression> = {
@@ -87,7 +87,7 @@ const handleOutsideClick = () => {
 
     const handleKeyDown = () => setOpen(true);
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
     };
 
@@ -141,7 +141,7 @@ return (
   render: () => {
     const [value, setValue] = useState("");
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
     };
 
@@ -185,7 +185,7 @@ return (
   render: () => {
     const [value, setValue] = useState("");
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
     };
 
@@ -239,11 +239,11 @@ return (
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
 
-    const handleChangeFrom = (event) => {
+    const handleChangeFrom = (event: ChangeEvent<HTMLInputElement>) => {
       setFrom(event.target.value);
     };
 
-    const handleChangeTo = (event) => {
+    const handleChangeTo = (event: ChangeEvent<HTMLInputElement>) => {
       setTo(event.target.value);
     };
 
