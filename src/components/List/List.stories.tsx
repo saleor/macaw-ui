@@ -1,87 +1,69 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
+import { Text } from "../Text";
+import { Box } from "../Box";
+import { List } from "./index";
 
-import { Text, HomeIcon, Box, MenuIcon } from "~/components";
-import { List } from ".";
+const meta: Meta<typeof List> = {
+  title: "Components / List",
+  tags: ["autodocs"],
+  component: List,
+};
 
-export default {
-  component: List.Item,
-  parameters: {
-    layout: "centered",
+export default meta;
+type Story = StoryObj<typeof List>;
+
+export const Primary: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
+        <Text color="textNeutralPlain">List item</Text>
+      </List.Item>,
+    ],
   },
-} as ComponentMeta<typeof List.Item>;
+};
 
-export const Item = () => (
-  <List>
-    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
-      <HomeIcon color="iconNeutralSubdued" />
-      <Text color={"textNeutralPlain"}>List component</Text>
-    </List.Item>
-  </List>
-);
+export const Disabled: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3} disabled>
+        <Text color="textNeutralPlain">List item</Text>
+      </List.Item>,
+    ],
+  },
+};
 
-export const ItemDisabled = () => (
-  <List>
-    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3} disabled>
-      <HomeIcon color="iconNeutralDisabled" />
-      <Text color="textNeutralDisabled">List component</Text>
-    </List.Item>
-  </List>
-);
+export const Active: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3} active>
+        <Text color="textNeutralPlain">List item</Text>
+      </List.Item>,
+    ],
+  },
+};
 
-export const ItemActive = () => (
-  <List>
-    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3} active>
-      <HomeIcon color="iconNeutralSubdued" />
-      <Text>List component</Text>
-    </List.Item>
-  </List>
-);
-
-export const ListGroup = () => (
-  <List>
-    <List.ItemGroup>
-      <List.ItemGroup.Trigger
-        paddingX={5}
-        paddingY={5}
-        borderRadius={3}
-        justifyContent="space-between"
-        gap={6}
-        size="medium"
-      >
-        <Box display="flex" alignItems="center" gap={6}>
-          <MenuIcon color="iconNeutralDefault" />
+export const Group: Story = {
+  args: {
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <List.ItemGroup>
+        <List.ItemGroup.Trigger size="medium">
           <Text>Trigger</Text>
-        </Box>
-      </List.ItemGroup.Trigger>
-      <List.ItemGroup.Content>
-        <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
-          <HomeIcon color="iconNeutralDefault" />
-          <Text>Content</Text>
-        </List.Item>
-      </List.ItemGroup.Content>
-    </List.ItemGroup>
-  </List>
-);
-
-export const ListDivider = () => (
-  <List>
-    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
-      <HomeIcon color="iconNeutralDefault" />
-      <Text>Item 1</Text>
-    </List.Item>
-    <List.Divider paddingX={5} paddingY={5} />
-    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
-      <HomeIcon color="iconNeutralDefault" />
-      <Text>Item 2</Text>
-    </List.Item>
-    <List.Divider paddingX={5} paddingY={5}>
-      <Text variant="caption" size="small" color="textNeutralSubdued">
-        List heading
-      </Text>
-    </List.Divider>
-    <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
-      <HomeIcon color="iconNeutralDefault" />
-      <Text>Item 3</Text>
-    </List.Item>
-  </List>
-);
+        </List.ItemGroup.Trigger>
+        <List.ItemGroup.Content>
+          <Box>
+            <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
+              <Text>Item 1</Text>
+            </List.Item>
+            <List.Item paddingX={5} paddingY={5} gap={6} borderRadius={3}>
+              <Text>Item 2</Text>
+            </List.Item>
+          </Box>
+        </List.ItemGroup.Content>
+      </List.ItemGroup>,
+    ],
+  },
+};
