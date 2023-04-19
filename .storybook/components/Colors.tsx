@@ -87,11 +87,11 @@ export const ColorPresentation = () => {
           Backgrounds
         </Text>
         <ColorItem sectionName="Interactive" colors={backgroundsInteractive}>
-          Describes any inteactvitity, such as pressing button, focusing or
+          Describes any interactivity, such as pressing a button, focusing or
           hovering element.
         </ColorItem>
         <ColorItem sectionName="Decorative" colors={backgroundsDecorative}>
-          Ephasises the accent of a element that does not fit the rest of UI,
+          Emphasizes the accent of an element that does not fit the rest of UI,
           eg. avatar, or some system badges.
         </ColorItem>
         <ColorItem sectionName="Surface" colors={backgroundsSurface}>
@@ -99,10 +99,10 @@ export const ColorPresentation = () => {
           navigations, sidebars.
         </ColorItem>
         <ColorItem sectionName="Highlights" colors={backgroundsHighlights}>
-          Brightents the given element among the surfaces.
+          Brightens the given element among the surfaces..
         </ColorItem>
         <ColorItem sectionName="Others" colors={backgroundsOthers}>
-          General purpose backgrounds, can be used for more sophisticated cases.
+          General-purpose backgrounds, can be used for more sophisticated cases.
         </ColorItem>
 
         <Text variant="title" as="h2">
