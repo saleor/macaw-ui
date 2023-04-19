@@ -1,31 +1,28 @@
-import { ComponentMeta } from "@storybook/react";
-import { Box, Text } from "~/components";
+import { Meta, StoryObj } from "@storybook/react";
 import { ProductsIcons, TableEditIcon } from "../Icons";
-import { Switch } from ".";
+import { Switch } from "./index";
 
-export default {
+const meta: Meta<typeof Switch> = {
+  title: "Components / Switch",
+  tags: ["autodocs"],
   component: Switch,
-} as ComponentMeta<typeof Switch>;
+};
 
-export const Default = () => (
-  <Box display="flex" flexDirection="column" gap={4}>
-    <Text>Active</Text>
-    <Switch defaultValue="1">
+export default meta;
+type Story = StoryObj<typeof Switch>;
+
+export const Primary: Story = {
+  args: {
+    defaultValue: "1",
+    children: [
+      // eslint-disable-next-line react/jsx-key
       <Switch.Item id="1" value="1">
         <TableEditIcon size="medium" />
-      </Switch.Item>
+      </Switch.Item>,
+      // eslint-disable-next-line react/jsx-key
       <Switch.Item id="2" value="2">
         <ProductsIcons size="medium" />
-      </Switch.Item>
-    </Switch>
-    <Text>Disabled</Text>
-    <Switch defaultValue="2">
-      <Switch.Item id="1" value="1" disabled>
-        <TableEditIcon size="medium" />
-      </Switch.Item>
-      <Switch.Item id="2" value="2" disabled>
-        <ProductsIcons size="medium" />
-      </Switch.Item>
-    </Switch>
-  </Box>
-);
+      </Switch.Item>,
+    ],
+  },
+};
