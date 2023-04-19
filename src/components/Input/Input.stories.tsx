@@ -1,8 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Text } from "../Text";
-import { MoreOptionsIcon } from "../Icons";
-import { Button } from "../Button";
-import { List } from "../List";
 import { Input } from "./index";
 
 const meta: Meta<typeof Input> = {
