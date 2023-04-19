@@ -44,8 +44,11 @@ dependencies:
     specifier: ^1.1.1
     version: 1.1.1
   downshift:
-    specifier: ^7.6.0
-    version: 7.6.0(react@17.0.2)
+    specifier: ^6.1.7
+    version: 6.1.7(react@17.0.2)
+  downshift7:
+    specifier: npm:downshift@7.6.0
+    version: /downshift@7.6.0(react@17.0.2)
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -8939,6 +8942,13 @@ packages:
       - supports-color
     dev: true
 
+  /compute-scroll-into-view@1.0.20:
+    resolution:
+      {
+        integrity: sha512-UCB0ioiyj8CRjtrvaceBLqqhZCVP+1B8+NWQhmdsm0VXOJtobBCf1dBQmebCCo34qZmUwZfIH2MZLqNHazrfjg==,
+      }
+    dev: false
+
   /compute-scroll-into-view@2.0.4:
     resolution:
       {
@@ -9813,6 +9823,22 @@ packages:
       }
     engines: { node: ">=12" }
     dev: true
+
+  /downshift@6.1.7(react@17.0.2):
+    resolution:
+      {
+        integrity: sha512-cVprZg/9Lvj/uhYRxELzlu1aezRcgPWBjTvspiGTVEU64gF5pRdSRKFVLcxqsZC637cLAGMbL40JavEfWnqgNg==,
+      }
+    peerDependencies:
+      react: ">=16.12.0"
+    dependencies:
+      "@babel/runtime": 7.21.0
+      compute-scroll-into-view: 1.0.20
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-is: 17.0.2
+      tslib: 2.5.0
+    dev: false
 
   /downshift@7.6.0(react@17.0.2):
     resolution:
