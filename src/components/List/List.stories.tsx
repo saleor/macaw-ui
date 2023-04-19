@@ -1,7 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Text } from "../Text";
-import { MoreOptionsIcon } from "../Icons";
-import { Button } from "../Button";
 import { Box } from "../Box";
 import { List } from "./index";
 
