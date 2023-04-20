@@ -9,4 +9,5 @@ greatly reduce the amount of work needed to review your work. -->
 
 ### Pull Request Checklist
 
-- [ ] New components are exported from `./src/components/index.ts`
+- [ ] New components are exported from `./src/components/index.ts`.
+- [ ] Storybook story is created and documentation properly generated.
