@@ -3,7 +3,7 @@ import {
   GetPropsCommonOptions,
   useCombobox,
   UseComboboxGetInputPropsOptions,
-} from "downshift";
+} from "downshift7";
 
 type InputValue = string | undefined;
 export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
