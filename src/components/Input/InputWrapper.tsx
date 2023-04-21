@@ -1,7 +1,7 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
 import { spanRecipe, labelRecipe, LabelVariants } from "../BaseInput";
@@ -13,20 +13,13 @@ export const useStateEvents = (
   value: InputValue,
   changeHandler?: ChangeHandler
 ) => {
-  const [inputValue, setInputValue] = useState(value);
   const [active, setActive] = useState(false);
-  const typed = Boolean(inputValue || active);
-
-  useEffect(() => {
-    setInputValue(value);
-  }, [value]);
+  const typed = Boolean(value || active);
 
   const onFocus = () => setActive(true);
   const onBlur = () => setActive(false);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-
     if (changeHandler) {
       changeHandler(event);
     }
@@ -34,7 +27,7 @@ export const useStateEvents = (
 
   return {
     handlers: { onFocus, onBlur, onChange },
-    value: inputValue,
+    value,
     active,
     typed,
   };

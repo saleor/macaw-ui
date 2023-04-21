@@ -5,30 +5,30 @@ const meta: Meta<typeof Input> = {
   title: "Components / Input",
   tags: ["autodocs"],
   component: Input,
-};
-
-export default meta;
-type Story = StoryObj<typeof Input>;
-
-export const Primary: Story = {
   args: {
     value: "Input content",
     label: "Label",
     size: "large",
     placeholder: "Input placeholder",
   },
+  argTypes: {
+    onChange: { action: "onChange" },
+  },
 };
+
+export default meta;
+type Story = StoryObj<typeof Input>;
+
+export const Primary: Story = {};
 
 export const Errored: Story = {
   args: {
-    ...Primary.args,
     error: true,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    ...Primary.args,
     disabled: true,
   },
 };
