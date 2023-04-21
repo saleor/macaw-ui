@@ -210,6 +210,19 @@ export const inputRecipe = recipe({
         "&:focus::-moz-placeholder": {
           color: vars.colors.foreground.textNeutralSubdued,
         },
+        // disable chrome autocomplete background color
+        "&:-webkit-autofill": {
+          transition: "background-color 9999s ease-in-out 0s",
+        },
+        "&:-webkit-autofill:hover": {
+          transition: "background-color 9999s ease-in-out 0s",
+        },
+        "&:-webkit-autofill:focus": {
+          transition: "background-color 9999s ease-in-out 0s",
+        },
+        "&:-webkit-autofill:active": {
+          transition: "background-color 9999s ease-in-out 0s",
+        },
       },
     },
   ],
