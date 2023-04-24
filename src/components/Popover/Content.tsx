@@ -1,4 +1,7 @@
-import { Content as RadixPopoverContent } from "@radix-ui/react-popover";
+import {
+  Content as RadixPopoverContent,
+  Portal as RadixPopoverPortal,
+} from "@radix-ui/react-popover";
 import { classNames } from "~/utils";
 import { popover } from "./Popover.css";
 
@@ -18,8 +21,13 @@ export const Content = ({
   ...props
 }: PopoverContentProps) => {
   return (
-    <RadixPopoverContent className={classNames(popover, className)} {...props}>
-      {children}
-    </RadixPopoverContent>
+    <RadixPopoverPortal>
+      <RadixPopoverContent
+        className={classNames(popover, className)}
+        {...props}
+      >
+        {children}
+      </RadixPopoverContent>
+    </RadixPopoverPortal>
   );
 };
