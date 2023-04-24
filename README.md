@@ -16,7 +16,7 @@ Official React UI components kit for [Saleor](https://saleor.io/) — an open-so
 npm i @saleor/macaw-ui
 ```
 
-Note that this package still bundles old version of MacawUI so it still depends on the following Material-UI v4 packages: @material-ui/core, @material-ui/icons and @material-ui/lab. If your project doesn't have them installed and you're not using npm v7 with [automatically installed peer dependencies](https://github.blog/2020-10-13-presenting-v7-0-0-of-the-npm-cli/) then you'll need to install them manually:
+Note that this package still bundles the old version of MacawUI so it still depends on the following Material-UI v4 packages: @material-ui/core, @material-ui/icons and @material-ui/lab. If your project doesn't have them installed and you're not using npm v7 with [automatically installed peer dependencies](https://github.blog/2020-10-13-presenting-v7-0-0-of-the-npm-cli/) then you'll need to install them manually:
 
 ```sh
 npm i @material-ui/core @material-ui/icons @material-ui/lab
@@ -24,7 +24,7 @@ npm i @material-ui/core @material-ui/icons @material-ui/lab
 
 ## Usage
 
-You need to import the styles in your app. You can do it in your main entry point, for example `index.tsx`:
+You need to import the styles into your app. You can do it in your main entry point, for example `index.`tsx`:
 
 ```tsx
 import "@saleor/macaw-ui/next/style";
@@ -44,7 +44,7 @@ const App = () => (
 
 ### Usage with Next.js
 
-As mentioned above, we still bundle old version of MacawUI so you need to add the following to your `next.config.js`:
+As mentioned above, we still bundle the old version of MacawUI so you need to add the following to your `next.config.js`:
 
 ```js
 /** @type {import('next').NextConfig} */
@@ -56,6 +56,29 @@ module.exports = {
 ```
 
 It tells Next.js not to use ESM exports for external modules. This is needed because MacawUI dependencies (Material-UI v4) are still using CommonJS exports.
+
+If you need to render styles on the server we recommend that you use `getCSSVariables` helper to get the CSS variables that can be injected in `_document.tsx`:
+
+```tsx
+import { getCSSVariables } from "@saleor/macaw-ui/next";
+import Document, { Head, Html, Main, NextScript } from "next/document";
+
+const css = getCSSVariables("defaultLight"); // or "defaultDark"
+
+export default class AppDocument extends Document {
+  render() {
+    return (
+      <Html style={css}>
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+```
 
 ### Development
 

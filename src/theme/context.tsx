@@ -22,8 +22,8 @@ export const ThemeContextProvider = ({
 }: ThemeProviderProps) => {
   const [theme, setTheme] = useState(defaultTheme);
 
-  // FIXME: #344 This is to allow SSR with Next.js
   if (typeof document !== "undefined") {
+    // do not set CSS variables when rendering on the server - use getCSSVariables
     setElementVars(document.documentElement, vars, themes[theme]);
   }
 
