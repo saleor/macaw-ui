@@ -94,6 +94,12 @@ Then, you can run the Storybook:
 pnpm dev
 ```
 
+You can run build in watch mode (useful for real-time development with e.g Dashboard):
+
+```sh
+pnpm watch
+```
+
 ## License
 
 Distributed under the Creative Common Attribution 4.0 International License
