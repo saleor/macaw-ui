@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
+import { forwardRef, InputHTMLAttributes, ReactNode, FocusEvent } from "react";
 
 import { classNames } from "~/utils";
 
@@ -33,6 +33,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       error = false,
       onChange,
       helperText,
+      onBlur,
+      onFocus,
       ...props
     },
     ref
@@ -64,7 +66,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             value={inputValue}
             ref={ref}
-            {...handlers}
+            onBlur={(event: FocusEvent<HTMLInputElement, Element>) => {
+              handlers.onBlur();
+              onBlur?.(event);
+            }}
+            onFocus={(event: FocusEvent<HTMLInputElement, Element>) => {
+              handlers.onFocus();
+              onFocus?.(event);
+            }}
+            onChange={handlers.onChange}
             {...props}
           />
         </InputWrapper>

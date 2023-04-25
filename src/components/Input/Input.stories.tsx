@@ -13,6 +13,8 @@ const meta: Meta<typeof Input> = {
   },
   argTypes: {
     onChange: { action: "onChange" },
+    onBlur: { action: "onBlur" },
+    onFocus: { action: "onFocus" },
   },
 };
 
