@@ -33,6 +33,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       error = false,
       onChange,
       helperText,
+      onBlur,
+      onFocus,
       ...props
     },
     ref
@@ -64,7 +66,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             value={inputValue}
             ref={ref}
-            {...handlers}
+            onBlur={(event: React.FocusEvent<HTMLInputElement, Element>) => {
+              handlers.onBlur();
+              onBlur?.(event);
+            }}
+            onFocus={(event: React.FocusEvent<HTMLInputElement, Element>) => {
+              handlers.onFocus();
+              onFocus?.(event);
+            }}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              handlers.onChange(event);
+            }}
             {...props}
           />
         </InputWrapper>
