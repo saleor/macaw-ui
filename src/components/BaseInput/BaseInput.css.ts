@@ -135,6 +135,9 @@ export const labelRecipe = recipe({
       }),
     },
   ],
+  defaultVariants: {
+    size: "medium",
+  },
 });
 
 export const spanRecipe = recipe({
