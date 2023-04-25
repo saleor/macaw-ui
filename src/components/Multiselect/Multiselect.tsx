@@ -1,12 +1,16 @@
-import { InputHTMLAttributes, ReactNode, useState } from "react";
-import { useSelect, useMultipleSelection } from "downshift7";
+import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
 import { classNames } from "~/utils";
-import { Box, PropsWithBox } from "../Box";
-import { InputVariants, labelRecipe, spanRecipe } from "../BaseInput";
 
-export type Option = { label: string; value: string };
-export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
+import {
+  Option,
+  ChangeHandler,
+  useMultiselectEvents,
+} from "./useMultiselectEvents";
+import { MultiselectWrapper } from "./MultiselectWrapper";
+import { List, Text, Box, PropsWithBox } from "..";
+import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
+import { list, listItem, listWrapperRecipe } from "./Multiselect.css";
 
 export type MultiselectProps = PropsWithBox<
   Omit<
@@ -20,10 +24,10 @@ export type MultiselectProps = PropsWithBox<
     | "onChange"
     | "value"
     | "nonce"
+    | "type"
   > & {
     label?: ReactNode;
     error?: boolean;
-    type?: "text" | "number";
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
@@ -32,136 +36,106 @@ export type MultiselectProps = PropsWithBox<
 > &
   InputVariants;
 
-const getOptionsFilter = (selectedItems: Option[]) => (item: Option) =>
-  selectedItems.indexOf(item) < 0;
-
-export const Multiselect = ({
-  size,
-  error,
-  className,
-  disabled,
-  value,
-  options,
-  onChange,
-}: MultiselectProps) => {
-  const [active, setActive] = useState(false);
-
-  const onFocus = () => setActive(true);
-  const onBlur = () => setActive(false);
-
-  const {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    selectedItems,
-  } = useMultipleSelection<Option>();
-
-  const items = options.filter(getOptionsFilter(selectedItems));
-
-  const {
-    isOpen,
-    selectedItem,
-    getToggleButtonProps,
-    getLabelProps,
-    getMenuProps,
-    highlightedIndex,
-    getItemProps,
-  } = useSelect({
-    selectedItem: null,
-    defaultHighlightedIndex: 0, // after selection, highlight the first item.
-    items,
-    itemToString: (item) => item?.label ?? "",
-    stateReducer: (_, actionAndChanges) => {
-      const { changes, type } = actionAndChanges;
-      switch (type) {
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          return {
-            ...changes,
-            isOpen: true, // keep the menu open after selection.
-          };
-        default:
-          return changes;
-      }
+export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
+  (
+    {
+      size,
+      disabled = false,
+      className,
+      value,
+      label,
+      id,
+      error = false,
+      helperText,
+      options,
+      onChange,
+      ...props
     },
-    onStateChange: ({ type, selectedItem: newSelectedItem }) => {
-      switch (type) {
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          if (newSelectedItem) {
-            addSelectedItem(newSelectedItem);
-          }
-          break;
-        default:
-          break;
-      }
-    },
-  });
+    ref
+  ) => {
+    const {
+      active,
+      typed,
+      isOpen,
+      getToggleButtonProps,
+      getLabelProps,
+      getMenuProps,
+      getInputProps,
+      highlightedIndex,
+      getItemProps,
+      items,
+      selectedItems,
+      getDropdownProps,
+    } = useMultiselectEvents(value, options, onChange);
 
-  return (
-    <Box display="flex" flexDirection="column" gap={3}>
-      <Box
-        as="label"
-        className={classNames(className)}
-        // alignItems="center"
-        justifyContent="space-between"
-        disabled={disabled}
-        flexWrap="wrap"
-        flexDirection="column"
-        gap={6}
-        {...getLabelProps({ onFocus, onBlur })}
-      >
-        <Box
-          as="span"
-          className={classNames(
-            spanRecipe({ typed: active, size, disabled, error })
-          )}
+    return (
+      <Box display="flex" flexDirection="column" gap={3}>
+        <MultiselectWrapper
+          id={id}
+          typed={typed}
+          active={active}
+          disabled={disabled}
+          size={size}
+          label={label}
+          error={error}
+          className={className}
+          getLabelProps={getLabelProps}
+          getToggleButtonProps={getToggleButtonProps}
         >
-          Label
-        </Box>
-        <Box>
-          {selectedItems.map((selectedItem, index) => (
-            <span
-              key={`selected-item-${index}`}
-              {...getSelectedItemProps({ selectedItem, index })}
-            >
-              {selectedItem.label}
-              <span onClick={() => removeSelectedItem(selectedItem)}>
-                &#10005;
-              </span>
-            </span>
+          {selectedItems.map((item, idx) => (
+            <Box as="span" key={`${item}-${idx}`}>
+              {item.label}
+            </Box>
           ))}
-          <span
-            {...getToggleButtonProps(
-              getDropdownProps({ preventKeyAction: isOpen })
+          <Box
+            id={id}
+            as="input"
+            className={classNames(inputRecipe({ size, error }))}
+            disabled={disabled}
+            placeholder="+ Add item"
+            {...getInputProps(
+              getDropdownProps({ preventKeyAction: isOpen, id, ref })
             )}
-          >
-            {selectedItem ?? "+ Add objects"}
-          </span>
+          />
+        </MultiselectWrapper>
+
+        <Box
+          position="relative"
+          display={isOpen ? "block" : "none"}
+          className={listWrapperRecipe({ size })}
+        >
+          <List as="ul" className={list} {...getMenuProps()}>
+            {isOpen &&
+              items?.map((item, index) => (
+                <List.Item
+                  key={`${id}-${item}-${index}`}
+                  className={listItem}
+                  {...getItemProps({
+                    item,
+                    index,
+                  })}
+                  active={highlightedIndex === index}
+                >
+                  <Text size={size}>{item.label}</Text>
+                </List.Item>
+              ))}
+          </List>
         </Box>
 
-        <Box position="relative">
-          <ul {...getMenuProps()} style={{ position: "absolute" }}>
-            {isOpen &&
-              items.map((item, index) => (
-                <li
-                  style={
-                    highlightedIndex === index
-                      ? { backgroundColor: "#bde4ff" }
-                      : {}
-                  }
-                  key={`${item}${index}`}
-                  {...getItemProps({ item, index })}
-                >
-                  {item.label}
-                </li>
-              ))}
-          </ul>
-        </Box>
+        {helperText && (
+          <Box className={helperTextRecipe({ size })}>
+            <Text
+              variant="caption"
+              size={size}
+              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
+            >
+              {helperText}
+            </Text>
+          </Box>
+        )}
       </Box>
-    </Box>
-  );
-};
+    );
+  }
+);
+
+Multiselect.displayName = "Multiselect";

@@ -25,10 +25,10 @@ export type ComboboxProps = PropsWithBox<
     | "onChange"
     | "value"
     | "nonce"
+    | "type"
   > & {
     label?: ReactNode;
     error?: boolean;
-    type?: "text" | "number";
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
@@ -46,7 +46,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       value,
       label,
       id,
-      type,
       error = false,
       helperText,
       options,
@@ -85,7 +84,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           <Box
             id={id}
             as="input"
-            type={type}
+            type="text"
             className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
             {...props}
