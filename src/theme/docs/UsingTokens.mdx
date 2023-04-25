@@ -13,22 +13,22 @@ and it's delivered as a CSS variable in the runtime.
 An example of a token can be `color` or `font-size`. Having these defined as variables:
 
 ```css
---medium-font: 10px;
---color-error: red;
---color-neutral: white;
+--mu-font-size-title-medium: 10px;
+--mu-colors-foreground-text-critical-default: red;
+--mu-colors-foreground-text-neutral-defailt: white;
 ```
 
 We can create many variations of our text. Please notice that name of the tokens represents some of the intentions.
 
 ```css
 .text-error {
-  color: var(--color-error)
-  font-size: var(--medium-font)
+  color: var(--mu-colors-foreground-text-critical-default)
+  font-size: var(--mu-font-size-title-medium)
 }
 
 .text-neutral {
-  color: var(--color-neutral)
-  font-size: var(--medium-font)
+  color: var(--mu-colors-foreground-text-neutral-defailt)
+  font-size: var(--mu-font-size-title-medium)
 }
 
 <div class="text-error">Neutarl text</div>
@@ -41,9 +41,9 @@ Now imagine, you need now create a different theme, that is a bit more contraste
 To do that you need to create another set of variables, the same as the previous one but with updated values:
 
 ```css
---medium-font: 15px; // bigger now
---color-error: red;
---color-neutral: black; // new color
+--mu-font-size-title-medium: 15px; // bigger now
+--mu-colors-foreground-text-critical-default: red;
+--mu-colors-foreground-text-neutral-defailt: black; // new color
 ```
 
 How about keeping these two variations of your values and toggling them within the runtime? This is exactly what MacawUI is doing for you.
