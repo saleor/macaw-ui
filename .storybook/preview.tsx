@@ -2,6 +2,7 @@ import React from "react";
 import { DocsContainer, DocsContainerProps } from "@storybook/blocks";
 import { Box, ThemeProvider, useTheme } from "../src";
 import { PropsWithChildren } from "react";
+import "./styles.css";
 
 type MacawDocsContainerProps = {
   [K in keyof DocsContainerProps]: K extends "context"
