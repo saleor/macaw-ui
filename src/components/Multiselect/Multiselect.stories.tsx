@@ -20,6 +20,9 @@ const meta: Meta<typeof Multiselect> = {
     label: "Pick a color",
     id: "multiselect",
   },
+  argTypes: {
+    onChange: { action: "onChange" },
+  },
 };
 
 export default meta;

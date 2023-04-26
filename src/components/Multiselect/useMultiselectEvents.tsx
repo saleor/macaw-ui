@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   GetPropsCommonOptions,
   useCombobox,
@@ -6,29 +6,34 @@ import {
   useMultipleSelection,
 } from "downshift7";
 
-type InputValue = string | undefined;
-export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
+export type ChangeHandler = (
+  selectedItems: Option[] | null | undefined
+) => void;
 export type Option = { label: string; value: string };
 
-const getItemsFilter = (inputValue: InputValue) => {
-  if (!inputValue) {
-    return () => false;
-  }
+const getItemsFilter = (
+  selectedItems: Option[],
+  inputValue: string,
+  options: Option[]
+) => {
+  const lowerCasedInputValue = inputValue?.toLowerCase();
 
-  const lowerCasedInputValue = inputValue.toLowerCase();
-
-  return (item: Option) =>
-    !inputValue || item.label.toLowerCase().includes(lowerCasedInputValue);
+  return options.filter((option) => {
+    return (
+      !selectedItems.includes(option) &&
+      option.label.toLowerCase().includes(lowerCasedInputValue ?? "")
+    );
+  });
 };
 
 export const useMultiselectEvents = (
-  value: InputValue,
+  defaultValue: Option[] = [],
   options: Option[],
   changeHandler?: ChangeHandler
 ) => {
   const [inputValue, setInputValue] = useState("");
-  const [selectedItems, setSelectedItems] = useState<Option[]>([]);
-  const items = options;
+  const [selectedItems, setSelectedItems] = useState<Option[]>(defaultValue);
+  const items = getItemsFilter(selectedItems, inputValue, options);
 
   const [active, setActive] = useState(false);
 
@@ -37,6 +42,9 @@ export const useMultiselectEvents = (
   const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
     useMultipleSelection({
       selectedItems,
+      onSelectedItemsChange(changes) {
+        changeHandler?.(changes.selectedItems);
+      },
       onStateChange({ selectedItems: newSelectedItems, type }) {
         switch (type) {
           case useMultipleSelection.stateChangeTypes
@@ -46,6 +54,7 @@ export const useMultiselectEvents = (
           case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
             setSelectedItems(newSelectedItems ?? []);
             break;
+
           default:
             break;
         }
@@ -54,7 +63,6 @@ export const useMultiselectEvents = (
 
   const {
     isOpen,
-    getToggleButtonProps,
     getLabelProps,
     getMenuProps,
     getInputProps,
@@ -63,22 +71,23 @@ export const useMultiselectEvents = (
   } = useCombobox({
     items,
     itemToString: (item) => item?.label ?? "",
-    stateReducer(state, actionAndChanges) {
+    defaultHighlightedIndex: 0,
+    selectedItem: null,
+    stateReducer(_state, actionAndChanges) {
       const { changes, type } = actionAndChanges;
 
       switch (type) {
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
+          setInputValue("");
           return {
             ...changes,
-            isOpen: true, // keep the menu open after selection.
-            highlightedIndex: 0, // with the first option highlighted.
+            ...(changes.selectedItem && { isOpen: true, highlightedIndex: 0 }),
           };
         default:
           return changes;
       }
     },
-    selectedItem: null,
     onStateChange({
       inputValue: newInputValue,
       type,
@@ -90,31 +99,18 @@ export const useMultiselectEvents = (
         case useCombobox.stateChangeTypes.InputBlur:
           if (newSelectedItem) {
             setSelectedItems([...selectedItems, newSelectedItem]);
+            changeHandler?.([...selectedItems, newSelectedItem]);
           }
           break;
 
         case useCombobox.stateChangeTypes.InputChange:
           setInputValue(newInputValue ?? "");
-
           break;
+
         default:
           break;
       }
     },
-    // onSelectedItemChange: (changes) => {
-    //   if (changeHandler) {
-    //     changeHandler(changes.selectedItem);
-    //   }
-    // },
-    // onInputValueChange: ({ inputValue }) => {
-    //   setInputValue(inputValue);
-    //   if (!inputValue) {
-    //     setItemOptions(options);
-    //   } else {
-    //     setItemOptions(items.filter(getItemsFilter(inputValue)));
-    //   }
-    // },
-    // defaultInputValue: value,
   });
 
   const onFocus = () => setActive(true);
@@ -125,7 +121,6 @@ export const useMultiselectEvents = (
     items,
     typed,
     isOpen,
-    getToggleButtonProps,
     getLabelProps,
     getMenuProps,
     getInputProps: (
@@ -138,5 +133,6 @@ export const useMultiselectEvents = (
     getDropdownProps,
     removeSelectedItem,
     selectedItems,
+    inputValue,
   };
 };

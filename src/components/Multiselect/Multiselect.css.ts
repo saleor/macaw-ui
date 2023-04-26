@@ -4,15 +4,6 @@ import { calc } from "@vanilla-extract/css-utils";
 
 import { sprinkles, vars } from "~/theme";
 
-export const icon = style({
-  transition: "transform 300ms",
-  selectors: {
-    '&[aria-expanded="true"]': {
-      transform: "rotate(180deg)",
-    },
-  },
-});
-
 const listItemBorderRadius = createVar();
 const spaceBetweenListItemAndBorder = createVar();
 

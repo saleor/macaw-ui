@@ -31,7 +31,9 @@ export type MultiselectProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value?: string;
+    value?: Option[];
+    endAdornment?: ReactNode;
+    defaultValue?: Option[];
   }
 > &
   InputVariants;
@@ -42,13 +44,14 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       size,
       disabled = false,
       className,
-      value,
       label,
       id,
       error = false,
       helperText,
       options,
       onChange,
+      endAdornment,
+      defaultValue,
       ...props
     },
     ref
@@ -57,7 +60,6 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       active,
       typed,
       isOpen,
-      getToggleButtonProps,
       getLabelProps,
       getMenuProps,
       getInputProps,
@@ -66,7 +68,10 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       items,
       selectedItems,
       getDropdownProps,
-    } = useMultiselectEvents(value, options, onChange);
+      getSelectedItemProps,
+      inputValue,
+      removeSelectedItem,
+    } = useMultiselectEvents(defaultValue, options, onChange);
 
     return (
       <Box display="flex" flexDirection="column" gap={3}>
@@ -80,41 +85,81 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           error={error}
           className={className}
           getLabelProps={getLabelProps}
-          getToggleButtonProps={getToggleButtonProps}
+          endAdornment={endAdornment}
         >
           {selectedItems.map((item, idx) => (
-            <Box as="span" key={`${item}-${idx}`}>
-              {item.label}
+            <Box
+              as="span"
+              key={`selected-item-${item}-${idx}`}
+              paddingX={4}
+              paddingY={2}
+              backgroundColor="surfaceNeutralSubdued"
+              borderColor="neutralHighlight"
+              borderWidth={1}
+              borderStyle="solid"
+              borderRadius={3}
+              display="flex"
+              gap={3}
+              alignItems="center"
+              {...getSelectedItemProps({
+                selectedItem: item,
+                index: idx,
+              })}
+            >
+              <Text variant="caption" size="medium">
+                {item.label}
+              </Text>
+              <Text
+                cursor="pointer"
+                variant="caption"
+                size="small"
+                marginBottom={1}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  removeSelectedItem(item);
+                }}
+              >
+                &#10005;
+              </Text>
             </Box>
           ))}
+
           <Box
             id={id}
             as="input"
-            className={classNames(inputRecipe({ size, error }))}
+            className={classNames(inputRecipe({ size: "medium", error }))}
+            typeSize="captionMedium"
+            size={"medium"}
             disabled={disabled}
             placeholder="+ Add item"
             {...getInputProps(
-              getDropdownProps({ preventKeyAction: isOpen, id, ref })
+              getDropdownProps({
+                preventKeyAction: isOpen,
+                id,
+                ref,
+                value: inputValue,
+              })
             )}
+            {...props}
           />
         </MultiselectWrapper>
 
         <Box
           position="relative"
-          display={isOpen ? "block" : "none"}
+          display={isOpen && items.length > 0 ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
           <List as="ul" className={list} {...getMenuProps()}>
             {isOpen &&
               items?.map((item, index) => (
                 <List.Item
-                  key={`${id}-${item}-${index}`}
+                  key={`to-select-${id}-${item}-${index}`}
                   className={listItem}
+                  active={highlightedIndex === index}
                   {...getItemProps({
                     item,
                     index,
                   })}
-                  active={highlightedIndex === index}
                 >
                   <Text size={size}>{item.label}</Text>
                 </List.Item>
