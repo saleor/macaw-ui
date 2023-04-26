@@ -33,6 +33,18 @@ export const parameters = {
     autodocs: "tag",
     container: MacawDocsContainer,
   },
+  options: {
+    storySort: (a, b) => {
+      const parsedA = a.importPath.match(/([0-9]+)/);
+      const parsedB = b.importPath.match(/([0-9]+)/);
+      const orderA = parsedA ? parsedA[0] : "0";
+      const orderB = parsedB ? parsedB[0] : "0";
+
+      return orderA === orderB
+        ? 0
+        : orderB.localeCompare(orderA, undefined, { numeric: true });
+    },
+  },
 };
 
 export const globalTypes = {

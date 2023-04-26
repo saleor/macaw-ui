@@ -54,7 +54,7 @@
   "scripts": {
     "build:legacy": "cd legacy && npm run build",
     "build:next": "npm-run-all check-types:next && vite build",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build --docs",
     "watch": "vite build --watch",
     "lint:legacy": "cd legacy && npm run lint",
     "lint:next": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix",
@@ -67,6 +67,7 @@
     "test": "npm-run-all test:*",
     "build": "npm-run-all build:*",
     "dev": "storybook dev -p 6006",
+    "dev:docs": "storybook dev -p 6006 --docs",
     "make-release": "release-it pre",
     "release": "npm-run-all build make-release",
     "prepare": "is-ci || husky install"
