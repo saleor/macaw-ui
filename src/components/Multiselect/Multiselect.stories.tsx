@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { useState } from "react";
 
 import { Multiselect } from "./Multiselect";
 import { ViewTableIcon } from "../Icons";
@@ -22,6 +23,7 @@ const meta: Meta<typeof Multiselect> = {
     options,
     label: "Pick a color",
     id: "multiselect",
+    value: [options[0]],
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -128,4 +130,18 @@ export const LargeEndAdornment: Story = {
       </Box>
     ),
   },
+};
+
+export const Controlled = () => {
+  const [selectedItems, setSelectedItems] = useState([options[0]]);
+
+  return (
+    <Multiselect
+      label="Pick colors"
+      size="medium"
+      value={selectedItems}
+      options={options}
+      onChange={(values) => setSelectedItems(values ?? [])}
+    />
+  );
 };

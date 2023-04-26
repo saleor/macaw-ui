@@ -34,6 +34,7 @@ export type MultiselectProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
+    value: Option[];
     endAdornment?: ReactNode;
     defaultValue?: Option[];
   }
@@ -53,7 +54,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       options,
       onChange,
       endAdornment,
-      defaultValue,
+      value,
       ...props
     },
     ref
@@ -73,7 +74,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       getSelectedItemProps,
       inputValue,
       removeSelectedItem,
-    } = useMultiselectEvents(defaultValue, options, onChange);
+    } = useMultiselectEvents(value, options, onChange);
 
     return (
       <Box display="flex" flexDirection="column" gap={3}>

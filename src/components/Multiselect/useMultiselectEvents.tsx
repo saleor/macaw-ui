@@ -27,12 +27,11 @@ const getItemsFilter = (
 };
 
 export const useMultiselectEvents = (
-  defaultValue: Option[] = [],
+  selectedItems: Option[],
   options: Option[],
   changeHandler?: ChangeHandler
 ) => {
   const [inputValue, setInputValue] = useState("");
-  const [selectedItems, setSelectedItems] = useState<Option[]>(defaultValue);
   const items = getItemsFilter(selectedItems, inputValue, options);
 
   const [active, setActive] = useState(false);
@@ -42,9 +41,6 @@ export const useMultiselectEvents = (
   const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
     useMultipleSelection({
       selectedItems,
-      onSelectedItemsChange(changes) {
-        changeHandler?.(changes.selectedItems);
-      },
       onStateChange({ selectedItems: newSelectedItems, type }) {
         switch (type) {
           case useMultipleSelection.stateChangeTypes
@@ -52,7 +48,7 @@ export const useMultiselectEvents = (
           case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
           case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
           case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-            setSelectedItems(newSelectedItems ?? []);
+            changeHandler?.(newSelectedItems);
             break;
 
           default:
@@ -98,7 +94,6 @@ export const useMultiselectEvents = (
         case useCombobox.stateChangeTypes.ItemClick:
         case useCombobox.stateChangeTypes.InputBlur:
           if (newSelectedItem) {
-            setSelectedItems([...selectedItems, newSelectedItem]);
             changeHandler?.([...selectedItems, newSelectedItem]);
           }
           break;
