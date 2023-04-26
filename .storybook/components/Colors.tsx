@@ -17,12 +17,12 @@ interface ColorItemProps {
 const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
   return (
     <Box paddingY={10}>
-      <Text paddingY={5} variant="title" as="h3">
+      <Box paddingY={5} as="h3">
         {sectionName}
-      </Text>
-      <Text variant="body" as="p" paddingBottom={8}>
+      </Box>
+      <Box as="p" paddingBottom={8}>
         {children}
-      </Text>
+      </Box>
       <Box display="flex" flexWrap="wrap" rowGap={13} columnGap={10}>
         {colors.map(([name, value]) => (
           <Box
@@ -33,9 +33,9 @@ const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
             __flexBasis="30%"
           >
             <Box width="100%">{name}</Box>
-            <Text variant="caption" __minWidth="100px">
+            <Box __fontSize="14px" __minWidth="100px">
               {value}
-            </Text>
+            </Box>
             <Box
               __backgroundColor={value}
               width="100%"
