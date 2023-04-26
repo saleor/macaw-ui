@@ -1,7 +1,5 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
-import { classNames } from "~/utils";
-
 import {
   Option,
   ChangeHandler,
@@ -9,8 +7,13 @@ import {
 } from "./useMultiselectEvents";
 import { MultiselectWrapper } from "./MultiselectWrapper";
 import { List, Text, Box, PropsWithBox } from "..";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
-import { list, listItem, listWrapperRecipe } from "./Multiselect.css";
+import { helperTextRecipe, InputVariants } from "../BaseInput";
+import {
+  list,
+  listItem,
+  listWrapperRecipe,
+  multiselectInputRecipe,
+} from "./Multiselect.css";
 
 export type MultiselectProps = PropsWithBox<
   Omit<
@@ -31,7 +34,6 @@ export type MultiselectProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value?: Option[];
     endAdornment?: ReactNode;
     defaultValue?: Option[];
   }
@@ -89,7 +91,6 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
         >
           {selectedItems.map((item, idx) => (
             <Box
-              as="span"
               key={`selected-item-${item}-${idx}`}
               paddingX={4}
               paddingY={2}
@@ -106,7 +107,10 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                 index: idx,
               })}
             >
-              <Text variant="caption" size="medium">
+              <Text
+                variant="caption"
+                size={size === "small" ? "small" : "medium"}
+              >
                 {item.label}
               </Text>
               <Text
@@ -127,9 +131,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           <Box
             id={id}
             as="input"
-            className={classNames(inputRecipe({ size: "medium", error }))}
-            typeSize="captionMedium"
-            size={"medium"}
+            className={multiselectInputRecipe({ size, error })}
             disabled={disabled}
             placeholder="+ Add item"
             {...getInputProps(

@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import { Multiselect } from "./Multiselect";
+import { ViewTableIcon } from "../Icons";
+import { Box } from "../Box";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -106,5 +109,23 @@ export const SmallHelperText: Story = {
   args: {
     ...Small.args,
     helperText: "Helper text",
+  },
+};
+
+export const LargeEndAdornment: Story = {
+  args: {
+    ...Large.args,
+    endAdornment: (
+      <Box
+        onClick={(event) => {
+          event.preventDefault();
+          action("end-adornment-click");
+        }}
+        cursor="pointer"
+        id="open"
+      >
+        <ViewTableIcon />
+      </Box>
+    ),
   },
 };
