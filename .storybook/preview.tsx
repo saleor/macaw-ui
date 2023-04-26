@@ -2,6 +2,7 @@ import React from "react";
 import { DocsContainer, DocsContainerProps } from "@storybook/blocks";
 import { Box, ThemeProvider, useTheme } from "../src";
 import { PropsWithChildren } from "react";
+import "./styles.css";
 
 type MacawDocsContainerProps = {
   [K in keyof DocsContainerProps]: K extends "context"
@@ -32,6 +33,18 @@ export const parameters = {
   docs: {
     autodocs: "tag",
     container: MacawDocsContainer,
+  },
+  options: {
+    storySort: (a, b) => {
+      const parsedA = a.importPath.match(/([0-9]+)/);
+      const parsedB = b.importPath.match(/([0-9]+)/);
+      const orderA = parsedA ? parsedA[0] : "0";
+      const orderB = parsedB ? parsedB[0] : "0";
+
+      return orderA === orderB
+        ? 0
+        : orderB.localeCompare(orderA, undefined, { numeric: true });
+    },
   },
 };
 
