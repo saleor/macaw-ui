@@ -23,6 +23,7 @@ export const Content = ({
   return (
     <RadixPopoverPortal>
       <RadixPopoverContent
+        asChild
         className={classNames(popover, className)}
         {...props}
       >
