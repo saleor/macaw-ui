@@ -12,9 +12,9 @@ export const SpacingsPresentation = () => {
           return (
             <Box width="100%" key={key}>
               <Box>space-{key}</Box>
-              <Text variant="caption" __minWidth="100px">
+              <Box __fontSize="14px" __minWidth="100px">
                 {value}
-              </Text>
+              </Box>
               <Box key={key} __backgroundColor="#e3eaf2" position="relative">
                 <Box __width={value} height={10} __backgroundColor="#056dff" />
               </Box>

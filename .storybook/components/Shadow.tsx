@@ -25,9 +25,9 @@ export const ShadowPresentation = () => {
             __flexBasis="30%"
           >
             <Box width="100%">{key}</Box>
-            <Text variant="caption" __minWidth="100px">
+            <Box __fontSize="14px" __minWidth="100px">
               {entry}
-            </Text>
+            </Box>
             <Box
               __boxShadow={entry}
               borderColor="neutralDefault"
