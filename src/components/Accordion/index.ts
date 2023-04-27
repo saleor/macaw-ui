@@ -1,4 +1,4 @@
 import { Root } from "./Root";
-import { Item } from "./Item";
+import { Content, Item, Trigger } from "./Item";
 
-export const Accordion = Object.assign(Root, { Item });
+export const Accordion = Object.assign(Root, { Item, Trigger, Content });

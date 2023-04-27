@@ -10,7 +10,7 @@ export type AccordionItemProps = PropsWithBox<{
   value: string;
 }>;
 
-export const Root = ({ children, value, ...rest }: AccordionItemProps) => {
+export const Item = ({ children, value, ...rest }: AccordionItemProps) => {
   return (
     <AccordionItem value={value} className={trigger} asChild>
       <Box {...rest}>{children}</Box>

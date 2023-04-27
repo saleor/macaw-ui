@@ -1,5 +1,3 @@
-import { Trigger } from "./Trigger";
-import { Content } from "./Content";
-import { Root } from "./Root";
-
-export const Item = Object.assign(Root, { Trigger, Content });
+export * from "./Item";
+export * from "./Trigger";
+export * from "./Content";
