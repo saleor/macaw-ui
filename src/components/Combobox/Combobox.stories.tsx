@@ -109,7 +109,7 @@ export const SmallHelperText: Story = {
 };
 
 export const Controlled = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string | number | undefined>("");
 
   return (
     <Combobox
@@ -117,7 +117,7 @@ export const Controlled = () => {
       value={value}
       options={options}
       label="Pick a color"
-      onChange={(value) => setValue(value ?? "")}
+      onChange={(value) => setValue(value)}
     />
   );
 };

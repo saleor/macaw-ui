@@ -2,7 +2,12 @@ import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import { Option, ChangeHandler, useComboboxEvents } from "./useComboboxEvents";
+import {
+  Option,
+  ChangeHandler,
+  useComboboxEvents,
+  InputValue,
+} from "./useComboboxEvents";
 import { ComboboxWrapper } from "./ComboboxWrapper";
 import { List, Text, Box, PropsWithBox } from "..";
 import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
@@ -27,7 +32,7 @@ export type ComboboxProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value: Option["value"] | undefined;
+    value: InputValue;
   }
 > &
   InputVariants;
