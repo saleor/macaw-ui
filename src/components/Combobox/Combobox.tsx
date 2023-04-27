@@ -27,7 +27,7 @@ export type ComboboxProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value?: string;
+    value: Option["value"] | undefined;
   }
 > &
   InputVariants;
@@ -60,7 +60,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       getInputProps,
       highlightedIndex,
       getItemProps,
-      items,
+      itemsToSelect,
     } = useComboboxEvents(value, options, onChange);
 
     return (
@@ -93,12 +93,12 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
         <Box
           position="relative"
-          display={isOpen ? "block" : "none"}
+          display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
           <List as="ul" className={list} {...getMenuProps()}>
             {isOpen &&
-              items?.map((item, index) => (
+              itemsToSelect?.map((item, index) => (
                 <List.Item
                   key={`${id}-${item}-${index}`}
                   className={listItem}
