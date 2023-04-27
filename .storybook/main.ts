@@ -14,6 +14,7 @@ export default {
       from: "../public",
       to: "/assets",
     },
+    "./public",
   ],
   framework: {
     name: "@storybook/react-vite",
