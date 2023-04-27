@@ -68,9 +68,8 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       getInputProps,
       highlightedIndex,
       getItemProps,
-      items,
+      itemsToSelect,
       selectedItems,
-      getDropdownProps,
       getSelectedItemProps,
       inputValue,
       removeSelectedItem,
@@ -135,26 +134,23 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             className={multiselectInputRecipe({ size, error })}
             disabled={disabled}
             placeholder="+ Add item"
-            {...getInputProps(
-              getDropdownProps({
-                preventKeyAction: isOpen,
-                id,
-                ref,
-                value: inputValue,
-              })
-            )}
+            {...getInputProps({
+              id,
+              ref,
+              value: inputValue,
+            })}
             {...props}
           />
         </MultiselectWrapper>
 
         <Box
           position="relative"
-          display={isOpen && items.length > 0 ? "block" : "none"}
+          display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
           <List as="ul" className={list} {...getMenuProps()}>
             {isOpen &&
-              items?.map((item, index) => (
+              itemsToSelect?.map((item, index) => (
                 <List.Item
                   key={`to-select-${id}-${item}-${index}`}
                   className={listItem}

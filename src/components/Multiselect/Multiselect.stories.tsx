@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { useState } from "react";
 
 import { Multiselect } from "./Multiselect";
@@ -21,7 +20,7 @@ const meta: Meta<typeof Multiselect> = {
   component: Multiselect,
   args: {
     options,
-    label: "Pick a color",
+    label: "Pick colors",
     id: "multiselect",
     value: [options[0]],
   },
@@ -121,7 +120,7 @@ export const LargeEndAdornment: Story = {
       <Box
         onClick={(event) => {
           event.preventDefault();
-          action("end-adornment-click");
+          alert("End adornment clicked");
         }}
         cursor="pointer"
         id="open"

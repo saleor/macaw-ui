@@ -32,7 +32,7 @@ export const useMultiselectEvents = (
   changeHandler?: ChangeHandler
 ) => {
   const [inputValue, setInputValue] = useState("");
-  const items = getItemsFilter(selectedItems, inputValue, options);
+  const itemsToSelect = getItemsFilter(selectedItems, inputValue, options);
 
   const [active, setActive] = useState(false);
 
@@ -65,7 +65,7 @@ export const useMultiselectEvents = (
     highlightedIndex,
     getItemProps,
   } = useCombobox({
-    items,
+    items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     defaultHighlightedIndex: 0,
     selectedItem: null,
@@ -113,7 +113,7 @@ export const useMultiselectEvents = (
 
   return {
     active,
-    items,
+    itemsToSelect,
     typed,
     isOpen,
     getLabelProps,
@@ -121,11 +121,19 @@ export const useMultiselectEvents = (
     getInputProps: (
       options?: UseComboboxGetInputPropsOptions,
       otherOptions?: GetPropsCommonOptions
-    ) => getInputProps({ onFocus, onBlur, ...options }, otherOptions),
+    ) =>
+      getInputProps(
+        getDropdownProps({
+          onFocus,
+          onBlur,
+          preventKeyAction: isOpen,
+          ...options,
+        }),
+        otherOptions
+      ),
     highlightedIndex,
     getItemProps,
     getSelectedItemProps,
-    getDropdownProps,
     removeSelectedItem,
     selectedItems,
     inputValue,
