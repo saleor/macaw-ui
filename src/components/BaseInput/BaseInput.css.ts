@@ -213,7 +213,7 @@ export const inputRecipe = recipe({
         "&:focus::-moz-placeholder": {
           color: vars.colors.foreground.textNeutralSubdued,
         },
-        // disable chrome autocomplete background color
+        // disable autocomplete background colors
         "&:-webkit-autofill": {
           transition: "background-color 9999s ease-in-out 0s",
         },
@@ -224,6 +224,9 @@ export const inputRecipe = recipe({
           transition: "background-color 9999s ease-in-out 0s",
         },
         "&:-webkit-autofill:active": {
+          transition: "background-color 9999s ease-in-out 0s",
+        },
+        "&[data-com-onepassword-filled]": {
           transition: "background-color 9999s ease-in-out 0s",
         },
       },
