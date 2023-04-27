@@ -7,7 +7,6 @@ export const popover = sprinkles({
   borderColor: "neutralPlain",
   borderRadius: 3,
   boxShadow: "interactiveDefaultHovering",
-  padding: 5,
   backgroundColor: "subdued",
 });
 
