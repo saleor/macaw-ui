@@ -13,3 +13,5 @@ export const Content = ({ children, ...rest }: AccordionContentProps) => (
     <Box {...rest}>{children}</Box>
   </AccordionContent>
 );
+
+Content.displayName = "Accordion.Content";

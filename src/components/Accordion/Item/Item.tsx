@@ -17,3 +17,5 @@ export const Item = ({ children, value, ...rest }: AccordionItemProps) => {
     </AccordionItem>
   );
 };
+
+Item.displayName = "Accordion.Item";

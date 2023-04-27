@@ -48,3 +48,5 @@ export const Trigger = ({
     </AccordionTrigger>
   </AccordionHeader>
 );
+
+Trigger.displayName = "Accordion.Trigger";
