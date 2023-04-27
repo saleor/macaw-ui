@@ -5,16 +5,19 @@ import {
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
 
-type InputValue = string | undefined;
-export type ChangeHandler = (selectedItem: string | null | undefined) => void;
-export type Option = { label: string; value: string };
+export type InputValue = string | undefined | number;
+export type ChangeHandler = (selectedItem: InputValue) => void;
+export type Option = { label: string; value: NonNullable<InputValue> };
 
-const getItemsFilter = (inputValue: InputValue, options: Option[]) => {
+const getItemsFilter = (
+  inputValue: string | undefined | number,
+  options: Option[]
+) => {
   if (!inputValue) {
     return options;
   }
 
-  const lowerCasedInputValue = inputValue.toLowerCase();
+  const lowerCasedInputValue = inputValue.toString().toLowerCase();
 
   return options.filter((option) =>
     option.label.toLowerCase().includes(lowerCasedInputValue)
@@ -44,7 +47,7 @@ export const useComboboxEvents = (
     itemToString: (item) => item?.label ?? "",
     selectedItem: options.find((option) => option.value === value) ?? null,
     onSelectedItemChange: ({ selectedItem }) => {
-      changeHandler?.(selectedItem?.value);
+      changeHandler?.(selectedItem?.value ?? "");
     },
     onInputValueChange: ({ inputValue }) => {
       setInputValue(inputValue);
