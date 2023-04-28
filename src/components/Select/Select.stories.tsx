@@ -4,12 +4,12 @@ import { useState } from "react";
 import { Select } from ".";
 
 const options = [
-  { value: "Black", label: "Black" },
-  { value: "Red", label: "Red" },
-  { value: "Green", label: "Green" },
-  { value: "Blue", label: "Blue" },
-  { value: "Orange", label: "Orange" },
-  { value: "Purple", label: "Purple" },
+  { value: "color-black", label: "Black" },
+  { value: "color-red", label: "Red" },
+  { value: "color-green", label: "Green" },
+  { value: "color-blue", label: "Blue" },
+  { value: "color-orange", label: "Orange" },
+  { value: "color-purple", label: "Purple" },
 ];
 
 const meta: Meta<typeof Select> = {
@@ -20,6 +20,7 @@ const meta: Meta<typeof Select> = {
     options,
     label: "Pick a color",
     id: "select",
+    value: "color-black",
   },
 };
 

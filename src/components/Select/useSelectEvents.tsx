@@ -22,6 +22,7 @@ export const useSelectEvents = (
     selectedItem,
   } = useSelect({
     items: options,
+    selectedItem: options.find((option) => option.value === value),
     itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
