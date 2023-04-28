@@ -7,9 +7,12 @@ import {
 
 export type InputValue = string | number;
 export type ChangeHandler = (selectedItem: InputValue) => void;
-export type Option = { label: string; value: NonNullable<InputValue> };
+export type Option = { label: string; value: InputValue };
 
-const getItemsFilter = (inputValue: string | number, options: Option[]) => {
+const getItemsFilter = (
+  inputValue: InputValue | undefined,
+  options: Option[]
+) => {
   if (!inputValue) {
     return options;
   }
@@ -26,7 +29,7 @@ export const useComboboxEvents = (
   options: Option[],
   changeHandler?: ChangeHandler
 ) => {
-  const [inputValue, setInputValue] = useState<InputValue>(value);
+  const [inputValue, setInputValue] = useState<InputValue | undefined>(value);
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
   const itemsToSelect = getItemsFilter(inputValue, options);
@@ -49,9 +52,7 @@ export const useComboboxEvents = (
       }
     },
     onInputValueChange: ({ inputValue }) => {
-      if (inputValue) {
-        setInputValue(inputValue);
-      }
+      setInputValue(inputValue);
     },
   });
 
