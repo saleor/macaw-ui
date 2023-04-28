@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useSelect } from "downshift7";
 
-export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
+export type ChangeHandler = (selectedItem: string | number) => void;
 export type Option = { label: string; value: string };
 
 export const useSelectEvents = (
-  value: Option,
+  value: string | number,
   options: Option[],
   changeHandler?: ChangeHandler
 ) => {
@@ -24,8 +24,8 @@ export const useSelectEvents = (
     items: options,
     itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
-      if (changeHandler) {
-        changeHandler(selectedItem);
+      if (selectedItem) {
+        changeHandler?.(selectedItem.value);
       }
     },
   });

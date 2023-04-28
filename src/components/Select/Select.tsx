@@ -27,7 +27,7 @@ export type SelectProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value: Option;
+    value: string | number;
   }
 > &
   InputVariants;
@@ -78,9 +78,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
         >
-          <Text size="large" variant="body" onFocus={onFocus} onBlur={onBlur}>
-            {selectedItem?.label ?? ""}
-          </Text>
+          {selectedItem ? (
+            <Text size="large" variant="body" onFocus={onFocus} onBlur={onBlur}>
+              {selectedItem.label}
+            </Text>
+          ) : (
+            <Box height={9} />
+          )}
         </SelectWrapper>
 
         <Box

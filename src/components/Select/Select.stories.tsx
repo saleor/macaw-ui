@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Select } from ".";
 import { useState } from "react";
+import { Select } from ".";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -108,14 +108,14 @@ export const SmallHelperText: Story = {
 };
 
 export const Controlled = () => {
-  const [value, setValue] = useState(options[1]);
+  const [value, setValue] = useState("");
   return (
     <Select
       options={options}
       label="Pick a color"
       id="select-2"
       value={value}
-      onChange={(selectedItem) => setValue(selectedItem)}
+      onChange={(selectedItem) => setValue(selectedItem as string)}
     />
   );
 };
