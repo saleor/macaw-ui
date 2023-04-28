@@ -1,5 +1,8 @@
+/* eslint-disable react/jsx-key */
 import { Meta, StoryObj } from "@storybook/react";
-import { Accordion } from "./index";
+import { Text } from "../..";
+
+import { Accordion } from ".";
 
 const meta: Meta<typeof Accordion> = {
   title: "Components / Accordion",
@@ -17,15 +20,23 @@ export const Primary: Story = {
     gap: 5,
     flexDirection: "column",
     children: [
-      // eslint-disable-next-line react/jsx-key
       <Accordion.Item value="first-item">
-        <Accordion.Item.Trigger>Trigger 1</Accordion.Item.Trigger>
-        <Accordion.Item.Content>Content 1</Accordion.Item.Content>
+        <Accordion.Trigger>
+          <Text>Trigger 1</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 1</Accordion.Content>
       </Accordion.Item>,
-      // eslint-disable-next-line react/jsx-key
       <Accordion.Item value="second-item">
-        <Accordion.Item.Trigger>Trigger 2</Accordion.Item.Trigger>
-        <Accordion.Item.Content>Content 2</Accordion.Item.Content>
+        <Accordion.Trigger>
+          <Text>Trigger 2</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 2</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="third-item">
+        <Accordion.Trigger disabled>
+          <Text color="textNeutralDisabled">Trigger 3</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 3</Accordion.Content>
       </Accordion.Item>,
     ],
   },

@@ -4,12 +4,14 @@ import { ReactNode } from "react";
 import { Box, PropsWithBox } from "~/components/Box";
 import { content } from "../common.css";
 
-export type AccordionProps = PropsWithBox<{
+export type AccordionContentProps = PropsWithBox<{
   children: ReactNode;
 }>;
 
-export const Content = ({ children, ...rest }: AccordionProps) => (
+export const Content = ({ children, ...rest }: AccordionContentProps) => (
   <AccordionContent asChild className={content}>
     <Box {...rest}>{children}</Box>
   </AccordionContent>
 );
+
+Content.displayName = "Accordion.Content";
