@@ -5,19 +5,23 @@ import {
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
 
-type InputValue = string | undefined;
-export type ChangeHandler = (selectedItem: Option | null | undefined) => void;
-export type Option = { label: string; value: string };
+export type InputValue = string | number;
+export type ChangeHandler = (selectedItem: InputValue) => void;
+export type Option = { label: string; value: InputValue };
 
-const getItemsFilter = (inputValue: InputValue) => {
+const getItemsFilter = (
+  inputValue: InputValue | undefined,
+  options: Option[]
+) => {
   if (!inputValue) {
-    return () => false;
+    return options;
   }
 
-  const lowerCasedInputValue = inputValue.toLowerCase();
+  const lowerCasedInputValue = inputValue.toString().toLowerCase();
 
-  return (item: Option) =>
-    !inputValue || item.label.toLowerCase().includes(lowerCasedInputValue);
+  return options.filter((option) =>
+    option.label.toLowerCase().includes(lowerCasedInputValue)
+  );
 };
 
 export const useComboboxEvents = (
@@ -25,10 +29,10 @@ export const useComboboxEvents = (
   options: Option[],
   changeHandler?: ChangeHandler
 ) => {
-  const [inputValue, setInputValue] = useState(value);
-  const [items, setItemOptions] = useState(options);
+  const [inputValue, setInputValue] = useState<InputValue | undefined>(value);
   const [active, setActive] = useState(false);
-  const typed = Boolean(inputValue || active);
+  const typed = Boolean(value || active);
+  const itemsToSelect = getItemsFilter(inputValue, options);
 
   const {
     isOpen,
@@ -39,22 +43,17 @@ export const useComboboxEvents = (
     highlightedIndex,
     getItemProps,
   } = useCombobox({
-    items,
+    items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
-    onSelectedItemChange: (changes) => {
-      if (changeHandler) {
-        changeHandler(changes.selectedItem);
+    selectedItem: options.find((option) => option.value === value) ?? null,
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (selectedItem) {
+        changeHandler?.(selectedItem?.value);
       }
     },
     onInputValueChange: ({ inputValue }) => {
       setInputValue(inputValue);
-      if (!inputValue) {
-        setItemOptions(options);
-      } else {
-        setItemOptions(items.filter(getItemsFilter(inputValue)));
-      }
     },
-    defaultInputValue: value,
   });
 
   const onFocus = () => setActive(true);
@@ -62,7 +61,7 @@ export const useComboboxEvents = (
 
   return {
     active,
-    items,
+    itemsToSelect,
     typed,
     isOpen,
     getToggleButtonProps,

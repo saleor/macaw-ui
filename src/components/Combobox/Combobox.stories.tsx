@@ -1,14 +1,15 @@
+import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { Combobox } from ".";
 
 const options = [
-  { value: "Black", label: "Black" },
-  { value: "Red", label: "Red" },
-  { value: "Green", label: "Green" },
-  { value: "Blue", label: "Blue" },
-  { value: "Orange", label: "Orange" },
-  { value: "Purple", label: "Purple" },
+  { value: "color-black", label: "Black" },
+  { value: "color-red", label: "Red" },
+  { value: "color-green", label: "Green" },
+  { value: "color-blue", label: "Blue" },
+  { value: "color-orange", label: "Orange" },
+  { value: "color-purple", label: "Purple" },
 ];
 
 const meta: Meta<typeof Combobox> = {
@@ -19,6 +20,7 @@ const meta: Meta<typeof Combobox> = {
     options,
     label: "Pick a color",
     id: "combobox",
+    value: "color-black",
   },
 };
 
@@ -104,4 +106,18 @@ export const SmallHelperText: Story = {
     ...Small.args,
     helperText: "Helper text",
   },
+};
+
+export const Controlled = () => {
+  const [value, setValue] = useState("");
+
+  return (
+    <Combobox
+      {...Large.args}
+      value={value}
+      options={options}
+      label="Pick a color"
+      onChange={(value) => setValue(value as string)}
+    />
+  );
 };

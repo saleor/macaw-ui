@@ -70,5 +70,3 @@ export const ComboboxWrapper = ({
     </Box>
   );
 };
-
-ComboboxWrapper.displayName = "InputWrapper";
