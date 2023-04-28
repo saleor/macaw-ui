@@ -6,9 +6,7 @@ import {
   useMultipleSelection,
 } from "downshift7";
 
-export type ChangeHandler = (
-  selectedItems: Option[] | null | undefined
-) => void;
+export type ChangeHandler = (selectedItems: string[]) => void;
 export type Option = { label: string; value: string };
 
 const getItemsFilter = (
@@ -27,16 +25,18 @@ const getItemsFilter = (
 };
 
 export const useMultiselectEvents = (
-  selectedItems: Option[],
+  selectedValues: string[],
   options: Option[],
   changeHandler?: ChangeHandler
 ) => {
   const [inputValue, setInputValue] = useState("");
+  const selectedItems = options.filter((option) =>
+    selectedValues.includes(option.value)
+  );
   const itemsToSelect = getItemsFilter(selectedItems, inputValue, options);
-
   const [active, setActive] = useState(false);
 
-  const typed = Boolean(selectedItems.length || active);
+  const typed = Boolean(selectedValues.length || active);
 
   const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
     useMultipleSelection({
@@ -48,7 +48,7 @@ export const useMultiselectEvents = (
           case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
           case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
           case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-            changeHandler?.(newSelectedItems);
+            changeHandler?.(newSelectedItems?.map((item) => item.value) ?? []);
             break;
 
           default:
@@ -94,7 +94,10 @@ export const useMultiselectEvents = (
         case useCombobox.stateChangeTypes.ItemClick:
         case useCombobox.stateChangeTypes.InputBlur:
           if (newSelectedItem) {
-            changeHandler?.([...selectedItems, newSelectedItem]);
+            changeHandler?.([
+              ...selectedItems.map((i) => i.value),
+              newSelectedItem.value,
+            ]);
           }
           break;
 

@@ -34,9 +34,8 @@ export type MultiselectProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value: Option[];
+    value?: string[];
     endAdornment?: ReactNode;
-    defaultValue?: Option[];
   }
 > &
   InputVariants;
@@ -54,7 +53,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       options,
       onChange,
       endAdornment,
-      value,
+      value = [],
       ...props
     },
     ref

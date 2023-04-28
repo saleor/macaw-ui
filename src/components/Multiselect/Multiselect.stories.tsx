@@ -22,7 +22,7 @@ const meta: Meta<typeof Multiselect> = {
     options,
     label: "Pick colors",
     id: "multiselect",
-    value: [options[0]],
+    value: ["Black", "Red"],
   },
   argTypes: {
     onChange: { action: "onChange" },
@@ -132,7 +132,7 @@ export const LargeEndAdornment: Story = {
 };
 
 export const Controlled = () => {
-  const [selectedItems, setSelectedItems] = useState([options[0]]);
+  const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
 
   return (
     <Multiselect
