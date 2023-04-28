@@ -1,12 +1,10 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
-
-import { classNames } from "~/utils";
+import { forwardRef, InputHTMLAttributes, ReactNode, FocusEvent } from "react";
 
 import { Option, ChangeHandler, useSelectEvents } from "./useSelectEvents";
 import { SelectWrapper } from "./SelectWrapper";
 import { List, Text, Box, PropsWithBox } from "..";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
-import { list, listItem, listWrapperRecipe } from "./Select.css";
+import { helperTextRecipe, InputVariants } from "../BaseInput";
+import { listStyle, listItemStyle, listWrapperRecipe } from "../BaseSelect";
 
 export type SelectProps = PropsWithBox<
   Omit<
@@ -23,7 +21,6 @@ export type SelectProps = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
-    type?: "text" | "number";
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
@@ -32,20 +29,32 @@ export type SelectProps = PropsWithBox<
 > &
   InputVariants;
 
+const getBoxHeight = (size: SelectProps["size"]) => {
+  switch (size) {
+    case "small":
+      return 7;
+    case "medium":
+      return 8;
+    case "large":
+      return 9;
+  }
+};
+
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
-      size,
+      size = "medium",
       disabled = false,
       className,
       value,
       label,
       id,
-      type,
       error = false,
       helperText,
       options,
       onChange,
+      onFocus,
+      onBlur,
       ...props
     },
     ref
@@ -59,9 +68,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       getMenuProps,
       highlightedIndex,
       getItemProps,
-      onFocus,
-      onBlur,
       selectedItem,
+      handlers,
     } = useSelectEvents(value, options, onChange);
 
     return (
@@ -78,13 +86,23 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
         >
-          {selectedItem ? (
-            <Text size="large" variant="body" onFocus={onFocus} onBlur={onBlur}>
-              {selectedItem.label}
+          <Box
+            height={getBoxHeight(size)}
+            onBlur={(event: FocusEvent<HTMLSelectElement, Element>) => {
+              handlers.onBlur();
+              onBlur?.(event);
+            }}
+            onFocus={(event: FocusEvent<HTMLSelectElement, Element>) => {
+              handlers.onFocus();
+              onFocus?.(event);
+            }}
+            {...props}
+            ref={ref}
+          >
+            <Text size={size} variant="body">
+              {selectedItem?.label}
             </Text>
-          ) : (
-            <Box height={9} />
-          )}
+          </Box>
         </SelectWrapper>
 
         <Box
@@ -92,12 +110,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           display={isOpen ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
-          <List as="ul" className={list} {...getMenuProps()}>
+          <List as="ul" className={listStyle} {...getMenuProps()}>
             {isOpen &&
               options?.map((item, index) => (
                 <List.Item
                   key={`${id}-${item}-${index}`}
-                  className={listItem}
+                  className={listItemStyle}
                   {...getItemProps({
                     item,
                     index,

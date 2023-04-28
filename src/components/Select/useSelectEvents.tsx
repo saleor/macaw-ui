@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useSelect } from "downshift7";
 
 export type ChangeHandler = (selectedItem: string | number) => void;
-export type Option = { label: string; value: string };
+export type Option = { label: string; value: string | number };
 
 export const useSelectEvents = (
   value: string | number,
   options: Option[],
-  changeHandler?: ChangeHandler
+  changeHandler?: (selectedValue: string | number) => void
 ) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
@@ -40,10 +40,9 @@ export const useSelectEvents = (
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
-    onFocus,
-    onBlur,
     highlightedIndex,
     getItemProps,
     selectedItem,
+    handlers: { onFocus, onBlur },
   };
 };

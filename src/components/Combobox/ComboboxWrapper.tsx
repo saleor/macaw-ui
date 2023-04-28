@@ -11,7 +11,7 @@ import { Option } from "./useComboboxEvents";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { icon } from "./Combobox.css";
+import { toggleIconStyle } from "../BaseSelect";
 
 type ComboboxWrapperProps = LabelVariants & {
   id?: string;
@@ -61,7 +61,10 @@ export const ComboboxWrapper = ({
       </Box>
 
       <ArrowDownIcon
-        className={classNames(icon, sprinkles({ cursor: "pointer" }))}
+        className={classNames(
+          toggleIconStyle,
+          sprinkles({ cursor: "pointer" })
+        )}
         size={size}
         {...getToggleButtonProps({
           disabled,

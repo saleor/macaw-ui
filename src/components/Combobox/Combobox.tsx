@@ -11,7 +11,7 @@ import {
 import { ComboboxWrapper } from "./ComboboxWrapper";
 import { List, Text, Box, PropsWithBox } from "..";
 import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
-import { list, listItem, listWrapperRecipe } from "./Combobox.css";
+import { listStyle, listItemStyle, listWrapperRecipe } from "../BaseSelect";
 
 export type ComboboxProps = PropsWithBox<
   Omit<
@@ -101,12 +101,12 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
-          <List as="ul" className={list} {...getMenuProps()}>
+          <List as="ul" className={listStyle} {...getMenuProps()}>
             {isOpen &&
               itemsToSelect?.map((item, index) => (
                 <List.Item
                   key={`${id}-${item}-${index}`}
-                  className={listItem}
+                  className={listItemStyle}
                   {...getItemProps({
                     item,
                     index,

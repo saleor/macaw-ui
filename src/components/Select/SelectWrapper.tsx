@@ -11,7 +11,7 @@ import { Option } from "./useSelectEvents";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { icon } from "./Select.css";
+import { toggleIconStyle } from "../BaseSelect";
 
 type SelectWrapperProps = LabelVariants & {
   id?: string;
@@ -62,11 +62,11 @@ export const SelectWrapper = ({
       </Box>
 
       <ArrowDownIcon
-        className={classNames(icon, sprinkles({ cursor: "pointer" }))}
+        className={classNames(
+          toggleIconStyle,
+          sprinkles({ cursor: "pointer" })
+        )}
         size={size}
-        // {...getToggleButtonProps({
-        //   disabled,
-        // })}
       />
     </Box>
   );
