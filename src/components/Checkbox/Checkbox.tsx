@@ -31,6 +31,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         alignItems="center"
         gap={4}
         position="relative"
+        cursor={disabled ? "not-allowed" : "pointer"}
       >
         <RadixCheckbox
           ref={ref}
