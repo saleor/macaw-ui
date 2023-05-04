@@ -70,7 +70,8 @@
     "dev:docs": "storybook dev -p 6006 --docs",
     "make-release": "release-it pre",
     "release": "npm-run-all build make-release",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "name": "@saleor/macaw-ui",
   "description": "Saleor's UI component library",
@@ -101,6 +102,7 @@
     "@vanilla-extract/sprinkles": "^1.5.1",
     "@vanilla-extract/vite-plugin": "^3.7.0",
     "@vitejs/plugin-react": "^2.2.0",
+    "chromatic": "^6.17.3",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.5.2",
