@@ -22,125 +22,49 @@ const meta: Meta<typeof Multiselect> = {
     options,
     label: "Pick colors",
     id: "multiselect",
-    value: ["Black", "Red"],
-  },
-  argTypes: {
-    onChange: { action: "onChange" },
+    size: "large",
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Multiselect>;
 
-export const Large: Story = {
-  args: {
-    size: "large",
+const MultiselectTemplate: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
+
+    return (
+      <Multiselect
+        {...args}
+        value={selectedItems}
+        onChange={(values) => setSelectedItems(values ?? [])}
+      />
+    );
   },
 };
 
-export const Medium: Story = {
-  args: {
-    size: "medium",
-  },
+export const Default: Story = {
+  ...MultiselectTemplate,
 };
 
-export const Small: Story = {
+export const Error: Story = {
+  ...MultiselectTemplate,
   args: {
-    size: "small",
-  },
-};
-
-export const LargeError: Story = {
-  args: {
-    ...Large.args,
     error: true,
   },
 };
 
-export const MediumError: Story = {
+export const Disabled: Story = {
+  ...MultiselectTemplate,
   args: {
-    ...Medium.args,
-    error: true,
-  },
-};
-
-export const SmallError: Story = {
-  args: {
-    ...Small.args,
-    error: true,
-  },
-};
-
-export const LargeDisabled: Story = {
-  args: {
-    ...Large.args,
     disabled: true,
   },
 };
 
-export const MediumDisabled: Story = {
+export const WithHelperText: Story = {
+  ...MultiselectTemplate,
   args: {
-    ...Medium.args,
-    disabled: true,
-  },
-};
-
-export const SmallDisabled: Story = {
-  args: {
-    ...Small.args,
-    disabled: true,
-  },
-};
-
-export const LargeHelperText: Story = {
-  args: {
-    ...Large.args,
     helperText: "Helper text",
   },
-};
-
-export const MediumHelperText: Story = {
-  args: {
-    ...Medium.args,
-    helperText: "Helper text",
-  },
-};
-
-export const SmallHelperText: Story = {
-  args: {
-    ...Small.args,
-    helperText: "Helper text",
-  },
-};
-
-export const LargeEndAdornment: Story = {
-  args: {
-    ...Large.args,
-    endAdornment: (
-      <Box
-        onClick={(event) => {
-          event.preventDefault();
-          alert("End adornment clicked");
-        }}
-        cursor="pointer"
-        id="open"
-      >
-        <ViewTableIcon />
-      </Box>
-    ),
-  },
-};
-
-export const Controlled = () => {
-  const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
-
-  return (
-    <Multiselect
-      label="Pick colors"
-      size="medium"
-      value={selectedItems}
-      options={options}
-      onChange={(values) => setSelectedItems(values ?? [])}
-    />
-  );
 };
