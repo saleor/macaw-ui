@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+
 import { Input } from "./index";
 
 const meta: Meta<typeof Input> = {
@@ -6,30 +8,43 @@ const meta: Meta<typeof Input> = {
   tags: ["autodocs"],
   component: Input,
   args: {
-    value: "Input content",
     label: "Label",
     size: "large",
     placeholder: "Input placeholder",
-  },
-  argTypes: {
-    onChange: { action: "onChange" },
-    onBlur: { action: "onBlur" },
-    onFocus: { action: "onFocus" },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const Primary: Story = {};
+const InputTemplate: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState("Input content");
+
+    return (
+      <Input
+        {...args}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    );
+  },
+};
+
+export const Default: Story = {
+  ...InputTemplate,
+};
 
 export const Errored: Story = {
+  ...InputTemplate,
   args: {
     error: true,
   },
 };
 
 export const Disabled: Story = {
+  ...InputTemplate,
   args: {
     disabled: true,
   },

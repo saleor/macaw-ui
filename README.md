@@ -80,6 +80,22 @@ export default class AppDocument extends Document {
 }
 ```
 
+### Usage with form libraries
+
+#### React Hook Form
+
+You need to wrap the MacawUI component with [`Controller`](https://react-hook-form.com/api/usecontroller/controller/). For example:
+
+```tsx
+import { Input } from "@saleor/macaw-ui/next";
+
+<Controller
+  control={control}
+  name="name-input"
+  render={({ field }) => <Input {...field} />}
+/>;
+```
+
 ### Development
 
 To begin, you need to install dependencies:
