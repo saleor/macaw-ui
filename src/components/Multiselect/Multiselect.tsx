@@ -72,6 +72,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       getSelectedItemProps,
       inputValue,
       removeSelectedItem,
+      getToggleButtonProps,
     } = useMultiselectEvents(value, options, onChange);
 
     return (
@@ -86,6 +87,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           error={error}
           className={className}
           getLabelProps={getLabelProps}
+          getToggleButtonProps={getToggleButtonProps}
           endAdornment={endAdornment}
         >
           {selectedItems.map((item, idx) => (
@@ -112,18 +114,21 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
               >
                 {item.label}
               </Text>
-              <Text
-                cursor="pointer"
-                variant="caption"
-                size="small"
-                marginBottom={1}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  removeSelectedItem(item);
-                }}
-              >
-                &#10005;
-              </Text>
+              {!disabled && (
+                <Text
+                  cursor="pointer"
+                  variant="caption"
+                  size="small"
+                  marginBottom={1}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    removeSelectedItem(item);
+                  }}
+                >
+                  &#10005;
+                </Text>
+              )}
             </Box>
           ))}
 
@@ -131,8 +136,11 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             id={id}
             as="input"
             className={multiselectInputRecipe({ size, error })}
+            placeholder="Add item"
             disabled={disabled}
-            placeholder="+ Add item"
+            __width={0}
+            __minWidth={30}
+            __flex={1}
             {...getInputProps({
               id,
               ref,

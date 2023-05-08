@@ -64,6 +64,7 @@ export const useMultiselectEvents = (
     getInputProps,
     highlightedIndex,
     getItemProps,
+    getToggleButtonProps,
   } = useCombobox({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
@@ -140,5 +141,6 @@ export const useMultiselectEvents = (
     removeSelectedItem,
     selectedItems,
     inputValue,
+    getToggleButtonProps,
   };
 };

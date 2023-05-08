@@ -2,8 +2,8 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import { Multiselect } from "./Multiselect";
-import { ViewTableIcon } from "../Icons";
 import { Box } from "../Box";
+import { ViewTableIcon } from "../Icons";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -35,11 +35,13 @@ const MultiselectTemplate: Story = {
     const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
 
     return (
-      <Multiselect
-        {...args}
-        value={selectedItems}
-        onChange={(values) => setSelectedItems(values ?? [])}
-      />
+      <Box __width={300}>
+        <Multiselect
+          {...args}
+          value={selectedItems}
+          onChange={(values) => setSelectedItems(values ?? [])}
+        />
+      </Box>
     );
   },
 };
@@ -66,5 +68,23 @@ export const WithHelperText: Story = {
   ...MultiselectTemplate,
   args: {
     helperText: "Helper text",
+  },
+};
+
+export const WithEndAdornment: Story = {
+  ...MultiselectTemplate,
+  args: {
+    endAdornment: (
+      <Box
+        onClick={(event) => {
+          event.preventDefault();
+          alert("End adornment clicked");
+        }}
+        cursor="pointer"
+        id="open"
+      >
+        <ViewTableIcon />
+      </Box>
+    ),
   },
 };
