@@ -3,13 +3,12 @@ import { Trigger as RadixTooltipTrigger } from "@radix-ui/react-tooltip";
 
 export interface TooltipTriggerProps {
   children: ReactNode;
-  onFocus?: () => void;
 }
 
 export const Trigger = forwardRef<HTMLButtonElement, TooltipTriggerProps>(
-  ({ children, onFocus }, ref) => {
+  ({ children }, ref) => {
     return (
-      <RadixTooltipTrigger asChild ref={ref} onFocus={onFocus}>
+      <RadixTooltipTrigger asChild ref={ref}>
         {children}
       </RadixTooltipTrigger>
     );
