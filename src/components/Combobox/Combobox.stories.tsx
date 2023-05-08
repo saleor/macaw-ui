@@ -20,104 +20,49 @@ const meta: Meta<typeof Combobox> = {
     options,
     label: "Pick a color",
     id: "combobox",
-    value: "color-black",
+    size: "large",
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Combobox>;
 
-export const Large: Story = {
-  args: {
-    size: "large",
+const ComboboxTemplate: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState(options[0].value);
+
+    return (
+      <Combobox
+        {...args}
+        value={value}
+        onChange={(value) => setValue(value as string)}
+      />
+    );
   },
 };
 
-export const Medium: Story = {
-  args: {
-    size: "medium",
-  },
+export const Default: Story = {
+  ...ComboboxTemplate,
 };
 
-export const Small: Story = {
+export const Error: Story = {
+  ...ComboboxTemplate,
   args: {
-    size: "small",
-  },
-};
-
-export const LargeError: Story = {
-  args: {
-    ...Large.args,
     error: true,
   },
 };
 
-export const MediumError: Story = {
+export const Disabled: Story = {
+  ...ComboboxTemplate,
   args: {
-    ...Medium.args,
-    error: true,
-  },
-};
-
-export const SmallError: Story = {
-  args: {
-    ...Small.args,
-    error: true,
-  },
-};
-
-export const LargeDisabled: Story = {
-  args: {
-    ...Large.args,
     disabled: true,
   },
 };
 
-export const MediumDisabled: Story = {
+export const WithHelperText: Story = {
+  ...ComboboxTemplate,
   args: {
-    ...Medium.args,
-    disabled: true,
-  },
-};
-
-export const SmallDisabled: Story = {
-  args: {
-    ...Small.args,
-    disabled: true,
-  },
-};
-
-export const LargeHelperText: Story = {
-  args: {
-    ...Large.args,
     helperText: "Helper text",
   },
-};
-
-export const MediumHelperText: Story = {
-  args: {
-    ...Medium.args,
-    helperText: "Helper text",
-  },
-};
-
-export const SmallHelperText: Story = {
-  args: {
-    ...Small.args,
-    helperText: "Helper text",
-  },
-};
-
-export const Controlled = () => {
-  const [value, setValue] = useState("");
-
-  return (
-    <Combobox
-      {...Large.args}
-      value={value}
-      options={options}
-      label="Pick a color"
-      onChange={(value) => setValue(value as string)}
-    />
-  );
 };
