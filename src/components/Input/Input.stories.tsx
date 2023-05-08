@@ -24,9 +24,9 @@ const InputTemplate: Story = {
 
     return (
       <Input
+        {...args}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        {...args}
       />
     );
   },
