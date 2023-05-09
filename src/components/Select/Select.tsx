@@ -1,21 +1,14 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
+import { forwardRef, InputHTMLAttributes, ReactNode, FocusEvent } from "react";
 
-import { classNames } from "~/utils";
-
-import {
-  Option,
-  ChangeHandler,
-  useComboboxEvents,
-  InputValue,
-} from "./useComboboxEvents";
-import { ComboboxWrapper } from "./ComboboxWrapper";
+import { Option, ChangeHandler, useSelectEvents } from "./useSelectEvents";
+import { SelectWrapper } from "./SelectWrapper";
 import { List, Text, Box, PropsWithBox } from "..";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
+import { helperTextRecipe, InputVariants } from "../BaseInput";
 import { listStyle, listItemStyle, listWrapperRecipe } from "../BaseSelect";
 
-export type ComboboxProps = PropsWithBox<
+export type SelectProps = PropsWithBox<
   Omit<
-    InputHTMLAttributes<HTMLInputElement>,
+    InputHTMLAttributes<HTMLSelectElement>,
     | "color"
     | "width"
     | "height"
@@ -28,29 +21,40 @@ export type ComboboxProps = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
-    type?: "text" | "number";
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value: InputValue;
+    value: string | number;
   }
 > &
   InputVariants;
 
-export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
+const getBoxHeight = (size: SelectProps["size"]) => {
+  switch (size) {
+    case "small":
+      return 7;
+    case "medium":
+      return 8;
+    case "large":
+      return 9;
+  }
+};
+
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
-      size,
+      size = "medium",
       disabled = false,
       className,
       value,
       label,
       id,
-      type,
       error = false,
       helperText,
       options,
       onChange,
+      onFocus,
+      onBlur,
       ...props
     },
     ref
@@ -62,15 +66,15 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       getToggleButtonProps,
       getLabelProps,
       getMenuProps,
-      getInputProps,
       highlightedIndex,
       getItemProps,
-      itemsToSelect,
-    } = useComboboxEvents(value, options, onChange);
+      selectedItem,
+      handlers,
+    } = useSelectEvents(value, options, onChange);
 
     return (
       <Box display="flex" flexDirection="column" gap={3}>
-        <ComboboxWrapper
+        <SelectWrapper
           id={id}
           typed={typed}
           active={active}
@@ -83,27 +87,32 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           getToggleButtonProps={getToggleButtonProps}
         >
           <Box
-            id={id}
-            as="input"
-            type={type}
-            className={classNames(inputRecipe({ size, error }))}
-            disabled={disabled}
+            height={getBoxHeight(size)}
+            onBlur={(event: FocusEvent<HTMLSelectElement, Element>) => {
+              handlers.onBlur();
+              onBlur?.(event);
+            }}
+            onFocus={(event: FocusEvent<HTMLSelectElement, Element>) => {
+              handlers.onFocus();
+              onFocus?.(event);
+            }}
             {...props}
-            {...getInputProps({
-              id,
-              ref,
-            })}
-          />
-        </ComboboxWrapper>
+            ref={ref}
+          >
+            <Text size={size} variant="body">
+              {selectedItem?.label}
+            </Text>
+          </Box>
+        </SelectWrapper>
 
         <Box
           position="relative"
-          display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
+          display={isOpen ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
           <List as="ul" className={listStyle} {...getMenuProps()}>
             {isOpen &&
-              itemsToSelect?.map((item, index) => (
+              options?.map((item, index) => (
                 <List.Item
                   key={`${id}-${item}-${index}`}
                   className={listItemStyle}
@@ -135,4 +144,4 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
   }
 );
 
-Combobox.displayName = "Combobox";
+Select.displayName = "Select";

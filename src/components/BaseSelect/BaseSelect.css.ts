@@ -4,7 +4,7 @@ import { calc } from "@vanilla-extract/css-utils";
 
 import { sprinkles, vars } from "~/theme";
 
-export const icon = style({
+export const toggleIconStyle = style({
   transition: "transform 300ms",
   selectors: {
     '&[aria-expanded="true"]': {
@@ -48,7 +48,7 @@ export const listWrapperRecipe = recipe({
   },
 });
 
-export const list = style([
+export const listStyle = style([
   sprinkles({
     position: "absolute",
     backgroundColor: "surfaceNeutralPlain",
@@ -67,7 +67,7 @@ export const list = style([
   },
 ]);
 
-export const listItem = style([
+export const listItemStyle = style([
   sprinkles({
     padding: 5,
   }),

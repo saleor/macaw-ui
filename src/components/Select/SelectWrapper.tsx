@@ -7,13 +7,13 @@ import { UseComboboxPropGetters } from "downshift7";
 import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
-import { Option } from "./useComboboxEvents";
+import { Option } from "./useSelectEvents";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { toggleIconStyle } from "../BaseSelect";
 
-type ComboboxWrapperProps = LabelVariants & {
+type SelectWrapperProps = LabelVariants & {
   id?: string;
   label?: ReactNode;
   className?: string;
@@ -23,7 +23,7 @@ type ComboboxWrapperProps = LabelVariants & {
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
-export const ComboboxWrapper = ({
+export const SelectWrapper = ({
   id,
   label,
   className,
@@ -35,7 +35,7 @@ export const ComboboxWrapper = ({
   active,
   disabled,
   size,
-}: ComboboxWrapperProps) => {
+}: SelectWrapperProps) => {
   return (
     <Box
       as="label"
@@ -48,12 +48,13 @@ export const ComboboxWrapper = ({
       disabled={disabled}
       flexWrap="nowrap"
       gap={6}
-      {...getLabelProps({ htmlFor: id })}
+      {...getToggleButtonProps({ disabled })}
     >
       <Box display="flex" flexDirection="column">
         <Box
           as="span"
           className={classNames(spanRecipe({ typed, size, disabled, error }))}
+          {...getLabelProps({ htmlFor: id })}
         >
           {label}
         </Box>
@@ -66,9 +67,6 @@ export const ComboboxWrapper = ({
           sprinkles({ cursor: "pointer" })
         )}
         size={size}
-        {...getToggleButtonProps({
-          disabled,
-        })}
       />
     </Box>
   );
