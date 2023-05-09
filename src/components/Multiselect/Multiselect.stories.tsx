@@ -48,12 +48,47 @@ const MultiselectTemplate: Story = {
 
 export const Default: Story = {
   ...MultiselectTemplate,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [selectedItems, setSelectedItems] = useState(["color-black"]);
+
+<Multiselect
+  label="Label"
+  size="large"
+  value={selectedItems}
+  onChange={(values) => setSelectedItems(values)}
+  options={[{ value: "color-black", label: "Black" }]}
+/>;
+        `,
+      },
+    },
+  },
 };
 
 export const Error: Story = {
   ...MultiselectTemplate,
   args: {
     error: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [selectedItems, setSelectedItems] = useState(["color-black"]);
+
+<Multiselect
+  label="Label"
+  size="large"
+  value={selectedItems}
+  onChange={(values) => setSelectedItems(values)}
+  options={[{ value: "color-black", label: "Black" }]}
+  error
+/>;
+        `,
+      },
+    },
   },
 };
 
@@ -62,12 +97,48 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [selectedItems, setSelectedItems] = useState(["color-black"]);
+
+<Multiselect
+  label="Label"
+  size="large"
+  value={selectedItems}
+  onChange={(values) => setSelectedItems(values)}
+  options={[{ value: "color-black", label: "Black" }]}
+  disabled
+/>;
+        `,
+      },
+    },
+  },
 };
 
 export const WithHelperText: Story = {
   ...MultiselectTemplate,
   args: {
     helperText: "Helper text",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [selectedItems, setSelectedItems] = useState(["color-black"]);
+
+<Multiselect
+  label="Label"
+  size="large"
+  value={selectedItems}
+  onChange={(values) => setSelectedItems(values)}
+  options={[{ value: "color-black", label: "Black" }]}
+  helperText="Helper text"
+/>;
+        `,
+      },
+    },
   },
 };
 
@@ -86,5 +157,23 @@ export const WithEndAdornment: Story = {
         <ViewTableIcon />
       </Box>
     ),
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [selectedItems, setSelectedItems] = useState(["color-black"]);
+
+<Multiselect
+  label="Label"
+  size="large"
+  value={selectedItems}
+  onChange={(values) => setSelectedItems(values)}
+  options={[{ value: "color-black", label: "Black" }]}
+  endAdornment={<ViewTableIcon />}
+/>;
+        `,
+      },
+    },
   },
 };
