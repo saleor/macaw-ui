@@ -73,6 +73,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       inputValue,
       removeSelectedItem,
       getToggleButtonProps,
+      hasItemsToSelect,
     } = useMultiselectEvents(value, options, onChange);
 
     return (
@@ -89,6 +90,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
           endAdornment={endAdornment}
+          hasItemsToSelect={hasItemsToSelect}
         >
           {selectedItems.map((item, idx) => (
             <Box
@@ -138,9 +140,10 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             className={multiselectInputRecipe({ size, error })}
             placeholder="Add item"
             disabled={disabled}
-            __width={0}
-            __minWidth={30}
+            width={0}
             __flex={1}
+            minWidth={10}
+            display={hasItemsToSelect ? "block" : "none"}
             {...getInputProps({
               id,
               ref,
@@ -152,7 +155,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
 
         <Box
           position="relative"
-          display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
+          display={isOpen && hasItemsToSelect ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
           <List as="ul" className={list} {...getMenuProps()}>

@@ -3,6 +3,7 @@ import {
   GetPropsCommonOptions,
   useCombobox,
   UseComboboxGetInputPropsOptions,
+  UseComboboxGetToggleButtonPropsOptions,
   useMultipleSelection,
 } from "downshift7";
 
@@ -142,5 +143,6 @@ export const useMultiselectEvents = (
     selectedItems,
     inputValue,
     getToggleButtonProps,
+    hasItemsToSelect: itemsToSelect.length > 0,
   };
 };

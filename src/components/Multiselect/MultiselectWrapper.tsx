@@ -5,13 +5,11 @@ import { ReactNode } from "react";
 import { UseComboboxPropGetters } from "downshift7";
 
 import { classNames } from "~/utils";
-import { sprinkles } from "~/theme";
 
 import { Option } from "./useMultiselectEvents";
+import { Adornment } from "./Adornment";
 import { Box } from "../Box";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { ArrowDownIcon } from "../Icons";
-import { icon } from "../Combobox/Combobox.css";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;
@@ -20,8 +18,9 @@ type MultiselectWrapperProps = LabelVariants & {
   error?: boolean;
   children: ReactNode;
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
-  getToggleButtonProps?: any;
+  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
   endAdornment?: ReactNode;
+  hasItemsToSelect?: boolean;
 };
 
 export const MultiselectWrapper = ({
@@ -37,6 +36,7 @@ export const MultiselectWrapper = ({
   size,
   getToggleButtonProps,
   endAdornment,
+  hasItemsToSelect,
 }: MultiselectWrapperProps) => {
   return (
     <Box
@@ -70,15 +70,12 @@ export const MultiselectWrapper = ({
         </Box>
       </Box>
 
-      {endAdornment ? (
-        endAdornment
-      ) : (
-        <ArrowDownIcon
-          className={classNames(icon, sprinkles({ cursor: "pointer" }))}
+      {hasItemsToSelect && (
+        <Adornment
+          customAdornment={endAdornment}
           size={size}
-          {...getToggleButtonProps({
-            disabled,
-          })}
+          getToggleButtonProps={getToggleButtonProps}
+          disabled={disabled}
         />
       )}
     </Box>
