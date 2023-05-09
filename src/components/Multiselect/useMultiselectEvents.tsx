@@ -3,7 +3,6 @@ import {
   GetPropsCommonOptions,
   useCombobox,
   UseComboboxGetInputPropsOptions,
-  UseComboboxGetToggleButtonPropsOptions,
   useMultipleSelection,
 } from "downshift7";
 
