@@ -29,6 +29,9 @@ export const Adornment = ({
       size={size}
       {...getToggleButtonProps({
         disabled,
+        onClick: (event) => {
+          event.preventDefault();
+        },
       })}
     />
   );

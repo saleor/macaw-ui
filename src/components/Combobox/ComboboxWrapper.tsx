@@ -68,6 +68,9 @@ export const ComboboxWrapper = ({
         size={size}
         {...getToggleButtonProps({
           disabled,
+          onClick: (event) => {
+            event.preventDefault();
+          },
         })}
       />
     </Box>
