@@ -72,11 +72,12 @@ export const MultiselectWrapper = ({
 
       {hasItemsToSelect && (
         <Adornment
-          customAdornment={endAdornment}
           size={size}
           getToggleButtonProps={getToggleButtonProps}
           disabled={disabled}
-        />
+        >
+          {endAdornment}
+        </Adornment>
       )}
     </Box>
   );

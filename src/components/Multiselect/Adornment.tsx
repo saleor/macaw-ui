@@ -9,20 +9,20 @@ import { ArrowDownIcon } from "../Icons";
 import { toggleIconStyle } from "../BaseSelect";
 
 export type AdornmentProps = {
-  customAdornment?: ReactNode;
+  children?: ReactNode;
   size?: "small" | "medium" | "large";
   getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
   disabled?: boolean;
 };
 
 export const Adornment = ({
-  customAdornment,
+  children,
   size,
   getToggleButtonProps,
   disabled,
 }: AdornmentProps) => {
-  return customAdornment ? (
-    <>{customAdornment}</>
+  return children ? (
+    <>{children}</>
   ) : (
     <ArrowDownIcon
       className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
