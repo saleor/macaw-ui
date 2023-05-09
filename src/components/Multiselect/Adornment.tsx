@@ -6,7 +6,7 @@ import { sprinkles } from "~/theme";
 import { Option } from "./useMultiselectEvents";
 
 import { ArrowDownIcon } from "../Icons";
-import { icon } from "./Multiselect.css";
+import { toggleIconStyle } from "../BaseSelect";
 
 export type AdornmentProps = {
   customAdornment?: ReactNode;
@@ -25,7 +25,7 @@ export const Adornment = ({
     <>{customAdornment}</>
   ) : (
     <ArrowDownIcon
-      className={classNames(icon, sprinkles({ cursor: "pointer" }))}
+      className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
       size={size}
       {...getToggleButtonProps({
         disabled,

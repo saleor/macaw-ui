@@ -6,14 +6,11 @@ import {
   useMultiselectEvents,
 } from "./useMultiselectEvents";
 import { MultiselectWrapper } from "./MultiselectWrapper";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 import { List, Text, Box, PropsWithBox } from "..";
 import { helperTextRecipe, InputVariants } from "../BaseInput";
-import {
-  list,
-  listItem,
-  listWrapperRecipe,
-  multiselectInputRecipe,
-} from "./Multiselect.css";
+
+import { multiselectInputRecipe } from "./Multiselect.css";
 
 export type MultiselectProps = PropsWithBox<
   Omit<
@@ -158,12 +155,12 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           display={isOpen && hasItemsToSelect ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
-          <List as="ul" className={list} {...getMenuProps()}>
+          <List as="ul" className={listStyle} {...getMenuProps()}>
             {isOpen &&
               itemsToSelect?.map((item, index) => (
                 <List.Item
                   key={`to-select-${id}-${item}-${index}`}
-                  className={listItem}
+                  className={listItemStyle}
                   active={highlightedIndex === index}
                   {...getItemProps({
                     item,
