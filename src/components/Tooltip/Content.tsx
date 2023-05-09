@@ -36,3 +36,5 @@ export const Content = ({
     </RadixTooltipPortal>
   );
 };
+
+Content.displayName = "Tooltip.Content";

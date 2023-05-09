@@ -7,3 +7,5 @@ export interface PopoverTriggerProps {
 export const Trigger = ({ children }: PopoverTriggerProps) => {
   return <RadixPopoverTrigger asChild>{children}</RadixPopoverTrigger>;
 };
+
+Trigger.displayName = "Popover.Trigger";

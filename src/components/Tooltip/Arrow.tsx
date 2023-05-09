@@ -32,3 +32,5 @@ export const Arrow = ({
     </RadixTooltipArrow>
   );
 };
+
+Arrow.displayName = "Tooltip.Arrow";

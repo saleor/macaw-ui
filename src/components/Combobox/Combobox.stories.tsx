@@ -44,12 +44,45 @@ const ComboboxTemplate: Story = {
 
 export const Default: Story = {
   ...ComboboxTemplate,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("color-black");
+  
+  <Combobox
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(value)}
+    options={[{ value: "color-black", label: "Black" }]}
+  />`,
+      },
+    },
+  },
 };
 
 export const Error: Story = {
   ...ComboboxTemplate,
   args: {
     error: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("color-black");
+  
+  <Combobox
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(value)}
+    options={[{ value: "color-black", label: "Black" }]}
+    error
+  />`,
+      },
+    },
   },
 };
 
@@ -58,11 +91,45 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("color-black");
+  
+  <Combobox
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(value)}
+    options={[{ value: "color-black", label: "Black" }]}
+    disabled
+  />`,
+      },
+    },
+  },
 };
 
 export const WithHelperText: Story = {
   ...ComboboxTemplate,
   args: {
     helperText: "Helper text",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("color-black");
+  
+  <Combobox
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(value)}
+    options={[{ value: "color-black", label: "Black" }]}
+    helperText="Helper text"
+  />`,
+      },
+    },
   },
 };

@@ -7,3 +7,5 @@ export type DrawerRootProps = {
 export const Root = ({ children }: DrawerRootProps) => {
   return <DialogRoot>{children}</DialogRoot>;
 };
+
+Root.displayName = "Drawer";

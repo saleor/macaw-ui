@@ -44,3 +44,5 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
     </List.Item>
   );
 };
+
+Trigger.displayName = "ListItem.Trigger";

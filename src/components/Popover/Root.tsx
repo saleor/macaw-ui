@@ -11,3 +11,5 @@ export type PopoverProps = {
 export const PopoverRoot = ({ children, ...props }: PopoverProps) => {
   return <RadixPopoverRoot {...props}>{children}</RadixPopoverRoot>;
 };
+
+PopoverRoot.displayName = "Popover";

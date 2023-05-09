@@ -45,3 +45,5 @@ export const ItemGroupRoot = ({
     </AccordionRoot>
   );
 };
+
+ItemGroupRoot.displayName = "ListItem";

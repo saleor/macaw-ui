@@ -22,3 +22,5 @@ export const Content = ({ children, ...rest }: DropdownContentProps) => {
     </DropdownMenuPortal>
   );
 };
+
+Content.displayName = "Dropdown.Content";

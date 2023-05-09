@@ -32,3 +32,5 @@ export const Content = ({
     </RadixPopoverPortal>
   );
 };
+
+Content.displayName = "Popover.Content";

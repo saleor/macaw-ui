@@ -41,3 +41,5 @@ export const Store = (props: StoreAvatarProps) => {
     </Box>
   );
 };
+
+Store.displayName = "Avatar.Store";

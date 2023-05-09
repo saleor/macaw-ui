@@ -8,3 +8,5 @@ export type DropdownTriggerProps = {
 export const Trigger = ({ children }: DropdownTriggerProps) => {
   return <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>;
 };
+
+Trigger.displayName = "Dropdown.Trigger";

@@ -10,7 +10,6 @@ const meta: Meta<typeof Input> = {
   args: {
     label: "Label",
     size: "large",
-    placeholder: "Input placeholder",
   },
 };
 
@@ -34,6 +33,21 @@ const InputTemplate: Story = {
 
 export const Default: Story = {
   ...InputTemplate,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Input content");
+
+  <Input
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+  />`,
+      },
+    },
+  },
 };
 
 export const Errored: Story = {
@@ -41,11 +55,66 @@ export const Errored: Story = {
   args: {
     error: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Input content");
+  
+  <Input
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    error
+  />`,
+      },
+    },
+  },
 };
 
 export const Disabled: Story = {
   ...InputTemplate,
   args: {
     disabled: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Input content");
+  
+  <Input
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    disabled
+  />`,
+      },
+    },
+  },
+};
+
+export const WithHelpText: Story = {
+  ...InputTemplate,
+  args: {
+    helperText: "Helper text",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Input content");
+  
+  <Input
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    helperText="Helper text"
+  />`,
+      },
+    },
   },
 };
