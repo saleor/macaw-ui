@@ -19,104 +19,120 @@ const meta: Meta<typeof Select> = {
   args: {
     options,
     label: "Pick a color",
-    id: "select",
-    value: "color-black",
+    size: "large",
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Select>;
 
-export const Large: Story = {
-  args: {
-    size: "large",
+const SelectTemplate: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState(options[0].value);
+
+    return (
+      <Select
+        {...args}
+        value={value}
+        onChange={(value) => setValue(value as string)}
+      />
+    );
   },
 };
 
-export const Medium: Story = {
-  args: {
-    size: "medium",
+export const Default: Story = {
+  ...SelectTemplate,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [value, setValue] = useState("color-black");
+
+<Select
+  label="Label"
+  size="large"
+  value={value}
+  onChange={(e) => setValue(value)}
+  options={[{ value: "color-black", label: "Black" }]}
+/>;
+        `,
+      },
+    },
   },
 };
 
-export const Small: Story = {
+export const Error: Story = {
+  ...SelectTemplate,
   args: {
-    size: "small",
-  },
-};
-
-export const LargeError: Story = {
-  args: {
-    ...Large.args,
     error: true,
   },
-};
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [value, setValue] = useState("color-black");
 
-export const MediumError: Story = {
-  args: {
-    ...Medium.args,
-    error: true,
+<Select
+  label="Label"
+  size="large"
+  value={value}
+  onChange={(e) => setValue(value)}
+  options={[{ value: "color-black", label: "Black" }]}
+  error
+/>;
+        `,
+      },
+    },
   },
 };
 
-export const SmallError: Story = {
+export const Disabled: Story = {
+  ...SelectTemplate,
   args: {
-    ...Small.args,
-    error: true,
-  },
-};
-
-export const LargeDisabled: Story = {
-  args: {
-    ...Large.args,
     disabled: true,
   },
-};
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [value, setValue] = useState("color-black");
 
-export const MediumDisabled: Story = {
-  args: {
-    ...Medium.args,
-    disabled: true,
+<Select
+  label="Label"
+  size="large"
+  value={value}
+  onChange={(e) => setValue(value)}
+  options={[{ value: "color-black", label: "Black" }]}
+  disabled
+/>;
+        `,
+      },
+    },
   },
 };
 
-export const SmallDisabled: Story = {
+export const WithHelperText: Story = {
+  ...SelectTemplate,
   args: {
-    ...Small.args,
-    disabled: true,
-  },
-};
-
-export const LargeHelperText: Story = {
-  args: {
-    ...Large.args,
     helperText: "Helper text",
   },
-};
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [value, setValue] = useState("color-black");
 
-export const MediumHelperText: Story = {
-  args: {
-    ...Medium.args,
-    helperText: "Helper text",
+<Select
+  label="Label"
+  size="large"
+  value={value}
+  onChange={(e) => setValue(value)}
+  options={[{ value: "color-black", label: "Black" }]}
+  helperText="Helper text"
+/>;
+        `,
+      },
+    },
   },
-};
-
-export const SmallHelperText: Story = {
-  args: {
-    ...Small.args,
-    helperText: "Helper text",
-  },
-};
-
-export const Controlled = () => {
-  const [value, setValue] = useState("");
-  return (
-    <Select
-      options={options}
-      label="Pick a color"
-      id="select-2"
-      value={value}
-      onChange={(selectedItem) => setValue(selectedItem as string)}
-    />
-  );
 };
