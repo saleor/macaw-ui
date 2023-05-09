@@ -54,7 +54,7 @@
   "scripts": {
     "build:legacy": "cd legacy && npm run build",
     "build:next": "npm-run-all check-types:next && vite build",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build --docs",
     "watch": "vite build --watch",
     "lint:legacy": "cd legacy && npm run lint",
     "lint:next": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix",
