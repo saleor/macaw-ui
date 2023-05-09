@@ -14,3 +14,5 @@ export const Item = ({ children }: ItemProps) => {
     </DropdownMenuItem>
   );
 };
+
+Item.displayName = "Dropdown.Item";

@@ -46,3 +46,5 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
     </Dialog.Portal>
   );
 };
+
+Content.displayName = "Drawer.Content";

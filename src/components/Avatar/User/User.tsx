@@ -41,3 +41,5 @@ export const User = (props: UserAvatarProps) => {
     </Box>
   );
 };
+
+User.displayName = "Avatar.User";

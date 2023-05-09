@@ -26,3 +26,5 @@ export const TooltipRoot = ({
     </RadixTooltipProvider>
   );
 };
+
+TooltipRoot.displayName = "Tooltip";

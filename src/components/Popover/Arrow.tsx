@@ -33,3 +33,5 @@ export const Arrow = ({
     </RadixPopoverArrow>
   );
 };
+
+Arrow.displayName = "Popover.Arrow";

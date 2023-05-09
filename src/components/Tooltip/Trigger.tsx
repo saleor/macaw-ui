@@ -15,4 +15,4 @@ export const Trigger = forwardRef<HTMLButtonElement, TooltipTriggerProps>(
   }
 );
 
-Trigger.displayName = "TooltipTrigger";
+Trigger.displayName = "Tooltip.Trigger";

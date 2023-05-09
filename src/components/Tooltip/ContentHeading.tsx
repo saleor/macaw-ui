@@ -17,3 +17,5 @@ export const ContentHeading = ({ children }: TooltipContentHeadingProps) => {
     </Text>
   );
 };
+
+ContentHeading.displayName = "Tooltip.ContentHeading";

@@ -3,8 +3,6 @@ import { Avatar } from "./index";
 
 const User = Avatar.User;
 const Store = Avatar.Store;
-Object.assign(User, { displayName: "Avatar.User" });
-Object.assign(Store, { displayName: "Avatar.Store" });
 
 const meta: Meta<typeof Avatar> = {
   title: "Components / Avatar",

@@ -18,3 +18,5 @@ export const DropdownRoot = ({
     </DropdownMenuRoot>
   );
 };
+
+DropdownRoot.displayName = "Dropdown";

@@ -7,3 +7,5 @@ export interface PopoverAnchorProps {
 export const Anchor = ({ children }: PopoverAnchorProps) => {
   return <RadixPopoverAnchor asChild>{children}</RadixPopoverAnchor>;
 };
+
+Anchor.displayName = "Popover.Anchor";
