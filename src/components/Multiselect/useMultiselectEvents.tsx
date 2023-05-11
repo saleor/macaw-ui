@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import {
   GetPropsCommonOptions,
   useCombobox,
   UseComboboxGetInputPropsOptions,
+  UseComboboxGetToggleButtonPropsOptions,
+  UseComboboxPropGetters,
   useMultipleSelection,
 } from "downshift7";
 
 export type ChangeHandler = (selectedItems: string[]) => void;
 export type Option = { label: string; value: string };
+export type RenderEndAdornmentType = (
+  ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
+) => ReactNode;
 
 const getItemsFilter = (
   selectedItems: Option[],
@@ -27,7 +32,8 @@ const getItemsFilter = (
 export const useMultiselectEvents = (
   selectedValues: string[],
   options: Option[],
-  changeHandler?: ChangeHandler
+  changeHandler?: ChangeHandler,
+  disabled?: boolean
 ) => {
   const [inputValue, setInputValue] = useState("");
   const selectedItems = options.filter((option) =>
@@ -141,7 +147,16 @@ export const useMultiselectEvents = (
     removeSelectedItem,
     selectedItems,
     inputValue,
-    getToggleButtonProps,
+    getToggleButtonProps: (
+      options?: UseComboboxGetToggleButtonPropsOptions | undefined
+    ) =>
+      getToggleButtonProps({
+        onClick: (event) => {
+          event.preventDefault();
+        },
+        disabled,
+        ...options,
+      }),
     hasItemsToSelect: itemsToSelect.length > 0,
   };
 };

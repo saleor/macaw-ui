@@ -4,6 +4,7 @@ import {
   Option,
   ChangeHandler,
   useMultiselectEvents,
+  RenderEndAdornmentType,
 } from "./useMultiselectEvents";
 import { MultiselectWrapper } from "./MultiselectWrapper";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
@@ -32,7 +33,7 @@ export type MultiselectProps = PropsWithBox<
     options: Option[];
     onChange?: ChangeHandler;
     value?: string[];
-    endAdornment?: ReactNode;
+    renderEndAdornment?: RenderEndAdornmentType;
   }
 > &
   InputVariants;
@@ -49,7 +50,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       helperText,
       options,
       onChange,
-      endAdornment,
+      renderEndAdornment,
       value = [],
       ...props
     },
@@ -71,7 +72,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       removeSelectedItem,
       getToggleButtonProps,
       hasItemsToSelect,
-    } = useMultiselectEvents(value, options, onChange);
+    } = useMultiselectEvents(value, options, onChange, disabled);
 
     return (
       <Box display="flex" flexDirection="column" gap={3}>
@@ -86,7 +87,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           className={className}
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
-          endAdornment={endAdornment}
+          renderEndAdornment={renderEndAdornment}
           hasItemsToSelect={hasItemsToSelect}
         >
           {selectedItems.map((item, idx) => (

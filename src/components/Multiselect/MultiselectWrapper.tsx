@@ -6,7 +6,7 @@ import { UseComboboxPropGetters } from "downshift7";
 
 import { classNames } from "~/utils";
 
-import { Option } from "./useMultiselectEvents";
+import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 import { Adornment } from "./Adornment";
 import { Box } from "../Box";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
@@ -19,7 +19,7 @@ type MultiselectWrapperProps = LabelVariants & {
   children: ReactNode;
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
   getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
-  endAdornment?: ReactNode;
+  renderEndAdornment?: RenderEndAdornmentType;
   hasItemsToSelect?: boolean;
 };
 
@@ -35,7 +35,7 @@ export const MultiselectWrapper = ({
   disabled,
   size,
   getToggleButtonProps,
-  endAdornment,
+  renderEndAdornment,
   hasItemsToSelect,
 }: MultiselectWrapperProps) => {
   return (
@@ -74,10 +74,8 @@ export const MultiselectWrapper = ({
         <Adornment
           size={size}
           getToggleButtonProps={getToggleButtonProps}
-          disabled={disabled}
-        >
-          {endAdornment}
-        </Adornment>
+          renderEndAdornment={renderEndAdornment}
+        />
       )}
     </Box>
   );

@@ -145,18 +145,7 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
 export const WithEndAdornment: Story = {
   ...MultiselectTemplate,
   args: {
-    endAdornment: (
-      <Box
-        onClick={(event) => {
-          event.preventDefault();
-          alert("End adornment clicked");
-        }}
-        cursor="pointer"
-        id="open"
-      >
-        <ViewTableIcon />
-      </Box>
-    ),
+    renderEndAdornment: (props) => <ViewTableIcon {...props} />,
   },
   parameters: {
     docs: {
