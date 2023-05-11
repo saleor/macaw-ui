@@ -6,36 +6,38 @@ import { UseComboboxPropGetters } from "downshift7";
 
 import { classNames } from "~/utils";
 
-import { sprinkles } from "~/theme";
-import { Option } from "./useComboboxEvents";
+import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
+import { Adornment } from "./Adornment";
 import { Box } from "../Box";
-import { ArrowDownIcon } from "../Icons";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { toggleIconStyle } from "../BaseSelect";
 
-type ComboboxWrapperProps = LabelVariants & {
+type MultiselectWrapperProps = LabelVariants & {
   id?: string;
   label?: ReactNode;
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
+  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
+  renderEndAdornment?: RenderEndAdornmentType;
+  hasItemsToSelect?: boolean;
 };
 
-export const ComboboxWrapper = ({
+export const MultiselectWrapper = ({
   id,
   label,
   className,
   error,
   children,
-  getToggleButtonProps,
   getLabelProps,
   typed,
   active,
   disabled,
   size,
-}: ComboboxWrapperProps) => {
+  getToggleButtonProps,
+  renderEndAdornment,
+  hasItemsToSelect,
+}: MultiselectWrapperProps) => {
   return (
     <Box
       as="label"
@@ -50,31 +52,33 @@ export const ComboboxWrapper = ({
       gap={6}
       {...getLabelProps({ htmlFor: id })}
     >
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" width="100%">
         <Box
           as="span"
           className={classNames(spanRecipe({ typed, size, disabled, error }))}
         >
           {label}
         </Box>
-        {children}
+        <Box
+          display="flex"
+          flexDirection="row"
+          gap={3}
+          alignItems="center"
+          flexWrap="wrap"
+        >
+          {children}
+        </Box>
       </Box>
 
-      <ArrowDownIcon
-        className={classNames(
-          toggleIconStyle,
-          sprinkles({ cursor: "pointer" })
-        )}
-        size={size}
-        {...getToggleButtonProps({
-          disabled,
-          onClick: (event) => {
-            event.preventDefault();
-          },
-        })}
-      />
+      {hasItemsToSelect && (
+        <Adornment
+          size={size}
+          getToggleButtonProps={getToggleButtonProps}
+          renderEndAdornment={renderEndAdornment}
+        />
+      )}
     </Box>
   );
 };
 
-ComboboxWrapper.displayName = "ComboboxWrapper";
+MultiselectWrapper.displayName = "MultiselectWrapper";
