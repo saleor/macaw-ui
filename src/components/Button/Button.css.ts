@@ -81,6 +81,20 @@ export const button = recipe({
         },
         borderStyle: "none",
       }),
+      error: sprinkles({
+        backgroundColor: {
+          default: "interactiveCriticalDefault",
+          hover: "interactiveCriticalHovering",
+          focusVisible: "interactiveCriticalFocused",
+          active: "interactiveCriticalPressing",
+          disabled: "interactiveCriticalDisabled",
+        },
+        color: {
+          default: "textNeutralContrasted",
+          disabled: "textNeutralDisabled",
+        },
+        borderStyle: "none",
+      }),
     },
     size: {
       small: {},
