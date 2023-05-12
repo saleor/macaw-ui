@@ -33,6 +33,13 @@ export const Tertiary: Story = {
   },
 };
 
+export const Error: Story = {
+  args: {
+    ...Primary.args,
+    variant: "error",
+  },
+};
+
 export const PrimaryIcon: Story = {
   args: {
     variant: "primary",
@@ -52,6 +59,13 @@ export const TertiaryIcon: Story = {
   args: {
     ...PrimaryIcon.args,
     variant: "tertiary",
+  },
+};
+
+export const ErrorIcon: Story = {
+  args: {
+    ...PrimaryIcon.args,
+    variant: "error",
   },
 };
 
@@ -77,5 +91,12 @@ export const TertiaryTextIcon: Story = {
   args: {
     ...PrimaryTextIcon.args,
     variant: "tertiary",
+  },
+};
+
+export const ErrorTextIcon: Story = {
+  args: {
+    ...PrimaryTextIcon.args,
+    variant: "error",
   },
 };
