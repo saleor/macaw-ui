@@ -44,7 +44,7 @@ export const useComboboxEvents = (
     getItemProps,
   } = useCombobox({
     items: itemsToSelect,
-    itemToString: (item) => item?.label ?? "",
+    itemToString: (item) => (item?.value && item?.label) || "",
     selectedItem: options.find((option) => option.value === value) ?? null,
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
