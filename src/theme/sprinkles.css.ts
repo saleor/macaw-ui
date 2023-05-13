@@ -60,7 +60,16 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: "mobile",
   properties: {
-    display: ["none", "flex", "grid", "block", "contents"],
+    display: [
+      "none",
+      "flex",
+      "inline-flex",
+      "grid",
+      "inline-grid",
+      "block",
+      "inline-block",
+      "contents",
+    ],
     flexDirection: ["row", "column"],
     alignItems: [
       "stretch",
@@ -132,7 +141,7 @@ const responsiveProperties = defineProperties({
     },
     fontSize: vars.fontSize,
     lineHeight: vars.lineHeight,
-    textAlign: ["center"],
+    textAlign: ["center", "left", "right"],
     borderLeftWidth: vars.borderWidth,
     borderRightWidth: vars.borderWidth,
     borderTopWidth: vars.borderWidth,

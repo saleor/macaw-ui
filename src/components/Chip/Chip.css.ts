@@ -6,22 +6,29 @@ export const chip = recipe({
     sprinkles({
       backgroundColor: "surfaceNeutralDepressed",
       borderRadius: 2,
+      display: "inline-flex",
+      justifyContent: "center",
+      alignItems: "center",
+      lineHeight: 1,
+      borderColor: "neutralHighlight",
+      borderWidth: 1,
+      borderStyle: "solid",
     }),
   ],
 
   variants: {
     size: {
       small: sprinkles({
-        paddingX: 2,
-        paddingY: 1,
+        paddingX: 3,
+        height: 7,
       }),
       medium: sprinkles({
         paddingX: 3,
-        paddingY: 2,
+        height: 8,
       }),
       large: sprinkles({
         paddingX: 4,
-        paddingY: 2,
+        height: 9,
       }),
     },
   },
