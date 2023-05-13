@@ -56,6 +56,7 @@ export const listStyle = style([
     borderColor: "neutralHighlight",
     width: "100%",
     padding: 3,
+    marginTop: 3,
     left: 0,
     zIndex: "3",
   }),
