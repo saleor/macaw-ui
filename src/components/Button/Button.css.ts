@@ -8,6 +8,7 @@ export const button = recipe({
       display: "flex",
       placeItems: "center",
       padding: 0,
+      textDecoration: "none",
       cursor: {
         default: "pointer",
         disabled: "not-allowed",

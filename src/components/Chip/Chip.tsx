@@ -14,7 +14,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(
   ({ children, size, className, ...props }, ref) => {
     return (
       <Box
-        as="div"
+        as="span"
         className={classNames(
           chip({
             size,

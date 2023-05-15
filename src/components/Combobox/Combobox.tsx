@@ -68,7 +68,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     } = useComboboxEvents(value, options, onChange);
 
     return (
-      <Box display="flex" flexDirection="column" gap={3}>
+      <Box display="flex" flexDirection="column">
         <ComboboxWrapper
           id={id}
           typed={typed}

@@ -55,6 +55,7 @@ export const borderRadius = {
 };
 
 export const lineHeight = {
+  1: `1`,
   heroLarge: "40px",
   heroMedium: "36px",
   heroSmall: "30px",

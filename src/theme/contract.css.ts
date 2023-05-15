@@ -172,6 +172,7 @@ export const vars = createGlobalThemeContract(
       9: null,
     },
     lineHeight: {
+      1: null,
       heroLarge: null,
       heroMedium: null,
       heroSmall: null,
