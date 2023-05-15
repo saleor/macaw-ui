@@ -12,6 +12,7 @@ export interface PopoverContentProps {
   align?: "start" | "center" | "end";
   alignOffset?: number;
   avoidCollisions?: boolean;
+  collisionPadding?: number;
   children: React.ReactNode;
 }
 
