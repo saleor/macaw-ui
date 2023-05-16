@@ -1,4 +1,4 @@
-export const spacing = {
+export const space = {
   s0: "0px",
   spx: "1px",
   "s0.5": "2px",
@@ -20,21 +20,22 @@ export const spacing = {
   s14: "56px",
 };
 
-export const legacySpacing = {
-  0: spacing.s0,
-  1: spacing.spx,
-  2: spacing["s0.5"],
-  3: spacing.s1,
-  4: spacing["s1.5"],
-  5: spacing.s2,
-  6: spacing.s3,
-  7: spacing.s4,
-  8: spacing.s5,
-  9: spacing.s6,
-  10: spacing.s7,
-  11: spacing.s8,
-  12: spacing.s9,
-  13: spacing.s10,
+// TODO: #438 remove legacy spacing
+export const legacySpace = {
+  0: space.s0,
+  1: space.spx,
+  2: space["s0.5"],
+  3: space.s1,
+  4: space["s1.5"],
+  5: space.s2,
+  6: space.s3,
+  7: space.s4,
+  8: space.s5,
+  9: space.s6,
+  10: space.s7,
+  11: space.s8,
+  12: space.s9,
+  13: space.s10,
 };
 
 export const fontSize = {

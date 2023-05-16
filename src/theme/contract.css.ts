@@ -9,6 +9,7 @@ const toKebabCase = (str: string) =>
 export const vars = createGlobalThemeContract(
   {
     space: {
+      // TODO: #438 remove legacy spacing
       0: null,
       1: null,
       2: null,
@@ -23,8 +24,7 @@ export const vars = createGlobalThemeContract(
       11: null,
       12: null,
       13: null,
-    },
-    spacing: {
+
       s0: null,
       spx: null,
       "s0.5": null,
