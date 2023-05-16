@@ -4,71 +4,78 @@ import React from "react";
 
 import { makeStyles } from "./styles";
 
-const useStyles = makeStyles(
-  (theme) => ({
-    "@global": {
-      "@import": "url('https://rsms.me/inter/inter.css')",
-      // Putting them here, because MUI doesn't let putting own keys in
-      // `overrides` objects
-      "@keyframes hoverControlStart": {
-        from: {
-          transform: "scale(1)",
-        },
-        to: {
-          transform: "scale(1.4)",
-        },
-      },
-      "@keyframes hoverControl": {
-        from: {
-          transform: "scale(1.4)",
-        },
-        to: {
-          transform: "scale(1.6)",
-        },
-      },
+type BaselineProps = {
+  importFontStyle: boolean;
+};
 
-      "@keyframes hoverSwitchStart": {
-        from: {
-          boxShadow: `0 0 0 0 ${theme.palette.saleor.active[5]}`,
+const useStyles = (props: BaselineProps) =>
+  makeStyles(
+    (theme) => ({
+      "@global": {
+        ...(props.importFontStyle && {
+          "@import": "url('https://rsms.me/inter/inter.css')",
+        }),
+        // Putting them here, because MUI doesn't let putting own keys in
+        // `overrides` objects
+        "@keyframes hoverControlStart": {
+          from: {
+            transform: "scale(1)",
+          },
+          to: {
+            transform: "scale(1.4)",
+          },
         },
-        to: {
-          boxShadow: `0 0 0 3px ${theme.palette.saleor.active[5]}`,
+        "@keyframes hoverControl": {
+          from: {
+            transform: "scale(1.4)",
+          },
+          to: {
+            transform: "scale(1.6)",
+          },
         },
-      },
-      "@keyframes hoverSwitch": {
-        from: {
-          boxShadow: `0 0 0 3px ${theme.palette.saleor.active[5]}`,
-        },
-        to: {
-          boxShadow: `0 0 0 5px ${theme.palette.saleor.active[5]}`,
-        },
-      },
 
-      ":root": {
-        "--background-paper": theme.palette.background.paper,
-        "--background-default": theme.palette.background.default,
-        colorScheme: theme.palette.type
-      },
+        "@keyframes hoverSwitchStart": {
+          from: {
+            boxShadow: `0 0 0 0 ${theme.palette.saleor.active[5]}`,
+          },
+          to: {
+            boxShadow: `0 0 0 3px ${theme.palette.saleor.active[5]}`,
+          },
+        },
+        "@keyframes hoverSwitch": {
+          from: {
+            boxShadow: `0 0 0 3px ${theme.palette.saleor.active[5]}`,
+          },
+          to: {
+            boxShadow: `0 0 0 5px ${theme.palette.saleor.active[5]}`,
+          },
+        },
 
-      // For some reason @import clause must be put on top
-      // eslint-disable-next-line sort-keys
-      "::selection": {
-        background: alpha(theme.palette.primary.main, 0.2),
-      },
-      html: {
-        fontSize: "58.4%",
-      },
-      a: {
-        color: "inherit",
-        textDecoration: "none",
-      },
-    },
-  }),
-  { name: "Baseline" }
-);
+        ":root": {
+          "--background-paper": theme.palette.background.paper,
+          "--background-default": theme.palette.background.default,
+          colorScheme: theme.palette.type,
+        },
 
-export const Baseline: React.FC = () => {
-  useStyles();
+        // For some reason @import clause must be put on top
+        // eslint-disable-next-line sort-keys
+        "::selection": {
+          background: alpha(theme.palette.primary.main, 0.2),
+        },
+        html: {
+          fontSize: "58.4%",
+        },
+        a: {
+          color: "inherit",
+          textDecoration: "none",
+        },
+      },
+    }),
+    { name: "Baseline" }
+  );
+
+export const Baseline: React.FC<BaselineProps> = (props) => {
+  useStyles(props);
 
   return <CssBaseline />;
 };

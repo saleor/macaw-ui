@@ -34,6 +34,10 @@ export interface ThemeProviderProps {
    * Enables server side rendering.
    */
   ssr?: boolean;
+  /**
+   * Enables importing font style from external source.
+   */
+  importFontStyle?: boolean;
 }
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
@@ -41,6 +45,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   palettes = {},
   overrides = {},
   ssr = false,
+  importFontStyle = true,
 }) => {
   const { value: themeTypeName, setValue: setThemeType } = useLocalStorage(
     localStorageKeys.theme,
@@ -79,7 +84,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       <MuiThemeProvider theme={theme}>
         <ActionBarProvider>
           <BacklinkProvider>
-            <Baseline />
+            <Baseline importFontStyle={importFontStyle} />
             {children}
           </BacklinkProvider>
         </ActionBarProvider>
