@@ -8,7 +8,7 @@ export const SpacingsPresentation = () => {
   return (
     <Unstyled>
       <Box display="flex" flexDirection="row" flexWrap="wrap" rowGap={10}>
-        {Object.entries(vars.spacing).map(([key, value]) => {
+        {Object.entries(vars.space).map(([key, value]) => {
           return (
             <Box width="100%" key={key}>
               <Box __fontSize="14px" __minWidth="100px">
