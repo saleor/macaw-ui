@@ -18,6 +18,10 @@ export const space = {
   s11: "44px",
   s12: "48px",
   s14: "56px",
+  s16: "64px",
+  s20: "80px",
+  s24: "96px",
+  s28: "112px",
 };
 
 // TODO: #438 remove legacy spacing
