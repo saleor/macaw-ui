@@ -6,10 +6,11 @@ import {
   letterSpacing,
   lineHeight,
   space,
+  legacySpace,
 } from "./common";
 
 export const defaultLight = {
-  space,
+  space: { ...legacySpace, ...space },
   colors: {
     foreground: {
       textNeutralPlain: "hsla(210, 25%, 26%, 1)",
