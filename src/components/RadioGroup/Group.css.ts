@@ -2,16 +2,16 @@ import { RecipeVariants, recipe } from "@vanilla-extract/recipes";
 import { sprinkles } from "~/theme";
 
 export const fieldset = sprinkles({
-  padding: 0,
-  margin: 0,
+  padding: "s0",
+  margin: "s0",
   borderWidth: 0,
 });
 
 export const groupLabelRecipe = recipe({
   base: [
     sprinkles({
-      padding: 0,
-      margin: 0,
+      padding: "s0",
+      margin: "s0",
       color: "textNeutralSubdued",
     }),
   ],

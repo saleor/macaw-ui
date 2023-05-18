@@ -1,15 +1,15 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { ReactNode } from "react";
 import { UseComboboxPropGetters } from "downshift7";
+import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 import { Adornment } from "./Adornment";
-import { Box } from "../Box";
+import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
+import { Box } from "../Box";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;
@@ -49,7 +49,7 @@ export const MultiselectWrapper = ({
       justifyContent="space-between"
       disabled={disabled}
       flexWrap="nowrap"
-      gap={6}
+      gap="s3"
       {...getLabelProps({ htmlFor: id })}
     >
       <Box display="flex" flexDirection="column" width="100%">
@@ -62,7 +62,7 @@ export const MultiselectWrapper = ({
         <Box
           display="flex"
           flexDirection="row"
-          gap={3}
+          gap="s1"
           alignItems="center"
           flexWrap="wrap"
         >

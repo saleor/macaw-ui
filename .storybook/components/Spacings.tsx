@@ -1,13 +1,13 @@
+import { Unstyled } from "@storybook/blocks";
 import { Box } from "~/components";
 import { useTheme } from "~/theme";
-import { Unstyled } from "@storybook/blocks";
 
 export const SpacingsPresentation = () => {
   const { themeValues: vars } = useTheme();
 
   return (
     <Unstyled>
-      <Box display="flex" flexDirection="row" flexWrap="wrap" rowGap={10}>
+      <Box display="flex" flexDirection="row" flexWrap="wrap" rowGap="s7">
         {Object.entries(vars.space).map(([key, value]) => {
           return (
             <Box width="100%" key={key}>
@@ -22,7 +22,7 @@ export const SpacingsPresentation = () => {
                 : {value}
               </Box>
               <Box key={key} __backgroundColor="#e3eaf2" position="relative">
-                <Box __width={value} height={10} __backgroundColor="#056dff" />
+                <Box __width={value} height="s7" __backgroundColor="#056dff" />
               </Box>
             </Box>
           );

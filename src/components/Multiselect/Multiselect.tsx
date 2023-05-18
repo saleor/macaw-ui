@@ -1,15 +1,15 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
-import {
-  Option,
-  ChangeHandler,
-  useMultiselectEvents,
-  RenderEndAdornmentType,
-} from "./useMultiselectEvents";
 import { MultiselectWrapper } from "./MultiselectWrapper";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import { List, Text, Box, PropsWithBox } from "..";
+import {
+  ChangeHandler,
+  Option,
+  RenderEndAdornmentType,
+  useMultiselectEvents,
+} from "./useMultiselectEvents";
+import { Box, List, PropsWithBox, Text } from "..";
 import { helperTextRecipe, InputVariants } from "../BaseInput";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 
 import { multiselectInputRecipe } from "./Multiselect.css";
 
@@ -93,15 +93,15 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           {selectedItems.map((item, idx) => (
             <Box
               key={`selected-item-${item}-${idx}`}
-              paddingX={4}
-              paddingY={2}
+              paddingX="s1.5"
+              paddingY="s0.5"
               backgroundColor="surfaceNeutralSubdued"
               borderColor="neutralHighlight"
               borderWidth={1}
               borderStyle="solid"
               borderRadius={3}
               display="flex"
-              gap={3}
+              gap="s1"
               alignItems="center"
               {...getSelectedItemProps({
                 selectedItem: item,
@@ -119,7 +119,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                   cursor="pointer"
                   variant="caption"
                   size="small"
-                  marginBottom={1}
+                  marginBottom="spx"
                   onClick={(event) => {
                     event.stopPropagation();
                     event.preventDefault();
@@ -138,9 +138,9 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             className={multiselectInputRecipe({ size, error })}
             placeholder="Add item"
             disabled={disabled}
-            width={0}
+            width="s0"
             __flex={1}
-            minWidth={10}
+            minWidth="s7"
             display={hasItemsToSelect ? "block" : "none"}
             {...getInputProps({
               id,

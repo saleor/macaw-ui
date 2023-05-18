@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Text } from "../Text";
-import { MoreOptionsIcon } from "../Icons";
 import { Button } from "../Button";
+import { MoreOptionsIcon } from "../Icons";
 import { List } from "../List";
+import { Text } from "../Text";
 import { Dropdown } from "./index";
 
 const meta: Meta<typeof Dropdown> = {
@@ -30,9 +30,9 @@ export const Primary: Story = {
 };
 
 const commonProps = {
-  paddingX: 5,
-  paddingY: 5,
-  gap: 6,
+  paddingX: "s2",
+  paddingY: "s2",
+  gap: "s3",
   borderRadius: 3,
 } as const;
 
@@ -46,7 +46,7 @@ export const DropdownWithList: Story = {
       // eslint-disable-next-line react/jsx-key
       <Dropdown.Content align="start">
         <List
-          padding={3}
+          padding="s1"
           borderRadius={3}
           boxShadow="overlay"
           backgroundColor="surfaceNeutralPlain"

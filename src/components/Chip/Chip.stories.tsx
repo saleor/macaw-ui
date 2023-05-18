@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import { Chip } from "./Chip";
-import { Text } from "../Text";
 import { Box } from "../Box";
+import { Text } from "../Text";
 
 const meta: Meta<typeof Chip> = {
   title: "Components / Chip",
@@ -17,7 +18,7 @@ export const Primary: Story = {
     size: "large",
   },
   render: (props) => (
-    <Box display="grid" gridTemplateColumns={2} gap={8}>
+    <Box display="grid" gridTemplateColumns={2} gap="s5">
       {/* Neutral */}
       <Chip {...props}>
         <Text variant="caption" size="small" color="textNeutralPlain">

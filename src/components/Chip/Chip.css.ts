@@ -19,16 +19,16 @@ export const chip = recipe({
   variants: {
     size: {
       small: sprinkles({
-        paddingX: 3,
-        height: 7,
+        paddingX: "s1",
+        height: "s4",
       }),
       medium: sprinkles({
-        paddingX: 3,
-        height: 8,
+        paddingX: "s1",
+        height: "s5",
       }),
       large: sprinkles({
-        paddingX: 4,
-        height: 9,
+        paddingX: "s1.5",
+        height: "s6",
       }),
     },
   },

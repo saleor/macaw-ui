@@ -1,7 +1,7 @@
+import { Unstyled } from "@storybook/blocks";
 import { ReactNode } from "react";
 import { Box, Text } from "~/components";
 import { useTheme } from "~/theme";
-import { Unstyled } from "@storybook/blocks";
 
 const getColorsBy = (colors: Record<string, string>, field: string) =>
   Object.entries(colors)
@@ -16,14 +16,14 @@ interface ColorItemProps {
 
 const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
   return (
-    <Box paddingY={10}>
-      <Box paddingY={5} as="h3">
+    <Box paddingY="s7">
+      <Box paddingY="s2" as="h3">
         {sectionName}
       </Box>
       <Box as="p" paddingBottom={8}>
         {children}
       </Box>
-      <Box display="flex" flexWrap="wrap" rowGap={13} columnGap={10}>
+      <Box display="flex" flexWrap="wrap" rowGap="s10" columnGap="s7">
         {colors.map(([name, value]) => (
           <Box
             key={name}
@@ -39,7 +39,7 @@ const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
             <Box
               __backgroundColor={value}
               width="100%"
-              height={10}
+              height="s7"
               borderRadius={2}
               display="flex"
               justifyContent="center"

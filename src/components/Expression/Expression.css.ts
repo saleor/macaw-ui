@@ -5,8 +5,8 @@ import { sprinkles, vars } from "~/theme";
 export const dropdownContent = recipe({
   base: [
     sprinkles({
-      padding: 4,
-      paddingBottom: 4,
+      padding: "s1.5",
+      paddingBottom: "s1.5",
       color: "textNeutralDefault",
       fontSize: "bodySmall",
       borderWidth: 1,
@@ -23,8 +23,8 @@ export const dropdownContent = recipe({
     absolute: {
       true: sprinkles({
         position: "absolute",
-        top: 0,
-        left: 0,
+        top: "s0",
+        left: "s0",
       }),
       false: {},
     },
@@ -42,7 +42,7 @@ export const dropdownContentScroller = style({
   },
   selectors: {
     "&::-webkit-scrollbar": {
-      width: vars.space[3],
+      width: vars.space.s1,
     },
     "&::-webkit-scrollbar-track": {
       background: "none",
@@ -57,8 +57,8 @@ export const dropdownContentScroller = style({
 export const dropdownItem = recipe({
   base: [
     sprinkles({
-      paddingY: 3,
-      paddingX: 4,
+      paddingY: "s1",
+      paddingX: "s1.5",
       outlineStyle: "none",
       cursor: "pointer",
       fontSize: "bodySmall",
@@ -93,8 +93,8 @@ export const dropdownTrigger = recipe({
       borderWidth: 0,
       outlineStyle: "none",
       cursor: "pointer",
-      paddingX: 4,
-      paddingY: 3,
+      paddingX: "s1.5",
+      paddingY: "s1",
     }),
   ],
   variants: {
@@ -122,7 +122,7 @@ export const inputContainer = recipe({
   base: [
     sprinkles({
       borderWidth: 0,
-      padding: 0,
+      padding: "s0",
       display: "flex",
       height: "100%",
       alignItems: "center",
@@ -150,8 +150,8 @@ export const input = recipe({
     sprinkles({
       borderWidth: 0,
       outlineStyle: "none",
-      paddingX: 4,
-      paddingY: 3,
+      paddingX: "s1.5",
+      paddingY: "s1",
       fontSize: "bodySmall",
       backgroundColor: "transparent",
       color: {
@@ -190,7 +190,7 @@ export const input = recipe({
 
 export const numberInputSign = sprinkles({
   fontSize: "bodySmall",
-  paddingLeft: 4,
+  paddingLeft: "s1.5",
 });
 
 export const autocompleteContainer = sprinkles({
@@ -199,7 +199,7 @@ export const autocompleteContainer = sprinkles({
 
 export const autocompleteInput = sprinkles({
   borderWidth: 0,
-  padding: 0,
+  padding: "s0",
   color: "textNeutralDefault",
   fontSize: "bodySmall",
 });

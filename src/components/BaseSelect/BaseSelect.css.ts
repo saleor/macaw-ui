@@ -1,6 +1,6 @@
 import { createVar, style } from "@vanilla-extract/css";
-import { recipe } from "@vanilla-extract/recipes";
 import { calc } from "@vanilla-extract/css-utils";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { sprinkles, vars } from "~/theme";
 
@@ -55,9 +55,9 @@ export const listStyle = style([
     boxShadow: "overlay",
     borderColor: "neutralHighlight",
     width: "100%",
-    padding: 3,
-    marginTop: 3,
-    left: 0,
+    padding: "s1",
+    marginTop: "s1",
+    left: "s0",
     zIndex: "3",
   }),
   {

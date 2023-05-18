@@ -1,10 +1,10 @@
-import { forwardRef, InputHTMLAttributes, ReactNode, FocusEvent } from "react";
+import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
-import { Option, ChangeHandler, useSelectEvents } from "./useSelectEvents";
 import { SelectWrapper } from "./SelectWrapper";
-import { List, Text, Box, PropsWithBox } from "..";
-import { helperTextRecipe, InputVariants } from "../BaseInput";
-import { listStyle, listItemStyle, listWrapperRecipe } from "../BaseSelect";
+import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
+import { Box, List, PropsWithBox, Text } from "..";
+import { InputVariants, helperTextRecipe } from "../BaseInput";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 
 export type SelectProps = PropsWithBox<
   Omit<
@@ -32,11 +32,11 @@ export type SelectProps = PropsWithBox<
 const getBoxHeight = (size: SelectProps["size"]) => {
   switch (size) {
     case "small":
-      return 7;
+      return "s4";
     case "medium":
-      return 8;
+      return "s5";
     case "large":
-      return 9;
+      return "s6";
   }
 };
 
@@ -73,7 +73,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     } = useSelectEvents(value, options, onChange);
 
     return (
-      <Box display="flex" flexDirection="column" gap={3}>
+      <Box display="flex" flexDirection="column" gap="s1">
         <SelectWrapper
           id={id}
           typed={typed}

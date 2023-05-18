@@ -1,6 +1,6 @@
 import {
-  Trigger as AccordionTrigger,
   Header as AccordionHeader,
+  Trigger as AccordionTrigger,
 } from "@radix-ui/react-accordion";
 import { ReactNode } from "react";
 
@@ -30,7 +30,7 @@ export const Trigger = ({
       <Box
         display="flex"
         justifyContent="space-between"
-        gap={5}
+        gap="s2"
         alignItems="center"
         cursor={disabled ? "not-allowed" : "pointer"}
         disabled={disabled}
