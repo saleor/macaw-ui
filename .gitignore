@@ -30,3 +30,6 @@ storybook-static
 
 # npm pack
 *.tgz
+
+# vite
+vite.config.ts.timestamp-*.mjs

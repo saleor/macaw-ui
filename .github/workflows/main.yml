@@ -22,9 +22,9 @@ jobs:
         working-directory: legacy
 
       - name: Setup PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
         with:
-          version: 8.2.0
+          version: 8
           run_install: |
             - recursive: false
               args: [--frozen-lockfile]
@@ -37,8 +37,3 @@ jobs:
 
       - name: Test
         run: pnpm test
-
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

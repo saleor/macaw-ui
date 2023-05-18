@@ -1,0 +1,39 @@
+name: CI
+on:
+  push:
+    branches-ignore:
+      - main
+    tags-ignore:
+      - "*"
+
+jobs:
+  build:
+    name: Run chromatic tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - name: Setup PNPM
+        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+        with:
+          version: 8
+          run_install: |
+            - recursive: false
+              args: [--frozen-lockfile]
+      - name: Publish to Chromatic
+        if: github.ref != 'refs/heads/canary'
+        uses: chromaui/action@a89b674adf766dbde41ad9ea2b2b60b91188a0f0 # v6.17.4
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/canary'
+        uses: chromaui/action@a89b674adf766dbde41ad9ea2b2b60b91188a0f0 # v6.17.4
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true

@@ -1,11 +1,15 @@
 import { createGlobalThemeContract } from "@vanilla-extract/css";
 
 const toKebabCase = (str: string) =>
-  str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2").toLowerCase();
+  str
+    .replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2")
+    .toLowerCase()
+    .replace(".", "-");
 
 export const vars = createGlobalThemeContract(
   {
     space: {
+      // TODO: #438 remove legacy spacing
       0: null,
       1: null,
       2: null,
@@ -20,6 +24,29 @@ export const vars = createGlobalThemeContract(
       11: null,
       12: null,
       13: null,
+
+      s0: null,
+      spx: null,
+      "s0.5": null,
+      s1: null,
+      "s1.5": null,
+      s2: null,
+      "s2.5": null,
+      s3: null,
+      "s3.5": null,
+      s4: null,
+      s5: null,
+      s6: null,
+      s7: null,
+      s8: null,
+      s9: null,
+      s10: null,
+      s11: null,
+      s12: null,
+      s14: null,
+      s16: null,
+      s20: null,
+      s24: null,
     },
     colors: {
       foreground: {
