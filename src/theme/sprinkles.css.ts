@@ -161,6 +161,7 @@ const responsiveProperties = defineProperties({
     overflowY: ["hidden", "visible", "scroll", "auto"],
     textOverflow: ["none", "ellipsis"],
     whiteSpace: ["normal", "nowrap"],
+    wordBreak: ["break-word", "break-all", "normal"],
     zIndex: ["auto", "1", "2", "3"],
     aspectRatio: ["1 / 1"],
     objectFit: ["contain", "cover", "fill", "none", "scale-down"],
