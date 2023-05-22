@@ -35,6 +35,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       helperText,
       onBlur,
       onFocus,
+      flex,
+      flexBasis,
+      flexGrow,
+      flexShrink,
+      width,
       ...props
     },
     ref
@@ -47,7 +52,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     } = useStateEvents(value, onChange);
 
     return (
-      <Box display="flex" flexDirection="column">
+      <Box
+        display="flex"
+        flexDirection="column"
+        flex={flex}
+        flexBasis={flexBasis}
+        flexGrow={flexGrow}
+        flexShrink={flexShrink}
+        width={width}
+      >
         <InputWrapper
           id={id}
           typed={typed}
