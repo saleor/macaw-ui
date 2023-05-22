@@ -73,7 +73,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     } = useSelectEvents(value, options, onChange);
 
     return (
-      <Box display="flex" flexDirection="column" gap="s1">
+      <Box display="flex" flexDirection="column">
         <SelectWrapper
           id={id}
           typed={typed}
@@ -129,7 +129,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         </Box>
 
         {helperText && (
-          <Box className={helperTextRecipe({ size })}>
+          <Box marginTop={3} className={helperTextRecipe({ size })}>
             <Text
               variant="caption"
               size={size}
