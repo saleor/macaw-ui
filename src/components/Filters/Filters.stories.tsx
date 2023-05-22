@@ -136,5 +136,6 @@ const value = [
 export const Default: Story = {
   args: {
     value,
+    onChange: (event) => console.log(event),
   },
 };
