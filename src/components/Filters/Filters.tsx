@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Box, Combobox, Input, Multiselect, Select, Text } from "..";
+import { Box, Button, Combobox, Input, Multiselect, Select, Text } from "..";
+import { useEvents } from "./useEvents";
 
 type Operator = {
   type: "operator";
@@ -72,6 +73,8 @@ export const Filters = ({ value, onChange }: Props) => {
     });
   }, [onChange]);
 
+  // const {wrapper, dispatchFilterChangeEvent} = useEvents({ onChange });
+
   return (
     <Box
       display="grid"
@@ -101,7 +104,7 @@ const Row = ({ left, condition, right, index }: Row & { index: number }) => {
             type: "value",
             dataType: "combobox",
             value: e as string,
-            path: `${index}.left`,
+            path: `${index}.left.value`,
           });
         }}
       />
@@ -113,7 +116,7 @@ const Row = ({ left, condition, right, index }: Row & { index: number }) => {
             type: "value",
             dataType: "combobox",
             value: e as string,
-            path: `${index}.condition`,
+            path: `${index}.condition.value`,
           });
         }}
       />
@@ -137,7 +140,7 @@ const Right = (props: Right & { index: number }) => {
               type: "value",
               dataType: "input",
               value: e.target.value,
-              path: `${props.index}.right.${props.type}`,
+              path: `${props.index}.right.value`,
             });
           }}
         />
@@ -152,7 +155,7 @@ const Right = (props: Right & { index: number }) => {
               type: "value",
               dataType: "multiselect",
               value: e,
-              path: `${props.index}.right.${props.type}`,
+              path: `${props.index}.right.value`,
             })
           }
         />
@@ -167,7 +170,7 @@ const Right = (props: Right & { index: number }) => {
               type: "value",
               dataType: "combobox",
               value: e as string,
-              path: `${props.index}.right.${props.type}`,
+              path: `${props.index}.right.value`,
             })
           }
         />
@@ -182,7 +185,7 @@ const Right = (props: Right & { index: number }) => {
               type: "value",
               dataType: "select",
               value: e as string,
-              path: `${props.index}.right.${props.type}`,
+              path: `${props.index}.right.value`,
             })
           }
         />

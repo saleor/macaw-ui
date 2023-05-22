@@ -1,5 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Filters } from "./index";
+import _ from "lodash";
+import { useState } from "react";
+
+import { Filters } from ".";
 
 const meta: Meta<typeof Filters> = {
   title: "Components / Filters",
@@ -124,7 +127,7 @@ const value = [
     },
     right: {
       type: "select",
-      value: [],
+      value: "",
       options: [
         { value: "100%", label: "100%" },
         { value: "50%", label: "50%" },
@@ -133,9 +136,25 @@ const value = [
   },
 ];
 
-export const Default: Story = {
-  args: {
-    value,
-    onChange: (event) => console.log(event),
-  },
+// export const Default: Story = {
+//   args: {
+//     value,
+//     onChange: (event) => console.log(event),
+//   },
+// };
+
+export const Default = () => {
+  const [rows, setRows] = useState(value);
+
+  return (
+    <Filters
+      value={rows}
+      onChange={(event) => {
+        const { path, value } = event;
+        // https://github.com/lodash/lodash/issues/1696
+        const newState = _.setWith(_.clone(rows), path, value, _.clone);
+        setRows(newState);
+      }}
+    />
+  );
 };
