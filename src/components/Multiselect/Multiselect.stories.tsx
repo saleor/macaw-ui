@@ -166,3 +166,39 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
     },
   },
 };
+
+export const WithScrollOnList: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
+
+    return (
+      <Box __width={300} __height={150} overflowY="hidden">
+        <Multiselect
+          {...args}
+          value={selectedItems}
+          onChange={(values) => setSelectedItems(values ?? [])}
+        />
+      </Box>
+    );
+  },
+
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [selectedItems, setSelectedItems] = useState(["color-black"]);
+
+<Multiselect
+  label="Label"
+  size="large"
+  value={selectedItems}
+  onChange={(values) => setSelectedItems(values)}
+  options={[{ value: "color-black", label: "Black" }]}
+  endAdornment={<ViewTableIcon />}
+/>;
+        `,
+      },
+    },
+  },
+};
