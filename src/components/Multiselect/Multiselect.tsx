@@ -1,9 +1,6 @@
-import * as Portal from "@radix-ui/react-portal";
+import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { Box, List, PropsWithBox, Text } from "..";
-import { helperTextRecipe, InputVariants } from "../BaseInput";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 import { MultiselectWrapper } from "./MultiselectWrapper";
 import {
   ChangeHandler,
@@ -11,6 +8,9 @@ import {
   RenderEndAdornmentType,
   useMultiselectEvents,
 } from "./useMultiselectEvents";
+import { Box, List, PropsWithBox, Text } from "..";
+import { helperTextRecipe, InputVariants } from "../BaseInput";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 
 import { multiselectInputRecipe } from "./Multiselect.css";
 
@@ -154,7 +154,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           />
         </MultiselectWrapper>
 
-        <Portal.Root asChild container={containerRef.current}>
+        <Portal asChild container={containerRef.current}>
           <Box
             display={isOpen && hasItemsToSelect ? "block" : "none"}
             className={listWrapperRecipe({ size })}
@@ -162,9 +162,8 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             <List
               as="ul"
               className={listStyle}
-              {...getMenuProps()}
-              __maxHeight="200px"
-              overflow="auto"
+              // suppress error because of rendering list in portal
+              {...getMenuProps({}, { suppressRefError: true })}
             >
               {isOpen &&
                 itemsToSelect?.map((item, index) => (
@@ -182,7 +181,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                 ))}
             </List>
           </Box>
-        </Portal.Root>
+        </Portal>
 
         {helperText && (
           <Box className={helperTextRecipe({ size })}>
