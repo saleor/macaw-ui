@@ -1,6 +1,6 @@
 import { createVar, style } from "@vanilla-extract/css";
-import { recipe } from "@vanilla-extract/recipes";
 import { calc } from "@vanilla-extract/css-utils";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { sprinkles, vars } from "~/theme";
 
@@ -50,15 +50,14 @@ export const listWrapperRecipe = recipe({
 
 export const listStyle = style([
   sprinkles({
-    position: "absolute",
     backgroundColor: "surfaceNeutralPlain",
     boxShadow: "overlay",
     borderColor: "neutralHighlight",
     width: "100%",
     padding: 3,
     marginTop: 3,
-    left: 0,
-    zIndex: "3",
+    maxHeight: "s52",
+    overflowY: "auto",
   }),
   {
     borderRadius: calc.add(listItemBorderRadius, spaceBetweenListItemAndBorder),
