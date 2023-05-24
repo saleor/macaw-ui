@@ -21,6 +21,13 @@ export const space = {
   s16: "64px",
   s20: "80px",
   s24: "96px",
+  s28: "112px",
+  s32: "128px",
+  s36: "144px",
+  s40: "160px",
+  s44: "176px",
+  s48: "192px",
+  s52: "208px",
 };
 
 // TODO: #438 remove legacy spacing

@@ -122,7 +122,7 @@ const responsiveProperties = defineProperties({
     minHeight: ["auto", "100%", "0px"],
     minWidth: { ...vars.space, auto: "auto", "100%": "100%" },
     maxWidth: ["auto", "100%", "0px"],
-    maxHeight: ["auto", "100%", "0px"],
+    maxHeight: { ...vars.space, auto: "auto", "100%": "100%", "0px": "0px" },
     borderTopRightRadius: {
       ...vars.borderRadius,
       "50%": "50%",

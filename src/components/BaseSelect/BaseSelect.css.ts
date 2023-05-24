@@ -50,7 +50,6 @@ export const listWrapperRecipe = recipe({
 
 export const listStyle = style([
   sprinkles({
-    position: "absolute",
     backgroundColor: "surfaceNeutralPlain",
     boxShadow: "overlay",
     borderColor: "neutralHighlight",
@@ -58,7 +57,8 @@ export const listStyle = style([
     padding: "s1",
     marginTop: "s1",
     left: "s0",
-    zIndex: "3",
+    maxHeight: "s52",
+    overflowY: "auto",
   }),
   {
     borderRadius: calc.add(listItemBorderRadius, spaceBetweenListItemAndBorder),

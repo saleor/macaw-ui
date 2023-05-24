@@ -1,4 +1,11 @@
-import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
+import { Root as Portal } from "@radix-ui/react-portal";
+import {
+  FocusEvent,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+  useRef,
+} from "react";
 
 import { SelectWrapper } from "./SelectWrapper";
 import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
@@ -72,8 +79,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       handlers,
     } = useSelectEvents(value, options, onChange);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+
     return (
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" ref={containerRef}>
         <SelectWrapper
           id={id}
           typed={typed}
@@ -105,28 +114,35 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           </Box>
         </SelectWrapper>
 
-        <Box
-          position="relative"
-          display={isOpen ? "block" : "none"}
-          className={listWrapperRecipe({ size })}
-        >
-          <List as="ul" className={listStyle} {...getMenuProps()}>
-            {isOpen &&
-              options?.map((item, index) => (
-                <List.Item
-                  key={`${id}-${item}-${index}`}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item,
-                    index,
-                  })}
-                  active={highlightedIndex === index}
-                >
-                  <Text size={size}>{item.label}</Text>
-                </List.Item>
-              ))}
-          </List>
-        </Box>
+        <Portal asChild container={containerRef.current}>
+          <Box
+            position="relative"
+            display={isOpen ? "block" : "none"}
+            className={listWrapperRecipe({ size })}
+          >
+            <List
+              as="ul"
+              className={listStyle}
+              // suppress error because of rendering list in portal
+              {...getMenuProps({}, { suppressRefError: true })}
+            >
+              {isOpen &&
+                options?.map((item, index) => (
+                  <List.Item
+                    key={`${id}-${item}-${index}`}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item,
+                      index,
+                    })}
+                    active={highlightedIndex === index}
+                  >
+                    <Text size={size}>{item.label}</Text>
+                  </List.Item>
+                ))}
+            </List>
+          </Box>
+        </Portal>
 
         {helperText && (
           <Box marginTop={3} className={helperTextRecipe({ size })}>
