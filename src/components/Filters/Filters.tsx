@@ -1,79 +1,43 @@
-import { useEffect } from "react";
-import { Box, Button, Combobox, Input, Multiselect, Select, Text } from "..";
-import { useEvents } from "./useEvents";
+import { FilterEvent, useEvents, Context } from "./useEvents";
 
-type Operator = {
-  type: "operator";
+import {
+  Box,
+  Button,
+  Combobox,
+  Input,
+  Multiselect,
+  RemoveIcon,
+  Select,
+  Text,
+} from "..";
+
+export type Row = {
+  name: string;
   value: string;
-  label: string;
-};
-
-type Row = {
-  type: "row";
-  left: {
-    name: string;
-    value: string;
-    options: Array<{ value: string; label: string }>;
-  };
   condition: {
     options: Array<{ value: string; label: string }>;
-    value: string;
+    selected: Right;
   };
-  right: Right;
 };
 
-type Right =
-  | {
-      type: "input";
-      value: number;
-    }
-  | {
-      type: "multiselect";
-      value: string[];
-      options: Array<{ value: string; label: string }>;
-    }
-  | {
-      type: "combobox";
-      value: string;
-      options: Array<{ value: string; label: string }>;
-    }
-  | {
-      type: "select";
-      value: string;
-      options: Array<{ value: string; label: string }>;
-    };
+type Right = {
+  type: string;
+  value: string | string[];
+  options?: Array<{ value: string; label: string }>;
+};
 
 export type Props = {
-  value: Array<Row | Operator>;
-  onChange: (event: {
-    type: "value";
-    dataType: "select" | "combobox" | "input";
-    value: string | string[];
-    path: string;
-  }) => void;
+  value: Array<Row | string>;
+  leftOptions: Array<{ value: string; label: string }>;
+  onChange: (event: FilterEvent["detail"], context: Context) => void;
 };
 
-function publish(
-  eventName: string,
-  data: {
-    type: "value";
-    dataType: "select" | "combobox" | "input" | "multiselect";
-    value: string | string[];
-    path: string;
-  }
-) {
-  const event = new CustomEvent(eventName, { detail: data });
-  document.dispatchEvent(event);
-}
-
-export const Filters = ({ value, onChange }: Props) => {
-  useEffect(() => {
-    document.addEventListener("filterChange", (event: any) => {
-      onChange(event.detail);
-    });
-  }, [onChange]);
-
-  // const {wrapper, dispatchFilterChangeEvent} = useEvents({ onChange });
+export const _ExperimentalFilters = ({
+  value,
+  onChange,
+  leftOptions,
+}: Props) => {
+  const { wrapper, dispatchFilterChangeEvent } = useEvents({ onChange, value });
 
   return (
     <Box
@@ -81,66 +45,97 @@ export const Filters = ({ value, onChange }: Props) => {
       __gridTemplateColumns="repeat(2, auto)"
       __placeItems="center self-start"
       gap={3}
+      ref={wrapper}
     >
       {value.map((item, idx) =>
-        item.type === "operator" ? (
-          <Operator key={idx} {...item} />
+        typeof item === "string" ? (
+          <Text key={idx}>{item}</Text>
         ) : (
-          <Row key={idx} {...item} index={idx} />
+          <Row
+            key={idx}
+            item={item}
+            index={idx}
+            dispatchFilterChangeEvent={dispatchFilterChangeEvent}
+            leftOptions={leftOptions}
+          />
         )
       )}
+      <Button onClick={() => dispatchFilterChangeEvent({ type: "add" })}>
+        Add row
+      </Button>
     </Box>
   );
 };
 
-const Row = ({ left, condition, right, index }: Row & { index: number }) => {
+const Row = ({
+  item,
+  index,
+  dispatchFilterChangeEvent,
+  leftOptions,
+}: {
+  item: Row;
+  index: number;
+  dispatchFilterChangeEvent: (data: FilterEvent["detail"]) => void;
+  leftOptions: Array<{ value: string; label: string }>;
+}) => {
   return (
-    <Box display="grid" gap={3} __gridTemplateColumns="repeat(3, 1fr)">
+    <Box display="grid" gap={3} __gridTemplateColumns="repeat(4, 1fr)">
       <Combobox
-        value={left.value}
-        options={left.options}
+        value={item.value}
+        options={leftOptions}
         onChange={(e) => {
-          publish("filterChange", {
-            type: "value",
-            dataType: "combobox",
+          dispatchFilterChangeEvent({
+            type: "updateLeftOperator",
             value: e as string,
-            path: `${index}.left.value`,
+            path: `${index}`,
           });
         }}
       />
-      <Select
-        value={condition.value}
-        options={condition.options}
-        onChange={(e) => {
-          publish("filterChange", {
-            type: "value",
-            dataType: "combobox",
-            value: e as string,
-            path: `${index}.condition.value`,
-          });
-        }}
+      {item.condition?.selected && (
+        <Select
+          value={item.condition?.selected.type ?? ""}
+          options={item.condition?.options ?? []}
+          onChange={(value) => {
+            dispatchFilterChangeEvent({
+              type: "updateCondition",
+              value: value as string,
+              path: `${index}.condition.selected`,
+            });
+          }}
+        />
+      )}
+
+      <Right
+        item={item}
+        index={index}
+        dispatchFilterChangeEvent={dispatchFilterChangeEvent}
       />
-      <Right {...right} index={index} />
+      <Button
+        variant="secondary"
+        icon={<RemoveIcon />}
+        onClick={() =>
+          dispatchFilterChangeEvent({ type: "remove", path: `${index}` })
+        }
+      />
     </Box>
   );
 };
 
-const Operator = ({ label }: Operator) => {
-  return <Text>{label}</Text>;
-};
-
-const Right = (props: Right & { index: number }) => {
-  switch (props.type) {
+const Right = (props: {
+  index: number;
+  item: Row;
+  dispatchFilterChangeEvent: (data: FilterEvent["detail"]) => void;
+}) => {
+  switch (props.item.condition?.selected.type) {
     case "input":
       return (
         <Input
-          value={props.value}
+          value={props.item.condition.selected.value}
           onChange={(e) => {
-            publish("filterChange", {
-              type: "value",
-              dataType: "input",
+            props.dispatchFilterChangeEvent({
+              type: "updateRightOperator",
               value: e.target.value,
-              path: `${props.index}.right.value`,
+              path: `${props.index}.condition.selected.value`,
             });
           }}
         />
@@ -148,14 +143,13 @@ const Right = (props: Right & { index: number }) => {
     case "multiselect":
       return (
         <Multiselect
-          value={props.value}
-          options={props.options}
+          value={props.item.condition.selected.value}
+          options={props.item.condition.selected.options}
           onChange={(e) =>
-            publish("filterChange", {
-              type: "value",
-              dataType: "multiselect",
+            props.dispatchFilterChangeEvent({
+              type: "updateRightOperator",
               value: e,
-              path: `${props.index}.right.value`,
+              path: `${props.index}.condition.selected.value`,
             })
           }
         />
@@ -163,14 +157,13 @@ const Right = (props: Right & { index: number }) => {
     case "combobox":
       return (
         <Combobox
-          value={props.value}
-          options={props.options}
+          value={props.item.condition.selected.value}
+          options={props.item.condition.selected.options}
           onChange={(e) =>
-            publish("filterChange", {
-              type: "value",
-              dataType: "combobox",
+            props.dispatchFilterChangeEvent({
+              type: "updateRightOperator",
               value: e as string,
-              path: `${props.index}.right.value`,
+              path: `${props.index}.condition.selected.value`,
             })
           }
         />
@@ -178,14 +171,13 @@ const Right = (props: Right & { index: number }) => {
     case "select":
       return (
         <Select
-          value={props.value}
-          options={props.options}
+          value={props.item.condition.selected.value}
+          options={props.item.condition.selected.options}
           onChange={(e) =>
-            publish("filterChange", {
-              type: "value",
-              dataType: "select",
+            props.dispatchFilterChangeEvent({
+              type: "updateRightOperator",
               value: e as string,
-              path: `${props.index}.right.value`,
+              path: `${props.index}.condition.selected.value`,
             })
           }
         />

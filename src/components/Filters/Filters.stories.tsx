@@ -1,160 +1,141 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import _ from "lodash";
 import { useState } from "react";
 
-import { Filters } from ".";
+import { Row, _ExperimentalFilters } from ".";
 
-const meta: Meta<typeof Filters> = {
+const meta: Meta<typeof _ExperimentalFilters> = {
   title: "Components / Filters",
-  tags: ["autodocs"],
-  component: Filters,
+  component: _ExperimentalFilters,
 };
 
 export default meta;
-type Story = StoryObj<typeof Filters>;
+
+const leftOptions = [
+  { value: "price", label: "Price" },
+  { value: "category", label: "Category" },
+  { value: "rating", label: "Rating" },
+  { value: "discount", label: "Discount" },
+];
 
 const value = [
+  "WHERE",
   {
-    type: "operator",
-    value: "where",
-    label: "Where",
-  },
-  {
-    type: "row",
-    left: {
-      name: "price",
-      value: "price",
-      options: [
-        { value: "price", label: "Price" },
-        { value: "category", label: "Category" },
-        { value: "rating", label: "Rating" },
-        { value: "discount", label: "Discount" },
-      ],
-    },
+    name: "price",
+    value: "price",
     condition: {
       options: [
         { value: "input", label: "is" },
-        { value: "range", label: "is between" },
-        { value: "input", label: "greater than" },
+        { value: "multiselect", label: "has" },
       ],
-      value: "input",
-    },
-    right: {
-      type: "input",
-      value: 3.14,
+      selected: {
+        value: "3.13",
+        type: "input",
+      },
     },
   },
+  "AND",
   {
-    type: "operator",
-    value: "and",
-    label: "And",
-  },
-  {
-    type: "row",
-    left: {
-      name: "category",
-      value: "category",
-      options: [
-        { value: "price", label: "Price" },
-        { value: "category", label: "Categories" },
-        { value: "rating", label: "Rating" },
-        { value: "discount", label: "Discount" },
-      ],
-    },
+    name: "category",
+    value: "category",
     condition: {
       options: [{ value: "multiselect", label: "are" }],
-      value: "multiselect",
-    },
-    right: {
-      type: "multiselect",
-      value: [],
-      options: [
-        { value: "electronics", label: "Electronics" },
-        { value: "clothing", label: "Clothing" },
-      ],
+      selected: {
+        type: "multiselect",
+        value: [],
+        options: [
+          { value: "electronics", label: "Electronics" },
+          { value: "clothing", label: "Clothing" },
+        ],
+      },
     },
   },
+  "OR",
   {
-    type: "operator",
-    value: "or",
-    label: "Or",
-  },
-  {
-    type: "row",
-    left: {
-      name: "rating",
-      value: "rating",
-      options: [
-        { value: "price", label: "Price" },
-        { value: "category", label: "Categories" },
-        { value: "rating", label: "Rating" },
-        { value: "discount", label: "Discount" },
-      ],
-    },
+    name: "rating",
+    value: "rating",
     condition: {
       options: [{ value: "combobox", label: "is" }],
-      value: "combobox",
-    },
-    right: {
-      type: "combobox",
-      value: "",
-      options: [
-        { value: "1", label: "1" },
-        { value: "2", label: "2" },
-      ],
+      selected: {
+        type: "combobox",
+        value: "",
+        options: [
+          { value: "1", label: "1" },
+          { value: "2", label: "2" },
+        ],
+      },
     },
   },
+  "AND",
   {
-    type: "operator",
-    value: "and",
-    label: "And",
-  },
-  {
-    type: "row",
-    left: {
-      name: "discount",
-      value: "discount",
-      options: [
-        { value: "price", label: "Price" },
-        { value: "category", label: "Categories" },
-        { value: "rating", label: "Rating" },
-        { value: "discount", label: "Discount" },
-      ],
-    },
+    name: "discount",
+    value: "discount",
     condition: {
       options: [{ value: "select", label: "is" }],
-      value: "select",
-    },
-    right: {
-      type: "select",
-      value: "",
-      options: [
-        { value: "100%", label: "100%" },
-        { value: "50%", label: "50%" },
-      ],
+      selected: {
+        type: "select",
+        value: "",
+        options: [
+          { value: "100%", label: "100%" },
+          { value: "50%", label: "50%" },
+        ],
+      },
     },
   },
 ];
 
-// export const Default: Story = {
-//   args: {
-//     value,
-//     onChange: (event) => console.log(event),
-//   },
-// };
-
 export const Default = () => {
-  const [rows, setRows] = useState(value);
+  const [rows, setRows] = useState<Array<Row | string>>(value);
 
   return (
-    <Filters
+    <_ExperimentalFilters
       value={rows}
-      onChange={(event) => {
-        const { path, value } = event;
-        // https://github.com/lodash/lodash/issues/1696
-        const newState = _.setWith(_.clone(rows), path, value, _.clone);
-        setRows(newState);
+      leftOptions={leftOptions}
+      onChange={(event, context) => {
+        if (event?.type === "updateRightOperator") {
+          const newState = context.updateRightOperator();
+          setRows(newState);
+        }
+
+        if (event?.type === "updateCondition") {
+          const newState = context.updateCondition({
+            value: [],
+            options: [
+              { value: "electronics", label: "Electronics" },
+              { value: "clothing", label: "Clothing" },
+            ],
+          });
+          setRows(newState);
+        }
+
+        if (event?.type === "updateLeftOperator") {
+          const newState = context.updateLeftOperator({
+            name: "price",
+            condition: {
+              options: [{ value: "input", label: "is" }],
+              selected: {
+                value: "",
+                type: "input",
+              },
+            },
+          });
+          setRows(newState);
+        }
+        if (event?.type === "add") {
+          const newState = context.addRow();
+          setRows(newState);
+        }
+
+        if (event?.type === "remove") {
+          const newState = context.removeRow();
+          setRows(newState);
+        }
       }}
+      // translations={{
+      //   WHERE: "Gdzie",
+      //   AND: "I",
+      //   OR: "Lub",
+      // }}
     />
   );
 };
