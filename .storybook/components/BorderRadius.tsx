@@ -1,6 +1,6 @@
-import { Box, Text } from "~/components";
-import { useTheme } from "~/theme";
 import { Unstyled } from "@storybook/blocks";
+import { Box } from "~/components";
+import { useTheme } from "~/theme";
 
 export const BorderRadiusPresentation = () => {
   const { themeValues: vars } = useTheme();
@@ -8,17 +8,17 @@ export const BorderRadiusPresentation = () => {
   return (
     <Unstyled>
       <Box
-        paddingY={10}
+        paddingY="s7"
         flexDirection="row"
         display="flex"
         flexWrap="wrap"
-        rowGap={13}
-        columnGap={10}
+        rowGap="s10"
+        columnGap="s7"
       >
         {Object.entries(vars.borderRadius).map(([key, entry]) => (
           <Box
             key={key}
-            paddingBottom={10}
+            paddingBottom="s7"
             display="flex"
             alignItems="center"
             flexWrap="wrap"
@@ -36,7 +36,7 @@ export const BorderRadiusPresentation = () => {
               borderStyle="solid"
               backgroundColor="transparent"
               width="100%"
-              height={10}
+              height="s7"
               display="flex"
               justifyContent="center"
               alignItems="center"

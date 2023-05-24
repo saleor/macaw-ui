@@ -21,16 +21,16 @@ export const inputContainer = recipe({
   variants: {
     size: {
       small: sprinkles({
-        paddingY: 4,
-        paddingX: 5,
+        paddingY: "s1.5",
+        paddingX: "s2",
       }),
       medium: sprinkles({
-        paddingY: 5,
-        paddingX: 5,
+        paddingY: "s2",
+        paddingX: "s2",
       }),
       large: sprinkles({
-        paddingY: 6,
-        paddingX: 6,
+        paddingY: "s3",
+        paddingX: "s3",
       }),
     },
   },
@@ -43,7 +43,7 @@ export const input = recipe({
       backgroundColor: "transparent",
       borderWidth: 0,
       outlineStyle: "none",
-      padding: 0,
+      padding: "s0",
       color: {
         default: "textNeutralDefault",
         disabled: "textNeutralSubdued",
@@ -57,7 +57,7 @@ export const searchIcon = recipe({
   base: [
     sprinkles({
       color: "textNeutralSubdued",
-      marginRight: 5,
+      marginRight: "s2",
     }),
   ],
 });

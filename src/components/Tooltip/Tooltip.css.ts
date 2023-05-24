@@ -6,7 +6,7 @@ export const content = sprinkles({
   borderWidth: 1,
   borderColor: "neutralPlain",
   backgroundColor: "surfaceNeutralPlain",
-  padding: 5,
+  padding: "s2",
   borderRadius: 3,
   typeSize: "bodyEmpSmall",
   color: "textNeutralPlain",

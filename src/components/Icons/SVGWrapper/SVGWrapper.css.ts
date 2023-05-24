@@ -5,16 +5,16 @@ import { vars } from "~/theme";
 export const variants = {
   size: {
     small: {
-      width: vars.space[7],
-      height: vars.space[7],
+      width: vars.space.s4,
+      height: vars.space.s4,
     },
     medium: {
-      width: vars.space[8],
-      height: vars.space[8],
+      width: vars.space.s5,
+      height: vars.space.s5,
     },
     large: {
-      width: vars.space[9],
-      height: vars.space[9],
+      width: vars.space.s6,
+      height: vars.space.s6,
     },
     fill: {},
   },

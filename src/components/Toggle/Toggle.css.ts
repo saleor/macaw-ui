@@ -13,7 +13,7 @@ export const toggle = recipe({
       display: "flex",
       alignItems: "center",
       position: "relative",
-      padding: 1,
+      padding: "spx",
       outlineStyle: "none",
       cursor: "pointer",
     }),
@@ -22,8 +22,8 @@ export const toggle = recipe({
         // Inner dot
         "&::before": {
           content: "",
-          width: vars.space[5],
-          height: vars.space[5],
+          width: vars.space.s2,
+          height: vars.space.s2,
           // Token mismatch
           backgroundColor: vars.colors.foreground.iconNeutralContrasted,
           borderRadius: 4,
@@ -39,16 +39,16 @@ export const toggle = recipe({
         "&::after": {
           content: "",
           visibility: "hidden",
-          width: vars.space[5],
-          height: vars.space[5],
+          width: vars.space.s2,
+          height: vars.space.s2,
           transition: "all 40ms ease-in-out",
         },
         // Transition from dot to pill on press
         "&:not([disabled]):active::before": {
-          width: vars.space[7],
+          width: vars.space.s4,
         },
         "&:not([disabled]):active::after": {
-          width: vars.space[0],
+          width: vars.space.s0,
         },
 
         // Styling for off state
