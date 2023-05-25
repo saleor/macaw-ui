@@ -5,13 +5,13 @@ import { Row } from "./Filters";
 export interface FilterEvent extends Event {
   detail?: {
     type:
-      | "updateLeftOperator"
-      | "updateCondition"
-      | "updateRightOperator"
+      | "update.leftOperator"
+      | "update.condition"
+      | "update.rightOperator"
       | "remove"
       | "add";
-    value: string | string[];
-    path: string;
+    value?: string | string[];
+    path?: string;
   };
 }
 
@@ -24,12 +24,10 @@ export type Context = {
 };
 
 type UpdateConditionProps = {
-  value: string[] | string;
   options?: Array<{ value: string; label: string }>;
 };
 
 type UpdateLeftOperatorProps = {
-  name: string;
   condition: {
     options: Array<{ value: string; label: string }>;
     selected: {
@@ -40,11 +38,23 @@ type UpdateLeftOperatorProps = {
 };
 
 type UseEventsProps = {
-  onChange: (event: FilterEvent["detail"], context: any) => void;
+  onChange: (event: FilterEvent["detail"], context: Context) => void;
   value: Array<Row | string>;
 };
 
 const eventName = "filterChange";
+
+const getDefaultValueByType = (type: string | undefined | string[]) => {
+  switch (type) {
+    case "input":
+    case "select":
+      return "";
+    case "multiselect":
+      return [];
+    default:
+      return "";
+  }
+};
 
 export const useEvents = ({ onChange, value }: UseEventsProps) => {
   const wrapper = useRef<HTMLElement>(null);
@@ -64,6 +74,7 @@ export const useEvents = ({ onChange, value }: UseEventsProps) => {
             path,
             {
               type,
+              value: getDefaultValueByType(type),
               ...data,
             },
             _.clone
@@ -109,7 +120,7 @@ export const useEvents = ({ onChange, value }: UseEventsProps) => {
     return () => {
       element?.removeEventListener(eventName, handleChange);
     };
-  }, [onChange]);
+  }, [onChange, value]);
 
   const dispatchFilterChangeEvent = ({ ...data }: FilterEvent["detail"]) => {
     const event = new CustomEvent(eventName, { detail: data });

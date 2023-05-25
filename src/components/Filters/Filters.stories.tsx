@@ -21,7 +21,6 @@ const leftOptions = [
 const value = [
   "WHERE",
   {
-    name: "price",
     value: "price",
     condition: {
       options: [
@@ -36,7 +35,6 @@ const value = [
   },
   "AND",
   {
-    name: "category",
     value: "category",
     condition: {
       options: [{ value: "multiselect", label: "are" }],
@@ -52,7 +50,6 @@ const value = [
   },
   "OR",
   {
-    name: "rating",
     value: "rating",
     condition: {
       options: [{ value: "combobox", label: "is" }],
@@ -68,7 +65,6 @@ const value = [
   },
   "AND",
   {
-    name: "discount",
     value: "discount",
     condition: {
       options: [{ value: "select", label: "is" }],
@@ -92,14 +88,13 @@ export const Default = () => {
       value={rows}
       leftOptions={leftOptions}
       onChange={(event, context) => {
-        if (event?.type === "updateRightOperator") {
+        if (event?.type === "update.rightOperator") {
           const newState = context.updateRightOperator();
           setRows(newState);
         }
 
-        if (event?.type === "updateCondition") {
+        if (event?.type === "update.condition") {
           const newState = context.updateCondition({
-            value: [],
             options: [
               { value: "electronics", label: "Electronics" },
               { value: "clothing", label: "Clothing" },
@@ -108,9 +103,8 @@ export const Default = () => {
           setRows(newState);
         }
 
-        if (event?.type === "updateLeftOperator") {
+        if (event?.type === "update.leftOperator") {
           const newState = context.updateLeftOperator({
-            name: "price",
             condition: {
               options: [{ value: "input", label: "is" }],
               selected: {
@@ -131,11 +125,6 @@ export const Default = () => {
           setRows(newState);
         }
       }}
-      // translations={{
-      //   WHERE: "Gdzie",
-      //   AND: "I",
-      //   OR: "Lub",
-      // }}
     />
   );
 };

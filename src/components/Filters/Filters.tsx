@@ -12,9 +12,8 @@ import {
 } from "..";
 
 export type Row = {
-  name: string;
   value: string;
-  condition: {
+  condition?: {
     options: Array<{ value: string; label: string }>;
     selected: Right;
   };
@@ -143,8 +142,8 @@ const Right = (props: {
     case "multiselect":
       return (
         <Multiselect
-          value={props.item.condition.selected.value}
-          options={props.item.condition.selected.options}
+          value={props.item.condition.selected.value as string[]}
+          options={props.item.condition.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "updateRightOperator",
@@ -157,8 +156,8 @@ const Right = (props: {
     case "combobox":
       return (
         <Combobox
-          value={props.item.condition.selected.value}
-          options={props.item.condition.selected.options}
+          value={props.item.condition.selected.value as string}
+          options={props.item.condition.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "updateRightOperator",
@@ -171,8 +170,8 @@ const Right = (props: {
     case "select":
       return (
         <Select
-          value={props.item.condition.selected.value}
-          options={props.item.condition.selected.options}
+          value={props.item.condition.selected.value as string}
+          options={props.item.condition.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "updateRightOperator",
