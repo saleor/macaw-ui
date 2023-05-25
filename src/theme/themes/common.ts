@@ -30,24 +30,6 @@ export const spacing = {
   52: "208px",
 };
 
-// TODO: #438 remove legacy spacing
-// export const legacySpace = {
-// 0: space.s0,
-// 1: space.spx,
-// 2: space["s0.5"],
-// 3: space.s1,
-// 4: space["s1.5"],
-// 5: space.s2,
-// 6: space.s3,
-// 7: space.s4,
-// 8: space.s5,
-// 9: space.s6,
-// 10: space.s7,
-// 11: space.s8,
-// 12: space.s9,
-// 13: space.s10,
-// };
-
 export const fontSize = {
   heroLarge: "34px",
   heroMedium: "28px",
