@@ -1,11 +1,11 @@
-import { forwardRef, InputHTMLAttributes, ReactNode, FocusEvent } from "react";
+import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
 import { InputWrapper, useStateEvents } from "./InputWrapper";
+import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 import { Box, PropsWithBox } from "../Box";
 import { Text } from "../Text";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 
 export type InputProps = PropsWithBox<
   Omit<
@@ -16,9 +16,19 @@ export type InputProps = PropsWithBox<
     error?: boolean;
     type?: "text" | "number" | "url" | "email" | "password";
     helperText?: ReactNode;
+    endAdornment?: ReactNode;
   }
 > &
   InputVariants;
+
+export const checkIfValidNumberInput = (event: any) => {
+  // Check if input type number is valid as input type number doesn't currently work in browsers like Safari and Firefox
+  // Allowing: Integers | Backspace | Tab | Delete | Left & Right arrow keys
+  const allowedCharacter =
+    /(^\d*$)|(Backspace|Tab|Delete|ArrowLeft|ArrowRight|ArrowDown|ArrowUp)/;
+
+  return !event.key.match(allowedCharacter) && event.preventDefault();
+};
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -89,6 +99,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             }}
             onChange={handlers.onChange}
             {...props}
+            onKeyDown={checkIfValidNumberInput}
           />
         </InputWrapper>
         {helperText && (

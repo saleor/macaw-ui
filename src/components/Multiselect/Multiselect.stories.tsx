@@ -163,7 +163,7 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
   value={selectedItems}
   onChange={(values) => setSelectedItems(values)}
   options={[{ value: "color-black", label: "Black" }]}
-  endAdornment={<ViewTableIcon />}
+  renderEndAdornment={(props) => <ViewTableIcon {...props} />}
 />;
         `,
       },

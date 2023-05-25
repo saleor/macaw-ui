@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 import { Input } from "./index";
 
@@ -117,4 +117,20 @@ export const WithHelpText: Story = {
       },
     },
   },
+};
+
+export const Number = () => {
+  const [value, setValue] = useState("0");
+
+  return (
+    <Input
+      label="Label"
+      size="large"
+      type="number"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      endAdornment={<>USD</>}
+      // startAdornment={<ViewTableIcon />}
+    />
+  );
 };
