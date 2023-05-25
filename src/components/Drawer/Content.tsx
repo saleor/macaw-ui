@@ -23,13 +23,13 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
         <Box
           backgroundColor="surfaceNeutralPlain"
           boxShadow="modal"
-          top="s0"
-          left="s0"
+          top={0}
+          left={0}
           height="100%"
           borderTopRightRadius={3}
           borderBottomRightRadius={3}
           position="fixed"
-          paddingTop="s7"
+          paddingTop={7}
           {...rest}
         >
           {children}
@@ -40,8 +40,8 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
               size="small"
               className={sprinkles({
                 position: "absolute",
-                top: "s1",
-                right: "s1",
+                top: 1,
+                right: 1,
               })}
             />
           </Dialog.Close>

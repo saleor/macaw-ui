@@ -30,7 +30,7 @@ export const Trigger = ({
       <Box
         display="flex"
         justifyContent="space-between"
-        gap="s2"
+        gap={2}
         alignItems="center"
         cursor={disabled ? "not-allowed" : "pointer"}
         disabled={disabled}

@@ -16,7 +16,7 @@ export const Primary: Story = {
   args: {
     children: [
       // eslint-disable-next-line react/jsx-key
-      <List.Item paddingX="s2" paddingY="s2" gap="s3" borderRadius={3}>
+      <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3}>
         <Text color="textNeutralPlain">List item</Text>
       </List.Item>,
     ],
@@ -27,7 +27,7 @@ export const Disabled: Story = {
   args: {
     children: [
       // eslint-disable-next-line react/jsx-key
-      <List.Item paddingX="s2" paddingY="s2" gap="s3" borderRadius={3} disabled>
+      <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3} disabled>
         <Text color="textNeutralPlain">List item</Text>
       </List.Item>,
     ],
@@ -38,7 +38,7 @@ export const Active: Story = {
   args: {
     children: [
       // eslint-disable-next-line react/jsx-key
-      <List.Item paddingX="s2" paddingY="s2" gap="s3" borderRadius={3} active>
+      <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3} active>
         <Text color="textNeutralPlain">List item</Text>
       </List.Item>,
     ],
@@ -55,10 +55,10 @@ export const Group: Story = {
         </List.ItemGroup.Trigger>
         <List.ItemGroup.Content>
           <Box>
-            <List.Item paddingX="s2" paddingY="s2" gap="s3" borderRadius={3}>
+            <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3}>
               <Text>Item 1</Text>
             </List.Item>
-            <List.Item paddingX="s2" paddingY="s2" gap="s3" borderRadius={3}>
+            <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3}>
               <Text>Item 2</Text>
             </List.Item>
           </Box>

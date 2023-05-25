@@ -30,9 +30,9 @@ export const Primary: Story = {
 };
 
 const commonProps = {
-  paddingX: "s2",
-  paddingY: "s2",
-  gap: "s3",
+  paddingX: 2,
+  paddingY: 2,
+  gap: 3,
   borderRadius: 3,
 } as const;
 
@@ -46,7 +46,7 @@ export const DropdownWithList: Story = {
       // eslint-disable-next-line react/jsx-key
       <Dropdown.Content align="start">
         <List
-          padding="s1"
+          padding={1}
           borderRadius={3}
           boxShadow="overlay"
           backgroundColor="surfaceNeutralPlain"

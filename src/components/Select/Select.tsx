@@ -39,11 +39,11 @@ export type SelectProps = PropsWithBox<
 const getBoxHeight = (size: SelectProps["size"]) => {
   switch (size) {
     case "small":
-      return "s4";
+      return 4;
     case "medium":
-      return "s5";
+      return 5;
     case "large":
-      return "s6";
+      return 6;
   }
 };
 

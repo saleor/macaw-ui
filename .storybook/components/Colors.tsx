@@ -16,14 +16,14 @@ interface ColorItemProps {
 
 const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
   return (
-    <Box paddingY="s7">
-      <Box paddingY="s2" as="h3">
+    <Box paddingY={7}>
+      <Box paddingY={2} as="h3">
         {sectionName}
       </Box>
       <Box as="p" paddingBottom={8}>
         {children}
       </Box>
-      <Box display="flex" flexWrap="wrap" rowGap="s10" columnGap="s7">
+      <Box display="flex" flexWrap="wrap" rowGap={10} columnGap={7}>
         {colors.map(([name, value]) => (
           <Box
             key={name}
@@ -39,7 +39,7 @@ const ColorItem = ({ sectionName, colors, children }: ColorItemProps) => {
             <Box
               __backgroundColor={value}
               width="100%"
-              height="s7"
+              height={7}
               borderRadius={2}
               display="flex"
               justifyContent="center"

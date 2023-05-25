@@ -17,7 +17,7 @@ export const Primary: Story = {
   args: {
     defaultValue: "first-item",
     display: "flex",
-    gap: "s2",
+    gap: 2,
     flexDirection: "column",
     children: [
       <Accordion.Item value="first-item">

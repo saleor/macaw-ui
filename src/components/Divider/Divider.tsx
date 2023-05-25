@@ -14,7 +14,7 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
       backgroundColor="surfaceNeutralDepressed"
       borderWidth={0}
       width="100%"
-      height="spx"
+      height="px"
       {...rest}
     />
   )

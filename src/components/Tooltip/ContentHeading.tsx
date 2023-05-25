@@ -11,7 +11,7 @@ export const ContentHeading = ({ children }: TooltipContentHeadingProps) => {
       display="block"
       variant="caption"
       color="textNeutralSubdued"
-      marginBottom="s0.5"
+      marginBottom={0.5}
     >
       {children}
     </Text>
