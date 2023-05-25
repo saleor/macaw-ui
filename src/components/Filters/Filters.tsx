@@ -84,7 +84,7 @@ const Row = ({
         options={leftOptions}
         onChange={(e) => {
           dispatchFilterChangeEvent({
-            type: "updateLeftOperator",
+            type: "update.leftOperator",
             value: e as string,
             path: `${index}`,
           });
@@ -96,7 +96,7 @@ const Row = ({
           options={item.condition?.options ?? []}
           onChange={(value) => {
             dispatchFilterChangeEvent({
-              type: "updateCondition",
+              type: "update.condition",
               value: value as string,
               path: `${index}.condition.selected`,
             });
@@ -132,7 +132,7 @@ const Right = (props: {
           value={props.item.condition.selected.value}
           onChange={(e) => {
             props.dispatchFilterChangeEvent({
-              type: "updateRightOperator",
+              type: "update.rightOperator",
               value: e.target.value,
               path: `${props.index}.condition.selected.value`,
             });
@@ -146,7 +146,7 @@ const Right = (props: {
           options={props.item.condition.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
-              type: "updateRightOperator",
+              type: "update.rightOperator",
               value: e,
               path: `${props.index}.condition.selected.value`,
             })
@@ -160,7 +160,7 @@ const Right = (props: {
           options={props.item.condition.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
-              type: "updateRightOperator",
+              type: "update.rightOperator",
               value: e as string,
               path: `${props.index}.condition.selected.value`,
             })
@@ -174,7 +174,7 @@ const Right = (props: {
           options={props.item.condition.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
-              type: "updateRightOperator",
+              type: "update.rightOperator",
               value: e as string,
               path: `${props.index}.condition.selected.value`,
             })
