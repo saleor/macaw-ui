@@ -18,7 +18,7 @@ export const Primary: Story = {
     size: "large",
   },
   render: (props) => (
-    <Box display="grid" gridTemplateColumns={2} gap="s5">
+    <Box display="grid" gridTemplateColumns={2} gap={5}>
       {/* Neutral */}
       <Chip {...props}>
         <Text variant="caption" size="small" color="textNeutralPlain">

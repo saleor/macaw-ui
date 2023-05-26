@@ -10,7 +10,7 @@ export const labelRecipe = recipe({
       display: "flex",
       color: "textNeutralSubdued",
       borderRadius: 3,
-      paddingY: "s1.5",
+      paddingY: 1.5,
       cursor: "text",
       borderWidth: 1,
       borderStyle: "solid",
@@ -19,13 +19,13 @@ export const labelRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        paddingX: "s2",
+        paddingX: 2,
       }),
       medium: sprinkles({
-        paddingX: "s2",
+        paddingX: 2,
       }),
       large: sprinkles({
-        paddingX: "s3",
+        paddingX: 3,
       }),
     },
     active: {
@@ -262,13 +262,13 @@ export const helperTextRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        paddingX: "s2",
+        paddingX: 2,
       }),
       medium: sprinkles({
-        paddingX: "s2",
+        paddingX: 2,
       }),
       large: sprinkles({
-        paddingX: "s3",
+        paddingX: 3,
       }),
     },
   },

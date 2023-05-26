@@ -5,12 +5,11 @@ import {
   fontWeight,
   letterSpacing,
   lineHeight,
-  legacySpace,
-  space,
+  spacing,
 } from "./common";
 
 export const defaultDark = {
-  space: { ...legacySpace, ...space },
+  spacing,
   colors: {
     foreground: {
       textNeutralPlain: "hsla(210, 25%, 84%, 1)",

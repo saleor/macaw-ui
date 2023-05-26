@@ -47,7 +47,7 @@ export const SelectWrapper = ({
       justifyContent="space-between"
       disabled={disabled}
       flexWrap="nowrap"
-      gap="s3"
+      gap={3}
       {...getToggleButtonProps({ disabled })}
     >
       <Box display="flex" flexDirection="column">
