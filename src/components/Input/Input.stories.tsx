@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { Input } from "./index";
+import { Box, Text } from "..";
+
+import { Input } from ".";
 
 const meta: Meta<typeof Input> = {
   title: "Components / Input",
@@ -123,14 +125,13 @@ export const Number = () => {
   const [value, setValue] = useState("0");
 
   return (
-    <Input
-      label="Label"
-      size="large"
-      type="number"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      endAdornment={<>USD</>}
-      // startAdornment={<ViewTableIcon />}
-    />
+    <Box __width="100px">
+      <Input
+        type="number"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        endAdornment={<Text variant="caption">USD</Text>}
+      />
+    </Box>
   );
 };

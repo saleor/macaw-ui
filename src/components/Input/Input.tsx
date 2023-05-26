@@ -3,6 +3,7 @@ import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 import { classNames } from "~/utils";
 
 import { InputWrapper, useStateEvents } from "./InputWrapper";
+import { checkIfValidNumberInput } from "./helpers";
 import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 import { Box, PropsWithBox } from "../Box";
 import { Text } from "../Text";
@@ -20,15 +21,6 @@ export type InputProps = PropsWithBox<
   }
 > &
   InputVariants;
-
-export const checkIfValidNumberInput = (event: any) => {
-  // Check if input type number is valid as input type number doesn't currently work in browsers like Safari and Firefox
-  // Allowing: Integers | Backspace | Tab | Delete | Left & Right arrow keys
-  const allowedCharacter =
-    /(^\d*$)|(Backspace|Tab|Delete|ArrowLeft|ArrowRight|ArrowDown|ArrowUp)/;
-
-  return !event.key.match(allowedCharacter) && event.preventDefault();
-};
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -50,6 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       flexGrow,
       flexShrink,
       width,
+      endAdornment,
       ...props
     },
     ref
@@ -80,6 +73,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           label={label}
           error={error}
           className={className}
+          endAdornment={endAdornment}
         >
           <Box
             id={id}
@@ -98,8 +92,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               onFocus?.(event);
             }}
             onChange={handlers.onChange}
+            onKeyDown={(event) => {
+              if (type === "number") {
+                checkIfValidNumberInput(event);
+              }
+            }}
+            role="input"
             {...props}
-            onKeyDown={checkIfValidNumberInput}
           />
         </InputWrapper>
         {helperText && (

@@ -39,6 +39,7 @@ type InputWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
+  endAdornment?: ReactNode;
 };
 
 export const InputWrapper = ({
@@ -51,21 +52,20 @@ export const InputWrapper = ({
   label,
   error,
   className,
+  endAdornment,
 }: InputWrapperProps) => {
   return (
     <Box
       as="label"
       htmlFor={id}
-      flexWrap="wrap"
       className={classNames(
         labelRecipe({ typed, active, disabled, size, error }),
         className
       )}
-      // alignItems="center"
-      // justifyContent="space-between"
-      // display="flex"
+      alignItems="center"
+      gap="s1"
     >
-      <Box>
+      <Box display="flex" flexDirection="column" width="100%">
         <Box
           as="span"
           className={classNames(spanRecipe({ typed, size, disabled, error }))}
@@ -74,7 +74,7 @@ export const InputWrapper = ({
         </Box>
         {children}
       </Box>
-      <>USD</>
+      {endAdornment}
     </Box>
   );
 };
