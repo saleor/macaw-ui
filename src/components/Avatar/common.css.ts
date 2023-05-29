@@ -8,7 +8,7 @@ export const base = sprinkles({
 });
 
 export const sizeVariants = {
-  small: sprinkles({ width: "s6", height: "s6" }),
-  medium: sprinkles({ width: "s8", height: "s8" }),
-  large: sprinkles({ width: "s9", height: "s9" }),
+  small: sprinkles({ width: 6, height: 6 }),
+  medium: sprinkles({ width: 8, height: 8 }),
+  large: sprinkles({ width: 9, height: 9 }),
 };

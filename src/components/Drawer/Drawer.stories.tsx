@@ -21,7 +21,7 @@ export const Primary: Story = {
         <Button variant="tertiary" icon={<MenuIcon />} />
       </Drawer.Trigger>,
       // eslint-disable-next-line react/jsx-key
-      <Drawer.Content paddingLeft="s2" paddingRight="s2">
+      <Drawer.Content paddingLeft={2} paddingRight={2}>
         <Text>Drawer content!</Text>
       </Drawer.Content>,
     ],

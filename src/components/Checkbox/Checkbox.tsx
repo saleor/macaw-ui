@@ -29,7 +29,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         as="label"
         display="flex"
         alignItems="center"
-        gap="s1.5"
+        gap={1.5}
         position="relative"
         cursor={disabled ? "not-allowed" : "pointer"}
       >

@@ -47,7 +47,7 @@ export const ComboboxWrapper = ({
       justifyContent="space-between"
       disabled={disabled}
       flexWrap="nowrap"
-      gap="s3"
+      gap={3}
       {...getLabelProps({ htmlFor: id })}
     >
       <Box display="flex" flexDirection="column" width="100%">
