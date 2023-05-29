@@ -1,9 +1,8 @@
-import { describe, expect, it } from "vitest";
 import { ButtonProps } from "./Button";
 import { isFixedWidth } from "./utils";
 import { SearchIcon } from "../Icons";
 
-describe("isFixedWidth funciton", () => {
+describe("isFixedWidth", () => {
   it("Returns true when only icon is provided with no children", () => {
     // Arrange
     const props: ButtonProps = { icon: <SearchIcon /> };
