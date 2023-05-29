@@ -63,7 +63,7 @@ export const InputWrapper = ({
         className
       )}
       alignItems="center"
-      gap="s1"
+      gap={1}
     >
       <Box display="flex" flexDirection="column" width="100%">
         <Box
