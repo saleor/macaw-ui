@@ -121,17 +121,37 @@ export const WithHelpText: Story = {
   },
 };
 
-export const Number = () => {
-  const [value, setValue] = useState("0");
+const InputNumberTemplate: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState(args.value);
 
-  return (
-    <Box __width="100px">
-      <Input
-        type="number"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        endAdornment={<Text variant="caption">USD</Text>}
-      />
-    </Box>
-  );
+    return (
+      <Box __width="200px">
+        <Input
+          {...args}
+          type="number"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          endAdornment={<Text variant="caption">USD</Text>}
+        />
+      </Box>
+    );
+  },
+};
+
+export const Number: Story = {
+  ...InputNumberTemplate,
+  args: {
+    value: "0",
+    label: null,
+  },
+};
+
+export const NumberWithLabel: Story = {
+  ...InputNumberTemplate,
+  args: {
+    label: "Price",
+    value: 0.9,
+  },
 };

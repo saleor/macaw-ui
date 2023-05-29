@@ -7,6 +7,7 @@ describe("Input", () => {
     { type: "text", value: "Hello", expected: "Hello" },
     { type: "number", value: "123", expected: 123 },
     { type: "number", value: "Hello", expected: null },
+    { type: "number", value: "123.45", expected: 123.45 },
   ] as const)(
     "with type=$type should accept $value and expect $expected",
     ({ type, value, expected }) => {
