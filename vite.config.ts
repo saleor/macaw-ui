@@ -23,7 +23,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    include: ["src/**/*.{test,spec}.{ts,tsx}"],
+    include: ["src/**/*.test.{ts,tsx}"],
     watch: false,
     environment: "jsdom",
     setupFiles: "./setupTest.ts",
