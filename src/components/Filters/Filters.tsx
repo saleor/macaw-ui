@@ -43,7 +43,7 @@ export const _ExperimentalFilters = ({
       display="grid"
       __gridTemplateColumns="repeat(2, auto)"
       __placeItems="center self-start"
-      gap={3}
+      gap={1}
       ref={wrapper}
     >
       {value.map((item, idx) =>
@@ -78,7 +78,7 @@ const Row = ({
   leftOptions: Array<{ value: string; label: string }>;
 }) => {
   return (
-    <Box display="grid" gap={3} __gridTemplateColumns="repeat(4, 1fr)">
+    <Box display="grid" gap={1} __gridTemplateColumns="repeat(4, 1fr)">
       <Combobox
         value={item.value}
         options={leftOptions}

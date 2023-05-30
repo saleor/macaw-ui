@@ -6,6 +6,7 @@ import { Row, _ExperimentalFilters } from ".";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
   title: "Components / Filters",
+  tags: ["autodocs"],
   component: _ExperimentalFilters,
 };
 
