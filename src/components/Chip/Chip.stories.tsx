@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Chip } from "./Chip";
 import { Box } from "../Box";
 import { Text } from "../Text";
+import { Chip } from "./Chip";
 
 const meta: Meta<typeof Chip> = {
   title: "Components / Chip",

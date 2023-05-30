@@ -1,16 +1,16 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { MultiselectWrapper } from "./MultiselectWrapper";
+import { Box, List, PropsWithBox, Text } from "..";
+import { helperTextRecipe, InputVariants } from "../BaseInput";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 import {
   ChangeHandler,
   Option,
   RenderEndAdornmentType,
   useMultiselectEvents,
 } from "./useMultiselectEvents";
-import { Box, List, PropsWithBox, Text } from "..";
-import { helperTextRecipe, InputVariants } from "../BaseInput";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { MultiselectWrapper } from "./MultiselectWrapper";
 
 import { multiselectInputRecipe } from "./Multiselect.css";
 

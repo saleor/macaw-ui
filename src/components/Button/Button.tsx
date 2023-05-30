@@ -2,8 +2,8 @@ import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import { isFixedWidth } from "./utils";
 import { Box, PropsWithBox } from "../Box";
+import { isFixedWidth } from "./utils";
 import { button, ButtonVariants } from "./Button.css";
 
 export type ButtonProps = PropsWithBox<

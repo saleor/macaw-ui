@@ -8,13 +8,13 @@ import {
 } from "react";
 import * as Portal from "@radix-ui/react-portal";
 import { useOutsideClick } from "~/utils/useClickOutside";
+import { Box } from "../Box";
 import {
   AutosizeInput,
   CalculationChange,
   InputContainer,
 } from "./AutosizeInput";
 import { DropdownContent } from "./Dropdown";
-import { Box } from "../Box";
 import {
   dropdownItem as dropdownItemStyles,
   autocompleteContainer as autocompleteContainerStyles,
