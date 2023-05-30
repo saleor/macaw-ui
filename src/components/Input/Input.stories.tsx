@@ -146,6 +146,21 @@ export const Number: Story = {
     value: "0",
     label: null,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("0");
+  
+  <Input
+    type="number"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    endAdornment={<Text variant="caption">USD</Text>}
+  />`,
+      },
+    },
+  },
 };
 
 export const NumberWithLabel: Story = {
@@ -153,5 +168,65 @@ export const NumberWithLabel: Story = {
   args: {
     label: "Price",
     value: 0.9,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("0.9");
+  
+  <Input
+    label="Price"
+    type="number"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    endAdornment={<Text variant="caption">USD</Text>}
+  />`,
+      },
+    },
+  },
+};
+
+export const Date: Story = {
+  ...InputTemplate,
+  args: {
+    type: "date",
+    value: "",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("");
+  
+  <Input
+    type="date"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+  />`,
+      },
+    },
+  },
+};
+
+export const Time: Story = {
+  ...InputTemplate,
+  args: {
+    type: "time",
+    value: "",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("");
+  
+  <Input
+    type="time"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+  />`,
+      },
+    },
   },
 };

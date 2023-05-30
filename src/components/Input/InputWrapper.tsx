@@ -2,19 +2,25 @@
   Do not expose this file, it's for internal purposes only.
 */
 import { ReactNode, useState } from "react";
-import { Box } from "~/components/Box";
+
+import { Box } from "~/components";
 import { classNames } from "~/utils";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
+
+import { InputProps } from "./Input";
+import { checkIfDateTimeInput } from "./helpers";
 
 type InputValue = string | number | readonly string[] | undefined;
 type ChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
 
 export const useStateEvents = (
   value: InputValue,
+  type: InputProps["type"],
   changeHandler?: ChangeHandler
 ) => {
   const [active, setActive] = useState(false);
-  const typed = Boolean(value || active);
+  // do not scale label down if input is date or time
+  const typed = checkIfDateTimeInput(type) ? true : Boolean(value || active);
 
   const onFocus = () => setActive(true);
   const onBlur = () => setActive(false);
