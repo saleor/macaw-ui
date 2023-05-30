@@ -14,15 +14,15 @@ import {
 export type Row = {
   value: string;
   condition?: {
-    options: Array<{ value: string; label: string }>;
+    options: Array<{ value: string; label: string; type: string }>;
     selected: Right;
   };
 };
 
 type Right = {
-  type: string;
   value: string | string[];
   options?: Array<{ value: string; label: string }>;
+  conditionValue: string;
 };
 
 export type Props = {
@@ -36,7 +36,10 @@ export const _ExperimentalFilters = ({
   onChange,
   leftOptions,
 }: Props) => {
-  const { wrapper, dispatchFilterChangeEvent } = useEvents({ onChange, value });
+  const { wrapper, dispatchFilterChangeEvent } = useEvents({
+    onChange,
+    value,
+  });
 
   return (
     <Box
@@ -46,6 +49,7 @@ export const _ExperimentalFilters = ({
       gap={1}
       ref={wrapper}
     >
+      <Text>WHERE</Text>
       {value.map((item, idx) =>
         typeof item === "string" ? (
           <Text key={idx}>{item}</Text>
@@ -92,7 +96,7 @@ const Row = ({
       />
       {item.condition?.selected && (
         <Select
-          value={item.condition?.selected.type ?? ""}
+          value={item.condition?.selected.conditionValue ?? ""}
           options={item.condition?.options ?? []}
           onChange={(value) => {
             dispatchFilterChangeEvent({
@@ -109,6 +113,7 @@ const Row = ({
         index={index}
         dispatchFilterChangeEvent={dispatchFilterChangeEvent}
       />
+
       <Button
         variant="secondary"
         icon={<RemoveIcon />}
@@ -125,11 +130,33 @@ const Right = (props: {
   item: Row;
   dispatchFilterChangeEvent: (data: FilterEvent["detail"]) => void;
 }) => {
-  switch (props.item.condition?.selected.type) {
-    case "input":
+  const selectedOption = props.item.condition?.options?.find(
+    (option) => option.value === props.item.condition?.selected.conditionValue
+  );
+
+  if (!selectedOption) {
+    return null;
+  }
+
+  switch (selectedOption.type) {
+    case "input.text":
       return (
         <Input
-          value={props.item.condition.selected.value}
+          value={props.item.condition?.selected.value}
+          onChange={(e) => {
+            props.dispatchFilterChangeEvent({
+              type: "update.rightOperator",
+              value: e.target.value,
+              path: `${props.index}.condition.selected.value`,
+            });
+          }}
+        />
+      );
+    case "input.number":
+      return (
+        <Input
+          type="number"
+          value={props.item.condition?.selected.value}
           onChange={(e) => {
             props.dispatchFilterChangeEvent({
               type: "update.rightOperator",
@@ -142,8 +169,8 @@ const Right = (props: {
     case "multiselect":
       return (
         <Multiselect
-          value={props.item.condition.selected.value as string[]}
-          options={props.item.condition.selected.options ?? []}
+          value={props.item.condition?.selected.value as string[]}
+          options={props.item.condition?.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "update.rightOperator",
@@ -156,8 +183,8 @@ const Right = (props: {
     case "combobox":
       return (
         <Combobox
-          value={props.item.condition.selected.value as string}
-          options={props.item.condition.selected.options ?? []}
+          value={props.item.condition?.selected.value as string}
+          options={props.item.condition?.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "update.rightOperator",
@@ -170,8 +197,8 @@ const Right = (props: {
     case "select":
       return (
         <Select
-          value={props.item.condition.selected.value as string}
-          options={props.item.condition.selected.options ?? []}
+          value={props.item.condition?.selected.value as string}
+          options={props.item.condition?.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "update.rightOperator",

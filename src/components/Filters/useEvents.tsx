@@ -25,14 +25,15 @@ export type Context = {
 
 type UpdateConditionProps = {
   options?: Array<{ value: string; label: string }>;
+  value: string | string[];
 };
 
 type UpdateLeftOperatorProps = {
   condition: {
-    options: Array<{ value: string; label: string }>;
+    options: Array<{ value: string; label: string; type: string }>;
     selected: {
       value: string;
-      type: string;
+      conditionValue: string;
     };
   };
 };
@@ -43,18 +44,6 @@ type UseEventsProps = {
 };
 
 const eventName = "filterChange";
-
-const getDefaultValueByType = (type: string | undefined | string[]) => {
-  switch (type) {
-    case "input":
-    case "select":
-      return "";
-    case "multiselect":
-      return [];
-    default:
-      return "";
-  }
-};
 
 export const useEvents = ({ onChange, value }: UseEventsProps) => {
   const wrapper = useRef<HTMLElement>(null);
@@ -68,13 +57,13 @@ export const useEvents = ({ onChange, value }: UseEventsProps) => {
         },
         updateCondition: (data?: UpdateConditionProps) => {
           const path = event.detail?.path ?? "";
-          const type = event.detail?.value;
+          const conditionValue = event.detail?.value;
+
           return _.setWith(
             _.clone(value),
             path,
             {
-              type,
-              value: getDefaultValueByType(type),
+              conditionValue,
               ...data,
             },
             _.clone

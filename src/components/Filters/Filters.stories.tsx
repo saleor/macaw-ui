@@ -20,17 +20,16 @@ const leftOptions = [
 ];
 
 const value = [
-  "WHERE",
   {
     value: "price",
     condition: {
       options: [
-        { value: "input", label: "is" },
-        { value: "multiselect", label: "has" },
+        { type: "input.number", label: "is", value: "input-1" },
+        { type: "multiselect", label: "has", value: "input-2" },
       ],
       selected: {
         value: "3.13",
-        type: "input",
+        conditionValue: "input-1",
       },
     },
   },
@@ -38,9 +37,9 @@ const value = [
   {
     value: "category",
     condition: {
-      options: [{ value: "multiselect", label: "are" }],
+      options: [{ value: "input-1", label: "are", type: "multiselect" }],
       selected: {
-        type: "multiselect",
+        conditionValue: "input-1",
         value: [],
         options: [
           { value: "electronics", label: "Electronics" },
@@ -53,9 +52,9 @@ const value = [
   {
     value: "rating",
     condition: {
-      options: [{ value: "combobox", label: "is" }],
+      options: [{ value: "input-1", label: "is", type: "combobox" }],
       selected: {
-        type: "combobox",
+        conditionValue: "input-1",
         value: "",
         options: [
           { value: "1", label: "1" },
@@ -68,9 +67,9 @@ const value = [
   {
     value: "discount",
     condition: {
-      options: [{ value: "select", label: "is" }],
+      options: [{ value: "input-1", label: "is", type: "select" }],
       selected: {
-        type: "select",
+        conditionValue: "input-1",
         value: "",
         options: [
           { value: "100%", label: "100%" },
@@ -100,6 +99,7 @@ export const Default = () => {
               { value: "electronics", label: "Electronics" },
               { value: "clothing", label: "Clothing" },
             ],
+            value: [],
           });
           setRows(newState);
         }
@@ -107,10 +107,10 @@ export const Default = () => {
         if (event?.type === "update.leftOperator") {
           const newState = context.updateLeftOperator({
             condition: {
-              options: [{ value: "input", label: "is" }],
+              options: [{ value: "input", label: "is", type: "input.text" }],
               selected: {
                 value: "",
-                type: "input",
+                conditionValue: "input",
               },
             },
           });
