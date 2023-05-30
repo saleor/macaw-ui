@@ -70,7 +70,7 @@ export const listStyle = style([
 
 export const listItemStyle = style([
   sprinkles({
-    padding: 5,
+    padding: 2,
   }),
   {
     borderRadius: listItemBorderRadius,

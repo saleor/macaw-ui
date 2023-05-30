@@ -10,7 +10,7 @@ const meta: Meta<typeof Text> = {
 export default meta;
 type Story = StoryObj<typeof Text>;
 
-export const Primary: Story = {
+export const Hero: Story = {
   args: {
     variant: "hero",
     children: "Some text",
@@ -19,49 +19,49 @@ export const Primary: Story = {
 
 export const Title: Story = {
   args: {
-    ...Primary.args,
+    ...Hero.args,
     variant: "title",
   },
 };
 
 export const Heading: Story = {
   args: {
-    ...Primary.args,
+    ...Hero.args,
     variant: "heading",
   },
 };
 
 export const BodyStrong: Story = {
   args: {
-    ...Primary.args,
+    ...Hero.args,
     variant: "bodyStrong",
   },
 };
 
 export const BodyEmp: Story = {
   args: {
-    ...Primary.args,
+    ...Hero.args,
     variant: "bodyEmp",
   },
 };
 
 export const Body: Story = {
   args: {
-    ...Primary.args,
+    ...Hero.args,
     variant: "body",
   },
 };
 
 export const Button: Story = {
   args: {
-    ...Primary.args,
+    ...Hero.args,
     variant: "button",
   },
 };
 
 export const Caption: Story = {
   args: {
-    ...Primary.args,
+    ...Hero.args,
     variant: "caption",
   },
 };
