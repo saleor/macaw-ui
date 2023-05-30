@@ -4,7 +4,7 @@
 import { ReactNode, useState } from "react";
 import { Box } from "~/components/Box";
 import { classNames } from "~/utils";
-import { spanRecipe, labelRecipe, LabelVariants } from "../BaseInput";
+import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 
 type InputValue = string | number | readonly string[] | undefined;
 type ChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -39,6 +39,7 @@ type InputWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
+  endAdornment?: ReactNode;
 };
 
 export const InputWrapper = ({
@@ -51,24 +52,29 @@ export const InputWrapper = ({
   label,
   error,
   className,
+  endAdornment,
 }: InputWrapperProps) => {
   return (
     <Box
       as="label"
       htmlFor={id}
-      flexWrap="wrap"
       className={classNames(
         labelRecipe({ typed, active, disabled, size, error }),
         className
       )}
+      alignItems="center"
+      gap={1}
     >
-      <Box
-        as="span"
-        className={classNames(spanRecipe({ typed, size, disabled, error }))}
-      >
-        {label}
+      <Box display="flex" flexDirection="column" width="100%">
+        <Box
+          as="span"
+          className={classNames(spanRecipe({ typed, size, disabled, error }))}
+        >
+          {label}
+        </Box>
+        {children}
       </Box>
-      {children}
+      {endAdornment}
     </Box>
   );
 };

@@ -1,7 +1,7 @@
+import { IconGallery, IconItem } from "@storybook/blocks";
+import { Box, Text } from "~/components";
 import * as Icons from "~/components/Icons";
-import { Text, Box } from "~/components";
 import { variants } from "~/components/Icons/SVGWrapper/SVGWrapper.css";
-import { IconItem, IconGallery } from "@storybook/blocks";
 import { useTheme } from "~/theme";
 
 interface IconsPresentationProps {
@@ -19,14 +19,14 @@ export const IconsPresentation = ({ title, size }: IconsPresentationProps) => {
   const wIndex = width.match(/[0-9]/)![0];
   const hIndex = height.match(/[0-9]/g)![0];
   const { themeValues } = useTheme();
-  const spaces = themeValues.space as Record<string, string>;
+  const spaces = themeValues.spacing as Record<string, string>;
 
   return (
-    <Box paddingTop={10}>
+    <Box paddingTop={7}>
       <Text as="h2" variant="heading">
         {title} ({spaces[wIndex]} x {spaces[hIndex]})
       </Text>
-      <Box paddingTop={10}>
+      <Box paddingTop={7}>
         <IconGallery>
           {Object.entries(Icons).map(([name, IconComponent]) => (
             <IconItem name={name}>

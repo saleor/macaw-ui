@@ -29,7 +29,7 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
           borderTopRightRadius={3}
           borderBottomRightRadius={3}
           position="fixed"
-          paddingTop={10}
+          paddingTop={7}
           {...rest}
         >
           {children}
@@ -38,7 +38,11 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
               variant="tertiary"
               icon={<CloseIcon />}
               size="small"
-              className={sprinkles({ position: "absolute", top: 3, right: 3 })}
+              className={sprinkles({
+                position: "absolute",
+                top: 1,
+                right: 1,
+              })}
             />
           </Dialog.Close>
         </Box>

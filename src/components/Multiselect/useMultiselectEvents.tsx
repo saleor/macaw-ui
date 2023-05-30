@@ -36,9 +36,13 @@ export const useMultiselectEvents = (
   disabled?: boolean
 ) => {
   const [inputValue, setInputValue] = useState("");
-  const selectedItems = options.filter((option) =>
-    selectedValues.includes(option.value)
-  );
+  const selectedItems = selectedValues.reduce<Option[]>((acc, value) => {
+    const option = options.find((option) => option.value === value);
+    if (option) {
+      acc.push(option);
+    }
+    return acc;
+  }, []);
   const itemsToSelect = getItemsFilter(selectedItems, inputValue, options);
   const [active, setActive] = useState(false);
 

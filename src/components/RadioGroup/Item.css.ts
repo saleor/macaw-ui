@@ -7,7 +7,7 @@ export const indicator = recipe({
       position: "absolute",
       display: "block",
       zIndex: "1",
-      inset: 2,
+      inset: 0.5,
     }),
   ],
   variants: {
@@ -62,8 +62,8 @@ export const item = recipe({
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: "100%",
-      width: 6,
-      height: 6,
+      width: 3,
+      height: 3,
       padding: 0,
       backgroundColor: "interactiveNeutralSecondaryDefault",
     }),
@@ -71,8 +71,8 @@ export const item = recipe({
       selectors: {
         "&:after": {
           content: "",
-          width: vars.space[8],
-          height: vars.space[8],
+          width: vars.spacing[5],
+          height: vars.spacing[5],
           display: "block",
           borderRadius: "50%",
           position: "absolute",

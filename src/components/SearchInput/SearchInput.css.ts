@@ -21,16 +21,16 @@ export const inputContainer = recipe({
   variants: {
     size: {
       small: sprinkles({
-        paddingY: 4,
-        paddingX: 5,
+        paddingY: 1.5,
+        paddingX: 2,
       }),
       medium: sprinkles({
-        paddingY: 5,
-        paddingX: 5,
+        paddingY: 2,
+        paddingX: 2,
       }),
       large: sprinkles({
-        paddingY: 6,
-        paddingX: 6,
+        paddingY: 3,
+        paddingX: 3,
       }),
     },
   },
@@ -57,7 +57,7 @@ export const searchIcon = recipe({
   base: [
     sprinkles({
       color: "textNeutralSubdued",
-      marginRight: 5,
+      marginRight: 2,
     }),
   ],
 });

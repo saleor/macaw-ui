@@ -19,7 +19,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
         as="label"
         display="flex"
         alignItems="center"
-        gap={4}
+        gap={1.5}
         cursor={disabled ? "not-allowed" : "pointer"}
       >
         <RadixToggle

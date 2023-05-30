@@ -1,17 +1,18 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
+import { Root as Portal } from "@radix-ui/react-portal";
+import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
 import { classNames } from "~/utils";
 
-import {
-  Option,
-  ChangeHandler,
-  useComboboxEvents,
-  InputValue,
-} from "./useComboboxEvents";
 import { ComboboxWrapper } from "./ComboboxWrapper";
-import { List, Text, Box, PropsWithBox } from "..";
+import {
+  ChangeHandler,
+  InputValue,
+  Option,
+  useComboboxEvents,
+} from "./useComboboxEvents";
+import { Box, List, PropsWithBox, Text } from "..";
 import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
-import { listStyle, listItemStyle, listWrapperRecipe } from "../BaseSelect";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 
 export type ComboboxProps = PropsWithBox<
   Omit<
@@ -67,8 +68,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       itemsToSelect,
     } = useComboboxEvents(value, options, onChange);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+
     return (
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" ref={containerRef}>
         <ComboboxWrapper
           id={id}
           typed={typed}
@@ -95,28 +98,35 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           />
         </ComboboxWrapper>
 
-        <Box
-          position="relative"
-          display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
-          className={listWrapperRecipe({ size })}
-        >
-          <List as="ul" className={listStyle} {...getMenuProps()}>
-            {isOpen &&
-              itemsToSelect?.map((item, index) => (
-                <List.Item
-                  key={`${id}-${item}-${index}`}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item,
-                    index,
-                  })}
-                  active={highlightedIndex === index}
-                >
-                  <Text size={size}>{item.label}</Text>
-                </List.Item>
-              ))}
-          </List>
-        </Box>
+        <Portal asChild container={containerRef.current}>
+          <Box
+            position="relative"
+            display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
+            className={listWrapperRecipe({ size })}
+          >
+            <List
+              as="ul"
+              className={listStyle}
+              // suppress error because of rendering list in portal
+              {...getMenuProps({}, { suppressRefError: true })}
+            >
+              {isOpen &&
+                itemsToSelect?.map((item, index) => (
+                  <List.Item
+                    key={`${id}-${item}-${index}`}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item,
+                      index,
+                    })}
+                    active={highlightedIndex === index}
+                  >
+                    <Text size={size}>{item.label}</Text>
+                  </List.Item>
+                ))}
+            </List>
+          </Box>
+        </Portal>
 
         {helperText && (
           <Box className={helperTextRecipe({ size })}>

@@ -2,7 +2,7 @@ import { recipe } from "@vanilla-extract/recipes";
 import { Sprinkles, sprinkles, vars } from "~/theme";
 
 const outerGlow = (color: Sprinkles["backgroundColor"]) => {
-  return `0 0 0 ${vars.space[3]} ${color}`;
+  return `0 0 0 ${vars.spacing[1]} ${color}`;
 };
 
 export const toggle = recipe({
@@ -13,7 +13,7 @@ export const toggle = recipe({
       display: "flex",
       alignItems: "center",
       position: "relative",
-      padding: 1,
+      padding: "px",
       outlineStyle: "none",
       cursor: "pointer",
     }),
@@ -22,8 +22,8 @@ export const toggle = recipe({
         // Inner dot
         "&::before": {
           content: "",
-          width: vars.space[5],
-          height: vars.space[5],
+          width: vars.spacing[2],
+          height: vars.spacing[2],
           // Token mismatch
           backgroundColor: vars.colors.foreground.iconNeutralContrasted,
           borderRadius: 4,
@@ -39,16 +39,16 @@ export const toggle = recipe({
         "&::after": {
           content: "",
           visibility: "hidden",
-          width: vars.space[5],
-          height: vars.space[5],
+          width: vars.spacing[2],
+          height: vars.spacing[2],
           transition: "all 40ms ease-in-out",
         },
         // Transition from dot to pill on press
         "&:not([disabled]):active::before": {
-          width: vars.space[7],
+          width: vars.spacing[4],
         },
         "&:not([disabled]):active::after": {
-          width: vars.space[0],
+          width: vars.spacing[0],
         },
 
         // Styling for off state

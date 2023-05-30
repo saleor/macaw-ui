@@ -1,7 +1,9 @@
-import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
-import { Input } from "./index";
+import { Box, Text } from "..";
+
+import { Input } from ".";
 
 const meta: Meta<typeof Input> = {
   title: "Components / Input",
@@ -116,5 +118,40 @@ export const WithHelpText: Story = {
   />`,
       },
     },
+  },
+};
+
+const InputNumberTemplate: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState(args.value);
+
+    return (
+      <Box __width="200px">
+        <Input
+          {...args}
+          type="number"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          endAdornment={<Text variant="caption">USD</Text>}
+        />
+      </Box>
+    );
+  },
+};
+
+export const Number: Story = {
+  ...InputNumberTemplate,
+  args: {
+    value: "0",
+    label: null,
+  },
+};
+
+export const NumberWithLabel: Story = {
+  ...InputNumberTemplate,
+  args: {
+    label: "Price",
+    value: 0.9,
   },
 };

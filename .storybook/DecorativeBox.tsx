@@ -10,10 +10,10 @@ export const DecorativeBox = ({ children }: DecorativeBoxProps) => (
     display="flex"
     flexDirection="column"
     justifyContent="center"
-    gap={2}
+    gap={0.5}
     borderStyle="solid"
     borderColor="neutralPlain"
-    padding={5}
+    padding={2}
     borderRadius={4}
     alignItems="flex-start"
     __height="fit-content"

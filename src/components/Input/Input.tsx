@@ -1,11 +1,12 @@
-import { forwardRef, InputHTMLAttributes, ReactNode, FocusEvent } from "react";
+import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
 import { InputWrapper, useStateEvents } from "./InputWrapper";
+import { checkIfValidNumberInput } from "./helpers";
+import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 import { Box, PropsWithBox } from "../Box";
 import { Text } from "../Text";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 
 export type InputProps = PropsWithBox<
   Omit<
@@ -16,6 +17,7 @@ export type InputProps = PropsWithBox<
     error?: boolean;
     type?: "text" | "number" | "url" | "email" | "password";
     helperText?: ReactNode;
+    endAdornment?: ReactNode;
   }
 > &
   InputVariants;
@@ -40,6 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       flexGrow,
       flexShrink,
       width,
+      endAdornment,
       ...props
     },
     ref
@@ -70,6 +73,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           label={label}
           error={error}
           className={className}
+          endAdornment={endAdornment}
         >
           <Box
             id={id}
@@ -88,6 +92,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               onFocus?.(event);
             }}
             onChange={handlers.onChange}
+            onKeyDown={(event) => {
+              if (type === "number") {
+                checkIfValidNumberInput(event);
+              }
+            }}
+            role="input"
             {...props}
           />
         </InputWrapper>

@@ -12,6 +12,10 @@ const options = [
   { value: "Blue", label: "Blue" },
   { value: "Orange", label: "Orange" },
   { value: "Purple", label: "Purple" },
+  { value: "White", label: "White" },
+  { value: "Yellow", label: "Yellow" },
+  { value: "Pink", label: "Pink" },
+  { value: "Brown", label: "Brown" },
 ];
 
 const meta: Meta<typeof Multiselect> = {
@@ -159,7 +163,7 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
   value={selectedItems}
   onChange={(values) => setSelectedItems(values)}
   options={[{ value: "color-black", label: "Black" }]}
-  endAdornment={<ViewTableIcon />}
+  renderEndAdornment={(props) => <ViewTableIcon {...props} />}
 />;
         `,
       },

@@ -5,8 +5,8 @@ export const trigger = style({});
 
 export const commonCheckbox = sprinkles({
   padding: 0,
-  width: 6,
-  height: 6,
+  width: 3,
+  height: 3,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -22,8 +22,8 @@ export const defaultCheckbox = style({
     "&:hover::after, &:active::after, &:focus-visible::after": {
       content: "",
       position: "absolute",
-      height: vars.space[8],
-      width: vars.space[8],
+      height: vars.spacing[5],
+      width: vars.spacing[5],
       borderRadius: vars.borderRadius[2],
     },
     '&[data-state="unchecked"]': {
@@ -115,8 +115,8 @@ export const errorCheckbox = style({
     "&:hover::after, &:active::after, &:focus-visible::after": {
       content: "",
       position: "absolute",
-      height: vars.space[8],
-      width: vars.space[8],
+      height: vars.spacing[5],
+      width: vars.spacing[5],
       borderRadius: vars.borderRadius[2],
     },
     '&[data-state="unchecked"]': {

@@ -19,12 +19,12 @@ export const switchParent = recipe({
   base: [
     sprinkles({
       display: "flex",
-      gap: 2,
+      gap: 0.5,
       backgroundColor: "surfaceNeutralDepressed",
       borderRadius: 3,
       borderColor: "neutralHighlight",
-      height: 11,
-      padding: 2,
+      height: 8,
+      padding: 0.5,
     }),
   ],
   defaultVariants: {},
@@ -34,7 +34,7 @@ export const switchChild = recipe({
   base: [
     sprinkles({
       height: "100%",
-      padding: 3,
+      padding: 1,
       borderRadius: 2,
       cursor: "pointer",
     }),
