@@ -54,23 +54,23 @@ export const listStyle = style([
     boxShadow: "overlay",
     borderColor: "neutralHighlight",
     width: "100%",
-    padding: "s1",
-    marginTop: "s1",
-    left: "s0",
-    maxHeight: "s52",
+    padding: 1,
+    marginTop: 1,
+    left: 0,
+    maxHeight: 52,
     overflowY: "auto",
   }),
   {
     borderRadius: calc.add(listItemBorderRadius, spaceBetweenListItemAndBorder),
     vars: {
-      [spaceBetweenListItemAndBorder]: vars.space[3],
+      [spaceBetweenListItemAndBorder]: vars.spacing[1],
     },
   },
 ]);
 
 export const listItemStyle = style([
   sprinkles({
-    padding: 5,
+    padding: 2,
   }),
   {
     borderRadius: listItemBorderRadius,

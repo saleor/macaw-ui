@@ -8,17 +8,17 @@ export const ShadowPresentation = () => {
   return (
     <Unstyled>
       <Box
-        paddingY="s7"
+        paddingY={7}
         display="flex"
         flexDirection="row"
         flexWrap="wrap"
-        rowGap="s10"
-        columnGap="s7"
+        rowGap={10}
+        columnGap={7}
       >
         {Object.entries(vars.boxShadow).map(([key, entry]) => (
           <Box
             key={key}
-            paddingBottom="s7"
+            paddingBottom={7}
             display="flex"
             alignItems="center"
             flexWrap="wrap"
@@ -35,7 +35,7 @@ export const ShadowPresentation = () => {
               borderStyle="solid"
               backgroundColor="transparent"
               width="100%"
-              height="s7"
+              height={7}
               display="flex"
               justifyContent="center"
               alignItems="center"

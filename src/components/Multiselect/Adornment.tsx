@@ -2,10 +2,10 @@ import { UseComboboxPropGetters } from "downshift7";
 
 import { classNames } from "~/utils";
 import { sprinkles } from "~/theme";
-import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 
 import { ArrowDownIcon } from "../Icons";
 import { toggleIconStyle } from "../BaseSelect";
+import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 
 export type AdornmentProps = {
   size?: "small" | "medium" | "large";

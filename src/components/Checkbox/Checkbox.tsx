@@ -5,9 +5,9 @@ import {
 } from "@radix-ui/react-checkbox";
 import { ReactNode, forwardRef } from "react";
 import { classNames } from "~/utils";
+import { Box } from "../Box";
 import { CheckedIcon } from "./CheckedIcon";
 import { IndeterminateIcon } from "./IndeterminateIcon";
-import { Box } from "../Box";
 import { commonCheckbox, defaultCheckbox, errorCheckbox } from "./Checkbox.css";
 
 export type CheckboxProps = RadixCheckboxProps & {
@@ -29,7 +29,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         as="label"
         display="flex"
         alignItems="center"
-        gap="s1.5"
+        gap={1.5}
         position="relative"
         cursor={disabled ? "not-allowed" : "pointer"}
       >

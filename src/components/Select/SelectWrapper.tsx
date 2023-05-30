@@ -7,11 +7,11 @@ import { ReactNode } from "react";
 import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
-import { Option } from "./useSelectEvents";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { toggleIconStyle } from "../BaseSelect";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
+import { Option } from "./useSelectEvents";
 
 type SelectWrapperProps = LabelVariants & {
   id?: string;
@@ -47,7 +47,7 @@ export const SelectWrapper = ({
       justifyContent="space-between"
       disabled={disabled}
       flexWrap="nowrap"
-      gap="s3"
+      gap={3}
       {...getToggleButtonProps({ disabled })}
     >
       <Box display="flex" flexDirection="column">

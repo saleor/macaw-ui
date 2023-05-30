@@ -8,17 +8,17 @@ export const BorderRadiusPresentation = () => {
   return (
     <Unstyled>
       <Box
-        paddingY="s7"
+        paddingY={7}
         flexDirection="row"
         display="flex"
         flexWrap="wrap"
-        rowGap="s10"
-        columnGap="s7"
+        rowGap={10}
+        columnGap={7}
       >
         {Object.entries(vars.borderRadius).map(([key, entry]) => (
           <Box
             key={key}
-            paddingBottom="s7"
+            paddingBottom={7}
             display="flex"
             alignItems="center"
             flexWrap="wrap"
@@ -36,7 +36,7 @@ export const BorderRadiusPresentation = () => {
               borderStyle="solid"
               backgroundColor="transparent"
               width="100%"
-              height="s7"
+              height={7}
               display="flex"
               justifyContent="center"
               alignItems="center"

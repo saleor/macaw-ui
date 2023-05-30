@@ -6,10 +6,10 @@ import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import { Adornment } from "./Adornment";
-import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { Box } from "../Box";
+import { Adornment } from "./Adornment";
+import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;
@@ -49,7 +49,7 @@ export const MultiselectWrapper = ({
       justifyContent="space-between"
       disabled={disabled}
       flexWrap="nowrap"
-      gap="s3"
+      gap={3}
       {...getLabelProps({ htmlFor: id })}
     >
       <Box display="flex" flexDirection="column" width="100%">
@@ -62,7 +62,7 @@ export const MultiselectWrapper = ({
         <Box
           display="flex"
           flexDirection="row"
-          gap="s1"
+          gap={1}
           alignItems="center"
           flexWrap="wrap"
         >

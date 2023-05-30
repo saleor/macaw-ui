@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { Multiselect } from "./Multiselect";
 import { Box } from "../Box";
 import { ViewTableIcon } from "../Icons";
+import { Multiselect } from "./Multiselect";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -163,7 +163,7 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
   value={selectedItems}
   onChange={(values) => setSelectedItems(values)}
   options={[{ value: "color-black", label: "Black" }]}
-  endAdornment={<ViewTableIcon />}
+  renderEndAdornment={(props) => <ViewTableIcon {...props} />}
 />;
         `,
       },

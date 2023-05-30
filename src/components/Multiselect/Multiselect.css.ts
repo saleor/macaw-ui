@@ -11,7 +11,7 @@ export const multiselectInputRecipe = recipe({
       lineHeight: "bodyLarge",
       borderWidth: 0,
       outlineStyle: "none",
-      padding: "s0",
+      padding: 0,
       color: {
         default: "textNeutralDefault",
         disabled: "textNeutralSubdued",

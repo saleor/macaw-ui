@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Text } from "../Text";
-import { ConfigurationIcon } from "../Icons";
-import { Button } from "../Button";
+import { Box, Button, ConfigurationIcon, Text } from "..";
+
 import { Popover } from "./index";
 
 const meta: Meta<typeof Popover> = {
@@ -24,8 +23,10 @@ export const Primary: Story = {
       </Popover.Trigger>,
       // eslint-disable-next-line react/jsx-key
       <Popover.Content>
-        <Popover.Arrow />
-        <Text>Popover content.</Text>
+        <Box>
+          <Popover.Arrow />
+          <Text>Popover content.</Text>
+        </Box>
       </Popover.Content>,
     ],
   },

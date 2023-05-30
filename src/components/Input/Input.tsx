@@ -1,11 +1,12 @@
-import { forwardRef, InputHTMLAttributes, ReactNode, FocusEvent } from "react";
+import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
+import { Box, PropsWithBox, Text } from "..";
+import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
+
 import { InputWrapper, useStateEvents } from "./InputWrapper";
-import { Box, PropsWithBox } from "../Box";
-import { Text } from "../Text";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
+import { checkIfValidNumberInput } from "./helpers";
 
 export type InputProps = PropsWithBox<
   Omit<
@@ -14,8 +15,9 @@ export type InputProps = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
-    type?: "text" | "number" | "url" | "email" | "password";
+    type?: "text" | "number" | "url" | "email" | "password" | "date" | "time";
     helperText?: ReactNode;
+    endAdornment?: ReactNode;
   }
 > &
   InputVariants;
@@ -40,6 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       flexGrow,
       flexShrink,
       width,
+      endAdornment,
       ...props
     },
     ref
@@ -49,7 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       value: inputValue,
       active,
       typed,
-    } = useStateEvents(value, onChange);
+    } = useStateEvents(value, type, onChange);
 
     return (
       <Box
@@ -70,6 +73,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           label={label}
           error={error}
           className={className}
+          endAdornment={endAdornment}
         >
           <Box
             id={id}
@@ -88,6 +92,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               onFocus?.(event);
             }}
             onChange={handlers.onChange}
+            onKeyDown={(event) => {
+              if (type === "number") {
+                checkIfValidNumberInput(event);
+              }
+            }}
+            role="input"
             {...props}
           />
         </InputWrapper>

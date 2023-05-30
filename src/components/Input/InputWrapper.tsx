@@ -2,19 +2,25 @@
   Do not expose this file, it's for internal purposes only.
 */
 import { ReactNode, useState } from "react";
-import { Box } from "~/components/Box";
+
+import { Box } from "~/components";
 import { classNames } from "~/utils";
-import { spanRecipe, labelRecipe, LabelVariants } from "../BaseInput";
+import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
+
+import { InputProps } from "./Input";
+import { checkIfDateTimeInput } from "./helpers";
 
 type InputValue = string | number | readonly string[] | undefined;
 type ChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
 
 export const useStateEvents = (
   value: InputValue,
+  type: InputProps["type"],
   changeHandler?: ChangeHandler
 ) => {
   const [active, setActive] = useState(false);
-  const typed = Boolean(value || active);
+  // do not scale label down if input is date or time
+  const typed = checkIfDateTimeInput(type) ? true : Boolean(value || active);
 
   const onFocus = () => setActive(true);
   const onBlur = () => setActive(false);
@@ -39,6 +45,7 @@ type InputWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
+  endAdornment?: ReactNode;
 };
 
 export const InputWrapper = ({
@@ -51,24 +58,29 @@ export const InputWrapper = ({
   label,
   error,
   className,
+  endAdornment,
 }: InputWrapperProps) => {
   return (
     <Box
       as="label"
       htmlFor={id}
-      flexWrap="wrap"
       className={classNames(
         labelRecipe({ typed, active, disabled, size, error }),
         className
       )}
+      alignItems="center"
+      gap={1}
     >
-      <Box
-        as="span"
-        className={classNames(spanRecipe({ typed, size, disabled, error }))}
-      >
-        {label}
+      <Box display="flex" flexDirection="column" width="100%">
+        <Box
+          as="span"
+          className={classNames(spanRecipe({ typed, size, disabled, error }))}
+        >
+          {label}
+        </Box>
+        {children}
       </Box>
-      {children}
+      {endAdornment}
     </Box>
   );
 };

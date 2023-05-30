@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Accordion>;
 const args: Story["args"] = {
   defaultValue: "first-item",
   display: "flex",
-  gap: "s2",
+  gap: 2,
   flexDirection: "column",
   children: [
     <Accordion.Item value="first-item">

@@ -5,12 +5,12 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { useTextMetrics } from "./useTextMetrics";
 import { Box } from "../../Box";
 import {
   input as inputStyles,
   inputContainer as inputContainerStyles,
 } from "../Expression.css";
+import { useTextMetrics } from "./useTextMetrics";
 
 export interface CalculationChange {
   left: number;

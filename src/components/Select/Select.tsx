@@ -7,11 +7,11 @@ import {
   useRef,
 } from "react";
 
-import { SelectWrapper } from "./SelectWrapper";
-import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
 import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
+import { SelectWrapper } from "./SelectWrapper";
 
 export type SelectProps = PropsWithBox<
   Omit<
@@ -39,11 +39,11 @@ export type SelectProps = PropsWithBox<
 const getBoxHeight = (size: SelectProps["size"]) => {
   switch (size) {
     case "small":
-      return "s4";
+      return 4;
     case "medium":
-      return "s5";
+      return 5;
     case "large":
-      return "s6";
+      return 6;
   }
 };
 

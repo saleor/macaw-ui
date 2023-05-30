@@ -1,16 +1,16 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { MultiselectWrapper } from "./MultiselectWrapper";
+import { Box, List, PropsWithBox, Text } from "..";
+import { helperTextRecipe, InputVariants } from "../BaseInput";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 import {
   ChangeHandler,
   Option,
   RenderEndAdornmentType,
   useMultiselectEvents,
 } from "./useMultiselectEvents";
-import { Box, List, PropsWithBox, Text } from "..";
-import { helperTextRecipe, InputVariants } from "../BaseInput";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { MultiselectWrapper } from "./MultiselectWrapper";
 
 import { multiselectInputRecipe } from "./Multiselect.css";
 
@@ -78,7 +78,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" gap={3} ref={containerRef}>
+      <Box display="flex" flexDirection="column" ref={containerRef}>
         <MultiselectWrapper
           id={id}
           typed={typed}
@@ -96,15 +96,15 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           {selectedItems.map((item, idx) => (
             <Box
               key={`selected-item-${item}-${idx}`}
-              paddingX="s1.5"
-              paddingY="s0.5"
+              paddingX={1.5}
+              paddingY={0.5}
               backgroundColor="surfaceNeutralSubdued"
               borderColor="neutralHighlight"
               borderWidth={1}
               borderStyle="solid"
               borderRadius={3}
               display="flex"
-              gap="s1"
+              gap={1}
               alignItems="center"
               {...getSelectedItemProps({
                 selectedItem: item,
@@ -122,7 +122,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                   cursor="pointer"
                   variant="caption"
                   size="small"
-                  marginBottom="spx"
+                  marginBottom="px"
                   onClick={(event) => {
                     event.stopPropagation();
                     event.preventDefault();
@@ -141,9 +141,9 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             className={multiselectInputRecipe({ size, error })}
             placeholder="Add item"
             disabled={disabled}
-            width="s0"
+            width={0}
             __flex={1}
-            minWidth="s7"
+            minWidth={7}
             display={hasItemsToSelect ? "block" : "none"}
             {...getInputProps({
               id,
