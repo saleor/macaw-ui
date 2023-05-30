@@ -78,7 +78,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" gap={3} ref={containerRef}>
+      <Box display="flex" flexDirection="column" ref={containerRef}>
         <MultiselectWrapper
           id={id}
           typed={typed}
