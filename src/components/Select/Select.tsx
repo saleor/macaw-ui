@@ -7,11 +7,11 @@ import {
   useRef,
 } from "react";
 
-import { SelectWrapper } from "./SelectWrapper";
-import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
 import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
+import { SelectWrapper } from "./SelectWrapper";
 
 export type SelectProps = PropsWithBox<
   Omit<

@@ -2,11 +2,11 @@ import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
+import { Box, PropsWithBox, Text } from "..";
+import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
+
 import { InputWrapper, useStateEvents } from "./InputWrapper";
 import { checkIfValidNumberInput } from "./helpers";
-import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
-import { Box, PropsWithBox } from "../Box";
-import { Text } from "../Text";
 
 export type InputProps = PropsWithBox<
   Omit<
@@ -15,7 +15,7 @@ export type InputProps = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
-    type?: "text" | "number" | "url" | "email" | "password";
+    type?: "text" | "number" | "url" | "email" | "password" | "date" | "time";
     helperText?: ReactNode;
     endAdornment?: ReactNode;
   }
@@ -52,7 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       value: inputValue,
       active,
       typed,
-    } = useStateEvents(value, onChange);
+    } = useStateEvents(value, type, onChange);
 
     return (
       <Box

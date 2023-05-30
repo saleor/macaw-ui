@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ReactNode } from "react";
-import { AutosizeInput, InputContainer } from "./AutosizeInput";
 import { Box } from "../Box";
+import { AutosizeInput, InputContainer } from "./AutosizeInput";
 import { numberInputSign as numberInputSignStyles } from "./Expression.css";
 
 interface SignProps {

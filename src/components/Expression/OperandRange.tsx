@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, ChangeEvent } from "react";
+import { Box } from "../Box";
 import { AutosizeInput, InputContainer } from "./AutosizeInput";
 import { Sign } from "./OperandNumber";
-import { Box } from "../Box";
 import { rangeItem as rangeItemStyles } from "./Expression.css";
 
 type OperandRangeProps = Omit<
