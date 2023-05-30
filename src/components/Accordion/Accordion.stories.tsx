@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { Box, Text } from "../..";
+import { Box, Text, Button } from "../..";
 
 import { Accordion } from ".";
 
@@ -53,10 +53,16 @@ export const Controlled: Story = {
 
     return (
       <Box>
-        <Box display="flex" flexDirection="column" marginBottom={10}>
-          <button onClick={() => setValue("first-item")}>Open first</button>
-          <button onClick={() => setValue("second-item")}>Open second</button>
-          <button onClick={() => setValue("third-item")}>Open third</button>
+        <Box display="flex" gap={5} marginBottom={10}>
+          <Button variant="secondary" onClick={() => setValue("first-item")}>
+            Open first
+          </Button>
+          <Button variant="secondary" onClick={() => setValue("second-item")}>
+            Open second
+          </Button>
+          <Button variant="secondary" onClick={() => setValue("third-item")}>
+            Open third
+          </Button>
         </Box>
         <Accordion
           {...args}
