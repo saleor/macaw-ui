@@ -7,6 +7,8 @@ import {
   useRef,
 } from "react";
 
+import { useIntersectionObserver } from "~/utils/hooks";
+
 import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
@@ -32,6 +34,7 @@ export type SelectProps = PropsWithBox<
     options: Option[];
     onChange?: ChangeHandler;
     value: string | number;
+    onInfiniteScroll?: () => void;
   }
 > &
   InputVariants;
@@ -62,10 +65,21 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onChange,
       onFocus,
       onBlur,
+      onInfiniteScroll,
       ...props
     },
     ref
   ) => {
+    const listRef = useRef<HTMLUListElement>(null);
+    const [lastListItemRef] = useIntersectionObserver({
+      callback: onInfiniteScroll,
+      options: {
+        threshold: 1,
+        root: listRef.current,
+        rootMargin: "0%",
+      },
+    });
+
     const {
       active,
       typed,
@@ -124,22 +138,31 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
               as="ul"
               className={listStyle}
               // suppress error because of rendering list in portal
-              {...getMenuProps({}, { suppressRefError: true })}
+              {...getMenuProps(
+                {
+                  ref: listRef,
+                },
+                { suppressRefError: true }
+              )}
             >
               {isOpen &&
-                options?.map((item, index) => (
-                  <List.Item
-                    key={`${id}-${item}-${index}`}
-                    className={listItemStyle}
-                    {...getItemProps({
-                      item,
-                      index,
-                    })}
-                    active={highlightedIndex === index}
-                  >
-                    <Text size={size}>{item.label}</Text>
-                  </List.Item>
-                ))}
+                options?.map((item, index) => {
+                  return (
+                    <List.Item
+                      key={`${id}-${item}-${index}`}
+                      className={listItemStyle}
+                      {...getItemProps({
+                        item,
+                        index,
+                        ref:
+                          options.length === index + 1 ? lastListItemRef : null,
+                      })}
+                      active={highlightedIndex === index}
+                    >
+                      <Text size={size}>{item.label}</Text>
+                    </List.Item>
+                  );
+                })}
             </List>
           </Box>
         </Portal>
