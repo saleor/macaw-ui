@@ -23,18 +23,21 @@ const args: Story["args"] = {
     <Accordion.Item value="first-item">
       <Accordion.Trigger>
         <Text>Trigger 1</Text>
+        <Accordion.TriggerButton />
       </Accordion.Trigger>
       <Accordion.Content>Content 1</Accordion.Content>
     </Accordion.Item>,
     <Accordion.Item value="second-item">
       <Accordion.Trigger>
         <Text>Trigger 2</Text>
+        <Accordion.TriggerButton />
       </Accordion.Trigger>
       <Accordion.Content>Content 2</Accordion.Content>
     </Accordion.Item>,
     <Accordion.Item value="third-item">
       <Accordion.Trigger disabled>
         <Text color="textNeutralDisabled">Trigger 3</Text>
+        <Accordion.TriggerButton disabled />
       </Accordion.Trigger>
       <Accordion.Content>Content 3</Accordion.Content>
     </Accordion.Item>,
@@ -71,5 +74,60 @@ export const Controlled: Story = {
         />
       </Box>
     );
+  },
+};
+
+export const WithTriggerButtonOnLeft: Story = {
+  args: {
+    ...args,
+    children: [
+      <Accordion.Item value="first-item">
+        <Accordion.Trigger>
+          <Accordion.TriggerButton />
+          <Text>Trigger 1</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 1</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="second-item">
+        <Accordion.Trigger>
+          <Accordion.TriggerButton />
+          <Text>Trigger 2</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 2</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="third-item">
+        <Accordion.Trigger disabled>
+          <Accordion.TriggerButton disabled />
+          <Text color="textNeutralDisabled">Trigger 3</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 3</Accordion.Content>
+      </Accordion.Item>,
+    ],
+  },
+};
+
+export const WithoutTriggerButton: Story = {
+  args: {
+    ...args,
+    children: [
+      <Accordion.Item value="first-item">
+        <Accordion.Trigger>
+          <Text>Trigger 1</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 1</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="second-item">
+        <Accordion.Trigger>
+          <Text>Trigger 2</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 2</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="third-item">
+        <Accordion.Trigger disabled>
+          <Text color="textNeutralDisabled">Trigger 3</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 3</Accordion.Content>
+      </Accordion.Item>,
+    ],
   },
 };
