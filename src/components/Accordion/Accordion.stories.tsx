@@ -37,7 +37,7 @@ const args: Story["args"] = {
     <Accordion.Item value="third-item">
       <Accordion.Trigger disabled>
         <Text color="textNeutralDisabled">Trigger 3</Text>
-        <Accordion.TriggerButton />
+        <Accordion.TriggerButton disabled />
       </Accordion.Trigger>
       <Accordion.Content>Content 3</Accordion.Content>
     </Accordion.Item>,
@@ -97,7 +97,7 @@ export const WithTriggerButtonOnLeft: Story = {
       </Accordion.Item>,
       <Accordion.Item value="third-item">
         <Accordion.Trigger disabled>
-          <Accordion.TriggerButton />
+          <Accordion.TriggerButton disabled />
           <Text color="textNeutralDisabled">Trigger 3</Text>
         </Accordion.Trigger>
         <Accordion.Content>Content 3</Accordion.Content>
