@@ -27,7 +27,8 @@ const getItemsFilter = (
 export const useComboboxEvents = (
   value: InputValue,
   options: Option[],
-  changeHandler?: ChangeHandler
+  changeHandler?: ChangeHandler,
+  onAutocomplete?: (inputValue: string | undefined) => void
 ) => {
   const [inputValue, setInputValue] = useState<InputValue | undefined>(value);
   const [active, setActive] = useState(false);
@@ -48,10 +49,14 @@ export const useComboboxEvents = (
     selectedItem: options.find((option) => option.value === value) ?? null,
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        changeHandler?.(selectedItem?.value);
+        changeHandler?.(selectedItem.value);
       }
     },
     onInputValueChange: ({ inputValue }) => {
+      if (onAutocomplete && inputValue !== "" && itemsToSelect.length === 0) {
+        onAutocomplete(inputValue);
+      }
+
       setInputValue(inputValue);
     },
   });

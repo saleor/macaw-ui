@@ -7,7 +7,7 @@ import {
   useRef,
 } from "react";
 
-import { useIntersectionObserver } from "~/utils/hooks";
+import { useIntersectionObserver } from "~/utils";
 
 import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
@@ -71,7 +71,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     ref
   ) => {
     const listRef = useRef<HTMLUListElement>(null);
-    const [lastListItemRef] = useIntersectionObserver({
+    const lastListItemRef = useIntersectionObserver({
       callback: onInfiniteScroll,
       options: {
         threshold: 1,
@@ -137,11 +137,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             <List
               as="ul"
               className={listStyle}
-              // suppress error because of rendering list in portal
               {...getMenuProps(
                 {
                   ref: listRef,
                 },
+                // suppress error because of rendering list in portal
                 { suppressRefError: true }
               )}
             >

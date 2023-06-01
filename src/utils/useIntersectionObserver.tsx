@@ -33,5 +33,5 @@ export function useIntersectionObserver({
     };
   }, [threshold, root, rootMargin, callback]);
 
-  return [ref];
+  return ref;
 }

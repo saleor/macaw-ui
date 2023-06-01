@@ -133,3 +133,30 @@ export const WithHelperText: Story = {
     },
   },
 };
+
+export const DynamicData = () => {
+  const [options, setOptions] = useState([
+    { value: "color-black", label: "Black" },
+    { value: "color-red", label: "Red" },
+    { value: "color-green", label: "Green" },
+    { value: "color-blue", label: "Blue" },
+    { value: "color-orange", label: "Orange" },
+    { value: "color-purple", label: "Purple" },
+  ]);
+
+  const [value, setValue] = useState(options[0].value);
+
+  return (
+    <Combobox
+      value={value}
+      onChange={(value) => setValue(value as string)}
+      options={options}
+      onAutocomplete={() =>
+        setOptions([...options, { value: "color-white", label: "White" }])
+      }
+      onInfiniteScroll={() =>
+        setOptions([...options, { value: "color-white", label: "White" }])
+      }
+    />
+  );
+};

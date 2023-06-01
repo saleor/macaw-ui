@@ -1,7 +1,7 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { classNames } from "~/utils";
+import { classNames, useIntersectionObserver } from "~/utils";
 
 import { Box, List, PropsWithBox, Text } from "..";
 import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
@@ -34,6 +34,8 @@ export type ComboboxProps = PropsWithBox<
     options: Option[];
     onChange?: ChangeHandler;
     value: InputValue;
+    onAutocomplete?: (inputValue: string | undefined) => void;
+    onInfiniteScroll?: () => void;
   }
 > &
   InputVariants;
@@ -51,6 +53,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       helperText,
       options,
       onChange,
+      onAutocomplete,
+      onInfiniteScroll,
       ...props
     },
     ref
@@ -66,7 +70,17 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       highlightedIndex,
       getItemProps,
       itemsToSelect,
-    } = useComboboxEvents(value, options, onChange);
+    } = useComboboxEvents(value, options, onChange, onAutocomplete);
+
+    const listRef = useRef<HTMLUListElement>(null);
+    const lastListItemRef = useIntersectionObserver({
+      callback: onInfiniteScroll,
+      options: {
+        threshold: 1,
+        root: listRef.current,
+        rootMargin: "0%",
+      },
+    });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -107,8 +121,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             <List
               as="ul"
               className={listStyle}
-              // suppress error because of rendering list in portal
-              {...getMenuProps({}, { suppressRefError: true })}
+              {...getMenuProps(
+                {
+                  ref: listRef,
+                },
+                // suppress error because of rendering list in portal
+                { suppressRefError: true }
+              )}
             >
               {isOpen &&
                 itemsToSelect?.map((item, index) => (
@@ -118,6 +137,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     {...getItemProps({
                       item,
                       index,
+                      ref:
+                        options.length === index + 1 ? lastListItemRef : null,
                     })}
                     active={highlightedIndex === index}
                   >
