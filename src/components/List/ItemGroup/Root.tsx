@@ -5,9 +5,8 @@ import {
 } from "@radix-ui/react-accordion";
 
 import { DataAttributes } from "~/components/types";
-import { Provider } from "./context";
-
 import { List } from "../List";
+import { Provider } from "./context";
 
 import { trigger } from "./common.css";
 

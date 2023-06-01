@@ -4,8 +4,8 @@ import { ReactNode } from "react";
 import { Box, Button, ChervonDownIcon, PropsWithBox } from "~/components";
 import { DataAttributes } from "~/components/types";
 
-import { useItemGroupContext } from "./context";
 import { List } from "..";
+import { useItemGroupContext } from "./context";
 
 import { button, icon } from "./common.css";
 

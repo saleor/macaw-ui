@@ -6,10 +6,10 @@ import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import { Adornment } from "./Adornment";
-import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { Box } from "../Box";
+import { Adornment } from "./Adornment";
+import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;

@@ -3,16 +3,16 @@ import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
 import { classNames } from "~/utils";
 
-import { ComboboxWrapper } from "./ComboboxWrapper";
+import { Box, List, PropsWithBox, Text } from "..";
+import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
+import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 import {
   ChangeHandler,
   InputValue,
   Option,
   useComboboxEvents,
 } from "./useComboboxEvents";
-import { Box, List, PropsWithBox, Text } from "..";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { ComboboxWrapper } from "./ComboboxWrapper";
 
 export type ComboboxProps = PropsWithBox<
   Omit<

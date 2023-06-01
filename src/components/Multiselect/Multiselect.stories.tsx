@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { Multiselect } from "./Multiselect";
 import { Box } from "../Box";
 import { ViewTableIcon } from "../Icons";
+import { Multiselect } from "./Multiselect";
 
 const options = [
   { value: "Black", label: "Black" },

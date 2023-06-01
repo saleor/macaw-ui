@@ -1,6 +1,6 @@
+import { SearchIcon } from "../Icons";
 import { ButtonProps } from "./Button";
 import { isFixedWidth } from "./utils";
-import { SearchIcon } from "../Icons";
 
 describe("isFixedWidth", () => {
   it("Returns true when only icon is provided with no children", () => {
