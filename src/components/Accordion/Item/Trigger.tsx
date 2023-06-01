@@ -5,9 +5,6 @@ import {
 import { ReactNode } from "react";
 
 import { Box, PropsWithBox } from "../../Box";
-import { Button } from "../../Button";
-import { ChervonDownIcon } from "../../Icons";
-import { icon } from "../common.css";
 
 export type AccordionTriggerProps = PropsWithBox<{
   children: ReactNode;
@@ -16,7 +13,6 @@ export type AccordionTriggerProps = PropsWithBox<{
 
 export const Trigger = ({
   children,
-  buttonDataTestId,
   disabled,
   ...rest
 }: AccordionTriggerProps) => (
@@ -37,13 +33,6 @@ export const Trigger = ({
         {...rest}
       >
         {children}
-        <Button
-          icon={<ChervonDownIcon className={icon} />}
-          variant="secondary"
-          type="button"
-          data-test-id={buttonDataTestId}
-          disabled={disabled}
-        />
       </Box>
     </AccordionTrigger>
   </AccordionHeader>
