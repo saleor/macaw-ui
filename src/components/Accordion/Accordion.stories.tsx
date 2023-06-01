@@ -105,3 +105,29 @@ export const WithTriggerButtonOnLeft: Story = {
     ],
   },
 };
+
+export const WithoutTriggerButton: Story = {
+  args: {
+    ...args,
+    children: [
+      <Accordion.Item value="first-item">
+        <Accordion.Trigger>
+          <Text>Trigger 1</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 1</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="second-item">
+        <Accordion.Trigger>
+          <Text>Trigger 2</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 2</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="third-item">
+        <Accordion.Trigger disabled>
+          <Text color="textNeutralDisabled">Trigger 3</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 3</Accordion.Content>
+      </Accordion.Item>,
+    ],
+  },
+};
