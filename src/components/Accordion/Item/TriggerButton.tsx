@@ -2,7 +2,7 @@ import { Button } from "../../Button";
 import { ChervonDownIcon } from "../../Icons";
 import { icon } from "../common.css";
 
-interface TriggerButtonProps {
+export interface TriggerButtonProps {
   disabled?: boolean;
   dataTestId?: string;
 }
