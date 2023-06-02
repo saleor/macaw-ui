@@ -199,3 +199,10 @@ export const DynamicData = () => {
     </Box>
   );
 };
+
+export const Loading: Story = {
+  ...MultiselectTemplate,
+  args: {
+    loading: true,
+  },
+};

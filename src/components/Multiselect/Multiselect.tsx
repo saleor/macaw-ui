@@ -36,6 +36,7 @@ export type MultiselectProps = PropsWithBox<
     value?: string[];
     renderEndAdornment?: RenderEndAdornmentType;
     onAutocomplete?: (inputValue: string | undefined) => void;
+    loading?: boolean;
   }
 > &
   InputVariants;
@@ -55,6 +56,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       renderEndAdornment,
       value = [],
       onAutocomplete,
+      loading,
       ...props
     },
     ref
@@ -100,6 +102,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           getToggleButtonProps={getToggleButtonProps}
           renderEndAdornment={renderEndAdornment}
           hasItemsToSelect={hasItemsToSelect}
+          loading={loading}
         >
           {selectedItems.map((item, idx) => (
             <Box
