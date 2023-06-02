@@ -145,15 +145,25 @@ export const DynamicData = () => {
   ]);
 
   const [value, setValue] = useState(options[0].value);
+  const [loading, setLoading] = useState(false);
 
   return (
     <Combobox
       value={value}
       onChange={(value) => setValue(value as string)}
       options={options}
+      loading={loading}
       onAutocomplete={() => {
+        setLoading((prev) => !prev);
         setOptions([...options, { value: "color-white", label: "White" }]);
       }}
     />
   );
+};
+
+export const Loading: Story = {
+  ...ComboboxTemplate,
+  args: {
+    loading: true,
+  },
 };

@@ -148,13 +148,16 @@ export const DynamicOptions = () => {
   ]);
 
   const [value, setValue] = useState(options[0].value);
+  const [loading, setLoading] = useState(false);
 
   return (
     <Select
       value={value}
       onChange={(value) => setValue(value as string)}
       options={options}
+      loading={loading}
       onInfiniteScroll={() => {
+        setLoading((prev) => !prev);
         setOptions((prev) => [
           ...prev,
           { value: "color-white", label: "White" },
@@ -162,4 +165,11 @@ export const DynamicOptions = () => {
       }}
     />
   );
+};
+
+export const Loading: Story = {
+  ...SelectTemplate,
+  args: {
+    loading: true,
+  },
 };

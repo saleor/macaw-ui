@@ -35,6 +35,7 @@ export type ComboboxProps = PropsWithBox<
     onChange?: ChangeHandler;
     value: InputValue;
     onAutocomplete?: (inputValue: string | undefined) => void;
+    loading?: boolean;
   }
 > &
   InputVariants;
@@ -53,6 +54,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       options,
       onChange,
       onAutocomplete,
+      loading,
       ...props
     },
     ref
@@ -85,6 +87,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           className={className}
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
+          loading={loading}
         >
           <Box
             id={id}

@@ -35,6 +35,7 @@ export type SelectProps = PropsWithBox<
     onChange?: ChangeHandler;
     value: string | number;
     onInfiniteScroll?: () => void;
+    loading?: boolean;
   }
 > &
   InputVariants;
@@ -66,6 +67,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onFocus,
       onBlur,
       onInfiniteScroll,
+      loading,
       ...props
     },
     ref
@@ -108,6 +110,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           className={className}
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
+          loading={loading}
         >
           <Box
             height={getBoxHeight(size)}

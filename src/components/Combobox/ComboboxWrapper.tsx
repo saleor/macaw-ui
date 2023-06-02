@@ -5,12 +5,11 @@ import { UseComboboxPropGetters } from "downshift7";
 import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
-
 import { sprinkles } from "~/theme";
+
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { toggleIconStyle } from "../BaseSelect";
-import { Box } from "../Box";
-import { ArrowDownIcon } from "../Icons";
+import { Box, ArrowDownIcon, Spinner } from "..";
 import { Option } from "./useComboboxEvents";
 
 type ComboboxWrapperProps = LabelVariants & {
@@ -21,6 +20,7 @@ type ComboboxWrapperProps = LabelVariants & {
   children: ReactNode;
   getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
+  loading?: boolean;
 };
 
 export const ComboboxWrapper = ({
@@ -35,6 +35,7 @@ export const ComboboxWrapper = ({
   active,
   disabled,
   size,
+  loading,
 }: ComboboxWrapperProps) => {
   return (
     <Box
@@ -60,19 +61,23 @@ export const ComboboxWrapper = ({
         {children}
       </Box>
 
-      <ArrowDownIcon
-        className={classNames(
-          toggleIconStyle,
-          sprinkles({ cursor: "pointer" })
-        )}
-        size={size}
-        {...getToggleButtonProps({
-          disabled,
-          onClick: (event) => {
-            event.preventDefault();
-          },
-        })}
-      />
+      {loading ? (
+        <Spinner size={size} />
+      ) : (
+        <ArrowDownIcon
+          className={classNames(
+            toggleIconStyle,
+            sprinkles({ cursor: "pointer" })
+          )}
+          size={size}
+          {...getToggleButtonProps({
+            disabled,
+            onClick: (event) => {
+              event.preventDefault();
+            },
+          })}
+        />
+      )}
     </Box>
   );
 };
