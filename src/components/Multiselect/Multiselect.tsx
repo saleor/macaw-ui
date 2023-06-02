@@ -144,7 +144,6 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             width={0}
             __flex={1}
             minWidth={7}
-            display={hasItemsToSelect ? "block" : "none"}
             {...getInputProps({
               id,
               ref,

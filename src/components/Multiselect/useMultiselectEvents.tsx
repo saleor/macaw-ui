@@ -109,6 +109,8 @@ export const useMultiselectEvents = (
               ...selectedItems.map((i) => i.value),
               newSelectedItem.value,
             ]);
+          } else {
+            setInputValue("");
           }
           break;
 
