@@ -78,7 +78,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" ref={containerRef}>
+      <Box display="flex" flexDirection="column">
         <MultiselectWrapper
           id={id}
           typed={typed}
@@ -154,8 +154,11 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           />
         </MultiselectWrapper>
 
+        <Box ref={containerRef} />
+
         <Portal asChild container={containerRef.current}>
           <Box
+            position="relative"
             display={isOpen && hasItemsToSelect ? "block" : "none"}
             className={listWrapperRecipe({ size })}
           >
