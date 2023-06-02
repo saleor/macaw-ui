@@ -82,7 +82,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" ref={containerRef}>
+      <Box display="flex" flexDirection="column">
         <SelectWrapper
           id={id}
           typed={typed}
@@ -113,6 +113,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             </Text>
           </Box>
         </SelectWrapper>
+        <Box ref={containerRef} />
 
         <Portal asChild container={containerRef.current}>
           <Box
