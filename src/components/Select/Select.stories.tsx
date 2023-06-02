@@ -21,6 +21,14 @@ const meta: Meta<typeof Select> = {
     label: "Pick a color",
     size: "large",
   },
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 300,
+      },
+    },
+  },
 };
 
 export default meta;
