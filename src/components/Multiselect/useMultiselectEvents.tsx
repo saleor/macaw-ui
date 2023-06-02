@@ -33,7 +33,8 @@ export const useMultiselectEvents = (
   selectedValues: string[],
   options: Option[],
   changeHandler?: ChangeHandler,
-  disabled?: boolean
+  disabled?: boolean,
+  onAutocomplete?: (inputValue: string | undefined) => void
 ) => {
   const [inputValue, setInputValue] = useState("");
   const selectedItems = selectedValues.reduce<Option[]>((acc, value) => {
@@ -109,10 +110,19 @@ export const useMultiselectEvents = (
               ...selectedItems.map((i) => i.value),
               newSelectedItem.value,
             ]);
+          } else {
+            setInputValue("");
           }
           break;
 
         case useCombobox.stateChangeTypes.InputChange:
+          if (
+            onAutocomplete &&
+            inputValue !== "" &&
+            itemsToSelect.length === 0
+          ) {
+            onAutocomplete(inputValue);
+          }
           setInputValue(newInputValue ?? "");
           break;
 

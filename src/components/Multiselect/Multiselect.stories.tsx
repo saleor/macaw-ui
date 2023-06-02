@@ -170,3 +170,32 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
     },
   },
 };
+
+export const DynamicData = () => {
+  const [options, setOptions] = useState([
+    { value: "color-black", label: "Black" },
+    { value: "color-red", label: "Red" },
+    { value: "color-green", label: "Green" },
+    { value: "color-blue", label: "Blue" },
+    { value: "color-orange", label: "Orange" },
+    { value: "color-purple", label: "Purple" },
+  ]);
+
+  const [selectedItems, setSelectedItems] = useState([
+    "color-black",
+    "color-red",
+  ]);
+
+  return (
+    <Box __width={300}>
+      <Multiselect
+        value={selectedItems}
+        onChange={(values) => setSelectedItems(values ?? [])}
+        options={options}
+        onAutocomplete={() => {
+          setOptions([...options, { value: "color-white", label: "White" }]);
+        }}
+      />
+    </Box>
+  );
+};

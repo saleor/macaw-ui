@@ -7,7 +7,7 @@ import {
   ReactNode,
 } from "react";
 import * as Portal from "@radix-ui/react-portal";
-import { useOutsideClick } from "~/utils/hooks";
+import { useOutsideClick } from "~/utils";
 import { Box } from "../Box";
 import {
   AutosizeInput,

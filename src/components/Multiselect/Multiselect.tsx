@@ -35,6 +35,7 @@ export type MultiselectProps = PropsWithBox<
     onChange?: ChangeHandler;
     value?: string[];
     renderEndAdornment?: RenderEndAdornmentType;
+    onAutocomplete?: (inputValue: string | undefined) => void;
   }
 > &
   InputVariants;
@@ -53,6 +54,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onChange,
       renderEndAdornment,
       value = [],
+      onAutocomplete,
       ...props
     },
     ref
@@ -73,7 +75,13 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       removeSelectedItem,
       getToggleButtonProps,
       hasItemsToSelect,
-    } = useMultiselectEvents(value, options, onChange, disabled);
+    } = useMultiselectEvents(
+      value,
+      options,
+      onChange,
+      disabled,
+      onAutocomplete
+    );
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -144,7 +152,6 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             width={0}
             __flex={1}
             minWidth={7}
-            display={hasItemsToSelect ? "block" : "none"}
             {...getInputProps({
               id,
               ref,

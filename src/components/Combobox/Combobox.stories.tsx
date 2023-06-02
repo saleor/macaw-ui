@@ -151,12 +151,9 @@ export const DynamicData = () => {
       value={value}
       onChange={(value) => setValue(value as string)}
       options={options}
-      onAutocomplete={() =>
-        setOptions([...options, { value: "color-white", label: "White" }])
-      }
-      onInfiniteScroll={() =>
-        setOptions([...options, { value: "color-white", label: "White" }])
-      }
+      onAutocomplete={() => {
+        setOptions([...options, { value: "color-white", label: "White" }]);
+      }}
     />
   );
 };
