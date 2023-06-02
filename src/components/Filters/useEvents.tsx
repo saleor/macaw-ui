@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { useEffect, useRef } from "react";
 import { Row } from "./Filters";
 
@@ -39,68 +38,17 @@ type UpdateLeftOperatorProps = {
 };
 
 type UseEventsProps = {
-  onChange: (event: FilterEvent["detail"], context: Context) => void;
-  value: Array<Row | string>;
+  onChange: (event: FilterEvent["detail"]) => void;
 };
 
 const eventName = "filterChange";
 
-export const useEvents = ({ onChange, value }: UseEventsProps) => {
+export const useEvents = ({ onChange }: UseEventsProps) => {
   const wrapper = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleChange = (event: FilterEvent) => {
-      onChange(event.detail, {
-        updateRightOperator: () => {
-          const path = event.detail?.path ?? "";
-          return _.setWith(_.clone(value), path, event.detail?.value, _.clone);
-        },
-        updateCondition: (data?: UpdateConditionProps) => {
-          const path = event.detail?.path ?? "";
-          const conditionValue = event.detail?.value;
-
-          return _.setWith(
-            _.clone(value),
-            path,
-            {
-              conditionValue,
-              ...data,
-            },
-            _.clone
-          );
-        },
-        updateLeftOperator: (data: UpdateLeftOperatorProps) => {
-          const path = event.detail?.path ?? "";
-          const rightValue = event.detail?.value;
-          return _.setWith(
-            _.clone(value),
-            path,
-            {
-              value: rightValue,
-              ...data,
-            },
-            _.clone
-          );
-        },
-        addRow: () => {
-          return [
-            ...value,
-            "AND",
-            {
-              name: "",
-              value: "",
-            },
-          ];
-        },
-
-        removeRow: () => {
-          const index = parseInt(event.detail?.path ?? "", 10);
-          return [
-            ...value.slice(0, index - 1),
-            ...value.slice(index + 2, value.length),
-          ];
-        },
-      });
+      onChange(event.detail);
     };
 
     const element = wrapper?.current;
@@ -109,7 +57,7 @@ export const useEvents = ({ onChange, value }: UseEventsProps) => {
     return () => {
       element?.removeEventListener(eventName, handleChange);
     };
-  }, [onChange, value]);
+  }, [onChange]);
 
   const dispatchFilterChangeEvent = ({ ...data }: FilterEvent["detail"]) => {
     const event = new CustomEvent(eventName, { detail: data });

@@ -87,42 +87,66 @@ export const Default = () => {
     <_ExperimentalFilters
       value={rows}
       leftOptions={leftOptions}
-      onChange={(event, context) => {
+      onChange={(event) => {
         if (event?.type === "update.rightOperator") {
-          const newState = context.updateRightOperator();
+          const newState = _.setWith(
+            _.clone(rows),
+            event?.path ?? "",
+            event?.value,
+            _.clone
+          );
           setRows(newState);
         }
 
         if (event?.type === "update.condition") {
-          const newState = context.updateCondition({
-            options: [
-              { value: "electronics", label: "Electronics" },
-              { value: "clothing", label: "Clothing" },
-            ],
-            value: [],
-          });
+          const newState = _.setWith(
+            _.clone(rows),
+            event?.path ?? "",
+            {
+              value: [],
+              options: [
+                { value: "electronics", label: "Electronics" },
+                { value: "clothing", label: "Clothing" },
+              ],
+              conditionValue: event?.value,
+            },
+            _.clone
+          );
           setRows(newState);
         }
 
         if (event?.type === "update.leftOperator") {
-          const newState = context.updateLeftOperator({
-            condition: {
-              options: [{ value: "input", label: "is", type: "input.text" }],
-              selected: {
-                value: "",
-                conditionValue: "input",
+          const newState = _.setWith(
+            _.clone(rows),
+            event?.path ?? "",
+            {
+              value: event?.value,
+              condition: {
+                options: [
+                  { type: "input.number", label: "is", value: "input-1" },
+                  { type: "multiselect", label: "has", value: "input-2" },
+                ],
+                selected: {
+                  value: "3.13",
+                  conditionValue: "input-1",
+                },
               },
             },
-          });
+            _.clone
+          );
           setRows(newState);
         }
         if (event?.type === "add") {
-          const newState = context.addRow();
+          const newState = [...rows, "AND", { name: "", value: "" }];
           setRows(newState);
         }
 
         if (event?.type === "remove") {
-          const newState = context.removeRow();
+          const index = parseInt(event?.path ?? "", 10);
+          const newState = [
+            ...rows.slice(0, index - 1),
+            ...rows.slice(index + 2, rows.length),
+          ];
           setRows(newState);
         }
       }}

@@ -1,5 +1,3 @@
-import { FilterEvent, useEvents, Context } from "./useEvents";
-
 import {
   Box,
   Button,
@@ -10,6 +8,8 @@ import {
   Select,
   Text,
 } from "..";
+
+import { FilterEvent, useEvents } from "./useEvents";
 
 export type Row = {
   value: string;
@@ -28,7 +28,7 @@ type Right = {
 export type Props = {
   value: Array<Row | string>;
   leftOptions: Array<{ value: string; label: string }>;
-  onChange: (event: FilterEvent["detail"], context: Context) => void;
+  onChange: (event: FilterEvent["detail"]) => void;
 };
 
 export const _ExperimentalFilters = ({
@@ -38,7 +38,6 @@ export const _ExperimentalFilters = ({
 }: Props) => {
   const { wrapper, dispatchFilterChangeEvent } = useEvents({
     onChange,
-    value,
   });
 
   return (
