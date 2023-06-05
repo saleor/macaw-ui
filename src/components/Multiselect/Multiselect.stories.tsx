@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
@@ -43,14 +44,16 @@ type Story = StoryObj<typeof Multiselect>;
 
 const MultiselectTemplate: Story = {
   render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
+    const [inputValue, setInputValue] = useState("");
 
     return (
       <Box __width={300}>
         <Multiselect
           {...args}
           value={selectedItems}
+          inputValue={inputValue}
+          onInputValueChange={(val) => setInputValue(val as string)}
           onChange={(values) => setSelectedItems(values ?? [])}
         />
       </Box>
@@ -177,4 +180,36 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
       },
     },
   },
+};
+
+export const DynamicData = () => {
+  const [options, setOptions] = useState([
+    { value: "color-black", label: "Black" },
+    { value: "color-red", label: "Red" },
+    { value: "color-green", label: "Green" },
+    { value: "color-blue", label: "Blue" },
+    { value: "color-orange", label: "Orange" },
+    { value: "color-purple", label: "Purple" },
+  ]);
+
+  const [selectedItems, setSelectedItems] = useState([
+    "color-black",
+    "color-red",
+  ]);
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <Box __width={300}>
+      <Multiselect
+        value={selectedItems}
+        onChange={(values) => setSelectedItems(values ?? [])}
+        options={options}
+        inputValue={inputValue}
+        onInputValueChange={(value) => {
+          setInputValue(value as string);
+          setOptions([...options, { value: "color-gray", label: "gray" }]);
+        }}
+      />
+    </Box>
+  );
 };

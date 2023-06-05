@@ -16,7 +16,7 @@ export type RenderEndAdornmentType = (
 
 const getItemsFilter = (
   selectedItems: Option[],
-  inputValue: string,
+  inputValue: string | undefined,
   options: Option[]
 ) => {
   const lowerCasedInputValue = inputValue?.toLowerCase();
@@ -33,9 +33,10 @@ export const useMultiselectEvents = (
   selectedValues: string[],
   options: Option[],
   changeHandler?: ChangeHandler,
-  disabled?: boolean
+  disabled?: boolean,
+  inputValue?: string,
+  onInputValueChange?: (value: string) => void
 ) => {
-  const [inputValue, setInputValue] = useState("");
   const selectedItems = selectedValues.reduce<Option[]>((acc, value) => {
     const option = options.find((option) => option.value === value);
     if (option) {
@@ -86,7 +87,7 @@ export const useMultiselectEvents = (
       switch (type) {
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
-          setInputValue("");
+          onInputValueChange?.("");
           return {
             ...changes,
             ...(changes.selectedItem && { isOpen: true, highlightedIndex: 0 }),
@@ -110,12 +111,12 @@ export const useMultiselectEvents = (
               newSelectedItem.value,
             ]);
           } else {
-            setInputValue("");
+            onInputValueChange?.("");
           }
           break;
 
         case useCombobox.stateChangeTypes.InputChange:
-          setInputValue(newInputValue ?? "");
+          onInputValueChange?.(newInputValue ?? "");
           break;
 
         default:

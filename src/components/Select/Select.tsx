@@ -7,6 +7,8 @@ import {
   useRef,
 } from "react";
 
+import { useIntersectionObserver } from "~/utils";
+
 import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
@@ -32,6 +34,7 @@ export type SelectProps = PropsWithBox<
     options: Option[];
     onChange?: ChangeHandler;
     value: string | number;
+    onScrollEnd?: () => void;
   }
 > &
   InputVariants;
@@ -62,10 +65,21 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onChange,
       onFocus,
       onBlur,
+      onScrollEnd,
       ...props
     },
     ref
   ) => {
+    const listRef = useRef<HTMLUListElement>(null);
+    const lastListItemRef = useIntersectionObserver({
+      callback: onScrollEnd,
+      options: {
+        threshold: 1,
+        root: listRef.current,
+        rootMargin: "0%",
+      },
+    });
+
     const {
       active,
       typed,
@@ -125,7 +139,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
               as="ul"
               className={listStyle}
               // suppress error because of rendering list in portal
-              {...getMenuProps({}, { suppressRefError: true })}
+              {...getMenuProps(
+                {
+                  ref: listRef,
+                },
+                { suppressRefError: true }
+              )}
             >
               {isOpen &&
                 options?.map((item, index) => (
@@ -135,6 +154,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
                     {...getItemProps({
                       item,
                       index,
+                      ref:
+                        options.length === index + 1 ? lastListItemRef : null,
                     })}
                     active={highlightedIndex === index}
                   >

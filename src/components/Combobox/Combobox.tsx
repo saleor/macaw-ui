@@ -34,6 +34,8 @@ export type ComboboxProps = PropsWithBox<
     options: Option[];
     onChange?: ChangeHandler;
     value: InputValue;
+    inputValue?: InputValue;
+    onInputValueChange?: (value: InputValue) => void;
   }
 > &
   InputVariants;
@@ -51,6 +53,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       helperText,
       options,
       onChange,
+      inputValue,
+      onInputValueChange,
       ...props
     },
     ref
@@ -66,7 +70,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       highlightedIndex,
       getItemProps,
       itemsToSelect,
-    } = useComboboxEvents(value, options, onChange);
+    } = useComboboxEvents(
+      value,
+      options,
+      onChange,
+      inputValue,
+      onInputValueChange
+    );
 
     const containerRef = useRef<HTMLLabelElement>(null);
 
