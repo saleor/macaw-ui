@@ -11,6 +11,7 @@ export interface FilterEvent extends Event {
       | "add";
     value?: string | string[];
     path?: string;
+    rowType: number;
   };
 }
 

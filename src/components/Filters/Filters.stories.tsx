@@ -22,6 +22,7 @@ const leftOptions = [
 const value = [
   {
     value: "price",
+    type: 1,
     condition: {
       options: [
         { type: "input.number", label: "is", value: "input-1" },
@@ -36,6 +37,7 @@ const value = [
   "AND",
   {
     value: "category",
+    type: 2,
     condition: {
       options: [{ value: "input-1", label: "are", type: "multiselect" }],
       selected: {
@@ -51,6 +53,7 @@ const value = [
   "OR",
   {
     value: "rating",
+    type: 3,
     condition: {
       options: [{ value: "input-1", label: "is", type: "combobox" }],
       selected: {
@@ -66,6 +69,7 @@ const value = [
   "AND",
   {
     value: "discount",
+    type: 4,
     condition: {
       options: [{ value: "input-1", label: "is", type: "select" }],
       selected: {
@@ -137,7 +141,11 @@ export const Default = () => {
           setRows(newState);
         }
         if (event?.type === "add") {
-          const newState = [...rows, "AND", { name: "", value: "" }];
+          const newState = [
+            ...rows,
+            "AND",
+            { name: "", value: "", type: event?.rowType },
+          ];
           setRows(newState);
         }
 

@@ -13,6 +13,7 @@ import { FilterEvent, useEvents } from "./useEvents";
 
 export type Row = {
   value: string;
+  type: number;
   condition?: {
     options: Array<{ value: string; label: string; type: string }>;
     selected: Right;
@@ -62,7 +63,9 @@ export const _ExperimentalFilters = ({
           />
         )
       )}
-      <Button onClick={() => dispatchFilterChangeEvent({ type: "add" })}>
+      <Button
+        onClick={() => dispatchFilterChangeEvent({ type: "add", rowType: 1 })}
+      >
         Add row
       </Button>
     </Box>
@@ -90,6 +93,7 @@ const Row = ({
             type: "update.leftOperator",
             value: e as string,
             path: `${index}`,
+            rowType: item.type,
           });
         }}
       />
@@ -102,6 +106,7 @@ const Row = ({
               type: "update.condition",
               value: value as string,
               path: `${index}.condition.selected`,
+              rowType: item.type,
             });
           }}
         />
@@ -117,7 +122,11 @@ const Row = ({
         variant="secondary"
         icon={<RemoveIcon />}
         onClick={() =>
-          dispatchFilterChangeEvent({ type: "remove", path: `${index}` })
+          dispatchFilterChangeEvent({
+            type: "remove",
+            path: `${index}`,
+            rowType: item.type,
+          })
         }
       />
     </Box>
@@ -147,6 +156,7 @@ const Right = (props: {
               type: "update.rightOperator",
               value: e.target.value,
               path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
             });
           }}
         />
@@ -161,6 +171,7 @@ const Right = (props: {
               type: "update.rightOperator",
               value: e.target.value,
               path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
             });
           }}
         />
@@ -175,6 +186,7 @@ const Right = (props: {
               type: "update.rightOperator",
               value: e,
               path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
             })
           }
         />
@@ -189,6 +201,7 @@ const Right = (props: {
               type: "update.rightOperator",
               value: e as string,
               path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
             })
           }
         />
@@ -203,6 +216,7 @@ const Right = (props: {
               type: "update.rightOperator",
               value: e as string,
               path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
             })
           }
         />
