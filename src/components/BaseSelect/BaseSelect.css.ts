@@ -59,6 +59,7 @@ export const listStyle = style([
     left: 0,
     maxHeight: 52,
     overflowY: "auto",
+    zIndex: "3",
   }),
   {
     borderRadius: calc.add(listItemBorderRadius, spaceBetweenListItemAndBorder),

@@ -168,6 +168,7 @@ const responsiveProperties = defineProperties({
     opacity: ["0", "0.2", "0.4", "0.6", "0.8", "1"],
     fontWeight: vars.fontWeight,
     alignSelf: ["auto", "normal", "end", "center", "start"],
+    visibility: ["visible", "hidden"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
