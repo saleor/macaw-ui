@@ -165,7 +165,6 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           >
             <List
               as="ul"
-              zIndex={3}
               className={listStyle}
               // suppress error because of rendering list in portal
               {...getMenuProps({}, { suppressRefError: true })}
