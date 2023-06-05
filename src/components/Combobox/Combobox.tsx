@@ -36,6 +36,7 @@ export type ComboboxProps = PropsWithBox<
     value: InputValue;
     inputValue?: InputValue;
     onInputValueChange?: (value: InputValue) => void;
+    loading?: boolean;
   }
 > &
   InputVariants;
@@ -57,6 +58,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       onInputValueChange,
       onFocus,
       onBlur,
+      loading,
       ...props
     },
     ref
@@ -139,6 +141,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <List.Item className={listItemStyle}>
+                  <Text size={size}>Loading...</Text>
+                </List.Item>
+              )}
             </List>
           </Box>
         </Portal>

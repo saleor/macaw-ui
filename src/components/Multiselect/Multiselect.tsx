@@ -37,6 +37,7 @@ export type MultiselectProps = PropsWithBox<
     renderEndAdornment?: RenderEndAdornmentType;
     inputValue?: string;
     onInputValueChange?: (value: string) => void;
+    loading?: boolean;
   }
 > &
   InputVariants;
@@ -59,6 +60,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onInputValueChange,
       onFocus,
       onBlur,
+      loading,
       ...props
     },
     ref
@@ -197,6 +199,11 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <List.Item className={listItemStyle}>
+                  <Text size={size}>Loading...</Text>
+                </List.Item>
+              )}
             </List>
           </Box>
         </Portal>

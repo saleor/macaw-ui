@@ -1,4 +1,4 @@
-import { FocusEventHandler, useState } from "react";
+import { FocusEvent, useState } from "react";
 import {
   GetPropsCommonOptions,
   useCombobox,
@@ -30,8 +30,8 @@ export const useComboboxEvents = (
   changeHandler?: ChangeHandler,
   inputValue?: InputValue,
   onInputValueChange?: (value: InputValue) => void,
-  onCustomFocus?: (e: any) => void,
-  onCustomBlur?: (e: any) => void
+  onCustomFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void,
+  onCustomBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void
 ) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);

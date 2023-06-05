@@ -23,12 +23,15 @@ const value = [
   {
     value: "price",
     type: 1,
+    loading: true,
     condition: {
+      loading: true,
       options: [
         { type: "input.number", label: "is", value: "input-1" },
         { type: "multiselect", label: "has", value: "input-2" },
       ],
       selected: {
+        loading: true,
         value: "3.13",
         conditionValue: "input-1",
       },

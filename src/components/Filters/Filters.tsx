@@ -14,7 +14,9 @@ import { FilterEvent, useEvents } from "./useEvents";
 export type Row = {
   value: string;
   type: number;
+  loading?: boolean;
   condition?: {
+    loading?: boolean;
     options: Array<{ value: string; label: string; type: string }>;
     selected: Right;
   };
@@ -24,6 +26,7 @@ type Right = {
   value: string | string[];
   options?: Array<{ value: string; label: string }>;
   conditionValue: string;
+  loading?: boolean;
 };
 
 export type Props = {
@@ -90,6 +93,7 @@ const Row = ({
       <Combobox
         value={item.value}
         options={leftOptions}
+        loading={item.loading}
         onChange={(e) => {
           dispatchFilterChangeEvent({
             type: "leftOperator.onChange",
@@ -125,6 +129,7 @@ const Row = ({
         <Select
           value={item.condition?.selected.conditionValue ?? ""}
           options={item.condition?.options ?? []}
+          loading={item.condition?.loading}
           onChange={(value) => {
             dispatchFilterChangeEvent({
               type: "condition.onChange",
@@ -254,6 +259,7 @@ const Right = (props: {
         <Multiselect
           value={props.item.condition?.selected.value as string[]}
           options={props.item.condition?.selected.options ?? []}
+          loading={props.item.condition?.selected.loading}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onChange",
@@ -291,6 +297,7 @@ const Right = (props: {
         <Combobox
           value={props.item.condition?.selected.value as string}
           options={props.item.condition?.selected.options ?? []}
+          loading={props.item.condition?.selected.loading}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onChange",
@@ -328,6 +335,7 @@ const Right = (props: {
         <Select
           value={props.item.condition?.selected.value as string}
           options={props.item.condition?.selected.options ?? []}
+          loading={props.item.condition?.selected.loading}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onChange",

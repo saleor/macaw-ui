@@ -29,6 +29,7 @@ export type SelectProps = PropsWithBox<
     onChange?: ChangeHandler;
     value: string | number;
     onScrollEnd?: () => void;
+    loading?: boolean;
   }
 > &
   InputVariants;
@@ -60,6 +61,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       onFocus,
       onBlur,
       onScrollEnd,
+      loading,
       ...props
     },
     ref
@@ -143,6 +145,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <List.Item className={listItemStyle}>
+                  <Text size={size}>Loading...</Text>
+                </List.Item>
+              )}
             </List>
           </Box>
         </Portal>
