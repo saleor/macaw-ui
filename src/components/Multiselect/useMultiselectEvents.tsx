@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, FocusEvent } from "react";
 import {
   GetPropsCommonOptions,
   useCombobox,
@@ -35,7 +35,9 @@ export const useMultiselectEvents = (
   changeHandler?: ChangeHandler,
   disabled?: boolean,
   inputValue?: string,
-  onInputValueChange?: (value: string) => void
+  onInputValueChange?: (value: string) => void,
+  onCustomFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void,
+  onCustomBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void
 ) => {
   const selectedItems = selectedValues.reduce<Option[]>((acc, value) => {
     const option = options.find((option) => option.value === value);
@@ -141,8 +143,14 @@ export const useMultiselectEvents = (
     ) =>
       getInputProps(
         getDropdownProps({
-          onFocus,
-          onBlur,
+          onFocus: (e: FocusEvent<HTMLInputElement, Element>) => {
+            onCustomFocus?.(e);
+            onFocus();
+          },
+          onBlur: (e: FocusEvent<HTMLInputElement, Element>) => {
+            onCustomBlur?.(e);
+            onBlur();
+          },
           preventKeyAction: isOpen,
           ...options,
         }),

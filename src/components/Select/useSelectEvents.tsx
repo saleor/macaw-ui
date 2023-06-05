@@ -1,5 +1,9 @@
-import { useState } from "react";
-import { useSelect } from "downshift7";
+import { FocusEvent, useState } from "react";
+import {
+  GetPropsCommonOptions,
+  UseSelectGetToggleButtonPropsOptions,
+  useSelect,
+} from "downshift7";
 
 export type ChangeHandler = (selectedItem: string | number) => void;
 export type Option = { label: string; value: string | number };
@@ -7,7 +11,9 @@ export type Option = { label: string; value: string | number };
 export const useSelectEvents = (
   value: string | number,
   options: Option[],
-  changeHandler?: (selectedValue: string | number) => void
+  changeHandler?: (selectedValue: string | number) => void,
+  onCustomFocus?: (e: FocusEvent<HTMLElement, Element>) => void,
+  onCustomBlur?: (e: FocusEvent<HTMLElement, Element>) => void
 ) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
@@ -38,12 +44,28 @@ export const useSelectEvents = (
     active,
     typed,
     isOpen,
-    getToggleButtonProps,
+    getToggleButtonProps: (
+      options?: UseSelectGetToggleButtonPropsOptions | undefined,
+      otherOptions?: GetPropsCommonOptions | undefined
+    ) =>
+      getToggleButtonProps(
+        {
+          onFocus: (e) => {
+            onFocus();
+            onCustomFocus?.(e);
+          },
+          onBlur: (e) => {
+            onBlur();
+            onCustomBlur?.(e);
+          },
+          ...options,
+        },
+        otherOptions
+      ),
     getLabelProps,
     getMenuProps,
     highlightedIndex,
     getItemProps,
     selectedItem,
-    handlers: { onFocus, onBlur },
   };
 };

@@ -92,7 +92,7 @@ export const Default = () => {
       value={rows}
       leftOptions={leftOptions}
       onChange={(event) => {
-        if (event?.type === "update.rightOperator") {
+        if (event?.type === "rightOperator.onChange") {
           const newState = _.setWith(
             _.clone(rows),
             event?.path ?? "",
@@ -102,7 +102,7 @@ export const Default = () => {
           setRows(newState);
         }
 
-        if (event?.type === "update.condition") {
+        if (event?.type === "condition.onChange") {
           const newState = _.setWith(
             _.clone(rows),
             event?.path ?? "",
@@ -119,7 +119,7 @@ export const Default = () => {
           setRows(newState);
         }
 
-        if (event?.type === "update.leftOperator") {
+        if (event?.type === "leftOperator.onChange") {
           const newState = _.setWith(
             _.clone(rows),
             event?.path ?? "",
@@ -131,7 +131,7 @@ export const Default = () => {
                   { type: "multiselect", label: "has", value: "input-2" },
                 ],
                 selected: {
-                  value: "3.13",
+                  value: "",
                   conditionValue: "input-1",
                 },
               },
@@ -140,7 +140,7 @@ export const Default = () => {
           );
           setRows(newState);
         }
-        if (event?.type === "add") {
+        if (event?.type === "row.add") {
           const newState = [
             ...rows,
             "AND",
@@ -149,7 +149,7 @@ export const Default = () => {
           setRows(newState);
         }
 
-        if (event?.type === "remove") {
+        if (event?.type === "row.remove") {
           const index = parseInt(event?.path ?? "", 10);
           const newState = [
             ...rows.slice(0, index - 1),

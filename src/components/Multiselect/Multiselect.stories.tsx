@@ -209,6 +209,8 @@ export const DynamicData = () => {
           setInputValue(value as string);
           setOptions([...options, { value: "color-gray", label: "gray" }]);
         }}
+        onBlur={() => console.log("blur")}
+        onFocus={() => console.log("focus")}
       />
     </Box>
   );

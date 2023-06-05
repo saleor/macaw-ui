@@ -1,11 +1,5 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import {
-  FocusEvent,
-  InputHTMLAttributes,
-  ReactNode,
-  forwardRef,
-  useRef,
-} from "react";
+import { InputHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
 
 import { useIntersectionObserver } from "~/utils";
 
@@ -17,7 +11,7 @@ import { SelectWrapper } from "./SelectWrapper";
 
 export type SelectProps = PropsWithBox<
   Omit<
-    InputHTMLAttributes<HTMLSelectElement>,
+    InputHTMLAttributes<HTMLElement>,
     | "color"
     | "width"
     | "height"
@@ -50,7 +44,7 @@ const getBoxHeight = (size: SelectProps["size"]) => {
   }
 };
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = forwardRef<HTMLElement, SelectProps>(
   (
     {
       size = "medium",
@@ -90,8 +84,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       highlightedIndex,
       getItemProps,
       selectedItem,
-      handlers,
-    } = useSelectEvents(value, options, onChange);
+    } = useSelectEvents(value, options, onChange, onFocus, onBlur);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -109,19 +102,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
         >
-          <Box
-            height={getBoxHeight(size)}
-            onBlur={(event: FocusEvent<HTMLSelectElement, Element>) => {
-              handlers.onBlur();
-              onBlur?.(event);
-            }}
-            onFocus={(event: FocusEvent<HTMLSelectElement, Element>) => {
-              handlers.onFocus();
-              onFocus?.(event);
-            }}
-            {...props}
-            ref={ref}
-          >
+          <Box height={getBoxHeight(size)} {...props} ref={ref}>
             <Text size={size} variant="body">
               {selectedItem?.label}
             </Text>

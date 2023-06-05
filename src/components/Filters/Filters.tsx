@@ -64,7 +64,9 @@ export const _ExperimentalFilters = ({
         )
       )}
       <Button
-        onClick={() => dispatchFilterChangeEvent({ type: "add", rowType: 1 })}
+        onClick={() =>
+          dispatchFilterChangeEvent({ type: "row.add", rowType: 1 })
+        }
       >
         Add row
       </Button>
@@ -90,8 +92,30 @@ const Row = ({
         options={leftOptions}
         onChange={(e) => {
           dispatchFilterChangeEvent({
-            type: "update.leftOperator",
+            type: "leftOperator.onChange",
             value: e as string,
+            path: `${index}`,
+            rowType: item.type,
+          });
+        }}
+        onInputValueChange={(value) => {
+          dispatchFilterChangeEvent({
+            type: "leftOperator.onInputValueChange",
+            value: value.toString(),
+            path: `${index}`,
+            rowType: item.type,
+          });
+        }}
+        onFocus={() => {
+          dispatchFilterChangeEvent({
+            type: "leftOperator.onFocus",
+            path: `${index}`,
+            rowType: item.type,
+          });
+        }}
+        onBlur={() => {
+          dispatchFilterChangeEvent({
+            type: "leftOperator.onBlur",
             path: `${index}`,
             rowType: item.type,
           });
@@ -103,8 +127,29 @@ const Row = ({
           options={item.condition?.options ?? []}
           onChange={(value) => {
             dispatchFilterChangeEvent({
-              type: "update.condition",
+              type: "condition.onChange",
               value: value as string,
+              path: `${index}.condition.selected`,
+              rowType: item.type,
+            });
+          }}
+          onScrollEnd={() => {
+            dispatchFilterChangeEvent({
+              type: "condition.onScrollEnd",
+              path: `${index}.condition.selected`,
+              rowType: item.type,
+            });
+          }}
+          onFocus={() => {
+            dispatchFilterChangeEvent({
+              type: "condition.onFocus",
+              path: `${index}.condition.selected`,
+              rowType: item.type,
+            });
+          }}
+          onBlur={() => {
+            dispatchFilterChangeEvent({
+              type: "condition.onBlur",
               path: `${index}.condition.selected`,
               rowType: item.type,
             });
@@ -123,7 +168,7 @@ const Row = ({
         icon={<RemoveIcon />}
         onClick={() =>
           dispatchFilterChangeEvent({
-            type: "remove",
+            type: "row.remove",
             path: `${index}`,
             rowType: item.type,
           })
@@ -153,8 +198,22 @@ const Right = (props: {
           value={props.item.condition?.selected.value}
           onChange={(e) => {
             props.dispatchFilterChangeEvent({
-              type: "update.rightOperator",
+              type: "rightOperator.onChange",
               value: e.target.value,
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onFocus={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onFocus",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onBlur={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onBlur",
               path: `${props.index}.condition.selected.value`,
               rowType: props.item.type,
             });
@@ -168,8 +227,22 @@ const Right = (props: {
           value={props.item.condition?.selected.value}
           onChange={(e) => {
             props.dispatchFilterChangeEvent({
-              type: "update.rightOperator",
+              type: "rightOperator.onChange",
               value: e.target.value,
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onFocus={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onFocus",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onBlur={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onBlur",
               path: `${props.index}.condition.selected.value`,
               rowType: props.item.type,
             });
@@ -183,12 +256,34 @@ const Right = (props: {
           options={props.item.condition?.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
-              type: "update.rightOperator",
+              type: "rightOperator.onChange",
               value: e,
               path: `${props.index}.condition.selected.value`,
               rowType: props.item.type,
             })
           }
+          onInputValueChange={(value) => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onInputValueChange",
+              value: value.toString(),
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onFocus={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onFocus",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onBlur={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onBlur",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
         />
       );
     case "combobox":
@@ -198,12 +293,34 @@ const Right = (props: {
           options={props.item.condition?.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
-              type: "update.rightOperator",
+              type: "rightOperator.onChange",
               value: e as string,
               path: `${props.index}.condition.selected.value`,
               rowType: props.item.type,
             })
           }
+          onInputValueChange={(value) =>
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onInputValueChange",
+              value: value.toString(),
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            })
+          }
+          onFocus={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onFocus",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onBlur={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onBlur",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
         />
       );
     case "select":
@@ -213,12 +330,33 @@ const Right = (props: {
           options={props.item.condition?.selected.options ?? []}
           onChange={(e) =>
             props.dispatchFilterChangeEvent({
-              type: "update.rightOperator",
+              type: "rightOperator.onChange",
               value: e as string,
               path: `${props.index}.condition.selected.value`,
               rowType: props.item.type,
             })
           }
+          onScrollEnd={() =>
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onScrollEnd",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            })
+          }
+          onFocus={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onFocus",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
+          onBlur={() => {
+            props.dispatchFilterChangeEvent({
+              type: "rightOperator.onBlur",
+              path: `${props.index}.condition.selected.value`,
+              rowType: props.item.type,
+            });
+          }}
         />
       );
     default:

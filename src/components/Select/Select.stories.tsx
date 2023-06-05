@@ -168,6 +168,8 @@ export const DynamicOptions = () => {
           { value: "color-white", label: "White" },
         ]);
       }}
+      onFocus={() => console.log("focus")}
+      onBlur={() => console.log("blur")}
     />
   );
 };

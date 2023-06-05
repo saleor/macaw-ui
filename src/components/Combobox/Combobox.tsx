@@ -55,6 +55,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       onChange,
       inputValue,
       onInputValueChange,
+      onFocus,
+      onBlur,
       ...props
     },
     ref
@@ -75,7 +77,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       options,
       onChange,
       inputValue,
-      onInputValueChange
+      onInputValueChange,
+      onFocus,
+      onBlur
     );
 
     const containerRef = useRef<HTMLLabelElement>(null);

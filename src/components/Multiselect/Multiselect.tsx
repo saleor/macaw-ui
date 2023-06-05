@@ -57,6 +57,8 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       value = [],
       inputValue,
       onInputValueChange,
+      onFocus,
+      onBlur,
       ...props
     },
     ref
@@ -82,7 +84,9 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onChange,
       disabled,
       inputValue,
-      onInputValueChange
+      onInputValueChange,
+      onFocus,
+      onBlur
     );
 
     const containerRef = useRef<HTMLDivElement>(null);

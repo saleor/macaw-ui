@@ -1,42 +1,28 @@
 import { useEffect, useRef } from "react";
-import { Row } from "./Filters";
 
 export interface FilterEvent extends Event {
   detail?: {
     type:
-      | "update.leftOperator"
-      | "update.condition"
-      | "update.rightOperator"
-      | "remove"
-      | "add";
+      | "leftOperator.onChange"
+      | "leftOperator.onInputValueChange"
+      | "leftOperator.onFocus"
+      | "leftOperator.onBlur"
+      | "condition.onChange"
+      | "condition.onScrollEnd"
+      | "condition.onFocus"
+      | "condition.onBlur"
+      | "rightOperator.onChange"
+      | "rightOperator.onInputValueChange"
+      | "rightOperator.onScrollEnd"
+      | "rightOperator.onFocus"
+      | "rightOperator.onBlur"
+      | "row.remove"
+      | "row.add";
     value?: string | string[];
     path?: string;
     rowType: number;
   };
 }
-
-export type Context = {
-  updateRightOperator: () => Array<Row | string>;
-  updateCondition: (data?: UpdateConditionProps) => Array<Row | string>;
-  updateLeftOperator: (data: UpdateLeftOperatorProps) => Array<Row | string>;
-  addRow: () => Array<Row | string>;
-  removeRow: () => Array<Row | string>;
-};
-
-type UpdateConditionProps = {
-  options?: Array<{ value: string; label: string }>;
-  value: string | string[];
-};
-
-type UpdateLeftOperatorProps = {
-  condition: {
-    options: Array<{ value: string; label: string; type: string }>;
-    selected: {
-      value: string;
-      conditionValue: string;
-    };
-  };
-};
 
 type UseEventsProps = {
   onChange: (event: FilterEvent["detail"]) => void;
