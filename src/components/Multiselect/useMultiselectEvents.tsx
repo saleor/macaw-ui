@@ -49,6 +49,8 @@ export const useMultiselectEvents = (
   const itemsToSelect = getItemsFilter(selectedItems, inputValue, options);
   const [active, setActive] = useState(false);
 
+  const showInput = selectedItems.length !== options.length; // && !onAutocomplete <- uncomment when autocomplete is implemented
+
   const typed = Boolean(selectedValues.length || active);
 
   const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
@@ -162,6 +164,7 @@ export const useMultiselectEvents = (
     removeSelectedItem,
     selectedItems,
     inputValue,
+    showInput,
     getToggleButtonProps: (
       options?: UseComboboxGetToggleButtonPropsOptions | undefined
     ) =>

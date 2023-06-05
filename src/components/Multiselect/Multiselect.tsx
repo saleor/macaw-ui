@@ -78,6 +78,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       removeSelectedItem,
       getToggleButtonProps,
       hasItemsToSelect,
+      showInput,
     } = useMultiselectEvents(
       value,
       options,
@@ -158,6 +159,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             width={0}
             __flex={1}
             minWidth={7}
+            visibility={showInput ? "visible" : "hidden"}
             {...getInputProps({
               id,
               ref,
