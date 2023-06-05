@@ -50,12 +50,12 @@ export const listWrapperRecipe = recipe({
 
 export const listStyle = style([
   sprinkles({
+    position: "absolute",
     backgroundColor: "surfaceNeutralPlain",
     boxShadow: "overlay",
     borderColor: "neutralHighlight",
     width: "100%",
     padding: 1,
-    marginTop: 1,
     left: 0,
     maxHeight: 52,
     overflowY: "auto",

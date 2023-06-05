@@ -28,6 +28,14 @@ const meta: Meta<typeof Multiselect> = {
     id: "multiselect",
     size: "large",
   },
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 300,
+      },
+    },
+  },
 };
 
 export default meta;

@@ -68,10 +68,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       itemsToSelect,
     } = useComboboxEvents(value, options, onChange);
 
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLLabelElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" ref={containerRef}>
+      <Box display="flex" flexDirection="column">
         <ComboboxWrapper
           id={id}
           typed={typed}
@@ -97,6 +97,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             })}
           />
         </ComboboxWrapper>
+        <Box ref={containerRef} />
 
         <Portal asChild container={containerRef.current}>
           <Box

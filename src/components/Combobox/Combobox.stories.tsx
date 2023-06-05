@@ -22,6 +22,14 @@ const meta: Meta<typeof Combobox> = {
     id: "combobox",
     size: "large",
   },
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 300,
+      },
+    },
+  },
 };
 
 export default meta;
