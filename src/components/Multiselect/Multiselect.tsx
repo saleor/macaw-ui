@@ -76,7 +76,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
     } = useMultiselectEvents(value, options, onChange, disabled);
 
     const containerRef = useRef<HTMLDivElement>(null);
-    const showInput = hasItemsToSelect; // && !onAutocomplete <- uncomment when autocomplete is implemented
+    const showInput = selectedItems.length !== options.length; // && !onAutocomplete <- uncomment when autocomplete is implemented
 
     return (
       <Box display="flex" flexDirection="column">
