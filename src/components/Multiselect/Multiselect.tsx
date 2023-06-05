@@ -76,6 +76,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
     } = useMultiselectEvents(value, options, onChange, disabled);
 
     const containerRef = useRef<HTMLDivElement>(null);
+    const showInput = hasItemsToSelect; // && !onAutocomplete <- uncomment when autocomplete is implemented
 
     return (
       <Box display="flex" flexDirection="column">
@@ -144,6 +145,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             width={0}
             __flex={1}
             minWidth={7}
+            visibility={showInput ? "visible" : "hidden"}
             {...getInputProps({
               id,
               ref,
@@ -163,6 +165,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           >
             <List
               as="ul"
+              zIndex={3}
               className={listStyle}
               // suppress error because of rendering list in portal
               {...getMenuProps({}, { suppressRefError: true })}
