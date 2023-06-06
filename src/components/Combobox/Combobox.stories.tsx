@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import _ from "lodash";
 
 import { Combobox } from ".";
 
@@ -146,27 +147,37 @@ export const WithHelperText: Story = {
 };
 
 export const DynamicData = () => {
-  const [options, setOptions] = useState([
-    { value: "color-black", label: "Black" },
-    { value: "color-red", label: "Red" },
-    { value: "color-green", label: "Green" },
-    { value: "color-blue", label: "Blue" },
-    { value: "color-orange", label: "Orange" },
-    { value: "color-purple", label: "Purple" },
-  ]);
+  const [options, setOptions] = useState([]);
+  const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [value, setValue] = useState(options[0].value);
-  const [inputValue, setInputValue] = useState("");
+  async function search(criteria: string) {
+    setLoading(true);
+    const response = await fetch(
+      `https://swapi.dev/api/people/?search=${criteria}`
+    );
+    const body = await response.json();
+    setLoading(false);
+    return body.results.map((result: { name: string }) => ({
+      value: result.name,
+      label: result.name,
+    }));
+  }
+
+  const debouncedSearch = useRef(
+    _.debounce(async (criteria) => {
+      setOptions(await search(criteria));
+    }, 300)
+  ).current;
 
   return (
     <Combobox
       value={value}
-      onChange={(value) => setValue(value as string)}
+      onChange={(value) => setValue(value)}
       options={options}
-      inputValue={inputValue}
+      loading={loading}
       onInputValueChange={(value) => {
-        setInputValue(value as string);
-        setOptions([...options, { value: "color-white", label: "White" }]);
+        debouncedSearch(value);
       }}
     />
   );

@@ -78,7 +78,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       value,
       options,
       onChange,
-      inputValue,
       onInputValueChange,
       onFocus,
       onBlur

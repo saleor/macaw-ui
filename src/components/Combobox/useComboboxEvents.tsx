@@ -5,7 +5,7 @@ import {
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
 
-export type InputValue = string | number;
+export type InputValue = string;
 export type ChangeHandler = (selectedItem: InputValue) => void;
 export type Option = { label: string; value: InputValue };
 
@@ -28,11 +28,11 @@ export const useComboboxEvents = (
   value: InputValue,
   options: Option[],
   changeHandler?: ChangeHandler,
-  inputValue?: InputValue,
   onInputValueChange?: (value: InputValue) => void,
   onCustomFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void,
   onCustomBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void
 ) => {
+  const [inputValue, setInputValue] = useState<InputValue | undefined>(value);
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
   const itemsToSelect = getItemsFilter(inputValue, options);
@@ -47,8 +47,8 @@ export const useComboboxEvents = (
     getItemProps,
   } = useCombobox({
     items: itemsToSelect,
-    itemToString: (item) => (item?.value && item?.label) || "",
-    selectedItem: options.find((option) => option.value === value) ?? null,
+    itemToString: (item) => (item ? item.label : ""),
+    defaultSelectedItem: options.find((option) => option.value === value),
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         changeHandler?.(selectedItem?.value);
@@ -56,6 +56,7 @@ export const useComboboxEvents = (
     },
     onInputValueChange: ({ inputValue }) => {
       onInputValueChange?.(inputValue ?? "");
+      setInputValue(inputValue);
     },
   });
 
