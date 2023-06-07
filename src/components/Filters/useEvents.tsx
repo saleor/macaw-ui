@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from "react";
 
 export interface FilterEvent extends Event {
@@ -18,7 +19,6 @@ export interface FilterEvent extends Event {
       | "rightOperator.onBlur"
       | "row.remove"
       | "row.add";
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value?: any;
     path?: string;
     rowType: number;

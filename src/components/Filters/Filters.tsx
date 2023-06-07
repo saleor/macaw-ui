@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import {
   Box,
   Button,
@@ -24,7 +26,11 @@ export type Row = {
 };
 
 type Right = {
-  value: string | { label: string; value: string }[] | null;
+  value:
+    | string
+    | { label: string; value: string }[]
+    | null
+    | { start: string; end: string };
   options?: Array<{ value: string; label: string }>;
   conditionValue: { label: string; value: string };
   loading?: boolean;
@@ -374,6 +380,63 @@ const Right = (props: {
             });
           }}
         />
+      );
+    case "range.text":
+      return (
+        <Box display="flex" gap={2}>
+          <Input
+            // @ts-ignore
+            value={props.item.condition?.selected.value.start}
+            onChange={(e) => {
+              props.dispatchFilterChangeEvent({
+                type: "rightOperator.onChange",
+                value: e.target.value,
+                path: `${props.index}.condition.selected.value.start`,
+                rowType: props.item.type,
+              });
+            }}
+            onFocus={() => {
+              props.dispatchFilterChangeEvent({
+                type: "rightOperator.onFocus",
+                path: `${props.index}.condition.selected.value.start`,
+                rowType: props.item.type,
+              });
+            }}
+            onBlur={() => {
+              props.dispatchFilterChangeEvent({
+                type: "rightOperator.onBlur",
+                path: `${props.index}.condition.selected.value.start`,
+                rowType: props.item.type,
+              });
+            }}
+          />
+          <Input
+            // @ts-ignore
+            value={props.item.condition?.selected.value.end}
+            onChange={(e) => {
+              props.dispatchFilterChangeEvent({
+                type: "rightOperator.onChange",
+                value: e.target.value,
+                path: `${props.index}.condition.selected.value.end`,
+                rowType: props.item.type,
+              });
+            }}
+            onFocus={() => {
+              props.dispatchFilterChangeEvent({
+                type: "rightOperator.onFocus",
+                path: `${props.index}.condition.selected.value.end`,
+                rowType: props.item.type,
+              });
+            }}
+            onBlur={() => {
+              props.dispatchFilterChangeEvent({
+                type: "rightOperator.onBlur",
+                path: `${props.index}.condition.selected.value.end`,
+                rowType: props.item.type,
+              });
+            }}
+          />
+        </Box>
       );
     default:
       return null;

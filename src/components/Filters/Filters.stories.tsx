@@ -85,6 +85,25 @@ const value = [
       },
     },
   },
+  "OR",
+  {
+    value: { value: "discount", label: "Discount", type: 4 },
+    type: 4,
+    condition: {
+      options: [{ value: "input-1", label: "between", type: "range.text" }],
+      selected: {
+        conditionValue: {
+          value: "input-1",
+          label: "between",
+          type: "range.text",
+        },
+        value: {
+          start: "",
+          end: "",
+        },
+      },
+    },
+  },
 ];
 
 export const Default = () => {
@@ -136,7 +155,11 @@ export const Default = () => {
                 ],
                 selected: {
                   value: "",
-                  conditionValue: "input-1",
+                  conditionValue: {
+                    type: "input.number",
+                    label: "is",
+                    value: "input-1",
+                  },
                 },
               },
             },
