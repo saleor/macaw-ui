@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Combobox,
-  ComboboxOption,
   Input,
   Multiselect,
   RemoveIcon,
@@ -14,7 +13,7 @@ import {
 import { FilterEvent, useEvents } from "./useEvents";
 
 export type Row = {
-  value: { label: string; value: string } | null;
+  value: { label: string; value: string; type: number } | null;
   type: number;
   loading?: boolean;
   condition?: {
@@ -33,7 +32,7 @@ type Right = {
 
 export type Props = {
   value: Array<Row | string>;
-  leftOptions: Array<{ value: string; label: string }>;
+  leftOptions: Array<{ value: string; label: string; type: number }>;
   onChange: (event: FilterEvent["detail"]) => void;
 };
 
@@ -88,7 +87,7 @@ const Row = ({
   item: Row;
   index: number;
   dispatchFilterChangeEvent: (data: FilterEvent["detail"]) => void;
-  leftOptions: Array<{ value: string; label: string }>;
+  leftOptions: Props["leftOptions"];
 }) => {
   return (
     <Box display="grid" gap={1} __gridTemplateColumns="repeat(4, 1fr)">
@@ -101,7 +100,9 @@ const Row = ({
             type: "leftOperator.onChange",
             value: value,
             path: `${index}`,
-            rowType: item.type,
+            rowType:
+              leftOptions.find((option) => option.value === value.value)
+                ?.type ?? 0,
           });
         }}
         onInputValueChange={(value) => {

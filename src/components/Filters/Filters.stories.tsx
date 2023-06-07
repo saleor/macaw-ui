@@ -13,15 +13,15 @@ const meta: Meta<typeof _ExperimentalFilters> = {
 export default meta;
 
 const leftOptions = [
-  { value: "price", label: "Price" },
-  { value: "category", label: "Category" },
-  { value: "rating", label: "Rating" },
-  { value: "discount", label: "Discount" },
+  { value: "price", label: "Price", type: 1 },
+  { value: "category", label: "Category", type: 2 },
+  { value: "rating", label: "Rating", type: 3 },
+  { value: "discount", label: "Discount", type: 4 },
 ];
 
 const value = [
   {
-    value: { value: "price", label: "Price" },
+    value: { value: "price", label: "Price", type: 1 },
     type: 1,
     loading: true,
     condition: {
@@ -39,7 +39,7 @@ const value = [
   },
   "AND",
   {
-    value: { value: "category", label: "Category" },
+    value: { value: "category", label: "Category", type: 2 },
     type: 2,
     condition: {
       options: [{ value: "input-1", label: "are", type: "multiselect" }],
@@ -55,7 +55,7 @@ const value = [
   },
   "OR",
   {
-    value: { value: "rating", label: "Rating" },
+    value: { value: "rating", label: "Rating", type: 3 },
     type: 3,
     condition: {
       options: [{ value: "input-1", label: "is", type: "combobox" }],
@@ -71,7 +71,7 @@ const value = [
   },
   "AND",
   {
-    value: { value: "discount", label: "Discount" },
+    value: { value: "discount", label: "Discount", type: 4 },
     type: 4,
     condition: {
       options: [{ value: "input-1", label: "is", type: "select" }],
@@ -123,6 +123,7 @@ export const Default = () => {
         }
 
         if (event?.type === "leftOperator.onChange") {
+          console.log(event);
           const newState = _.setWith(
             _.clone(rows),
             event?.path ?? "",
