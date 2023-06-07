@@ -5,13 +5,11 @@ import {
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
 
-export type InputValue = string;
-export type ChangeHandler = (selectedItem: InputValue) => void;
-export type Option = { label: string; value: InputValue };
+import { ChangeHandler, ComboboxOption } from "./types";
 
 const getItemsFilter = (
-  inputValue: InputValue | undefined,
-  options: Option[]
+  inputValue: string | undefined,
+  options: ComboboxOption[]
 ) => {
   if (!inputValue) {
     return options;
@@ -25,16 +23,17 @@ const getItemsFilter = (
 };
 
 export const useComboboxEvents = (
-  value: InputValue,
-  options: Option[],
+  selectedItem: ComboboxOption | null,
+  options: ComboboxOption[],
   changeHandler?: ChangeHandler,
-  onInputValueChange?: (value: InputValue) => void,
+  onInputValueChange?: (value: string) => void,
   onCustomFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void,
   onCustomBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void
 ) => {
-  const [inputValue, setInputValue] = useState<InputValue | undefined>(value);
+  const [inputValue, setInputValue] = useState<string>("");
   const [active, setActive] = useState(false);
-  const typed = Boolean(value || active);
+  const typed = Boolean(selectedItem || active);
+
   const itemsToSelect = getItemsFilter(inputValue, options);
 
   const {
@@ -47,15 +46,15 @@ export const useComboboxEvents = (
     getItemProps,
   } = useCombobox({
     items: itemsToSelect,
-    itemToString: (item) => (item ? item.label : ""),
-    defaultSelectedItem: options.find((option) => option.value === value),
+    itemToString: (item) => item?.label ?? "",
+    selectedItem,
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        changeHandler?.(selectedItem?.value);
+        changeHandler?.(selectedItem);
       }
     },
-    onInputValueChange: ({ inputValue }) => {
-      onInputValueChange?.(inputValue ?? "");
+    onInputValueChange: ({ inputValue = "" }) => {
+      onInputValueChange?.(inputValue);
       setInputValue(inputValue);
     },
   });

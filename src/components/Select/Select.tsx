@@ -6,8 +6,10 @@ import { useIntersectionObserver } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
+
+import { useSelectEvents } from "./useSelectEvents";
 import { SelectWrapper } from "./SelectWrapper";
+import { SelectOption, ChangeHandler } from "./types";
 
 export type SelectProps = PropsWithBox<
   Omit<
@@ -25,9 +27,9 @@ export type SelectProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: Option[];
+    options: SelectOption[];
     onChange?: ChangeHandler;
-    value: string | number;
+    value: SelectOption;
     onScrollEnd?: () => void;
     loading?: boolean;
   }

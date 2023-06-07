@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import _ from "lodash";
 
-import { Combobox } from ".";
+import { Combobox, ComboboxOption } from ".";
 
 const options = [
   { value: "color-black", label: "Black" },
@@ -39,17 +39,10 @@ type Story = StoryObj<typeof Combobox>;
 
 const ComboboxTemplate: Story = {
   render: (args) => {
-    const [value, setValue] = useState(options[0].value);
-    const [inputValue, setInputValue] = useState("");
+    const [value, setValue] = useState(options[0]);
 
     return (
-      <Combobox
-        {...args}
-        value={value}
-        inputValue={inputValue}
-        onInputValueChange={(val) => setInputValue(val as string)}
-        onChange={(value) => setValue(value as string)}
-      />
+      <Combobox {...args} value={value} onChange={(value) => setValue(value)} />
     );
   },
 };
@@ -148,7 +141,7 @@ export const WithHelperText: Story = {
 
 export const DynamicData = () => {
   const [options, setOptions] = useState([]);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<ComboboxOption | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function search(criteria: string) {

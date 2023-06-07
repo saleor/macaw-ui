@@ -1,17 +1,13 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { Box, List, PropsWithBox, Text } from "..";
+import { Box, List, MultiselectOption, PropsWithBox, Text } from "..";
 import { helperTextRecipe, InputVariants } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import {
-  ChangeHandler,
-  Option,
-  RenderEndAdornmentType,
-  useMultiselectEvents,
-} from "./useMultiselectEvents";
+import { useMultiselectEvents } from "./useMultiselectEvents";
 import { MultiselectWrapper } from "./MultiselectWrapper";
 
+import { ChangeHandler, RenderEndAdornmentType } from "./types";
 import { multiselectInputRecipe } from "./Multiselect.css";
 
 export type MultiselectProps = PropsWithBox<
@@ -31,11 +27,10 @@ export type MultiselectProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: Option[];
+    options: MultiselectOption[];
     onChange?: ChangeHandler;
-    value?: string[];
+    value: MultiselectOption[];
     renderEndAdornment?: RenderEndAdornmentType;
-    inputValue?: string;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
   }
@@ -56,11 +51,10 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onChange,
       renderEndAdornment,
       value = [],
-      inputValue,
       onInputValueChange,
+      loading,
       onFocus,
       onBlur,
-      loading,
       ...props
     },
     ref
@@ -77,6 +71,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       itemsToSelect,
       selectedItems,
       getSelectedItemProps,
+      inputValue,
       removeSelectedItem,
       getToggleButtonProps,
       hasItemsToSelect,
@@ -86,7 +81,6 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       options,
       onChange,
       disabled,
-      inputValue,
       onInputValueChange,
       onFocus,
       onBlur

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import _ from "lodash";
 
 import { Box } from "../Box";
 import { ViewTableIcon } from "../Icons";
@@ -44,17 +45,17 @@ type Story = StoryObj<typeof Multiselect>;
 
 const MultiselectTemplate: Story = {
   render: (args) => {
-    const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
-    const [inputValue, setInputValue] = useState("");
+    const [selectedItems, setSelectedItems] = useState([
+      { value: "Black", label: "Black" },
+    ]);
 
     return (
       <Box __width={300}>
         <Multiselect
           {...args}
           value={selectedItems}
-          inputValue={inputValue}
-          onInputValueChange={(val) => setInputValue(val as string)}
-          onChange={(values) => setSelectedItems(values ?? [])}
+          onChange={(values) => setSelectedItems(values)}
+          onInputValueChange={undefined}
         />
       </Box>
     );
@@ -183,34 +184,39 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
 };
 
 export const DynamicData = () => {
-  const [options, setOptions] = useState([
-    { value: "color-black", label: "Black" },
-    { value: "color-red", label: "Red" },
-    { value: "color-green", label: "Green" },
-    { value: "color-blue", label: "Blue" },
-    { value: "color-orange", label: "Orange" },
-    { value: "color-purple", label: "Purple" },
-  ]);
+  const [options, setOptions] = useState([]);
+  const [value, setValue] = useState<{ label: string; value: string }[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const [selectedItems, setSelectedItems] = useState([
-    "color-black",
-    "color-red",
-  ]);
-  const [inputValue, setInputValue] = useState("");
+  async function search(criteria: string) {
+    setLoading(true);
+    const response = await fetch(
+      `https://swapi.dev/api/people/?search=${criteria}`
+    );
+    const body = await response.json();
+    setLoading(false);
+    return body.results.map((result: { name: string }) => ({
+      value: result.name,
+      label: result.name,
+    }));
+  }
+
+  const debouncedSearch = useRef(
+    _.debounce(async (criteria) => {
+      setOptions(await search(criteria));
+    }, 300)
+  ).current;
 
   return (
     <Box __width={300}>
       <Multiselect
-        value={selectedItems}
-        onChange={(values) => setSelectedItems(values ?? [])}
+        value={value}
+        onChange={(value) => setValue(value)}
         options={options}
-        inputValue={inputValue}
+        loading={loading}
         onInputValueChange={(value) => {
-          setInputValue(value as string);
-          setOptions([...options, { value: "color-gray", label: "gray" }]);
+          debouncedSearch(value);
         }}
-        onBlur={() => console.log("blur")}
-        onFocus={() => console.log("focus")}
       />
     </Box>
   );

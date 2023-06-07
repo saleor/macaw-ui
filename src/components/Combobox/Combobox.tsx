@@ -6,13 +6,10 @@ import { classNames } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
 import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import {
-  ChangeHandler,
-  InputValue,
-  Option,
-  useComboboxEvents,
-} from "./useComboboxEvents";
+
+import { useComboboxEvents } from "./useComboboxEvents";
 import { ComboboxWrapper } from "./ComboboxWrapper";
+import { ChangeHandler, ComboboxOption } from "./types";
 
 export type ComboboxProps = PropsWithBox<
   Omit<
@@ -31,11 +28,10 @@ export type ComboboxProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: Option[];
+    options: ComboboxOption[];
     onChange?: ChangeHandler;
-    value: InputValue;
-    inputValue?: InputValue;
-    onInputValueChange?: (value: InputValue) => void;
+    value: ComboboxOption | null;
+    onInputValueChange?: (value: string) => void;
     loading?: boolean;
   }
 > &
@@ -54,7 +50,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       helperText,
       options,
       onChange,
-      inputValue,
       onInputValueChange,
       onFocus,
       onBlur,

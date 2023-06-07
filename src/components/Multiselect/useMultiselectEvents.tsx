@@ -1,57 +1,48 @@
-import { ReactNode, useState, FocusEvent } from "react";
+import { useState, FocusEvent } from "react";
 import {
   GetPropsCommonOptions,
   useCombobox,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
-  UseComboboxPropGetters,
   useMultipleSelection,
 } from "downshift7";
 
-export type ChangeHandler = (selectedItems: string[]) => void;
-export type Option = { label: string; value: string };
-export type RenderEndAdornmentType = (
-  ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
-) => ReactNode;
+import { ChangeHandler, MultiselectOption } from "./types";
 
 const getItemsFilter = (
-  selectedItems: Option[],
-  inputValue: string | undefined,
-  options: Option[]
+  selectedItems: MultiselectOption[],
+  inputValue: string,
+  options: MultiselectOption[]
 ) => {
   const lowerCasedInputValue = inputValue?.toLowerCase();
 
-  return options.filter((option) => {
-    return (
-      !selectedItems.includes(option) &&
-      option.label.toLowerCase().includes(lowerCasedInputValue ?? "")
-    );
-  });
+  return options.filter(
+    (option) =>
+      !selectedItems.find(
+        (selectedItem) => selectedItem.value === option.value
+      ) && option.label.toLowerCase().includes(lowerCasedInputValue ?? "")
+  );
 };
 
 export const useMultiselectEvents = (
-  selectedValues: string[],
-  options: Option[],
+  selectedItems: MultiselectOption[],
+  options: MultiselectOption[],
   changeHandler?: ChangeHandler,
   disabled?: boolean,
-  inputValue?: string,
   onInputValueChange?: (value: string) => void,
   onCustomFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void,
   onCustomBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void
 ) => {
-  const selectedItems = selectedValues.reduce<Option[]>((acc, value) => {
-    const option = options.find((option) => option.value === value);
-    if (option) {
-      acc.push(option);
-    }
-    return acc;
-  }, []);
-  const itemsToSelect = getItemsFilter(selectedItems, inputValue, options);
+  const [inputValue, setInputValue] = useState("");
   const [active, setActive] = useState(false);
 
-  const showInput = selectedItems.length !== options.length; // && !onAutocomplete <- uncomment when autocomplete is implemented
+  const itemsToSelect = getItemsFilter(selectedItems, inputValue, options);
 
-  const typed = Boolean(selectedValues.length || active);
+  const showInput = onInputValueChange
+    ? true
+    : selectedItems.length !== options.length;
+
+  const typed = Boolean(selectedItems.length || active);
 
   const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
     useMultipleSelection({
@@ -63,7 +54,7 @@ export const useMultiselectEvents = (
           case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
           case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
           case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-            changeHandler?.(newSelectedItems?.map((item) => item.value) ?? []);
+            changeHandler?.(newSelectedItems ?? []);
             break;
 
           default:
@@ -91,7 +82,7 @@ export const useMultiselectEvents = (
       switch (type) {
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
-          onInputValueChange?.("");
+          setInputValue("");
           return {
             ...changes,
             ...(changes.selectedItem && { isOpen: true, highlightedIndex: 0 }),
@@ -110,17 +101,15 @@ export const useMultiselectEvents = (
         case useCombobox.stateChangeTypes.ItemClick:
         case useCombobox.stateChangeTypes.InputBlur:
           if (newSelectedItem) {
-            changeHandler?.([
-              ...selectedItems.map((i) => i.value),
-              newSelectedItem.value,
-            ]);
+            changeHandler?.([...selectedItems, newSelectedItem]);
           } else {
-            onInputValueChange?.("");
+            setInputValue("");
           }
           break;
 
         case useCombobox.stateChangeTypes.InputChange:
-          onInputValueChange?.(newInputValue ?? "");
+          onInputValueChange?.(inputValue ?? "");
+          setInputValue(newInputValue ?? "");
           break;
 
         default:

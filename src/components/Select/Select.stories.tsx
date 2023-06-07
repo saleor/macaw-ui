@@ -37,14 +37,10 @@ type Story = StoryObj<typeof Select>;
 const SelectTemplate: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState(options[0].value);
+    const [value, setValue] = useState(options[0]);
 
     return (
-      <Select
-        {...args}
-        value={value}
-        onChange={(value) => setValue(value as string)}
-      />
+      <Select {...args} value={value} onChange={(value) => setValue(value)} />
     );
   },
 };
@@ -155,13 +151,13 @@ export const DynamicOptions = () => {
     { value: "color-purple", label: "Purple" },
   ]);
 
-  const [value, setValue] = useState(options[0].value);
+  const [value, setValue] = useState(options[0]);
   const [loading, setLoading] = useState(false);
 
   return (
     <Select
       value={value}
-      onChange={(value) => setValue(value as string)}
+      onChange={(value) => setValue(value)}
       options={options}
       loading={loading}
       onScrollEnd={() => {

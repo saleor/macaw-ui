@@ -5,13 +5,12 @@ import {
   useSelect,
 } from "downshift7";
 
-export type ChangeHandler = (selectedItem: string | number) => void;
-export type Option = { label: string; value: string | number };
+import { SelectOption } from "./types";
 
 export const useSelectEvents = (
-  value: string | number,
-  options: Option[],
-  changeHandler?: (selectedValue: string | number) => void,
+  value: SelectOption,
+  options: SelectOption[],
+  changeHandler?: (selectedValue: SelectOption) => void,
   onCustomFocus?: (e: FocusEvent<HTMLElement, Element>) => void,
   onCustomBlur?: (e: FocusEvent<HTMLElement, Element>) => void
 ) => {
@@ -28,11 +27,11 @@ export const useSelectEvents = (
     selectedItem,
   } = useSelect({
     items: options,
-    selectedItem: options.find((option) => option.value === value) ?? null,
+    selectedItem: value,
     itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        changeHandler?.(selectedItem.value);
+        changeHandler?.(selectedItem);
       }
     },
   });
