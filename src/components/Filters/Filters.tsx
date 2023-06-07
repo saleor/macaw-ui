@@ -211,7 +211,7 @@ const Right = (props: {
   }
 
   switch (selectedOption.type) {
-    case "input.text":
+    case "text":
       return (
         <Input
           value={props.item.condition?.selected.value as string}
@@ -239,7 +239,7 @@ const Right = (props: {
           }}
         />
       );
-    case "input.number":
+    case "number":
       return (
         <Input
           type="number"
@@ -381,12 +381,13 @@ const Right = (props: {
           }}
         />
       );
-    case "range.text":
+    case "number.range":
       return (
         <Box display="flex" gap={2}>
           <Input
             // @ts-ignore
             value={props.item.condition?.selected.value.start}
+            type="number"
             onChange={(e) => {
               props.dispatchFilterChangeEvent({
                 type: "rightOperator.onChange",
@@ -413,6 +414,7 @@ const Right = (props: {
           <Input
             // @ts-ignore
             value={props.item.condition?.selected.value.end}
+            type="number"
             onChange={(e) => {
               props.dispatchFilterChangeEvent({
                 type: "rightOperator.onChange",

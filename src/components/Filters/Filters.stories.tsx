@@ -27,13 +27,13 @@ const value = [
     condition: {
       loading: true,
       options: [
-        { type: "input.number", label: "is", value: "input-1" },
+        { type: "number", label: "is", value: "input-1", min: 0, max: 10 },
         { type: "multiselect", label: "has", value: "input-2" },
       ],
       selected: {
         loading: true,
         value: "3.13",
-        conditionValue: { type: "input.number", label: "is", value: "input-1" },
+        conditionValue: { type: "number", label: "is", value: "input-1" },
       },
     },
   },
@@ -90,16 +90,16 @@ const value = [
     value: { value: "discount", label: "Discount", type: 4 },
     type: 4,
     condition: {
-      options: [{ value: "input-1", label: "between", type: "range.text" }],
+      options: [{ value: "input-1", label: "between", type: "number.range" }],
       selected: {
         conditionValue: {
           value: "input-1",
           label: "between",
-          type: "range.text",
+          type: "number.range",
         },
         value: {
-          start: "",
-          end: "",
+          start: "0",
+          end: "1",
         },
       },
     },
@@ -150,13 +150,13 @@ export const Default = () => {
               value: event?.value,
               condition: {
                 options: [
-                  { type: "input.number", label: "is", value: "input-1" },
+                  { type: "number", label: "is", value: "input-1" },
                   { type: "multiselect", label: "has", value: "input-2" },
                 ],
                 selected: {
                   value: "",
                   conditionValue: {
-                    type: "input.number",
+                    type: "number",
                     label: "is",
                     value: "input-1",
                   },
