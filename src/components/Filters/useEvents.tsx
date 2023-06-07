@@ -18,7 +18,8 @@ export interface FilterEvent extends Event {
       | "rightOperator.onBlur"
       | "row.remove"
       | "row.add";
-    value?: string | string[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    value?: any;
     path?: string;
     rowType: number;
   };

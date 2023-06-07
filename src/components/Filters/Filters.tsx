@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Box,
   Button,
   Combobox,
+  ComboboxOption,
   Input,
   Multiselect,
   RemoveIcon,
@@ -12,7 +14,7 @@ import {
 import { FilterEvent, useEvents } from "./useEvents";
 
 export type Row = {
-  value: string;
+  value: { label: string; value: string } | null;
   type: number;
   loading?: boolean;
   condition?: {
@@ -23,9 +25,9 @@ export type Row = {
 };
 
 type Right = {
-  value: string | string[];
+  value: string | { label: string; value: string }[] | null;
   options?: Array<{ value: string; label: string }>;
-  conditionValue: string;
+  conditionValue: { label: string; value: string };
   loading?: boolean;
 };
 
@@ -94,10 +96,10 @@ const Row = ({
         value={item.value}
         options={leftOptions}
         loading={item.loading}
-        onChange={(e) => {
+        onChange={(value) => {
           dispatchFilterChangeEvent({
             type: "leftOperator.onChange",
-            value: e as string,
+            value: value,
             path: `${index}`,
             rowType: item.type,
           });
@@ -127,13 +129,13 @@ const Row = ({
       />
       {item.condition?.selected && (
         <Select
-          value={item.condition?.selected.conditionValue ?? ""}
+          value={item.condition?.selected.conditionValue}
           options={item.condition?.options ?? []}
           loading={item.condition?.loading}
           onChange={(value) => {
             dispatchFilterChangeEvent({
               type: "condition.onChange",
-              value: value as string,
+              value: value,
               path: `${index}.condition.selected`,
               rowType: item.type,
             });
@@ -189,10 +191,15 @@ const Right = (props: {
   dispatchFilterChangeEvent: (data: FilterEvent["detail"]) => void;
 }) => {
   const selectedOption = props.item.condition?.options?.find(
-    (option) => option.value === props.item.condition?.selected.conditionValue
+    (option) =>
+      option.value === props.item.condition?.selected.conditionValue.value
   );
 
   if (!selectedOption) {
+    return null;
+  }
+
+  if (!props.item.condition) {
     return null;
   }
 
@@ -200,7 +207,7 @@ const Right = (props: {
     case "input.text":
       return (
         <Input
-          value={props.item.condition?.selected.value}
+          value={props.item.condition?.selected.value as string}
           onChange={(e) => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onChange",
@@ -229,7 +236,7 @@ const Right = (props: {
       return (
         <Input
           type="number"
-          value={props.item.condition?.selected.value}
+          value={props.item.condition?.selected.value as any}
           onChange={(e) => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onChange",
@@ -257,7 +264,7 @@ const Right = (props: {
     case "multiselect":
       return (
         <Multiselect
-          value={props.item.condition?.selected.value as string[]}
+          value={props.item.condition?.selected.value as any}
           options={props.item.condition?.selected.options ?? []}
           loading={props.item.condition?.selected.loading}
           onChange={(e) =>
@@ -295,13 +302,13 @@ const Right = (props: {
     case "combobox":
       return (
         <Combobox
-          value={props.item.condition?.selected.value as string}
+          value={props.item.condition?.selected.value as any}
           options={props.item.condition?.selected.options ?? []}
           loading={props.item.condition?.selected.loading}
-          onChange={(e) =>
+          onChange={(value) =>
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onChange",
-              value: e as string,
+              value,
               path: `${props.index}.condition.selected.value`,
               rowType: props.item.type,
             })
@@ -333,13 +340,13 @@ const Right = (props: {
     case "select":
       return (
         <Select
-          value={props.item.condition?.selected.value as string}
+          value={props.item.condition?.selected.value as any}
           options={props.item.condition?.selected.options ?? []}
           loading={props.item.condition?.selected.loading}
-          onChange={(e) =>
+          onChange={(value) =>
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onChange",
-              value: e as string,
+              value,
               path: `${props.index}.condition.selected.value`,
               rowType: props.item.type,
             })

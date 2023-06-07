@@ -21,7 +21,7 @@ const leftOptions = [
 
 const value = [
   {
-    value: "price",
+    value: { value: "price", label: "Price" },
     type: 1,
     loading: true,
     condition: {
@@ -33,18 +33,18 @@ const value = [
       selected: {
         loading: true,
         value: "3.13",
-        conditionValue: "input-1",
+        conditionValue: { type: "input.number", label: "is", value: "input-1" },
       },
     },
   },
   "AND",
   {
-    value: "category",
+    value: { value: "category", label: "Category" },
     type: 2,
     condition: {
       options: [{ value: "input-1", label: "are", type: "multiselect" }],
       selected: {
-        conditionValue: "input-1",
+        conditionValue: { value: "input-1", label: "are", type: "multiselect" },
         value: [],
         options: [
           { value: "electronics", label: "Electronics" },
@@ -55,13 +55,13 @@ const value = [
   },
   "OR",
   {
-    value: "rating",
+    value: { value: "rating", label: "Rating" },
     type: 3,
     condition: {
       options: [{ value: "input-1", label: "is", type: "combobox" }],
       selected: {
-        conditionValue: "input-1",
-        value: "",
+        conditionValue: { value: "input-1", label: "is", type: "combobox" },
+        value: null,
         options: [
           { value: "1", label: "1" },
           { value: "2", label: "2" },
@@ -71,12 +71,12 @@ const value = [
   },
   "AND",
   {
-    value: "discount",
+    value: { value: "discount", label: "Discount" },
     type: 4,
     condition: {
       options: [{ value: "input-1", label: "is", type: "select" }],
       selected: {
-        conditionValue: "input-1",
+        conditionValue: { value: "input-1", label: "is", type: "select" },
         value: "",
         options: [
           { value: "100%", label: "100%" },
@@ -147,7 +147,7 @@ export const Default = () => {
           const newState = [
             ...rows,
             "AND",
-            { name: "", value: "", type: event?.rowType },
+            { value: null, type: event?.rowType },
           ];
           setRows(newState);
         }
