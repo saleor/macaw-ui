@@ -11,7 +11,7 @@ import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { toggleIconStyle } from "../BaseSelect";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
-import { Option } from "./useComboboxEvents";
+import { ComboboxOption } from "./types";
 
 type ComboboxWrapperProps = LabelVariants & {
   id?: string;
@@ -19,8 +19,8 @@ type ComboboxWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
-  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
+  getToggleButtonProps: UseComboboxPropGetters<ComboboxOption>["getToggleButtonProps"];
+  getLabelProps: UseComboboxPropGetters<ComboboxOption>["getLabelProps"];
 };
 
 export const ComboboxWrapper = ({
