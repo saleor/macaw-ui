@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import _ from "lodash";
+import { debounce } from "lodash";
 
 import { Combobox, ComboboxOption } from ".";
 
@@ -139,6 +139,13 @@ export const WithHelperText: Story = {
   },
 };
 
+export const Loading: Story = {
+  ...ComboboxTemplate,
+  args: {
+    loading: true,
+  },
+};
+
 export const DynamicData = () => {
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState<ComboboxOption | null>(null);
@@ -158,7 +165,7 @@ export const DynamicData = () => {
   }
 
   const debouncedSearch = useRef(
-    _.debounce(async (criteria) => {
+    debounce(async (criteria) => {
       setOptions(await search(criteria));
     }, 300)
   ).current;

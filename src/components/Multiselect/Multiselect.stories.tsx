@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { useRef, useState } from "react";
-import _ from "lodash";
+import { debounce } from "lodash";
 
 import { Box } from "../Box";
 import { ViewTableIcon } from "../Icons";
@@ -183,6 +183,13 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
   },
 };
 
+export const Loading: Story = {
+  ...MultiselectTemplate,
+  args: {
+    loading: true,
+  },
+};
+
 export const DynamicData = () => {
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState<{ label: string; value: string }[]>([]);
@@ -202,7 +209,7 @@ export const DynamicData = () => {
   }
 
   const debouncedSearch = useRef(
-    _.debounce(async (criteria) => {
+    debounce(async (criteria) => {
       setOptions(await search(criteria));
     }, 300)
   ).current;

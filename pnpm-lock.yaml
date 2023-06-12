@@ -1,4 +1,8 @@
-lockfileVersion: "6.0"
+lockfileVersion: "6.1"
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
   "@dessert-box/react":
@@ -102,6 +106,9 @@ devDependencies:
   "@testing-library/react-hooks":
     specifier: ^8.0.1
     version: 8.0.1(@types/react@17.0.50)(react-dom@17.0.2)(react@17.0.2)
+  "@types/lodash":
+    specifier: ^4.14.194
+    version: 4.14.194
   "@types/react":
     specifier: ^17.0.50
     version: 17.0.50
@@ -5839,7 +5846,7 @@ packages:
       "@storybook/preview-api": 7.0.3
       "@storybook/theming": 7.0.3(react-dom@17.0.2)(react@17.0.2)
       "@storybook/types": 7.0.3
-      "@types/lodash": 4.14.192
+      "@types/lodash": 4.14.194
       color-convert: 2.0.1
       dequal: 2.0.3
       lodash: 4.17.21
@@ -6960,10 +6967,10 @@ packages:
       "@types/node": 18.15.11
     dev: true
 
-  /@types/lodash@4.14.192:
+  /@types/lodash@4.14.194:
     resolution:
       {
-        integrity: sha512-km+Vyn3BYm5ytMO13k9KTp27O75rbQ0NFw+U//g+PX7VZyjCioXaRFisqSIJRECljcTv73G3i6BpglNGHgUQ5A==,
+        integrity: sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==,
       }
     dev: true
 

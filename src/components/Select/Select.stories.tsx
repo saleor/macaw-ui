@@ -40,12 +40,7 @@ const SelectTemplate: Story = {
     const [value, setValue] = useState(options[0]);
 
     return (
-      <Select
-        {...args}
-        value={value}
-        onChange={(value) => setValue(value)}
-        loading={true}
-      />
+      <Select {...args} value={value} onChange={(value) => setValue(value)} />
     );
   },
 };
@@ -143,6 +138,13 @@ const [value, setValue] = useState("color-black");
         `,
       },
     },
+  },
+};
+
+export const Loading: Story = {
+  ...SelectTemplate,
+  args: {
+    loading: true,
   },
 };
 
