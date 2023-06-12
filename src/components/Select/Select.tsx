@@ -1,23 +1,19 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import {
-  FocusEvent,
-  InputHTMLAttributes,
-  ReactNode,
-  forwardRef,
-  useRef,
-} from "react";
+import { InputHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
 
 import { useIntersectionObserver } from "~/utils";
 
 import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import { ChangeHandler, Option, useSelectEvents } from "./useSelectEvents";
+
+import { useSelectEvents } from "./useSelectEvents";
 import { SelectWrapper } from "./SelectWrapper";
+import { SelectOption, ChangeHandler } from "./types";
 
 export type SelectProps = PropsWithBox<
   Omit<
-    InputHTMLAttributes<HTMLSelectElement>,
+    InputHTMLAttributes<HTMLElement>,
     | "color"
     | "width"
     | "height"
@@ -31,10 +27,10 @@ export type SelectProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: Option[];
+    options: SelectOption[];
     onChange?: ChangeHandler;
-    value: string | number;
-    onInfiniteScroll?: () => void;
+    value: SelectOption;
+    onScrollEnd?: () => void;
     loading?: boolean;
   }
 > &
@@ -51,7 +47,7 @@ const getBoxHeight = (size: SelectProps["size"]) => {
   }
 };
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = forwardRef<HTMLElement, SelectProps>(
   (
     {
       size = "medium",
@@ -66,7 +62,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onChange,
       onFocus,
       onBlur,
-      onInfiniteScroll,
+      onScrollEnd,
       loading,
       ...props
     },
@@ -74,7 +70,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ) => {
     const listRef = useRef<HTMLUListElement>(null);
     const lastListItemRef = useIntersectionObserver({
-      callback: onInfiniteScroll,
+      callback: onScrollEnd,
       options: {
         threshold: 1,
         root: listRef.current,
@@ -92,13 +88,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       highlightedIndex,
       getItemProps,
       selectedItem,
-      handlers,
-    } = useSelectEvents(value, options, onChange);
+    } = useSelectEvents(value, options, onChange, onFocus, onBlur);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" ref={containerRef}>
+      <Box display="flex" flexDirection="column">
         <SelectWrapper
           id={id}
           typed={typed}
@@ -110,26 +105,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           className={className}
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
-          loading={loading}
         >
-          <Box
-            height={getBoxHeight(size)}
-            onBlur={(event: FocusEvent<HTMLSelectElement, Element>) => {
-              handlers.onBlur();
-              onBlur?.(event);
-            }}
-            onFocus={(event: FocusEvent<HTMLSelectElement, Element>) => {
-              handlers.onFocus();
-              onFocus?.(event);
-            }}
-            {...props}
-            ref={ref}
-          >
+          <Box height={getBoxHeight(size)} {...props} ref={ref}>
             <Text size={size} variant="body">
               {selectedItem?.label}
             </Text>
           </Box>
         </SelectWrapper>
+        <Box ref={containerRef} />
 
         <Portal asChild container={containerRef.current}>
           <Box
@@ -140,32 +123,35 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             <List
               as="ul"
               className={listStyle}
+              // suppress error because of rendering list in portal
               {...getMenuProps(
                 {
                   ref: listRef,
                 },
-                // suppress error because of rendering list in portal
                 { suppressRefError: true }
               )}
             >
               {isOpen &&
-                options?.map((item, index) => {
-                  return (
-                    <List.Item
-                      key={`${id}-${item}-${index}`}
-                      className={listItemStyle}
-                      {...getItemProps({
-                        item,
-                        index,
-                        ref:
-                          options.length === index + 1 ? lastListItemRef : null,
-                      })}
-                      active={highlightedIndex === index}
-                    >
-                      <Text size={size}>{item.label}</Text>
-                    </List.Item>
-                  );
-                })}
+                options?.map((item, index) => (
+                  <List.Item
+                    key={`${id}-${item}-${index}`}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item,
+                      index,
+                      ref:
+                        options.length === index + 1 ? lastListItemRef : null,
+                    })}
+                    active={highlightedIndex === index}
+                  >
+                    <Text size={size}>{item.label}</Text>
+                  </List.Item>
+                ))}
+              {loading && (
+                <List.Item className={listItemStyle}>
+                  <Text size={size}>Loading...</Text>
+                </List.Item>
+              )}
             </List>
           </Box>
         </Portal>

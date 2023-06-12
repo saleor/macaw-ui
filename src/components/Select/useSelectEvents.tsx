@@ -1,13 +1,18 @@
-import { useState } from "react";
-import { useSelect } from "downshift7";
+import { FocusEvent, useState } from "react";
+import {
+  GetPropsCommonOptions,
+  UseSelectGetToggleButtonPropsOptions,
+  useSelect,
+} from "downshift7";
 
-export type ChangeHandler = (selectedItem: string | number) => void;
-export type Option = { label: string; value: string | number };
+import { SelectOption } from "./types";
 
 export const useSelectEvents = (
-  value: string | number,
-  options: Option[],
-  changeHandler?: (selectedValue: string | number) => void
+  value: SelectOption,
+  options: SelectOption[],
+  changeHandler?: (selectedValue: SelectOption) => void,
+  onCustomFocus?: (e: FocusEvent<HTMLElement, Element>) => void,
+  onCustomBlur?: (e: FocusEvent<HTMLElement, Element>) => void
 ) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
@@ -22,11 +27,11 @@ export const useSelectEvents = (
     selectedItem,
   } = useSelect({
     items: options,
-    selectedItem: options.find((option) => option.value === value),
+    selectedItem: value,
     itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        changeHandler?.(selectedItem.value);
+        changeHandler?.(selectedItem);
       }
     },
   });
@@ -38,12 +43,28 @@ export const useSelectEvents = (
     active,
     typed,
     isOpen,
-    getToggleButtonProps,
+    getToggleButtonProps: (
+      options?: UseSelectGetToggleButtonPropsOptions | undefined,
+      otherOptions?: GetPropsCommonOptions | undefined
+    ) =>
+      getToggleButtonProps(
+        {
+          onFocus: (e) => {
+            onFocus();
+            onCustomFocus?.(e);
+          },
+          onBlur: (e) => {
+            onBlur();
+            onCustomBlur?.(e);
+          },
+          ...options,
+        },
+        otherOptions
+      ),
     getLabelProps,
     getMenuProps,
     highlightedIndex,
     getItemProps,
     selectedItem,
-    handlers: { onFocus, onBlur },
   };
 };

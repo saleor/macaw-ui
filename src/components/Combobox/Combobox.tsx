@@ -6,13 +6,10 @@ import { classNames } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
 import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import {
-  ChangeHandler,
-  InputValue,
-  Option,
-  useComboboxEvents,
-} from "./useComboboxEvents";
+
+import { useComboboxEvents } from "./useComboboxEvents";
 import { ComboboxWrapper } from "./ComboboxWrapper";
+import { ChangeHandler, ComboboxOption } from "./types";
 
 export type ComboboxProps = PropsWithBox<
   Omit<
@@ -31,10 +28,10 @@ export type ComboboxProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: Option[];
+    options: ComboboxOption[];
     onChange?: ChangeHandler;
-    value: InputValue;
-    onAutocomplete?: (inputValue: string | undefined) => void;
+    value: ComboboxOption | null;
+    onInputValueChange?: (value: string) => void;
     loading?: boolean;
   }
 > &
@@ -53,7 +50,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       helperText,
       options,
       onChange,
-      onAutocomplete,
+      onInputValueChange,
+      onFocus,
+      onBlur,
       loading,
       ...props
     },
@@ -70,12 +69,19 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       highlightedIndex,
       getItemProps,
       itemsToSelect,
-    } = useComboboxEvents(value, options, onChange, onAutocomplete);
+    } = useComboboxEvents(
+      value,
+      options,
+      onChange,
+      onInputValueChange,
+      onFocus,
+      onBlur
+    );
 
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLLabelElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" ref={containerRef}>
+      <Box display="flex" flexDirection="column">
         <ComboboxWrapper
           id={id}
           typed={typed}
@@ -87,7 +93,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           className={className}
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
-          loading={loading}
         >
           <Box
             id={id}
@@ -102,6 +107,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             })}
           />
         </ComboboxWrapper>
+        <Box ref={containerRef} />
 
         <Portal asChild container={containerRef.current}>
           <Box
@@ -129,6 +135,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <List.Item className={listItemStyle}>
+                  <Text size={size}>Loading...</Text>
+                </List.Item>
+              )}
             </List>
           </Box>
         </Portal>

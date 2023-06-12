@@ -5,34 +5,26 @@ import { sprinkles } from "~/theme";
 
 import { ArrowDownIcon } from "../Icons";
 import { toggleIconStyle } from "../BaseSelect";
-import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
+import { MultiselectOption, RenderEndAdornmentType } from "./types";
 
 export type AdornmentProps = {
   size?: "small" | "medium" | "large";
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
+  getToggleButtonProps: UseComboboxPropGetters<MultiselectOption>["getToggleButtonProps"];
   renderEndAdornment?: RenderEndAdornmentType;
-  hasItemsToSelect?: boolean;
 };
 
 export const Adornment = ({
   size,
   getToggleButtonProps,
   renderEndAdornment,
-  hasItemsToSelect,
 }: AdornmentProps) => {
-  if (hasItemsToSelect) {
-    return renderEndAdornment ? (
-      <>{renderEndAdornment(getToggleButtonProps())}</>
-    ) : (
-      <ArrowDownIcon
-        className={classNames(
-          toggleIconStyle,
-          sprinkles({ cursor: "pointer" })
-        )}
-        size={size}
-        {...getToggleButtonProps()}
-      />
-    );
-  }
-  return null;
+  return renderEndAdornment ? (
+    <>{renderEndAdornment(getToggleButtonProps())}</>
+  ) : (
+    <ArrowDownIcon
+      className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
+      size={size}
+      {...getToggleButtonProps()}
+    />
+  );
 };

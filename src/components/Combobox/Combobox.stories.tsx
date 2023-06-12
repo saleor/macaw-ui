@@ -1,7 +1,9 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import _ from "lodash";
 
-import { Combobox } from ".";
+import { Combobox, ComboboxOption } from ".";
 
 const options = [
   { value: "color-black", label: "Black" },
@@ -22,6 +24,14 @@ const meta: Meta<typeof Combobox> = {
     id: "combobox",
     size: "large",
   },
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 300,
+      },
+    },
+  },
 };
 
 export default meta;
@@ -29,15 +39,10 @@ type Story = StoryObj<typeof Combobox>;
 
 const ComboboxTemplate: Story = {
   render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState(options[0].value);
+    const [value, setValue] = useState(options[0]);
 
     return (
-      <Combobox
-        {...args}
-        value={value}
-        onChange={(value) => setValue(value as string)}
-      />
+      <Combobox {...args} value={value} onChange={(value) => setValue(value)} />
     );
   },
 };
@@ -135,35 +140,38 @@ export const WithHelperText: Story = {
 };
 
 export const DynamicData = () => {
-  const [options, setOptions] = useState([
-    { value: "color-black", label: "Black" },
-    { value: "color-red", label: "Red" },
-    { value: "color-green", label: "Green" },
-    { value: "color-blue", label: "Blue" },
-    { value: "color-orange", label: "Orange" },
-    { value: "color-purple", label: "Purple" },
-  ]);
-
-  const [value, setValue] = useState(options[0].value);
+  const [options, setOptions] = useState([]);
+  const [value, setValue] = useState<ComboboxOption | null>(null);
   const [loading, setLoading] = useState(false);
+
+  async function search(criteria: string) {
+    setLoading(true);
+    const response = await fetch(
+      `https://swapi.dev/api/people/?search=${criteria}`
+    );
+    const body = await response.json();
+    setLoading(false);
+    return body.results.map((result: { name: string }) => ({
+      value: result.name,
+      label: result.name,
+    }));
+  }
+
+  const debouncedSearch = useRef(
+    _.debounce(async (criteria) => {
+      setOptions(await search(criteria));
+    }, 300)
+  ).current;
 
   return (
     <Combobox
       value={value}
-      onChange={(value) => setValue(value as string)}
+      onChange={(value) => setValue(value)}
       options={options}
       loading={loading}
-      onAutocomplete={() => {
-        setLoading((prev) => !prev);
-        setOptions([...options, { value: "color-white", label: "White" }]);
+      onInputValueChange={(value) => {
+        debouncedSearch(value);
       }}
     />
   );
-};
-
-export const Loading: Story = {
-  ...ComboboxTemplate,
-  args: {
-    loading: true,
-  },
 };

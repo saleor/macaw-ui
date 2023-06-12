@@ -7,9 +7,9 @@ import { ReactNode } from "react";
 import { classNames } from "~/utils";
 
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { Box, Spinner } from "..";
+import { Box } from "../Box";
 import { Adornment } from "./Adornment";
-import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
+import { MultiselectOption, RenderEndAdornmentType } from "./types";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;
@@ -17,11 +17,10 @@ type MultiselectWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
+  getLabelProps: UseComboboxPropGetters<MultiselectOption>["getLabelProps"];
+  getToggleButtonProps: UseComboboxPropGetters<MultiselectOption>["getToggleButtonProps"];
   renderEndAdornment?: RenderEndAdornmentType;
   hasItemsToSelect?: boolean;
-  loading?: boolean;
 };
 
 export const MultiselectWrapper = ({
@@ -38,7 +37,6 @@ export const MultiselectWrapper = ({
   getToggleButtonProps,
   renderEndAdornment,
   hasItemsToSelect,
-  loading,
 }: MultiselectWrapperProps) => {
   return (
     <Box
@@ -72,11 +70,8 @@ export const MultiselectWrapper = ({
         </Box>
       </Box>
 
-      {loading ? (
-        <Spinner size={size} />
-      ) : (
+      {hasItemsToSelect && (
         <Adornment
-          hasItemsToSelect={hasItemsToSelect}
           size={size}
           getToggleButtonProps={getToggleButtonProps}
           renderEndAdornment={renderEndAdornment}

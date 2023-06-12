@@ -1,17 +1,13 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { Box, List, PropsWithBox, Text } from "..";
+import { Box, List, MultiselectOption, PropsWithBox, Text } from "..";
 import { helperTextRecipe, InputVariants } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import {
-  ChangeHandler,
-  Option,
-  RenderEndAdornmentType,
-  useMultiselectEvents,
-} from "./useMultiselectEvents";
+import { useMultiselectEvents } from "./useMultiselectEvents";
 import { MultiselectWrapper } from "./MultiselectWrapper";
 
+import { ChangeHandler, RenderEndAdornmentType } from "./types";
 import { multiselectInputRecipe } from "./Multiselect.css";
 
 export type MultiselectProps = PropsWithBox<
@@ -31,11 +27,11 @@ export type MultiselectProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: Option[];
+    options: MultiselectOption[];
     onChange?: ChangeHandler;
-    value?: string[];
+    value: MultiselectOption[];
     renderEndAdornment?: RenderEndAdornmentType;
-    onAutocomplete?: (inputValue: string | undefined) => void;
+    onInputValueChange?: (value: string) => void;
     loading?: boolean;
   }
 > &
@@ -55,8 +51,10 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onChange,
       renderEndAdornment,
       value = [],
-      onAutocomplete,
+      onInputValueChange,
       loading,
+      onFocus,
+      onBlur,
       ...props
     },
     ref
@@ -77,18 +75,21 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       removeSelectedItem,
       getToggleButtonProps,
       hasItemsToSelect,
+      showInput,
     } = useMultiselectEvents(
       value,
       options,
       onChange,
       disabled,
-      onAutocomplete
+      onInputValueChange,
+      onFocus,
+      onBlur
     );
 
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-      <Box display="flex" flexDirection="column" ref={containerRef}>
+      <Box display="flex" flexDirection="column">
         <MultiselectWrapper
           id={id}
           typed={typed}
@@ -102,7 +103,6 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           getToggleButtonProps={getToggleButtonProps}
           renderEndAdornment={renderEndAdornment}
           hasItemsToSelect={hasItemsToSelect}
-          loading={loading}
         >
           {selectedItems.map((item, idx) => (
             <Box
@@ -155,6 +155,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             width={0}
             __flex={1}
             minWidth={7}
+            visibility={showInput ? "visible" : "hidden"}
             {...getInputProps({
               id,
               ref,
@@ -164,8 +165,11 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           />
         </MultiselectWrapper>
 
+        <Box ref={containerRef} />
+
         <Portal asChild container={containerRef.current}>
           <Box
+            position="relative"
             display={isOpen && hasItemsToSelect ? "block" : "none"}
             className={listWrapperRecipe({ size })}
           >
@@ -189,6 +193,11 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <List.Item className={listItemStyle}>
+                  <Text size={size}>Loading...</Text>
+                </List.Item>
+              )}
             </List>
           </Box>
         </Portal>

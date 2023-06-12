@@ -5,12 +5,13 @@ import { UseComboboxPropGetters } from "downshift7";
 import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
-import { sprinkles } from "~/theme";
 
+import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { toggleIconStyle } from "../BaseSelect";
-import { Box, ArrowDownIcon, Spinner } from "..";
-import { Option } from "./useComboboxEvents";
+import { Box } from "../Box";
+import { ArrowDownIcon } from "../Icons";
+import { ComboboxOption } from "./types";
 
 type ComboboxWrapperProps = LabelVariants & {
   id?: string;
@@ -18,9 +19,8 @@ type ComboboxWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
-  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
-  loading?: boolean;
+  getToggleButtonProps: UseComboboxPropGetters<ComboboxOption>["getToggleButtonProps"];
+  getLabelProps: UseComboboxPropGetters<ComboboxOption>["getLabelProps"];
 };
 
 export const ComboboxWrapper = ({
@@ -35,7 +35,6 @@ export const ComboboxWrapper = ({
   active,
   disabled,
   size,
-  loading,
 }: ComboboxWrapperProps) => {
   return (
     <Box
@@ -61,23 +60,19 @@ export const ComboboxWrapper = ({
         {children}
       </Box>
 
-      {loading ? (
-        <Spinner size={size} />
-      ) : (
-        <ArrowDownIcon
-          className={classNames(
-            toggleIconStyle,
-            sprinkles({ cursor: "pointer" })
-          )}
-          size={size}
-          {...getToggleButtonProps({
-            disabled,
-            onClick: (event) => {
-              event.preventDefault();
-            },
-          })}
-        />
-      )}
+      <ArrowDownIcon
+        className={classNames(
+          toggleIconStyle,
+          sprinkles({ cursor: "pointer" })
+        )}
+        size={size}
+        {...getToggleButtonProps({
+          disabled,
+          onClick: (event) => {
+            event.preventDefault();
+          },
+        })}
+      />
     </Box>
   );
 };
