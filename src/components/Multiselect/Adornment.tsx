@@ -11,20 +11,22 @@ export type AdornmentProps = {
   size?: "small" | "medium" | "large";
   getToggleButtonProps: UseComboboxPropGetters<MultiselectOption>["getToggleButtonProps"];
   renderEndAdornment?: RenderEndAdornmentType;
+  disabled?: boolean;
 };
 
 export const Adornment = ({
   size,
   getToggleButtonProps,
   renderEndAdornment,
+  disabled,
 }: AdornmentProps) => {
   return renderEndAdornment ? (
-    <>{renderEndAdornment(getToggleButtonProps())}</>
+    <>{renderEndAdornment(getToggleButtonProps({ disabled }))}</>
   ) : (
     <ArrowDownIcon
       className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
       size={size}
-      {...getToggleButtonProps()}
+      {...getToggleButtonProps({ disabled })}
     />
   );
 };

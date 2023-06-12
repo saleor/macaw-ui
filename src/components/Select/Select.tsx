@@ -7,7 +7,7 @@ import { Box, List, PropsWithBox, Text } from "..";
 import { InputVariants, helperTextRecipe } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 
-import { useSelectEvents } from "./useSelectEvents";
+import { useSelect } from "./useSelect";
 import { SelectWrapper } from "./SelectWrapper";
 import { SelectOption, ChangeHandler } from "./types";
 
@@ -82,13 +82,19 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       active,
       typed,
       isOpen,
-      getToggleButtonProps,
+      getItemProps,
       getLabelProps,
+      getToggleButtonProps,
+      selectedItem,
       getMenuProps,
       highlightedIndex,
-      getItemProps,
-      selectedItem,
-    } = useSelectEvents(value, options, onChange, onFocus, onBlur);
+    } = useSelect({
+      value,
+      options,
+      onChange,
+      onFocus,
+      onBlur,
+    });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -123,11 +129,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
             <List
               as="ul"
               className={listStyle}
-              // suppress error because of rendering list in portal
               {...getMenuProps(
                 {
                   ref: listRef,
                 },
+                // suppress error because of rendering list in portal
                 { suppressRefError: true }
               )}
             >

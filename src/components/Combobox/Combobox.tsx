@@ -7,7 +7,7 @@ import { Box, List, PropsWithBox, Text } from "..";
 import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
 
-import { useComboboxEvents } from "./useComboboxEvents";
+import { useCombobox } from "./useCombobox";
 import { ComboboxWrapper } from "./ComboboxWrapper";
 import { ChangeHandler, ComboboxOption } from "./types";
 
@@ -69,14 +69,14 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       highlightedIndex,
       getItemProps,
       itemsToSelect,
-    } = useComboboxEvents(
-      value,
+    } = useCombobox({
+      selectedItem: value,
       options,
       onChange,
       onInputValueChange,
       onFocus,
-      onBlur
-    );
+      onBlur,
+    });
 
     const containerRef = useRef<HTMLLabelElement>(null);
 

@@ -24,15 +24,21 @@ const getItemsFilter = (
   );
 };
 
-export const useMultiselectEvents = (
-  selectedItems: MultiselectOption[],
-  options: MultiselectOption[],
-  changeHandler?: ChangeHandler,
-  disabled?: boolean,
-  onInputValueChange?: (value: string) => void,
-  onCustomFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void,
-  onCustomBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void
-) => {
+export const useMultiselect = ({
+  selectedItems,
+  options,
+  onChange,
+  onInputValueChange,
+  onFocus,
+  onBlur,
+}: {
+  selectedItems: MultiselectOption[];
+  options: MultiselectOption[];
+  onChange?: ChangeHandler;
+  onInputValueChange?: (value: string) => void;
+  onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
+}) => {
   const [inputValue, setInputValue] = useState("");
   const [active, setActive] = useState(false);
 
@@ -54,7 +60,7 @@ export const useMultiselectEvents = (
           case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
           case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
           case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-            changeHandler?.(newSelectedItems ?? []);
+            onChange?.(newSelectedItems ?? []);
             break;
 
           default:
@@ -67,10 +73,10 @@ export const useMultiselectEvents = (
     isOpen,
     getLabelProps,
     getMenuProps,
-    getInputProps,
+    getInputProps: _getInputProps,
     highlightedIndex,
     getItemProps,
-    getToggleButtonProps,
+    getToggleButtonProps: _getToggleButtonProps,
   } = useCombobox({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
@@ -101,7 +107,7 @@ export const useMultiselectEvents = (
         case useCombobox.stateChangeTypes.ItemClick:
         case useCombobox.stateChangeTypes.InputBlur:
           if (newSelectedItem) {
-            changeHandler?.([...selectedItems, newSelectedItem]);
+            onChange?.([...selectedItems, newSelectedItem]);
           } else {
             setInputValue("");
           }
@@ -118,8 +124,8 @@ export const useMultiselectEvents = (
     },
   });
 
-  const onFocus = () => setActive(true);
-  const onBlur = () => setActive(false);
+  const _onFocus = () => setActive(true);
+  const _onBlur = () => setActive(false);
 
   return {
     active,
@@ -132,15 +138,15 @@ export const useMultiselectEvents = (
       options?: UseComboboxGetInputPropsOptions,
       otherOptions?: GetPropsCommonOptions
     ) =>
-      getInputProps(
+      _getInputProps(
         getDropdownProps({
           onFocus: (e: FocusEvent<HTMLInputElement, Element>) => {
-            onCustomFocus?.(e);
-            onFocus();
+            _onFocus();
+            onFocus?.(e);
           },
           onBlur: (e: FocusEvent<HTMLInputElement, Element>) => {
-            onCustomBlur?.(e);
-            onBlur();
+            _onBlur();
+            onBlur?.(e);
           },
           preventKeyAction: isOpen,
           ...options,
@@ -157,11 +163,10 @@ export const useMultiselectEvents = (
     getToggleButtonProps: (
       options?: UseComboboxGetToggleButtonPropsOptions | undefined
     ) =>
-      getToggleButtonProps({
+      _getToggleButtonProps({
         onClick: (event) => {
           event.preventDefault();
         },
-        disabled,
         ...options,
       }),
     hasItemsToSelect: itemsToSelect.length > 0,

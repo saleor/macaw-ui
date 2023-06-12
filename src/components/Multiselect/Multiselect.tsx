@@ -4,7 +4,7 @@ import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 import { Box, List, MultiselectOption, PropsWithBox, Text } from "..";
 import { helperTextRecipe, InputVariants } from "../BaseInput";
 import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
-import { useMultiselectEvents } from "./useMultiselectEvents";
+import { useMultiselect } from "./useMultiselect";
 import { MultiselectWrapper } from "./MultiselectWrapper";
 
 import { ChangeHandler, RenderEndAdornmentType } from "./types";
@@ -76,15 +76,14 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       getToggleButtonProps,
       hasItemsToSelect,
       showInput,
-    } = useMultiselectEvents(
-      value,
+    } = useMultiselect({
+      selectedItems: value,
+      onInputValueChange,
       options,
       onChange,
-      disabled,
-      onInputValueChange,
       onFocus,
-      onBlur
-    );
+      onBlur,
+    });
 
     const containerRef = useRef<HTMLDivElement>(null);
 

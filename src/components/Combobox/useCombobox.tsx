@@ -1,7 +1,7 @@
 import { FocusEvent, useState } from "react";
 import {
   GetPropsCommonOptions,
-  useCombobox,
+  useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
 
@@ -22,14 +22,21 @@ const getItemsFilter = (
   );
 };
 
-export const useComboboxEvents = (
-  selectedItem: ComboboxOption | null,
-  options: ComboboxOption[],
-  changeHandler?: ChangeHandler,
-  onInputValueChange?: (value: string) => void,
-  onCustomFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void,
-  onCustomBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void
-) => {
+export const useCombobox = ({
+  selectedItem,
+  options,
+  onChange,
+  onInputValueChange,
+  onFocus,
+  onBlur,
+}: {
+  selectedItem: ComboboxOption | null;
+  options: ComboboxOption[];
+  onChange?: ChangeHandler;
+  onInputValueChange?: (value: string) => void;
+  onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
+}) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [active, setActive] = useState(false);
   const typed = Boolean(selectedItem || active);
@@ -41,16 +48,16 @@ export const useComboboxEvents = (
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
-    getInputProps,
+    getInputProps: _getInputProps,
     highlightedIndex,
     getItemProps,
-  } = useCombobox({
+  } = useDownshiftCombobox({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        changeHandler?.(selectedItem);
+        onChange?.(selectedItem);
       }
     },
     onInputValueChange: ({ inputValue = "" }) => {
@@ -59,8 +66,8 @@ export const useComboboxEvents = (
     },
   });
 
-  const onFocus = () => setActive(true);
-  const onBlur = () => setActive(false);
+  const _onFocus = () => setActive(true);
+  const _onBlur = () => setActive(false);
 
   return {
     active,
@@ -74,15 +81,15 @@ export const useComboboxEvents = (
       options?: UseComboboxGetInputPropsOptions,
       otherOptions?: GetPropsCommonOptions
     ) =>
-      getInputProps(
+      _getInputProps(
         {
           onFocus: (e) => {
-            onCustomFocus?.(e);
-            onFocus();
+            onFocus?.(e);
+            _onFocus();
           },
           onBlur: (e) => {
-            onCustomBlur?.(e);
-            onBlur();
+            onBlur?.(e);
+            _onBlur();
           },
           ...options,
         },
