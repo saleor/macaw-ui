@@ -22,4 +22,3 @@ export * from "./Tooltip";
 export * from "./Combobox";
 export * from "./Select";
 export * from "./Multiselect";
-export * from "./Spinner";

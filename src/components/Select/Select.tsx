@@ -4,8 +4,13 @@ import { InputHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
 import { useIntersectionObserver } from "~/utils";
 
 import { Box, List, PropsWithBox, Text } from "..";
-import { InputVariants, helperTextRecipe } from "../BaseInput";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { HelperText, InputVariants } from "../BaseInput";
+import {
+  LoadingListItem,
+  listItemStyle,
+  listStyle,
+  listWrapperRecipe,
+} from "../BaseSelect";
 
 import { useSelect } from "./useSelect";
 import { SelectWrapper } from "./SelectWrapper";
@@ -32,6 +37,9 @@ export type SelectProps = PropsWithBox<
     value: SelectOption;
     onScrollEnd?: () => void;
     loading?: boolean;
+    locale?: {
+      loading?: string;
+    };
   }
 > &
   InputVariants;
@@ -64,6 +72,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       onBlur,
       onScrollEnd,
       loading,
+      locale = {
+        loading: "Loading",
+      },
       ...props
     },
     ref
@@ -154,24 +165,16 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
                   </List.Item>
                 ))}
               {loading && (
-                <List.Item className={listItemStyle}>
-                  <Text size={size}>Loading...</Text>
-                </List.Item>
+                <LoadingListItem size={size}>{locale.loading}</LoadingListItem>
               )}
             </List>
           </Box>
         </Portal>
 
         {helperText && (
-          <Box marginTop={3} className={helperTextRecipe({ size })}>
-            <Text
-              variant="caption"
-              size={size}
-              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
-            >
-              {helperText}
-            </Text>
-          </Box>
+          <HelperText size={size} error={error}>
+            {helperText}
+          </HelperText>
         )}
       </Box>
     );

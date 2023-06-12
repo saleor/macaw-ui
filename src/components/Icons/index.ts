@@ -45,4 +45,3 @@ export * from "./ExportIcon";
 export * from "./FloppyDiscIcon";
 export * from "./FullscreenOffIcon";
 export * from "./FullscreenOnIcon";
-export * from "./SpinIcon";

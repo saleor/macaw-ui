@@ -40,7 +40,12 @@ const SelectTemplate: Story = {
     const [value, setValue] = useState(options[0]);
 
     return (
-      <Select {...args} value={value} onChange={(value) => setValue(value)} />
+      <Select
+        {...args}
+        value={value}
+        onChange={(value) => setValue(value)}
+        loading={true}
+      />
     );
   },
 };
