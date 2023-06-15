@@ -174,6 +174,7 @@ export const DynamicData = () => {
   return (
     <Combobox
       value={value}
+      label="Pick star wars character"
       onChange={(value) => setValue(value)}
       options={options}
       loading={loading}

@@ -217,11 +217,15 @@ export const DynamicData = () => {
     <Box __width={300}>
       <Multiselect
         value={value}
+        label="Pick a star wars characters"
         onChange={(value) => setValue(value)}
         options={options}
         loading={loading}
         onInputValueChange={(value) => {
           debouncedSearch(value);
+        }}
+        locale={{
+          inputText: "Add character",
         }}
       />
     </Box>

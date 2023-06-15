@@ -45,6 +45,7 @@ export type MultiselectProps = PropsWithBox<
     loading?: boolean;
     locale?: {
       loadingText?: string;
+      inputText?: string;
     };
   }
 > &
@@ -70,6 +71,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onBlur,
       locale = {
         loadingText: "Loading",
+        inputText: "Add item",
       },
       ...props
     },
@@ -165,7 +167,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             id={id}
             as="input"
             className={multiselectInputRecipe({ size, error })}
-            placeholder="Add item"
+            placeholder={locale.inputText}
             disabled={disabled}
             width={0}
             __flex={1}

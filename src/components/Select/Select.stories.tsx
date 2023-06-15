@@ -179,6 +179,7 @@ export const DynamicOptions = () => {
     <Box __width={300}>
       <Select
         value={value}
+        label="Pick star wars character"
         onChange={(value) => setValue(value)}
         options={options}
         loading={loading}
