@@ -15,7 +15,6 @@ export type CheckboxProps = PropsWithBox<{
   required?: boolean;
   name?: string;
   value?: string;
-  className?: string;
 }>;
 
 export type CheckedState = boolean | "indeterminate";
@@ -30,7 +29,6 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
       name,
       value,
       disabled,
-      className,
       children,
       ...props
     }: CheckboxProps,
@@ -52,8 +50,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
           ref={ref}
           className={classNames(
             commonCheckbox,
-            error ? errorCheckbox : defaultCheckbox,
-            className
+            error ? errorCheckbox : defaultCheckbox
           )}
           checked={checked}
           disabled={disabled}
