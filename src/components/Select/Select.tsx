@@ -10,11 +10,11 @@ import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
+  Option,
 } from "../BaseSelect";
 
-import { useSelect } from "./useSelect";
+import { ChangeHandler, useSelect } from "./useSelect";
 import { SelectWrapper } from "./SelectWrapper";
-import { SelectOption, ChangeHandler } from "./types";
 
 export type SelectProps = PropsWithBox<
   Omit<
@@ -32,13 +32,13 @@ export type SelectProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: SelectOption[];
+    options: Option[];
     onChange?: ChangeHandler;
-    value: SelectOption;
+    value: Option;
     onScrollEnd?: () => void;
     loading?: boolean;
     locale?: {
-      loading?: string;
+      loadingText?: string;
     };
   }
 > &
@@ -73,7 +73,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       onScrollEnd,
       loading,
       locale = {
-        loading: "Loading",
+        loadingText: "Loading",
       },
       ...props
     },
@@ -165,7 +165,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
                   </List.Item>
                 ))}
               {loading && (
-                <LoadingListItem size={size}>{locale.loading}</LoadingListItem>
+                <LoadingListItem size={size}>
+                  {locale.loadingText}
+                </LoadingListItem>
               )}
             </List>
           </Box>

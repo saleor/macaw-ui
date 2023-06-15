@@ -4,13 +4,11 @@ import {
   useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
+import { Option } from "../BaseSelect";
 
-import { ChangeHandler, ComboboxOption } from "./types";
+export type ChangeHandler = (selectedItem: Option) => void;
 
-const getItemsFilter = (
-  inputValue: string | undefined,
-  options: ComboboxOption[]
-) => {
+const getItemsFilter = (inputValue: string | undefined, options: Option[]) => {
   if (!inputValue) {
     return options;
   }
@@ -30,8 +28,8 @@ export const useCombobox = ({
   onFocus,
   onBlur,
 }: {
-  selectedItem: ComboboxOption | null;
-  options: ComboboxOption[];
+  selectedItem: Option | null;
+  options: Option[];
   onChange?: ChangeHandler;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -66,9 +64,6 @@ export const useCombobox = ({
     },
   });
 
-  const _onFocus = () => setActive(true);
-  const _onBlur = () => setActive(false);
-
   return {
     active,
     itemsToSelect,
@@ -85,11 +80,11 @@ export const useCombobox = ({
         {
           onFocus: (e) => {
             onFocus?.(e);
-            _onFocus();
+            setActive(true);
           },
           onBlur: (e) => {
             onBlur?.(e);
-            _onBlur();
+            setActive(false);
           },
           ...options,
         },

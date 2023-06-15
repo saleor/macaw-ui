@@ -1,18 +1,24 @@
-import { useState, FocusEvent } from "react";
+import { useState, FocusEvent, ReactNode } from "react";
 import {
   GetPropsCommonOptions,
   useCombobox,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
+  UseComboboxPropGetters,
   useMultipleSelection,
 } from "downshift7";
 
-import { ChangeHandler, MultiselectOption } from "./types";
+import { Option } from "../BaseSelect";
+
+export type ChangeHandler = (selectedItems: Option[]) => void;
+export type RenderEndAdornmentType = (
+  ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
+) => ReactNode;
 
 const getItemsFilter = (
-  selectedItems: MultiselectOption[],
+  selectedItems: Option[],
   inputValue: string,
-  options: MultiselectOption[]
+  options: Option[]
 ) => {
   const lowerCasedInputValue = inputValue?.toLowerCase();
 
@@ -32,8 +38,8 @@ export const useMultiselect = ({
   onFocus,
   onBlur,
 }: {
-  selectedItems: MultiselectOption[];
-  options: MultiselectOption[];
+  selectedItems: Option[];
+  options: Option[];
   onChange?: ChangeHandler;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -124,9 +130,6 @@ export const useMultiselect = ({
     },
   });
 
-  const _onFocus = () => setActive(true);
-  const _onBlur = () => setActive(false);
-
   return {
     active,
     itemsToSelect,
@@ -141,11 +144,11 @@ export const useMultiselect = ({
       _getInputProps(
         getDropdownProps({
           onFocus: (e: FocusEvent<HTMLInputElement, Element>) => {
-            _onFocus();
+            setActive(true);
             onFocus?.(e);
           },
           onBlur: (e: FocusEvent<HTMLInputElement, Element>) => {
-            _onBlur();
+            setActive(false);
             onBlur?.(e);
           },
           preventKeyAction: isOpen,

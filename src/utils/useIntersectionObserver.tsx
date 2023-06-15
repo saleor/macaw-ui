@@ -13,15 +13,12 @@ export function useIntersectionObserver({
   useEffect(() => {
     const node = ref?.current;
 
-    console.log(node);
-
     if (!node) {
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        console.log(entry.isIntersecting);
         if (entry.isIntersecting && callback) {
           callback();
         }

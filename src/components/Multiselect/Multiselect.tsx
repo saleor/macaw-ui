@@ -1,18 +1,22 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { Box, List, MultiselectOption, PropsWithBox, Text } from "..";
+import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   LoadingListItem,
+  Option,
 } from "../BaseSelect";
-import { useMultiselect } from "./useMultiselect";
-import { MultiselectWrapper } from "./MultiselectWrapper";
 
-import { ChangeHandler, RenderEndAdornmentType } from "./types";
+import {
+  ChangeHandler,
+  RenderEndAdornmentType,
+  useMultiselect,
+} from "./useMultiselect";
+import { MultiselectWrapper } from "./MultiselectWrapper";
 import { multiselectInputRecipe } from "./Multiselect.css";
 
 export type MultiselectProps = PropsWithBox<
@@ -32,14 +36,14 @@ export type MultiselectProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: MultiselectOption[];
+    options: Option[];
     onChange?: ChangeHandler;
-    value: MultiselectOption[];
+    value: Option[];
     renderEndAdornment?: RenderEndAdornmentType;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
     locale?: {
-      loading?: string;
+      loadingText?: string;
     };
   }
 > &
@@ -64,7 +68,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onFocus,
       onBlur,
       locale = {
-        loading: "Loading",
+        loadingText: "Loading",
       },
       ...props
     },
@@ -204,7 +208,9 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                   </List.Item>
                 ))}
               {loading && (
-                <LoadingListItem size={size}>{locale.loading}</LoadingListItem>
+                <LoadingListItem size={size}>
+                  {locale.loadingText}
+                </LoadingListItem>
               )}
             </List>
           </Box>

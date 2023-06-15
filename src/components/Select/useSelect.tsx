@@ -5,7 +5,9 @@ import {
   useSelect as useDownshiftSelect,
 } from "downshift7";
 
-import { SelectOption } from "./types";
+import { Option } from "../BaseSelect";
+
+export type ChangeHandler = (selectedItem: Option) => void;
 
 export const useSelect = ({
   value,
@@ -14,9 +16,9 @@ export const useSelect = ({
   onFocus,
   onBlur,
 }: {
-  value: SelectOption;
-  options: SelectOption[];
-  onChange?: (selectedValue: SelectOption) => void;
+  value: Option;
+  options: Option[];
+  onChange?: (selectedValue: Option) => void;
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLElement, Element>) => void;
 }) => {
@@ -42,9 +44,6 @@ export const useSelect = ({
     },
   });
 
-  const _onFocus = () => setActive(true);
-  const _onBlur = () => setActive(false);
-
   return {
     active,
     typed,
@@ -56,11 +55,11 @@ export const useSelect = ({
       _getToggleButtonProps(
         {
           onFocus: (e) => {
-            _onFocus();
+            setActive(true);
             onFocus?.(e);
           },
           onBlur: (e) => {
-            _onBlur();
+            setActive(false);
             onBlur?.(e);
           },
           ...options,

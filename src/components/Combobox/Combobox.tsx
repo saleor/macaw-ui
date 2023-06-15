@@ -10,11 +10,11 @@ import {
   listStyle,
   listWrapperRecipe,
   LoadingListItem,
+  Option,
 } from "../BaseSelect";
 
-import { useCombobox } from "./useCombobox";
+import { ChangeHandler, useCombobox } from "./useCombobox";
 import { ComboboxWrapper } from "./ComboboxWrapper";
-import { ChangeHandler, ComboboxOption } from "./types";
 
 export type ComboboxProps = PropsWithBox<
   Omit<
@@ -33,13 +33,13 @@ export type ComboboxProps = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: ComboboxOption[];
+    options: Option[];
     onChange?: ChangeHandler;
-    value: ComboboxOption | null;
+    value: Option | null;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
     locale?: {
-      loading?: string;
+      loadingText?: string;
     };
   }
 > &
@@ -63,7 +63,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       onBlur,
       loading,
       locale = {
-        loading: "Loading",
+        loadingText: "Loading",
       },
       ...props
     },
@@ -147,7 +147,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                   </List.Item>
                 ))}
               {loading && (
-                <LoadingListItem size={size}>{locale.loading}</LoadingListItem>
+                <LoadingListItem size={size}>
+                  {locale.loadingText}
+                </LoadingListItem>
               )}
             </List>
           </Box>
