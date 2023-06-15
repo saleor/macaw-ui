@@ -8,10 +8,9 @@ import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { toggleIconStyle } from "../BaseSelect";
+import { Option, toggleIconStyle } from "../BaseSelect";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
-import { SelectOption } from "./types";
 
 type SelectWrapperProps = LabelVariants & {
   id?: string;
@@ -19,8 +18,8 @@ type SelectWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getToggleButtonProps: UseComboboxPropGetters<SelectOption>["getToggleButtonProps"];
-  getLabelProps: UseComboboxPropGetters<SelectOption>["getLabelProps"];
+  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
+  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
 export const SelectWrapper = ({

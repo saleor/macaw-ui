@@ -4,12 +4,12 @@ import { classNames } from "~/utils";
 import { sprinkles } from "~/theme";
 
 import { ArrowDownIcon } from "../Icons";
-import { toggleIconStyle } from "../BaseSelect";
-import { MultiselectOption, RenderEndAdornmentType } from "./types";
+import { Option, toggleIconStyle } from "../BaseSelect";
+import { RenderEndAdornmentType } from "./useMultiselect";
 
 export type AdornmentProps = {
   size?: "small" | "medium" | "large";
-  getToggleButtonProps: UseComboboxPropGetters<MultiselectOption>["getToggleButtonProps"];
+  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
   renderEndAdornment?: RenderEndAdornmentType;
   disabled?: boolean;
 };

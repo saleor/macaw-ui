@@ -6,10 +6,12 @@ import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
+import { Box } from "..";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { Box } from "../Box";
+import { Option } from "../BaseSelect";
+
 import { Adornment } from "./Adornment";
-import { MultiselectOption, RenderEndAdornmentType } from "./types";
+import { RenderEndAdornmentType } from "./useMultiselect";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;
@@ -17,8 +19,8 @@ type MultiselectWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getLabelProps: UseComboboxPropGetters<MultiselectOption>["getLabelProps"];
-  getToggleButtonProps: UseComboboxPropGetters<MultiselectOption>["getToggleButtonProps"];
+  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
+  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
   renderEndAdornment?: RenderEndAdornmentType;
   hasItemsToSelect?: boolean;
 };
