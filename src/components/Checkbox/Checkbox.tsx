@@ -10,6 +10,7 @@ export type CheckboxProps = PropsWithBox<{
   children?: ReactNode;
   error?: boolean;
   defaultChecked?: boolean;
+  onCheckedChange?: (checked: CheckedState) => void;
   checked?: CheckedState;
   disabled?: boolean;
   required?: boolean;
@@ -25,6 +26,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
       error = false,
       checked,
       defaultChecked,
+      onCheckedChange,
       required,
       name,
       value,
@@ -53,6 +55,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
             error ? errorCheckbox : defaultCheckbox
           )}
           checked={checked}
+          onCheckedChange={onCheckedChange}
           disabled={disabled}
           defaultChecked={defaultChecked}
           required={required}
