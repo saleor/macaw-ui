@@ -11,6 +11,7 @@ import {
   listWrapperRecipe,
   LoadingListItem,
   Option,
+  getListDisplayMode,
 } from "../BaseSelect";
 
 import { ChangeHandler, useCombobox } from "./useCombobox";
@@ -80,6 +81,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       highlightedIndex,
       getItemProps,
       itemsToSelect,
+      hasItemsToSelect,
     } = useCombobox({
       selectedItem: value,
       options,
@@ -123,7 +125,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
+            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
             className={listWrapperRecipe({ size })}
           >
             <List

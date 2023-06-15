@@ -9,6 +9,7 @@ import {
   listWrapperRecipe,
   LoadingListItem,
   Option,
+  getListDisplayMode,
 } from "../BaseSelect";
 
 import {
@@ -184,7 +185,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen && hasItemsToSelect ? "block" : "none"}
+            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
             className={listWrapperRecipe({ size })}
           >
             <List

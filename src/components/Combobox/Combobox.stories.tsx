@@ -3,7 +3,8 @@ import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { debounce } from "lodash";
 
-import { Combobox, ComboboxOption } from ".";
+import { Option } from "..";
+import { Combobox } from ".";
 
 const options = [
   { value: "color-black", label: "Black" },
@@ -148,7 +149,7 @@ export const Loading: Story = {
 
 export const DynamicData = () => {
   const [options, setOptions] = useState([]);
-  const [value, setValue] = useState<ComboboxOption | null>(null);
+  const [value, setValue] = useState<Option | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function search(criteria: string) {

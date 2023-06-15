@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { useRef, useState } from "react";
+import { debounce } from "lodash";
 
-import { useState } from "react";
+import { Box, Option } from "..";
 import { Select } from ".";
 
 const options = [
@@ -149,33 +151,47 @@ export const Loading: Story = {
 };
 
 export const DynamicOptions = () => {
-  const [options, setOptions] = useState([
-    { value: "color-black", label: "Black" },
-    { value: "color-red", label: "Red" },
-    { value: "color-green", label: "Green" },
-    { value: "color-blue", label: "Blue" },
-    { value: "color-orange", label: "Orange" },
-    { value: "color-purple", label: "Purple" },
-  ]);
-
-  const [value, setValue] = useState(options[0]);
+  const [options, setOptions] = useState([]);
+  const [value, setValue] = useState<Option | null>({
+    value: "Luke Skywalker",
+    label: "Luke Skywalker",
+  });
   const [loading, setLoading] = useState(false);
 
+  async function load() {
+    setLoading(true);
+    const response = await fetch(`https://swapi.dev/api/people/?page=1`);
+    const body = await response.json();
+    setLoading(false);
+    return body.results.map((result: { name: string }) => ({
+      value: result.name,
+      label: result.name,
+    }));
+  }
+
+  const debouncedLoad = useRef(
+    debounce(async () => {
+      setOptions(await load());
+    }, 300)
+  ).current;
+
   return (
-    <Select
-      value={value}
-      onChange={(value) => setValue(value)}
-      options={options}
-      loading={loading}
-      onScrollEnd={() => {
-        setLoading((prev) => !prev);
-        setOptions((prev) => [
-          ...prev,
-          { value: "color-white", label: "White" },
-        ]);
-      }}
-      onFocus={() => console.log("focus")}
-      onBlur={() => console.log("blur")}
-    />
+    <Box __width={300}>
+      <Select
+        value={value}
+        onChange={(value) => setValue(value)}
+        options={options}
+        loading={loading}
+        onScrollEnd={() => {
+          debouncedLoad();
+        }}
+        onFocus={() => {
+          debouncedLoad();
+        }}
+        onBlur={() => {
+          setLoading(false);
+        }}
+      />
+    </Box>
   );
 };

@@ -3,9 +3,8 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useRef, useState } from "react";
 import { debounce } from "lodash";
 
-import { Box } from "../Box";
-import { ViewTableIcon } from "../Icons";
-import { Multiselect } from "./Multiselect";
+import { ViewTableIcon, Box, Option } from "..";
+import { Multiselect } from ".";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -192,7 +191,7 @@ export const Loading: Story = {
 
 export const DynamicData = () => {
   const [options, setOptions] = useState([]);
-  const [value, setValue] = useState<{ label: string; value: string }[]>([]);
+  const [value, setValue] = useState<Option[]>([]);
   const [loading, setLoading] = useState(false);
 
   async function search(criteria: string) {

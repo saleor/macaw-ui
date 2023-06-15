@@ -11,6 +11,7 @@ import {
   listStyle,
   listWrapperRecipe,
   Option,
+  getListDisplayMode,
 } from "../BaseSelect";
 
 import { ChangeHandler, useSelect } from "./useSelect";
@@ -34,7 +35,7 @@ export type SelectProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value: Option;
+    value: Option | null;
     onScrollEnd?: () => void;
     loading?: boolean;
     locale?: {
@@ -99,6 +100,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       selectedItem,
       getMenuProps,
       highlightedIndex,
+      hasItemsToSelect,
     } = useSelect({
       value,
       options,
@@ -134,7 +136,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen ? "block" : "none"}
+            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
             className={listWrapperRecipe({ size })}
           >
             <List

@@ -92,5 +92,6 @@ export const useCombobox = ({
       ),
     highlightedIndex,
     getItemProps,
+    hasItemsToSelect: itemsToSelect.length > 0,
   };
 };

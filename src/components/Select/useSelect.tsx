@@ -16,7 +16,7 @@ export const useSelect = ({
   onFocus,
   onBlur,
 }: {
-  value: Option;
+  value: Option | null;
   options: Option[];
   onChange?: (selectedValue: Option) => void;
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
@@ -71,5 +71,6 @@ export const useSelect = ({
     highlightedIndex,
     getItemProps,
     selectedItem,
+    hasItemsToSelect: options.length > 0,
   };
 };
