@@ -13,16 +13,15 @@ const meta: Meta<typeof _ExperimentalFilters> = {
 export default meta;
 
 const leftOptions = [
-  { value: "price", label: "Price", type: 1 },
-  { value: "category", label: "Category", type: 2 },
-  { value: "rating", label: "Rating", type: 3 },
-  { value: "discount", label: "Discount", type: 4 },
+  { value: "price", label: "Price", type: "1" },
+  { value: "category", label: "Category", type: "2" },
+  { value: "rating", label: "Rating", type: "3" },
+  { value: "discount", label: "Discount", type: "4" },
 ];
 
 const value = [
   {
-    value: { value: "price", label: "Price", type: 1 },
-    type: 1,
+    value: { value: "price", label: "Price", type: "1" },
     loading: true,
     condition: {
       loading: true,
@@ -39,8 +38,7 @@ const value = [
   },
   "AND",
   {
-    value: { value: "category", label: "Category", type: 2 },
-    type: 2,
+    value: { value: "category", label: "Category", type: "2" },
     condition: {
       options: [{ value: "input-1", label: "are", type: "multiselect" }],
       selected: {
@@ -55,8 +53,7 @@ const value = [
   },
   "OR",
   {
-    value: { value: "rating", label: "Rating", type: 3 },
-    type: 3,
+    value: { value: "rating", label: "Rating", type: "3" },
     condition: {
       options: [{ value: "input-1", label: "is", type: "combobox" }],
       selected: {
@@ -71,8 +68,7 @@ const value = [
   },
   "AND",
   {
-    value: { value: "discount", label: "Discount", type: 4 },
-    type: 4,
+    value: { value: "discount", label: "Discount", type: "4" },
     condition: {
       options: [{ value: "input-1", label: "is", type: "select" }],
       selected: {
@@ -87,8 +83,7 @@ const value = [
   },
   "OR",
   {
-    value: { value: "discount", label: "Discount", type: 4 },
-    type: 4,
+    value: { value: "discount", label: "Discount", type: "4" },
     condition: {
       options: [{ value: "input-1", label: "between", type: "number.range" }],
       selected: {

@@ -21,7 +21,7 @@ export interface FilterEvent extends Event {
       | "row.add";
     value?: any;
     path?: string;
-    rowType: number;
+    rowType?: string;
   };
 }
 

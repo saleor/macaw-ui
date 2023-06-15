@@ -15,8 +15,7 @@ import {
 import { FilterEvent, useEvents } from "./useEvents";
 
 export type Row = {
-  value: { label: string; value: string; type: number } | null;
-  type: number;
+  value: { label: string; value: string; type: string } | null;
   loading?: boolean;
   condition?: {
     loading?: boolean;
@@ -38,7 +37,7 @@ type Right = {
 
 export type Props = {
   value: Array<Row | string>;
-  leftOptions: Array<{ value: string; label: string; type: number }>;
+  leftOptions: Array<{ value: string; label: string; type: string }>;
   onChange: (event: FilterEvent["detail"]) => void;
 };
 
@@ -75,7 +74,7 @@ export const _ExperimentalFilters = ({
       )}
       <Button
         onClick={() =>
-          dispatchFilterChangeEvent({ type: "row.add", rowType: 1 })
+          dispatchFilterChangeEvent({ type: "row.add", rowType: "1" })
         }
       >
         Add row
@@ -108,7 +107,7 @@ const Row = ({
             path: `${index}`,
             rowType:
               leftOptions.find((option) => option.value === value.value)
-                ?.type ?? 0,
+                ?.type ?? "any",
           });
         }}
         onInputValueChange={(value) => {
@@ -116,21 +115,18 @@ const Row = ({
             type: "leftOperator.onInputValueChange",
             value: value.toString(),
             path: `${index}`,
-            rowType: item.type,
           });
         }}
         onFocus={() => {
           dispatchFilterChangeEvent({
             type: "leftOperator.onFocus",
             path: `${index}`,
-            rowType: item.type,
           });
         }}
         onBlur={() => {
           dispatchFilterChangeEvent({
             type: "leftOperator.onBlur",
             path: `${index}`,
-            rowType: item.type,
           });
         }}
       />
@@ -144,28 +140,24 @@ const Row = ({
               type: "condition.onChange",
               value: value,
               path: `${index}.condition.selected`,
-              rowType: item.type,
             });
           }}
           onScrollEnd={() => {
             dispatchFilterChangeEvent({
               type: "condition.onScrollEnd",
               path: `${index}.condition.selected`,
-              rowType: item.type,
             });
           }}
           onFocus={() => {
             dispatchFilterChangeEvent({
               type: "condition.onFocus",
               path: `${index}.condition.selected`,
-              rowType: item.type,
             });
           }}
           onBlur={() => {
             dispatchFilterChangeEvent({
               type: "condition.onBlur",
               path: `${index}.condition.selected`,
-              rowType: item.type,
             });
           }}
         />
@@ -184,7 +176,6 @@ const Row = ({
           dispatchFilterChangeEvent({
             type: "row.remove",
             path: `${index}`,
-            rowType: item.type,
           })
         }
       />
@@ -220,21 +211,18 @@ const Right = (props: {
               type: "rightOperator.onChange",
               value: e.target.value,
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onFocus={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onFocus",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onBlur={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onBlur",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
         />
@@ -249,21 +237,18 @@ const Right = (props: {
               type: "rightOperator.onChange",
               value: e.target.value,
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onFocus={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onFocus",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onBlur={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onBlur",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
         />
@@ -279,7 +264,6 @@ const Right = (props: {
               type: "rightOperator.onChange",
               value: e,
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             })
           }
           onInputValueChange={(value) => {
@@ -287,21 +271,18 @@ const Right = (props: {
               type: "rightOperator.onInputValueChange",
               value: value.toString(),
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onFocus={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onFocus",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onBlur={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onBlur",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
         />
@@ -317,7 +298,6 @@ const Right = (props: {
               type: "rightOperator.onChange",
               value,
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             })
           }
           onInputValueChange={(value) =>
@@ -325,21 +305,18 @@ const Right = (props: {
               type: "rightOperator.onInputValueChange",
               value: value.toString(),
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             })
           }
           onFocus={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onFocus",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onBlur={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onBlur",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
         />
@@ -355,28 +332,24 @@ const Right = (props: {
               type: "rightOperator.onChange",
               value,
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             })
           }
           onScrollEnd={() =>
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onScrollEnd",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             })
           }
           onFocus={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onFocus",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
           onBlur={() => {
             props.dispatchFilterChangeEvent({
               type: "rightOperator.onBlur",
               path: `${props.index}.condition.selected.value`,
-              rowType: props.item.type,
             });
           }}
         />
@@ -393,21 +366,18 @@ const Right = (props: {
                 type: "rightOperator.onChange",
                 value: e.target.value,
                 path: `${props.index}.condition.selected.value.start`,
-                rowType: props.item.type,
               });
             }}
             onFocus={() => {
               props.dispatchFilterChangeEvent({
                 type: "rightOperator.onFocus",
                 path: `${props.index}.condition.selected.value.start`,
-                rowType: props.item.type,
               });
             }}
             onBlur={() => {
               props.dispatchFilterChangeEvent({
                 type: "rightOperator.onBlur",
                 path: `${props.index}.condition.selected.value.start`,
-                rowType: props.item.type,
               });
             }}
           />
@@ -420,21 +390,18 @@ const Right = (props: {
                 type: "rightOperator.onChange",
                 value: e.target.value,
                 path: `${props.index}.condition.selected.value.end`,
-                rowType: props.item.type,
               });
             }}
             onFocus={() => {
               props.dispatchFilterChangeEvent({
                 type: "rightOperator.onFocus",
                 path: `${props.index}.condition.selected.value.end`,
-                rowType: props.item.type,
               });
             }}
             onBlur={() => {
               props.dispatchFilterChangeEvent({
                 type: "rightOperator.onBlur",
                 path: `${props.index}.condition.selected.value.end`,
-                rowType: props.item.type,
               });
             }}
           />
