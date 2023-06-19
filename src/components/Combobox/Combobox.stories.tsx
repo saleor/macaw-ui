@@ -153,6 +153,7 @@ export const DynamicData = () => {
   const [loading, setLoading] = useState(false);
 
   async function search(criteria: string) {
+    // console.log("searching", criteria);
     setLoading(true);
     const response = await fetch(
       `https://swapi.dev/api/people/?search=${criteria}`
@@ -178,8 +179,8 @@ export const DynamicData = () => {
       onChange={(value) => setValue(value)}
       options={options}
       loading={loading}
-      onInputValueChange={(value) => {
-        debouncedSearch(value);
+      onInputValueChange={(inputValue) => {
+        debouncedSearch(inputValue);
       }}
     />
   );

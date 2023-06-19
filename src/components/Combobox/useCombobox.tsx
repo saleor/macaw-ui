@@ -58,9 +58,13 @@ export const useCombobox = ({
         onChange?.(selectedItem);
       }
     },
-    onInputValueChange: ({ inputValue = "" }) => {
-      onInputValueChange?.(inputValue);
-      setInputValue(inputValue);
+    onStateChange: ({ inputValue: newInputValue, type }) => {
+      switch (type) {
+        case useDownshiftCombobox.stateChangeTypes.InputChange:
+          onInputValueChange?.(inputValue ?? "");
+          setInputValue(newInputValue ?? "");
+          break;
+      }
     },
   });
 
