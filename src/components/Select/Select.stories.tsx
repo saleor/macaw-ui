@@ -1,8 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useRef, useState } from "react";
-import { debounce } from "lodash";
+import { useState } from "react";
 
-import { Box, Option } from "..";
 import { Select } from ".";
 
 const options = [
