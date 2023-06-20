@@ -1,17 +1,13 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import { InputHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
-
-import { useIntersectionObserver } from "~/utils";
+import { InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
-  LoadingListItem,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   Option,
-  getListDisplayMode,
 } from "../BaseSelect";
 
 import { ChangeHandler, useSelect } from "./useSelect";
@@ -36,8 +32,6 @@ export type SelectProps = PropsWithBox<
     options: Option[];
     onChange?: ChangeHandler;
     value: Option | null;
-    onScrollEnd?: () => void;
-    loading?: boolean;
     locale?: {
       loadingText?: string;
     };
@@ -71,25 +65,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       onChange,
       onFocus,
       onBlur,
-      onScrollEnd,
-      loading,
-      locale = {
-        loadingText: "Loading",
-      },
       ...props
     },
     ref
   ) => {
-    const listRef = useRef<HTMLUListElement>(null);
-    const lastListItemRef = useIntersectionObserver({
-      callback: onScrollEnd,
-      options: {
-        threshold: 1,
-        root: listRef.current,
-        rootMargin: "0%",
-      },
-    });
-
     const {
       active,
       typed,
@@ -108,8 +87,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       onFocus,
       onBlur,
     });
-
-    const containerRef = useRef<HTMLDivElement>(null);
 
     return (
       <Box display="flex" flexDirection="column">
@@ -131,24 +108,18 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
             </Text>
           </Box>
         </SelectWrapper>
-        <Box ref={containerRef} />
 
-        <Portal asChild container={containerRef.current}>
+        <Portal asChild>
           <Box
             position="relative"
-            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+            display={isOpen && hasItemsToSelect ? "block" : "none"}
             className={listWrapperRecipe({ size })}
           >
             <List
               as="ul"
               className={listStyle}
-              {...getMenuProps(
-                {
-                  ref: listRef,
-                },
-                // suppress error because of rendering list in portal
-                { suppressRefError: true }
-              )}
+              // suppress error because of rendering list in portal
+              {...getMenuProps({}, { suppressRefError: true })}
             >
               {isOpen &&
                 options?.map((item, index) => (
@@ -158,19 +129,12 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
                     {...getItemProps({
                       item,
                       index,
-                      ref:
-                        options.length === index + 1 ? lastListItemRef : null,
                     })}
                     active={highlightedIndex === index}
                   >
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
-              {loading && (
-                <LoadingListItem size={size}>
-                  {locale.loadingText}
-                </LoadingListItem>
-              )}
             </List>
           </Box>
         </Portal>
