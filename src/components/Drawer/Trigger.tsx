@@ -5,7 +5,11 @@ export type DrawerTriggerProps = {
 };
 
 export const Trigger = ({ children }: DrawerTriggerProps) => {
-  return <DialogTrigger asChild>{children}</DialogTrigger>;
+  return (
+    <DialogTrigger asChild data-macaw-ui-component="Drawer.Trigger">
+      {children}
+    </DialogTrigger>
+  );
 };
 
 Trigger.displayName = "Drawer.Trigger";

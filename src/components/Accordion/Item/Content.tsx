@@ -10,7 +10,9 @@ export type AccordionContentProps = PropsWithBox<{
 
 export const Content = ({ children, ...rest }: AccordionContentProps) => (
   <AccordionContent asChild className={content}>
-    <Box {...rest}>{children}</Box>
+    <Box {...rest} data-macaw-ui-component="Accordion.Content">
+      {children}
+    </Box>
   </AccordionContent>
 );
 

@@ -47,6 +47,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         position="relative"
         cursor={disabled ? "not-allowed" : "pointer"}
         {...props}
+        data-macaw-ui-component="Checkbox"
       >
         <RadixCheckbox
           ref={ref}

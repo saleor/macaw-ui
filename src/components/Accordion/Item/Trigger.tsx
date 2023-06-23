@@ -31,6 +31,7 @@ export const Trigger = ({
         cursor={disabled ? "not-allowed" : "pointer"}
         disabled={disabled}
         {...rest}
+        data-macaw-ui-component="Accordion.Trigger"
       >
         {children}
       </Box>

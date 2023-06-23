@@ -35,7 +35,7 @@ export const ItemGroupRoot = ({
       onValueChange={setValue}
     >
       <Provider value={{ triggerOpen: () => setValue(expandedValue) }}>
-        <List as={as} {...rest}>
+        <List as={as} {...rest} data-macaw-ui-component="ListItem">
           <AccordionItem value={expandedValue} className={trigger}>
             {children}
           </AccordionItem>

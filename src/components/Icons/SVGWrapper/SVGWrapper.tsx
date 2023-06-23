@@ -28,6 +28,7 @@ export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
         viewBox={viewBox}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        data-macaw-ui-component="Icon"
         {...rest}
       >
         {children}

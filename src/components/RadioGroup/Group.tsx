@@ -38,6 +38,7 @@ export const RadioGroupRoot = forwardRef<HTMLDivElement, RadioGroupRootProps>(
         className={classNames(fieldset, className)}
         ref={ref}
         as="fieldset"
+        data-macaw-ui-component="RadioGroup"
       >
         {label && (
           <legend
