@@ -96,6 +96,20 @@ import { Input } from "@saleor/macaw-ui/next";
 />;
 ```
 
+### Usage with Sentry
+
+Add following configuration to `Sentry.Integrations.Breadcrumbs`:
+
+```js
+{
+  dom: {
+    serializeAttribute: ["macaw-ui-component"];
+  }
+}
+```
+
+Right now sentry will display MacawUI components names in breadcrumbs.
+
 ### Development
 
 To begin, you need to install dependencies:
