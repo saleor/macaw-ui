@@ -1,2 +1,2 @@
-export * from "./Multiselect";
-export * from "./DynamicMultiselect";
+export * from "./Static";
+export * from "./Dynamic";

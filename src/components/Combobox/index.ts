@@ -1,2 +1,2 @@
-export * from "./Combobox";
-export * from "./DynamicCombobox";
+export * from "./Static";
+export * from "./Dynamic";

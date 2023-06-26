@@ -3,8 +3,8 @@ import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
 import { classNames } from "~/utils";
 
-import { Box, List, PropsWithBox, Text } from "..";
-import { HelperText, inputRecipe, InputVariants } from "../BaseInput";
+import { Box, List, PropsWithBox, Text } from "../..";
+import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
   listItemStyle,
   listStyle,
@@ -12,10 +12,10 @@ import {
   LoadingListItem,
   Option,
   getListDisplayMode,
-} from "../BaseSelect";
+} from "../../BaseSelect";
 
-import { ChangeHandler, useCombobox } from "./useCombobox";
-import { ComboboxWrapper } from "./ComboboxWrapper";
+import { ChangeHandler, useCombobox } from "../useCombobox";
+import { ComboboxWrapper } from "../ComboboxWrapper";
 
 export type DynamicComboboxProps = PropsWithBox<
   Omit<

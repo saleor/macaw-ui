@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { useRef, useState } from "react";
-import { debounce } from "lodash";
+import { useState } from "react";
 
-import { ViewTableIcon, Box, Option } from "..";
-import { Multiselect, DynamicMultiselect } from ".";
+import { ViewTableIcon, Box } from "../..";
+import { Multiselect } from "..";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -54,7 +53,6 @@ const MultiselectTemplate: Story = {
           {...args}
           value={selectedItems}
           onChange={(values) => setSelectedItems(values)}
-          onInputValueChange={undefined}
         />
       </Box>
     );
@@ -180,54 +178,4 @@ const [selectedItems, setSelectedItems] = useState(["color-black"]);
       },
     },
   },
-};
-
-export const Loading: Story = {
-  ...MultiselectTemplate,
-  args: {
-    loading: true,
-  },
-};
-
-export const DynamicData = () => {
-  const [options, setOptions] = useState([]);
-  const [value, setValue] = useState<Option[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  async function search(criteria: string) {
-    setLoading(true);
-    const response = await fetch(
-      `https://swapi.dev/api/people/?search=${criteria}`
-    );
-    const body = await response.json();
-    setLoading(false);
-    return body.results.map((result: { name: string }) => ({
-      value: result.name,
-      label: result.name,
-    }));
-  }
-
-  const debouncedSearch = useRef(
-    debounce(async (criteria) => {
-      setOptions(await search(criteria));
-    }, 300)
-  ).current;
-
-  return (
-    <Box __width={300}>
-      <DynamicMultiselect
-        value={value}
-        label="Pick a star wars characters"
-        onChange={(value) => setValue(value)}
-        options={options}
-        loading={loading}
-        onInputValueChange={(value) => {
-          debouncedSearch(value);
-        }}
-        locale={{
-          inputText: "Add character",
-        }}
-      />
-    </Box>
-  );
 };
