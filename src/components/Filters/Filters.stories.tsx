@@ -2,6 +2,7 @@ import { Meta } from "@storybook/react";
 import _ from "lodash";
 import { useState } from "react";
 
+import { Box } from "../Box";
 import { Row, _ExperimentalFilters } from ".";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
@@ -105,81 +106,83 @@ export const Default = () => {
   const [rows, setRows] = useState<Array<Row | string>>(value);
 
   return (
-    <_ExperimentalFilters
-      value={rows}
-      leftOptions={leftOptions}
-      onChange={(event) => {
-        if (event?.type === "rightOperator.onChange") {
-          const newState = _.setWith(
-            _.clone(rows),
-            event?.path ?? "",
-            event?.value,
-            _.clone
-          );
-          setRows(newState);
-        }
+    <Box __maxWidth="800px">
+      <_ExperimentalFilters
+        value={rows}
+        leftOptions={leftOptions}
+        onChange={(event) => {
+          if (event?.type === "rightOperator.onChange") {
+            const newState = _.setWith(
+              _.clone(rows),
+              event?.path ?? "",
+              event?.value,
+              _.clone
+            );
+            setRows(newState);
+          }
 
-        if (event?.type === "condition.onChange") {
-          const newState = _.setWith(
-            _.clone(rows),
-            event?.path ?? "",
-            {
-              value: [],
-              options: [
-                { value: "electronics", label: "Electronics" },
-                { value: "clothing", label: "Clothing" },
-              ],
-              conditionValue: event?.value,
-            },
-            _.clone
-          );
-          setRows(newState);
-        }
-
-        if (event?.type === "leftOperator.onChange") {
-          console.log(event);
-          const newState = _.setWith(
-            _.clone(rows),
-            event?.path ?? "",
-            {
-              value: event?.value,
-              condition: {
+          if (event?.type === "condition.onChange") {
+            const newState = _.setWith(
+              _.clone(rows),
+              event?.path ?? "",
+              {
+                value: [],
                 options: [
-                  { type: "number", label: "is", value: "input-1" },
-                  { type: "multiselect", label: "has", value: "input-2" },
+                  { value: "electronics", label: "Electronics" },
+                  { value: "clothing", label: "Clothing" },
                 ],
-                selected: {
-                  value: "",
-                  conditionValue: {
-                    type: "number",
-                    label: "is",
-                    value: "input-1",
+                conditionValue: event?.value,
+              },
+              _.clone
+            );
+            setRows(newState);
+          }
+
+          if (event?.type === "leftOperator.onChange") {
+            console.log(event);
+            const newState = _.setWith(
+              _.clone(rows),
+              event?.path ?? "",
+              {
+                value: event?.value,
+                condition: {
+                  options: [
+                    { type: "number", label: "is", value: "input-1" },
+                    { type: "multiselect", label: "has", value: "input-2" },
+                  ],
+                  selected: {
+                    value: "",
+                    conditionValue: {
+                      type: "number",
+                      label: "is",
+                      value: "input-1",
+                    },
                   },
                 },
               },
-            },
-            _.clone
-          );
-          setRows(newState);
-        }
-        if (event?.type === "row.add") {
-          const newState = [
-            ...rows,
-            "AND",
-            { value: null, type: event?.rowType },
-          ];
-          setRows(newState);
-        }
+              _.clone
+            );
+            setRows(newState);
+          }
+          if (event?.type === "row.add") {
+            const newState = [
+              ...rows,
+              "AND",
+              { value: null, type: event?.rowType },
+            ];
+            setRows(newState);
+          }
 
-        if (event?.type === "row.remove") {
-          const index = parseInt(event?.path ?? "", 10);
-          const newState = [
-            ...rows.slice(0, index - 1),
-            ...rows.slice(index + 2, rows.length),
-          ];
-          setRows(newState);
-        }
-      }}
-    />
+          if (event?.type === "row.remove") {
+            const index = parseInt(event?.path ?? "", 10);
+            const newState = [
+              ...rows.slice(0, index - 1),
+              ...rows.slice(index + 2, rows.length),
+            ];
+            setRows(newState);
+          }
+        }}
+      />
+    </Box>
   );
 };

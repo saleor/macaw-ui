@@ -11,8 +11,9 @@ import {
   Select,
   Text,
 } from "..";
+import { FilterEventEmitter } from "./EventEmitter";
 
-import { FilterEvent, useEvents } from "./useEvents";
+import { FilterEvent, useEventEmitter } from "./useEvents";
 
 export type Row = {
   value: { label: string; value: string; type: string } | null;
@@ -31,7 +32,7 @@ type Right = {
     | null
     | { start: string; end: string };
   options?: Array<{ value: string; label: string }>;
-  conditionValue: { label: string; value: string };
+  conditionValue: { label: string; value: string; type: string };
   loading?: boolean;
 };
 
@@ -41,12 +42,18 @@ export type Props = {
   onChange: (event: FilterEvent["detail"]) => void;
 };
 
+const locale: Record<string, string> = {
+  WHERE: "Where",
+  AND: "And",
+  OR: "Or",
+};
+
 export const _ExperimentalFilters = ({
   value,
   onChange,
   leftOptions,
 }: Props) => {
-  const { wrapper, dispatchFilterChangeEvent } = useEvents({
+  const { emitter } = useEventEmitter({
     onChange,
   });
 
@@ -56,27 +63,22 @@ export const _ExperimentalFilters = ({
       __gridTemplateColumns="repeat(2, auto)"
       __placeItems="center self-start"
       gap={1}
-      ref={wrapper}
     >
-      <Text>WHERE</Text>
+      <Text>{locale.WHERE}</Text>
       {value.map((item, idx) =>
         typeof item === "string" ? (
-          <Text key={idx}>{item}</Text>
+          <Text key={idx}>{locale[item]}</Text>
         ) : (
           <Row
             key={idx}
             item={item}
             index={idx}
-            dispatchFilterChangeEvent={dispatchFilterChangeEvent}
             leftOptions={leftOptions}
+            emitter={emitter}
           />
         )
       )}
-      <Button
-        onClick={() =>
-          dispatchFilterChangeEvent({ type: "row.add", rowType: "1" })
-        }
-      >
+      <Button onClick={() => emitter.addRow()} variant="secondary">
         Add row
       </Button>
     </Box>
@@ -86,48 +88,41 @@ export const _ExperimentalFilters = ({
 const Row = ({
   item,
   index,
-  dispatchFilterChangeEvent,
   leftOptions,
+  emitter,
 }: {
   item: Row;
   index: number;
-  dispatchFilterChangeEvent: (data: FilterEvent["detail"]) => void;
   leftOptions: Props["leftOptions"];
+  emitter: FilterEventEmitter;
 }) => {
   return (
-    <Box display="grid" gap={1} __gridTemplateColumns="repeat(4, 1fr)">
+    <Box
+      display="grid"
+      gap={1}
+      __gridTemplateColumns="repeat(4, 1fr)"
+      placeItems="center"
+    >
       <Combobox
         value={item.value}
         options={leftOptions}
         loading={item.loading}
         onChange={(value) => {
-          dispatchFilterChangeEvent({
-            type: "leftOperator.onChange",
-            value: value,
-            path: `${index}`,
-            rowType:
-              leftOptions.find((option) => option.value === value.value)
-                ?.type ?? "any",
-          });
+          emitter.changeLeftOperator(
+            index,
+            value,
+            leftOptions.find((option) => option.value === value.value)?.type ??
+              "any"
+          );
         }}
         onInputValueChange={(value) => {
-          dispatchFilterChangeEvent({
-            type: "leftOperator.onInputValueChange",
-            value: value.toString(),
-            path: `${index}`,
-          });
+          emitter.inputChangeLeftOperator(index, value);
         }}
         onFocus={() => {
-          dispatchFilterChangeEvent({
-            type: "leftOperator.onFocus",
-            path: `${index}`,
-          });
+          emitter.focusLeftOperator(index);
         }}
         onBlur={() => {
-          dispatchFilterChangeEvent({
-            type: "leftOperator.onBlur",
-            path: `${index}`,
-          });
+          emitter.blurLeftOperator(index);
         }}
       />
       {item.condition?.selected && (
@@ -136,94 +131,54 @@ const Row = ({
           options={item.condition?.options ?? []}
           loading={item.condition?.loading}
           onChange={(value) => {
-            dispatchFilterChangeEvent({
-              type: "condition.onChange",
-              value: value,
-              path: `${index}.condition.selected`,
-            });
-          }}
-          onScrollEnd={() => {
-            dispatchFilterChangeEvent({
-              type: "condition.onScrollEnd",
-              path: `${index}.condition.selected`,
-            });
+            emitter.changeCondition(index, value);
           }}
           onFocus={() => {
-            dispatchFilterChangeEvent({
-              type: "condition.onFocus",
-              path: `${index}.condition.selected`,
-            });
+            emitter.focusCondition(index);
           }}
           onBlur={() => {
-            dispatchFilterChangeEvent({
-              type: "condition.onBlur",
-              path: `${index}.condition.selected`,
-            });
+            emitter.blurCondition(index);
           }}
         />
       )}
 
-      <Right
-        item={item}
-        index={index}
-        dispatchFilterChangeEvent={dispatchFilterChangeEvent}
-      />
+      <Right item={item} index={index} emitter={emitter} />
 
       <Button
-        variant="secondary"
+        variant="tertiary"
         icon={<RemoveIcon />}
-        onClick={() =>
-          dispatchFilterChangeEvent({
-            type: "row.remove",
-            path: `${index}`,
-          })
-        }
+        onClick={() => emitter.removeRow(index)}
       />
     </Box>
   );
 };
 
-const Right = (props: {
+const Right = ({
+  index,
+  item,
+  emitter,
+}: {
   index: number;
   item: Row;
-  dispatchFilterChangeEvent: (data: FilterEvent["detail"]) => void;
+  emitter: FilterEventEmitter;
 }) => {
-  const selectedOption = props.item.condition?.options?.find(
-    (option) =>
-      option.value === props.item.condition?.selected.conditionValue.value
-  );
-
-  if (!selectedOption) {
+  if (!item.condition) {
     return null;
   }
 
-  if (!props.item.condition) {
-    return null;
-  }
-
-  switch (selectedOption.type) {
+  switch (item.condition.selected.conditionValue.type) {
     case "text":
       return (
         <Input
-          value={props.item.condition?.selected.value as string}
+          value={item.condition?.selected.value as string}
           onChange={(e) => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onChange",
-              value: e.target.value,
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.changeRightOperator(index, e.target.value);
           }}
           onFocus={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onFocus",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.focusRightOperator(index);
           }}
           onBlur={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onBlur",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.blurRightOperator(index);
           }}
         />
       );
@@ -231,126 +186,66 @@ const Right = (props: {
       return (
         <Input
           type="number"
-          value={props.item.condition?.selected.value as any}
+          value={item.condition?.selected.value as any}
           onChange={(e) => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onChange",
-              value: e.target.value,
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.changeRightOperator(index, e.target.value);
           }}
           onFocus={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onFocus",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.focusRightOperator(index);
           }}
           onBlur={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onBlur",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.blurRightOperator(index);
           }}
         />
       );
     case "multiselect":
       return (
         <Multiselect
-          value={props.item.condition?.selected.value as any}
-          options={props.item.condition?.selected.options ?? []}
-          loading={props.item.condition?.selected.loading}
-          onChange={(e) =>
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onChange",
-              value: e,
-              path: `${props.index}.condition.selected.value`,
-            })
-          }
+          value={item.condition?.selected.value as any}
+          options={item.condition?.selected.options ?? []}
+          loading={item.condition?.selected.loading}
+          onChange={(value) => emitter.changeRightOperator(index, value)}
           onInputValueChange={(value) => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onInputValueChange",
-              value: value.toString(),
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.inputChangeRightOperator(index, value);
           }}
           onFocus={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onFocus",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.focusRightOperator(index);
           }}
           onBlur={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onBlur",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.blurRightOperator(index);
           }}
         />
       );
     case "combobox":
       return (
         <Combobox
-          value={props.item.condition?.selected.value as any}
-          options={props.item.condition?.selected.options ?? []}
-          loading={props.item.condition?.selected.loading}
-          onChange={(value) =>
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onChange",
-              value,
-              path: `${props.index}.condition.selected.value`,
-            })
-          }
+          value={item.condition?.selected.value as any}
+          options={item.condition?.selected.options ?? []}
+          loading={item.condition?.selected.loading}
+          onChange={(value) => emitter.changeRightOperator(index, value)}
           onInputValueChange={(value) =>
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onInputValueChange",
-              value: value.toString(),
-              path: `${props.index}.condition.selected.value`,
-            })
+            emitter.inputChangeRightOperator(index, value)
           }
           onFocus={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onFocus",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.focusRightOperator(index);
           }}
           onBlur={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onBlur",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.blurRightOperator(index);
           }}
         />
       );
     case "select":
       return (
         <Select
-          value={props.item.condition?.selected.value as any}
-          options={props.item.condition?.selected.options ?? []}
-          loading={props.item.condition?.selected.loading}
-          onChange={(value) =>
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onChange",
-              value,
-              path: `${props.index}.condition.selected.value`,
-            })
-          }
-          onScrollEnd={() =>
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onScrollEnd",
-              path: `${props.index}.condition.selected.value`,
-            })
-          }
+          value={item.condition?.selected.value as any}
+          options={item.condition?.selected.options ?? []}
+          loading={item.condition?.selected.loading}
+          onChange={(value) => emitter.changeRightOperator(index, value)}
           onFocus={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onFocus",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.focusRightOperator(index);
           }}
           onBlur={() => {
-            props.dispatchFilterChangeEvent({
-              type: "rightOperator.onBlur",
-              path: `${props.index}.condition.selected.value`,
-            });
+            emitter.blurRightOperator(index);
           }}
         />
       );
@@ -359,50 +254,18 @@ const Right = (props: {
         <Box display="flex" gap={2}>
           <Input
             // @ts-ignore
-            value={props.item.condition?.selected.value.start}
+            value={item.condition?.selected.value.start}
             type="number"
             onChange={(e) => {
-              props.dispatchFilterChangeEvent({
-                type: "rightOperator.onChange",
-                value: e.target.value,
-                path: `${props.index}.condition.selected.value.start`,
-              });
-            }}
-            onFocus={() => {
-              props.dispatchFilterChangeEvent({
-                type: "rightOperator.onFocus",
-                path: `${props.index}.condition.selected.value.start`,
-              });
-            }}
-            onBlur={() => {
-              props.dispatchFilterChangeEvent({
-                type: "rightOperator.onBlur",
-                path: `${props.index}.condition.selected.value.start`,
-              });
+              emitter.changeRightOperatorStart(index, e.target.value);
             }}
           />
           <Input
             // @ts-ignore
-            value={props.item.condition?.selected.value.end}
+            value={item.condition?.selected.value.end}
             type="number"
             onChange={(e) => {
-              props.dispatchFilterChangeEvent({
-                type: "rightOperator.onChange",
-                value: e.target.value,
-                path: `${props.index}.condition.selected.value.end`,
-              });
-            }}
-            onFocus={() => {
-              props.dispatchFilterChangeEvent({
-                type: "rightOperator.onFocus",
-                path: `${props.index}.condition.selected.value.end`,
-              });
-            }}
-            onBlur={() => {
-              props.dispatchFilterChangeEvent({
-                type: "rightOperator.onBlur",
-                path: `${props.index}.condition.selected.value.end`,
-              });
+              emitter.changeRightOperatorEnd(index, e.target.value);
             }}
           />
         </Box>

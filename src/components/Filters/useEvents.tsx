@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { FilterEventEmitter } from "./EventEmitter";
 
 export interface FilterEvent extends Event {
   detail?: {
@@ -29,31 +30,22 @@ type UseEventsProps = {
   onChange: (event: FilterEvent["detail"]) => void;
 };
 
-const eventName = "filterChange";
+const emitter = new FilterEventEmitter();
 
-export const useEvents = ({ onChange }: UseEventsProps) => {
-  const wrapper = useRef<HTMLElement>(null);
-
+export const useEventEmitter = ({ onChange }: UseEventsProps) => {
   useEffect(() => {
     const handleChange = (event: FilterEvent) => {
       onChange(event.detail);
     };
 
-    const element = wrapper?.current;
+    emitter.addEventListener(emitter.type, handleChange);
 
-    element?.addEventListener(eventName, handleChange);
     return () => {
-      element?.removeEventListener(eventName, handleChange);
+      emitter.removeEventListener(emitter.type, handleChange);
     };
   }, [onChange]);
 
-  const dispatchFilterChangeEvent = ({ ...data }: FilterEvent["detail"]) => {
-    const event = new CustomEvent(eventName, { detail: data });
-    wrapper?.current?.dispatchEvent(event);
-  };
-
   return {
-    dispatchFilterChangeEvent,
-    wrapper,
+    emitter,
   };
 };
