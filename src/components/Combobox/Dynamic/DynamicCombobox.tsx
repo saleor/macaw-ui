@@ -14,8 +14,8 @@ import {
   getListDisplayMode,
 } from "../../BaseSelect";
 
-import { ChangeHandler, useCombobox } from "../useCombobox";
-import { ComboboxWrapper } from "../ComboboxWrapper";
+import { ChangeHandler, useCombobox } from "../Common/useCombobox";
+import { ComboboxWrapper } from "../Common/ComboboxWrapper";
 
 export type DynamicComboboxProps = PropsWithBox<
   Omit<

@@ -1,19 +1,17 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
+import { InputHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
 
 import { classNames } from "~/utils";
-
-import { Box, List, PropsWithBox, Text } from "../..";
-import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
+import { Box, List, PropsWithBox, Text } from "~/components";
+import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   Option,
-} from "../../BaseSelect";
+} from "~/components/BaseSelect";
 
-import { ChangeHandler, useCombobox } from "../useCombobox";
-import { ComboboxWrapper } from "../ComboboxWrapper";
+import { ChangeHandler, ComboboxWrapper, useCombobox } from "../Common";
 
 export type ComboboxProps = PropsWithBox<
   Omit<

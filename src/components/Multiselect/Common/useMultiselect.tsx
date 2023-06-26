@@ -8,7 +8,7 @@ import {
   useMultipleSelection,
 } from "downshift7";
 
-import { Option } from "../BaseSelect";
+import { Option } from "../../BaseSelect";
 
 export type ChangeHandler = (selectedItems: Option[]) => void;
 export type RenderEndAdornmentType = (

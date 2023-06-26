@@ -6,40 +6,35 @@ import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import { Box } from "..";
-import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { Option } from "../BaseSelect";
+import { sprinkles } from "~/theme";
+import { LabelVariants, labelRecipe, spanRecipe } from "../../BaseInput";
+import { toggleIconStyle, Option } from "../../BaseSelect";
+import { Box } from "../../Box";
+import { ArrowDownIcon } from "../../Icons";
 
-import { Adornment } from "./Adornment";
-import { RenderEndAdornmentType } from "./useMultiselect";
-
-type MultiselectWrapperProps = LabelVariants & {
+type ComboboxWrapperProps = LabelVariants & {
   id?: string;
   label?: ReactNode;
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
   getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
-  renderEndAdornment?: RenderEndAdornmentType;
-  hasItemsToSelect?: boolean;
+  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
-export const MultiselectWrapper = ({
+export const ComboboxWrapper = ({
   id,
   label,
   className,
   error,
   children,
+  getToggleButtonProps,
   getLabelProps,
   typed,
   active,
   disabled,
   size,
-  getToggleButtonProps,
-  renderEndAdornment,
-  hasItemsToSelect,
-}: MultiselectWrapperProps) => {
+}: ComboboxWrapperProps) => {
   return (
     <Box
       as="label"
@@ -61,27 +56,24 @@ export const MultiselectWrapper = ({
         >
           {label}
         </Box>
-        <Box
-          display="flex"
-          flexDirection="row"
-          gap={1}
-          alignItems="center"
-          flexWrap="wrap"
-        >
-          {children}
-        </Box>
+        {children}
       </Box>
 
-      {hasItemsToSelect && (
-        <Adornment
-          size={size}
-          getToggleButtonProps={getToggleButtonProps}
-          renderEndAdornment={renderEndAdornment}
-          disabled={disabled}
-        />
-      )}
+      <ArrowDownIcon
+        className={classNames(
+          toggleIconStyle,
+          sprinkles({ cursor: "pointer" })
+        )}
+        size={size}
+        {...getToggleButtonProps({
+          disabled,
+          onClick: (event) => {
+            event.preventDefault();
+          },
+        })}
+      />
     </Box>
   );
 };
 
-MultiselectWrapper.displayName = "MultiselectWrapper";
+ComboboxWrapper.displayName = "ComboboxWrapper";

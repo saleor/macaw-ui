@@ -3,8 +3,8 @@ import { UseComboboxPropGetters } from "downshift7";
 import { classNames } from "~/utils";
 import { sprinkles } from "~/theme";
 
-import { ArrowDownIcon } from "../Icons";
-import { Option, toggleIconStyle } from "../BaseSelect";
+import { ArrowDownIcon } from "../../Icons";
+import { Option, toggleIconStyle } from "../../BaseSelect";
 import { RenderEndAdornmentType } from "./useMultiselect";
 
 export type AdornmentProps = {

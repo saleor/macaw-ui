@@ -4,7 +4,7 @@ import {
   useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
-import { Option } from "../BaseSelect";
+import { Option } from "../../BaseSelect";
 
 export type ChangeHandler = (selectedItem: Option) => void;
 

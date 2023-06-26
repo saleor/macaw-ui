@@ -1,8 +1,8 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { Box, List, PropsWithBox, Text } from "../..";
-import { HelperText, InputVariants } from "../../BaseInput";
+import { Box, List, PropsWithBox, Text } from "~/components";
+import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
   listItemStyle,
   listStyle,
@@ -10,15 +10,15 @@ import {
   LoadingListItem,
   Option,
   getListDisplayMode,
-} from "../../BaseSelect";
+} from "~/components/BaseSelect";
 
 import {
   ChangeHandler,
   RenderEndAdornmentType,
   useMultiselect,
-} from "../useMultiselect";
-import { MultiselectWrapper } from "../MultiselectWrapper";
-import { multiselectInputRecipe } from "../Multiselect.css";
+  MultiselectWrapper,
+  multiselectInputRecipe,
+} from "../Common";
 
 export type DynamicMultiselectProps = PropsWithBox<
   Omit<
