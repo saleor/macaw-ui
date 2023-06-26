@@ -100,7 +100,7 @@ const value = [
       },
     },
   },
-];
+] as Array<Row | string>;
 
 export const Default = () => {
   const [rows, setRows] = useState<Array<Row | string>>(value);

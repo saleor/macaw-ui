@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import {
   Box,
   Button,
@@ -20,20 +17,56 @@ export type Row = {
   loading?: boolean;
   condition?: {
     loading?: boolean;
-    options: Array<{ value: string; label: string; type: string }>;
+    options: Array<{
+      value: string;
+      label: string;
+      type:
+        | "text"
+        | "number"
+        | "multiselect"
+        | "combobox"
+        | "select"
+        | "number.range";
+    }>;
     selected: Right;
   };
 };
 
-type Right = {
-  value:
-    | string
-    | { label: string; value: string }[]
-    | null
-    | { start: string; end: string };
-  options?: Array<{ value: string; label: string }>;
-  conditionValue: { label: string; value: string; type: string };
+type Right =
+  | RightInput
+  | RightMultiselect
+  | RightCombobox
+  | RightSelect
+  | RightNumberRange;
+
+type RightInput = {
+  value: string;
+  conditionValue: { label: string; value: string; type: "text" | "number" };
+};
+
+type RightMultiselect = {
+  value: { label: string; value: string }[];
+  conditionValue: { label: string; value: string; type: "multiselect" };
+  options: Array<{ value: string; label: string }>;
   loading?: boolean;
+};
+
+type RightCombobox = {
+  value: { label: string; value: string };
+  conditionValue: { label: string; value: string; type: "combobox" };
+  options: Array<{ value: string; label: string }>;
+  loading?: boolean;
+};
+
+type RightSelect = {
+  value: { label: string; value: string };
+  conditionValue: { label: string; value: string; type: "select" };
+  options: Array<{ value: string; label: string }>;
+};
+
+type RightNumberRange = {
+  value: { start: string; end: string };
+  conditionValue: { label: string; value: string; type: "number.range" };
 };
 
 export type Props = {
@@ -58,26 +91,28 @@ export const _ExperimentalFilters = ({
   });
 
   return (
-    <Box
-      display="grid"
-      __gridTemplateColumns="repeat(2, auto)"
-      __placeItems="center self-start"
-      gap={1}
-    >
-      <Text>{locale.WHERE}</Text>
-      {value.map((item, idx) =>
-        typeof item === "string" ? (
-          <Text key={idx}>{locale[item]}</Text>
-        ) : (
-          <Row
-            key={idx}
-            item={item}
-            index={idx}
-            leftOptions={leftOptions}
-            emitter={emitter}
-          />
-        )
-      )}
+    <Box>
+      <Box
+        display="grid"
+        __gridTemplateColumns="repeat(2, auto)"
+        __placeItems="center self-start"
+        gap={1}
+      >
+        <Text>{locale.WHERE}</Text>
+        {value.map((item, idx) =>
+          typeof item === "string" ? (
+            <Text key={idx}>{locale[item]}</Text>
+          ) : (
+            <Row
+              key={idx}
+              item={item}
+              index={idx}
+              leftOptions={leftOptions}
+              emitter={emitter}
+            />
+          )
+        )}
+      </Box>
       <Button onClick={() => emitter.addRow()} variant="secondary">
         Add row
       </Button>
@@ -142,7 +177,13 @@ const Row = ({
         />
       )}
 
-      <Right item={item} index={index} emitter={emitter} />
+      {item.condition?.selected && (
+        <Right
+          selected={item.condition?.selected}
+          index={index}
+          emitter={emitter}
+        />
+      )}
 
       <Button
         variant="tertiary"
@@ -153,124 +194,143 @@ const Row = ({
   );
 };
 
+const isTextInput = (value: Right): value is RightInput =>
+  value.conditionValue.type === "text";
+
+const isNumberInput = (value: Right): value is RightInput =>
+  value.conditionValue.type === "number";
+
+const isMultiselect = (value: Right): value is RightMultiselect =>
+  value.conditionValue.type === "multiselect";
+
+const isCombobox = (value: Right): value is RightCombobox =>
+  value.conditionValue.type === "combobox";
+
+const isSelect = (value: Right): value is RightSelect =>
+  value.conditionValue.type === "select";
+
+const isNumberRange = (value: Right): value is RightNumberRange =>
+  value.conditionValue.type === "number.range";
+
 const Right = ({
   index,
-  item,
+  selected,
   emitter,
 }: {
   index: number;
-  item: Row;
+  selected: Right;
   emitter: FilterEventEmitter;
 }) => {
-  if (!item.condition) {
-    return null;
+  if (isTextInput(selected)) {
+    return (
+      <Input
+        value={selected.value}
+        onChange={(e) => {
+          emitter.changeRightOperator(index, e.target.value);
+        }}
+        onFocus={() => {
+          emitter.focusRightOperator(index);
+        }}
+        onBlur={() => {
+          emitter.blurRightOperator(index);
+        }}
+      />
+    );
   }
 
-  switch (item.condition.selected.conditionValue.type) {
-    case "text":
-      return (
-        <Input
-          value={item.condition?.selected.value as string}
-          onChange={(e) => {
-            emitter.changeRightOperator(index, e.target.value);
-          }}
-          onFocus={() => {
-            emitter.focusRightOperator(index);
-          }}
-          onBlur={() => {
-            emitter.blurRightOperator(index);
-          }}
-        />
-      );
-    case "number":
-      return (
-        <Input
-          type="number"
-          value={item.condition?.selected.value as any}
-          onChange={(e) => {
-            emitter.changeRightOperator(index, e.target.value);
-          }}
-          onFocus={() => {
-            emitter.focusRightOperator(index);
-          }}
-          onBlur={() => {
-            emitter.blurRightOperator(index);
-          }}
-        />
-      );
-    case "multiselect":
-      return (
-        <Multiselect
-          value={item.condition?.selected.value as any}
-          options={item.condition?.selected.options ?? []}
-          loading={item.condition?.selected.loading}
-          onChange={(value) => emitter.changeRightOperator(index, value)}
-          onInputValueChange={(value) => {
-            emitter.inputChangeRightOperator(index, value);
-          }}
-          onFocus={() => {
-            emitter.focusRightOperator(index);
-          }}
-          onBlur={() => {
-            emitter.blurRightOperator(index);
-          }}
-        />
-      );
-    case "combobox":
-      return (
-        <Combobox
-          value={item.condition?.selected.value as any}
-          options={item.condition?.selected.options ?? []}
-          loading={item.condition?.selected.loading}
-          onChange={(value) => emitter.changeRightOperator(index, value)}
-          onInputValueChange={(value) =>
-            emitter.inputChangeRightOperator(index, value)
-          }
-          onFocus={() => {
-            emitter.focusRightOperator(index);
-          }}
-          onBlur={() => {
-            emitter.blurRightOperator(index);
-          }}
-        />
-      );
-    case "select":
-      return (
-        <Select
-          value={item.condition?.selected.value as any}
-          options={item.condition?.selected.options ?? []}
-          loading={item.condition?.selected.loading}
-          onChange={(value) => emitter.changeRightOperator(index, value)}
-          onFocus={() => {
-            emitter.focusRightOperator(index);
-          }}
-          onBlur={() => {
-            emitter.blurRightOperator(index);
-          }}
-        />
-      );
-    case "number.range":
-      return (
-        <Box display="flex" gap={2}>
-          <Input
-            // @ts-ignore
-            value={item.condition?.selected.value.start}
-            type="number"
-            onChange={(e) => {
-              emitter.changeRightOperatorStart(index, e.target.value);
-            }}
-          />
-          <Input
-            // @ts-ignore
-            value={item.condition?.selected.value.end}
-            type="number"
-            onChange={(e) => {
-              emitter.changeRightOperatorEnd(index, e.target.value);
-            }}
-          />
-        </Box>
-      );
-    default:
-      return null;
+  if (isNumberInput(selected)) {
+    return (
+      <Input
+        type="number"
+        value={selected.value}
+        onChange={(e) => {
+          emitter.changeRightOperator(index, e.target.value);
+        }}
+        onFocus={() => {
+          emitter.focusRightOperator(index);
+        }}
+        onBlur={() => {
+          emitter.blurRightOperator(index);
+        }}
+      />
+    );
   }
+
+  if (isMultiselect(selected)) {
+    return (
+      <Multiselect
+        value={selected.value}
+        options={selected.options ?? []}
+        loading={selected.loading}
+        onChange={(value) => emitter.changeRightOperator(index, value)}
+        onInputValueChange={(value) => {
+          emitter.inputChangeRightOperator(index, value);
+        }}
+        onFocus={() => {
+          emitter.focusRightOperator(index);
+        }}
+        onBlur={() => {
+          emitter.blurRightOperator(index);
+        }}
+      />
+    );
+  }
+
+  if (isCombobox(selected)) {
+    return (
+      <Combobox
+        value={selected.value}
+        options={selected.options ?? []}
+        loading={selected.loading}
+        onChange={(value) => emitter.changeRightOperator(index, value)}
+        onInputValueChange={(value) =>
+          emitter.inputChangeRightOperator(index, value)
+        }
+        onFocus={() => {
+          emitter.focusRightOperator(index);
+        }}
+        onBlur={() => {
+          emitter.blurRightOperator(index);
+        }}
+      />
+    );
+  }
+
+  if (isSelect(selected)) {
+    return (
+      <Select
+        value={selected.value}
+        options={selected.options ?? []}
+        onChange={(value) => emitter.changeRightOperator(index, value)}
+        onFocus={() => {
+          emitter.focusRightOperator(index);
+        }}
+        onBlur={() => {
+          emitter.blurRightOperator(index);
+        }}
+      />
+    );
+  }
+
+  if (isNumberRange(selected)) {
+    return (
+      <Box display="flex" gap={2}>
+        <Input
+          value={selected.value.start}
+          type="number"
+          onChange={(e) => {
+            emitter.changeRightOperatorStart(index, e.target.value);
+          }}
+        />
+        <Input
+          value={selected.value.end}
+          type="number"
+          onChange={(e) => {
+            emitter.changeRightOperatorEnd(index, e.target.value);
+          }}
+        />
+      </Box>
+    );
+  }
+  return null;
 };
