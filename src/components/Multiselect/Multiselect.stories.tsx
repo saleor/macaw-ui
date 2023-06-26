@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { debounce } from "lodash";
 
 import { ViewTableIcon, Box, Option } from "..";
-import { Multiselect } from ".";
+import { Multiselect, DynamicMultiselect } from ".";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -215,7 +215,7 @@ export const DynamicData = () => {
 
   return (
     <Box __width={300}>
-      <Multiselect
+      <DynamicMultiselect
         value={value}
         label="Pick a star wars characters"
         onChange={(value) => setValue(value)}

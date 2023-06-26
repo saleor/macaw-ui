@@ -9,9 +9,7 @@ import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
-  LoadingListItem,
   Option,
-  getListDisplayMode,
 } from "../BaseSelect";
 
 import { ChangeHandler, useCombobox } from "./useCombobox";
@@ -37,11 +35,6 @@ export type ComboboxProps = PropsWithBox<
     options: Option[];
     onChange?: ChangeHandler;
     value: Option | null;
-    onInputValueChange?: (value: string) => void;
-    loading?: boolean;
-    locale?: {
-      loadingText?: string;
-    };
   }
 > &
   InputVariants;
@@ -59,13 +52,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       helperText,
       options,
       onChange,
-      onInputValueChange,
       onFocus,
       onBlur,
-      loading,
-      locale = {
-        loadingText: "Loading",
-      },
       ...props
     },
     ref
@@ -86,7 +74,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       selectedItem: value,
       options,
       onChange,
-      onInputValueChange,
       onFocus,
       onBlur,
     });
@@ -125,7 +112,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+            display={isOpen && hasItemsToSelect ? "block" : "none"}
             className={listWrapperRecipe({ size })}
           >
             <List
@@ -148,11 +135,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
-              {loading && (
-                <LoadingListItem size={size}>
-                  {locale.loadingText}
-                </LoadingListItem>
-              )}
             </List>
           </Box>
         </Portal>

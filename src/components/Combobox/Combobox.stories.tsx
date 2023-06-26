@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { debounce } from "lodash";
 
 import { Option } from "..";
-import { Combobox } from ".";
+import { Combobox, DynamicCombobox } from ".";
 
 const options = [
   { value: "color-black", label: "Black" },
@@ -140,20 +140,12 @@ export const WithHelperText: Story = {
   },
 };
 
-export const Loading: Story = {
-  ...ComboboxTemplate,
-  args: {
-    loading: true,
-  },
-};
-
 export const DynamicData = () => {
   const [options, setOptions] = useState([]);
   const [value, setValue] = useState<Option | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function search(criteria: string) {
-    // console.log("searching", criteria);
     setLoading(true);
     const response = await fetch(
       `https://swapi.dev/api/people/?search=${criteria}`
@@ -173,7 +165,7 @@ export const DynamicData = () => {
   ).current;
 
   return (
-    <Combobox
+    <DynamicCombobox
       value={value}
       label="Pick star wars character"
       onChange={(value) => setValue(value)}

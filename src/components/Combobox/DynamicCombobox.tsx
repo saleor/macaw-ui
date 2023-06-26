@@ -1,8 +1,10 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
+import { classNames } from "~/utils";
+
 import { Box, List, PropsWithBox, Text } from "..";
-import { HelperText, InputVariants } from "../BaseInput";
+import { HelperText, inputRecipe, InputVariants } from "../BaseInput";
 import {
   listItemStyle,
   listStyle,
@@ -12,15 +14,10 @@ import {
   getListDisplayMode,
 } from "../BaseSelect";
 
-import {
-  ChangeHandler,
-  RenderEndAdornmentType,
-  useMultiselect,
-} from "./useMultiselect";
-import { MultiselectWrapper } from "./MultiselectWrapper";
-import { multiselectInputRecipe } from "./Multiselect.css";
+import { ChangeHandler, useCombobox } from "./useCombobox";
+import { ComboboxWrapper } from "./ComboboxWrapper";
 
-export type MultiselectProps = PropsWithBox<
+export type DynamicComboboxProps = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -39,33 +36,38 @@ export type MultiselectProps = PropsWithBox<
     helperText?: ReactNode;
     options: Option[];
     onChange?: ChangeHandler;
-    value: Option[];
-    renderEndAdornment?: RenderEndAdornmentType;
+    value: Option | null;
+    onInputValueChange?: (value: string) => void;
+    loading?: boolean;
     locale?: {
-      inputText?: string;
+      loadingText?: string;
     };
   }
 > &
   InputVariants;
 
-export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
+export const DynamicCombobox = forwardRef<
+  HTMLInputElement,
+  DynamicComboboxProps
+>(
   (
     {
       size,
       disabled = false,
       className,
+      value,
       label,
       id,
       error = false,
       helperText,
       options,
       onChange,
-      renderEndAdornment,
-      value = [],
+      onInputValueChange,
       onFocus,
       onBlur,
+      loading,
       locale = {
-        inputText: "Add item",
+        loadingText: "Loading",
       },
       ...props
     },
@@ -75,32 +77,28 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       active,
       typed,
       isOpen,
+      getToggleButtonProps,
       getLabelProps,
       getMenuProps,
       getInputProps,
       highlightedIndex,
       getItemProps,
       itemsToSelect,
-      selectedItems,
-      getSelectedItemProps,
-      inputValue,
-      removeSelectedItem,
-      getToggleButtonProps,
       hasItemsToSelect,
-      showInput,
-    } = useMultiselect({
-      selectedItems: value,
+    } = useCombobox({
+      selectedItem: value,
       options,
       onChange,
+      onInputValueChange,
       onFocus,
       onBlur,
     });
 
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLLabelElement>(null);
 
     return (
       <Box display="flex" flexDirection="column">
-        <MultiselectWrapper
+        <ComboboxWrapper
           id={id}
           typed={typed}
           active={active}
@@ -111,76 +109,26 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
           className={className}
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
-          renderEndAdornment={renderEndAdornment}
-          hasItemsToSelect={hasItemsToSelect}
         >
-          {selectedItems.map((item, idx) => (
-            <Box
-              key={`selected-item-${item}-${idx}`}
-              paddingX={1.5}
-              paddingY={0.5}
-              backgroundColor="surfaceNeutralSubdued"
-              borderColor="neutralHighlight"
-              borderWidth={1}
-              borderStyle="solid"
-              borderRadius={3}
-              display="flex"
-              gap={1}
-              alignItems="center"
-              {...getSelectedItemProps({
-                selectedItem: item,
-                index: idx,
-              })}
-            >
-              <Text
-                variant="caption"
-                size={size === "small" ? "small" : "medium"}
-              >
-                {item.label}
-              </Text>
-              {!disabled && (
-                <Text
-                  cursor="pointer"
-                  variant="caption"
-                  size="small"
-                  marginBottom="px"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    removeSelectedItem(item);
-                  }}
-                >
-                  &#10005;
-                </Text>
-              )}
-            </Box>
-          ))}
-
           <Box
             id={id}
             as="input"
-            className={multiselectInputRecipe({ size, error })}
-            placeholder={locale.inputText}
+            type="text"
+            className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
-            width={0}
-            __flex={1}
-            minWidth={7}
-            visibility={showInput ? "visible" : "hidden"}
+            {...props}
             {...getInputProps({
               id,
               ref,
-              value: inputValue,
             })}
-            {...props}
           />
-        </MultiselectWrapper>
-
+        </ComboboxWrapper>
         <Box ref={containerRef} />
 
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen && hasItemsToSelect ? "block" : "none"}
+            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
             className={listWrapperRecipe({ size })}
           >
             <List
@@ -192,17 +140,22 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
               {isOpen &&
                 itemsToSelect?.map((item, index) => (
                   <List.Item
-                    key={`to-select-${id}-${item}-${index}`}
+                    key={`${id}-${item}-${index}`}
                     className={listItemStyle}
-                    active={highlightedIndex === index}
                     {...getItemProps({
                       item,
                       index,
                     })}
+                    active={highlightedIndex === index}
                   >
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <LoadingListItem size={size}>
+                  {locale.loadingText}
+                </LoadingListItem>
+              )}
             </List>
           </Box>
         </Portal>
@@ -217,4 +170,4 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
   }
 );
 
-Multiselect.displayName = "Multiselect";
+DynamicCombobox.displayName = "DynamicCombobox";

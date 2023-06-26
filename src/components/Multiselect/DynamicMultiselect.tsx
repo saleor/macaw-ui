@@ -20,7 +20,7 @@ import {
 import { MultiselectWrapper } from "./MultiselectWrapper";
 import { multiselectInputRecipe } from "./Multiselect.css";
 
-export type MultiselectProps = PropsWithBox<
+export type DynamicMultiselectProps = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -41,14 +41,20 @@ export type MultiselectProps = PropsWithBox<
     onChange?: ChangeHandler;
     value: Option[];
     renderEndAdornment?: RenderEndAdornmentType;
+    onInputValueChange?: (value: string) => void;
+    loading?: boolean;
     locale?: {
+      loadingText?: string;
       inputText?: string;
     };
   }
 > &
   InputVariants;
 
-export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
+export const DynamicMultiselect = forwardRef<
+  HTMLInputElement,
+  DynamicMultiselectProps
+>(
   (
     {
       size,
@@ -62,9 +68,12 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onChange,
       renderEndAdornment,
       value = [],
+      onInputValueChange,
+      loading,
       onFocus,
       onBlur,
       locale = {
+        loadingText: "Loading",
         inputText: "Add item",
       },
       ...props
@@ -90,6 +99,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       showInput,
     } = useMultiselect({
       selectedItems: value,
+      onInputValueChange,
       options,
       onChange,
       onFocus,
@@ -180,7 +190,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen && hasItemsToSelect ? "block" : "none"}
+            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
             className={listWrapperRecipe({ size })}
           >
             <List
@@ -203,6 +213,11 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <LoadingListItem size={size}>
+                  {locale.loadingText}
+                </LoadingListItem>
+              )}
             </List>
           </Box>
         </Portal>
@@ -217,4 +232,4 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
   }
 );
 
-Multiselect.displayName = "Multiselect";
+DynamicMultiselect.displayName = "DynamicMultiselect";
