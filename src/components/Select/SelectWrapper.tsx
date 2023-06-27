@@ -50,7 +50,7 @@ export const SelectWrapper = ({
       {...getToggleButtonProps()}
       data-macaw-ui-component="Select"
     >
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" width="100%">
         <Box
           as="span"
           className={classNames(spanRecipe({ typed, size, disabled, error }))}
