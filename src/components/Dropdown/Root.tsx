@@ -13,7 +13,11 @@ export const DropdownRoot = ({
   open,
 }: DropdownRootProps) => {
   return (
-    <DropdownMenuRoot open={open} onOpenChange={onOpenChange}>
+    <DropdownMenuRoot
+      open={open}
+      onOpenChange={onOpenChange}
+      data-macaw-ui-component="Dropdown"
+    >
       {children}
     </DropdownMenuRoot>
   );

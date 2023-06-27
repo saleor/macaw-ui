@@ -30,6 +30,7 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
           borderBottomRightRadius={3}
           position="fixed"
           paddingTop={7}
+          data-macaw-ui-component="Drawer.Content"
           {...rest}
         >
           {children}

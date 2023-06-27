@@ -11,7 +11,14 @@ export type ListProps = PropsWithBox<{
 export const List = forwardRef<HTMLUListElement | HTMLUListElement, ListProps>(
   ({ children, as = "ul", className, ...rest }, ref) => {
     return (
-      <Box as={as} ref={ref} className={className} margin={0} {...rest}>
+      <Box
+        as={as}
+        ref={ref}
+        className={className}
+        margin={0}
+        data-macaw-ui-component="List"
+        {...rest}
+      >
         {children}
       </Box>
     );

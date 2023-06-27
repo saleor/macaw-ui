@@ -15,6 +15,7 @@ export const TriggerButton = ({ dataTestId, disabled }: TriggerButtonProps) => {
       type="button"
       data-test-id={dataTestId}
       disabled={disabled}
+      data-macaw-ui-component="Accordion.TriggerButton"
     />
   );
 };

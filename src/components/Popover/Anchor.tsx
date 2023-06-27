@@ -5,7 +5,11 @@ export interface PopoverAnchorProps {
 }
 
 export const Anchor = ({ children }: PopoverAnchorProps) => {
-  return <RadixPopoverAnchor asChild>{children}</RadixPopoverAnchor>;
+  return (
+    <RadixPopoverAnchor asChild data-macaw-ui-component="Popover.Anchor">
+      {children}
+    </RadixPopoverAnchor>
+  );
 };
 
 Anchor.displayName = "Popover.Anchor";

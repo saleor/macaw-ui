@@ -8,7 +8,11 @@ export interface TooltipTriggerProps {
 export const Trigger = forwardRef<HTMLButtonElement, TooltipTriggerProps>(
   ({ children }, ref) => {
     return (
-      <RadixTooltipTrigger asChild ref={ref}>
+      <RadixTooltipTrigger
+        asChild
+        ref={ref}
+        data-macaw-ui-component="Tooltip.Trigger"
+      >
         {children}
       </RadixTooltipTrigger>
     );

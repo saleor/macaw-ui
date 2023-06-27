@@ -34,6 +34,7 @@ export const DropdownButton = forwardRef<
         )}
         disabled={disabled}
         ref={ref}
+        data-macaw-ui-component="DropdownButton"
         {...props}
       >
         {children}

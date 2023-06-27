@@ -49,6 +49,7 @@ export const SelectWrapper = ({
       flexWrap="nowrap"
       gap={3}
       {...getToggleButtonProps({ disabled })}
+      data-macaw-ui-component="Select"
     >
       <Box display="flex" flexDirection="column">
         <Box

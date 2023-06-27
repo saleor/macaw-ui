@@ -70,6 +70,7 @@ export const InputWrapper = ({
       )}
       alignItems="center"
       gap={1}
+      data-macaw-ui-component="Input"
     >
       <Box display="flex" flexDirection="column" width="100%">
         <Box

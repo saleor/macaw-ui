@@ -20,7 +20,11 @@ export const TooltipRoot = ({
 }: TooltipProps) => {
   return (
     <RadixTooltipProvider>
-      <RadixTooltipRoot delayDuration={delayDuration} {...props}>
+      <RadixTooltipRoot
+        delayDuration={delayDuration}
+        {...props}
+        data-macaw-ui-component="Tooltip"
+      >
         {children}
       </RadixTooltipRoot>
     </RadixTooltipProvider>

@@ -5,7 +5,11 @@ export interface PopoverTriggerProps {
 }
 
 export const Trigger = ({ children }: PopoverTriggerProps) => {
-  return <RadixPopoverTrigger asChild>{children}</RadixPopoverTrigger>;
+  return (
+    <RadixPopoverTrigger asChild data-macaw-ui-component="Popover.Trigger">
+      {children}
+    </RadixPopoverTrigger>
+  );
 };
 
 Trigger.displayName = "Popover.Trigger";

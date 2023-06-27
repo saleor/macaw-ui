@@ -45,6 +45,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(
         disabled={disabled}
         ref={ref}
         type={type}
+        data-macaw-ui-component="Button"
         {...props}
       >
         {icon}

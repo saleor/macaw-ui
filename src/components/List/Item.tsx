@@ -30,6 +30,7 @@ export const Item = forwardRef<HTMLElement, ListItemProps>(
         onClick={onClick}
         className={className}
         ref={ref}
+        data-macaw-ui-component="List.Item"
         {...rest}
       >
         {children}

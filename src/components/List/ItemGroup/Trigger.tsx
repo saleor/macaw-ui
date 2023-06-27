@@ -23,7 +23,7 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
 
   return (
     // Importing List.Item instead of Item fixes vite HMR
-    <List.Item {...rest}>
+    <List.Item data-macaw-ui-component="ItemGroup.Trigger" {...rest}>
       <Box width="100%" height="100%" onClick={triggerOpen}>
         {children}
       </Box>

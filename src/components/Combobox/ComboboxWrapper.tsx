@@ -48,6 +48,7 @@ export const ComboboxWrapper = ({
       disabled={disabled}
       flexWrap="nowrap"
       gap={3}
+      data-macaw-ui-component="Combobox"
       {...getLabelProps({ htmlFor: id })}
     >
       <Box display="flex" flexDirection="column" width="100%">

@@ -20,7 +20,11 @@ export type SearchInputProps = PropsWithBox<
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ id, className, size, ...props }, ref) => {
     return (
-      <Box id={id} className={classNames(inputContainer({ size }), className)}>
+      <Box
+        id={id}
+        className={classNames(inputContainer({ size }), className)}
+        data-macaw-ui-component="SearchInput"
+      >
         <SearchIcon size="medium" className={searchIcon()} />
         <Box as="input" className={input()} ref={ref} type="text" {...props} />
       </Box>
