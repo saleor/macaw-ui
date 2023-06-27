@@ -139,7 +139,6 @@ export const Default = () => {
           }
 
           if (event?.type === "leftOperator.onChange") {
-            console.log(event);
             const newState = _.setWith(
               _.clone(rows),
               event?.path ?? "",

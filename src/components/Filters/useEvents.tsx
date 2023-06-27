@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import { FilterEventEmitter } from "./EventEmitter";
 
@@ -20,7 +19,10 @@ export interface FilterEvent extends Event {
       | "rightOperator.onBlur"
       | "row.remove"
       | "row.add";
-    value?: any;
+    value?:
+      | string
+      | { value: string; label: string }[]
+      | { label: string; value: string };
     path?: string;
     rowType?: string;
   };
