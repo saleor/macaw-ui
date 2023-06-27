@@ -8,10 +8,9 @@ import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { toggleIconStyle } from "../BaseSelect";
+import { Option, toggleIconStyle } from "../BaseSelect";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
-import { Option } from "./useSelectEvents";
 
 type SelectWrapperProps = LabelVariants & {
   id?: string;
@@ -48,7 +47,7 @@ export const SelectWrapper = ({
       disabled={disabled}
       flexWrap="nowrap"
       gap={3}
-      {...getToggleButtonProps({ disabled })}
+      {...getToggleButtonProps()}
       data-macaw-ui-component="Select"
     >
       <Box display="flex" flexDirection="column">

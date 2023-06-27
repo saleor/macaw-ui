@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Combobox } from ".";
+import { Combobox } from "..";
 
 const options = [
   { value: "color-black", label: "Black" },
@@ -37,15 +38,10 @@ type Story = StoryObj<typeof Combobox>;
 
 const ComboboxTemplate: Story = {
   render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState(options[0].value);
+    const [value, setValue] = useState(options[0]);
 
     return (
-      <Combobox
-        {...args}
-        value={value}
-        onChange={(value) => setValue(value as string)}
-      />
+      <Combobox {...args} value={value} onChange={(value) => setValue(value)} />
     );
   },
 };

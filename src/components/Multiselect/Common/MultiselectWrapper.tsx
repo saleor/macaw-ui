@@ -6,10 +6,12 @@ import { ReactNode } from "react";
 
 import { classNames } from "~/utils";
 
-import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { Box } from "../Box";
+import { Box } from "../..";
+import { LabelVariants, labelRecipe, spanRecipe } from "../../BaseInput";
+import { Option } from "../../BaseSelect";
+
 import { Adornment } from "./Adornment";
-import { Option, RenderEndAdornmentType } from "./useMultiselectEvents";
+import { RenderEndAdornmentType } from "./useMultiselect";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;
@@ -76,6 +78,7 @@ export const MultiselectWrapper = ({
           size={size}
           getToggleButtonProps={getToggleButtonProps}
           renderEndAdornment={renderEndAdornment}
+          disabled={disabled}
         />
       )}
     </Box>

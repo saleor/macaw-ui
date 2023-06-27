@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { Box } from "../Box";
-import { ViewTableIcon } from "../Icons";
-import { Multiselect } from "./Multiselect";
+import { ViewTableIcon, Box } from "../..";
+import { Multiselect } from "..";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -43,15 +43,16 @@ type Story = StoryObj<typeof Multiselect>;
 
 const MultiselectTemplate: Story = {
   render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [selectedItems, setSelectedItems] = useState(["Black", "Red"]);
+    const [selectedItems, setSelectedItems] = useState([
+      { value: "Black", label: "Black" },
+    ]);
 
     return (
       <Box __width={300}>
         <Multiselect
           {...args}
           value={selectedItems}
-          onChange={(values) => setSelectedItems(values ?? [])}
+          onChange={(values) => setSelectedItems(values)}
         />
       </Box>
     );

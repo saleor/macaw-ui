@@ -7,11 +7,10 @@ import { ReactNode } from "react";
 import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
-import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
-import { toggleIconStyle } from "../BaseSelect";
-import { Box } from "../Box";
-import { ArrowDownIcon } from "../Icons";
-import { Option } from "./useComboboxEvents";
+import { LabelVariants, labelRecipe, spanRecipe } from "../../BaseInput";
+import { toggleIconStyle, Option } from "../../BaseSelect";
+import { Box } from "../../Box";
+import { ArrowDownIcon } from "../../Icons";
 
 type ComboboxWrapperProps = LabelVariants & {
   id?: string;

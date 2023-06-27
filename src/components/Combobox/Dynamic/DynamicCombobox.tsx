@@ -1,22 +1,26 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import { InputHTMLAttributes, ReactNode, forwardRef } from "react";
+import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { Box, List, PropsWithBox, Text } from "..";
-import { HelperText, InputVariants } from "../BaseInput";
+import { classNames } from "~/utils";
+
+import { Box, List, PropsWithBox, Text } from "../..";
+import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
+  LoadingListItem,
   Option,
+  getListDisplayMode,
   SingleChangeHandler,
-} from "../BaseSelect";
+} from "../../BaseSelect";
 
-import { useSelect } from "./useSelect";
-import { SelectWrapper } from "./SelectWrapper";
+import { useCombobox } from "../Common/useCombobox";
+import { ComboboxWrapper } from "../Common/ComboboxWrapper";
 
-export type SelectProps = PropsWithBox<
+export type DynamicComboboxProps = PropsWithBox<
   Omit<
-    InputHTMLAttributes<HTMLElement>,
+    InputHTMLAttributes<HTMLInputElement>,
     | "color"
     | "width"
     | "height"
@@ -26,6 +30,7 @@ export type SelectProps = PropsWithBox<
     | "onChange"
     | "value"
     | "nonce"
+    | "type"
   > & {
     label?: ReactNode;
     error?: boolean;
@@ -33,6 +38,8 @@ export type SelectProps = PropsWithBox<
     options: Option[];
     onChange?: SingleChangeHandler;
     value: Option | null;
+    onInputValueChange?: (value: string) => void;
+    loading?: boolean;
     locale?: {
       loadingText?: string;
     };
@@ -40,21 +47,13 @@ export type SelectProps = PropsWithBox<
 > &
   InputVariants;
 
-const getBoxHeight = (size: SelectProps["size"]) => {
-  switch (size) {
-    case "small":
-      return 4;
-    case "medium":
-      return 5;
-    case "large":
-      return 6;
-  }
-};
-
-export const Select = forwardRef<HTMLElement, SelectProps>(
+export const DynamicCombobox = forwardRef<
+  HTMLInputElement,
+  DynamicComboboxProps
+>(
   (
     {
-      size = "medium",
+      size,
       disabled = false,
       className,
       value,
@@ -64,8 +63,13 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       helperText,
       options,
       onChange,
+      onInputValueChange,
       onFocus,
       onBlur,
+      loading,
+      locale = {
+        loadingText: "Loading",
+      },
       ...props
     },
     ref
@@ -74,24 +78,28 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       active,
       typed,
       isOpen,
-      getItemProps,
-      getLabelProps,
       getToggleButtonProps,
-      selectedItem,
+      getLabelProps,
       getMenuProps,
+      getInputProps,
       highlightedIndex,
+      getItemProps,
+      itemsToSelect,
       hasItemsToSelect,
-    } = useSelect({
-      value,
+    } = useCombobox({
+      selectedItem: value,
       options,
       onChange,
+      onInputValueChange,
       onFocus,
       onBlur,
     });
 
+    const containerRef = useRef<HTMLLabelElement>(null);
+
     return (
       <Box display="flex" flexDirection="column">
-        <SelectWrapper
+        <ComboboxWrapper
           id={id}
           typed={typed}
           active={active}
@@ -103,17 +111,25 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
           getLabelProps={getLabelProps}
           getToggleButtonProps={getToggleButtonProps}
         >
-          <Box height={getBoxHeight(size)} {...props} ref={ref}>
-            <Text size={size} variant="body">
-              {selectedItem?.label}
-            </Text>
-          </Box>
-        </SelectWrapper>
+          <Box
+            id={id}
+            as="input"
+            type="text"
+            className={classNames(inputRecipe({ size, error }))}
+            disabled={disabled}
+            {...props}
+            {...getInputProps({
+              id,
+              ref,
+            })}
+          />
+        </ComboboxWrapper>
+        <Box ref={containerRef} />
 
-        <Portal asChild>
+        <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen && hasItemsToSelect ? "block" : "none"}
+            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
             className={listWrapperRecipe({ size })}
           >
             <List
@@ -123,7 +139,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
               {...getMenuProps({}, { suppressRefError: true })}
             >
               {isOpen &&
-                options?.map((item, index) => (
+                itemsToSelect?.map((item, index) => (
                   <List.Item
                     key={`${id}-${item}-${index}`}
                     className={listItemStyle}
@@ -136,6 +152,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <LoadingListItem size={size}>
+                  {locale.loadingText}
+                </LoadingListItem>
+              )}
             </List>
           </Box>
         </Portal>
@@ -150,4 +171,4 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
   }
 );
 
-Select.displayName = "Select";
+DynamicCombobox.displayName = "DynamicCombobox";

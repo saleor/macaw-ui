@@ -1,20 +1,26 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
 
-import { Box, List, PropsWithBox, Text } from "..";
-import { helperTextRecipe, InputVariants } from "../BaseInput";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { Box, List, PropsWithBox, Text } from "~/components";
+import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
-  ChangeHandler,
+  listItemStyle,
+  listStyle,
+  listWrapperRecipe,
+  LoadingListItem,
   Option,
+  getListDisplayMode,
+  MultiChangeHandler,
+} from "~/components/BaseSelect";
+
+import {
   RenderEndAdornmentType,
-  useMultiselectEvents,
-} from "./useMultiselectEvents";
-import { MultiselectWrapper } from "./MultiselectWrapper";
+  useMultiselect,
+  MultiselectWrapper,
+  multiselectInputRecipe,
+} from "../Common";
 
-import { multiselectInputRecipe } from "./Multiselect.css";
-
-export type MultiselectProps = PropsWithBox<
+export type DynamicMultiselectProps = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -32,14 +38,23 @@ export type MultiselectProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: Option[];
-    onChange?: ChangeHandler;
-    value?: string[];
+    onChange?: MultiChangeHandler;
+    value: Option[];
     renderEndAdornment?: RenderEndAdornmentType;
+    onInputValueChange?: (value: string) => void;
+    loading?: boolean;
+    locale?: {
+      loadingText?: string;
+      inputText?: string;
+    };
   }
 > &
   InputVariants;
 
-export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
+export const DynamicMultiselect = forwardRef<
+  HTMLInputElement,
+  DynamicMultiselectProps
+>(
   (
     {
       size,
@@ -53,6 +68,14 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       onChange,
       renderEndAdornment,
       value = [],
+      onInputValueChange,
+      loading,
+      onFocus,
+      onBlur,
+      locale = {
+        loadingText: "Loading",
+        inputText: "Add item",
+      },
       ...props
     },
     ref
@@ -74,7 +97,14 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
       getToggleButtonProps,
       hasItemsToSelect,
       showInput,
-    } = useMultiselectEvents(value, options, onChange, disabled);
+    } = useMultiselect({
+      selectedItems: value,
+      onInputValueChange,
+      options,
+      onChange,
+      onFocus,
+      onBlur,
+    });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -140,7 +170,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
             id={id}
             as="input"
             className={multiselectInputRecipe({ size, error })}
-            placeholder="Add item"
+            placeholder={locale.inputText}
             disabled={disabled}
             width={0}
             __flex={1}
@@ -160,7 +190,7 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen && hasItemsToSelect ? "block" : "none"}
+            display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
             className={listWrapperRecipe({ size })}
           >
             <List
@@ -183,24 +213,23 @@ export const Multiselect = forwardRef<HTMLInputElement, MultiselectProps>(
                     <Text size={size}>{item.label}</Text>
                   </List.Item>
                 ))}
+              {loading && (
+                <LoadingListItem size={size}>
+                  {locale.loadingText}
+                </LoadingListItem>
+              )}
             </List>
           </Box>
         </Portal>
 
         {helperText && (
-          <Box className={helperTextRecipe({ size })}>
-            <Text
-              variant="caption"
-              size={size}
-              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
-            >
-              {helperText}
-            </Text>
-          </Box>
+          <HelperText size={size} error={error}>
+            {helperText}
+          </HelperText>
         )}
       </Box>
     );
   }
 );
 
-Multiselect.displayName = "Multiselect";
+DynamicMultiselect.displayName = "DynamicMultiselect";

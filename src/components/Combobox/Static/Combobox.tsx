@@ -1,18 +1,18 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import { forwardRef, InputHTMLAttributes, ReactNode, useRef } from "react";
+import { InputHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
 
 import { classNames } from "~/utils";
-
-import { Box, List, PropsWithBox, Text } from "..";
-import { helperTextRecipe, inputRecipe, InputVariants } from "../BaseInput";
-import { listItemStyle, listStyle, listWrapperRecipe } from "../BaseSelect";
+import { Box, List, PropsWithBox, Text } from "~/components";
+import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {
-  ChangeHandler,
-  InputValue,
+  listItemStyle,
+  listStyle,
+  listWrapperRecipe,
   Option,
-  useComboboxEvents,
-} from "./useComboboxEvents";
-import { ComboboxWrapper } from "./ComboboxWrapper";
+  SingleChangeHandler,
+} from "~/components/BaseSelect";
+
+import { ComboboxWrapper, useCombobox } from "../Common";
 
 export type ComboboxProps = PropsWithBox<
   Omit<
@@ -32,8 +32,8 @@ export type ComboboxProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: Option[];
-    onChange?: ChangeHandler;
-    value: InputValue;
+    onChange?: SingleChangeHandler;
+    value: Option | null;
   }
 > &
   InputVariants;
@@ -51,6 +51,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       helperText,
       options,
       onChange,
+      onFocus,
+      onBlur,
       ...props
     },
     ref
@@ -66,7 +68,14 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       highlightedIndex,
       getItemProps,
       itemsToSelect,
-    } = useComboboxEvents(value, options, onChange);
+      hasItemsToSelect,
+    } = useCombobox({
+      selectedItem: value,
+      options,
+      onChange,
+      onFocus,
+      onBlur,
+    });
 
     const containerRef = useRef<HTMLLabelElement>(null);
 
@@ -102,7 +111,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
-            display={isOpen && itemsToSelect.length > 0 ? "block" : "none"}
+            display={isOpen && hasItemsToSelect ? "block" : "none"}
             className={listWrapperRecipe({ size })}
           >
             <List
@@ -130,15 +139,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         </Portal>
 
         {helperText && (
-          <Box className={helperTextRecipe({ size })}>
-            <Text
-              variant="caption"
-              size={size}
-              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
-            >
-              {helperText}
-            </Text>
-          </Box>
+          <HelperText size={size} error={error}>
+            {helperText}
+          </HelperText>
         )}
       </Box>
     );

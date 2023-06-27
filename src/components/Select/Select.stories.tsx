@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-
 import { useState } from "react";
+
 import { Select } from ".";
 
 const options = [
@@ -37,14 +37,10 @@ type Story = StoryObj<typeof Select>;
 const SelectTemplate: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState(options[0].value);
+    const [value, setValue] = useState(options[0]);
 
     return (
-      <Select
-        {...args}
-        value={value}
-        onChange={(value) => setValue(value as string)}
-      />
+      <Select {...args} value={value} onChange={(value) => setValue(value)} />
     );
   },
 };
