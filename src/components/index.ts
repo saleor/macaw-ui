@@ -23,3 +23,4 @@ export * from "./Combobox";
 export * from "./Select";
 export * from "./Multiselect";
 export { type Option } from "./BaseSelect";
+export * from "./ExperimentalFilters";
