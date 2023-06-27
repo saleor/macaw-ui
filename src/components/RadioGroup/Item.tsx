@@ -26,6 +26,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
       {...rest}
       className={className}
       ref={ref}
+      data-macaw-ui-component="RadioGroup.Item"
     >
       <RadioGroup.Item
         className={item({ error, disabled })}

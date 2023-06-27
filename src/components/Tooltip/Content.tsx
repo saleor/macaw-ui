@@ -29,6 +29,7 @@ export const Content = ({
         className={classNames(content, className)}
         sideOffset={sideOffset}
         avoidCollisions={avoidCollisions}
+        data-macaw-ui-component="Tooltip.Content"
         {...props}
       >
         {children}

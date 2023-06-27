@@ -25,6 +25,7 @@ export const Content = ({
       <RadixPopoverContent
         asChild
         className={classNames(popover, className)}
+        data-macaw-ui-component="Popover.Content"
         {...props}
       >
         {children}

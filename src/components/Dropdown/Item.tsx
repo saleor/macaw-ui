@@ -9,7 +9,11 @@ type ItemProps = {
 
 export const Item = ({ children }: ItemProps) => {
   return (
-    <DropdownMenuItem asChild className={focusVisible}>
+    <DropdownMenuItem
+      asChild
+      className={focusVisible}
+      data-macaw-ui-component="Dropdown.Item"
+    >
       {children}
     </DropdownMenuItem>
   );

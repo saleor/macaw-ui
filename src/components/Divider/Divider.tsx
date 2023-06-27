@@ -15,6 +15,7 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
       borderWidth={0}
       width="100%"
       height="px"
+      data-macaw-ui-component="Divider"
       {...rest}
     />
   )

@@ -11,8 +11,10 @@ export type ListDividerProps = PropsWithBox<
 
 export const Divider = ({ children, ...rest }: ListDividerProps) => {
   return (
-    <Box as="li" {...rest}>
+    <Box as="li" {...rest} data-macaw-ui-component="List.Divider">
       {children}
     </Box>
   );
 };
+
+Divider.displayName = "List.Divider";

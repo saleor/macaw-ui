@@ -6,7 +6,11 @@ export type DropdownTriggerProps = {
 };
 
 export const Trigger = ({ children }: DropdownTriggerProps) => {
-  return <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>;
+  return (
+    <DropdownMenuTrigger asChild data-macaw-ui-component="Dropdown.Trigger">
+      {children}
+    </DropdownMenuTrigger>
+  );
 };
 
 Trigger.displayName = "Dropdown.Trigger";

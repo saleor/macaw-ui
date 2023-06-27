@@ -23,6 +23,7 @@ export const SwitchRoot = forwardRef<HTMLDivElement, SwitchRootProps>(
         className={classNames(switchParent(), className)}
         ref={ref}
         {...rest}
+        data-macaw-ui-component="Switch"
       >
         {children}
       </Box>

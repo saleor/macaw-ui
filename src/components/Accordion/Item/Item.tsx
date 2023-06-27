@@ -13,7 +13,9 @@ export type AccordionItemProps = PropsWithBox<{
 export const Item = ({ children, value, ...rest }: AccordionItemProps) => {
   return (
     <AccordionItem value={value} className={trigger} asChild>
-      <Box {...rest}>{children}</Box>
+      <Box {...rest} data-macaw-ui-component="Accordion.Item">
+        {children}
+      </Box>
     </AccordionItem>
   );
 };

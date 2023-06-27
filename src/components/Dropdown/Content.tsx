@@ -16,7 +16,12 @@ export type DropdownContentProps = {
 export const Content = ({ children, ...rest }: DropdownContentProps) => {
   return (
     <DropdownMenuPortal>
-      <DropdownMenuContent asChild className={content} {...rest}>
+      <DropdownMenuContent
+        asChild
+        className={content}
+        data-macaw-ui-component="Dropdown.Content"
+        {...rest}
+      >
         {children}
       </DropdownMenuContent>
     </DropdownMenuPortal>

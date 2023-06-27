@@ -34,6 +34,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
         color={color}
         ref={ref}
         margin={0}
+        data-macaw-ui-component="Text"
         {...rest}
       >
         {children}

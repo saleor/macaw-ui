@@ -22,6 +22,7 @@ export const Arrow = ({
         viewBox="0 0 20 9"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        data-macaw-ui-component="Tooltip.Arrow"
       >
         <path
           fill={backgroundColor}

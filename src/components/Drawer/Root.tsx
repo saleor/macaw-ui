@@ -5,7 +5,7 @@ export type DrawerRootProps = {
 };
 
 export const Root = ({ children }: DrawerRootProps) => {
-  return <DialogRoot>{children}</DialogRoot>;
+  return <DialogRoot data-macaw-ui-component="Drawer">{children}</DialogRoot>;
 };
 
 Root.displayName = "Drawer";

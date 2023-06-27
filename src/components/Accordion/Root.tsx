@@ -19,7 +19,7 @@ export const Root = forwardRef<HTMLElement, AccordionRootProps>(
       onValueChange={onValueChange}
       asChild
     >
-      <Box {...rest} ref={ref}>
+      <Box {...rest} ref={ref} data-macaw-ui-component="Accordion">
         {children}
       </Box>
     </AccordionRoot>
