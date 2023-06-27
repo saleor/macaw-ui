@@ -7,11 +7,11 @@ import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
+  MultiChangeHandler,
   Option,
 } from "~/components/BaseSelect";
 
 import {
-  ChangeHandler,
   RenderEndAdornmentType,
   useMultiselect,
   MultiselectWrapper,
@@ -36,7 +36,7 @@ export type MultiselectProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: Option[];
-    onChange?: ChangeHandler;
+    onChange?: MultiChangeHandler;
     value: Option[];
     renderEndAdornment?: RenderEndAdornmentType;
     locale?: {

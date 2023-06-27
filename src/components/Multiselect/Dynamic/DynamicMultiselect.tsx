@@ -10,10 +10,10 @@ import {
   LoadingListItem,
   Option,
   getListDisplayMode,
+  MultiChangeHandler,
 } from "~/components/BaseSelect";
 
 import {
-  ChangeHandler,
   RenderEndAdornmentType,
   useMultiselect,
   MultiselectWrapper,
@@ -38,7 +38,7 @@ export type DynamicMultiselectProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: Option[];
-    onChange?: ChangeHandler;
+    onChange?: MultiChangeHandler;
     value: Option[];
     renderEndAdornment?: RenderEndAdornmentType;
     onInputValueChange?: (value: string) => void;

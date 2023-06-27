@@ -5,9 +5,7 @@ import {
   useSelect as useDownshiftSelect,
 } from "downshift7";
 
-import { Option } from "../BaseSelect";
-
-export type ChangeHandler = (selectedItem: Option) => void;
+import { Option, SingleChangeHandler } from "../BaseSelect";
 
 export const useSelect = ({
   value,
@@ -18,7 +16,7 @@ export const useSelect = ({
 }: {
   value: Option | null;
   options: Option[];
-  onChange?: (selectedValue: Option) => void;
+  onChange?: SingleChangeHandler;
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLElement, Element>) => void;
 }) => {

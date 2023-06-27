@@ -8,9 +8,8 @@ import {
   useMultipleSelection,
 } from "downshift7";
 
-import { Option } from "../../BaseSelect";
+import { MultiChangeHandler, Option } from "~/components/BaseSelect";
 
-export type ChangeHandler = (selectedItems: Option[]) => void;
 export type RenderEndAdornmentType = (
   ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
 ) => ReactNode;
@@ -40,7 +39,7 @@ export const useMultiselect = ({
 }: {
   selectedItems: Option[];
   options: Option[];
-  onChange?: ChangeHandler;
+  onChange?: MultiChangeHandler;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;

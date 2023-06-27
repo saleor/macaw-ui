@@ -4,9 +4,8 @@ import {
   useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
 } from "downshift7";
-import { Option } from "../../BaseSelect";
 
-export type ChangeHandler = (selectedItem: Option) => void;
+import { Option, SingleChangeHandler } from "~/components/BaseSelect";
 
 const getItemsFilter = (inputValue: string | undefined, options: Option[]) => {
   if (!inputValue) {
@@ -30,14 +29,14 @@ export const useCombobox = ({
 }: {
   selectedItem: Option | null;
   options: Option[];
-  onChange?: ChangeHandler;
+  onChange?: SingleChangeHandler;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [active, setActive] = useState(false);
-  const typed = Boolean(selectedItem || active);
+  const typed = Boolean(selectedItem || active || inputValue);
 
   const itemsToSelect = getItemsFilter(inputValue, options);
 

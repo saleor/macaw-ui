@@ -9,9 +9,10 @@ import {
   listStyle,
   listWrapperRecipe,
   Option,
+  SingleChangeHandler,
 } from "~/components/BaseSelect";
 
-import { ChangeHandler, ComboboxWrapper, useCombobox } from "../Common";
+import { ComboboxWrapper, useCombobox } from "../Common";
 
 export type ComboboxProps = PropsWithBox<
   Omit<
@@ -31,7 +32,7 @@ export type ComboboxProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: Option[];
-    onChange?: ChangeHandler;
+    onChange?: SingleChangeHandler;
     value: Option | null;
   }
 > &

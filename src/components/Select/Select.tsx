@@ -8,9 +8,10 @@ import {
   listStyle,
   listWrapperRecipe,
   Option,
+  SingleChangeHandler,
 } from "../BaseSelect";
 
-import { ChangeHandler, useSelect } from "./useSelect";
+import { useSelect } from "./useSelect";
 import { SelectWrapper } from "./SelectWrapper";
 
 export type SelectProps = PropsWithBox<
@@ -30,7 +31,7 @@ export type SelectProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: Option[];
-    onChange?: ChangeHandler;
+    onChange?: SingleChangeHandler;
     value: Option | null;
     locale?: {
       loadingText?: string;

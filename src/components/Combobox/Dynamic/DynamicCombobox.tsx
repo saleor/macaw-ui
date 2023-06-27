@@ -12,9 +12,10 @@ import {
   LoadingListItem,
   Option,
   getListDisplayMode,
+  SingleChangeHandler,
 } from "../../BaseSelect";
 
-import { ChangeHandler, useCombobox } from "../Common/useCombobox";
+import { useCombobox } from "../Common/useCombobox";
 import { ComboboxWrapper } from "../Common/ComboboxWrapper";
 
 export type DynamicComboboxProps = PropsWithBox<
@@ -35,7 +36,7 @@ export type DynamicComboboxProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: Option[];
-    onChange?: ChangeHandler;
+    onChange?: SingleChangeHandler;
     value: Option | null;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
