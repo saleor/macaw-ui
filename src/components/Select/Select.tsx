@@ -1,18 +1,18 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import { InputHTMLAttributes, ReactNode, forwardRef } from "react";
+import { InputHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
 
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
+  Option,
+  SingleChangeHandler,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
-  Option,
-  SingleChangeHandler,
 } from "../BaseSelect";
 
-import { useSelect } from "./useSelect";
 import { SelectWrapper } from "./SelectWrapper";
+import { useSelect } from "./useSelect";
 
 export type SelectProps = PropsWithBox<
   Omit<
@@ -89,6 +89,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       onBlur,
     });
 
+    const containerRef = useRef<HTMLLabelElement>(null);
+
     return (
       <Box display="flex" flexDirection="column">
         <SelectWrapper
@@ -109,8 +111,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
             </Text>
           </Box>
         </SelectWrapper>
+        <Box ref={containerRef} />
 
-        <Portal asChild>
+        <Portal asChild container={containerRef.current}>
           <Box
             position="relative"
             display={isOpen && hasItemsToSelect ? "block" : "none"}
