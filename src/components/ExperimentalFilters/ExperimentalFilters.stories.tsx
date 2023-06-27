@@ -6,7 +6,7 @@ import { Box } from "../Box";
 import { Row, _ExperimentalFilters } from ".";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
-  title: "Components / Filters",
+  title: "Components / _ExperimentalFilters",
   component: _ExperimentalFilters,
 };
 
