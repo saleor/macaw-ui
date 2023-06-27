@@ -135,7 +135,7 @@ const Row = ({
     <Box
       display="grid"
       gap={1}
-      __gridTemplateColumns="repeat(4, 1fr)"
+      __gridTemplateColumns="200px 200px 200px auto"
       placeItems="center"
     >
       <Combobox
