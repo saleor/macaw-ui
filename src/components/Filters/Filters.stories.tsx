@@ -174,9 +174,14 @@ export const Default = () => {
 
           if (event?.type === "row.remove") {
             const index = parseInt(event?.path ?? "", 10);
+            if (index === 0) {
+              const newState = [...rows.slice(index + 2, rows.length)];
+              setRows(newState);
+              return;
+            }
             const newState = [
               ...rows.slice(0, index - 1),
-              ...rows.slice(index + 2, rows.length),
+              ...rows.slice(index + 1, rows.length),
             ];
             setRows(newState);
           }
