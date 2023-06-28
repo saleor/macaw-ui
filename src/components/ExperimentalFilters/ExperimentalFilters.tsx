@@ -15,7 +15,7 @@ import { FilterEvent, useEventEmitter } from "./useEvents";
 export type Row = {
   value: { label: string; value: string; type: string } | null;
   loading?: boolean;
-  condition?: {
+  condition: {
     loading?: boolean;
     options: Array<{
       value: string;
@@ -41,32 +41,36 @@ type Right =
 
 type RightInput = {
   value: string;
-  conditionValue: { label: string; value: string; type: "text" | "number" };
+  conditionValue: {
+    label: string;
+    value: string;
+    type: "text" | "number";
+  } | null;
 };
 
 type RightMultiselect = {
   value: { label: string; value: string }[];
-  conditionValue: { label: string; value: string; type: "multiselect" };
+  conditionValue: { label: string; value: string; type: "multiselect" } | null;
   options: Array<{ value: string; label: string }>;
   loading?: boolean;
 };
 
 type RightCombobox = {
   value: { label: string; value: string };
-  conditionValue: { label: string; value: string; type: "combobox" };
+  conditionValue: { label: string; value: string; type: "combobox" } | null;
   options: Array<{ value: string; label: string }>;
   loading?: boolean;
 };
 
 type RightSelect = {
   value: { label: string; value: string };
-  conditionValue: { label: string; value: string; type: "select" };
+  conditionValue: { label: string; value: string; type: "select" } | null;
   options: Array<{ value: string; label: string }>;
 };
 
 type RightNumberRange = {
   value: { start: string; end: string };
-  conditionValue: { label: string; value: string; type: "number.range" };
+  conditionValue: { label: string; value: string; type: "number.range" } | null;
 };
 
 export type Props = {
@@ -160,21 +164,20 @@ const Row = ({
           emitter.blurLeftOperator(index);
         }}
       />
-      {item.condition?.selected && (
-        <Select
-          value={item.condition?.selected.conditionValue}
-          options={item.condition?.options ?? []}
-          onChange={(value) => {
-            emitter.changeCondition(index, value);
-          }}
-          onFocus={() => {
-            emitter.focusCondition(index);
-          }}
-          onBlur={() => {
-            emitter.blurCondition(index);
-          }}
-        />
-      )}
+      <Select
+        value={item.condition.selected.conditionValue}
+        options={item.condition.options}
+        disabled={item.condition.loading || !item.condition.options.length}
+        onChange={(value) => {
+          emitter.changeCondition(index, value);
+        }}
+        onFocus={() => {
+          emitter.focusCondition(index);
+        }}
+        onBlur={() => {
+          emitter.blurCondition(index);
+        }}
+      />
 
       {item.condition?.selected && (
         <Right
@@ -194,22 +197,22 @@ const Row = ({
 };
 
 const isTextInput = (value: Right): value is RightInput =>
-  value.conditionValue.type === "text";
+  value.conditionValue?.type === "text";
 
 const isNumberInput = (value: Right): value is RightInput =>
-  value.conditionValue.type === "number";
+  value.conditionValue?.type === "number";
 
 const isMultiselect = (value: Right): value is RightMultiselect =>
-  value.conditionValue.type === "multiselect";
+  value.conditionValue?.type === "multiselect";
 
 const isCombobox = (value: Right): value is RightCombobox =>
-  value.conditionValue.type === "combobox";
+  value.conditionValue?.type === "combobox";
 
 const isSelect = (value: Right): value is RightSelect =>
-  value.conditionValue.type === "select";
+  value.conditionValue?.type === "select";
 
 const isNumberRange = (value: Right): value is RightNumberRange =>
-  value.conditionValue.type === "number.range";
+  value.conditionValue?.type === "number.range";
 
 const Right = ({
   index,
@@ -220,6 +223,10 @@ const Right = ({
   selected: Right;
   emitter: FilterEventEmitter;
 }) => {
+  if (selected.conditionValue === null) {
+    return null;
+  }
+
   if (isTextInput(selected)) {
     return (
       <Input
