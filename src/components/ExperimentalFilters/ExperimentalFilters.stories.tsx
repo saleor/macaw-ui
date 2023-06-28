@@ -163,7 +163,17 @@ export const Default = () => {
             const newState = [
               ...rows,
               "AND",
-              { value: null, type: event?.rowType },
+              {
+                value: null,
+                condition: {
+                  options: [],
+                  selected: {
+                    value: "",
+                    conditionValue: null,
+                    options: [],
+                  },
+                },
+              },
             ];
             setRows(newState);
           }
