@@ -1,4 +1,10 @@
-export type { Row, Props } from "./ExperimentalFilters";
+export type {
+  Row,
+  Props,
+  FooterProps,
+  AddRowButtonProps,
+  ConfirmButtonProps,
+} from "./ExperimentalFilters";
 import {
   _ExperimentalFilters as Root,
   AddRowButton,
