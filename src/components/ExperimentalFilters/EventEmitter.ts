@@ -2,6 +2,7 @@ export class FilterEventEmitter extends EventTarget {
   type = "filterChange";
 
   addRow() {
+    console.log("ad row");
     this.dispatchEvent(
       new CustomEvent(this.type, {
         detail: {
