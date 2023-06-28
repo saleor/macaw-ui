@@ -192,7 +192,16 @@ export const Default = () => {
             setRows(newState);
           }
         }}
-      />
+      >
+        <_ExperimentalFilters.Footer>
+          <_ExperimentalFilters.AddRowButton>
+            Add row
+          </_ExperimentalFilters.AddRowButton>
+          <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
+            Confirm
+          </_ExperimentalFilters.ConfirmButton>
+        </_ExperimentalFilters.Footer>
+      </_ExperimentalFilters>
     </Box>
   );
 };

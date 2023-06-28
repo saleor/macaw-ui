@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   Box,
   Button,
@@ -9,6 +10,7 @@ import {
   Text,
 } from "..";
 import { FilterEventEmitter } from "./EventEmitter";
+import { FilterContext, useFilterContext } from "./context";
 
 import { FilterEvent, useEventEmitter } from "./useEvents";
 
@@ -76,6 +78,7 @@ type RightNumberRange = {
 export type Props = {
   value: Array<Row | string>;
   leftOptions: Array<{ value: string; label: string; type: string }>;
+  children?: ReactNode;
   onChange: (event: FilterEvent["detail"]) => void;
 };
 
@@ -89,38 +92,78 @@ export const _ExperimentalFilters = ({
   value,
   onChange,
   leftOptions,
+  children,
 }: Props) => {
   const { emitter } = useEventEmitter({
     onChange,
   });
 
   return (
-    <Box>
-      <Box
-        display="grid"
-        __gridTemplateColumns="repeat(2, auto)"
-        __placeItems="center self-start"
-        gap={1}
-      >
-        <Text>{locale.WHERE}</Text>
-        {value.map((item, idx) =>
-          typeof item === "string" ? (
-            <Text key={idx}>{locale[item]}</Text>
-          ) : (
-            <Row
-              key={idx}
-              item={item}
-              index={idx}
-              leftOptions={leftOptions}
-              emitter={emitter}
-            />
-          )
-        )}
+    <FilterContext.Provider value={{ emitter }}>
+      <Box>
+        <Box
+          display="grid"
+          __gridTemplateColumns="repeat(2, auto)"
+          __placeItems="center self-start"
+          gap={1}
+        >
+          <Text>{locale.WHERE}</Text>
+          {value.map((item, idx) =>
+            typeof item === "string" ? (
+              <Text key={idx}>{locale[item]}</Text>
+            ) : (
+              <Row
+                key={idx}
+                item={item}
+                index={idx}
+                leftOptions={leftOptions}
+                emitter={emitter}
+              />
+            )
+          )}
+        </Box>
+        {children}
       </Box>
-      <Button onClick={() => emitter.addRow()} variant="secondary">
-        Add row
-      </Button>
+    </FilterContext.Provider>
+  );
+};
+
+interface FooterProps {
+  children: ReactNode;
+}
+
+export const Footer = ({ children }: FooterProps) => {
+  return (
+    <Box display="flex" justifyContent="space-between" paddingY={4}>
+      {children}
     </Box>
+  );
+};
+
+interface AddRowButtonProps {
+  children: ReactNode;
+}
+
+export const AddRowButton = ({ children }: AddRowButtonProps) => {
+  const context = useFilterContext();
+
+  return (
+    <Button onClick={() => context.emitter.addRow()} variant="secondary">
+      {children}
+    </Button>
+  );
+};
+
+interface ConfirmButtonProps {
+  children: ReactNode;
+  onClick: () => void;
+}
+
+export const ConfirmButton = ({ children, onClick }: ConfirmButtonProps) => {
+  return (
+    <Button onClick={onClick} variant="primary">
+      {children}
+    </Button>
   );
 };
 
