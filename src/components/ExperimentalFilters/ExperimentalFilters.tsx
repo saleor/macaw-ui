@@ -128,7 +128,7 @@ export const _ExperimentalFilters = ({
   );
 };
 
-interface FooterProps {
+export interface FooterProps {
   children: ReactNode;
 }
 
@@ -140,7 +140,7 @@ export const Footer = ({ children }: FooterProps) => {
   );
 };
 
-interface AddRowButtonProps {
+export interface AddRowButtonProps {
   children: ReactNode;
 }
 
@@ -154,7 +154,7 @@ export const AddRowButton = ({ children }: AddRowButtonProps) => {
   );
 };
 
-interface ConfirmButtonProps {
+export interface ConfirmButtonProps {
   children: ReactNode;
   onClick: () => void;
 }
