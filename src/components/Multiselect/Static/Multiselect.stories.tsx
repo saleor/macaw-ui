@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
@@ -43,6 +42,7 @@ type Story = StoryObj<typeof Multiselect>;
 
 const MultiselectTemplate: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [selectedItems, setSelectedItems] = useState([
       { value: "Black", label: "Black" },
     ]);

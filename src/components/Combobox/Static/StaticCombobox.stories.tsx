@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -38,6 +37,7 @@ type Story = StoryObj<typeof Combobox>;
 
 const ComboboxTemplate: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState(options[0]);
 
     return (
