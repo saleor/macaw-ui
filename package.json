@@ -27,18 +27,18 @@
   "packageManager": "pnpm@8.6.5",
   "exports": {
     "./next": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/macaw-ui.js",
-      "require": "./dist/macaw-ui.umd.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/macaw-ui.cjs"
     },
     "./next/style": {
       "import": "./dist/style.css",
       "require": "./dist/style.css"
     },
     ".": {
+      "types": "./legacy/dist/types/index.d.ts",
       "import": "./legacy/dist/esm/index.js",
-      "require": "./legacy/dist/cjs/index.js",
-      "types": "./legacy/dist/types/index.d.ts"
+      "require": "./legacy/dist/cjs/index.js"
     }
   },
   "keywords": [
