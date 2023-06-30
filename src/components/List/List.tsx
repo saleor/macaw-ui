@@ -8,7 +8,7 @@ export type ListProps = PropsWithBox<{
   className?: string;
 }>;
 
-export const List = forwardRef<HTMLUListElement | HTMLLIElement, ListProps>(
+export const List = forwardRef<HTMLUListElement | HTMLOListElement, ListProps>(
   ({ children, as = "ul", className, ...rest }, ref) => {
     return (
       <Box
