@@ -9,7 +9,7 @@ export const Box = createBox({ atoms: sprinkles });
 
 export type PropsWithBox<T> = Omit<
   ComponentProps<typeof Box>,
-  //   omit size because it's a prop that's used by variants
-  keyof T | "size"
+  // omit size and ref as they are defined on components
+  keyof T | "size" | "ref"
 > &
   T;
