@@ -31,6 +31,10 @@ export default {
         },
       },
       plugins: [require("@vanilla-extract/vite-plugin").vanillaExtractPlugin()],
+      build: {
+        ...config.build,
+        sourcemap: false,
+      },
     });
   },
 };
