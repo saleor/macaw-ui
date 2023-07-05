@@ -5,6 +5,7 @@ export type {
   AddRowButtonProps,
   ConfirmButtonProps,
 } from "./ExperimentalFilters";
+export type { FilterEvent } from "./useEvents";
 import {
   _ExperimentalFilters as Root,
   AddRowButton,
