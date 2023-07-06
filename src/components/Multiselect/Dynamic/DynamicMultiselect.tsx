@@ -26,7 +26,7 @@ import {
   multiselectInputRecipe,
 } from "../Common";
 
-export type DynamicMultiselectProps<O> = PropsWithBox<
+export type DynamicMultiselectProps<T> = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -43,9 +43,9 @@ export type DynamicMultiselectProps<O> = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: O[];
-    onChange?: MultiChangeHandler<O>;
-    value: O[];
+    options: T[];
+    onChange?: MultiChangeHandler<T>;
+    value: T[];
     renderEndAdornment?: RenderEndAdornmentType;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
@@ -57,7 +57,7 @@ export type DynamicMultiselectProps<O> = PropsWithBox<
 > &
   InputVariants;
 
-const DynamicMultiselectInner = <O extends Option>(
+const DynamicMultiselectInner = <T extends Option>(
   {
     size,
     disabled = false,
@@ -79,7 +79,7 @@ const DynamicMultiselectInner = <O extends Option>(
       inputText: "Add item",
     },
     ...props
-  }: DynamicMultiselectProps<O>,
+  }: DynamicMultiselectProps<T>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const {
@@ -99,7 +99,7 @@ const DynamicMultiselectInner = <O extends Option>(
     getToggleButtonProps,
     hasItemsToSelect,
     showInput,
-  } = useMultiselect<O>({
+  } = useMultiselect<T>({
     selectedItems: value,
     onInputValueChange,
     options,
@@ -234,9 +234,9 @@ const DynamicMultiselectInner = <O extends Option>(
 };
 
 export const DynamicMultiselect = forwardRef(DynamicMultiselectInner) as <
-  O extends Option
+  T extends Option
 >(
-  props: DynamicMultiselectProps<O> & {
+  props: DynamicMultiselectProps<T> & {
     ref?: React.ForwardedRef<HTMLInputElement>;
   }
 ) => ReturnType<typeof DynamicMultiselectInner>;

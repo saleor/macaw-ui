@@ -14,10 +14,10 @@ export type RenderEndAdornmentType = (
   ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
 ) => ReactNode;
 
-const getItemsFilter = <O extends Option>(
-  selectedItems: O[],
+const getItemsFilter = <T extends Option>(
+  selectedItems: T[],
   inputValue: string,
-  options: O[]
+  options: T[]
 ) => {
   const lowerCasedInputValue = inputValue?.toLowerCase();
 
@@ -29,7 +29,7 @@ const getItemsFilter = <O extends Option>(
   );
 };
 
-export const useMultiselect = <O extends Option>({
+export const useMultiselect = <T extends Option>({
   selectedItems,
   options,
   onChange,
@@ -37,9 +37,9 @@ export const useMultiselect = <O extends Option>({
   onFocus,
   onBlur,
 }: {
-  selectedItems: O[];
-  options: O[];
-  onChange?: MultiChangeHandler<O>;
+  selectedItems: T[];
+  options: T[];
+  onChange?: MultiChangeHandler<T>;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -47,7 +47,7 @@ export const useMultiselect = <O extends Option>({
   const [inputValue, setInputValue] = useState("");
   const [active, setActive] = useState(false);
 
-  const itemsToSelect = getItemsFilter<O>(selectedItems, inputValue, options);
+  const itemsToSelect = getItemsFilter<T>(selectedItems, inputValue, options);
 
   const showInput = onInputValueChange
     ? true

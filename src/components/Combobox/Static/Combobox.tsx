@@ -20,7 +20,7 @@ import {
 
 import { ComboboxWrapper, useCombobox } from "../Common";
 
-export type ComboboxProps<O> = PropsWithBox<
+export type ComboboxProps<T> = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -37,14 +37,14 @@ export type ComboboxProps<O> = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: O[];
-    onChange?: SingleChangeHandler<O>;
-    value: O | null;
+    options: T[];
+    onChange?: SingleChangeHandler<T>;
+    value: T | null;
   }
 > &
   InputVariants;
 
-const ComboboxInner = <O extends Option>(
+const ComboboxInner = <T extends Option>(
   {
     size,
     disabled = false,
@@ -59,7 +59,7 @@ const ComboboxInner = <O extends Option>(
     onFocus,
     onBlur,
     ...props
-  }: ComboboxProps<O>,
+  }: ComboboxProps<T>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const {
@@ -152,6 +152,6 @@ const ComboboxInner = <O extends Option>(
   );
 };
 
-export const Combobox = forwardRef(ComboboxInner) as <O extends Option>(
-  props: ComboboxProps<O> & { ref?: React.ForwardedRef<HTMLInputElement> }
+export const Combobox = forwardRef(ComboboxInner) as <T extends Option>(
+  props: ComboboxProps<T> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => ReturnType<typeof ComboboxInner>;

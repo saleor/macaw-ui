@@ -7,9 +7,9 @@ import {
 
 import { Option, SingleChangeHandler } from "~/components/BaseSelect";
 
-const getItemsFilter = <O extends Option>(
+const getItemsFilter = <T extends Option>(
   inputValue: string | undefined,
-  options: O[]
+  options: T[]
 ) => {
   if (!inputValue) {
     return options;
@@ -22,7 +22,7 @@ const getItemsFilter = <O extends Option>(
   );
 };
 
-export const useCombobox = <O extends Option>({
+export const useCombobox = <T extends Option>({
   selectedItem,
   options,
   onChange,
@@ -30,9 +30,9 @@ export const useCombobox = <O extends Option>({
   onFocus,
   onBlur,
 }: {
-  selectedItem: O | null;
-  options: O[];
-  onChange?: SingleChangeHandler<O>;
+  selectedItem: T | null;
+  options: T[];
+  onChange?: SingleChangeHandler<T>;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -41,7 +41,7 @@ export const useCombobox = <O extends Option>({
   const [active, setActive] = useState(false);
   const typed = Boolean(selectedItem || active || inputValue);
 
-  const itemsToSelect = getItemsFilter<O>(inputValue, options);
+  const itemsToSelect = getItemsFilter<T>(inputValue, options);
 
   const {
     isOpen,

@@ -24,7 +24,7 @@ import {
 import { useCombobox } from "../Common/useCombobox";
 import { ComboboxWrapper } from "../Common/ComboboxWrapper";
 
-export type DynamicComboboxProps<O> = PropsWithBox<
+export type DynamicComboboxProps<T> = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -41,9 +41,9 @@ export type DynamicComboboxProps<O> = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: O[];
-    onChange?: SingleChangeHandler<O>;
-    value: O | null;
+    options: T[];
+    onChange?: SingleChangeHandler<T>;
+    value: T | null;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
     locale?: {
@@ -53,7 +53,7 @@ export type DynamicComboboxProps<O> = PropsWithBox<
 > &
   InputVariants;
 
-const DynamicComboboxInner = <O extends Option>(
+const DynamicComboboxInner = <T extends Option>(
   {
     size,
     disabled = false,
@@ -73,7 +73,7 @@ const DynamicComboboxInner = <O extends Option>(
       loadingText: "Loading",
     },
     ...props
-  }: DynamicComboboxProps<O>,
+  }: DynamicComboboxProps<T>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const {
@@ -88,7 +88,7 @@ const DynamicComboboxInner = <O extends Option>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
-  } = useCombobox<O>({
+  } = useCombobox<T>({
     selectedItem: value,
     options,
     onChange,
@@ -173,9 +173,9 @@ const DynamicComboboxInner = <O extends Option>(
 };
 
 export const DynamicCombobox = forwardRef(DynamicComboboxInner) as <
-  O extends Option
+  T extends Option
 >(
-  props: DynamicComboboxProps<O> & {
+  props: DynamicComboboxProps<T> & {
     ref?: React.ForwardedRef<HTMLInputElement>;
   }
 ) => ReturnType<typeof DynamicComboboxInner>;

@@ -24,7 +24,7 @@ import {
   multiselectInputRecipe,
 } from "../Common";
 
-export type MultiselectProps<O> = PropsWithBox<
+export type MultiselectProps<T> = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -41,9 +41,9 @@ export type MultiselectProps<O> = PropsWithBox<
     label?: ReactNode;
     error?: boolean;
     helperText?: ReactNode;
-    options: O[];
-    onChange?: MultiChangeHandler<O>;
-    value: O[];
+    options: T[];
+    onChange?: MultiChangeHandler<T>;
+    value: T[];
     renderEndAdornment?: RenderEndAdornmentType;
     locale?: {
       inputText?: string;
@@ -52,7 +52,7 @@ export type MultiselectProps<O> = PropsWithBox<
 > &
   InputVariants;
 
-const MultiselectInner = <O extends Option>(
+const MultiselectInner = <T extends Option>(
   {
     size,
     disabled = false,
@@ -71,7 +71,7 @@ const MultiselectInner = <O extends Option>(
       inputText: "Add item",
     },
     ...props
-  }: MultiselectProps<O>,
+  }: MultiselectProps<T>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const {
@@ -91,7 +91,7 @@ const MultiselectInner = <O extends Option>(
     getToggleButtonProps,
     hasItemsToSelect,
     showInput,
-  } = useMultiselect<O>({
+  } = useMultiselect<T>({
     selectedItems: value,
     options,
     onChange,
@@ -219,6 +219,6 @@ const MultiselectInner = <O extends Option>(
   );
 };
 
-export const Multiselect = forwardRef(MultiselectInner) as <O extends Option>(
-  props: MultiselectProps<O> & { ref?: React.ForwardedRef<HTMLInputElement> }
+export const Multiselect = forwardRef(MultiselectInner) as <T extends Option>(
+  props: MultiselectProps<T> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => ReturnType<typeof MultiselectInner>;
