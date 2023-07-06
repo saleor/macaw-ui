@@ -21,11 +21,7 @@ export type SelectedOperator =
 
 type InputOperator = {
   value: string;
-  conditionValue: {
-    label: string;
-    value: string;
-    type: "text" | "number";
-  } | null;
+  conditionValue: ConditionOption<"text" | "number"> | null;
 };
 
 type MultiselectOperator = {
