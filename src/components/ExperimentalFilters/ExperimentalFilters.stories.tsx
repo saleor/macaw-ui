@@ -24,12 +24,12 @@ const value = [
     value: { value: "price", label: "Price", type: "1" },
     condition: {
       options: [
-        { type: "number", label: "is", value: "input-1", min: 0, max: 10 },
+        { type: "date", label: "is", value: "input-1", min: 0, max: 10 },
         { type: "multiselect", label: "has", value: "input-2" },
       ],
       selected: {
         value: "3.13",
-        conditionValue: { type: "number", label: "is", value: "input-1" },
+        conditionValue: { type: "date", label: "is", value: "input-1" },
       },
     },
   },
