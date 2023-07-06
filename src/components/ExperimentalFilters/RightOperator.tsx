@@ -73,7 +73,7 @@ const isSelect = (value: SelectedOperator): value is SelectOperator =>
 const isNumberRange = (value: SelectedOperator): value is NumberRangeOperator =>
   value.conditionValue?.type === "number.range";
 
-const isDate = (value: SelectedOperator): value is Date =>
+const isDate = (value: SelectedOperator): value is DateOperator =>
   value.conditionValue?.type === "date";
 
 export const RightOperator = ({

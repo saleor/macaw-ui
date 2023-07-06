@@ -171,7 +171,13 @@ export class FilterEventEmitter extends EventTarget {
   changeCondition(
     index: number,
     value: ConditionOption<
-      "text" | "number" | "multiselect" | "combobox" | "select" | "number.range"
+      | "text"
+      | "number"
+      | "multiselect"
+      | "combobox"
+      | "select"
+      | "number.range"
+      | "date"
     >
   ) {
     this.dispatchEvent(
