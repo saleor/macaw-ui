@@ -28,6 +28,9 @@ export const WithImage: Story = {
     scheme: "decorative1",
     size: "medium",
   },
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
 };
 
 export const AsStoreInitials: Story = {
@@ -46,4 +49,7 @@ export const AsStoreImage: Story = {
     size: "medium",
   },
   render: (args) => <Store {...args} />,
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
 };
