@@ -1,17 +1,15 @@
-export type {
-  Row,
-  Props,
-  FooterProps,
-  AddRowButtonProps,
-  ConfirmButtonProps,
-} from "./ExperimentalFilters";
 export type { FilterEvent } from "./useEvents";
-import {
-  _ExperimentalFilters as Root,
-  AddRowButton,
-  ConfirmButton,
-  Footer,
-} from "./ExperimentalFilters";
+export type { ExperimentalFiltersProps } from "./Root";
+export type { SelectedOperator } from "./RightOperator";
+export type { Row } from "./Row";
+export type {
+  RightOperatorOption,
+  LeftOperatorOption,
+  ConditionOption,
+} from "./EventEmitter";
+
+import { Root } from "./Root";
+import { AddRowButton, ConfirmButton, Footer } from "./Footer";
 
 export const _ExperimentalFilters = Object.assign(Root, {
   AddRowButton,
