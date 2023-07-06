@@ -17,7 +17,8 @@ export type SelectedOperator =
   | MultiselectOperator
   | ComboboxOperator
   | SelectOperator
-  | NumberRangeOperator;
+  | NumberRangeOperator
+  | DateOperator;
 
 type InputOperator = {
   value: string;
@@ -49,6 +50,11 @@ type NumberRangeOperator = {
   conditionValue: ConditionOption<"number.range"> | null;
 };
 
+type DateOperator = {
+  value: string;
+  conditionValue: ConditionOption<"date"> | null;
+};
+
 const isTextInput = (value: SelectedOperator): value is InputOperator =>
   value.conditionValue?.type === "text";
 
@@ -66,6 +72,9 @@ const isSelect = (value: SelectedOperator): value is SelectOperator =>
 
 const isNumberRange = (value: SelectedOperator): value is NumberRangeOperator =>
   value.conditionValue?.type === "number.range";
+
+const isDate = (value: SelectedOperator): value is DateOperator =>
+  value.conditionValue?.type === "date";
 
 export const RightOperator = ({
   index,
@@ -187,5 +196,18 @@ export const RightOperator = ({
       </Box>
     );
   }
+
+  if (isDate(selected)) {
+    return (
+      <Input
+        type="date"
+        value={selected.value}
+        onChange={(e) => {
+          emitter.changeRightOperator(index, e.target.value);
+        }}
+      />
+    );
+  }
+
   return null;
 };

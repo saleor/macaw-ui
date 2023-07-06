@@ -48,7 +48,15 @@ export type LeftOperatorInputValueChangeData = {
 export type ConditionChangeData = {
   type: "condition.onChange";
   path: `${number}.condition.selected`;
-  value: ConditionOption<string>;
+  value: ConditionOption<
+    | "text"
+    | "number"
+    | "multiselect"
+    | "combobox"
+    | "select"
+    | "number.range"
+    | "date"
+  >;
 };
 
 export type ConditionFocusData = {
@@ -168,12 +176,7 @@ export class FilterEventEmitter extends EventTarget {
     );
   }
 
-  changeCondition(
-    index: number,
-    value: ConditionOption<
-      "text" | "number" | "multiselect" | "combobox" | "select" | "number.range"
-    >
-  ) {
+  changeCondition(index: number, value: ConditionChangeData["value"]) {
     this.dispatchEvent(
       new CustomEvent<ConditionChangeData>(this.type, {
         detail: {
