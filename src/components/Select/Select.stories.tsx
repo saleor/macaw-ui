@@ -140,13 +140,3 @@ const [value, setValue] = useState("color-black");
     },
   },
 };
-
-export const Test = () => {
-  return (
-    <Select
-      value={null}
-      options={[{ label: "", value: "", slug: "" }]}
-      onChange={(value) => console.log(value)}
-    />
-  );
-};
