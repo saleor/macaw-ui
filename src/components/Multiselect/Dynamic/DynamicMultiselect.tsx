@@ -99,7 +99,7 @@ const DynamicMultiselectInner = <O extends Option>(
     getToggleButtonProps,
     hasItemsToSelect,
     showInput,
-  } = useMultiselect({
+  } = useMultiselect<O>({
     selectedItems: value,
     onInputValueChange,
     options,

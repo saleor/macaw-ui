@@ -91,7 +91,7 @@ const MultiselectInner = <O extends Option>(
     getToggleButtonProps,
     hasItemsToSelect,
     showInput,
-  } = useMultiselect({
+  } = useMultiselect<O>({
     selectedItems: value,
     options,
     onChange,

@@ -88,7 +88,7 @@ const DynamicComboboxInner = <O extends Option>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
-  } = useCombobox({
+  } = useCombobox<O>({
     selectedItem: value,
     options,
     onChange,

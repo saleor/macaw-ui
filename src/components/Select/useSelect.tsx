@@ -7,16 +7,16 @@ import {
 
 import { Option, SingleChangeHandler } from "../BaseSelect";
 
-export const useSelect = ({
+export const useSelect = <O extends Option>({
   value,
   options,
   onChange,
   onFocus,
   onBlur,
 }: {
-  value: Option | null;
-  options: Option[];
-  onChange?: SingleChangeHandler;
+  value: O | null;
+  options: O[];
+  onChange?: SingleChangeHandler<O>;
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLElement, Element>) => void;
 }) => {

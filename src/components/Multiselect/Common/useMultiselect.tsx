@@ -14,10 +14,10 @@ export type RenderEndAdornmentType = (
   ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
 ) => ReactNode;
 
-const getItemsFilter = (
-  selectedItems: Option[],
+const getItemsFilter = <O extends Option>(
+  selectedItems: O[],
   inputValue: string,
-  options: Option[]
+  options: O[]
 ) => {
   const lowerCasedInputValue = inputValue?.toLowerCase();
 
@@ -29,7 +29,7 @@ const getItemsFilter = (
   );
 };
 
-export const useMultiselect = ({
+export const useMultiselect = <O extends Option>({
   selectedItems,
   options,
   onChange,
@@ -37,9 +37,9 @@ export const useMultiselect = ({
   onFocus,
   onBlur,
 }: {
-  selectedItems: Option[];
-  options: Option[];
-  onChange?: MultiChangeHandler;
+  selectedItems: O[];
+  options: O[];
+  onChange?: MultiChangeHandler<O>;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -47,7 +47,7 @@ export const useMultiselect = ({
   const [inputValue, setInputValue] = useState("");
   const [active, setActive] = useState(false);
 
-  const itemsToSelect = getItemsFilter(selectedItems, inputValue, options);
+  const itemsToSelect = getItemsFilter<O>(selectedItems, inputValue, options);
 
   const showInput = onInputValueChange
     ? true
