@@ -24,6 +24,7 @@ export type Row = {
         | "combobox"
         | "select"
         | "number.range"
+        | "date"
       >
     >;
     selected: SelectedOperator;
