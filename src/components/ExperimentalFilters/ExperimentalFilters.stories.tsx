@@ -2,9 +2,9 @@ import { Meta } from "@storybook/react";
 import _ from "lodash";
 import { useState } from "react";
 
-import { Box, Text, Button, Popover, CloseIcon } from "..";
+import { Box, Text, Button, Popover, CloseIcon, Divider } from "..";
 import { Row, _ExperimentalFilters } from ".";
-import { sprinkles } from "~/theme";
+import { Skeleton } from "./Skeleton";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
   title: "Components / _ExperimentalFilters",
@@ -247,6 +247,52 @@ export const WithItems = () => {
   );
 };
 
-export const Loading = () => {};
+export const Loading = () => {
+  return (
+    <Popover>
+      <Popover.Trigger>
+        <Button>Show filters</Button>
+      </Popover.Trigger>
+      <Popover.Content align="start">
+        <Box>
+          <Box
+            paddingX={5}
+            paddingY={4}
+            display="flex"
+            gap={1}
+            alignItems="center"
+            justifyContent="space-between"
+            backgroundColor="surfaceNeutralPlain"
+          >
+            <Text variant="body" size="medium">
+              Filter conditions
+            </Text>
+            <Box display="flex" alignItems="center" gap={2}>
+              <Button variant="tertiary" icon={<CloseIcon />} />
+            </Box>
+          </Box>
+          <Box
+            __minWidth="700px"
+            __minHeight="100px"
+            paddingX={5}
+            paddingY={4}
+            display="flex"
+            gap={3}
+            flexDirection="column"
+          >
+            <Skeleton height={7} />
+            <Skeleton height={7} />
+            <Skeleton height={7} />
+            <Divider />
+            <Box display="flex" gap={4} justifyContent="space-between">
+              <Skeleton height={7} __width="20%" />
+              <Skeleton height={7} __width="20%" />
+            </Box>
+          </Box>
+        </Box>
+      </Popover.Content>
+    </Popover>
+  );
+};
 
 export const Empty = () => {};
