@@ -35,7 +35,7 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
   return (
     <Box
       display="grid"
-      gap={1}
+      gap={0.5}
       __gridTemplateColumns="200px 200px 200px auto"
       placeItems="center"
     >

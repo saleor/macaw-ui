@@ -39,7 +39,7 @@ export interface FilterEvent extends Event {
 }
 
 type UseEventsProps = {
-  onChange: (event: FilterEvent["detail"]) => void;
+  onChange?: (event: FilterEvent["detail"]) => void;
 };
 
 const emitter = new FilterEventEmitter();
@@ -47,7 +47,7 @@ const emitter = new FilterEventEmitter();
 export const useEventEmitter = ({ onChange }: UseEventsProps) => {
   useEffect(() => {
     const handleChange = (event: FilterEvent) => {
-      onChange(event.detail);
+      onChange?.(event.detail);
     };
 
     emitter.addEventListener(emitter.type, handleChange);

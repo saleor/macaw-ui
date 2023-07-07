@@ -178,7 +178,7 @@ export const RightOperator = ({
 
   if (isNumberRange(selected)) {
     return (
-      <Box display="flex" gap={2}>
+      <Box display="flex" gap={2} alignItems="center">
         <Input
           value={selected.value.start}
           type="number"
@@ -186,6 +186,7 @@ export const RightOperator = ({
             emitter.changeRightOperatorStart(index, e.target.value);
           }}
         />
+        <Box>-</Box>
         <Input
           value={selected.value.end}
           type="number"

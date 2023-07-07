@@ -2,8 +2,9 @@ import { Meta } from "@storybook/react";
 import _ from "lodash";
 import { useState } from "react";
 
-import { Box } from "../Box";
+import { Box, Text, Button, Popover, CloseIcon } from "..";
 import { Row, _ExperimentalFilters } from ".";
+import { sprinkles } from "~/theme";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
   title: "Components / _ExperimentalFilters",
@@ -14,7 +15,7 @@ export default meta;
 
 const leftOptions = [
   { value: "price", label: "Price", type: "1" },
-  { value: "category", label: "Category", type: "2" },
+  { value: "category", label: "Categories", type: "2" },
   { value: "rating", label: "Rating", type: "3" },
   { value: "discount", label: "Discount", type: "4" },
 ];
@@ -35,7 +36,7 @@ const value = [
   },
   "AND",
   {
-    value: { value: "category", label: "Category", type: "2" },
+    value: { value: "category", label: "Categories", type: "2" },
     condition: {
       options: [{ value: "input-1", label: "are", type: "multiselect" }],
       selected: {
@@ -44,6 +45,7 @@ const value = [
         options: [
           { value: "electronics", label: "Electronics" },
           { value: "clothing", label: "Clothing" },
+          { value: "furniture", label: "Furniture" },
         ],
       },
     },
@@ -98,110 +100,153 @@ const value = [
   },
 ] as Array<Row | string>;
 
-export const Default = () => {
+const Filters = () => {
   const [rows, setRows] = useState<Array<Row | string>>(value);
 
   return (
-    <Box __maxWidth="800px">
-      <_ExperimentalFilters
-        value={rows}
-        leftOptions={leftOptions}
-        onChange={(event) => {
-          if (event?.type === "rightOperator.onChange") {
-            const newState = _.setWith(
-              _.clone(rows),
-              event?.path ?? "",
-              event?.value,
-              _.clone
-            );
-            setRows(newState);
-          }
+    <Box>
+      <Box
+        paddingX={5}
+        paddingY={4}
+        display="flex"
+        gap={1}
+        alignItems="center"
+        justifyContent="space-between"
+        backgroundColor="surfaceNeutralPlain"
+      >
+        <Text variant="body" size="medium">
+          Filter conditions
+        </Text>
+        <Box display="flex" alignItems="center" gap={2}>
+          <Button variant="tertiary">Clear filters</Button>
+          <Button variant="tertiary" icon={<CloseIcon />} />
+        </Box>
+      </Box>
 
-          if (event?.type === "condition.onChange") {
-            const newState = _.setWith(
-              _.clone(rows),
-              event?.path ?? "",
-              {
-                value: [],
-                options: [
-                  { value: "electronics", label: "Electronics" },
-                  { value: "clothing", label: "Clothing" },
-                ],
-                conditionValue: event?.value,
-              },
-              _.clone
-            );
-            setRows(newState);
-          }
+      <Box
+        paddingX={5}
+        paddingY={3}
+        backgroundColor="interactiveNeutralSecondaryHovering"
+      >
+        <_ExperimentalFilters
+          value={rows}
+          leftOptions={leftOptions}
+          onChange={(event) => {
+            if (event?.type === "rightOperator.onChange") {
+              const newState = _.setWith(
+                _.clone(rows),
+                event?.path ?? "",
+                event?.value,
+                _.clone
+              );
+              setRows(newState);
+            }
 
-          if (event?.type === "leftOperator.onChange") {
-            const newState = _.setWith(
-              _.clone(rows),
-              event?.path ?? "",
-              {
-                value: event?.value,
-                condition: {
+            if (event?.type === "condition.onChange") {
+              const newState = _.setWith(
+                _.clone(rows),
+                event?.path ?? "",
+                {
+                  value: [],
                   options: [
-                    { type: "number", label: "is", value: "input-1" },
-                    { type: "multiselect", label: "has", value: "input-2" },
+                    { value: "electronics", label: "Electronics" },
+                    { value: "clothing", label: "Clothing" },
                   ],
-                  selected: {
-                    value: "",
-                    conditionValue: {
-                      type: "number",
-                      label: "is",
-                      value: "input-1",
+                  conditionValue: event?.value,
+                },
+                _.clone
+              );
+              setRows(newState);
+            }
+
+            if (event?.type === "leftOperator.onChange") {
+              const newState = _.setWith(
+                _.clone(rows),
+                event?.path ?? "",
+                {
+                  value: event?.value,
+                  condition: {
+                    options: [
+                      { type: "number", label: "is", value: "input-1" },
+                      { type: "multiselect", label: "has", value: "input-2" },
+                    ],
+                    selected: {
+                      value: "",
+                      conditionValue: {
+                        type: "number",
+                        label: "is",
+                        value: "input-1",
+                      },
                     },
                   },
                 },
-              },
-              _.clone
-            );
-            setRows(newState);
-          }
-          if (event?.type === "row.add") {
-            const newState = [
-              ...rows,
-              "AND",
-              {
-                value: null,
-                condition: {
-                  options: [],
-                  selected: {
-                    value: "",
-                    conditionValue: null,
+                _.clone
+              );
+              setRows(newState);
+            }
+            if (event?.type === "row.add") {
+              const newState = [
+                ...rows,
+                "AND",
+                {
+                  value: null,
+                  condition: {
                     options: [],
+                    selected: {
+                      value: "",
+                      conditionValue: null,
+                      options: [],
+                    },
                   },
                 },
-              },
-            ];
-            setRows(newState);
-          }
-
-          if (event?.type === "row.remove") {
-            const index = parseInt(event?.path ?? "", 10);
-            if (index === 0) {
-              const newState = [...rows.slice(index + 2, rows.length)];
+              ];
               setRows(newState);
-              return;
             }
-            const newState = [
-              ...rows.slice(0, index - 1),
-              ...rows.slice(index + 1, rows.length),
-            ];
-            setRows(newState);
-          }
-        }}
-      >
-        <_ExperimentalFilters.Footer>
-          <_ExperimentalFilters.AddRowButton>
-            Add row
-          </_ExperimentalFilters.AddRowButton>
-          <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
-            Confirm
-          </_ExperimentalFilters.ConfirmButton>
-        </_ExperimentalFilters.Footer>
-      </_ExperimentalFilters>
+
+            if (event?.type === "row.remove") {
+              const index = parseInt(event?.path ?? "", 10);
+              if (index === 0) {
+                const newState = [...rows.slice(index + 2, rows.length)];
+                setRows(newState);
+                return;
+              }
+              const newState = [
+                ...rows.slice(0, index - 1),
+                ...rows.slice(index + 1, rows.length),
+              ];
+              setRows(newState);
+            }
+          }}
+        >
+          <_ExperimentalFilters.Footer>
+            <_ExperimentalFilters.AddRowButton>
+              + Add row
+            </_ExperimentalFilters.AddRowButton>
+            <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
+              Save
+            </_ExperimentalFilters.ConfirmButton>
+          </_ExperimentalFilters.Footer>
+        </_ExperimentalFilters>
+      </Box>
     </Box>
   );
 };
+
+export const WithItems = () => {
+  return (
+    <Popover>
+      <Popover.Trigger>
+        <Button>Show filters</Button>
+      </Popover.Trigger>
+      <Popover.Content align="start">
+        <Box __minWidth="200px" __minHeight="100px">
+          <Filters />
+        </Box>
+      </Popover.Content>
+    </Popover>
+  );
+};
+
+export const Loading = () => {};
+
+export const Empty = () => {};
