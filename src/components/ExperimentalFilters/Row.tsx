@@ -39,7 +39,6 @@ export const Row = ({
   emitter,
   showRemoveButton,
 }: RowProps) => {
-  console.log("showRemoveButton", showRemoveButton);
   return (
     <Box
       display="grid"

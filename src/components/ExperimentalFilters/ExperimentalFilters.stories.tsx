@@ -3,8 +3,8 @@ import _ from "lodash";
 import { useState } from "react";
 
 import { Box, Text, Button, Popover, CloseIcon, Divider } from "..";
-import { Row, _ExperimentalFilters } from ".";
 import { Skeleton } from "./Skeleton";
+import { Row, _ExperimentalFilters } from ".";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
   title: "Components / _ExperimentalFilters",
@@ -113,6 +113,8 @@ const Filters = () => {
         alignItems="center"
         justifyContent="space-between"
         backgroundColor="surfaceNeutralPlain"
+        borderTopLeftRadius={2}
+        borderTopRightRadius={2}
       >
         <Text variant="body" size="medium">
           Filter conditions
@@ -129,6 +131,8 @@ const Filters = () => {
         paddingX={5}
         paddingY={3}
         backgroundColor="interactiveNeutralSecondaryHovering"
+        borderBottomLeftRadius={2}
+        borderBottomRightRadius={2}
       >
         <_ExperimentalFilters
           value={rows}
@@ -241,8 +245,10 @@ export const WithItems = () => {
         <Button>Show filters</Button>
       </Popover.Trigger>
       <Popover.Content align="start">
-        <Box __minWidth="200px" __minHeight="100px">
-          <Filters />
+        <Box>
+          <Box __minWidth="200px" __minHeight="100px">
+            <Filters />
+          </Box>
         </Box>
       </Popover.Content>
     </Popover>
@@ -425,7 +431,7 @@ export const Empty = () => {
                       },
                     },
                   ];
-                  setRows(newState);
+                  setRows(newState as any);
                 }
 
                 if (event?.type === "row.remove") {

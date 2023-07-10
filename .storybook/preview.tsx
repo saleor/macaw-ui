@@ -67,11 +67,7 @@ const ThemeSwitcher = ({ children, theme }) => {
     setTheme(theme);
   }, [theme]);
 
-  return (
-    <Box display="flex" justifyContent="center" __backgroundColor="white">
-      {children}
-    </Box>
-  );
+  return <Box __backgroundColor="white">{children}</Box>;
 };
 
 export const decorators = [
