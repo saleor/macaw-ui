@@ -81,10 +81,6 @@ export const RightOperator = ({
   selected,
   emitter,
 }: RightOperatorProps) => {
-  if (selected.conditionValue === null) {
-    return null;
-  }
-
   if (isTextInput(selected)) {
     return (
       <Input
@@ -210,5 +206,5 @@ export const RightOperator = ({
     );
   }
 
-  return null;
+  return <Input disabled />;
 };

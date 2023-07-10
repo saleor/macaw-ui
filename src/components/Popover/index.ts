@@ -3,6 +3,7 @@ import { Anchor } from "./Anchor";
 import { Trigger } from "./Trigger";
 import { Arrow } from "./Arrow";
 import { PopoverRoot } from "./Root";
+import { Close } from "./Close";
 
 export type { PopoverContentProps } from "./Content";
 export type { PopoverAnchorProps } from "./Anchor";
@@ -15,4 +16,5 @@ export const Popover = Object.assign(PopoverRoot, {
   Content,
   Anchor,
   Arrow,
+  Close,
 });

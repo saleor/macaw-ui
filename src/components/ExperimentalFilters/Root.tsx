@@ -50,6 +50,7 @@ export const Root = ({
                 key={`filterRow-${idx}`}
                 leftOptions={leftOptions}
                 emitter={emitter}
+                showRemoveButton={value.length > 1}
               />
             )
           )}

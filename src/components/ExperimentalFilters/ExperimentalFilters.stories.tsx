@@ -119,7 +119,9 @@ const Filters = () => {
         </Text>
         <Box display="flex" alignItems="center" gap={2}>
           <Button variant="tertiary">Clear filters</Button>
-          <Button variant="tertiary" icon={<CloseIcon />} />
+          <Popover.Close>
+            <Button variant="tertiary" icon={<CloseIcon />} />
+          </Popover.Close>
         </Box>
       </Box>
 
@@ -268,7 +270,9 @@ export const Loading = () => {
               Filter conditions
             </Text>
             <Box display="flex" alignItems="center" gap={2}>
-              <Button variant="tertiary" icon={<CloseIcon />} />
+              <Popover.Close>
+                <Button variant="tertiary" icon={<CloseIcon />} />
+              </Popover.Close>
             </Box>
           </Box>
           <Box
@@ -295,4 +299,162 @@ export const Loading = () => {
   );
 };
 
-export const Empty = () => {};
+const emptyInitialValue = [
+  {
+    value: null,
+    condition: {
+      options: [],
+      selected: {
+        value: "",
+        conditionValue: null,
+      },
+    },
+  },
+];
+
+export const Empty = () => {
+  const [rows, setRows] = useState(emptyInitialValue);
+
+  return (
+    <Popover>
+      <Popover.Trigger>
+        <Button>Show filters</Button>
+      </Popover.Trigger>
+      <Popover.Content align="start">
+        <Box>
+          <Box
+            paddingX={5}
+            paddingY={4}
+            display="flex"
+            gap={1}
+            alignItems="center"
+            justifyContent="space-between"
+            backgroundColor="surfaceNeutralPlain"
+          >
+            <Text variant="body" size="medium">
+              Filter conditions
+            </Text>
+            <Box display="flex" alignItems="center" gap={2}>
+              <Popover.Close>
+                <Button variant="tertiary" icon={<CloseIcon />} />
+              </Popover.Close>
+            </Box>
+          </Box>
+          <Box
+            __minWidth="700px"
+            __minHeight="100px"
+            paddingX={5}
+            paddingY={4}
+            display="flex"
+            gap={3}
+            flexDirection="column"
+          >
+            <_ExperimentalFilters
+              leftOptions={leftOptions}
+              value={rows}
+              onChange={(event) => {
+                if (event?.type === "rightOperator.onChange") {
+                  const newState = _.setWith(
+                    _.clone(rows),
+                    event?.path ?? "",
+                    event?.value,
+                    _.clone
+                  );
+                  setRows(newState);
+                }
+
+                if (event?.type === "condition.onChange") {
+                  const newState = _.setWith(
+                    _.clone(rows),
+                    event?.path ?? "",
+                    {
+                      value: [],
+                      options: [
+                        { value: "electronics", label: "Electronics" },
+                        { value: "clothing", label: "Clothing" },
+                      ],
+                      conditionValue: event?.value,
+                    },
+                    _.clone
+                  );
+                  setRows(newState);
+                }
+
+                if (event?.type === "leftOperator.onChange") {
+                  const newState = _.setWith(
+                    _.clone(rows),
+                    event?.path ?? "",
+                    {
+                      value: event?.value,
+                      condition: {
+                        options: [
+                          { type: "number", label: "is", value: "input-1" },
+                          {
+                            type: "multiselect",
+                            label: "has",
+                            value: "input-2",
+                          },
+                        ],
+                        selected: {
+                          value: "",
+                          conditionValue: {
+                            type: "number",
+                            label: "is",
+                            value: "input-1",
+                          },
+                        },
+                      },
+                    },
+                    _.clone
+                  );
+                  setRows(newState);
+                }
+                if (event?.type === "row.add") {
+                  const newState = [
+                    ...rows,
+                    "AND",
+                    {
+                      value: null,
+                      condition: {
+                        options: [],
+                        selected: {
+                          value: "",
+                          conditionValue: null,
+                          options: [],
+                        },
+                      },
+                    },
+                  ];
+                  setRows(newState);
+                }
+
+                if (event?.type === "row.remove") {
+                  const index = parseInt(event?.path ?? "", 10);
+                  if (index === 0) {
+                    const newState = [...rows.slice(index + 2, rows.length)];
+                    setRows(newState);
+                    return;
+                  }
+                  const newState = [
+                    ...rows.slice(0, index - 1),
+                    ...rows.slice(index + 1, rows.length),
+                  ];
+                  setRows(newState);
+                }
+              }}
+            >
+              <_ExperimentalFilters.Footer>
+                <_ExperimentalFilters.AddRowButton>
+                  + Add row
+                </_ExperimentalFilters.AddRowButton>
+                <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
+                  Save
+                </_ExperimentalFilters.ConfirmButton>
+              </_ExperimentalFilters.Footer>
+            </_ExperimentalFilters>
+          </Box>
+        </Box>
+      </Popover.Content>
+    </Popover>
+  );
+};
