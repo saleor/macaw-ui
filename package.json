@@ -9,7 +9,6 @@
   "bugs": {
     "url": "https://github.com/saleor/macaw-ui/issues"
   },
-  "type": "module",
   "files": [
     "dist/*",
     "legacy/dist/*"
