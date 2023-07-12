@@ -81,7 +81,11 @@ export type RightOperatorChangeData = {
   type: "rightOperator.onChange";
   path: `${number}.condition.selected.value`;
   index: number;
-  value: string | RightOperatorOption[] | RightOperatorOption;
+  value:
+    | string
+    | RightOperatorOption[]
+    | RightOperatorOption
+    | [string, string];
 };
 
 export type RightOperatorFocusData = {
@@ -99,20 +103,6 @@ export type RightOperatorBlurData = {
 export type RightOperatorInputValueChangeData = {
   type: "rightOperator.onInputValueChange";
   path: `${number}.condition.selected.value`;
-  index: number;
-  value: string;
-};
-
-export type RightOperatorStartChangeData = {
-  type: "rightOperatorStart.onChange";
-  path: `${number}.condition.selected.value.start`;
-  index: number;
-  value: string;
-};
-
-export type RightOperatorEndChangeData = {
-  type: "rightOperatorEnd.onChange";
-  path: `${number}.condition.selected.value.end`;
   index: number;
   value: string;
 };
@@ -232,7 +222,11 @@ export class FilterEventEmitter extends EventTarget {
 
   changeRightOperator(
     index: number,
-    value: string | RightOperatorOption[] | RightOperatorOption
+    value:
+      | string
+      | RightOperatorOption[]
+      | RightOperatorOption
+      | [string, string]
   ) {
     this.dispatchEvent(
       new CustomEvent<RightOperatorChangeData>(this.type, {
@@ -276,32 +270,6 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "rightOperator.onInputValueChange",
           path: `${index}.condition.selected.value`,
-          index,
-          value,
-        },
-      })
-    );
-  }
-
-  changeRightOperatorStart(index: number, value: string) {
-    this.dispatchEvent(
-      new CustomEvent<RightOperatorStartChangeData>(this.type, {
-        detail: {
-          type: "rightOperatorStart.onChange",
-          path: `${index}.condition.selected.value.start`,
-          index,
-          value,
-        },
-      })
-    );
-  }
-
-  changeRightOperatorEnd(index: number, value: string) {
-    this.dispatchEvent(
-      new CustomEvent<RightOperatorEndChangeData>(this.type, {
-        detail: {
-          type: "rightOperatorEnd.onChange",
-          path: `${index}.condition.selected.value.end`,
           index,
           value,
         },

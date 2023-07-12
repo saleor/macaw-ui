@@ -46,7 +46,7 @@ type SelectOperator = {
 };
 
 type NumberRangeOperator = {
-  value: { start: string; end: string };
+  value: [string, string];
   conditionValue: ConditionOption<"number.range"> | null;
 };
 
@@ -172,22 +172,24 @@ export const RightOperator = ({
     );
   }
 
+  // TODO: extract to own component after acceptance
   if (isNumberRange(selected)) {
+    const [start, end] = selected.value;
     return (
       <Box display="flex" gap={2} alignItems="center">
         <Input
-          value={selected.value.start}
+          value={start}
           type="number"
           onChange={(e) => {
-            emitter.changeRightOperatorStart(index, e.target.value);
+            emitter.changeRightOperator(index, [e.target.value, end]);
           }}
         />
         <Box>-</Box>
         <Input
-          value={selected.value.end}
+          value={end}
           type="number"
           onChange={(e) => {
-            emitter.changeRightOperatorEnd(index, e.target.value);
+            emitter.changeRightOperator(index, [start, e.target.value]);
           }}
         />
       </Box>

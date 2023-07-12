@@ -92,10 +92,7 @@ const value = [
           label: "between",
           type: "number.range",
         },
-        value: {
-          start: "0",
-          end: "1",
-        },
+        value: ["0", "1"],
       },
     },
   },

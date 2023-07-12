@@ -9,6 +9,7 @@ export type SkeletonProps = PropsWithBox<
   Omit<HTMLAttributes<HTMLDivElement>, "color">
 >;
 
+// TODO: extract to own component after acceptance
 export const Skeleton = ({ className, ...props }: SkeletonProps) => {
   return (
     <Box
