@@ -11,10 +11,8 @@ import {
   LeftOperatorInputValueChangeData,
   RightOperatorBlurData,
   RightOperatorChangeData,
-  RightOperatorEndChangeData,
   RightOperatorFocusData,
   RightOperatorInputValueChangeData,
-  RightOperatorStartChangeData,
   RowAddData,
   RowRemoveData,
 } from "./EventEmitter";
@@ -33,9 +31,7 @@ export interface FilterEvent extends Event {
     | RightOperatorChangeData
     | RightOperatorFocusData
     | RightOperatorBlurData
-    | RightOperatorInputValueChangeData
-    | RightOperatorStartChangeData
-    | RightOperatorEndChangeData;
+    | RightOperatorInputValueChangeData;
 }
 
 type UseEventsProps = {
