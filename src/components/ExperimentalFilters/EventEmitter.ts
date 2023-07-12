@@ -20,11 +20,13 @@ export type RowAddData = {
 export type RowRemoveData = {
   type: "row.remove";
   path: `${number}`;
+  index: number;
 };
 
 export type LeftOperatorChangeData = {
   type: "leftOperator.onChange";
   path: `${number}`;
+  index: number;
   value: LeftOperatorOption;
   rowType: string;
 };
@@ -32,22 +34,26 @@ export type LeftOperatorChangeData = {
 export type LeftOperatorFocusData = {
   type: "leftOperator.onFocus";
   path: `${number}`;
+  index: number;
 };
 
 export type LeftOperatorBlurData = {
   type: "leftOperator.onBlur";
   path: `${number}`;
+  index: number;
 };
 
 export type LeftOperatorInputValueChangeData = {
   type: "leftOperator.onInputValueChange";
   path: `${number}`;
+  index: number;
   value: string;
 };
 
 export type ConditionChangeData = {
   type: "condition.onChange";
   path: `${number}.condition.selected`;
+  index: number;
   value: ConditionOption<
     | "text"
     | "number"
@@ -62,44 +68,42 @@ export type ConditionChangeData = {
 export type ConditionFocusData = {
   type: "condition.onFocus";
   path: `${number}.condition.selected`;
+  index: number;
 };
 
 export type ConditionBlurData = {
   type: "condition.onBlur";
   path: `${number}.condition.selected`;
+  index: number;
 };
 
 export type RightOperatorChangeData = {
   type: "rightOperator.onChange";
   path: `${number}.condition.selected.value`;
-  value: string | RightOperatorOption[] | RightOperatorOption;
+  index: number;
+  value:
+    | string
+    | RightOperatorOption[]
+    | RightOperatorOption
+    | [string, string];
 };
 
 export type RightOperatorFocusData = {
   type: "rightOperator.onFocus";
   path: `${number}.condition.selected.value`;
+  index: number;
 };
 
 export type RightOperatorBlurData = {
   type: "rightOperator.onBlur";
   path: `${number}.condition.selected.value`;
+  index: number;
 };
 
 export type RightOperatorInputValueChangeData = {
   type: "rightOperator.onInputValueChange";
   path: `${number}.condition.selected.value`;
-  value: string;
-};
-
-export type RightOperatorStartChangeData = {
-  type: "rightOperatorStart.onChange";
-  path: `${number}.condition.selected.value.start`;
-  value: string;
-};
-
-export type RightOperatorEndChangeData = {
-  type: "rightOperatorEnd.onChange";
-  path: `${number}.condition.selected.value.end`;
+  index: number;
   value: string;
 };
 
@@ -123,6 +127,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "row.remove",
           path: `${index}`,
+          index,
         },
       })
     );
@@ -140,6 +145,7 @@ export class FilterEventEmitter extends EventTarget {
           path: `${index}`,
           value,
           rowType,
+          index,
         },
       })
     );
@@ -150,6 +156,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "leftOperator.onFocus",
           path: `${index}`,
+          index,
         },
       })
     );
@@ -160,6 +167,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "leftOperator.onBlur",
           path: `${index}`,
+          index,
         },
       })
     );
@@ -171,6 +179,7 @@ export class FilterEventEmitter extends EventTarget {
           type: "leftOperator.onInputValueChange",
           path: `${index}`,
           value,
+          index,
         },
       })
     );
@@ -183,6 +192,7 @@ export class FilterEventEmitter extends EventTarget {
           type: "condition.onChange",
           path: `${index}.condition.selected`,
           value,
+          index,
         },
       })
     );
@@ -193,6 +203,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "condition.onFocus",
           path: `${index}.condition.selected`,
+          index,
         },
       })
     );
@@ -203,6 +214,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "condition.onBlur",
           path: `${index}.condition.selected`,
+          index,
         },
       })
     );
@@ -210,7 +222,11 @@ export class FilterEventEmitter extends EventTarget {
 
   changeRightOperator(
     index: number,
-    value: string | RightOperatorOption[] | RightOperatorOption
+    value:
+      | string
+      | RightOperatorOption[]
+      | RightOperatorOption
+      | [string, string]
   ) {
     this.dispatchEvent(
       new CustomEvent<RightOperatorChangeData>(this.type, {
@@ -218,6 +234,7 @@ export class FilterEventEmitter extends EventTarget {
           type: "rightOperator.onChange",
           path: `${index}.condition.selected.value`,
           value,
+          index,
         },
       })
     );
@@ -229,6 +246,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "rightOperator.onFocus",
           path: `${index}.condition.selected.value`,
+          index,
         },
       })
     );
@@ -240,6 +258,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "rightOperator.onBlur",
           path: `${index}.condition.selected.value`,
+          index,
         },
       })
     );
@@ -251,30 +270,7 @@ export class FilterEventEmitter extends EventTarget {
         detail: {
           type: "rightOperator.onInputValueChange",
           path: `${index}.condition.selected.value`,
-          value,
-        },
-      })
-    );
-  }
-
-  changeRightOperatorStart(index: number, value: string) {
-    this.dispatchEvent(
-      new CustomEvent<RightOperatorStartChangeData>(this.type, {
-        detail: {
-          type: "rightOperatorStart.onChange",
-          path: `${index}.condition.selected.value.start`,
-          value,
-        },
-      })
-    );
-  }
-
-  changeRightOperatorEnd(index: number, value: string) {
-    this.dispatchEvent(
-      new CustomEvent<RightOperatorEndChangeData>(this.type, {
-        detail: {
-          type: "rightOperatorEnd.onChange",
-          path: `${index}.condition.selected.value.end`,
+          index,
           value,
         },
       })

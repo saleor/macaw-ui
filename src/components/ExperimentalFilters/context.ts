@@ -11,7 +11,9 @@ export const useFilterContext = () => {
   const context = useContext(FilterContext);
 
   if (!context) {
-    throw new Error("Filter context must be uset within its provider.");
+    throw new Error(
+      "Filter context must be used within FilterContext.Provider"
+    );
   }
 
   return context;

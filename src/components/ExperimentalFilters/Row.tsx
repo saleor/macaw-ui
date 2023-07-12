@@ -9,6 +9,7 @@ type RowProps = {
   index: number;
   leftOptions: ExperimentalFiltersProps["leftOptions"];
   emitter: FilterEventEmitter;
+  showRemoveButton: boolean;
 };
 
 export type Row = {
@@ -31,11 +32,17 @@ export type Row = {
   };
 };
 
-export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
+export const Row = ({
+  item,
+  index,
+  leftOptions,
+  emitter,
+  showRemoveButton,
+}: RowProps) => {
   return (
     <Box
       display="grid"
-      gap={1}
+      gap={0.5}
       __gridTemplateColumns="200px 200px 200px auto"
       placeItems="center"
     >
@@ -83,12 +90,13 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
           emitter={emitter}
         />
       )}
-
-      <Button
-        variant="tertiary"
-        icon={<RemoveIcon />}
-        onClick={() => emitter.removeRow(index)}
-      />
+      {showRemoveButton && (
+        <Button
+          variant="tertiary"
+          icon={<RemoveIcon />}
+          onClick={() => emitter.removeRow(index)}
+        />
+      )}
     </Box>
   );
 };
