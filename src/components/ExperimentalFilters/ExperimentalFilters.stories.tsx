@@ -317,7 +317,7 @@ const emptyInitialValue = [
 ];
 
 export const Empty = () => {
-  const [rows, setRows] = useState(emptyInitialValue);
+  const [rows, setRows] = useState<Array<Row | string>>(emptyInitialValue);
 
   return (
     <Popover>
@@ -429,7 +429,7 @@ export const Empty = () => {
                       },
                     },
                   ];
-                  setRows(newState as any);
+                  setRows(newState);
                 }
 
                 if (event?.type === "row.remove") {
