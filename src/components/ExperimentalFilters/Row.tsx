@@ -43,7 +43,7 @@ export const Row = ({
     <Box
       display="grid"
       gap={0.5}
-      __gridTemplateColumns="200px 200px 200px auto"
+      __gridTemplateColumns="200px 120px 200px auto"
       placeItems="center"
     >
       <DynamicCombobox
