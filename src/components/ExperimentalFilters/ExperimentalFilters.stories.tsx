@@ -302,21 +302,8 @@ export const Loading = () => {
   );
 };
 
-const emptyInitialValue = [
-  {
-    value: null,
-    condition: {
-      options: [],
-      selected: {
-        value: "",
-        conditionValue: null,
-      },
-    },
-  },
-];
-
 export const Empty = () => {
-  const [rows, setRows] = useState<Array<Row | string>>(emptyInitialValue);
+  const [rows, setRows] = useState<Array<Row | string>>([]);
 
   return (
     <Popover>
@@ -344,7 +331,7 @@ export const Empty = () => {
             </Box>
           </Box>
           <Box
-            __minWidth="700px"
+            __minWidth="649px"
             __minHeight="100px"
             paddingX={5}
             paddingY={4}
@@ -415,7 +402,6 @@ export const Empty = () => {
                 if (event?.type === "row.add") {
                   const newState = [
                     ...rows,
-                    "AND",
                     {
                       value: null,
                       condition: {

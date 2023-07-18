@@ -5,18 +5,15 @@ import { FilterContext } from "./context";
 import { FilterEvent, useEventEmitter } from "./useEvents";
 import { Row } from "./Row";
 import { LeftOperatorOption } from "./EventEmitter";
+import { Filters } from "./Filters";
+import { NoValue } from "./NoValue";
 
 export type ExperimentalFiltersProps = {
   value: Array<Row | string>;
   leftOptions: LeftOperatorOption[];
   children?: ReactNode;
   onChange?: (event: FilterEvent["detail"]) => void;
-};
-
-const locale: Record<string, string> = {
-  WHERE: "Where",
-  AND: "and",
-  OR: "or",
+  locale?: Record<string, string>;
 };
 
 export const Root = ({
@@ -24,37 +21,32 @@ export const Root = ({
   onChange,
   leftOptions,
   children,
+  locale = {
+    WHERE: "Where",
+    AND: "and",
+    OR: "or",
+    noValueText: "Click button below to start filtering",
+  },
 }: ExperimentalFiltersProps) => {
   const { emitter } = useEventEmitter({
     onChange,
   });
 
   return (
-    <FilterContext.Provider value={{ emitter }}>
+    <FilterContext.Provider
+      value={{ emitter, confirmButtonDisabled: value.length === 0 }}
+    >
       <Box>
-        <Box
-          display="grid"
-          __gridTemplateColumns="repeat(2, auto)"
-          __placeItems="center self-start"
-          columnGap={2}
-          rowGap={3}
-        >
-          <Text>{locale.WHERE}</Text>
-          {value.map((item, idx) =>
-            typeof item === "string" ? (
-              <Text key={idx}>{locale[item]}</Text>
-            ) : (
-              <Row
-                item={item}
-                index={idx}
-                key={`filterRow-${idx}`}
-                leftOptions={leftOptions}
-                emitter={emitter}
-                showRemoveButton={value.length > 1}
-              />
-            )
-          )}
-        </Box>
+        {value.length > 0 ? (
+          <Filters
+            value={value}
+            leftOptions={leftOptions}
+            emitter={emitter}
+            locale={locale}
+          />
+        ) : (
+          <NoValue locale={locale} />
+        )}
         <Divider />
         {children}
       </Box>

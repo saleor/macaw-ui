@@ -10,10 +10,10 @@ export const Footer = ({ children }: { children: ReactNode }) => (
 );
 
 export const AddRowButton = ({ children }: { children: ReactNode }) => {
-  const context = useFilterContext();
+  const { emitter } = useFilterContext();
 
   return (
-    <Button onClick={() => context.emitter.addRow()} variant="secondary">
+    <Button onClick={() => emitter.addRow()} variant="secondary">
       {children}
     </Button>
   );
@@ -25,8 +25,16 @@ export const ConfirmButton = ({
 }: {
   children: ReactNode;
   onClick: () => void;
-}) => (
-  <Button onClick={onClick} variant="primary">
-    {children}
-  </Button>
-);
+}) => {
+  const { confirmButtonDisabled } = useFilterContext();
+
+  return (
+    <Button
+      onClick={onClick}
+      variant="primary"
+      disabled={confirmButtonDisabled}
+    >
+      {children}
+    </Button>
+  );
+};
