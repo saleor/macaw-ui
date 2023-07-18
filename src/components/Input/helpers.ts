@@ -11,4 +11,4 @@ export const checkIfValidNumberInput = (event: KeyboardEvent<HTMLElement>) => {
 };
 
 export const checkIfDateTimeInput = (type: InputProps["type"]) =>
-  ["date", "time"].includes(type ?? "");
+  ["date", "time", "datetime-local"].includes(type ?? "");

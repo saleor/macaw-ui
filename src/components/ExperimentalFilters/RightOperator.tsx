@@ -18,7 +18,8 @@ export type SelectedOperator =
   | ComboboxOperator
   | SelectOperator
   | NumberRangeOperator
-  | DateOperator;
+  | DateOperator
+  | DateTimeOperator;
 
 type InputOperator = {
   value: string;
@@ -55,6 +56,11 @@ type DateOperator = {
   conditionValue: ConditionOption<"date"> | null;
 };
 
+type DateTimeOperator = {
+  value: string;
+  conditionValue: ConditionOption<"datetime"> | null;
+};
+
 const isTextInput = (value: SelectedOperator): value is InputOperator =>
   value.conditionValue?.type === "text";
 
@@ -75,6 +81,9 @@ const isNumberRange = (value: SelectedOperator): value is NumberRangeOperator =>
 
 const isDate = (value: SelectedOperator): value is DateOperator =>
   value.conditionValue?.type === "date";
+
+const isDateTime = (value: SelectedOperator): value is DateTimeOperator =>
+  value.conditionValue?.type === "datetime";
 
 export const RightOperator = ({
   index,
@@ -200,6 +209,18 @@ export const RightOperator = ({
     return (
       <Input
         type="date"
+        value={selected.value}
+        onChange={(e) => {
+          emitter.changeRightOperator(index, e.target.value);
+        }}
+      />
+    );
+  }
+
+  if (isDateTime(selected)) {
+    return (
+      <Input
+        type="datetime-local"
         value={selected.value}
         onChange={(e) => {
           emitter.changeRightOperator(index, e.target.value);

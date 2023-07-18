@@ -230,3 +230,25 @@ export const Time: Story = {
     },
   },
 };
+
+export const DateTime: Story = {
+  ...InputTemplate,
+  args: {
+    type: "datetime-local",
+    value: "",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("");
+  
+  <Input
+    type="datetime-local"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+  />`,
+      },
+    },
+  },
+};
