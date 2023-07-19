@@ -3,6 +3,7 @@ import { FilterEventEmitter } from "./EventEmitter";
 
 interface Context {
   emitter: FilterEventEmitter;
+  actionButtonsDisabled: boolean;
 }
 
 export const FilterContext = createContext<Context | undefined>(undefined);

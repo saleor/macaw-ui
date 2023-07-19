@@ -9,7 +9,6 @@ type RowProps = {
   index: number;
   leftOptions: ExperimentalFiltersProps["leftOptions"];
   emitter: FilterEventEmitter;
-  showRemoveButton: boolean;
 };
 
 export type Row = {
@@ -32,13 +31,7 @@ export type Row = {
   };
 };
 
-export const Row = ({
-  item,
-  index,
-  leftOptions,
-  emitter,
-  showRemoveButton,
-}: RowProps) => {
+export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
   return (
     <Box
       display="grid"
@@ -90,13 +83,12 @@ export const Row = ({
           emitter={emitter}
         />
       )}
-      {showRemoveButton && (
-        <Button
-          variant="tertiary"
-          icon={<RemoveIcon />}
-          onClick={() => emitter.removeRow(index)}
-        />
-      )}
+
+      <Button
+        variant="tertiary"
+        icon={<RemoveIcon />}
+        onClick={() => emitter.removeRow(index)}
+      />
     </Box>
   );
 };
