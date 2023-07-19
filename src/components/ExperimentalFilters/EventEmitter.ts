@@ -62,6 +62,7 @@ export type ConditionChangeData = {
     | "select"
     | "number.range"
     | "date"
+    | "datetime"
   >;
 };
 

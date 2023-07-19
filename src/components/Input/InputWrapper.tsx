@@ -19,7 +19,7 @@ export const useStateEvents = (
   changeHandler?: ChangeHandler
 ) => {
   const [active, setActive] = useState(false);
-  // do not scale label down if input is date or time
+  // do not scale label down if input is date, time or datetime-local
   const typed = checkIfDateTimeInput(type) ? true : Boolean(value || active);
 
   const onFocus = () => setActive(true);
