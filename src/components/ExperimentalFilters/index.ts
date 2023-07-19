@@ -9,12 +9,13 @@ export type {
 } from "./EventEmitter";
 
 import { Root } from "./Root";
-import { AddRowButton, ConfirmButton, Footer } from "./Footer";
+import { AddRowButton, ConfirmButton, Footer, ClearButton } from "./Footer";
 import { Skeleton } from "./Skeleton";
 
 export const _ExperimentalFilters = Object.assign(Root, {
   AddRowButton,
   ConfirmButton,
+  ClearButton,
   Footer,
   Skeleton,
 });

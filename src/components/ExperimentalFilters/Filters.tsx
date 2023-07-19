@@ -22,6 +22,7 @@ export const Filters = ({
     alignItems="center"
     columnGap={2}
     rowGap={3}
+    alignSelf="start"
   >
     <Text>{locale.WHERE}</Text>
     {value.map((item, idx) =>

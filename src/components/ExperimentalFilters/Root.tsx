@@ -34,9 +34,9 @@ export const Root = ({
 
   return (
     <FilterContext.Provider
-      value={{ emitter, confirmButtonDisabled: value.length === 0 }}
+      value={{ emitter, actionButtonsDisabled: value.length === 0 }}
     >
-      <Box>
+      <Box height="100%" display="grid" __gridTemplateRows="1fr">
         {value.length > 0 ? (
           <Filters
             value={value}
