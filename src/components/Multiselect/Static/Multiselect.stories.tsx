@@ -65,7 +65,7 @@ export const Default: Story = {
     docs: {
       source: {
         code: `
-const [selectedItems, setSelectedItems] = useState(["color-black"]);
+const [selectedItems, setSelectedItems] = useState([{ value: "color-black", label: "Black" }]);
 
 <Multiselect
   label="Label"
@@ -89,7 +89,7 @@ export const Error: Story = {
     docs: {
       source: {
         code: `
-const [selectedItems, setSelectedItems] = useState(["color-black"]);
+const [selectedItems, setSelectedItems] = useState([{ value: "color-black", label: "Black" }]);
 
 <Multiselect
   label="Label"
@@ -114,7 +114,7 @@ export const Disabled: Story = {
     docs: {
       source: {
         code: `
-const [selectedItems, setSelectedItems] = useState(["color-black"]);
+const [selectedItems, setSelectedItems] = useState([{ value: "color-black", label: "Black" }]);
 
 <Multiselect
   label="Label"
@@ -139,7 +139,7 @@ export const WithHelperText: Story = {
     docs: {
       source: {
         code: `
-const [selectedItems, setSelectedItems] = useState(["color-black"]);
+const [selectedItems, setSelectedItems] = useState([{ value: "color-black", label: "Black" }]);
 
 <Multiselect
   label="Label"
@@ -164,7 +164,7 @@ export const WithEndAdornment: Story = {
     docs: {
       source: {
         code: `
-const [selectedItems, setSelectedItems] = useState(["color-black"]);
+const [selectedItems, setSelectedItems] = useState([{ value: "color-black", label: "Black" }]);
 
 <Multiselect
   label="Label"

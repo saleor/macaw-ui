@@ -8,9 +8,9 @@ export type {
   ConditionOption,
 } from "./EventEmitter";
 
+import { Skeleton } from "../Skeleton/Skeleton";
 import { Root } from "./Root";
 import { AddRowButton, ConfirmButton, Footer, ClearButton } from "./Footer";
-import { Skeleton } from "./Skeleton";
 
 export const _ExperimentalFilters = Object.assign(Root, {
   AddRowButton,

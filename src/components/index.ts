@@ -24,3 +24,4 @@ export * from "./Select";
 export * from "./Multiselect";
 export { type Option } from "./BaseSelect";
 export * from "./ExperimentalFilters";
+export * from "./Skeleton";

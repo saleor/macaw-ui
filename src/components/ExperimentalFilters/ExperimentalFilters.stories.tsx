@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useState } from "react";
 
 import { Box, Text, Button, Popover, CloseIcon, Divider } from "..";
-import { Skeleton } from "./Skeleton";
+import { Skeleton } from "../Skeleton/Skeleton";
 import { Row, _ExperimentalFilters } from ".";
 
 const meta: Meta<typeof _ExperimentalFilters> = {

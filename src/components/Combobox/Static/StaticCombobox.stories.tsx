@@ -52,7 +52,7 @@ export const Default: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState("color-black");
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
@@ -75,7 +75,7 @@ export const Error: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState("color-black");
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
@@ -99,7 +99,7 @@ export const Disabled: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState("color-black");
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
@@ -123,7 +123,7 @@ export const WithHelperText: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState("color-black");
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
