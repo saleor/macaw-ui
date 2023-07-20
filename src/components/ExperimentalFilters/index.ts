@@ -1,5 +1,12 @@
 export type { ExperimentalFiltersProps } from "./Root";
-export type { Row, FilterEvent } from "./types";
+export type {
+  Row,
+  FilterEvent,
+  SelectedOperator,
+  RightOperatorOption,
+  LeftOperatorOption,
+  ConditionOption,
+} from "./types";
 
 import { Root } from "./Root";
 import { AddRowButton, ConfirmButton, Footer, ClearButton } from "./Footer";
