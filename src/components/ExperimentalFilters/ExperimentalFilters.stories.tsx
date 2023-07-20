@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { Box, Text, Button, Popover, CloseIcon, Divider } from "..";
 import { Skeleton } from "./Skeleton";
-import { Row, _ExperimentalFilters } from ".";
+import { RowComponent, _ExperimentalFilters } from ".";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
   title: "Components / _ExperimentalFilters",
@@ -363,6 +363,100 @@ export const Error = () => {
               }}
               leftOptions={[]}
             >
+              <_ExperimentalFilters.Footer>
+                <_ExperimentalFilters.AddRowButton>
+                  Add row
+                </_ExperimentalFilters.AddRowButton>
+                <Box display="flex" gap={3}>
+                  <_ExperimentalFilters.ClearButton>
+                    Clear
+                  </_ExperimentalFilters.ClearButton>
+                  <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
+                    Save
+                  </_ExperimentalFilters.ConfirmButton>
+                </Box>
+              </_ExperimentalFilters.Footer>
+            </_ExperimentalFilters>
+          </Box>
+        </Box>
+      </Popover.Content>
+    </Popover>
+  );
+};
+
+export const Constraint = () => {
+  const value = [
+    {
+      value: { value: "price", label: "Price", type: "1" },
+      constraint: {
+        dependsOn: "category",
+        disabled: ["left", "condition"],
+        removable: false,
+      },
+      condition: {
+        options: [
+          {
+            type: "number",
+            label: "is",
+            value: "input-1",
+          } as const,
+        ],
+        selected: {
+          value: "3.13",
+          conditionValue: {
+            type: "number",
+            label: "is",
+            value: "input-1",
+          } as const,
+        },
+      },
+    },
+    "AND",
+    {
+      value: { value: "category", label: "Categories", type: "2" },
+      condition: {
+        options: [{ value: "input-1", label: "are", type: "multiselect" }],
+        selected: {
+          conditionValue: {
+            value: "input-1",
+            label: "are",
+            type: "multiselect",
+          },
+          value: [],
+          options: [
+            { value: "electronics", label: "Electronics" },
+            { value: "clothing", label: "Clothing" },
+            { value: "furniture", label: "Furniture" },
+          ],
+        },
+      },
+    },
+  ];
+
+  return (
+    <Popover>
+      <Popover.Trigger>
+        <Button>Show filters</Button>
+      </Popover.Trigger>
+      <Popover.Content align="start">
+        <Box
+          __minHeight="250px"
+          __minWidth="636px"
+          display="grid"
+          __gridTemplateRows="auto 1fr"
+        >
+          <Box {...commonHeaderProps}>
+            <Text variant="body" size="medium">
+              Conditions
+            </Text>
+            <Box display="flex" alignItems="center" gap={2}>
+              <Popover.Close>
+                <Button variant="tertiary" icon={<CloseIcon />} />
+              </Popover.Close>
+            </Box>
+          </Box>
+          <Box {...commonFilterProps}>
+            <_ExperimentalFilters value={value} leftOptions={[]}>
               <_ExperimentalFilters.Footer>
                 <_ExperimentalFilters.AddRowButton>
                   Add row

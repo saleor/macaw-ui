@@ -3,7 +3,7 @@ import { Box, Divider } from "..";
 
 import { FilterContext } from "./context";
 import { FilterEvent, useEventEmitter } from "./useEvents";
-import { Row } from "./Row";
+import type { Row } from "./Row";
 import { LeftOperatorOption } from "./EventEmitter";
 import { Filters } from "./Filters";
 import { NoValue } from "./NoValue";

@@ -11,6 +11,7 @@ type RightOperatorProps = {
   selected: SelectedOperator;
   emitter: FilterEventEmitter;
   error?: string;
+  disabled?: boolean;
 };
 
 export type SelectedOperator =
@@ -91,6 +92,7 @@ export const RightOperator = ({
   selected,
   emitter,
   error,
+  disabled,
 }: RightOperatorProps) => {
   if (isTextInput(selected)) {
     return (
@@ -107,6 +109,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
+        disabled={disabled}
       />
     );
   }
@@ -127,6 +130,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
+        disabled={disabled}
       />
     );
   }
@@ -149,6 +153,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
+        disabled={disabled}
       />
     );
   }
@@ -171,6 +176,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
+        disabled={disabled}
       />
     );
   }
@@ -189,6 +195,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
+        disabled
       />
     );
   }
@@ -206,6 +213,7 @@ export const RightOperator = ({
           }}
           error={!!error}
           helperText={error}
+          disabled={disabled}
         />
         <Box>-</Box>
         <Input
@@ -216,6 +224,7 @@ export const RightOperator = ({
           }}
           error={!!error}
           helperText={error}
+          disabled={disabled}
         />
       </Box>
     );
@@ -231,6 +240,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
+        disabled={disabled}
       />
     );
   }
@@ -245,6 +255,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
+        disabled={disabled}
       />
     );
   }
