@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Box, Divider, Text } from "..";
+import { Box, Divider } from "..";
 
 import { FilterContext } from "./context";
 import { FilterEvent, useEventEmitter } from "./useEvents";
@@ -14,6 +14,12 @@ export type ExperimentalFiltersProps = {
   children?: ReactNode;
   onChange?: (event: FilterEvent["detail"]) => void;
   locale?: Record<string, string>;
+  error?: {
+    row: number;
+    leftText?: string;
+    conditionText?: string;
+    rightText?: string;
+  };
 };
 
 export const Root = ({
@@ -27,6 +33,7 @@ export const Root = ({
     OR: "or",
     noValueText: "Click button below to start filtering",
   },
+  error,
 }: ExperimentalFiltersProps) => {
   const { emitter } = useEventEmitter({
     onChange,
@@ -43,6 +50,7 @@ export const Root = ({
             leftOptions={leftOptions}
             emitter={emitter}
             locale={locale}
+            error={error}
           />
         ) : (
           <NoValue locale={locale} />

@@ -272,6 +272,9 @@ export const helperTextRecipe = recipe({
       }),
     },
   },
+  defaultVariants: {
+    size: "medium",
+  },
 });
 
 export type LabelVariants = RecipeVariants<typeof labelRecipe>;

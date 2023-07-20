@@ -9,6 +9,12 @@ type RowProps = {
   index: number;
   leftOptions: ExperimentalFiltersProps["leftOptions"];
   emitter: FilterEventEmitter;
+  error?: {
+    row: number;
+    leftText?: string;
+    conditionText?: string;
+    rightText?: string;
+  };
 };
 
 export type Row = {
@@ -31,13 +37,14 @@ export type Row = {
   };
 };
 
-export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
+export const Row = ({ item, index, leftOptions, emitter, error }: RowProps) => {
   return (
     <Box
       display="grid"
       gap={0.5}
       __gridTemplateColumns="200px 120px 200px auto"
       placeItems="center"
+      alignItems="start"
     >
       <DynamicCombobox
         value={item.value}
@@ -60,6 +67,8 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
         onBlur={() => {
           emitter.blurLeftOperator(index);
         }}
+        error={!!error?.leftText}
+        helperText={error?.leftText}
       />
       <Select
         value={item.condition.selected.conditionValue}
@@ -74,6 +83,8 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
         onBlur={() => {
           emitter.blurCondition(index);
         }}
+        error={!!error?.conditionText}
+        helperText={error?.conditionText}
       />
 
       {item.condition?.selected && (
@@ -81,6 +92,7 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
           selected={item.condition?.selected}
           index={index}
           emitter={emitter}
+          error={error?.rightText}
         />
       )}
 

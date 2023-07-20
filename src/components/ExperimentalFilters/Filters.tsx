@@ -5,7 +5,10 @@ import { FilterEventEmitter } from "./EventEmitter";
 
 import { ExperimentalFiltersProps } from ".";
 
-type FiltersProps = Pick<ExperimentalFiltersProps, "value" | "leftOptions"> & {
+type FiltersProps = Pick<
+  ExperimentalFiltersProps,
+  "value" | "leftOptions" | "error"
+> & {
   emitter: FilterEventEmitter;
   locale: Record<string, string>;
 };
@@ -15,19 +18,22 @@ export const Filters = ({
   leftOptions,
   emitter,
   locale,
+  error,
 }: FiltersProps) => (
   <Box
     display="grid"
     __gridTemplateColumns="repeat(2, auto)"
-    alignItems="center"
+    alignItems="start"
     columnGap={2}
     rowGap={3}
     alignSelf="start"
   >
-    <Text>{locale.WHERE}</Text>
+    <Text paddingTop={1.5}>{locale.WHERE}</Text>
     {value.map((item, idx) =>
       typeof item === "string" ? (
-        <Text key={idx}>{locale[item]}</Text>
+        <Text key={idx} paddingTop={1.5}>
+          {locale[item]}
+        </Text>
       ) : (
         <Row
           item={item}
@@ -35,6 +41,7 @@ export const Filters = ({
           key={`filterRow-${idx}`}
           leftOptions={leftOptions}
           emitter={emitter}
+          error={error?.row === idx ? error : undefined}
         />
       )
     )}

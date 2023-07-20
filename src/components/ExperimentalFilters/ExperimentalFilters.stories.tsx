@@ -231,7 +231,7 @@ const Filters = () => {
   );
 };
 
-export const WithItems = () => {
+export const Default = () => {
   return (
     <Popover>
       <Popover.Trigger>
@@ -307,46 +307,79 @@ export const Loading = () => {
   );
 };
 
-// export const Loading = () => {
-//   return (
-//     <Popover>
-//       <Popover.Trigger>
-//         <Button>Show filters</Button>
-//       </Popover.Trigger>
-//       <Popover.Content align="start">
-//         <Box
-//           __minHeight="250px"
-//           __minWidth="636px"
-//           display="grid"
-//           __gridTemplateRows="auto 1fr"
-//         >
-//           <Box {...commonHeaderProps}>
-//             <Text variant="body" size="medium">
-//               Filter conditions
-//             </Text>
-//             <Box display="flex" alignItems="center" gap={2}>
-//               <Popover.Close>
-//                 <Button variant="tertiary" icon={<CloseIcon />} />
-//               </Popover.Close>
-//             </Box>
-//           </Box>
-//           <Box
-//             {...commonFilterProps}
-//             display="flex"
-//             gap={3}
-//             flexDirection="column"
-//           >
-//             <Skeleton height={7} />
-//             <Skeleton height={7} />
-//             <Skeleton height={7} />
-//             <Divider />
-//             <Box display="flex" gap={4} justifyContent="space-between">
-//               <Skeleton height={7} __width="20%" />
-//               <Skeleton height={7} __width="20%" />
-//             </Box>
-//           </Box>
-//         </Box>
-//       </Popover.Content>
-//     </Popover>
-//   );
-// };
+export const Error = () => {
+  const value = [
+    {
+      value: { value: "price", label: "Price", type: "1" },
+      condition: {
+        options: [
+          {
+            type: "number",
+            label: "is",
+            value: "input-1",
+          } as const,
+        ],
+        selected: {
+          value: "3.13",
+          conditionValue: {
+            type: "number",
+            label: "is",
+            value: "input-1",
+          } as const,
+        },
+      },
+    },
+  ];
+
+  return (
+    <Popover>
+      <Popover.Trigger>
+        <Button>Show filters</Button>
+      </Popover.Trigger>
+      <Popover.Content align="start">
+        <Box
+          __minHeight="250px"
+          __minWidth="636px"
+          display="grid"
+          __gridTemplateRows="auto 1fr"
+        >
+          <Box {...commonHeaderProps}>
+            <Text variant="body" size="medium">
+              Conditions
+            </Text>
+            <Box display="flex" alignItems="center" gap={2}>
+              <Popover.Close>
+                <Button variant="tertiary" icon={<CloseIcon />} />
+              </Popover.Close>
+            </Box>
+          </Box>
+          <Box {...commonFilterProps}>
+            <_ExperimentalFilters
+              value={value}
+              error={{
+                row: 0,
+                rightText: "Some error here",
+                leftText: "Some error here",
+              }}
+              leftOptions={[]}
+            >
+              <_ExperimentalFilters.Footer>
+                <_ExperimentalFilters.AddRowButton>
+                  Add row
+                </_ExperimentalFilters.AddRowButton>
+                <Box display="flex" gap={3}>
+                  <_ExperimentalFilters.ClearButton>
+                    Clear
+                  </_ExperimentalFilters.ClearButton>
+                  <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
+                    Save
+                  </_ExperimentalFilters.ConfirmButton>
+                </Box>
+              </_ExperimentalFilters.Footer>
+            </_ExperimentalFilters>
+          </Box>
+        </Box>
+      </Popover.Content>
+    </Popover>
+  );
+};

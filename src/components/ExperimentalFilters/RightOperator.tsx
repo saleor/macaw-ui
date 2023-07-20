@@ -10,6 +10,7 @@ type RightOperatorProps = {
   index: number;
   selected: SelectedOperator;
   emitter: FilterEventEmitter;
+  error?: string;
 };
 
 export type SelectedOperator =
@@ -89,6 +90,7 @@ export const RightOperator = ({
   index,
   selected,
   emitter,
+  error,
 }: RightOperatorProps) => {
   if (isTextInput(selected)) {
     return (
@@ -103,6 +105,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
+        error={!!error}
+        helperText={error}
       />
     );
   }
@@ -121,6 +125,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
+        error={!!error}
+        helperText={error}
       />
     );
   }
@@ -141,6 +147,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
+        error={!!error}
+        helperText={error}
       />
     );
   }
@@ -161,6 +169,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
+        error={!!error}
+        helperText={error}
       />
     );
   }
@@ -177,6 +187,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
+        error={!!error}
+        helperText={error}
       />
     );
   }
@@ -192,6 +204,8 @@ export const RightOperator = ({
           onChange={(e) => {
             emitter.changeRightOperator(index, [e.target.value, end]);
           }}
+          error={!!error}
+          helperText={error}
         />
         <Box>-</Box>
         <Input
@@ -200,6 +214,8 @@ export const RightOperator = ({
           onChange={(e) => {
             emitter.changeRightOperator(index, [start, e.target.value]);
           }}
+          error={!!error}
+          helperText={error}
         />
       </Box>
     );
@@ -213,6 +229,8 @@ export const RightOperator = ({
         onChange={(e) => {
           emitter.changeRightOperator(index, e.target.value);
         }}
+        error={!!error}
+        helperText={error}
       />
     );
   }
@@ -225,6 +243,8 @@ export const RightOperator = ({
         onChange={(e) => {
           emitter.changeRightOperator(index, e.target.value);
         }}
+        error={!!error}
+        helperText={error}
       />
     );
   }
