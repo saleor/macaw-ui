@@ -14,11 +14,18 @@ export type ConditionOption<T extends string> = Option & {
   type: T;
 };
 
+export type Error = {
+  row: number;
+  leftText?: string;
+  conditionText?: string;
+  rightText?: string;
+};
+
 export type Row = {
   value: { label: string; value: string; type: string } | null;
   loading?: boolean;
   constraint?: {
-    dependsOn: string;
+    dependsOn: string[];
     disabled?: DisabledScope[];
     removable?: boolean;
   };

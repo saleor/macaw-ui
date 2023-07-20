@@ -18,7 +18,7 @@ type RightOperatorProps = {
   selected: SelectedOperator;
   emitter: FilterEventEmitter;
   error?: string;
-  disabled?: boolean;
+  disabled: boolean;
 };
 
 export const RightOperator = ({

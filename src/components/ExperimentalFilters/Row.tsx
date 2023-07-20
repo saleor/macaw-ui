@@ -3,7 +3,7 @@ import { DynamicCombobox, Box, Select, Button, RemoveIcon } from "..";
 import { FilterEventEmitter } from "./EventEmitter";
 import { ExperimentalFiltersProps } from "./Root";
 import { RightOperator } from "./RightOperator";
-import { InternalConstrain } from "./constrains";
+import { getItemConstraint } from "./constrains";
 import { Row } from "./types";
 
 type RowProps = {
@@ -11,8 +11,7 @@ type RowProps = {
   index: number;
   leftOptions: ExperimentalFiltersProps["leftOptions"];
   emitter: FilterEventEmitter;
-  error?: ExperimentalFiltersProps["error"];
-  constrain: InternalConstrain;
+  error: ExperimentalFiltersProps["error"];
 };
 
 export const RowComponent = ({
@@ -21,17 +20,14 @@ export const RowComponent = ({
   leftOptions,
   emitter,
   error,
-  constrain,
 }: RowProps) => {
+  const constrain = getItemConstraint(item.constraint);
+
   return (
     <Box
       display="grid"
       gap={0.5}
-      __gridTemplateColumns={
-        constrain.showRemoveButton
-          ? "200px 120px 200px auto"
-          : "200px 120px 1fr"
-      }
+      __gridTemplateColumns="200px 120px 200px auto"
       placeItems="center"
       alignItems="start"
     >
@@ -43,8 +39,7 @@ export const RowComponent = ({
           emitter.changeLeftOperator(
             index,
             value,
-            leftOptions.find((option) => option.value === value.value)?.type ??
-              "any"
+            leftOptions.find((option) => option.value === value.value)?.type
           );
         }}
         onInputValueChange={(value) => {
@@ -58,12 +53,12 @@ export const RowComponent = ({
         }}
         error={!!error?.leftText}
         helperText={error?.leftText}
-        disabled={constrain?.disableLeftOperator}
+        disabled={constrain.disableLeftOperator}
       />
       <Select
         value={item.condition.selected.conditionValue}
         options={item.condition.options}
-        disabled={constrain?.disableCondition}
+        disabled={constrain.disableCondition}
         onChange={(value) => {
           emitter.changeCondition(index, value);
         }}
@@ -83,17 +78,16 @@ export const RowComponent = ({
           index={index}
           emitter={emitter}
           error={error?.rightText}
-          disabled={constrain?.disableRightOperator}
+          disabled={constrain.disableRightOperator}
         />
       )}
 
-      {constrain.showRemoveButton && (
-        <Button
-          variant="tertiary"
-          icon={<RemoveIcon />}
-          onClick={() => emitter.removeRow(index)}
-        />
-      )}
+      <Button
+        variant="tertiary"
+        icon={<RemoveIcon />}
+        onClick={() => emitter.removeRow(index)}
+        disabled={constrain.disableRemoveButton}
+      />
     </Box>
   );
 };

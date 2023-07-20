@@ -3,7 +3,6 @@ import { Box, Text } from "..";
 import { RowComponent } from "./Row";
 import { FilterEventEmitter } from "./EventEmitter";
 
-import { extractConstrains, getRowConstraint } from "./constrains";
 import { ExperimentalFiltersProps } from ".";
 
 type FiltersProps = Pick<
@@ -21,8 +20,6 @@ export const Filters = ({
   locale,
   error,
 }: FiltersProps) => {
-  const constrains = extractConstrains(value);
-
   return (
     <Box
       display="grid"
@@ -46,7 +43,6 @@ export const Filters = ({
             leftOptions={leftOptions}
             emitter={emitter}
             error={error?.row === idx ? error : undefined}
-            constrain={getRowConstraint(constrains, item.value?.value)}
           />
         )
       )}

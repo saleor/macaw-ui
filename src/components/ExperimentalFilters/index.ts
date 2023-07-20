@@ -6,6 +6,7 @@ export type {
   RightOperatorOption,
   LeftOperatorOption,
   ConditionOption,
+  Error,
 } from "./types";
 
 import { Root } from "./Root";

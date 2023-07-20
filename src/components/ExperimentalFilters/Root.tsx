@@ -3,7 +3,7 @@ import { Box, Divider } from "..";
 
 import { FilterContext } from "./context";
 import { useEventEmitter } from "./useEvents";
-import type { FilterEvent, LeftOperatorOption, Row } from "./types";
+import type { FilterEvent, LeftOperatorOption, Row, Error } from "./types";
 import { Filters } from "./Filters";
 import { NoValue } from "./NoValue";
 
@@ -13,12 +13,7 @@ export type ExperimentalFiltersProps = {
   children?: ReactNode;
   onChange?: (event: FilterEvent["detail"]) => void;
   locale?: Record<string, string>;
-  error?: {
-    row: number;
-    leftText?: string;
-    conditionText?: string;
-    rightText?: string;
-  };
+  error?: Error;
 };
 
 export const Root = ({

@@ -327,11 +327,6 @@ export const Constraint = () => {
   const value = [
     {
       value: { value: "price", label: "Price", type: "1" },
-      constraint: {
-        dependsOn: "category",
-        disabled: ["left", "condition"],
-        removable: false,
-      },
       condition: {
         options: [
           {
@@ -353,6 +348,11 @@ export const Constraint = () => {
     "AND",
     {
       value: { value: "category", label: "Categories", type: "2" },
+      constraint: {
+        dependsOn: ["price"],
+        disabled: ["left", "condition", "right"],
+        removable: false,
+      },
       condition: {
         options: [{ value: "input-1", label: "are", type: "multiselect" }],
         selected: {
@@ -361,7 +361,7 @@ export const Constraint = () => {
             label: "are",
             type: "multiselect",
           },
-          value: [],
+          value: [{ value: "electronics", label: "Electronics" }],
           options: [
             { value: "electronics", label: "Electronics" },
             { value: "clothing", label: "Clothing" },

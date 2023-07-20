@@ -45,7 +45,7 @@ export class FilterEventEmitter extends EventTarget {
   changeLeftOperator(
     index: number,
     value: LeftOperatorOption,
-    rowType: string
+    rowType: string | undefined
   ) {
     this.dispatchEvent(
       new CustomEvent<LeftOperatorChangeData>(this.type, {
@@ -53,7 +53,7 @@ export class FilterEventEmitter extends EventTarget {
           type: "leftOperator.onChange",
           path: `${index}`,
           value,
-          rowType,
+          rowType: rowType ?? "",
           index,
         },
       })
