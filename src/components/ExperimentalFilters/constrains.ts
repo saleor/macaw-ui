@@ -1,4 +1,4 @@
-import { Row } from "./Row";
+import { Row } from "./types";
 
 export type InternalConstrain = {
   showRemoveButton?: boolean;
