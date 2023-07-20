@@ -55,6 +55,7 @@ export const RowComponent = ({
         helperText={error?.leftText}
         disabled={constrain.disableLeftOperator}
       />
+
       <Select
         value={item.condition.selected.conditionValue}
         options={item.condition.options}
@@ -72,15 +73,13 @@ export const RowComponent = ({
         helperText={error?.conditionText}
       />
 
-      {item.condition?.selected && (
-        <RightOperator
-          selected={item.condition?.selected}
-          index={index}
-          emitter={emitter}
-          error={error?.rightText}
-          disabled={constrain.disableRightOperator}
-        />
-      )}
+      <RightOperator
+        selected={item.condition?.selected}
+        index={index}
+        emitter={emitter}
+        error={error?.rightText}
+        disabled={constrain.disableRightOperator}
+      />
 
       <Button
         variant="tertiary"

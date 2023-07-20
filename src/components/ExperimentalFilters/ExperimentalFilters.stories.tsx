@@ -225,6 +225,7 @@ export const Default = () => {
           if (event?.type === "row.add") {
             const newState = [
               ...rows,
+              "AND",
               {
                 value: null,
                 condition: {
