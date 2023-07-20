@@ -1,10 +1,17 @@
 import { Box, DynamicCombobox, Input, DynamicMultiselect, Select } from "..";
 
+import { FilterEventEmitter } from "./EventEmitter";
+import { SelectedOperator } from "./types";
 import {
-  ConditionOption,
-  FilterEventEmitter,
-  RightOperatorOption,
-} from "./EventEmitter";
+  isCombobox,
+  isDate,
+  isDateTime,
+  isMultiselect,
+  isNumberInput,
+  isNumberRange,
+  isSelect,
+  isTextInput,
+} from "./utils";
 
 type RightOperatorProps = {
   index: number;
@@ -13,79 +20,6 @@ type RightOperatorProps = {
   error?: string;
   disabled?: boolean;
 };
-
-export type SelectedOperator =
-  | InputOperator
-  | MultiselectOperator
-  | ComboboxOperator
-  | SelectOperator
-  | NumberRangeOperator
-  | DateOperator
-  | DateTimeOperator;
-
-type InputOperator = {
-  value: string;
-  conditionValue: ConditionOption<"text" | "number"> | null;
-};
-
-type MultiselectOperator = {
-  value: RightOperatorOption[];
-  conditionValue: ConditionOption<"multiselect"> | null;
-  options: Array<RightOperatorOption>;
-  loading?: boolean;
-};
-
-type ComboboxOperator = {
-  value: RightOperatorOption;
-  conditionValue: ConditionOption<"combobox"> | null;
-  options: Array<RightOperatorOption>;
-  loading?: boolean;
-};
-
-type SelectOperator = {
-  value: RightOperatorOption;
-  conditionValue: ConditionOption<"select"> | null;
-  options: Array<RightOperatorOption>;
-};
-
-type NumberRangeOperator = {
-  value: [string, string];
-  conditionValue: ConditionOption<"number.range"> | null;
-};
-
-type DateOperator = {
-  value: string;
-  conditionValue: ConditionOption<"date"> | null;
-};
-
-type DateTimeOperator = {
-  value: string;
-  conditionValue: ConditionOption<"datetime"> | null;
-};
-
-const isTextInput = (value: SelectedOperator): value is InputOperator =>
-  value.conditionValue?.type === "text";
-
-const isNumberInput = (value: SelectedOperator): value is InputOperator =>
-  value.conditionValue?.type === "number";
-
-const isMultiselect = (value: SelectedOperator): value is MultiselectOperator =>
-  value.conditionValue?.type === "multiselect";
-
-const isCombobox = (value: SelectedOperator): value is ComboboxOperator =>
-  value.conditionValue?.type === "combobox";
-
-const isSelect = (value: SelectedOperator): value is SelectOperator =>
-  value.conditionValue?.type === "select";
-
-const isNumberRange = (value: SelectedOperator): value is NumberRangeOperator =>
-  value.conditionValue?.type === "number.range";
-
-const isDate = (value: SelectedOperator): value is DateOperator =>
-  value.conditionValue?.type === "date";
-
-const isDateTime = (value: SelectedOperator): value is DateTimeOperator =>
-  value.conditionValue?.type === "datetime";
 
 export const RightOperator = ({
   index,
@@ -195,7 +129,7 @@ export const RightOperator = ({
         }}
         error={!!error}
         helperText={error}
-        disabled
+        disabled={disabled}
       />
     );
   }

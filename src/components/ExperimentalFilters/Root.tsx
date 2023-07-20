@@ -2,9 +2,8 @@ import { ReactNode } from "react";
 import { Box, Divider } from "..";
 
 import { FilterContext } from "./context";
-import { FilterEvent, useEventEmitter } from "./useEvents";
-import type { Row } from "./Row";
-import { LeftOperatorOption } from "./EventEmitter";
+import { useEventEmitter } from "./useEvents";
+import type { FilterEvent, LeftOperatorOption, Row } from "./types";
 import { Filters } from "./Filters";
 import { NoValue } from "./NoValue";
 

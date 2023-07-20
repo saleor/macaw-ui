@@ -1,10 +1,18 @@
 import { Meta } from "@storybook/react";
 import _ from "lodash";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-import { Box, Text, Button, Popover, CloseIcon, Divider } from "..";
-import { Skeleton } from "./Skeleton";
-import { RowComponent, _ExperimentalFilters } from ".";
+import {
+  Box,
+  Text,
+  Button,
+  Popover,
+  CloseIcon,
+  Divider,
+  PropsWithBox,
+} from "..";
+
+import { Row, _ExperimentalFilters } from ".";
 
 const meta: Meta<typeof _ExperimentalFilters> = {
   title: "Components / _ExperimentalFilters",
@@ -20,7 +28,7 @@ const leftOptions = [
   { value: "discount", label: "Discount", type: "4" },
 ];
 
-const value = [
+const defaultValue = [
   {
     value: { value: "price", label: "Price", type: "1" },
     condition: {
@@ -97,141 +105,10 @@ const value = [
   },
 ] as Array<Row | string>;
 
-const commonHeaderProps = {
-  paddingTop: 3,
-  paddingX: 3,
-  paddingBottom: 1.5,
-  display: "flex",
-  gap: 1,
-  alignItems: "center",
-  justifyContent: "space-between",
-  backgroundColor: "surfaceNeutralPlain",
-  borderTopLeftRadius: 2,
-  borderTopRightRadius: 2,
-} as const;
-
-const commonFilterProps = {
-  padding: 3,
-  backgroundColor: "interactiveNeutralSecondaryHovering",
-  borderBottomLeftRadius: 2,
-  borderBottomRightRadius: 2,
-} as const;
-
-const Filters = () => {
-  const [rows, setRows] = useState<Array<Row | string>>(value);
-
-  return (
-    <_ExperimentalFilters
-      value={rows}
-      leftOptions={leftOptions}
-      onChange={(event) => {
-        if (event?.type === "rightOperator.onChange") {
-          const newState = _.setWith(
-            _.clone(rows),
-            event?.path ?? "",
-            event?.value,
-            _.clone
-          );
-          setRows(newState);
-        }
-
-        if (event?.type === "condition.onChange") {
-          const newState = _.setWith(
-            _.clone(rows),
-            event?.path ?? "",
-            {
-              value: [],
-              options: [
-                { value: "electronics", label: "Electronics" },
-                { value: "clothing", label: "Clothing" },
-              ],
-              conditionValue: event?.value,
-            },
-            _.clone
-          );
-          setRows(newState);
-        }
-
-        if (event?.type === "leftOperator.onChange") {
-          const newState = _.setWith(
-            _.clone(rows),
-            event?.path ?? "",
-            {
-              value: event?.value,
-              condition: {
-                options: [
-                  { type: "number", label: "is", value: "input-1" },
-                  {
-                    type: "multiselect",
-                    label: "has",
-                    value: "input-2",
-                  },
-                ],
-                selected: {
-                  value: "",
-                  conditionValue: {
-                    type: "number",
-                    label: "is",
-                    value: "input-1",
-                  },
-                },
-              },
-            },
-            _.clone
-          );
-          setRows(newState);
-        }
-        if (event?.type === "row.add") {
-          const newState = [
-            ...rows,
-            {
-              value: null,
-              condition: {
-                options: [],
-                selected: {
-                  value: "",
-                  conditionValue: null,
-                  options: [],
-                },
-              },
-            },
-          ];
-          setRows(newState);
-        }
-
-        if (event?.type === "row.remove") {
-          const index = parseInt(event?.path ?? "", 10);
-          if (index === 0) {
-            const newState = [...rows.slice(index + 2, rows.length)];
-            setRows(newState);
-            return;
-          }
-          const newState = [
-            ...rows.slice(0, index - 1),
-            ...rows.slice(index + 1, rows.length),
-          ];
-          setRows(newState);
-        }
-      }}
-    >
-      <_ExperimentalFilters.Footer>
-        <_ExperimentalFilters.AddRowButton>
-          Add row
-        </_ExperimentalFilters.AddRowButton>
-        <Box display="flex" gap={3}>
-          <_ExperimentalFilters.ClearButton>
-            Clear
-          </_ExperimentalFilters.ClearButton>
-          <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
-            Save
-          </_ExperimentalFilters.ConfirmButton>
-        </Box>
-      </_ExperimentalFilters.Footer>
-    </_ExperimentalFilters>
-  );
-};
-
-export const Default = () => {
+const Template = ({
+  children,
+  ...props
+}: PropsWithBox<{ children: ReactNode }>) => {
   return (
     <Popover>
       <Popover.Trigger>
@@ -244,7 +121,18 @@ export const Default = () => {
           display="grid"
           __gridTemplateRows="auto 1fr"
         >
-          <Box {...commonHeaderProps}>
+          <Box
+            paddingTop={3}
+            paddingX={3}
+            paddingBottom={1.5}
+            display="flex"
+            gap={1}
+            alignItems="center"
+            justifyContent="space-between"
+            backgroundColor="surfaceNeutralPlain"
+            borderTopLeftRadius={2}
+            borderTopRightRadius={2}
+          >
             <Text variant="body" size="medium">
               Conditions
             </Text>
@@ -254,133 +142,184 @@ export const Default = () => {
               </Popover.Close>
             </Box>
           </Box>
-          <Box {...commonFilterProps}>
-            <Filters />
+          <Box
+            padding={3}
+            backgroundColor="interactiveNeutralSecondaryHovering"
+            borderBottomLeftRadius={2}
+            borderBottomRightRadius={2}
+            {...props}
+          >
+            {children}
           </Box>
         </Box>
       </Popover.Content>
     </Popover>
+  );
+};
+
+export const Default = () => {
+  const [rows, setRows] = useState(defaultValue);
+
+  return (
+    <Template>
+      <_ExperimentalFilters
+        value={rows}
+        leftOptions={leftOptions}
+        onChange={(event) => {
+          if (event?.type === "rightOperator.onChange") {
+            const newState = _.setWith(
+              _.clone(rows),
+              event?.path ?? "",
+              event?.value,
+              _.clone
+            );
+            setRows(newState);
+          }
+
+          if (event?.type === "condition.onChange") {
+            const newState = _.setWith(
+              _.clone(rows),
+              event?.path ?? "",
+              {
+                value: [],
+                options: [
+                  { value: "electronics", label: "Electronics" },
+                  { value: "clothing", label: "Clothing" },
+                ],
+                conditionValue: event?.value,
+              },
+              _.clone
+            );
+            setRows(newState);
+          }
+
+          if (event?.type === "leftOperator.onChange") {
+            const newState = _.setWith(
+              _.clone(rows),
+              event?.path ?? "",
+              {
+                value: event?.value,
+                condition: {
+                  options: [
+                    { type: "number", label: "is", value: "input-1" },
+                    {
+                      type: "multiselect",
+                      label: "has",
+                      value: "input-2",
+                    },
+                  ],
+                  selected: {
+                    value: "",
+                    conditionValue: {
+                      type: "number",
+                      label: "is",
+                      value: "input-1",
+                    },
+                  },
+                },
+              },
+              _.clone
+            );
+            setRows(newState);
+          }
+          if (event?.type === "row.add") {
+            const newState = [
+              ...rows,
+              {
+                value: null,
+                condition: {
+                  options: [],
+                  selected: {
+                    value: "",
+                    conditionValue: null,
+                    options: [],
+                  },
+                },
+              },
+            ];
+            setRows(newState);
+          }
+
+          if (event?.type === "row.remove") {
+            const index = parseInt(event?.path ?? "", 10);
+            if (index === 0) {
+              const newState = [...rows.slice(index + 2, rows.length)];
+              setRows(newState);
+              return;
+            }
+            const newState = [
+              ...rows.slice(0, index - 1),
+              ...rows.slice(index + 1, rows.length),
+            ];
+            setRows(newState);
+          }
+        }}
+      >
+        <_ExperimentalFilters.Footer>
+          <_ExperimentalFilters.AddRowButton>
+            Add row
+          </_ExperimentalFilters.AddRowButton>
+          <Box display="flex" gap={3}>
+            <_ExperimentalFilters.ClearButton>
+              Clear
+            </_ExperimentalFilters.ClearButton>
+            <_ExperimentalFilters.ConfirmButton>
+              Save
+            </_ExperimentalFilters.ConfirmButton>
+          </Box>
+        </_ExperimentalFilters.Footer>
+      </_ExperimentalFilters>
+    </Template>
   );
 };
 
 export const Loading = () => {
   return (
-    <Popover>
-      <Popover.Trigger>
-        <Button>Show filters</Button>
-      </Popover.Trigger>
-      <Popover.Content align="start">
-        <Box
-          __minHeight="250px"
-          __minWidth="636px"
-          display="grid"
-          __gridTemplateRows="auto 1fr"
-        >
-          <Box {...commonHeaderProps}>
-            <Text variant="body" size="medium">
-              Conditions
-            </Text>
-            <Box display="flex" alignItems="center" gap={2}>
-              <Popover.Close>
-                <Button variant="tertiary" icon={<CloseIcon />} />
-              </Popover.Close>
-            </Box>
-          </Box>
-          <Box {...commonFilterProps} display="flex" flexDirection="column">
-            <Box display="flex" flexDirection="column" gap={3} height="100%">
-              <Skeleton height={7} />
-              <Skeleton height={7} />
-              <Skeleton height={7} />
-            </Box>
-            <Divider />
-            <Box display="flex" gap={4} justifyContent="space-between">
-              <Skeleton height={7} __width="60px" />
-              <Box display="flex" gap={3}>
-                <Skeleton height={7} __width="60px" />
-                <Skeleton height={7} __width="60px" />
-              </Box>
-            </Box>
-          </Box>
+    <Template display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" gap={3} height="100%">
+        <_ExperimentalFilters.Skeleton height={7} />
+        <_ExperimentalFilters.Skeleton height={7} />
+        <_ExperimentalFilters.Skeleton height={7} />
+      </Box>
+      <Divider />
+      <Box display="flex" gap={4} justifyContent="space-between">
+        <_ExperimentalFilters.Skeleton height={7} __width="60px" />
+        <Box display="flex" gap={3}>
+          <_ExperimentalFilters.Skeleton height={7} __width="60px" />
+          <_ExperimentalFilters.Skeleton height={7} __width="60px" />
         </Box>
-      </Popover.Content>
-    </Popover>
+      </Box>
+    </Template>
   );
 };
 
 export const Error = () => {
-  const value = [
-    {
-      value: { value: "price", label: "Price", type: "1" },
-      condition: {
-        options: [
-          {
-            type: "number",
-            label: "is",
-            value: "input-1",
-          } as const,
-        ],
-        selected: {
-          value: "3.13",
-          conditionValue: {
-            type: "number",
-            label: "is",
-            value: "input-1",
-          } as const,
-        },
-      },
-    },
-  ];
-
   return (
-    <Popover>
-      <Popover.Trigger>
-        <Button>Show filters</Button>
-      </Popover.Trigger>
-      <Popover.Content align="start">
-        <Box
-          __minHeight="250px"
-          __minWidth="636px"
-          display="grid"
-          __gridTemplateRows="auto 1fr"
-        >
-          <Box {...commonHeaderProps}>
-            <Text variant="body" size="medium">
-              Conditions
-            </Text>
-            <Box display="flex" alignItems="center" gap={2}>
-              <Popover.Close>
-                <Button variant="tertiary" icon={<CloseIcon />} />
-              </Popover.Close>
-            </Box>
+    <Template>
+      <_ExperimentalFilters
+        value={defaultValue}
+        error={{
+          row: 0,
+          rightText: "Some error here",
+          leftText: "Some error here",
+        }}
+        leftOptions={[]}
+      >
+        <_ExperimentalFilters.Footer>
+          <_ExperimentalFilters.AddRowButton>
+            Add row
+          </_ExperimentalFilters.AddRowButton>
+          <Box display="flex" gap={3}>
+            <_ExperimentalFilters.ClearButton>
+              Clear
+            </_ExperimentalFilters.ClearButton>
+            <_ExperimentalFilters.ConfirmButton>
+              Save
+            </_ExperimentalFilters.ConfirmButton>
           </Box>
-          <Box {...commonFilterProps}>
-            <_ExperimentalFilters
-              value={value}
-              error={{
-                row: 0,
-                rightText: "Some error here",
-                leftText: "Some error here",
-              }}
-              leftOptions={[]}
-            >
-              <_ExperimentalFilters.Footer>
-                <_ExperimentalFilters.AddRowButton>
-                  Add row
-                </_ExperimentalFilters.AddRowButton>
-                <Box display="flex" gap={3}>
-                  <_ExperimentalFilters.ClearButton>
-                    Clear
-                  </_ExperimentalFilters.ClearButton>
-                  <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
-                    Save
-                  </_ExperimentalFilters.ConfirmButton>
-                </Box>
-              </_ExperimentalFilters.Footer>
-            </_ExperimentalFilters>
-          </Box>
-        </Box>
-      </Popover.Content>
-    </Popover>
+        </_ExperimentalFilters.Footer>
+      </_ExperimentalFilters>
+    </Template>
   );
 };
 
@@ -399,7 +338,7 @@ export const Constraint = () => {
             type: "number",
             label: "is",
             value: "input-1",
-          } as const,
+          },
         ],
         selected: {
           value: "3.13",
@@ -407,7 +346,7 @@ export const Constraint = () => {
             type: "number",
             label: "is",
             value: "input-1",
-          } as const,
+          },
         },
       },
     },
@@ -431,49 +370,25 @@ export const Constraint = () => {
         },
       },
     },
-  ];
+  ] as Array<Row | string>;
 
   return (
-    <Popover>
-      <Popover.Trigger>
-        <Button>Show filters</Button>
-      </Popover.Trigger>
-      <Popover.Content align="start">
-        <Box
-          __minHeight="250px"
-          __minWidth="636px"
-          display="grid"
-          __gridTemplateRows="auto 1fr"
-        >
-          <Box {...commonHeaderProps}>
-            <Text variant="body" size="medium">
-              Conditions
-            </Text>
-            <Box display="flex" alignItems="center" gap={2}>
-              <Popover.Close>
-                <Button variant="tertiary" icon={<CloseIcon />} />
-              </Popover.Close>
-            </Box>
+    <Template>
+      <_ExperimentalFilters value={value} leftOptions={leftOptions}>
+        <_ExperimentalFilters.Footer>
+          <_ExperimentalFilters.AddRowButton>
+            Add row
+          </_ExperimentalFilters.AddRowButton>
+          <Box display="flex" gap={3}>
+            <_ExperimentalFilters.ClearButton>
+              Clear
+            </_ExperimentalFilters.ClearButton>
+            <_ExperimentalFilters.ConfirmButton>
+              Save
+            </_ExperimentalFilters.ConfirmButton>
           </Box>
-          <Box {...commonFilterProps}>
-            <_ExperimentalFilters value={value} leftOptions={[]}>
-              <_ExperimentalFilters.Footer>
-                <_ExperimentalFilters.AddRowButton>
-                  Add row
-                </_ExperimentalFilters.AddRowButton>
-                <Box display="flex" gap={3}>
-                  <_ExperimentalFilters.ClearButton>
-                    Clear
-                  </_ExperimentalFilters.ClearButton>
-                  <_ExperimentalFilters.ConfirmButton onClick={() => ({})}>
-                    Save
-                  </_ExperimentalFilters.ConfirmButton>
-                </Box>
-              </_ExperimentalFilters.Footer>
-            </_ExperimentalFilters>
-          </Box>
-        </Box>
-      </Popover.Content>
-    </Popover>
+        </_ExperimentalFilters.Footer>
+      </_ExperimentalFilters>
+    </Template>
   );
 };

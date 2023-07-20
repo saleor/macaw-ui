@@ -1,36 +1,10 @@
 import { DynamicCombobox, Box, Select, Button, RemoveIcon } from "..";
 
-import { ConditionOption, FilterEventEmitter } from "./EventEmitter";
+import { FilterEventEmitter } from "./EventEmitter";
 import { ExperimentalFiltersProps } from "./Root";
-import { RightOperator, SelectedOperator } from "./RightOperator";
+import { RightOperator } from "./RightOperator";
 import { InternalConstrain } from "./constrains";
-
-type DisabledScope = "left" | "right" | "condition";
-
-export type Row = {
-  value: { label: string; value: string; type: string } | null;
-  loading?: boolean;
-  constraint?: {
-    dependsOn: string;
-    disabled?: DisabledScope[];
-    removable?: boolean;
-  };
-  condition: {
-    loading?: boolean;
-    options: Array<
-      ConditionOption<
-        | "text"
-        | "number"
-        | "multiselect"
-        | "combobox"
-        | "select"
-        | "number.range"
-        | "date"
-      >
-    >;
-    selected: SelectedOperator;
-  };
-};
+import { Row } from "./types";
 
 type RowProps = {
   item: Row;
