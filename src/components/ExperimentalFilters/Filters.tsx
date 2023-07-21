@@ -1,11 +1,14 @@
 import { Box, Text } from "..";
 
-import { Row } from "./Row";
+import { RowComponent } from "./Row";
 import { FilterEventEmitter } from "./EventEmitter";
 
 import { ExperimentalFiltersProps } from ".";
 
-type FiltersProps = Pick<ExperimentalFiltersProps, "value" | "leftOptions"> & {
+type FiltersProps = Pick<
+  ExperimentalFiltersProps,
+  "value" | "leftOptions" | "error"
+> & {
   emitter: FilterEventEmitter;
   locale: Record<string, string>;
 };
@@ -15,28 +18,34 @@ export const Filters = ({
   leftOptions,
   emitter,
   locale,
-}: FiltersProps) => (
-  <Box
-    display="grid"
-    __gridTemplateColumns="repeat(2, auto)"
-    alignItems="center"
-    columnGap={2}
-    rowGap={3}
-    alignSelf="start"
-  >
-    <Text>{locale.WHERE}</Text>
-    {value.map((item, idx) =>
-      typeof item === "string" ? (
-        <Text key={idx}>{locale[item]}</Text>
-      ) : (
-        <Row
-          item={item}
-          index={idx}
-          key={`filterRow-${idx}`}
-          leftOptions={leftOptions}
-          emitter={emitter}
-        />
-      )
-    )}
-  </Box>
-);
+  error,
+}: FiltersProps) => {
+  return (
+    <Box
+      display="grid"
+      __gridTemplateColumns="repeat(2, auto)"
+      alignItems="start"
+      columnGap={2}
+      rowGap={3}
+      alignSelf="start"
+    >
+      <Text paddingTop={1.5}>{locale.WHERE}</Text>
+      {value.map((item, idx) =>
+        typeof item === "string" ? (
+          <Text key={idx} paddingTop={1.5}>
+            {locale[item]}
+          </Text>
+        ) : (
+          <RowComponent
+            item={item}
+            index={idx}
+            key={`filterRow-${idx}`}
+            leftOptions={leftOptions}
+            emitter={emitter}
+            error={error?.row === idx ? error : undefined}
+          />
+        )
+      )}
+    </Box>
+  );
+};

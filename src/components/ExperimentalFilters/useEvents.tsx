@@ -1,38 +1,7 @@
 import { useEffect } from "react";
 
-import {
-  ConditionBlurData,
-  ConditionChangeData,
-  ConditionFocusData,
-  FilterEventEmitter,
-  LeftOperatorBlurData,
-  LeftOperatorChangeData,
-  LeftOperatorFocusData,
-  LeftOperatorInputValueChangeData,
-  RightOperatorBlurData,
-  RightOperatorChangeData,
-  RightOperatorFocusData,
-  RightOperatorInputValueChangeData,
-  RowAddData,
-  RowRemoveData,
-} from "./EventEmitter";
-
-export interface FilterEvent extends Event {
-  detail?:
-    | RowAddData
-    | RowRemoveData
-    | LeftOperatorChangeData
-    | LeftOperatorFocusData
-    | LeftOperatorBlurData
-    | LeftOperatorInputValueChangeData
-    | ConditionChangeData
-    | ConditionFocusData
-    | ConditionBlurData
-    | RightOperatorChangeData
-    | RightOperatorFocusData
-    | RightOperatorBlurData
-    | RightOperatorInputValueChangeData;
-}
+import { FilterEvent } from "./types";
+import { FilterEventEmitter } from "./EventEmitter";
 
 type UseEventsProps = {
   onChange?: (event: FilterEvent["detail"]) => void;

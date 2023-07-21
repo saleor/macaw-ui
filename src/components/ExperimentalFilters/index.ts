@@ -1,12 +1,13 @@
-export type { FilterEvent } from "./useEvents";
 export type { ExperimentalFiltersProps } from "./Root";
-export type { SelectedOperator } from "./RightOperator";
-export type { Row } from "./Row";
 export type {
+  Row,
+  FilterEvent,
+  SelectedOperator,
   RightOperatorOption,
   LeftOperatorOption,
   ConditionOption,
-} from "./EventEmitter";
+  Error,
+} from "./types";
 
 import { Skeleton } from "../Skeleton/Skeleton";
 import { Root } from "./Root";

@@ -10,7 +10,7 @@ type HelperTextProps = {
 
 export const HelperText = ({ size, error, children }: HelperTextProps) => {
   return (
-    <Box marginTop={3} className={helperTextRecipe({ size })}>
+    <Box className={helperTextRecipe({ size })}>
       <Text
         variant="caption"
         size={size}
