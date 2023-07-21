@@ -9,7 +9,6 @@ export type {
   Error,
 } from "./types";
 
-import { Skeleton } from "../Skeleton/Skeleton";
 import { Root } from "./Root";
 import { AddRowButton, ConfirmButton, Footer, ClearButton } from "./Footer";
 
@@ -18,5 +17,4 @@ export const _ExperimentalFilters = Object.assign(Root, {
   ConfirmButton,
   ClearButton,
   Footer,
-  Skeleton,
 });
