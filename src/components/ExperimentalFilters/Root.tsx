@@ -13,7 +13,7 @@ export type ExperimentalFiltersProps = {
   children?: ReactNode;
   onChange?: (event: FilterEvent["detail"]) => void;
   locale?: Record<string, string>;
-  error?: Error;
+  error?: Error[];
 };
 
 export const Root = ({

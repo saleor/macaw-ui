@@ -17,7 +17,8 @@ type RightOperatorProps = {
   index: number;
   selected: SelectedOperator;
   emitter: FilterEventEmitter;
-  error?: string;
+  error: boolean;
+  helperText: string;
   disabled: boolean;
 };
 
@@ -27,6 +28,7 @@ export const RightOperator = ({
   emitter,
   error,
   disabled,
+  helperText,
 }: RightOperatorProps) => {
   if (isTextInput(selected)) {
     return (
@@ -41,8 +43,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
-        error={!!error}
-        helperText={error}
+        error={error}
+        helperText={helperText}
         disabled={disabled}
       />
     );
@@ -62,8 +64,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
-        error={!!error}
-        helperText={error}
+        error={error}
+        helperText={helperText}
         disabled={disabled}
       />
     );
@@ -85,8 +87,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
-        error={!!error}
-        helperText={error}
+        error={error}
+        helperText={helperText}
         disabled={disabled}
       />
     );
@@ -108,8 +110,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
-        error={!!error}
-        helperText={error}
+        error={error}
+        helperText={helperText}
         disabled={disabled}
       />
     );
@@ -127,8 +129,8 @@ export const RightOperator = ({
         onBlur={() => {
           emitter.blurRightOperator(index);
         }}
-        error={!!error}
-        helperText={error}
+        error={error}
+        helperText={helperText}
         disabled={disabled}
       />
     );
@@ -156,8 +158,8 @@ export const RightOperator = ({
           onChange={(e) => {
             emitter.changeRightOperator(index, [start, e.target.value]);
           }}
-          error={!!error}
-          helperText={error}
+          error={error}
+          helperText={helperText}
           disabled={disabled}
         />
       </Box>
@@ -172,8 +174,8 @@ export const RightOperator = ({
         onChange={(e) => {
           emitter.changeRightOperator(index, e.target.value);
         }}
-        error={!!error}
-        helperText={error}
+        error={error}
+        helperText={helperText}
         disabled={disabled}
       />
     );
@@ -187,8 +189,8 @@ export const RightOperator = ({
         onChange={(e) => {
           emitter.changeRightOperator(index, e.target.value);
         }}
-        error={!!error}
-        helperText={error}
+        error={error}
+        helperText={helperText}
         disabled={disabled}
       />
     );

@@ -111,7 +111,11 @@ const SelectInner = <T extends Option>(
         getToggleButtonProps={getToggleButtonProps}
       >
         <Box height={getBoxHeight(size)} {...props} ref={ref}>
-          <Text size={size} variant="body">
+          <Text
+            size={size}
+            variant="body"
+            color={error ? "textCriticalDefault" : "textNeutralDefault"}
+          >
             {selectedItem?.label}
           </Text>
         </Box>

@@ -5,13 +5,14 @@ import { ExperimentalFiltersProps } from "./Root";
 import { RightOperator } from "./RightOperator";
 import { getItemConstraint } from "./constrains";
 import { Row } from "./types";
+import { ErrorLookup } from "./errors";
 
 type RowProps = {
   item: Row;
   index: number;
   leftOptions: ExperimentalFiltersProps["leftOptions"];
   emitter: FilterEventEmitter;
-  error: ExperimentalFiltersProps["error"];
+  error: ErrorLookup[number];
 };
 
 export const RowComponent = ({
@@ -51,8 +52,8 @@ export const RowComponent = ({
         onBlur={() => {
           emitter.blurLeftOperator(index);
         }}
-        error={!!error?.leftText}
-        helperText={error?.leftText}
+        error={error.left.show}
+        helperText={error.left.text}
         disabled={constrain.disableLeftOperator}
       />
 
@@ -69,15 +70,16 @@ export const RowComponent = ({
         onBlur={() => {
           emitter.blurCondition(index);
         }}
-        error={!!error?.conditionText}
-        helperText={error?.conditionText}
+        error={error.condition.show}
+        helperText={error.condition.text}
       />
 
       <RightOperator
         selected={item.condition?.selected}
         index={index}
         emitter={emitter}
-        error={error?.rightText}
+        error={error.right.show}
+        helperText={error.right.text}
         disabled={constrain.disableRightOperator}
       />
 
