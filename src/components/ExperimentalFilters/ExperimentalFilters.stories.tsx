@@ -300,11 +300,17 @@ export const Error = () => {
     <Template>
       <_ExperimentalFilters
         value={defaultValue}
-        error={{
-          row: 0,
-          rightText: "Some error here",
-          leftText: "Some error here",
-        }}
+        error={[
+          {
+            row: 0,
+            rightText: "Some error here",
+            leftText: "Some error here",
+          },
+          {
+            row: 2,
+            conditionText: "Some error here",
+          },
+        ]}
         leftOptions={[]}
       >
         <_ExperimentalFilters.Footer>

@@ -3,6 +3,7 @@ import { Box, Text } from "..";
 import { RowComponent } from "./Row";
 import { FilterEventEmitter } from "./EventEmitter";
 
+import { createErrorLookup, getErrorByRowIndex } from "./errors";
 import { ExperimentalFiltersProps } from ".";
 
 type FiltersProps = Pick<
@@ -20,6 +21,8 @@ export const Filters = ({
   locale,
   error,
 }: FiltersProps) => {
+  const errorsByRowIndex = createErrorLookup(error);
+
   return (
     <Box
       display="grid"
@@ -42,7 +45,7 @@ export const Filters = ({
             key={`filterRow-${idx}`}
             leftOptions={leftOptions}
             emitter={emitter}
-            error={error?.row === idx ? error : undefined}
+            error={getErrorByRowIndex(errorsByRowIndex, idx)}
           />
         )
       )}
