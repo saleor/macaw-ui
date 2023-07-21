@@ -10,6 +10,7 @@ import {
   CloseIcon,
   Divider,
   PropsWithBox,
+  Skeleton,
 } from "..";
 
 import { Row, _ExperimentalFilters } from ".";
@@ -278,16 +279,16 @@ export const Loading = () => {
   return (
     <Template display="flex" flexDirection="column">
       <Box display="flex" flexDirection="column" gap={3} height="100%">
-        <_ExperimentalFilters.Skeleton height={7} />
-        <_ExperimentalFilters.Skeleton height={7} />
-        <_ExperimentalFilters.Skeleton height={7} />
+        <Skeleton height={7} />
+        <Skeleton height={7} />
+        <Skeleton height={7} />
       </Box>
       <Divider />
       <Box display="flex" gap={4} justifyContent="space-between">
-        <_ExperimentalFilters.Skeleton height={7} __width="60px" />
+        <Skeleton height={7} __width="60px" />
         <Box display="flex" gap={3}>
-          <_ExperimentalFilters.Skeleton height={7} __width="60px" />
-          <_ExperimentalFilters.Skeleton height={7} __width="60px" />
+          <Skeleton height={7} __width="60px" />
+          <Skeleton height={7} __width="60px" />
         </Box>
       </Box>
     </Template>
