@@ -1,43 +1,35 @@
 import { DynamicCombobox, Box, Select, Button, RemoveIcon } from "..";
 
-import { ConditionOption, FilterEventEmitter } from "./EventEmitter";
+import { FilterEventEmitter } from "./EventEmitter";
 import { ExperimentalFiltersProps } from "./Root";
-import { RightOperator, SelectedOperator } from "./RightOperator";
+import { RightOperator } from "./RightOperator";
+import { getItemConstraint } from "./constrains";
+import { Row } from "./types";
 
 type RowProps = {
   item: Row;
   index: number;
   leftOptions: ExperimentalFiltersProps["leftOptions"];
   emitter: FilterEventEmitter;
+  error: ExperimentalFiltersProps["error"];
 };
 
-export type Row = {
-  value: { label: string; value: string; type: string } | null;
-  loading?: boolean;
-  condition: {
-    loading?: boolean;
-    options: Array<
-      ConditionOption<
-        | "text"
-        | "number"
-        | "multiselect"
-        | "combobox"
-        | "select"
-        | "number.range"
-        | "date"
-      >
-    >;
-    selected: SelectedOperator;
-  };
-};
+export const RowComponent = ({
+  item,
+  index,
+  leftOptions,
+  emitter,
+  error,
+}: RowProps) => {
+  const constrain = getItemConstraint(item.constraint);
 
-export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
   return (
     <Box
       display="grid"
       gap={0.5}
       __gridTemplateColumns="200px 120px 200px auto"
       placeItems="center"
+      alignItems="start"
     >
       <DynamicCombobox
         value={item.value}
@@ -47,8 +39,7 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
           emitter.changeLeftOperator(
             index,
             value,
-            leftOptions.find((option) => option.value === value.value)?.type ??
-              "any"
+            leftOptions.find((option) => option.value === value.value)?.type
           );
         }}
         onInputValueChange={(value) => {
@@ -60,11 +51,15 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
         onBlur={() => {
           emitter.blurLeftOperator(index);
         }}
+        error={!!error?.leftText}
+        helperText={error?.leftText}
+        disabled={constrain.disableLeftOperator}
       />
+
       <Select
         value={item.condition.selected.conditionValue}
         options={item.condition.options}
-        disabled={item.condition.loading || !item.condition.options.length}
+        disabled={constrain.disableCondition}
         onChange={(value) => {
           emitter.changeCondition(index, value);
         }}
@@ -74,20 +69,23 @@ export const Row = ({ item, index, leftOptions, emitter }: RowProps) => {
         onBlur={() => {
           emitter.blurCondition(index);
         }}
+        error={!!error?.conditionText}
+        helperText={error?.conditionText}
       />
 
-      {item.condition?.selected && (
-        <RightOperator
-          selected={item.condition?.selected}
-          index={index}
-          emitter={emitter}
-        />
-      )}
+      <RightOperator
+        selected={item.condition?.selected}
+        index={index}
+        emitter={emitter}
+        error={error?.rightText}
+        disabled={constrain.disableRightOperator}
+      />
 
       <Button
         variant="tertiary"
         icon={<RemoveIcon />}
         onClick={() => emitter.removeRow(index)}
+        disabled={constrain.disableRemoveButton}
       />
     </Box>
   );
