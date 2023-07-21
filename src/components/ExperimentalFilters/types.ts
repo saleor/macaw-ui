@@ -21,6 +21,19 @@ export type Error = {
   rightText?: string;
 };
 
+type ConditionOptionTypes = ConditionOption<
+  | "text"
+  | "number"
+  | "multiselect"
+  | "combobox"
+  | "select"
+  | "number.range"
+  | "date"
+  | "datetime"
+  | "date.range"
+  | "datetime.range"
+>;
+
 export type Row = {
   value: { label: string; value: string; type: string } | null;
   loading?: boolean;
@@ -31,20 +44,7 @@ export type Row = {
   };
   condition: {
     loading?: boolean;
-    options: Array<
-      ConditionOption<
-        | "text"
-        | "number"
-        | "multiselect"
-        | "combobox"
-        | "select"
-        | "number.range"
-        | "date"
-        | "datetime"
-        | "date.range"
-        | "datetime.range"
-      >
-    >;
+    options: Array<ConditionOptionTypes>;
     selected: SelectedOperator;
   };
 };
@@ -169,18 +169,7 @@ export type ConditionChangeData = {
   type: "condition.onChange";
   path: `${number}.condition.selected`;
   index: number;
-  value: ConditionOption<
-    | "text"
-    | "number"
-    | "multiselect"
-    | "combobox"
-    | "select"
-    | "number.range"
-    | "date"
-    | "datetime"
-    | "date.range"
-    | "datetime.range"
-  >;
+  value: ConditionOptionTypes;
 };
 
 export type ConditionFocusData = {
