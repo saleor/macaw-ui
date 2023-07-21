@@ -40,6 +40,9 @@ export type Row = {
         | "select"
         | "number.range"
         | "date"
+        | "datetime"
+        | "date.range"
+        | "datetime.range"
       >
     >;
     selected: SelectedOperator;
@@ -53,7 +56,9 @@ export type SelectedOperator =
   | SelectOperator
   | NumberRangeOperator
   | DateOperator
-  | DateTimeOperator;
+  | DateTimeOperator
+  | DateRangeOperator
+  | DateTimeRangeOperator;
 
 export type InputOperator = {
   value: string;
@@ -93,6 +98,16 @@ export type DateOperator = {
 export type DateTimeOperator = {
   value: string;
   conditionValue: ConditionOption<"datetime"> | null;
+};
+
+export type DateRangeOperator = {
+  value: [string, string];
+  conditionValue: ConditionOption<"date.range"> | null;
+};
+
+export type DateTimeRangeOperator = {
+  value: [string, string];
+  conditionValue: ConditionOption<"datetime.range"> | null;
 };
 
 export interface FilterEvent extends Event {
@@ -163,6 +178,8 @@ export type ConditionChangeData = {
     | "number.range"
     | "date"
     | "datetime"
+    | "date.range"
+    | "datetime.range"
   >;
 };
 

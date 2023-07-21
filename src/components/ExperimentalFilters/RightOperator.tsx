@@ -5,13 +5,15 @@ import { SelectedOperator } from "./types";
 import {
   isCombobox,
   isDate,
+  isDateRange,
   isDateTime,
+  isDateTimeRange,
   isMultiselect,
   isNumberInput,
   isNumberRange,
   isSelect,
   isTextInput,
-} from "./utils";
+} from "./operators";
 
 type RightOperatorProps = {
   index: number;
@@ -140,7 +142,7 @@ export const RightOperator = ({
   if (isNumberRange(selected)) {
     const [start, end] = selected.value;
     return (
-      <Box display="flex" gap={2} alignItems="center">
+      <Box display="flex" gap={0.5} alignItems="center" flexWrap="wrap">
         <Input
           value={start}
           type="number"
@@ -151,7 +153,6 @@ export const RightOperator = ({
           helperText={error}
           disabled={disabled}
         />
-        <Box>-</Box>
         <Input
           value={end}
           type="number"
@@ -193,6 +194,66 @@ export const RightOperator = ({
         helperText={helperText}
         disabled={disabled}
       />
+    );
+  }
+
+  if (isDateRange(selected)) {
+    const [start, end] = selected.value;
+    return (
+      <Box display="flex" gap={0.5} alignItems="center" flexWrap="wrap">
+        <Input
+          value={start}
+          type="date"
+          onChange={(e) => {
+            emitter.changeRightOperator(index, [e.target.value, end]);
+          }}
+          error={!!error}
+          helperText={error}
+          disabled={disabled}
+          width="100%"
+        />
+        <Input
+          value={end}
+          type="date"
+          onChange={(e) => {
+            emitter.changeRightOperator(index, [start, e.target.value]);
+          }}
+          error={error}
+          helperText={helperText}
+          disabled={disabled}
+          width="100%"
+        />
+      </Box>
+    );
+  }
+
+  if (isDateTimeRange(selected)) {
+    const [start, end] = selected.value;
+    return (
+      <Box display="flex" gap={0.5} alignItems="center" flexWrap="wrap">
+        <Input
+          value={start}
+          type="datetime-local"
+          onChange={(e) => {
+            emitter.changeRightOperator(index, [e.target.value, end]);
+          }}
+          error={!!error}
+          helperText={error}
+          disabled={disabled}
+          width="100%"
+        />
+        <Input
+          value={end}
+          type="datetime-local"
+          onChange={(e) => {
+            emitter.changeRightOperator(index, [start, e.target.value]);
+          }}
+          error={error}
+          helperText={helperText}
+          disabled={disabled}
+          width="100%"
+        />
+      </Box>
     );
   }
 

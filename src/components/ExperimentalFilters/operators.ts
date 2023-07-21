@@ -38,3 +38,10 @@ export const isDate = (value: SelectedOperator): value is DateOperator =>
 export const isDateTime = (
   value: SelectedOperator
 ): value is DateTimeOperator => value.conditionValue?.type === "datetime";
+
+export const isDateRange = (value: SelectedOperator): value is DateOperator =>
+  value.conditionValue?.type === "date.range";
+
+export const isDateTimeRange = (
+  value: SelectedOperator
+): value is DateTimeOperator => value.conditionValue?.type === "datetime.range";
