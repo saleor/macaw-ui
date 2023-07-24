@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Box } from "..";
 
-import { RangeInput } from ".";
+import { RangeInput, RangeValue } from ".";
 
 const meta: Meta<typeof RangeInput> = {
   title: "Components / RangeInput",
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof RangeInput>;
 const Template: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState<[string, string]>(["", ""]);
+    const [value, setValue] = useState<RangeValue>(["", ""]);
 
     return (
       <Box display="flex" gap={0.5} alignItems="center" flexWrap="wrap">

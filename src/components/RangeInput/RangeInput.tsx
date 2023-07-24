@@ -2,9 +2,11 @@ import { forwardRef } from "react";
 
 import { Input, InputProps } from "..";
 
+export type RangeValue = [string, string];
+
 export type RangeInputProps = {
-  value?: [string, string];
-  onChange?: (value: [string, string]) => void;
+  value?: RangeValue;
+  onChange?: (value: RangeValue) => void;
   children?: React.ReactNode;
   type?: "number" | "date" | "time" | "datetime-local";
 } & Omit<InputProps, "onChange" | "value" | "type">;

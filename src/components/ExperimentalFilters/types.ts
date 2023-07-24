@@ -1,4 +1,4 @@
-import { Option } from "..";
+import { Option, RangeValue } from "..";
 
 export type DisabledScope = "left" | "right" | "condition";
 
@@ -86,7 +86,7 @@ export type SelectOperator = {
 };
 
 export type NumberRangeOperator = {
-  value: [string, string];
+  value: RangeValue;
   conditionValue: ConditionOption<"number.range"> | null;
 };
 
@@ -101,12 +101,12 @@ export type DateTimeOperator = {
 };
 
 export type DateRangeOperator = {
-  value: [string, string];
+  value: RangeValue;
   conditionValue: ConditionOption<"date.range"> | null;
 };
 
 export type DateTimeRangeOperator = {
-  value: [string, string];
+  value: RangeValue;
   conditionValue: ConditionOption<"datetime.range"> | null;
 };
 
@@ -188,11 +188,7 @@ export type RightOperatorChangeData = {
   type: "rightOperator.onChange";
   path: `${number}.condition.selected.value`;
   index: number;
-  value:
-    | string
-    | RightOperatorOption[]
-    | RightOperatorOption
-    | [string, string];
+  value: string | RightOperatorOption[] | RightOperatorOption | RangeValue;
 };
 
 export type RightOperatorFocusData = {

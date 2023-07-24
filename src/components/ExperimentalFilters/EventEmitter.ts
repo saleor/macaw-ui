@@ -1,3 +1,5 @@
+import { RangeValue } from "..";
+
 import {
   ConditionBlurData,
   ConditionChangeData,
@@ -131,11 +133,7 @@ export class FilterEventEmitter extends EventTarget {
 
   changeRightOperator(
     index: number,
-    value:
-      | string
-      | RightOperatorOption[]
-      | RightOperatorOption
-      | [string, string]
+    value: string | RightOperatorOption[] | RightOperatorOption | RangeValue
   ) {
     this.dispatchEvent(
       new CustomEvent<RightOperatorChangeData>(this.type, {
