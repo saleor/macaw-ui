@@ -21,6 +21,19 @@ export type Error = {
   rightText?: string;
 };
 
+type ConditionOptionTypes = ConditionOption<
+  | "text"
+  | "number"
+  | "multiselect"
+  | "combobox"
+  | "select"
+  | "number.range"
+  | "date"
+  | "datetime"
+  | "date.range"
+  | "datetime.range"
+>;
+
 export type Row = {
   value: { label: string; value: string; type: string } | null;
   loading?: boolean;
@@ -31,17 +44,7 @@ export type Row = {
   };
   condition: {
     loading?: boolean;
-    options: Array<
-      ConditionOption<
-        | "text"
-        | "number"
-        | "multiselect"
-        | "combobox"
-        | "select"
-        | "number.range"
-        | "date"
-      >
-    >;
+    options: Array<ConditionOptionTypes>;
     selected: SelectedOperator;
   };
 };
@@ -53,7 +56,9 @@ export type SelectedOperator =
   | SelectOperator
   | NumberRangeOperator
   | DateOperator
-  | DateTimeOperator;
+  | DateTimeOperator
+  | DateRangeOperator
+  | DateTimeRangeOperator;
 
 export type InputOperator = {
   value: string;
@@ -93,6 +98,16 @@ export type DateOperator = {
 export type DateTimeOperator = {
   value: string;
   conditionValue: ConditionOption<"datetime"> | null;
+};
+
+export type DateRangeOperator = {
+  value: [string, string];
+  conditionValue: ConditionOption<"date.range"> | null;
+};
+
+export type DateTimeRangeOperator = {
+  value: [string, string];
+  conditionValue: ConditionOption<"datetime.range"> | null;
 };
 
 export interface FilterEvent extends Event {
@@ -154,16 +169,7 @@ export type ConditionChangeData = {
   type: "condition.onChange";
   path: `${number}.condition.selected`;
   index: number;
-  value: ConditionOption<
-    | "text"
-    | "number"
-    | "multiselect"
-    | "combobox"
-    | "select"
-    | "number.range"
-    | "date"
-    | "datetime"
-  >;
+  value: ConditionOptionTypes;
 };
 
 export type ConditionFocusData = {

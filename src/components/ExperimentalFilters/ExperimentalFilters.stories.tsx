@@ -91,14 +91,14 @@ const defaultValue = [
   },
   "OR",
   {
-    value: { value: "discount", label: "Discount", type: "4" },
+    value: { value: "discount", label: "Release date", type: "4" },
     condition: {
-      options: [{ value: "input-1", label: "between", type: "number.range" }],
+      options: [{ value: "input-1", label: "between", type: "date.range" }],
       selected: {
         conditionValue: {
           value: "input-1",
           label: "between",
-          type: "number.range",
+          type: "date.range",
         },
         value: ["0", "1"],
       },
