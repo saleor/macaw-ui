@@ -1,4 +1,10 @@
-import { Box, DynamicCombobox, Input, DynamicMultiselect, Select } from "..";
+import {
+  DynamicCombobox,
+  Input,
+  DynamicMultiselect,
+  Select,
+  RangeInput,
+} from "..";
 
 import { FilterEventEmitter } from "./EventEmitter";
 import { SelectedOperator } from "./types";
@@ -14,6 +20,7 @@ import {
   isSelect,
   isTextInput,
 } from "./operators";
+import { RangeInputWrapper } from "./RangeInputWrapper";
 
 type RightOperatorProps = {
   index: number;
@@ -138,32 +145,21 @@ export const RightOperator = ({
     );
   }
 
-  // TODO: extract to own component after acceptance
   if (isNumberRange(selected)) {
-    const [start, end] = selected.value;
     return (
-      <Box display="flex" gap={0.5} alignItems="center" flexWrap="wrap">
-        <Input
-          value={start}
-          type="number"
-          onChange={(e) => {
-            emitter.changeRightOperator(index, [e.target.value, end]);
+      <RangeInputWrapper>
+        <RangeInput
+          value={selected.value}
+          onChange={(value) => {
+            emitter.changeRightOperator(index, value);
           }}
+          type="number"
           error={!!error}
           helperText={error}
           disabled={disabled}
+          width="100%"
         />
-        <Input
-          value={end}
-          type="number"
-          onChange={(e) => {
-            emitter.changeRightOperator(index, [start, e.target.value]);
-          }}
-          error={error}
-          helperText={helperText}
-          disabled={disabled}
-        />
-      </Box>
+      </RangeInputWrapper>
     );
   }
 
@@ -198,62 +194,38 @@ export const RightOperator = ({
   }
 
   if (isDateRange(selected)) {
-    const [start, end] = selected.value;
     return (
-      <Box display="flex" gap={0.5} alignItems="center" flexWrap="wrap">
-        <Input
-          value={start}
-          type="date"
-          onChange={(e) => {
-            emitter.changeRightOperator(index, [e.target.value, end]);
+      <RangeInputWrapper>
+        <RangeInput
+          value={selected.value}
+          onChange={(value) => {
+            emitter.changeRightOperator(index, value);
           }}
+          type="date"
           error={!!error}
           helperText={error}
           disabled={disabled}
           width="100%"
         />
-        <Input
-          value={end}
-          type="date"
-          onChange={(e) => {
-            emitter.changeRightOperator(index, [start, e.target.value]);
-          }}
-          error={error}
-          helperText={helperText}
-          disabled={disabled}
-          width="100%"
-        />
-      </Box>
+      </RangeInputWrapper>
     );
   }
 
   if (isDateTimeRange(selected)) {
-    const [start, end] = selected.value;
     return (
-      <Box display="flex" gap={0.5} alignItems="center" flexWrap="wrap">
-        <Input
-          value={start}
-          type="datetime-local"
-          onChange={(e) => {
-            emitter.changeRightOperator(index, [e.target.value, end]);
+      <RangeInputWrapper>
+        <RangeInput
+          value={selected.value}
+          onChange={(value) => {
+            emitter.changeRightOperator(index, value);
           }}
+          type="datetime-local"
           error={!!error}
           helperText={error}
           disabled={disabled}
           width="100%"
         />
-        <Input
-          value={end}
-          type="datetime-local"
-          onChange={(e) => {
-            emitter.changeRightOperator(index, [start, e.target.value]);
-          }}
-          error={error}
-          helperText={helperText}
-          disabled={disabled}
-          width="100%"
-        />
-      </Box>
+      </RangeInputWrapper>
     );
   }
 
