@@ -27,10 +27,7 @@ const Template: Story = {
         <RangeInput
           {...args}
           value={value}
-          onChange={(value) => {
-            console.log(value);
-            return setValue(value);
-          }}
+          onChange={(value) => setValue(value)}
         />
       </Box>
     );
