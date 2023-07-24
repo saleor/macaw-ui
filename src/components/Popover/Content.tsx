@@ -1,4 +1,5 @@
 import {
+  DismissableLayerProps,
   Content as RadixPopoverContent,
   Portal as RadixPopoverPortal,
 } from "@radix-ui/react-popover";
@@ -12,12 +13,14 @@ export interface PopoverContentProps {
   align?: "start" | "center" | "end";
   alignOffset?: number;
   avoidCollisions?: boolean;
+  onInteractOutside?: DismissableLayerProps["onInteractOutside"];
   children: React.ReactNode;
 }
 
 export const Content = ({
   children,
   className,
+  onInteractOutside,
   ...props
 }: PopoverContentProps) => {
   return (
@@ -26,6 +29,7 @@ export const Content = ({
         asChild
         className={classNames(popover, className)}
         data-macaw-ui-component="Popover.Content"
+        onInteractOutside={onInteractOutside}
         {...props}
       >
         {children}
