@@ -1,5 +1,4 @@
 import {
-  Box,
   DynamicCombobox,
   Input,
   DynamicMultiselect,
@@ -8,7 +7,7 @@ import {
 } from "..";
 
 import { FilterEventEmitter } from "./EventEmitter";
-import { InputOperator, SelectedOperator } from "./types";
+import { SelectedOperator } from "./types";
 import {
   isCombobox,
   isDate,
