@@ -12,12 +12,14 @@ export interface PopoverContentProps {
   align?: "start" | "center" | "end";
   alignOffset?: number;
   avoidCollisions?: boolean;
+  onInteractOutside?: () => void;
   children: React.ReactNode;
 }
 
 export const Content = ({
   children,
   className,
+  onInteractOutside,
   ...props
 }: PopoverContentProps) => {
   return (
@@ -26,6 +28,7 @@ export const Content = ({
         asChild
         className={classNames(popover, className)}
         data-macaw-ui-component="Popover.Content"
+        onInteractOutside={onInteractOutside}
         {...props}
       >
         {children}
