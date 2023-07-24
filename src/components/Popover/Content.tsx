@@ -1,5 +1,4 @@
 import {
-  DismissableLayerProps,
   Content as RadixPopoverContent,
   Portal as RadixPopoverPortal,
 } from "@radix-ui/react-popover";
@@ -13,7 +12,7 @@ export interface PopoverContentProps {
   align?: "start" | "center" | "end";
   alignOffset?: number;
   avoidCollisions?: boolean;
-  onInteractOutside?: DismissableLayerProps["onInteractOutside"];
+  onInteractOutside?: () => void;
   children: React.ReactNode;
 }
 
