@@ -146,7 +146,6 @@ export const RightOperator = ({
   }
 
   if (isNumberRange(selected)) {
-    console.log(error, helperText);
     return (
       <RangeInputWrapper>
         <RangeInput
