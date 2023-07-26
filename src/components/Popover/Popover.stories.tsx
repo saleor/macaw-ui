@@ -24,7 +24,7 @@ export const Primary: Story = {
       // eslint-disable-next-line react/jsx-key
       <Popover.Content>
         <Box>
-          <Popover.Arrow />
+          <Popover.Arrow backgroundColor="surfaceNeutralPlain" />
           <Text>Popover content.</Text>
         </Box>
       </Popover.Content>,
