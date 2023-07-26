@@ -229,6 +229,8 @@ const stateProperties = defineProperties({
     transition: { ease: "transform 0.3s", all: "all 0.3s ease-in-out" },
     textDecoration: ["none", "underline"],
     transform: [],
+    fill: { ...vars.colors.background, transparent: "transparent" },
+    stroke: { ...vars.colors.border, transparent: "transparent" },
   },
 });
 
