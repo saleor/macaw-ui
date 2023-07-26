@@ -93,12 +93,12 @@ const defaultValue = [
   {
     value: { value: "discount", label: "Release date", type: "4" },
     condition: {
-      options: [{ value: "input-1", label: "between", type: "date.range" }],
+      options: [{ value: "input-1", label: "between", type: "number.range" }],
       selected: {
         conditionValue: {
           value: "input-1",
           label: "between",
-          type: "date.range",
+          type: "number.range",
         },
         value: ["0", "1"],
       },
@@ -302,9 +302,8 @@ export const Error = () => {
         value={defaultValue}
         error={[
           {
-            row: 0,
+            row: 8,
             rightText: "Some error here",
-            leftText: "Some error here",
           },
           {
             row: 2,

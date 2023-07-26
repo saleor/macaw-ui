@@ -155,7 +155,7 @@ export const RightOperator = ({
           }}
           type="number"
           error={!!error}
-          helperText={error}
+          helperText={helperText}
           disabled={disabled}
           width="100%"
         />
@@ -203,7 +203,7 @@ export const RightOperator = ({
           }}
           type="date"
           error={!!error}
-          helperText={error}
+          helperText={helperText}
           disabled={disabled}
           width="100%"
         />
@@ -221,7 +221,7 @@ export const RightOperator = ({
           }}
           type="datetime-local"
           error={!!error}
-          helperText={error}
+          helperText={helperText}
           disabled={disabled}
           width="100%"
         />
@@ -229,5 +229,5 @@ export const RightOperator = ({
     );
   }
 
-  return <Input disabled />;
+  return <Input disabled value={selected.value} />;
 };
