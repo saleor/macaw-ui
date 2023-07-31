@@ -54,6 +54,7 @@ export const MultiselectWrapper = ({
       gap={3}
       data-macaw-ui-component="Multiselect"
       {...getLabelProps({ htmlFor: id })}
+      cursor={disabled ? "not-allowed" : "text"}
     >
       <Box display="flex" flexDirection="column" width="100%">
         <Box

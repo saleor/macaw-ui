@@ -49,6 +49,7 @@ export const SelectWrapper = ({
       gap={3}
       {...getToggleButtonProps()}
       data-macaw-ui-component="Select"
+      cursor={disabled ? "not-allowed" : "pointer"}
     >
       <Box display="flex" flexDirection="column" width="100%">
         <Box
