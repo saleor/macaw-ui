@@ -11,7 +11,6 @@ export const labelRecipe = recipe({
       color: "textNeutralSubdued",
       borderRadius: 3,
       paddingY: 1.5,
-      cursor: "text",
       borderWidth: 1,
       borderStyle: "solid",
     }),
