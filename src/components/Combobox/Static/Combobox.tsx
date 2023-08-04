@@ -32,7 +32,6 @@ export type ComboboxProps<T> = PropsWithBox<
     | "onChange"
     | "value"
     | "nonce"
-    | "type"
   > & {
     label?: ReactNode;
     error?: boolean;
@@ -128,7 +127,7 @@ const ComboboxInner = <T extends Option>(
             {isOpen &&
               itemsToSelect?.map((item, index) => (
                 <List.Item
-                  key={`${id}-${item}-${index}`}
+                  key={`${id}-${item.value}-${index}`}
                   className={listItemStyle}
                   {...getItemProps({
                     item,

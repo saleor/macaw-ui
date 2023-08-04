@@ -1,3 +1,1 @@
-export type DataAttributes = {
-  [key: `data-${string}`]: string;
-};
+export type DataAttributes = Record<`data-${string}`, string>;

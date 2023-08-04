@@ -36,7 +36,6 @@ export type DynamicComboboxProps<T> = PropsWithBox<
     | "onChange"
     | "value"
     | "nonce"
-    | "type"
   > & {
     label?: ReactNode;
     error?: boolean;
@@ -143,7 +142,7 @@ const DynamicComboboxInner = <T extends Option>(
             {isOpen &&
               itemsToSelect?.map((item, index) => (
                 <List.Item
-                  key={`${id}-${item}-${index}`}
+                  key={`${id}-${item.value}-${index}`}
                   className={listItemStyle}
                   {...getItemProps({
                     item,
@@ -173,7 +172,7 @@ const DynamicComboboxInner = <T extends Option>(
 };
 
 export const DynamicCombobox = forwardRef(DynamicComboboxInner) as <
-  T extends Option
+  T extends Option,
 >(
   props: DynamicComboboxProps<T> & {
     ref?: React.ForwardedRef<HTMLInputElement>;

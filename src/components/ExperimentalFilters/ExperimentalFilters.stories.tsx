@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method -- @todo: don't use lodash like this */
 import { Meta } from "@storybook/react";
 import _ from "lodash";
 import { ReactNode, useState } from "react";
