@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Meta } from "@storybook/react";
-import { debounce } from "lodash";
+import { debounce } from "lodash-es";
 
 import { DynamicCombobox } from "..";
 import { Option } from "../..";

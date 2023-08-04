@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/unbound-method -- @todo: don't use lodash like this */
 import { Meta } from "@storybook/react";
-import _ from "lodash";
+import { setWith, clone } from "lodash-es";
 import { ReactNode, useState } from "react";
 
 import {
@@ -169,18 +168,18 @@ export const Default = () => {
         leftOptions={leftOptions}
         onChange={(event) => {
           if (event?.type === "rightOperator.onChange") {
-            const newState = _.setWith(
-              _.clone(rows),
+            const newState = setWith(
+              clone(rows),
               event?.path ?? "",
               event?.value,
-              _.clone
+              clone
             );
             setRows(newState);
           }
 
           if (event?.type === "condition.onChange") {
-            const newState = _.setWith(
-              _.clone(rows),
+            const newState = setWith(
+              clone(rows),
               event?.path ?? "",
               {
                 value: [],
@@ -190,14 +189,14 @@ export const Default = () => {
                 ],
                 conditionValue: event?.value,
               },
-              _.clone
+              clone
             );
             setRows(newState);
           }
 
           if (event?.type === "leftOperator.onChange") {
-            const newState = _.setWith(
-              _.clone(rows),
+            const newState = setWith(
+              clone(rows),
               event?.path ?? "",
               {
                 value: event?.value,
@@ -220,7 +219,7 @@ export const Default = () => {
                   },
                 },
               },
-              _.clone
+              clone
             );
             setRows(newState);
           }
