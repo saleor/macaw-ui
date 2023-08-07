@@ -20,7 +20,10 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: "src/index.tsx",
+      entry: {
+        index: resolve(__dirname, "src", "index.tsx"),
+        theme: resolve(__dirname, "src", "theme", "index.ts"),
+      },
       formats: ["es", "cjs"],
     },
     rollupOptions: {
