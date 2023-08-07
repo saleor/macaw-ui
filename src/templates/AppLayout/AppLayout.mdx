@@ -1,0 +1,13 @@
+import { Canvas, Meta } from "@storybook/blocks";
+
+import * as AppLayoutStories from "./AppLayout.stories";
+
+<style>{`
+.sbdocs.sbdocs-content {
+  max-width: 2137px !important;
+}
+`}</style>
+
+<Canvas layout="fullscreen" of={AppLayoutStories.ConfigurationsListPage} />
+
+<Canvas layout="fullscreen" of={AppLayoutStories.ConfigurationPage} />
