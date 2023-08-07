@@ -80,6 +80,16 @@ export default class AppDocument extends Document {
 }
 ```
 
+If you are using Next.js in version 13 and you got this error:
+
+```
+NonErrorEmittedError: (Emitted value instead of an instance of Error) ReferenceError: $RefreshReg$ is not defined
+```
+
+Try to change `sprinkles` imports from `@saleor/macaw-ui/next` to `@saleor/macaw-ui/next/theme`.
+
+[Reference](https://github.com/vanilla-extract-css/vanilla-extract/issues/1043)
+
 ### Usage with form libraries
 
 #### React Hook Form
