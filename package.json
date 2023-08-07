@@ -16,10 +16,10 @@
   "typesVersions": {
     "*": {
       "next": [
-        "dist/src/index.d.ts"
+        "dist/index.d.ts"
       ],
       "next/theme": [
-        "dist/src/theme/index.d.ts"
+        "dist/theme/index.d.ts"
       ],
       "*": [
         "legacy/dist/types/*"
@@ -29,7 +29,7 @@
   "packageManager": "pnpm@8.6.11",
   "exports": {
     "./next": {
-      "types": "./dist/src/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
@@ -38,7 +38,7 @@
       "require": "./dist/style.css"
     },
     "./next/theme": {
-      "types": "./dist/src/theme/index.d.ts",
+      "types": "./dist/theme/index.d.ts",
       "import": "./dist/theme.mjs",
       "require": "./dist/theme.js"
     },
