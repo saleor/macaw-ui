@@ -32,7 +32,7 @@ export const useTextMetrics = (
   const context = canvas.getContext("2d");
 
   useEffect(() => {
-    if (!context || !elementRef || !elementRef.current) return;
+    if (!context || !elementRef?.current) return;
 
     styles.current = window.getComputedStyle(elementRef.current, null);
     context.font = obtainFontString(styles.current);

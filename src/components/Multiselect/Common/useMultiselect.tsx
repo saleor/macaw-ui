@@ -141,6 +141,7 @@ export const useMultiselect = <T extends Option>({
       otherOptions?: GetPropsCommonOptions
     ) =>
       _getInputProps(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         getDropdownProps({
           onFocus: (e: FocusEvent<HTMLInputElement, Element>) => {
             setActive(true);

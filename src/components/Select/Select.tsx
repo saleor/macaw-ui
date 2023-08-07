@@ -137,7 +137,7 @@ const SelectInner = <T extends Option>(
             {isOpen &&
               options?.map((item, index) => (
                 <List.Item
-                  key={`${id}-${item}-${index}`}
+                  key={`${id}-${item.value}-${index}`}
                   className={listItemStyle}
                   {...getItemProps({
                     item,

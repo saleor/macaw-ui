@@ -1,3 +1,4 @@
+import { visualizer } from "rollup-plugin-visualizer";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
@@ -6,7 +7,12 @@ import { defineConfig } from "vitest/config";
 import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [dts(), react(), vanillaExtractPlugin()],
+  plugins: [
+    dts(),
+    react(),
+    vanillaExtractPlugin(),
+    ...(process.env.VISUALIZER ? [visualizer()] : []),
+  ],
   resolve: {
     alias: {
       "~": resolve(__dirname, "src"),
@@ -20,6 +26,7 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react-dom"],
     },
+    sourcemap: true,
   },
   test: {
     globals: true,

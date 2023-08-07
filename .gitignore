@@ -33,3 +33,4 @@ storybook-static
 
 # vite
 vite.config.ts.timestamp-*.mjs
+stats.html

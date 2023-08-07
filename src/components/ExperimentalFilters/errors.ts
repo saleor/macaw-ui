@@ -1,7 +1,8 @@
 import { Error } from "./types";
 
-export type ErrorLookup = {
-  [key: number]: {
+export type ErrorLookup = Record<
+  number,
+  {
     left: {
       text: string;
       show: boolean;
@@ -14,8 +15,8 @@ export type ErrorLookup = {
       text: string;
       show: boolean;
     };
-  };
-};
+  }
+>;
 
 export const createErrorLookup = (errors: Error[] | undefined): ErrorLookup => {
   const entries = errors?.map((error) => [

@@ -1,8 +1,9 @@
 import { recipe } from "@vanilla-extract/recipes";
-import { Sprinkles, sprinkles, vars } from "~/theme";
+import { CSSProperties } from "@vanilla-extract/css";
+import { sprinkles, vars } from "~/theme";
 
-const outerGlow = (color: Sprinkles["backgroundColor"]) => {
-  return `0 0 0 ${vars.spacing[1]} ${color}`;
+const outerGlow = (color: CSSProperties["backgroundColor"]) => {
+  return `0 0 0 ${vars.spacing[1]} ${color?.toString()}`;
 };
 
 export const toggle = recipe({

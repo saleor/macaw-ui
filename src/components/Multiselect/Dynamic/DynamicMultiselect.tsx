@@ -38,7 +38,6 @@ export type DynamicMultiselectProps<T> = PropsWithBox<
     | "onChange"
     | "value"
     | "nonce"
-    | "type"
   > & {
     label?: ReactNode;
     error?: boolean;
@@ -128,7 +127,7 @@ const DynamicMultiselectInner = <T extends Option>(
       >
         {selectedItems.map((item, idx) => (
           <Box
-            key={`selected-item-${item}-${idx}`}
+            key={`selected-item-${item.value}-${idx}`}
             paddingX={1.5}
             paddingY={0.5}
             backgroundColor="surfaceNeutralSubdued"
@@ -204,7 +203,7 @@ const DynamicMultiselectInner = <T extends Option>(
             {isOpen &&
               itemsToSelect?.map((item, index) => (
                 <List.Item
-                  key={`to-select-${id}-${item}-${index}`}
+                  key={`to-select-${id}-${item.value}-${index}`}
                   className={listItemStyle}
                   active={highlightedIndex === index}
                   {...getItemProps({
@@ -234,7 +233,7 @@ const DynamicMultiselectInner = <T extends Option>(
 };
 
 export const DynamicMultiselect = forwardRef(DynamicMultiselectInner) as <
-  T extends Option
+  T extends Option,
 >(
   props: DynamicMultiselectProps<T> & {
     ref?: React.ForwardedRef<HTMLInputElement>;
