@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 import { Combobox } from "..";
 
@@ -136,4 +136,32 @@ export const WithHelperText: Story = {
       },
     },
   },
+};
+
+export const Example = () => {
+  const [value, setValue] = useState("color-black");
+
+  return (
+    <Combobox
+      label="Pick a color"
+      size="large"
+      value={value}
+      onChange={(value) => setValue(value)}
+      options={options}
+    />
+  );
+};
+
+export const WithStringValue = () => {
+  const [value, setValue] = useState("color-black");
+
+  return (
+    <Combobox
+      label="Pick a color"
+      size="large"
+      value={value}
+      onChange={(value) => setValue(value)}
+      options={options}
+    />
+  );
 };
