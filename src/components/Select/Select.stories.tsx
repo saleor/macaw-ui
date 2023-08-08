@@ -140,3 +140,16 @@ const [value, setValue] = useState({ value: "color-black", label: "Black" });
     },
   },
 };
+
+export const WithStringValue = () => {
+  const [value, setValue] = useState("color-black");
+
+  return (
+    <Select
+      options={options}
+      value={value}
+      size="large"
+      onChange={(value) => setValue(value)}
+    />
+  );
+};

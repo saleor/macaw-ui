@@ -1,22 +1,25 @@
-import { FocusEvent, useState } from "react";
 import {
   GetPropsCommonOptions,
   UseSelectGetToggleButtonPropsOptions,
   useSelect as useDownshiftSelect,
 } from "downshift7";
+import { FocusEvent, useState } from "react";
 
-import { Option, SingleChangeHandler } from "../BaseSelect";
+import { isString } from "~/utils";
 
-export const useSelect = <T extends Option>({
+import { Option } from "../BaseSelect";
+import { SelectProps } from "./Select";
+
+export const useSelect = <T extends Option, V extends string | Option>({
   value,
   options,
   onChange,
   onFocus,
   onBlur,
 }: {
-  value: T | null;
+  value: T | null | undefined;
   options: T[];
-  onChange?: SingleChangeHandler<T>;
+  onChange?: SelectProps<T, V>["onChange"];
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLElement, Element>) => void;
 }) => {
@@ -37,7 +40,10 @@ export const useSelect = <T extends Option>({
     itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        onChange?.(selectedItem);
+        const selectedValue = isString(selectedItem)
+          ? selectedItem.value
+          : selectedItem;
+        onChange?.(selectedValue as V);
       }
     },
   });
