@@ -52,10 +52,7 @@ const MultiselectTemplate: Story = {
         <Multiselect
           {...args}
           value={selectedItems}
-          onChange={(values) => {
-            console.log({ values });
-            return setSelectedItems(values);
-          }}
+          onChange={(values) => setSelectedItems(values)}
         />
       </Box>
     );
