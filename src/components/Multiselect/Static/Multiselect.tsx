@@ -17,14 +17,15 @@ import {
   Option,
 } from "~/components/BaseSelect";
 
+import { isStringArray } from "~/utils";
 import {
-  RenderEndAdornmentType,
-  useMultiselect,
-  MultiselectWrapper,
   multiselectInputRecipe,
+  MultiselectWrapper,
+  RenderEndAdornmentType,
 } from "../Common";
+import { useStaticMultiselect } from "./useStaticMultiselect";
 
-export type MultiselectProps<T> = PropsWithBox<
+export type MultiselectProps<T, V> = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | "color"
@@ -41,8 +42,8 @@ export type MultiselectProps<T> = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: T[];
-    onChange?: MultiChangeHandler<T>;
-    value: T[];
+    onChange?: MultiChangeHandler<V>;
+    value: V[];
     renderEndAdornment?: RenderEndAdornmentType;
     locale?: {
       inputText?: string;
@@ -51,7 +52,7 @@ export type MultiselectProps<T> = PropsWithBox<
 > &
   InputVariants;
 
-const MultiselectInner = <T extends Option>(
+const MultiselectInner = <T extends Option, V extends Option | string>(
   {
     size,
     disabled = false,
@@ -70,9 +71,19 @@ const MultiselectInner = <T extends Option>(
       inputText: "Add item",
     },
     ...props
-  }: MultiselectProps<T>,
+  }: MultiselectProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
+  const selectedItemsValue = isStringArray(value)
+    ? value.reduce<T[]>((acc, value) => {
+        const option = options.find((option) => option.value === value);
+        if (option) {
+          acc.push(option);
+        }
+        return acc;
+      }, [])
+    : value;
+
   const {
     active,
     typed,
@@ -90,8 +101,8 @@ const MultiselectInner = <T extends Option>(
     getToggleButtonProps,
     hasItemsToSelect,
     showInput,
-  } = useMultiselect<T>({
-    selectedItems: value,
+  } = useStaticMultiselect({
+    selectedItems: selectedItemsValue,
     options,
     onChange,
     onFocus,
@@ -218,6 +229,9 @@ const MultiselectInner = <T extends Option>(
   );
 };
 
-export const Multiselect = forwardRef(MultiselectInner) as <T extends Option>(
-  props: MultiselectProps<T> & { ref?: React.ForwardedRef<HTMLInputElement> }
+export const Multiselect = forwardRef(MultiselectInner) as <
+  T extends Option,
+  V extends Option | string,
+>(
+  props: MultiselectProps<T, V> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => ReturnType<typeof MultiselectInner>;
