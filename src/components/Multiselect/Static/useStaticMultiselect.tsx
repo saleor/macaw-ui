@@ -34,14 +34,14 @@ export const useStaticMultiselect = <
   T extends Option,
   V extends Option | string,
 >({
-  selectedItems,
+  selectedValues,
   options,
   onChange,
   onInputValueChange,
   onFocus,
   onBlur,
 }: {
-  selectedItems: T[];
+  selectedValues: V[];
   options: T[];
   onChange?: MultiChangeHandler<V>;
   onInputValueChange?: (value: string) => void;
@@ -50,6 +50,15 @@ export const useStaticMultiselect = <
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [active, setActive] = useState(false);
+  const selectedItems = isStringArray(selectedValues)
+    ? selectedValues.reduce<T[]>((acc, value) => {
+        const option = options.find((option) => option.value === value);
+        if (option) {
+          acc.push(option);
+        }
+        return acc;
+      }, [])
+    : (selectedValues as unknown as T[]);
 
   const itemsToSelect = getItemsFilter<T>(selectedItems, inputValue, options);
 

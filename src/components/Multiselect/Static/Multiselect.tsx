@@ -17,7 +17,6 @@ import {
   Option,
 } from "~/components/BaseSelect";
 
-import { isStringArray } from "~/utils";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -74,16 +73,6 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
   }: MultiselectProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const selectedItemsValue = isStringArray(value)
-    ? value.reduce<T[]>((acc, value) => {
-        const option = options.find((option) => option.value === value);
-        if (option) {
-          acc.push(option);
-        }
-        return acc;
-      }, [])
-    : value;
-
   const {
     active,
     typed,
@@ -102,7 +91,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     hasItemsToSelect,
     showInput,
   } = useStaticMultiselect({
-    selectedItems: selectedItemsValue,
+    selectedValues: value,
     options,
     onChange,
     onFocus,
