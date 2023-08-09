@@ -1,14 +1,15 @@
-import { useState, FocusEvent, ReactNode } from "react";
 import {
   GetPropsCommonOptions,
-  useCombobox,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
   UseComboboxPropGetters,
+  useCombobox,
   useMultipleSelection,
 } from "downshift7";
+import { FocusEvent, ReactNode, useState } from "react";
 
 import { MultiChangeHandler, Option } from "~/components/BaseSelect";
+import { isStringArray } from "~/utils";
 
 export type RenderEndAdornmentType = (
   ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
@@ -29,23 +30,32 @@ const getItemsFilter = <T extends Option>(
   );
 };
 
-export const useMultiselect = <T extends Option>({
-  selectedItems,
+export const useMultiselect = <T extends Option, V extends Option | string>({
+  selectedValues,
   options,
   onChange,
   onInputValueChange,
   onFocus,
   onBlur,
 }: {
-  selectedItems: T[];
+  selectedValues: V[];
   options: T[];
-  onChange?: MultiChangeHandler<T>;
+  onChange?: MultiChangeHandler<V>;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [active, setActive] = useState(false);
+  const selectedItems = isStringArray(selectedValues)
+    ? selectedValues.reduce<T[]>((acc, value) => {
+        const option = options.find((option) => option.value === value);
+        if (option) {
+          acc.push(option);
+        }
+        return acc;
+      }, [])
+    : (selectedValues as unknown as T[]);
 
   const itemsToSelect = getItemsFilter<T>(selectedItems, inputValue, options);
 
@@ -64,9 +74,14 @@ export const useMultiselect = <T extends Option>({
             .SelectedItemKeyDownBackspace:
           case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
           case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
-          case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-            onChange?.(newSelectedItems ?? []);
+          case useMultipleSelection.stateChangeTypes
+            .FunctionRemoveSelectedItem: {
+            const selected = isStringArray(selectedValues)
+              ? newSelectedItems?.map((item) => item.value)
+              : newSelectedItems;
+            onChange?.(selected as V[]);
             break;
+          }
 
           default:
             break;
@@ -112,7 +127,10 @@ export const useMultiselect = <T extends Option>({
         case useCombobox.stateChangeTypes.ItemClick:
         case useCombobox.stateChangeTypes.InputBlur:
           if (newSelectedItem) {
-            onChange?.([...selectedItems, newSelectedItem]);
+            const selected = isStringArray(selectedValues)
+              ? [...selectedItems.map((i) => i.value), newSelectedItem.value]
+              : [...selectedItems, newSelectedItem];
+            onChange?.(selected as V[]);
           } else {
             setInputValue("");
           }

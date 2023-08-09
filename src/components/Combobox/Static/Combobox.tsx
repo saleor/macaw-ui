@@ -19,7 +19,7 @@ import {
 import { classNames, isString } from "~/utils";
 
 import { ComboboxWrapper } from "../Common";
-import { useStaticCombobox } from "./useStaticCombobox";
+import { useCombobox } from "../Common/useCombobox";
 
 export type ComboboxProps<T, V> = PropsWithBox<
   Omit<
@@ -74,7 +74,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
-  } = useStaticCombobox({
+  } = useCombobox({
     selectedItem: isString(value)
       ? options.find((option) => option.value === value)
       : value,

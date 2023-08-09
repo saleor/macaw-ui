@@ -12,17 +12,16 @@ import { classNames } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
+  getListDisplayMode,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   LoadingListItem,
   Option,
-  getListDisplayMode,
   SingleChangeHandler,
 } from "../../BaseSelect";
 
-import { useCombobox } from "../Common/useCombobox";
-import { ComboboxWrapper } from "../Common/ComboboxWrapper";
+import { ComboboxWrapper, useCombobox } from "../Common";
 
 export type DynamicComboboxProps<T> = PropsWithBox<
   Omit<
@@ -87,7 +86,7 @@ const DynamicComboboxInner = <T extends Option>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
-  } = useCombobox<T>({
+  } = useCombobox({
     selectedItem: value,
     options,
     onChange,

@@ -21,8 +21,8 @@ import {
   multiselectInputRecipe,
   MultiselectWrapper,
   RenderEndAdornmentType,
+  useMultiselect,
 } from "../Common";
-import { useStaticMultiselect } from "./useStaticMultiselect";
 
 export type MultiselectProps<T, V> = PropsWithBox<
   Omit<
@@ -90,7 +90,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     getToggleButtonProps,
     hasItemsToSelect,
     showInput,
-  } = useStaticMultiselect({
+  } = useMultiselect({
     selectedValues: value,
     options,
     onChange,

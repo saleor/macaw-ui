@@ -10,20 +10,20 @@ import {
 import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
+  getListDisplayMode,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   LoadingListItem,
-  Option,
-  getListDisplayMode,
   MultiChangeHandler,
+  Option,
 } from "~/components/BaseSelect";
 
 import {
+  multiselectInputRecipe,
+  MultiselectWrapper,
   RenderEndAdornmentType,
   useMultiselect,
-  MultiselectWrapper,
-  multiselectInputRecipe,
 } from "../Common";
 
 export type DynamicMultiselectProps<T> = PropsWithBox<
@@ -98,8 +98,8 @@ const DynamicMultiselectInner = <T extends Option>(
     getToggleButtonProps,
     hasItemsToSelect,
     showInput,
-  } = useMultiselect<T>({
-    selectedItems: value,
+  } = useMultiselect<T, T>({
+    selectedValues: value,
     onInputValueChange,
     options,
     onChange,
