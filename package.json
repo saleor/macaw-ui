@@ -62,7 +62,7 @@
   "scripts": {
     "build:legacy": "cd legacy && npm run build",
     "build:next": "npm-run-all check-types:next && vite build",
-    "build:visualizer": "VISUALIZER=true vite build",
+    "bundle-visualizer": "VISUALIZER=true vite build",
     "build-storybook": "storybook build --docs",
     "watch": "vite build --watch",
     "lint:legacy": "cd legacy && npm run lint",
