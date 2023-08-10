@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
-import { List, Text } from "~/components";
+import { List, Spinner, Text } from "~/components";
 
 import { listItemStyle } from "../BaseSelect.css";
-import { Spinner } from "./Spinner";
 
 type LoadingListItemProps = {
   size?: "small" | "medium" | "large";
