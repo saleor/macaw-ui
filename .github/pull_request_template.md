@@ -10,4 +10,5 @@ greatly reduce the amount of work needed to review your work. -->
 ### Pull Request Checklist
 
 - [ ] New components are exported from `./src/components/index.ts`.
-- [ ] Storybook story is created and documentation properly generated.
+- [ ] The storybook story is created and documentation is properly generated.
+- [ ] New component is wrapped in `forwardRef`.
