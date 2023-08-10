@@ -8,9 +8,9 @@ dependencies:
   "@dessert-box/react":
     specifier: ^0.4.0
     version: 0.4.0(react@18.2.0)
-  "@floating-ui/react":
-    specifier: 0.25.0
-    version: 0.25.0(react-dom@18.2.0)(react@18.2.0)
+  "@floating-ui/react-dom-interactions":
+    specifier: ^0.5.0
+    version: 0.5.0(@types/react@18.0.0)(react-dom@18.2.0)(react@18.2.0)
   "@radix-ui/react-accordion":
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.2.0)(react@18.2.0)
@@ -45,11 +45,11 @@ dependencies:
     specifier: ^0.1.3
     version: 0.1.3
   clsx:
-    specifier: ^2.0.0
-    version: 2.0.0
+    specifier: ^1.2.1
+    version: 1.2.1
   downshift:
-    specifier: ^8.1.0
-    version: 8.1.0(react@18.2.0)
+    specifier: ^6.1.12
+    version: 6.1.12(react@18.2.0)
   downshift7:
     specifier: npm:downshift@7.6.0
     version: /downshift@7.6.0(react@18.2.0)
@@ -2804,6 +2804,13 @@ packages:
       }
     dev: true
 
+  /@floating-ui/core@0.7.3:
+    resolution:
+      {
+        integrity: sha512-buc8BXHmG9l82+OQXOFU3Kr2XQx9ys01U/Q9HMIrZ300iLc8HLMgh7dcCqgYzAzf4BkoQvDcXf5Y+CuEZ5JBYg==,
+      }
+    dev: false
+
   /@floating-ui/core@1.4.1:
     resolution:
       {
@@ -2811,6 +2818,15 @@ packages:
       }
     dependencies:
       "@floating-ui/utils": 0.1.1
+
+  /@floating-ui/dom@0.5.4:
+    resolution:
+      {
+        integrity: sha512-419BMceRLq0RrmTSDxn8hf9R3VCJv2K9PUfugh5JyEFmdjzDo+e8U5EdR8nzKq8Yj1htzLm3b6eQEEam3/rrtg==,
+      }
+    dependencies:
+      "@floating-ui/core": 0.7.3
+    dev: false
 
   /@floating-ui/dom@1.5.1:
     resolution:
@@ -2820,6 +2836,39 @@ packages:
     dependencies:
       "@floating-ui/core": 1.4.1
       "@floating-ui/utils": 0.1.1
+
+  /@floating-ui/react-dom-interactions@0.5.0(@types/react@18.0.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-rfON7mkHjCeogd0BSXPa8GBp1TMxEytJQqGVlCouSUonJ4POqdHsqcxRnCh0yAaGVaL/nB/J1vq28V4RdoLszg==,
+      }
+    deprecated: Package renamed to @floating-ui/react
+    dependencies:
+      "@floating-ui/react-dom": 0.7.2(@types/react@18.0.0)(react-dom@18.2.0)(react@18.2.0)
+      aria-hidden: 1.2.3
+      use-isomorphic-layout-effect: 1.1.2(@types/react@18.0.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - "@types/react"
+      - react
+      - react-dom
+    dev: false
+
+  /@floating-ui/react-dom@0.7.2(@types/react@18.0.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-1T0sJcpHgX/u4I1OzIEhlcrvkUN8ln39nz7fMoE/2HDHrPiMFoOGR7++GYyfUmIQHkkrTinaeQsO3XWubjSvGg==,
+      }
+    peerDependencies:
+      react: ">=16.8.0"
+      react-dom: ">=16.8.0"
+    dependencies:
+      "@floating-ui/dom": 0.5.4
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-isomorphic-layout-effect: 1.1.2(@types/react@18.0.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - "@types/react"
+    dev: false
 
   /@floating-ui/react-dom@2.0.1(react-dom@18.2.0)(react@18.2.0):
     resolution:
@@ -2833,23 +2882,6 @@ packages:
       "@floating-ui/dom": 1.5.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-
-  /@floating-ui/react@0.25.0(react-dom@18.2.0)(react@18.2.0):
-    resolution:
-      {
-        integrity: sha512-0ulipo5ZTmCpTlVPjIbLyqReO7S3gwyQSiIm0TjKU5LPN97BmMZ2crJZcNMQ4GZz/V4qurMibGl4z3+TjF5tRA==,
-      }
-    peerDependencies:
-      react: ">=16.8.0"
-      react-dom: ">=16.8.0"
-    dependencies:
-      "@floating-ui/react-dom": 2.0.1(react-dom@18.2.0)(react@18.2.0)
-      "@floating-ui/utils": 0.1.1
-      aria-hidden: 1.2.3
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      tabbable: 6.2.0
-    dev: false
 
   /@floating-ui/utils@0.1.1:
     resolution:
@@ -8094,10 +8126,10 @@ packages:
     engines: { node: ">=0.8" }
     dev: true
 
-  /clsx@2.0.0:
+  /clsx@1.2.1:
     resolution:
       {
-        integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==,
+        integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==,
       }
     engines: { node: ">=6" }
     dev: false
@@ -8237,6 +8269,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /compute-scroll-into-view@1.0.20:
+    resolution:
+      {
+        integrity: sha512-UCB0ioiyj8CRjtrvaceBLqqhZCVP+1B8+NWQhmdsm0VXOJtobBCf1dBQmebCCo34qZmUwZfIH2MZLqNHazrfjg==,
+      }
+    dev: false
 
   /compute-scroll-into-view@2.0.4:
     resolution:
@@ -9185,26 +9224,26 @@ packages:
     engines: { node: ">=12" }
     dev: true
 
-  /downshift@7.6.0(react@18.2.0):
+  /downshift@6.1.12(react@18.2.0):
     resolution:
       {
-        integrity: sha512-VSoTVynTAsabou/hbZ6HJHUVhtBiVOjQoBsCPcQq5eAROIGP+9XKMp9asAKQ3cEcUP4oe0fFdD2pziUjhFY33Q==,
+        integrity: sha512-7XB/iaSJVS4T8wGFT3WRXmSF1UlBHAA40DshZtkrIscIN+VC+Lh363skLxFTvJwtNgHxAMDGEHT4xsyQFWL+UA==,
       }
     peerDependencies:
       react: ">=16.12.0"
     dependencies:
       "@babel/runtime": 7.22.6
-      compute-scroll-into-view: 2.0.4
+      compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
       react: 18.2.0
       react-is: 17.0.2
       tslib: 2.6.1
     dev: false
 
-  /downshift@8.1.0(react@18.2.0):
+  /downshift@7.6.0(react@18.2.0):
     resolution:
       {
-        integrity: sha512-e9EBBLZvB2G73qT272x3hExttGCH1q1usbjirm+1aMcFXuzSWhgBdbnAHPlFI2rEq61cU/kDrEIMrY+ozMhvmg==,
+        integrity: sha512-VSoTVynTAsabou/hbZ6HJHUVhtBiVOjQoBsCPcQq5eAROIGP+9XKMp9asAKQ3cEcUP4oe0fFdD2pziUjhFY33Q==,
       }
     peerDependencies:
       react: ">=16.12.0"
@@ -16355,13 +16394,6 @@ packages:
       tslib: 2.6.1
     dev: true
 
-  /tabbable@6.2.0:
-    resolution:
-      {
-        integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==,
-      }
-    dev: false
-
   /tapable@2.2.1:
     resolution:
       {
@@ -17194,6 +17226,22 @@ packages:
       "@types/react": 18.0.0
       react: 18.2.0
       tslib: 2.6.1
+
+  /use-isomorphic-layout-effect@1.1.2(@types/react@18.0.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==,
+      }
+    peerDependencies:
+      "@types/react": "*"
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+    dependencies:
+      "@types/react": 18.0.0
+      react: 18.2.0
+    dev: false
 
   /use-resize-observer@9.1.0(react-dom@18.2.0)(react@18.2.0):
     resolution:
