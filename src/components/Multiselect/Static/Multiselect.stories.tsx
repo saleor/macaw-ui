@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { ViewTableIcon, Box } from "../..";
 import { Multiselect } from "..";
+import { Box, ViewTableIcon } from "../..";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -178,4 +178,21 @@ const [selectedItems, setSelectedItems] = useState([{ value: "color-black", labe
       },
     },
   },
+};
+
+export const WithStringAsValues = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [selectedItems, setSelectedItems] = useState(["Black"]);
+
+  return (
+    <Box __width={300}>
+      <Multiselect
+        label="Pick colors"
+        size="large"
+        value={selectedItems}
+        onChange={(values) => setSelectedItems(values)}
+        options={options}
+      />
+    </Box>
+  );
 };

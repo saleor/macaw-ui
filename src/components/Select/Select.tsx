@@ -7,6 +7,7 @@ import {
   useRef,
 } from "react";
 
+import { isString } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
@@ -20,7 +21,7 @@ import {
 import { SelectWrapper } from "./SelectWrapper";
 import { useSelect } from "./useSelect";
 
-export type SelectProps<T> = PropsWithBox<
+export type SelectProps<T, V> = PropsWithBox<
   Omit<
     InputHTMLAttributes<HTMLElement>,
     | "color"
@@ -37,8 +38,8 @@ export type SelectProps<T> = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     options: T[];
-    onChange?: SingleChangeHandler<T>;
-    value: T | null;
+    onChange?: SingleChangeHandler<V>;
+    value: V | null;
     locale?: {
       loadingText?: string;
     };
@@ -57,7 +58,7 @@ const getBoxHeight = (size: "small" | "medium" | "large") => {
   }
 };
 
-const SelectInner = <T extends Option>(
+const SelectInner = <T extends Option, V extends Option | string>(
   {
     size = "medium",
     disabled = false,
@@ -72,7 +73,7 @@ const SelectInner = <T extends Option>(
     onFocus,
     onBlur,
     ...props
-  }: SelectProps<T>,
+  }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
 ) => {
   const {
@@ -87,7 +88,9 @@ const SelectInner = <T extends Option>(
     highlightedIndex,
     hasItemsToSelect,
   } = useSelect({
-    value,
+    value: isString(value)
+      ? options.find((item) => item.value === value)
+      : value,
     options,
     onChange,
     onFocus,
@@ -161,6 +164,9 @@ const SelectInner = <T extends Option>(
   );
 };
 
-export const Select = forwardRef(SelectInner) as <T extends Option>(
-  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> }
+export const Select = forwardRef(SelectInner) as <
+  T extends Option,
+  V extends Option | string,
+>(
+  props: SelectProps<T, V> & { ref?: React.ForwardedRef<HTMLElement> }
 ) => ReturnType<typeof SelectInner>;

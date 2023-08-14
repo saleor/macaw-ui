@@ -1,2 +1,2 @@
-export * from "./useCombobox";
 export * from "./ComboboxWrapper";
+export * from "./useCombobox";

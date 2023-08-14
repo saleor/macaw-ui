@@ -1,11 +1,12 @@
-import { FocusEvent, useState } from "react";
 import {
   GetPropsCommonOptions,
-  useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
+  useCombobox as useDownshiftCombobox,
 } from "downshift7";
+import { FocusEvent, useState } from "react";
 
 import { Option, SingleChangeHandler } from "~/components/BaseSelect";
+import { isString } from "~/utils";
 
 const getItemsFilter = <T extends Option>(
   inputValue: string | undefined,
@@ -22,7 +23,7 @@ const getItemsFilter = <T extends Option>(
   );
 };
 
-export const useCombobox = <T extends Option>({
+export const useCombobox = <T extends Option, V extends string | Option>({
   selectedItem,
   options,
   onChange,
@@ -30,9 +31,9 @@ export const useCombobox = <T extends Option>({
   onFocus,
   onBlur,
 }: {
-  selectedItem: T | null;
+  selectedItem: T | null | undefined;
   options: T[];
-  onChange?: SingleChangeHandler<T>;
+  onChange?: SingleChangeHandler<V>;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -57,7 +58,10 @@ export const useCombobox = <T extends Option>({
     selectedItem,
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        onChange?.(selectedItem);
+        const selectedValue = isString(selectedItem)
+          ? selectedItem.value
+          : selectedItem;
+        onChange?.(selectedValue as V);
       }
     },
     onStateChange: ({ inputValue: newInputValue, type }) => {
