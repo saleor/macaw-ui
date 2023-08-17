@@ -1,9 +1,9 @@
 import { Meta } from "@storybook/react";
-import { useRef, useState } from "react";
 import { debounce } from "lodash-es";
+import { useRef, useState } from "react";
 
-import { Box, Option } from "../..";
 import { DynamicMultiselect } from "..";
+import { Box, Option } from "../..";
 
 const meta: Meta<typeof DynamicMultiselect> = {
   title: "Components / DynamicMultiselect",
