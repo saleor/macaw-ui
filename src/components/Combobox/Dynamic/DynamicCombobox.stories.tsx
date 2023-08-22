@@ -3,7 +3,7 @@ import { Meta } from "@storybook/react";
 import { debounce } from "lodash-es";
 
 import { DynamicCombobox } from "..";
-import { Option } from "../..";
+import { Box, Option } from "../..";
 
 const meta: Meta<typeof DynamicCombobox> = {
   title: "Components / DynamicCombobox",
@@ -54,6 +54,70 @@ export const Default = () => {
       loading={loading}
       onInputValueChange={(inputValue) => {
         debouncedSearch(inputValue);
+      }}
+    />
+  );
+};
+
+export const WithAdorment = () => {
+  const [value, setValue] = useState<Option | null>(null);
+
+  return (
+    <DynamicCombobox
+      value={value}
+      label="Pick a color"
+      onChange={(value) => setValue(value)}
+      options={[
+        {
+          value: "red",
+          label: "Red",
+          startAdornment: (
+            <Box
+              __backgroundColor="red"
+              marginRight={2}
+              width={4}
+              height={4}
+            ></Box>
+          ),
+        },
+        {
+          value: "blue",
+          label: "Blue",
+          startAdornment: (
+            <Box
+              __backgroundColor="blue"
+              marginRight={2}
+              width={4}
+              height={4}
+            ></Box>
+          ),
+        },
+        {
+          value: "black",
+          label: "Black",
+          startAdornment: (
+            <Box
+              __backgroundColor="black"
+              marginRight={2}
+              width={4}
+              height={4}
+            ></Box>
+          ),
+        },
+      ]}
+      startAdornment={(value) => {
+        if (!value) {
+          return null;
+        }
+
+        return (
+          <Box
+            width={4}
+            height={4}
+            marginRight={2}
+            __backgroundColor={value.value}
+          ></Box>
+        );
       }}
     />
   );

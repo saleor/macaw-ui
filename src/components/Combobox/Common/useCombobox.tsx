@@ -69,6 +69,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         case useDownshiftCombobox.stateChangeTypes.InputChange:
           onInputValueChange?.(inputValue ?? "");
           setInputValue(newInputValue ?? "");
+
+          // if (!newInputValue) {
+          //   onChange?.('' as V);
+          // }
           break;
       }
     },
