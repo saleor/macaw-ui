@@ -4,7 +4,11 @@ import React from "react";
 import { useUserChipMenu } from "./context";
 
 export interface UserChipMenuItemProps extends Omit<MenuItemProps, "button"> {
+  component?: React.ElementType;
   leaveOpen?: boolean;
+  href?: string | any;
+  disableRipple?: boolean;
+  target?: string;
 }
 
 export const UserChipMenuItem: React.FC<UserChipMenuItemProps> = ({
