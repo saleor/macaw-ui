@@ -141,10 +141,7 @@ export const WithHelperText: Story = {
 };
 
 export const Example = () => {
-  const [value, setValue] = useState<Option>({
-    value: "black",
-    label: "Black",
-  });
+  const [value, setValue] = useState("black");
 
   return (
     <Combobox
@@ -158,10 +155,7 @@ export const Example = () => {
 };
 
 export const WithStringValue = () => {
-  const [value, setValue] = useState<Option>({
-    value: "black",
-    label: "Black",
-  });
+  const [value, setValue] = useState("black");
 
   return (
     <Combobox
@@ -175,13 +169,7 @@ export const WithStringValue = () => {
 };
 
 export const WithAdornment = () => {
-  const [value, setValue] = useState<Option>({
-    value: "black",
-    label: "Black",
-    startAdornment: (
-      <Box __backgroundColor="black" marginRight={2} width={4} height={4}></Box>
-    ),
-  });
+  const [value, setValue] = useState<Option | null>(null);
 
   return (
     <Combobox
