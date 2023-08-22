@@ -8,9 +8,9 @@ import { CompleteIcon, InfoIcon, NotAllowedIcon, WarningIcon } from "../icons";
 import { AlertBase, AlertBaseProps, AlertVariant } from "./AlertBase";
 import useStyles from "./styles";
 
-export interface AlertProps extends AlertBaseProps {
+export interface AlertProps extends Omit<AlertBaseProps, "title"> {
   close?: boolean;
-  title?: string;
+  title?: string | React.ReactNode;
 }
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   variant: AlertVariant;
