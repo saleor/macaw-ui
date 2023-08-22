@@ -42,7 +42,7 @@ export type DynamicComboboxProps<T> = PropsWithBox<
     endAdornment?: (inputValue: T | null) => ReactNode;
     helperText?: ReactNode;
     options: T[];
-    onChange?: SingleChangeHandler<T>;
+    onChange?: SingleChangeHandler<T | null>;
     value: T | null;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;

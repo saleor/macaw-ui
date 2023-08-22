@@ -109,7 +109,7 @@ export const RightOperator = ({
         value={selected.value}
         options={selected.options ?? []}
         loading={selected.loading}
-        onChange={(value) => emitter.changeRightOperator(index, value)}
+        onChange={(value) => emitter.changeRightOperator(index, value!)}
         onInputValueChange={(value) =>
           emitter.inputChangeRightOperator(index, value)
         }

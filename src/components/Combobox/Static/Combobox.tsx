@@ -40,7 +40,7 @@ export type ComboboxProps<T, V> = PropsWithBox<
     endAdornment?: (inputValue: V | null) => ReactNode;
     helperText?: ReactNode;
     options: T[];
-    onChange?: SingleChangeHandler<V>;
+    onChange?: SingleChangeHandler<V | null>;
     value: V | null;
   }
 > &

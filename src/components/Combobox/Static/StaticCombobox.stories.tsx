@@ -40,7 +40,7 @@ type Story = StoryObj<typeof Combobox>;
 const ComboboxTemplate: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState<Option>(options[0]);
+    const [value, setValue] = useState<Option | null>(options[0]);
 
     return (
       <Combobox {...args} value={value} onChange={(value) => setValue(value)} />
@@ -141,7 +141,7 @@ export const WithHelperText: Story = {
 };
 
 export const Example = () => {
-  const [value, setValue] = useState("black");
+  const [value, setValue] = useState<string | null>("black");
 
   return (
     <Combobox
@@ -155,7 +155,7 @@ export const Example = () => {
 };
 
 export const WithStringValue = () => {
-  const [value, setValue] = useState("black");
+  const [value, setValue] = useState<string | null>("black");
 
   return (
     <Combobox
