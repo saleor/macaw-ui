@@ -6,12 +6,12 @@ import { Option } from "~/components/BaseSelect";
 import { Combobox } from "..";
 
 const options = [
-  { value: "black", label: "Black" },
-  { value: "red", label: "Red" },
-  { value: "green", label: "Green" },
-  { value: "blue", label: "Blue" },
-  { value: "orange", label: "Orange" },
-  { value: "purple", label: "Purple" },
+  { value: "color-black", label: "Black" },
+  { value: "color-red", label: "Red" },
+  { value: "color-green", label: "Green" },
+  { value: "color-blue", label: "Blue" },
+  { value: "color-orange", label: "Orange" },
+  { value: "color-purple", label: "Purple" },
 ];
 
 const meta: Meta<typeof Combobox> = {
@@ -54,14 +54,14 @@ export const Default: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState({ value: "black", label: "Black" });
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
     size="large"
     value={value}
     onChange={(e) => setValue(value)}
-    options={[{ value: "black", label: "Black" }]}
+    options={[{ value: "color-black", label: "Black" }]}
   />`,
       },
     },
@@ -77,14 +77,14 @@ export const Error: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState({ value: "black", label: "Black" });
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
     size="large"
     value={value}
     onChange={(e) => setValue(value)}
-    options={[{ value: "black", label: "Black" }]}
+    options={[{ value: "color-black", label: "Black" }]}
     error
   />`,
       },
@@ -101,14 +101,14 @@ export const Disabled: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState({ value: "black", label: "Black" });
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
     size="large"
     value={value}
     onChange={(e) => setValue(value)}
-    options={[{ value: "black", label: "Black" }]}
+    options={[{ value: "color-black", label: "Black" }]}
     disabled
   />`,
       },
@@ -125,14 +125,14 @@ export const WithHelperText: Story = {
     docs: {
       source: {
         code: `
-  const [value, setValue] = useState({ value: "black", label: "Black" });
+  const [value, setValue] = useState({ value: "color-black", label: "Black" });
   
   <Combobox
     label="Label"
     size="large"
     value={value}
     onChange={(e) => setValue(value)}
-    options={[{ value: "black", label: "Black" }]}
+    options={[{ value: "color-black", label: "Black" }]}
     helperText="Helper text"
   />`,
       },
@@ -141,7 +141,7 @@ export const WithHelperText: Story = {
 };
 
 export const Example = () => {
-  const [value, setValue] = useState<string | null>("black");
+  const [value, setValue] = useState<string | null>("color-black");
 
   return (
     <Combobox
@@ -155,7 +155,7 @@ export const Example = () => {
 };
 
 export const WithStringValue = () => {
-  const [value, setValue] = useState<string | null>("black");
+  const [value, setValue] = useState<string | null>("color-black");
 
   return (
     <Combobox
@@ -191,17 +191,21 @@ export const WithAdornment = () => {
           ></Box>
         );
       }}
-      options={options.map((option) => ({
-        ...option,
-        startAdornment: (
-          <Box
-            __backgroundColor={option.value}
-            marginRight={2}
-            width={4}
-            height={4}
-          ></Box>
-        ),
-      }))}
+      options={options.map((option) => {
+        const value = option.value.split("color-")[1];
+        return {
+          ...option,
+          value,
+          startAdornment: (
+            <Box
+              __backgroundColor={value}
+              marginRight={2}
+              width={4}
+              height={4}
+            ></Box>
+          ),
+        };
+      })}
     />
   );
 };
