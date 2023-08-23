@@ -37,10 +37,12 @@ export const RowComponent = ({
         options={leftOptions}
         loading={item.loading}
         onChange={(value) => {
+          if (!value) return;
+
           emitter.changeLeftOperator(
             index,
-            value!,
-            leftOptions.find((option) => option.value === value?.value)?.type
+            value,
+            leftOptions.find((option) => option.value === value.value)?.type
           );
         }}
         onInputValueChange={(value) => {
