@@ -36,7 +36,7 @@ export const useSelect = <T extends Option, V extends string | Option>({
     selectedItem,
   } = useDownshiftSelect({
     items: options,
-    selectedItem: value,
+    selectedItem: value ?? null,
     itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
