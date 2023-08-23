@@ -22,10 +22,10 @@ export type TextareaProps = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
-    maxRows?: number;
     helperText?: ReactNode;
     endAdornment?: ReactNode;
     autoSize?: boolean;
+    resizable?: boolean;
   }
 > &
   InputVariants;
@@ -39,7 +39,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       value,
       label,
       id,
-      maxRows = 10,
       error = false,
       onChange,
       helperText,
@@ -52,6 +51,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       width,
       endAdornment,
       autoSize = false,
+      resizable = false,
+      rows = 10,
       ...props
     },
     ref
@@ -90,8 +91,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <Box
             id={id}
             as="textarea"
-            rows={maxRows}
             className={classNames(inputRecipe({ size, error }))}
+            style={{
+              ...(!resizable && { resize: "none" }),
+            }}
             disabled={disabled}
             value={inputValue}
             ref={textAreaRef}
@@ -104,6 +107,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               onFocus?.(event);
             }}
             onChange={handlers.onChange}
+            rows={rows}
             {...props}
           />
         </TextareaWrapper>

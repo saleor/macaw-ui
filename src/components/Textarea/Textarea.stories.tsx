@@ -143,3 +143,28 @@ export const WithAutoSize: Story = {
     },
   },
 };
+
+export const WithResizeable: Story = {
+  ...TextareaTemplate,
+  args: {
+    resizable: true,
+    rows: 10,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Textarea content");
+  
+  <Textarea
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    resizable={true}
+    rows={10}
+  />`,
+      },
+    },
+  },
+};
