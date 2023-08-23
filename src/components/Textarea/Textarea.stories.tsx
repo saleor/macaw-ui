@@ -118,3 +118,28 @@ export const WithHelpText: Story = {
     },
   },
 };
+
+export const WithAutoSize: Story = {
+  ...TextareaTemplate,
+  args: {
+    autoSize: true,
+    rows: 1,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Textarea content");
+  
+  <Textarea
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    autoSize={true}
+    rows={1}
+  />`,
+      },
+    },
+  },
+};

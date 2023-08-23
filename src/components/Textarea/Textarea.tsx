@@ -1,4 +1,11 @@
-import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
+import {
+  FocusEvent,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from "react";
 
 import { classNames } from "~/utils";
 
@@ -6,6 +13,7 @@ import { Box, PropsWithBox, Text } from "../..";
 import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 
 import { TextareaWrapper, useStateEvents } from "./TextareaWrapper";
+import useAutosizeTextArea from "./useAutosizeTextArea";
 
 export type TextareaProps = PropsWithBox<
   Omit<
@@ -17,6 +25,7 @@ export type TextareaProps = PropsWithBox<
     maxRows?: number;
     helperText?: ReactNode;
     endAdornment?: ReactNode;
+    autoSize?: boolean;
   }
 > &
   InputVariants;
@@ -42,6 +51,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       flexShrink,
       width,
       endAdornment,
+      autoSize = false,
       ...props
     },
     ref
@@ -52,6 +62,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       active,
       typed,
     } = useStateEvents(value, onChange);
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+    useAutosizeTextArea(textAreaRef.current, value, autoSize);
+    useImperativeHandle(ref, () => textAreaRef.current!);
 
     return (
       <Box
@@ -81,7 +94,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
             value={inputValue}
-            ref={ref}
+            ref={textAreaRef}
             onBlur={(event: FocusEvent<HTMLTextAreaElement, Element>) => {
               handlers.onBlur();
               onBlur?.(event);
