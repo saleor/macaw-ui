@@ -119,10 +119,32 @@ export const WithHelpText: Story = {
   },
 };
 
-export const WithAutoSize: Story = {
+export const WithoutAutoheight: Story = {
   ...TextareaTemplate,
   args: {
-    autoSize: true,
+    autoHeight: false,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Textarea content");
+  
+  <Textarea
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    autoHeight={false}
+  />`,
+      },
+    },
+  },
+};
+
+export const WithSingleRow: Story = {
+  ...TextareaTemplate,
+  args: {
     rows: 1,
   },
   parameters: {
@@ -136,33 +158,7 @@ export const WithAutoSize: Story = {
     size="large"
     value={value}
     onChange={(e) => setValue(e.target.value)}
-    autoSize={true}
     rows={1}
-  />`,
-      },
-    },
-  },
-};
-
-export const WithResizeable: Story = {
-  ...TextareaTemplate,
-  args: {
-    resizable: true,
-    rows: 10,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-  const [value, setValue] = useState("Textarea content");
-  
-  <Textarea
-    label="Label"
-    size="large"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    resizable={true}
-    rows={10}
   />`,
       },
     },

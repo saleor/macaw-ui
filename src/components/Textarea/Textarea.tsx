@@ -24,8 +24,7 @@ export type TextareaProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     endAdornment?: ReactNode;
-    autoSize?: boolean;
-    resizable?: boolean;
+    autoHeight?: boolean;
   }
 > &
   InputVariants;
@@ -50,9 +49,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       flexShrink,
       width,
       endAdornment,
-      autoSize = false,
-      resizable = false,
       rows = 10,
+      autoHeight = true,
       ...props
     },
     ref
@@ -64,7 +62,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       typed,
     } = useStateEvents(value, onChange);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
-    useAutosizeTextArea(textAreaRef.current, value, autoSize);
+    useAutosizeTextArea(textAreaRef.current, value, autoHeight);
     useImperativeHandle(ref, () => textAreaRef.current!);
 
     return (
@@ -93,7 +91,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             as="textarea"
             className={classNames(inputRecipe({ size, error }))}
             style={{
-              ...(!resizable && { resize: "none" }),
+              resize: "none",
             }}
             disabled={disabled}
             value={inputValue}
