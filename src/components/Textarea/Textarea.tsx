@@ -13,7 +13,7 @@ import { Box, PropsWithBox, Text } from "../..";
 import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 
 import { TextareaWrapper, useStateEvents } from "./TextareaWrapper";
-import useAutosizeTextArea from "./useAutosizeTextArea";
+import { useAutosizeTextArea } from "./useAutosizeTextArea";
 
 export type TextareaProps = PropsWithBox<
   Omit<

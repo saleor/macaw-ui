@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { TextareaValue } from "./TextareaWrapper";
 
 // Updates the height of a <textarea> when the value changes.
-const useAutosizeTextArea = (
+export const useAutosizeTextArea = (
   textAreaRef: HTMLTextAreaElement | null,
   value: TextareaValue,
   useAutoHeight: boolean
@@ -33,5 +33,3 @@ const useAutosizeTextArea = (
     }
   }, [textAreaRef, useAutoHeight, value, intialHeight]);
 };
-
-export default useAutosizeTextArea;
