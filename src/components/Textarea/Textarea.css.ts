@@ -17,7 +17,8 @@ export const textareaWrapperClassName = style({
 
 export const textareaClassname = style({
   resize: "none",
-  overflow: "hidden",
+  overflowY: "auto",
+  overflowX: "hidden",
   font: "inherit",
   gridArea: "1 / 1 / 2 / 2",
   maxHeight: `calc(2ex * ${MAX_HEIGHT})`,
