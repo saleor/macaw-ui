@@ -1,4 +1,12 @@
-import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
+import {
+  FocusEvent,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 
 import { classNames } from "~/utils";
 
@@ -6,6 +14,7 @@ import { Box, PropsWithBox, Text } from "../..";
 import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 
 import { TextareaWrapper, useStateEvents } from "./TextareaWrapper";
+import { textareaClassname, textareaWrapperClassName } from "./Textarea.css";
 
 export type TextareaProps = PropsWithBox<
   Omit<
@@ -14,7 +23,6 @@ export type TextareaProps = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
-    maxRows?: number;
     helperText?: ReactNode;
     endAdornment?: ReactNode;
   }
@@ -30,7 +38,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       value,
       label,
       id,
-      maxRows = 10,
       error = false,
       onChange,
       helperText,
@@ -42,6 +49,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       flexShrink,
       width,
       endAdornment,
+      rows = 10,
       ...props
     },
     ref
@@ -52,6 +60,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       active,
       typed,
     } = useStateEvents(value, onChange);
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const textareaWrapperRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => textareaRef.current!);
+
+    useEffect(() => {
+      if (!textareaWrapperRef.current) return;
+      textareaWrapperRef.current.dataset.replicatedValue = (
+        value || ""
+      ).toString();
+    }, [value]);
 
     return (
       <Box
@@ -74,25 +92,33 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={className}
           endAdornment={endAdornment}
         >
-          <Box
-            id={id}
-            as="textarea"
-            rows={maxRows}
-            className={classNames(inputRecipe({ size, error }))}
-            disabled={disabled}
-            value={inputValue}
-            ref={ref}
-            onBlur={(event: FocusEvent<HTMLTextAreaElement, Element>) => {
-              handlers.onBlur();
-              onBlur?.(event);
-            }}
-            onFocus={(event: FocusEvent<HTMLTextAreaElement, Element>) => {
-              handlers.onFocus();
-              onFocus?.(event);
-            }}
-            onChange={handlers.onChange}
-            {...props}
-          />
+          <Box className={textareaWrapperClassName} ref={textareaWrapperRef}>
+            <Box
+              id={id}
+              as="textarea"
+              className={classNames(
+                inputRecipe({ size, error }),
+                textareaClassname
+              )}
+              style={{
+                resize: "none",
+              }}
+              disabled={disabled}
+              value={inputValue}
+              ref={textareaRef}
+              onBlur={(event: FocusEvent<HTMLTextAreaElement, Element>) => {
+                handlers.onBlur();
+                onBlur?.(event);
+              }}
+              onFocus={(event: FocusEvent<HTMLTextAreaElement, Element>) => {
+                handlers.onFocus();
+                onFocus?.(event);
+              }}
+              onChange={handlers.onChange}
+              rows={rows}
+              {...props}
+            />
+          </Box>
         </TextareaWrapper>
         {helperText && (
           <Box className={helperTextRecipe({ size })}>

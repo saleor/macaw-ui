@@ -118,3 +118,26 @@ export const WithHelpText: Story = {
     },
   },
 };
+
+export const WithSingleRow: Story = {
+  ...TextareaTemplate,
+  args: {
+    rows: 1,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("Textarea content");
+  
+  <Textarea
+    label="Label"
+    size="large"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    rows={1}
+  />`,
+      },
+    },
+  },
+};

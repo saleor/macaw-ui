@@ -7,7 +7,7 @@ import { Box } from "~/components";
 import { classNames } from "~/utils";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 
-type TextareaValue = string | number | readonly string[] | undefined;
+export type TextareaValue = string | number | readonly string[] | undefined;
 type ChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 
 export const useStateEvents = (
