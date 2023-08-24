@@ -60,14 +60,15 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       active,
       typed,
     } = useStateEvents(value, onChange);
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
-    useImperativeHandle(ref, () => textAreaRef.current!);
-
-    const wrap = useRef<HTMLDivElement>(null);
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const textareaWrapperRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => textareaRef.current!);
 
     useEffect(() => {
-      if (!wrap.current) return;
-      wrap.current.dataset.replicatedValue = (value || "").toString();
+      if (!textareaWrapperRef.current) return;
+      textareaWrapperRef.current.dataset.replicatedValue = (
+        value || ""
+      ).toString();
     }, [value]);
 
     return (
@@ -91,7 +92,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={className}
           endAdornment={endAdornment}
         >
-          <Box className={textareaWrapperClassName} ref={wrap}>
+          <Box className={textareaWrapperClassName} ref={textareaWrapperRef}>
             <Box
               id={id}
               as="textarea"
@@ -104,7 +105,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               }}
               disabled={disabled}
               value={inputValue}
-              ref={textAreaRef}
+              ref={textareaRef}
               onBlur={(event: FocusEvent<HTMLTextAreaElement, Element>) => {
                 handlers.onBlur();
                 onBlur?.(event);
