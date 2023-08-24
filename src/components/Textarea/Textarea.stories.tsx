@@ -119,29 +119,6 @@ export const WithHelpText: Story = {
   },
 };
 
-export const WithoutAutoheight: Story = {
-  ...TextareaTemplate,
-  args: {
-    autoHeight: false,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-  const [value, setValue] = useState("Textarea content");
-  
-  <Textarea
-    label="Label"
-    size="large"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    autoHeight={false}
-  />`,
-      },
-    },
-  },
-};
-
 export const WithSingleRow: Story = {
   ...TextareaTemplate,
   args: {
