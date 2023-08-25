@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Input>;
 const InputTemplate: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState("Input content");
+    const [value, setValue] = useState("");
 
     return (
       <Input
