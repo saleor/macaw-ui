@@ -6,9 +6,7 @@ import {
   ReactNode,
   useRef,
 } from "react";
-
 import { classNames } from "~/utils";
-
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -100,7 +98,6 @@ const DynamicComboboxInner = <T extends Option>(
   });
 
   const containerRef = useRef<HTMLLabelElement>(null);
-
   return (
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
@@ -139,7 +136,7 @@ const DynamicComboboxInner = <T extends Option>(
       <Portal asChild container={containerRef.current}>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect })}
+          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
           className={listWrapperRecipe({ size })}
         >
           <List

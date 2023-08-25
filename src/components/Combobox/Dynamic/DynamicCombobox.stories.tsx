@@ -122,3 +122,17 @@ export const WithAdorment = () => {
     />
   );
 };
+
+export const Loding = () => {
+  const [value, setValue] = useState<Option | null>(null);
+
+  return (
+    <DynamicCombobox
+      value={value}
+      loading={true}
+      label="Pick a color"
+      onChange={(value) => setValue(value)}
+      options={[]}
+    />
+  );
+};
