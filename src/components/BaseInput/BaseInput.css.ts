@@ -127,6 +127,16 @@ export const labelRecipe = recipe({
         borderColor: "criticalPlain",
       }),
     },
+    {
+      variants: {
+        error: true,
+        typed: true,
+      },
+      style: sprinkles({
+        borderStyle: "solid",
+        borderColor: "criticalPlain",
+      }),
+    },
   ],
   defaultVariants: {
     size: "medium",
