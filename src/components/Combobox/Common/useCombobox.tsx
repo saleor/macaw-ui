@@ -33,7 +33,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 }: {
   selectedItem: T | null | undefined;
   options: T[];
-  onChange?: SingleChangeHandler<V>;
+  onChange?: SingleChangeHandler<V | null>;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -69,6 +69,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         case useDownshiftCombobox.stateChangeTypes.InputChange:
           onInputValueChange?.(inputValue ?? "");
           setInputValue(newInputValue ?? "");
+
+          if (!newInputValue) {
+            onChange?.(null);
+          }
           break;
       }
     },

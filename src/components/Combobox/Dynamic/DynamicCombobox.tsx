@@ -38,9 +38,11 @@ export type DynamicComboboxProps<T> = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
+    startAdornment?: (inputValue: T | null) => ReactNode;
+    endAdornment?: (inputValue: T | null) => ReactNode;
     helperText?: ReactNode;
     options: T[];
-    onChange?: SingleChangeHandler<T>;
+    onChange?: SingleChangeHandler<T | null>;
     value: T | null;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
@@ -70,6 +72,8 @@ const DynamicComboboxInner = <T extends Option>(
     locale = {
       loadingText: "Loading",
     },
+    startAdornment,
+    endAdornment,
     ...props
   }: DynamicComboboxProps<T>,
   ref: ForwardedRef<HTMLInputElement>
@@ -111,25 +115,31 @@ const DynamicComboboxInner = <T extends Option>(
         getLabelProps={getLabelProps}
         getToggleButtonProps={getToggleButtonProps}
       >
-        <Box
-          id={id}
-          as="input"
-          type="text"
-          className={classNames(inputRecipe({ size, error }))}
-          disabled={disabled}
-          {...props}
-          {...getInputProps({
-            id,
-            ref,
-          })}
-        />
+        <Box display="flex">
+          {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
+
+          <Box
+            id={id}
+            as="input"
+            type="text"
+            className={classNames(inputRecipe({ size, error }))}
+            disabled={disabled}
+            {...props}
+            {...getInputProps({
+              id,
+              ref,
+            })}
+          />
+
+          {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
+        </Box>
       </ComboboxWrapper>
       <Box ref={containerRef} />
 
       <Portal asChild container={containerRef.current}>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+          display={getListDisplayMode({ isOpen, hasItemsToSelect })}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -149,7 +159,9 @@ const DynamicComboboxInner = <T extends Option>(
                   })}
                   active={highlightedIndex === index}
                 >
+                  {item?.startAdornment}
                   <Text size={size}>{item.label}</Text>
+                  {item?.endAdornment}
                 </List.Item>
               ))}
             {loading && (

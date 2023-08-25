@@ -36,9 +36,11 @@ export type ComboboxProps<T, V> = PropsWithBox<
   > & {
     label?: ReactNode;
     error?: boolean;
+    startAdornment?: (inputValue: V | null) => ReactNode;
+    endAdornment?: (inputValue: V | null) => ReactNode;
     helperText?: ReactNode;
     options: T[];
-    onChange?: SingleChangeHandler<V>;
+    onChange?: SingleChangeHandler<V | null>;
     value: V | null;
   }
 > &
@@ -58,6 +60,8 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    startAdornment,
+    endAdornment,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -100,18 +104,24 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         getLabelProps={getLabelProps}
         getToggleButtonProps={getToggleButtonProps}
       >
-        <Box
-          id={id}
-          as="input"
-          type="text"
-          className={classNames(inputRecipe({ size, error }))}
-          disabled={disabled}
-          {...props}
-          {...getInputProps({
-            id,
-            ref,
-          })}
-        />
+        <Box display="flex" alignItems="center">
+          {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
+
+          <Box
+            id={id}
+            as="input"
+            type="text"
+            className={classNames(inputRecipe({ size, error }))}
+            disabled={disabled}
+            {...props}
+            {...getInputProps({
+              id,
+              ref,
+            })}
+          />
+
+          {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
+        </Box>
       </ComboboxWrapper>
       <Box ref={containerRef} />
 
@@ -138,7 +148,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                   })}
                   active={highlightedIndex === index}
                 >
+                  {item?.startAdornment}
                   <Text size={size}>{item.label}</Text>
+                  {item?.endAdornment}
                 </List.Item>
               ))}
           </List>

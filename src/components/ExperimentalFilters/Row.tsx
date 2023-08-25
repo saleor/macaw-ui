@@ -37,6 +37,8 @@ export const RowComponent = ({
         options={leftOptions}
         loading={item.loading}
         onChange={(value) => {
+          if (!value) return;
+
           emitter.changeLeftOperator(
             index,
             value,

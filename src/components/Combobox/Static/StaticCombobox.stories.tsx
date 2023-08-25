@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
+import { Box } from "~/components/Box";
+import { Option } from "~/components/BaseSelect";
 import { Combobox } from "..";
 
 const options = [
@@ -38,7 +40,7 @@ type Story = StoryObj<typeof Combobox>;
 const ComboboxTemplate: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState(options[0]);
+    const [value, setValue] = useState<Option | null>(options[0]);
 
     return (
       <Combobox {...args} value={value} onChange={(value) => setValue(value)} />
@@ -139,7 +141,7 @@ export const WithHelperText: Story = {
 };
 
 export const Example = () => {
-  const [value, setValue] = useState("color-black");
+  const [value, setValue] = useState<string | null>("color-black");
 
   return (
     <Combobox
@@ -153,7 +155,7 @@ export const Example = () => {
 };
 
 export const WithStringValue = () => {
-  const [value, setValue] = useState("color-black");
+  const [value, setValue] = useState<string | null>("color-black");
 
   return (
     <Combobox
@@ -162,6 +164,48 @@ export const WithStringValue = () => {
       value={value}
       onChange={(value) => setValue(value)}
       options={options}
+    />
+  );
+};
+
+export const WithAdornment = () => {
+  const [value, setValue] = useState<Option | null>(null);
+
+  return (
+    <Combobox
+      label="Pick a color"
+      size="large"
+      value={value}
+      onChange={(value) => setValue(value)}
+      startAdornment={(value) => {
+        if (!value) {
+          return null;
+        }
+
+        return (
+          <Box
+            width={4}
+            height={4}
+            marginRight={2}
+            __backgroundColor={value.value}
+          ></Box>
+        );
+      }}
+      options={options.map((option) => {
+        const value = option.value.split("color-")[1];
+        return {
+          ...option,
+          value,
+          startAdornment: (
+            <Box
+              __backgroundColor={value}
+              marginRight={2}
+              width={4}
+              height={4}
+            ></Box>
+          ),
+        };
+      })}
     />
   );
 };

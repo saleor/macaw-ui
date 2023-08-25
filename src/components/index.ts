@@ -28,3 +28,4 @@ export * from "./Switch";
 export * from "./Text";
 export * from "./Toggle";
 export * from "./Tooltip";
+export * from "./Textarea";
