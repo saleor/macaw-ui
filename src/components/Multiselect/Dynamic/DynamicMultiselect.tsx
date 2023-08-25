@@ -191,7 +191,7 @@ const DynamicMultiselectInner = <T extends Option>(
       <Portal asChild container={containerRef.current}>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+          display={getListDisplayMode({ isOpen, hasItemsToSelect })}
           className={listWrapperRecipe({ size })}
         >
           <List
