@@ -13,6 +13,7 @@ export const labelRecipe = recipe({
       paddingY: 1.5,
       borderWidth: 1,
       borderStyle: "solid",
+      cursor: "text",
     }),
   ],
   variants: {
@@ -69,7 +70,7 @@ export const labelRecipe = recipe({
           default: "interactiveNeutralHighlightDefault",
         },
         borderColor: {
-          default: "transparent",
+          default: "neutralPlain",
           hover: "neutralHighlight",
         },
       }),
@@ -94,11 +95,13 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         backgroundColor: {
-          default: "surfaceNeutralHighlight",
           focus: "interactiveNeutralHighlightDefault",
-          hover: "interactiveNeutralHighlightHovering",
         },
-        borderColor: "transparent",
+        borderStyle: "solid",
+        borderColor: {
+          default: "neutralPlain",
+          hover: "neutralHighlight",
+        },
       }),
     },
     {
@@ -118,10 +121,10 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         backgroundColor: {
-          default: "surfaceCriticalSubdued",
           hover: "surfaceCriticalSubdued",
         },
-        borderColor: "transparent",
+        borderStyle: "solid",
+        borderColor: "criticalPlain",
       }),
     },
     {
@@ -130,7 +133,8 @@ export const labelRecipe = recipe({
         typed: true,
       },
       style: sprinkles({
-        borderColor: "transparent",
+        borderStyle: "solid",
+        borderColor: "criticalPlain",
       }),
     },
   ],
