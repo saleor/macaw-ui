@@ -139,7 +139,7 @@ const DynamicComboboxInner = <T extends Option>(
       <Portal asChild container={containerRef.current}>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect })}
+          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
           className={listWrapperRecipe({ size })}
         >
           <List
