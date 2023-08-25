@@ -6,7 +6,9 @@ import {
   ReactNode,
   useRef,
 } from "react";
+
 import { classNames } from "~/utils";
+
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -98,6 +100,7 @@ const DynamicComboboxInner = <T extends Option>(
   });
 
   const containerRef = useRef<HTMLLabelElement>(null);
+
   return (
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
