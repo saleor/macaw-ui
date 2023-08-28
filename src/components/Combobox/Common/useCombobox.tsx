@@ -67,7 +67,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     onStateChange: ({ inputValue: newInputValue, type }) => {
       switch (type) {
         case useDownshiftCombobox.stateChangeTypes.InputChange:
-          onInputValueChange?.(inputValue ?? "");
+          onInputValueChange?.(newInputValue ?? "");
           setInputValue(newInputValue ?? "");
 
           if (!newInputValue) {
