@@ -18,6 +18,7 @@ export const text = recipe({
       small: {},
       medium: {},
       large: {},
+      inherit: {},
     },
     ellipsis: {
       multiline: sprinkles({ overflow: "hidden", textOverflow: "ellipsis" }),
