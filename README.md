@@ -1,9 +1,10 @@
 <div align="center">
   <a href="https://macaw-ui-next.vercel.app/" rel="noopener" target="_blank"><img src="./legacy/stories/assets/macaw-ui-logo.svg" alt="Material-ui-pickers logo"></a></p>
-  
-  [![npm package](https://img.shields.io/npm/v/@saleor/macaw-ui.svg)](https://www.npmjs.com/package/@saleor/macaw-ui)
-  [![npm download](https://img.shields.io/npm/dm/@saleor/macaw-ui.svg)](https://www.npmjs.com/package/@saleor/macaw-ui)
-  [![Bundle Size](https://badgen.net/bundlephobia/minzip/@saleor/macaw-ui)](https://bundlephobia.com/package/@saleor/macaw-ui@latest)
+
+[![npm package](https://img.shields.io/npm/v/@saleor/macaw-ui.svg)](https://www.npmjs.com/package/@saleor/macaw-ui)
+[![npm download](https://img.shields.io/npm/dm/@saleor/macaw-ui.svg)](https://www.npmjs.com/package/@saleor/macaw-ui)
+[![Bundle Size](https://badgen.net/bundlephobia/minzip/@saleor/macaw-ui)](https://bundlephobia.com/package/@saleor/macaw-ui@latest)
+
 </div>
 
 # MacawUI
@@ -126,6 +127,7 @@ To begin, you need to install dependencies:
 
 ```sh
 pnpm install
+cd legacy && npm install
 ```
 
 Then, you can run the Storybook:
