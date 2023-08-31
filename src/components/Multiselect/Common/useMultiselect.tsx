@@ -137,7 +137,7 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
           break;
 
         case useCombobox.stateChangeTypes.InputChange:
-          onInputValueChange?.(inputValue ?? "");
+          onInputValueChange?.(newInputValue ?? "");
           setInputValue(newInputValue ?? "");
           break;
 
