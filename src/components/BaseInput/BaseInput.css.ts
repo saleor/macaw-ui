@@ -265,13 +265,13 @@ export const helperTextRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        paddingX: 2,
+        paddingTop: 2,
       }),
       medium: sprinkles({
-        paddingX: 2,
+        paddingTop: 2,
       }),
       large: sprinkles({
-        paddingX: 3,
+        paddingTop: 2,
       }),
     },
   },
