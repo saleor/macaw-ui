@@ -113,7 +113,7 @@ export const defaultDark = {
       neutralDefault: "hsla(212, 24%, 32%, 1)",
       neutralSubdued: "hsla(211, 21%, 39%, 1)",
       neutralHighlight: "hsla(0, 0%, 100%, 0.04)",
-      brandPlain: "hsla(215, 100%, 28%, 1)",
+      brandPlain: "hsla(210, 32%, 25%, 1)",
       brandDefault: "hsla(215, 100%, 39%, 1)",
       brandSubdued: "hsla(215, 94%, 51%, 1)",
       brandHighlight: "hsla(215, 100%, 51%, 0.12)",
