@@ -27,7 +27,7 @@ export const listWrapperRecipe = recipe({
     size: {
       small: {
         vars: {
-          [listItemBorderRadius]: vars.borderRadius[1],
+          [listItemBorderRadius]: vars.borderRadius[2],
         },
       },
       medium: {

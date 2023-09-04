@@ -12,6 +12,7 @@ import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {
   Option,
   SingleChangeHandler,
+  getListTextSize,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -149,7 +150,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                   active={highlightedIndex === index}
                 >
                   {item?.startAdornment}
-                  <Text size={size}>{item.label}</Text>
+                  <Text size={getListTextSize(size)}>{item.label}</Text>
                   {item?.endAdornment}
                 </List.Item>
               ))}
