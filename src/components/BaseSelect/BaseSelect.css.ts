@@ -20,6 +20,7 @@ export const listWrapperRecipe = recipe({
   base: [
     {
       borderRadius: listItemBorderRadius,
+      padding: "4px",
     },
   ],
 
@@ -53,7 +54,9 @@ export const listStyle = style([
     position: "absolute",
     backgroundColor: "surfaceNeutralPlain",
     boxShadow: "overlay",
-    borderColor: "neutralHighlight",
+    borderColor: "neutralPlain",
+    borderStyle: "solid",
+    borderWidth: 1,
     width: "100%",
     padding: 1,
     left: 0,
@@ -63,8 +66,18 @@ export const listStyle = style([
   }),
   {
     borderRadius: calc.add(listItemBorderRadius, spaceBetweenListItemAndBorder),
+    scrollbarGutter: "stable",
     vars: {
       [spaceBetweenListItemAndBorder]: vars.spacing[1],
+    },
+    "::-webkit-scrollbar": {
+      width: "16px",
+    },
+    "::-webkit-scrollbar-thumb": {
+      backgroundColor: vars.colors.border.neutralPlain,
+      border: "4px solid transparent",
+      borderRadius: "8px",
+      backgroundClip: "padding-box",
     },
   },
 ]);
