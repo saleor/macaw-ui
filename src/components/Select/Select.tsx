@@ -4,8 +4,8 @@ import {
   InputHTMLAttributes,
   ReactNode,
   forwardRef,
-  useRef,
 } from "react";
+import { useFloating, size as floatingSize } from "@floating-ui/react";
 
 import { isString } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
@@ -97,35 +97,49 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const containerRef = useRef<HTMLLabelElement>(null);
+  const { refs, floatingStyles } = useFloating({
+    placement: "left-end",
+    middleware: [
+      floatingSize({
+        apply({ rects, availableHeight, elements }) {
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
+            maxHeight: `${availableHeight}px`,
+          });
+        },
+        padding: 10,
+      }),
+    ],
+  });
 
   return (
     <Box display="flex" flexDirection="column">
-      <SelectWrapper
-        id={id}
-        typed={typed}
-        active={active}
-        disabled={disabled}
-        size={size}
-        label={label}
-        error={error}
-        className={className}
-        getLabelProps={getLabelProps}
-        getToggleButtonProps={getToggleButtonProps}
-      >
-        <Box height={getBoxHeight(size)} {...props} ref={ref}>
-          <Text
-            size={size}
-            variant="body"
-            color={error ? "textCriticalDefault" : "textNeutralDefault"}
-          >
-            {selectedItem?.label}
-          </Text>
-        </Box>
-      </SelectWrapper>
-      <Box ref={containerRef} />
+      <Box ref={refs.setReference}>
+        <SelectWrapper
+          id={id}
+          typed={typed}
+          active={active}
+          disabled={disabled}
+          size={size}
+          label={label}
+          error={error}
+          className={className}
+          getLabelProps={getLabelProps}
+          getToggleButtonProps={getToggleButtonProps}
+        >
+          <Box height={getBoxHeight(size)} {...props} ref={ref}>
+            <Text
+              size={size}
+              variant="body"
+              color={error ? "textCriticalDefault" : "textNeutralDefault"}
+            >
+              {selectedItem?.label}
+            </Text>
+          </Box>
+        </SelectWrapper>
+      </Box>
 
-      <Portal asChild container={containerRef.current}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={isOpen && hasItemsToSelect ? "block" : "none"}

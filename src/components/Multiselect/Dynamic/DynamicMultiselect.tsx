@@ -4,9 +4,9 @@ import {
   forwardRef,
   InputHTMLAttributes,
   ReactNode,
-  useRef,
 } from "react";
 
+import { useFloating, size as floatingSize } from "@floating-ui/react";
 import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
@@ -107,88 +107,101 @@ const DynamicMultiselectInner = <T extends Option>(
     onBlur,
   });
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const { refs, floatingStyles } = useFloating({
+    placement: "left-end",
+    middleware: [
+      floatingSize({
+        apply({ rects, availableHeight, elements }) {
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
+            maxHeight: `${availableHeight}px`,
+          });
+        },
+        padding: 10,
+      }),
+    ],
+  });
 
   return (
     <Box display="flex" flexDirection="column">
-      <MultiselectWrapper
-        id={id}
-        typed={typed}
-        active={active}
-        disabled={disabled}
-        size={size}
-        label={label}
-        error={error}
-        className={className}
-        getLabelProps={getLabelProps}
-        getToggleButtonProps={getToggleButtonProps}
-        renderEndAdornment={renderEndAdornment}
-        hasItemsToSelect={hasItemsToSelect}
-      >
-        {selectedItems.map((item, idx) => (
-          <Box
-            key={`selected-item-${item.value}-${idx}`}
-            paddingX={1.5}
-            paddingY={0.5}
-            backgroundColor="surfaceNeutralSubdued"
-            borderColor="neutralHighlight"
-            borderWidth={1}
-            borderStyle="solid"
-            borderRadius={3}
-            display="flex"
-            gap={1}
-            alignItems="center"
-            {...getSelectedItemProps({
-              selectedItem: item,
-              index: idx,
-            })}
-          >
-            <Text
-              variant="caption"
-              size={size === "small" ? "small" : "medium"}
-            >
-              {item.label}
-            </Text>
-            {!disabled && (
-              <Text
-                cursor="pointer"
-                variant="caption"
-                size="small"
-                marginBottom="px"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  removeSelectedItem(item);
-                }}
-              >
-                &#10005;
-              </Text>
-            )}
-          </Box>
-        ))}
-
-        <Box
+      <Box ref={refs.setReference}>
+        <MultiselectWrapper
           id={id}
-          as="input"
-          className={multiselectInputRecipe({ size, error })}
-          placeholder={locale.inputText}
+          typed={typed}
+          active={active}
           disabled={disabled}
-          width={0}
-          __flex={1}
-          minWidth={7}
-          visibility={showInput ? "visible" : "hidden"}
-          {...getInputProps({
-            id,
-            ref,
-            value: inputValue,
-          })}
-          {...props}
-        />
-      </MultiselectWrapper>
+          size={size}
+          label={label}
+          error={error}
+          className={className}
+          getLabelProps={getLabelProps}
+          getToggleButtonProps={getToggleButtonProps}
+          renderEndAdornment={renderEndAdornment}
+          hasItemsToSelect={hasItemsToSelect}
+        >
+          {selectedItems.map((item, idx) => (
+            <Box
+              key={`selected-item-${item.value}-${idx}`}
+              paddingX={1.5}
+              paddingY={0.5}
+              backgroundColor="surfaceNeutralSubdued"
+              borderColor="neutralHighlight"
+              borderWidth={1}
+              borderStyle="solid"
+              borderRadius={3}
+              display="flex"
+              gap={1}
+              alignItems="center"
+              {...getSelectedItemProps({
+                selectedItem: item,
+                index: idx,
+              })}
+            >
+              <Text
+                variant="caption"
+                size={size === "small" ? "small" : "medium"}
+              >
+                {item.label}
+              </Text>
+              {!disabled && (
+                <Text
+                  cursor="pointer"
+                  variant="caption"
+                  size="small"
+                  marginBottom="px"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    removeSelectedItem(item);
+                  }}
+                >
+                  &#10005;
+                </Text>
+              )}
+            </Box>
+          ))}
 
-      <Box ref={containerRef} />
+          <Box
+            id={id}
+            as="input"
+            className={multiselectInputRecipe({ size, error })}
+            placeholder={locale.inputText}
+            disabled={disabled}
+            width={0}
+            __flex={1}
+            minWidth={7}
+            visibility={showInput ? "visible" : "hidden"}
+            {...getInputProps({
+              id,
+              ref,
+              value: inputValue,
+            })}
+            {...props}
+          />
+        </MultiselectWrapper>
+      </Box>
 
-      <Portal asChild container={containerRef.current}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
