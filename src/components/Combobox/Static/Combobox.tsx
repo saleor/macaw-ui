@@ -6,7 +6,7 @@ import {
   forwardRef,
 } from "react";
 
-import { useFloating, size as floatingSize } from "@floating-ui/react";
+import { useFloating, size as floatingSize } from "@floating-ui/react-dom";
 import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {

@@ -93,7 +93,6 @@
     "@babel/core": "^7.22.9",
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
-    "@floating-ui/react": "^0.25.3",
     "@release-it/conventional-changelog": "^7.0.0",
     "@storybook/addon-actions": "^7.2.1",
     "@storybook/addon-essentials": "^7.2.1",
@@ -143,6 +142,7 @@
   },
   "dependencies": {
     "@dessert-box/react": "^0.4.0",
+    "@floating-ui/react-dom": "^2.0.2",
     "@floating-ui/react-dom-interactions": "^0.5.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.0.4",

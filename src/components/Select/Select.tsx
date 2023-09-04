@@ -5,7 +5,7 @@ import {
   ReactNode,
   forwardRef,
 } from "react";
-import { useFloating, size as floatingSize } from "@floating-ui/react";
+import { useFloating, size as floatingSize } from "@floating-ui/react-dom";
 
 import { isString } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";

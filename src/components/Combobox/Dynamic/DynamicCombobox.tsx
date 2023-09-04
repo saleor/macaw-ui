@@ -5,7 +5,7 @@ import {
   InputHTMLAttributes,
   ReactNode,
 } from "react";
-import { useFloating, size as floatingSize } from "@floating-ui/react";
+import { useFloating, size as floatingSize } from "@floating-ui/react-dom";
 
 import { classNames } from "~/utils";
 
