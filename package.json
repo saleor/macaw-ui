@@ -142,6 +142,7 @@
   },
   "dependencies": {
     "@dessert-box/react": "^0.4.0",
+    "@floating-ui/react-dom": "^2.0.2",
     "@floating-ui/react-dom-interactions": "^0.5.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.0.4",

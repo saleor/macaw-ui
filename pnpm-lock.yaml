@@ -1,13 +1,12 @@
 lockfileVersion: "6.0"
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   "@dessert-box/react":
     specifier: ^0.4.0
     version: 0.4.0(react@18.2.0)
+  "@floating-ui/react-dom":
+    specifier: ^2.0.2
+    version: 2.0.2(react-dom@18.2.0)(react@18.2.0)
   "@floating-ui/react-dom-interactions":
     specifier: ^0.5.0
     version: 0.5.0(@types/react@18.0.0)(react-dom@18.2.0)(react@18.2.0)
@@ -2870,10 +2869,10 @@ packages:
       - "@types/react"
     dev: false
 
-  /@floating-ui/react-dom@2.0.1(react-dom@18.2.0)(react@18.2.0):
+  /@floating-ui/react-dom@2.0.2(react-dom@18.2.0)(react@18.2.0):
     resolution:
       {
-        integrity: sha512-rZtAmSht4Lry6gdhAJDrCp/6rKN7++JnL1/Anbr/DdeyYXQPxvg/ivrbYvJulbRf4vL8b212suwMM2lxbv+RQA==,
+        integrity: sha512-5qhlDvjaLmAst/rKb3VdlCinwTF4EYMiVxuuc/HVUjs46W0zgtbMmAZ1UTsDrRTxRmUEzl92mOtWbeeXL26lSQ==,
       }
     peerDependencies:
       react: ">=16.8.0"
@@ -3937,7 +3936,7 @@ packages:
         optional: true
     dependencies:
       "@babel/runtime": 7.22.6
-      "@floating-ui/react-dom": 2.0.1(react-dom@18.2.0)(react@18.2.0)
+      "@floating-ui/react-dom": 2.0.2(react-dom@18.2.0)(react@18.2.0)
       "@radix-ui/react-arrow": 1.0.3(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.2.0)(react@18.2.0)
       "@radix-ui/react-compose-refs": 1.0.1(@types/react@18.0.0)(react@18.2.0)
       "@radix-ui/react-context": 1.0.1(@types/react@18.0.0)(react@18.2.0)
@@ -18108,3 +18107,7 @@ packages:
     optionalDependencies:
       commander: 9.5.0
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

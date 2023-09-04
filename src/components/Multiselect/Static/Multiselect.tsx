@@ -4,7 +4,6 @@ import {
   forwardRef,
   InputHTMLAttributes,
   ReactNode,
-  useRef,
 } from "react";
 
 import { Box, List, PropsWithBox, Text } from "~/components";
@@ -17,6 +16,7 @@ import {
   Option,
 } from "~/components/BaseSelect";
 
+import { useFloating } from "~/hooks/useFloating";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -98,11 +98,12 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const { refs, floatingStyles } = useFloating();
 
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
+        ref={refs.setReference}
         id={id}
         typed={typed}
         active={active}
@@ -177,9 +178,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
         />
       </MultiselectWrapper>
 
-      <Box ref={containerRef} />
-
-      <Portal asChild container={containerRef.current}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={isOpen && hasItemsToSelect ? "block" : "none"}

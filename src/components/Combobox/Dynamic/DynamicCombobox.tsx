@@ -4,11 +4,11 @@ import {
   forwardRef,
   InputHTMLAttributes,
   ReactNode,
-  useRef,
 } from "react";
 
 import { classNames } from "~/utils";
 
+import { useFloating } from "~/hooks/useFloating";
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -99,12 +99,13 @@ const DynamicComboboxInner = <T extends Option>(
     onBlur,
   });
 
-  const containerRef = useRef<HTMLLabelElement>(null);
+  const { refs, floatingStyles } = useFloating();
 
   return (
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
         id={id}
+        ref={refs.setReference}
         typed={typed}
         active={active}
         disabled={disabled}
@@ -134,9 +135,7 @@ const DynamicComboboxInner = <T extends Option>(
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
         </Box>
       </ComboboxWrapper>
-      <Box ref={containerRef} />
-
-      <Portal asChild container={containerRef.current}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}

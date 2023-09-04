@@ -4,7 +4,6 @@ import {
   forwardRef,
   InputHTMLAttributes,
   ReactNode,
-  useRef,
 } from "react";
 
 import { Box, List, PropsWithBox, Text } from "~/components";
@@ -19,6 +18,7 @@ import {
   Option,
 } from "~/components/BaseSelect";
 
+import { useFloating } from "~/hooks/useFloating";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -107,11 +107,12 @@ const DynamicMultiselectInner = <T extends Option>(
     onBlur,
   });
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const { refs, floatingStyles } = useFloating();
 
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
+        ref={refs.setReference}
         id={id}
         typed={typed}
         active={active}
@@ -186,9 +187,7 @@ const DynamicMultiselectInner = <T extends Option>(
         />
       </MultiselectWrapper>
 
-      <Box ref={containerRef} />
-
-      <Portal asChild container={containerRef.current}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}

@@ -4,10 +4,10 @@ import {
   InputHTMLAttributes,
   ReactNode,
   forwardRef,
-  useRef,
 } from "react";
 
 import { isString } from "~/utils";
+import { useFloating } from "~/hooks/useFloating";
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
@@ -97,11 +97,12 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const containerRef = useRef<HTMLLabelElement>(null);
+  const { refs, floatingStyles } = useFloating();
 
   return (
     <Box display="flex" flexDirection="column">
       <SelectWrapper
+        ref={refs.setReference}
         id={id}
         typed={typed}
         active={active}
@@ -123,9 +124,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           </Text>
         </Box>
       </SelectWrapper>
-      <Box ref={containerRef} />
-
-      <Portal asChild container={containerRef.current}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={isOpen && hasItemsToSelect ? "block" : "none"}
