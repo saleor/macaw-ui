@@ -40,40 +40,43 @@ export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
     ref
   ) => {
     return (
-      <Box
-        ref={ref}
-        as="label"
-        className={classNames(
-          labelRecipe({ typed, active, disabled, size, error }),
-          className
-        )}
-        alignItems="center"
-        justifyContent="space-between"
-        disabled={disabled}
-        flexWrap="nowrap"
-        gap={3}
-        {...getToggleButtonProps()}
-        data-macaw-ui-component="Select"
-        cursor={disabled ? "not-allowed" : "pointer"}
-      >
-        <Box display="flex" flexDirection="column" width="100%">
-          <Box
-            as="span"
-            className={classNames(spanRecipe({ typed, size, disabled, error }))}
-            {...getLabelProps({ htmlFor: id })}
-          >
-            {label}
-          </Box>
-          {children}
-        </Box>
-
-        <ArrowDownIcon
+      <Box ref={ref}>
+        <Box
+          as="label"
           className={classNames(
-            toggleIconStyle,
-            sprinkles({ cursor: "pointer" })
+            labelRecipe({ typed, active, disabled, size, error }),
+            className
           )}
-          size={size}
-        />
+          alignItems="center"
+          justifyContent="space-between"
+          disabled={disabled}
+          flexWrap="nowrap"
+          gap={3}
+          {...getToggleButtonProps()}
+          data-macaw-ui-component="Select"
+          cursor={disabled ? "not-allowed" : "pointer"}
+        >
+          <Box display="flex" flexDirection="column" width="100%">
+            <Box
+              as="span"
+              className={classNames(
+                spanRecipe({ typed, size, disabled, error })
+              )}
+              {...getLabelProps({ htmlFor: id })}
+            >
+              {label}
+            </Box>
+            {children}
+          </Box>
+
+          <ArrowDownIcon
+            className={classNames(
+              toggleIconStyle,
+              sprinkles({ cursor: "pointer" })
+            )}
+            size={size}
+          />
+        </Box>
       </Box>
     );
   }

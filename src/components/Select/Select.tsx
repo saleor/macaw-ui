@@ -124,7 +124,6 @@ const SelectInner = <T extends Option, V extends Option | string>(
           </Text>
         </Box>
       </SelectWrapper>
-
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"

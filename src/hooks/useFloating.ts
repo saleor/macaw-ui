@@ -10,7 +10,7 @@ export const useFloating = (): UseFloatingReturn => {
   return useFloatingHook({
     whileElementsMounted: autoUpdate,
     middleware: [
-      flip({ padding: 10 }),
+      flip(),
       size({
         apply({ rects, availableHeight, elements }) {
           Object.assign(elements.floating.style, {
@@ -18,7 +18,6 @@ export const useFloating = (): UseFloatingReturn => {
             maxHeight: `${availableHeight}px`,
           });
         },
-        padding: 10,
       }),
     ],
   });
