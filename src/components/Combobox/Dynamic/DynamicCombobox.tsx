@@ -5,10 +5,10 @@ import {
   InputHTMLAttributes,
   ReactNode,
 } from "react";
-import { useFloating, size as floatingSize } from "@floating-ui/react-dom";
 
 import { classNames } from "~/utils";
 
+import { useFloating } from "~/hooks/useFloating";
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -99,56 +99,42 @@ const DynamicComboboxInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating({
-    placement: "left-end",
-    middleware: [
-      floatingSize({
-        apply({ rects, availableHeight, elements }) {
-          Object.assign(elements.floating.style, {
-            width: `${rects.reference.width}px`,
-            maxHeight: `${availableHeight}px`,
-          });
-        },
-        padding: 10,
-      }),
-    ],
-  });
+  const { refs, floatingStyles } = useFloating();
 
   return (
     <Box display="flex" flexDirection="column">
-      <Box ref={refs.setReference}>
-        <ComboboxWrapper
-          id={id}
-          typed={typed}
-          active={active}
-          disabled={disabled}
-          size={size}
-          label={label}
-          error={error}
-          className={className}
-          getLabelProps={getLabelProps}
-          getToggleButtonProps={getToggleButtonProps}
-        >
-          <Box display="flex">
-            {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
+      <ComboboxWrapper
+        id={id}
+        ref={refs.setReference}
+        typed={typed}
+        active={active}
+        disabled={disabled}
+        size={size}
+        label={label}
+        error={error}
+        className={className}
+        getLabelProps={getLabelProps}
+        getToggleButtonProps={getToggleButtonProps}
+      >
+        <Box display="flex">
+          {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
 
-            <Box
-              id={id}
-              as="input"
-              type="text"
-              className={classNames(inputRecipe({ size, error }))}
-              disabled={disabled}
-              {...props}
-              {...getInputProps({
-                id,
-                ref,
-              })}
-            />
+          <Box
+            id={id}
+            as="input"
+            type="text"
+            className={classNames(inputRecipe({ size, error }))}
+            disabled={disabled}
+            {...props}
+            {...getInputProps({
+              id,
+              ref,
+            })}
+          />
 
-            {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
-          </Box>
-        </ComboboxWrapper>
-      </Box>
+          {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
+        </Box>
+      </ComboboxWrapper>
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"

@@ -2,7 +2,7 @@
   Do not expose this file, it's for internal purposes only.
 */
 import { UseComboboxPropGetters } from "downshift7";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
@@ -22,60 +22,69 @@ type ComboboxWrapperProps = LabelVariants & {
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
-export const ComboboxWrapper = ({
-  id,
-  label,
-  className,
-  error,
-  children,
-  getToggleButtonProps,
-  getLabelProps,
-  typed,
-  active,
-  disabled,
-  size,
-}: ComboboxWrapperProps) => {
-  return (
-    <Box
-      as="label"
-      className={classNames(
-        labelRecipe({ typed, active, disabled, size, error }),
-        className
-      )}
-      alignItems="center"
-      justifyContent="space-between"
-      disabled={disabled}
-      flexWrap="nowrap"
-      gap={3}
-      data-macaw-ui-component="Combobox"
-      {...getLabelProps({ htmlFor: id })}
-      cursor={disabled ? "not-allowed" : "text"}
-    >
-      <Box display="flex" flexDirection="column" width="100%">
-        <Box
-          as="span"
-          className={classNames(spanRecipe({ typed, size, disabled, error }))}
-        >
-          {label}
-        </Box>
-        {children}
-      </Box>
-
-      <ArrowDownIcon
+export const ComboboxWrapper = forwardRef<
+  HTMLLabelElement,
+  ComboboxWrapperProps
+>(
+  (
+    {
+      id,
+      label,
+      className,
+      error,
+      children,
+      getToggleButtonProps,
+      getLabelProps,
+      typed,
+      active,
+      disabled,
+      size,
+    },
+    ref
+  ) => {
+    return (
+      <Box
+        ref={ref}
+        as="label"
         className={classNames(
-          toggleIconStyle,
-          sprinkles({ cursor: "pointer" })
+          labelRecipe({ typed, active, disabled, size, error }),
+          className
         )}
-        size={size}
-        {...getToggleButtonProps({
-          disabled,
-          onClick: (event) => {
-            event.preventDefault();
-          },
-        })}
-      />
-    </Box>
-  );
-};
+        alignItems="center"
+        justifyContent="space-between"
+        disabled={disabled}
+        flexWrap="nowrap"
+        gap={3}
+        data-macaw-ui-component="Combobox"
+        {...getLabelProps({ htmlFor: id })}
+        cursor={disabled ? "not-allowed" : "text"}
+      >
+        <Box display="flex" flexDirection="column" width="100%">
+          <Box
+            as="span"
+            className={classNames(spanRecipe({ typed, size, disabled, error }))}
+          >
+            {label}
+          </Box>
+          {children}
+        </Box>
+
+        <ArrowDownIcon
+          className={classNames(
+            toggleIconStyle,
+            sprinkles({ cursor: "pointer" })
+          )}
+          size={size}
+          {...getToggleButtonProps({
+            disabled,
+            onClick: (event) => {
+              event.preventDefault();
+            },
+          })}
+        />
+      </Box>
+    );
+  }
+);
 
 ComboboxWrapper.displayName = "ComboboxWrapper";

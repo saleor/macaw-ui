@@ -5,9 +5,9 @@ import {
   ReactNode,
   forwardRef,
 } from "react";
-import { useFloating, size as floatingSize } from "@floating-ui/react-dom";
 
 import { isString } from "~/utils";
+import { useFloating } from "~/hooks/useFloating";
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
@@ -97,47 +97,33 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating({
-    placement: "left-end",
-    middleware: [
-      floatingSize({
-        apply({ rects, availableHeight, elements }) {
-          Object.assign(elements.floating.style, {
-            width: `${rects.reference.width}px`,
-            maxHeight: `${availableHeight}px`,
-          });
-        },
-        padding: 10,
-      }),
-    ],
-  });
+  const { refs, floatingStyles } = useFloating();
 
   return (
     <Box display="flex" flexDirection="column">
-      <Box ref={refs.setReference}>
-        <SelectWrapper
-          id={id}
-          typed={typed}
-          active={active}
-          disabled={disabled}
-          size={size}
-          label={label}
-          error={error}
-          className={className}
-          getLabelProps={getLabelProps}
-          getToggleButtonProps={getToggleButtonProps}
-        >
-          <Box height={getBoxHeight(size)} {...props} ref={ref}>
-            <Text
-              size={size}
-              variant="body"
-              color={error ? "textCriticalDefault" : "textNeutralDefault"}
-            >
-              {selectedItem?.label}
-            </Text>
-          </Box>
-        </SelectWrapper>
-      </Box>
+      <SelectWrapper
+        ref={refs.setReference}
+        id={id}
+        typed={typed}
+        active={active}
+        disabled={disabled}
+        size={size}
+        label={label}
+        error={error}
+        className={className}
+        getLabelProps={getLabelProps}
+        getToggleButtonProps={getToggleButtonProps}
+      >
+        <Box height={getBoxHeight(size)} {...props} ref={ref}>
+          <Text
+            size={size}
+            variant="body"
+            color={error ? "textCriticalDefault" : "textNeutralDefault"}
+          >
+            {selectedItem?.label}
+          </Text>
+        </Box>
+      </SelectWrapper>
 
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box

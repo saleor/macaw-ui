@@ -2,7 +2,7 @@
   Do not expose this file, it's for internal purposes only.
 */
 import { UseComboboxPropGetters } from "downshift7";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
@@ -22,53 +22,61 @@ type SelectWrapperProps = LabelVariants & {
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
-export const SelectWrapper = ({
-  id,
-  label,
-  className,
-  error,
-  children,
-  getToggleButtonProps,
-  getLabelProps,
-  typed,
-  active,
-  disabled,
-  size,
-}: SelectWrapperProps) => {
-  return (
-    <Box
-      as="label"
-      className={classNames(
-        labelRecipe({ typed, active, disabled, size, error }),
-        className
-      )}
-      alignItems="center"
-      justifyContent="space-between"
-      disabled={disabled}
-      flexWrap="nowrap"
-      gap={3}
-      {...getToggleButtonProps()}
-      data-macaw-ui-component="Select"
-      cursor={disabled ? "not-allowed" : "pointer"}
-    >
-      <Box display="flex" flexDirection="column" width="100%">
-        <Box
-          as="span"
-          className={classNames(spanRecipe({ typed, size, disabled, error }))}
-          {...getLabelProps({ htmlFor: id })}
-        >
-          {label}
-        </Box>
-        {children}
-      </Box>
-
-      <ArrowDownIcon
+export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
+  (
+    {
+      id,
+      label,
+      className,
+      error,
+      children,
+      getToggleButtonProps,
+      getLabelProps,
+      typed,
+      active,
+      disabled,
+      size,
+    },
+    ref
+  ) => {
+    return (
+      <Box
+        ref={ref}
+        as="label"
         className={classNames(
-          toggleIconStyle,
-          sprinkles({ cursor: "pointer" })
+          labelRecipe({ typed, active, disabled, size, error }),
+          className
         )}
-        size={size}
-      />
-    </Box>
-  );
-};
+        alignItems="center"
+        justifyContent="space-between"
+        disabled={disabled}
+        flexWrap="nowrap"
+        gap={3}
+        {...getToggleButtonProps()}
+        data-macaw-ui-component="Select"
+        cursor={disabled ? "not-allowed" : "pointer"}
+      >
+        <Box display="flex" flexDirection="column" width="100%">
+          <Box
+            as="span"
+            className={classNames(spanRecipe({ typed, size, disabled, error }))}
+            {...getLabelProps({ htmlFor: id })}
+          >
+            {label}
+          </Box>
+          {children}
+        </Box>
+
+        <ArrowDownIcon
+          className={classNames(
+            toggleIconStyle,
+            sprinkles({ cursor: "pointer" })
+          )}
+          size={size}
+        />
+      </Box>
+    );
+  }
+);
+
+SelectWrapper.displayName = "SelectWrapper";

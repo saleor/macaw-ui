@@ -2,7 +2,7 @@
   Do not expose this file, it's for internal purposes only.
 */
 import { UseComboboxPropGetters } from "downshift7";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
@@ -25,65 +25,74 @@ type MultiselectWrapperProps = LabelVariants & {
   hasItemsToSelect?: boolean;
 };
 
-export const MultiselectWrapper = ({
-  id,
-  label,
-  className,
-  error,
-  children,
-  getLabelProps,
-  typed,
-  active,
-  disabled,
-  size,
-  getToggleButtonProps,
-  renderEndAdornment,
-  hasItemsToSelect,
-}: MultiselectWrapperProps) => {
-  return (
-    <Box
-      as="label"
-      className={classNames(
-        labelRecipe({ typed, active, disabled, size, error }),
-        className
-      )}
-      alignItems="center"
-      justifyContent="space-between"
-      disabled={disabled}
-      flexWrap="nowrap"
-      gap={3}
-      data-macaw-ui-component="Multiselect"
-      {...getLabelProps({ htmlFor: id })}
-      cursor={disabled ? "not-allowed" : "text"}
-    >
-      <Box display="flex" flexDirection="column" width="100%">
-        <Box
-          as="span"
-          className={classNames(spanRecipe({ typed, size, disabled, error }))}
-        >
-          {label}
+export const MultiselectWrapper = forwardRef<
+  HTMLLabelElement,
+  MultiselectWrapperProps
+>(
+  (
+    {
+      id,
+      label,
+      className,
+      error,
+      children,
+      getLabelProps,
+      typed,
+      active,
+      disabled,
+      size,
+      getToggleButtonProps,
+      renderEndAdornment,
+      hasItemsToSelect,
+    },
+    ref
+  ) => {
+    return (
+      <Box
+        ref={ref}
+        as="label"
+        className={classNames(
+          labelRecipe({ typed, active, disabled, size, error }),
+          className
+        )}
+        alignItems="center"
+        justifyContent="space-between"
+        disabled={disabled}
+        flexWrap="nowrap"
+        gap={3}
+        data-macaw-ui-component="Multiselect"
+        {...getLabelProps({ htmlFor: id })}
+        cursor={disabled ? "not-allowed" : "text"}
+      >
+        <Box display="flex" flexDirection="column" width="100%">
+          <Box
+            as="span"
+            className={classNames(spanRecipe({ typed, size, disabled, error }))}
+          >
+            {label}
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="row"
+            gap={1}
+            alignItems="center"
+            flexWrap="wrap"
+          >
+            {children}
+          </Box>
         </Box>
-        <Box
-          display="flex"
-          flexDirection="row"
-          gap={1}
-          alignItems="center"
-          flexWrap="wrap"
-        >
-          {children}
-        </Box>
-      </Box>
 
-      {hasItemsToSelect && (
-        <Adornment
-          size={size}
-          getToggleButtonProps={getToggleButtonProps}
-          renderEndAdornment={renderEndAdornment}
-          disabled={disabled}
-        />
-      )}
-    </Box>
-  );
-};
+        {hasItemsToSelect && (
+          <Adornment
+            size={size}
+            getToggleButtonProps={getToggleButtonProps}
+            renderEndAdornment={renderEndAdornment}
+            disabled={disabled}
+          />
+        )}
+      </Box>
+    );
+  }
+);
 
 MultiselectWrapper.displayName = "MultiselectWrapper";
