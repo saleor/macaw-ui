@@ -20,7 +20,7 @@ export const listWrapperRecipe = recipe({
   base: [
     {
       borderRadius: listItemBorderRadius,
-      padding: "4px",
+      padding: vars.spacing[1],
     },
   ],
 
