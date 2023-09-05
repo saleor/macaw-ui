@@ -9,6 +9,7 @@ import {
 import { classNames } from "~/utils";
 
 import { useFloating } from "~/hooks/useFloating";
+import { FetchMoreProps, useInfnityScroll } from "~/hooks/useInfnityScroll";
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -49,6 +50,7 @@ export type DynamicComboboxProps<T> = PropsWithBox<
     locale?: {
       loadingText?: string;
     };
+    fetchMore?: FetchMoreProps;
   }
 > &
   InputVariants;
@@ -74,6 +76,7 @@ const DynamicComboboxInner = <T extends Option>(
     },
     startAdornment,
     endAdornment,
+    fetchMore,
     ...props
   }: DynamicComboboxProps<T>,
   ref: ForwardedRef<HTMLInputElement>
@@ -100,6 +103,8 @@ const DynamicComboboxInner = <T extends Option>(
   });
 
   const { refs, floatingStyles } = useFloating();
+
+  const scrollRef = useInfnityScroll(fetchMore);
 
   return (
     <Box display="flex" flexDirection="column">
@@ -167,6 +172,13 @@ const DynamicComboboxInner = <T extends Option>(
               <LoadingListItem size={size}>
                 {locale.loadingText}
               </LoadingListItem>
+            )}
+            {!loading && isOpen && (
+              <div
+                ref={(ref) => {
+                  scrollRef.current = ref;
+                }}
+              ></div>
             )}
           </List>
         </Box>
