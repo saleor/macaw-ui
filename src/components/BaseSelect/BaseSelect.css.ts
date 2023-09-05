@@ -71,12 +71,12 @@ export const listStyle = style([
       [spaceBetweenListItemAndBorder]: vars.spacing[1],
     },
     "::-webkit-scrollbar": {
-      width: "16px",
+      width: vars.spacing[4],
     },
     "::-webkit-scrollbar-thumb": {
       backgroundColor: vars.colors.border.neutralPlain,
-      border: "4px solid transparent",
-      borderRadius: "8px",
+      border: `${vars.spacing[1]} solid transparent`,
+      borderRadius: vars.borderRadius[4],
       backgroundClip: "padding-box",
     },
   },
