@@ -25,15 +25,16 @@ export const useInfnityScroll = (onScrollEnd?: () => void) => {
     if (!onScrollEnd || !observerTarget.current) {
       return;
     }
+    const observerOCurrent = observer.current;
+    const target = observerTarget.current;
 
-    if (observerTarget.current) {
-      observer.current.observe(observerTarget.current);
+    if (target) {
+      observerOCurrent.observe(target);
     }
 
     return () => {
-      if (observerTarget.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.current.unobserve(observerTarget.current);
+      if (target) {
+        observerOCurrent.unobserve(target);
       }
     };
   }, [observerTarget, onScrollEnd]);
