@@ -13,6 +13,7 @@ import { HelperText, InputVariants } from "../BaseInput";
 import {
   Option,
   SingleChangeHandler,
+  getListTextSize,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -147,7 +148,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   })}
                   active={highlightedIndex === index}
                 >
-                  <Text size={size}>{item.label}</Text>
+                  <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
           </List>

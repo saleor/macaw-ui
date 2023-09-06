@@ -9,6 +9,7 @@ import {
 import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
+  getListTextSize,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -201,7 +202,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
                     index,
                   })}
                 >
-                  <Text size={size}>{item.label}</Text>
+                  <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
           </List>

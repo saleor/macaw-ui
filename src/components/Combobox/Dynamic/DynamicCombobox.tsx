@@ -13,6 +13,7 @@ import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
   getListDisplayMode,
+  getListTextSize,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -159,7 +160,7 @@ const DynamicComboboxInner = <T extends Option>(
                   active={highlightedIndex === index}
                 >
                   {item?.startAdornment}
-                  <Text size={size}>{item.label}</Text>
+                  <Text size={getListTextSize(size)}>{item.label}</Text>
                   {item?.endAdornment}
                 </List.Item>
               ))}

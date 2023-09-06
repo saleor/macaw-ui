@@ -10,6 +10,7 @@ import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
   getListDisplayMode,
+  getListTextSize,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -210,7 +211,7 @@ const DynamicMultiselectInner = <T extends Option>(
                     index,
                   })}
                 >
-                  <Text size={size}>{item.label}</Text>
+                  <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
             {loading && (
