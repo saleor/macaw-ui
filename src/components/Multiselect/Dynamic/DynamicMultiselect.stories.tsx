@@ -38,6 +38,10 @@ export const Default = () => {
   }
 
   async function loadMore() {
+    if (nextUrl === null) {
+      return;
+    }
+
     setLoading(true);
     const res = await search(nextUrl);
 
@@ -79,11 +83,8 @@ export const Default = () => {
         onInputValueChange={(value) => {
           debouncedSearch(value);
         }}
-        fetchMore={{
-          hasMore: nextUrl !== null,
-          onFetchMore: () => {
-            loadMore();
-          },
+        onScrollEnd={() => {
+          loadMore();
         }}
         locale={{
           inputText: "Add character",

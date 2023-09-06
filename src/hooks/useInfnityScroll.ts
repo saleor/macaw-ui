@@ -1,28 +1,20 @@
 import { useEffect, useRef } from "react";
 
-export interface FetchMoreProps {
-  hasMore: boolean;
-  onFetchMore: () => void;
-  loading?: boolean;
-}
-
-export const useInfnityScroll = (fetchMore: FetchMoreProps | undefined) => {
+export const useInfnityScroll = (onScrollEnd?: () => void) => {
   const observerTarget = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (!fetchMore || !observerTarget) {
+    if (!onScrollEnd || !observerTarget) {
       return;
     }
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          if (fetchMore?.hasMore) {
-            fetchMore?.onFetchMore();
-          }
+          onScrollEnd();
         }
       },
-      { threshold: 1 }
+      { threshold: 0, rootMargin: "50px" }
     );
 
     if (observerTarget.current) {
@@ -35,7 +27,7 @@ export const useInfnityScroll = (fetchMore: FetchMoreProps | undefined) => {
         observer.unobserve(observerTarget.current);
       }
     };
-  }, [fetchMore, observerTarget]);
+  }, [observerTarget, onScrollEnd]);
 
   return observerTarget;
 };

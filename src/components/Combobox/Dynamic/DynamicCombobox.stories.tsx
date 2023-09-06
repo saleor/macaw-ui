@@ -37,6 +37,10 @@ export const Default = () => {
   }
 
   async function loadMore() {
+    if (nextUrl === null) {
+      return;
+    }
+
     setLoading(true);
     const res = await search(nextUrl);
 
@@ -74,12 +78,8 @@ export const Default = () => {
       onChange={(value) => setValue(value)}
       options={options}
       loading={loading}
-      fetchMore={{
-        loading,
-        hasMore: nextUrl !== null,
-        onFetchMore: () => {
-          loadMore();
-        },
+      onScrollEnd={() => {
+        loadMore();
       }}
       onInputValueChange={(inputValue) => {
         debouncedSearch(inputValue);
