@@ -3,16 +3,7 @@ import { useEffect, useRef, useState } from "react";
 export const useInfnityScroll = (onScrollEnd?: () => void) => {
   const observerTarget = useRef<HTMLElement | null>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const observer = useRef(
-    new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsIntersecting(true);
-        }
-      },
-      { threshold: 0 }
-    )
-  );
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (isIntersecting) {
@@ -22,22 +13,33 @@ export const useInfnityScroll = (onScrollEnd?: () => void) => {
   }, [isIntersecting, onScrollEnd]);
 
   useEffect(() => {
-    if (!onScrollEnd || !observerTarget.current) {
-      return;
-    }
-    const observerOCurrent = observer.current;
     const target = observerTarget.current;
 
-    if (target) {
-      observerOCurrent.observe(target);
+    if (!target) {
+      return;
     }
 
+    if (observer.current) {
+      observer.current.disconnect();
+    }
+
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsIntersecting(true);
+        }
+      },
+      { threshold: 0 }
+    );
+
+    observer.current.observe(target);
+
     return () => {
-      if (target) {
-        observerOCurrent.unobserve(target);
+      if (target && observer.current) {
+        observer.current.unobserve(target);
       }
     };
-  }, [observerTarget, onScrollEnd]);
+  }, [observerTarget]);
 
   return observerTarget;
 };
