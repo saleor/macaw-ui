@@ -223,13 +223,11 @@ const DynamicMultiselectInner = <T extends Option>(
                 {locale.loadingText}
               </LoadingListItem>
             )}
-            {!loading && isOpen && (
-              <div
-                ref={(ref) => {
-                  scrollRef.current = ref;
-                }}
-              ></div>
-            )}
+            <div
+              ref={(ref) => {
+                scrollRef.current = ref;
+              }}
+            ></div>
           </List>
         </Box>
       </Portal>
