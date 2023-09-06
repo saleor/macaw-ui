@@ -1,23 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const useInfnityScroll = (onScrollEnd?: () => void) => {
   const observerTarget = useRef<HTMLElement | null>(null);
-  const observer = useRef<IntersectionObserver | null>(null);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const observer = useRef(
+    new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsIntersecting(true);
+        }
+      },
+      { threshold: 0 }
+    )
+  );
+
+  useEffect(() => {
+    if (isIntersecting) {
+      onScrollEnd?.();
+      setIsIntersecting(false);
+    }
+  }, [isIntersecting, onScrollEnd]);
 
   useEffect(() => {
     if (!onScrollEnd || !observerTarget.current) {
       return;
-    }
-
-    if (!observer.current) {
-      observer.current = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            onScrollEnd();
-          }
-        },
-        { threshold: 0, rootMargin: "50px" }
-      );
     }
 
     if (observerTarget.current) {
@@ -27,7 +33,7 @@ export const useInfnityScroll = (onScrollEnd?: () => void) => {
     return () => {
       if (observerTarget.current) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.current?.unobserve(observerTarget.current);
+        observer.current.unobserve(observerTarget.current);
       }
     };
   }, [observerTarget, onScrollEnd]);
