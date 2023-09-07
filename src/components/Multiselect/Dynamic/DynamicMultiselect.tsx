@@ -208,6 +208,7 @@ const DynamicMultiselectInner = <T extends Option>(
             {isOpen &&
               itemsToSelect?.map((item, index) => (
                 <List.Item
+                  data-test-id="select-option"
                   key={`to-select-${id}-${item.value}-${index}`}
                   className={listItemStyle}
                   active={highlightedIndex === index}
