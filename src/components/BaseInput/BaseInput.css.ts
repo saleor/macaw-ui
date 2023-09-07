@@ -70,8 +70,8 @@ export const labelRecipe = recipe({
           default: "interactiveNeutralHighlightDefault",
         },
         borderColor: {
-          default: "neutralPlain",
-          hover: "neutralHighlight",
+          default: "neutralHighlight",
+          hover: "neutralPlain",
         },
       }),
     },
@@ -99,8 +99,8 @@ export const labelRecipe = recipe({
         },
         borderStyle: "solid",
         borderColor: {
-          default: "neutralPlain",
-          hover: "neutralHighlight",
+          default: "neutralHighlight",
+          hover: "neutralPlain",
         },
       }),
     },
