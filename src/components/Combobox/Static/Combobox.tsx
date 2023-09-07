@@ -141,6 +141,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             {isOpen &&
               itemsToSelect?.map((item, index) => (
                 <List.Item
+                  data-test-id="select-option"
                   key={`${id}-${item.value}-${index}`}
                   className={listItemStyle}
                   {...getItemProps({
