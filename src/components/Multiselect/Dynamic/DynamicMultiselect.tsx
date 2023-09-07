@@ -20,6 +20,7 @@ import {
 } from "~/components/BaseSelect";
 
 import { useFloating } from "~/hooks/useFloating";
+import { useInfnityScroll } from "~/hooks/useInfnityScroll";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -53,6 +54,7 @@ export type DynamicMultiselectProps<T> = PropsWithBox<
       loadingText?: string;
       inputText?: string;
     };
+    onScrollEnd?: () => void;
   }
 > &
   InputVariants;
@@ -78,6 +80,7 @@ const DynamicMultiselectInner = <T extends Option>(
       loadingText: "Loading",
       inputText: "Add item",
     },
+    onScrollEnd,
     ...props
   }: DynamicMultiselectProps<T>,
   ref: ForwardedRef<HTMLInputElement>
@@ -109,6 +112,8 @@ const DynamicMultiselectInner = <T extends Option>(
   });
 
   const { refs, floatingStyles } = useFloating();
+
+  const scrollRef = useInfnityScroll(onScrollEnd);
 
   return (
     <Box display="flex" flexDirection="column">
@@ -219,6 +224,11 @@ const DynamicMultiselectInner = <T extends Option>(
                 {locale.loadingText}
               </LoadingListItem>
             )}
+            <div
+              ref={(ref) => {
+                scrollRef.current = ref;
+              }}
+            ></div>
           </List>
         </Box>
       </Portal>

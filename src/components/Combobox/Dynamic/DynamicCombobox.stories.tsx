@@ -22,26 +22,52 @@ const meta: Meta<typeof DynamicCombobox> = {
 export default meta;
 
 export const Default = () => {
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<Option[]>([]);
   const [value, setValue] = useState<Option | null>(null);
   const [loading, setLoading] = useState(false);
+  const [nextUrl, setNextUrl] = useState<string>("");
 
-  async function search(criteria: string) {
+  async function search(url: string) {
     setLoading(true);
-    const response = await fetch(
-      `https://swapi.dev/api/people/?search=${criteria}`
-    );
+    const response = await fetch(url);
     const body = await response.json();
+
     setLoading(false);
-    return body.results.map((result: { name: string }) => ({
+    return body;
+  }
+
+  async function loadMore() {
+    if (nextUrl === null) {
+      return;
+    }
+
+    setLoading(true);
+    const res = await search(nextUrl);
+
+    const options = res.results.map((result: { name: string }) => ({
       value: result.name,
       label: result.name,
     }));
+
+    setNextUrl(res.next);
+    setOptions((prev) => [...prev, ...options]);
+
+    setLoading(false);
   }
 
   const debouncedSearch = useRef(
     debounce(async (criteria) => {
-      setOptions(await search(criteria));
+      const res = await search(
+        `https://swapi.dev/api/people/?search=${criteria}`
+      );
+
+      setNextUrl(res.next);
+      setOptions(
+        res.results.map((result: { name: string }) => ({
+          value: result.name,
+          label: result.name,
+        }))
+      );
     }, 300)
   ).current;
 
@@ -52,6 +78,9 @@ export const Default = () => {
       onChange={(value) => setValue(value)}
       options={options}
       loading={loading}
+      onScrollEnd={() => {
+        loadMore();
+      }}
       onInputValueChange={(inputValue) => {
         debouncedSearch(inputValue);
       }}
