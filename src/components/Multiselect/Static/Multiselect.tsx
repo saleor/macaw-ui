@@ -120,7 +120,8 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
       >
         {selectedItems.map((item, idx) => (
           <Box
-            key={`selected-item-${item.value}-${idx}`}
+            key={`selected-option-${item.value}-${idx}`}
+            data-test-id={`selected-option-${item.value}-${idx}`}
             paddingX={1.5}
             paddingY={0.5}
             backgroundColor="surfaceNeutralSubdued"
