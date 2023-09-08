@@ -118,47 +118,51 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
         renderEndAdornment={renderEndAdornment}
         hasItemsToSelect={hasItemsToSelect}
       >
-        {selectedItems.map((item, idx) => (
-          <Box
-            key={`selected-item-${item.value}-${idx}`}
-            paddingX={1.5}
-            paddingY={0.5}
-            backgroundColor="surfaceNeutralSubdued"
-            borderColor="neutralHighlight"
-            borderWidth={1}
-            borderStyle="solid"
-            borderRadius={3}
-            display="flex"
-            gap={1}
-            alignItems="center"
-            {...getSelectedItemProps({
-              selectedItem: item,
-              index: idx,
-            })}
-          >
-            <Text
-              variant="caption"
-              size={size === "small" ? "small" : "medium"}
+        {selectedItems.map((item, idx) => {
+          const key = `selected-option-${item.value}-${idx}`;
+          return (
+            <Box
+              key={key}
+              data-test-id={key}
+              paddingX={1.5}
+              paddingY={0.5}
+              backgroundColor="surfaceNeutralSubdued"
+              borderColor="neutralHighlight"
+              borderWidth={1}
+              borderStyle="solid"
+              borderRadius={3}
+              display="flex"
+              gap={1}
+              alignItems="center"
+              {...getSelectedItemProps({
+                selectedItem: item,
+                index: idx,
+              })}
             >
-              {item.label}
-            </Text>
-            {!disabled && (
               <Text
-                cursor="pointer"
                 variant="caption"
-                size="small"
-                marginBottom="px"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  removeSelectedItem(item);
-                }}
+                size={size === "small" ? "small" : "medium"}
               >
-                &#10005;
+                {item.label}
               </Text>
-            )}
-          </Box>
-        ))}
+              {!disabled && (
+                <Text
+                  cursor="pointer"
+                  variant="caption"
+                  size="small"
+                  marginBottom="px"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    removeSelectedItem(item);
+                  }}
+                >
+                  &#10005;
+                </Text>
+              )}
+            </Box>
+          );
+        })}
 
         <Box
           id={id}
