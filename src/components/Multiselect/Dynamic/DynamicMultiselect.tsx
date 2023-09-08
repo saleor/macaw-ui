@@ -52,7 +52,7 @@ export type DynamicMultiselectProps<T> = PropsWithBox<
     loading?: boolean;
     locale?: {
       loadingText?: string;
-      inputText?: string;
+      placeholderText?: string;
     };
     onScrollEnd?: () => void;
   }
@@ -176,7 +176,7 @@ const DynamicMultiselectInner = <T extends Option>(
           id={id}
           as="input"
           className={multiselectInputRecipe({ size, error })}
-          placeholder={locale?.inputText || "Add item"}
+          placeholder={locale?.placeholderText || "Add item"}
           disabled={disabled}
           width={0}
           __flex={1}
