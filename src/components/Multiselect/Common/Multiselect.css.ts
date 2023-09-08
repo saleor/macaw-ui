@@ -1,6 +1,25 @@
+import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { sprinkles, vars } from "~/theme";
+
+// override translate because multiselect has two items inside wrapper: label text and input
+export const multiselectSpanRecipe = recipe({
+  base: [
+    style({
+      transform: "translate(0, 42%) scale(1)",
+    }),
+  ],
+  variants: {
+    typed: {
+      true: [
+        {
+          transform: "translate(0, 0) scale(0.84)",
+        },
+      ],
+    },
+  },
+});
 
 export const multiselectInputRecipe = recipe({
   base: [

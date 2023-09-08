@@ -76,10 +76,7 @@ const DynamicMultiselectInner = <T extends Option>(
     loading,
     onFocus,
     onBlur,
-    locale = {
-      loadingText: "Loading",
-      inputText: "Add item",
-    },
+    locale,
     onScrollEnd,
     ...props
   }: DynamicMultiselectProps<T>,
@@ -179,7 +176,7 @@ const DynamicMultiselectInner = <T extends Option>(
           id={id}
           as="input"
           className={multiselectInputRecipe({ size, error })}
-          placeholder={locale.inputText}
+          placeholder={locale?.inputText || "Add item"}
           disabled={disabled}
           width={0}
           __flex={1}
@@ -223,14 +220,14 @@ const DynamicMultiselectInner = <T extends Option>(
               ))}
             {loading && (
               <LoadingListItem size={size}>
-                {locale.loadingText}
+                {locale?.loadingText || "Loading"}
               </LoadingListItem>
             )}
             <div
               ref={(ref) => {
                 scrollRef.current = ref;
               }}
-            ></div>
+            />
           </List>
         </Box>
       </Portal>

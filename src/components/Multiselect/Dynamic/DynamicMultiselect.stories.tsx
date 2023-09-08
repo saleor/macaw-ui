@@ -88,7 +88,6 @@ export const Default = () => {
         }}
         locale={{
           inputText: "Add character",
-          loadingText: "Loading",
         }}
       />
     </Box>

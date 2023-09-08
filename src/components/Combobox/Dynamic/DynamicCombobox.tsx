@@ -72,9 +72,7 @@ const DynamicComboboxInner = <T extends Option>(
     onFocus,
     onBlur,
     loading,
-    locale = {
-      loadingText: "Loading",
-    },
+    locale,
     startAdornment,
     endAdornment,
     onScrollEnd,
@@ -172,14 +170,14 @@ const DynamicComboboxInner = <T extends Option>(
               ))}
             {loading && (
               <LoadingListItem size={size}>
-                {locale.loadingText}
+                {locale?.loadingText ?? "Loading"}
               </LoadingListItem>
             )}
             <div
               ref={(ref) => {
                 scrollRef.current = ref;
               }}
-            ></div>
+            />
           </List>
         </Box>
       </Portal>

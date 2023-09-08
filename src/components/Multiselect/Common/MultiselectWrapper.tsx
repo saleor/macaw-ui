@@ -12,6 +12,7 @@ import { Option } from "../../BaseSelect";
 
 import { Adornment } from "./Adornment";
 import { RenderEndAdornmentType } from "./useMultiselect";
+import { multiselectSpanRecipe } from "./Multiselect.css";
 
 type MultiselectWrapperProps = LabelVariants & {
   id?: string;
@@ -67,7 +68,10 @@ export const MultiselectWrapper = forwardRef<
         <Box display="flex" flexDirection="column" width="100%">
           <Box
             as="span"
-            className={classNames(spanRecipe({ typed, size, disabled, error }))}
+            className={classNames(
+              multiselectSpanRecipe({ typed }),
+              spanRecipe({ typed, size, disabled, error })
+            )}
           >
             {label}
           </Box>
