@@ -1,6 +1,7 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
 import { desktopMediaQuery, tabletMediaQuery } from "./media-queries";
+
 import { vars } from "./contract.css";
 
 const baseGridTemplates = {
@@ -231,6 +232,9 @@ const stateProperties = defineProperties({
     transform: [],
     fill: { ...vars.colors.background, transparent: "transparent" },
     stroke: { ...vars.colors.border, transparent: "transparent" },
+    listStyleType: ["none", "disc", "decimal"],
+    listStylePosition: ["inside", "outside"],
+    listStyleImage: ["none"],
   },
 });
 
