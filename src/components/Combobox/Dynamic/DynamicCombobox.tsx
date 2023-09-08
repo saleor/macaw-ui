@@ -9,7 +9,7 @@ import {
 import { classNames } from "~/utils";
 
 import { useFloating } from "~/hooks/useFloating";
-import { useInfnityScroll } from "~/hooks/useInfnityScroll";
+import { useInfinityScroll } from "~/hooks/useInfinityScroll";
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -103,7 +103,7 @@ const DynamicComboboxInner = <T extends Option>(
 
   const { refs, floatingStyles } = useFloating();
 
-  const scrollRef = useInfnityScroll(onScrollEnd);
+  const scrollRef = useInfinityScroll(onScrollEnd);
 
   return (
     <Box display="flex" flexDirection="column">

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export const useInfnityScroll = (onScrollEnd?: () => void) => {
+export const useInfinityScroll = (onScrollEnd?: () => void) => {
   const observerTarget = useRef<HTMLElement | null>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const observer = useRef<IntersectionObserver | null>(null);

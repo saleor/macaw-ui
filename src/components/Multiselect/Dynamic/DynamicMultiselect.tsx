@@ -20,7 +20,7 @@ import {
 } from "~/components/BaseSelect";
 
 import { useFloating } from "~/hooks/useFloating";
-import { useInfnityScroll } from "~/hooks/useInfnityScroll";
+import { useInfinityScroll } from "~/hooks/useInfinityScroll";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -110,7 +110,7 @@ const DynamicMultiselectInner = <T extends Option>(
 
   const { refs, floatingStyles } = useFloating();
 
-  const scrollRef = useInfnityScroll(onScrollEnd);
+  const scrollRef = useInfinityScroll(onScrollEnd);
 
   return (
     <Box display="flex" flexDirection="column">
