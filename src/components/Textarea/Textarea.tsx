@@ -24,7 +24,6 @@ export type TextareaProps = PropsWithBox<
     error?: boolean;
     helperText?: ReactNode;
     endAdornment?: ReactNode;
-    autoHeight?: boolean;
     maxRows?: number;
   }
 > &
