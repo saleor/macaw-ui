@@ -25,6 +25,7 @@ export type TextareaProps = PropsWithBox<
     helperText?: ReactNode;
     endAdornment?: ReactNode;
     autoHeight?: boolean;
+    maxRows?: number;
   }
 > &
   InputVariants;
@@ -50,7 +51,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       width,
       endAdornment,
       rows = 10,
-      autoHeight = true,
+      maxRows = 20,
       ...props
     },
     ref
@@ -62,7 +63,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       typed,
     } = useStateEvents(value, onChange);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
-    useAutoHeightTextarea(textAreaRef.current, value, autoHeight);
+    useAutoHeightTextarea(textAreaRef.current, value, rows, maxRows);
     useImperativeHandle(ref, () => textAreaRef.current!);
 
     return (

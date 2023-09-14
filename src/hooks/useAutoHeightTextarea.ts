@@ -1,48 +1,34 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { TextareaValue } from "../components/Textarea/TextareaWrapper";
-
-const MAX_HEIGHT = 450;
 
 // Updates the height of a <textarea> when the value changes.
 export const useAutoHeightTextarea = (
   textAreaRef: HTMLTextAreaElement | null,
   value: TextareaValue,
-  useAutoHeight: boolean
+  rows: number,
+  maxRows: number
 ) => {
-  const mounted = useRef<boolean>(false);
-  const intialHeight = useRef<number>(0);
+  const intialHeight = getHeight(textAreaRef, rows);
+  const maxRowsHeight = getHeight(textAreaRef, maxRows);
 
   useEffect(() => {
-    if (!mounted.current && textAreaRef) {
-      intialHeight.current = textAreaRef.offsetHeight;
-      mounted.current = true;
-    }
-  }, [textAreaRef]);
-
-  useEffect(() => {
-    if (textAreaRef && useAutoHeight) {
-      // We need to reset the height momentarily to get the correct scrollHeight for the textarea
+    if (textAreaRef) {
+      // Restart the height at 0px to ensure that the scroll height is correct.
       textAreaRef.style.height = "0px";
-      const scrollHeight = textAreaRef.scrollHeight;
 
-      if (scrollHeight < MAX_HEIGHT) {
-        textAreaRef.style.height = `${scrollHeight}px`;
-      } else {
-        textAreaRef.style.height = `${MAX_HEIGHT}px`;
-      }
+      // Take the max of the initial height and the scroll height for case where rows is greater than one.
+      const initMaxHeight = Math.max(intialHeight, textAreaRef.scrollHeight);
+      // Take the scroll height but limit it to the max rows height.
+      const scrollHeight = Math.min(initMaxHeight, maxRowsHeight);
 
-      // To support mutlitple rows we need to check if the scrollHeight is greater than the initial height
-      // because only then we can extends the height of the textarea
-      if (scrollHeight > intialHeight.current) {
-        // Reach the max height limit
-        if (scrollHeight >= MAX_HEIGHT) {
-          textAreaRef.style.height = `${MAX_HEIGHT}px`;
-        } else {
-          textAreaRef.style.height = `${scrollHeight}px`;
-        }
-      } else {
-        textAreaRef.style.height = `${intialHeight.current}px`;
-      }
+      textAreaRef.style.height = `${scrollHeight}px`;
     }
-  }, [textAreaRef, useAutoHeight, value]);
+  }, [intialHeight, maxRowsHeight, textAreaRef, value]);
 };
+
+function getHeight(textAreaRef: HTMLTextAreaElement | null, rows: number) {
+  if (textAreaRef) {
+    return parseFloat(getComputedStyle(textAreaRef).lineHeight) * rows;
+  }
+  return 0;
+}
