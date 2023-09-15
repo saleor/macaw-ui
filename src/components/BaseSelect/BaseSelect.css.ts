@@ -66,7 +66,6 @@ export const listStyle = style([
   }),
   {
     borderRadius: calc.add(listItemBorderRadius, spaceBetweenListItemAndBorder),
-    scrollbarGutter: "stable",
     vars: {
       [spaceBetweenListItemAndBorder]: vars.spacing[1],
     },

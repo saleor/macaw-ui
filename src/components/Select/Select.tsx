@@ -6,8 +6,8 @@ import {
   forwardRef,
 } from "react";
 
-import { isString } from "~/utils";
 import { useFloating } from "~/hooks/useFloating";
+import { isString } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
@@ -41,9 +41,6 @@ export type SelectProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V>;
     value: V | null;
-    locale?: {
-      loadingText?: string;
-    };
   }
 > &
   InputVariants;
