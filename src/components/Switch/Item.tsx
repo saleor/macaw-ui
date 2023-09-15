@@ -22,6 +22,7 @@ export const SwitchItem = ({
 }: SwitchItemProps) => {
   return (
     <Switch.Item
+      asChild
       value={value}
       id={id}
       disabled={disabled}
