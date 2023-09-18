@@ -191,7 +191,14 @@ const DynamicMultiselectInner = <T extends Option>(
         />
       </MultiselectWrapper>
 
-      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
+      <Portal
+        asChild
+        ref={refs.setFloating}
+        style={{
+          ...floatingStyles,
+          zIndex: 1,
+        }}
+      >
         <Box
           position="relative"
           display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
