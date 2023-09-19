@@ -139,14 +139,7 @@ const DynamicComboboxInner = <T extends Option>(
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
         </Box>
       </ComboboxWrapper>
-      <Portal
-        asChild
-        ref={refs.setFloating}
-        style={{
-          ...floatingStyles,
-          zIndex: 1,
-        }}
-      >
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}

@@ -6,8 +6,12 @@ import {
   autoUpdate,
 } from "@floating-ui/react-dom";
 
-export const useFloating = (): UseFloatingReturn => {
-  return useFloatingHook({
+export const useFloating = (
+  zIndexValue = 1
+): UseFloatingReturn & {
+  floatingStyles: { zIndex: number };
+} => {
+  const { floatingStyles, ...rest } = useFloatingHook({
     whileElementsMounted: autoUpdate,
     middleware: [
       flip(),
@@ -21,4 +25,12 @@ export const useFloating = (): UseFloatingReturn => {
       }),
     ],
   });
+
+  return {
+    ...rest,
+    floatingStyles: {
+      ...floatingStyles,
+      zIndex: zIndexValue,
+    },
+  };
 };

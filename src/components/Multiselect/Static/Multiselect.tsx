@@ -180,14 +180,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
         />
       </MultiselectWrapper>
 
-      <Portal
-        asChild
-        ref={refs.setFloating}
-        style={{
-          ...floatingStyles,
-          zIndex: 1,
-        }}
-      >
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={isOpen && hasItemsToSelect ? "block" : "none"}
