@@ -31,6 +31,7 @@ export const useFloating = (
     floatingStyles: {
       ...floatingStyles,
       zIndex: zIndexValue,
+      pointerEvents: "auto",
     },
   };
 };
