@@ -18,7 +18,7 @@ import { SaleorTheme, SaleorThemeColors, ThemeType } from "./types";
 
 export const ICONBUTTON_SIZE = 48;
 
-const fontFamily = '"Inter", "roboto", "sans-serif"';
+const fontFamily = "inherit"; // inherit from html - if not set MacawUI will use Roboto font
 
 export const createTheme = (
   colors: SaleorThemeColors,
