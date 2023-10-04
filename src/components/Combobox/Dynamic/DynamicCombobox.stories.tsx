@@ -54,21 +54,19 @@ export const Default = () => {
     setLoading(false);
   }
 
-  // const debouncedSearch = useRef(
-  //   debounce(async (criteria) => {
-  //     const res = await search(
-  //       `https://swapi.dev/api/people/?search=${criteria}`
-  //     );
+  const handleInputValueChange = async (criteria: string) => {
+    const res = await search(
+      `https://swapi.dev/api/people/?search=${criteria}`
+    );
 
-  //     setNextUrl(res.next);
-  //     setOptions(
-  //       res.results.map((result: { name: string }) => ({
-  //         value: result.name,
-  //         label: result.name,
-  //       }))
-  //     );
-  //   }, 300)
-  // ).current;
+    setNextUrl(res.next);
+    setOptions(
+      res.results.map((result: { name: string }) => ({
+        value: result.name,
+        label: result.name,
+      }))
+    );
+  };
 
   return (
     <DynamicCombobox
@@ -80,9 +78,9 @@ export const Default = () => {
       onScrollEnd={() => {
         loadMore();
       }}
-      // onInputValueChange={(inputValue) => {
-      //   debouncedSearch(inputValue);
-      // }}
+      onInputValueChange={(inputValue) => {
+        handleInputValueChange(inputValue);
+      }}
     />
   );
 };

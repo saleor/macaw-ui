@@ -55,21 +55,19 @@ export const Default = () => {
     setLoading(false);
   }
 
-  // const debouncedSearch = useRef(
-  //   debounce(async (criteria) => {
-  //     const res = await search(
-  //       `https://swapi.dev/api/people/?search=${criteria}`
-  //     );
+  const handleInputValueChange = async (criteria: string) => {
+    const res = await search(
+      `https://swapi.dev/api/people/?search=${criteria}`
+    );
 
-  //     setNextUrl(res.next);
-  //     setOptions(
-  //       res.results.map((result: { name: string }) => ({
-  //         value: result.name,
-  //         label: result.name,
-  //       }))
-  //     );
-  //   }, 300)
-  // ).current;
+    setNextUrl(res.next);
+    setOptions(
+      res.results.map((result: { name: string }) => ({
+        value: result.name,
+        label: result.name,
+      }))
+    );
+  };
 
   return (
     <Box __width={300}>
@@ -79,9 +77,9 @@ export const Default = () => {
         onChange={(value) => setValue(value)}
         options={options}
         loading={loading}
-        // onInputValueChange={(value) => {
-        //   debouncedSearch(value);
-        // }}
+        onInputValueChange={(value) => {
+          handleInputValueChange(value);
+        }}
         onScrollEnd={() => {
           loadMore();
         }}
