@@ -1,5 +1,5 @@
 {
-  "version": "0.8.0-pre.136",
+  "version": "1.0.0-pre.0",
   "license": "CC-BY-4.0",
   "homepage": "https://macaw-ui.vercel.app/",
   "repository": {
@@ -10,42 +10,25 @@
     "url": "https://github.com/saleor/macaw-ui/issues"
   },
   "files": [
-    "dist/*",
-    "legacy/dist/*"
+    "dist/*"
   ],
-  "typesVersions": {
-    "*": {
-      "next": [
-        "dist/index.d.ts"
-      ],
-      "next/theme": [
-        "dist/theme/index.d.ts"
-      ],
-      "*": [
-        "legacy/dist/types/*"
-      ]
-    }
-  },
   "packageManager": "pnpm@8.6.11",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    "./next": {
+    ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "default": "./dist/index.js"
     },
-    "./next/style": {
+    "./style": {
       "import": "./dist/style.css",
-      "require": "./dist/style.css"
+      "default": "./dist/style.css"
     },
-    "./next/theme": {
+    "./theme": {
       "types": "./dist/theme/index.d.ts",
       "import": "./dist/theme.mjs",
-      "require": "./dist/theme.js"
-    },
-    ".": {
-      "types": "./legacy/dist/types/index.d.ts",
-      "import": "./legacy/dist/esm/index.js",
-      "require": "./legacy/dist/cjs/index.js"
+      "default": "./dist/theme.js"
     }
   },
   "keywords": [
@@ -60,21 +43,13 @@
     "pnpm": ">=8"
   },
   "scripts": {
-    "build:legacy": "cd legacy && npm run build",
-    "build:next": "npm-run-all check-types:next && vite build",
+    "build": "npm-run-all check-types && vite build",
     "bundle-visualizer": "VISUALIZER=true vite build",
     "build-storybook": "storybook build --docs",
     "watch": "vite build --watch",
-    "lint:legacy": "cd legacy && npm run lint",
-    "lint:next": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix",
-    "check-types:next": "tsc",
-    "check-types:legacy": "cd legacy && npm run build-tsc",
-    "test:legacy": "cd legacy && npm run test",
-    "test:next": "vitest",
-    "lint": "npm-run-all lint:*",
-    "check-types": "npm-run-all check-types:*",
-    "test": "npm-run-all test:*",
-    "build": "npm-run-all build:*",
+    "lint": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix",
+    "check-types": "tsc",
+    "test": "vitest",
     "dev": "storybook dev -p 6006",
     "dev:docs": "storybook dev -p 6006 --docs",
     "make-release": "release-it pre",
