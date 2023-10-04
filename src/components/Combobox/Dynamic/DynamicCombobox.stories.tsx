@@ -1,6 +1,5 @@
-import { useRef, useState } from "react";
 import { Meta } from "@storybook/react";
-import { debounce } from "lodash-es";
+import { useState } from "react";
 
 import { DynamicCombobox } from "..";
 import { Box, Option } from "../..";
@@ -55,21 +54,21 @@ export const Default = () => {
     setLoading(false);
   }
 
-  const debouncedSearch = useRef(
-    debounce(async (criteria) => {
-      const res = await search(
-        `https://swapi.dev/api/people/?search=${criteria}`
-      );
+  // const debouncedSearch = useRef(
+  //   debounce(async (criteria) => {
+  //     const res = await search(
+  //       `https://swapi.dev/api/people/?search=${criteria}`
+  //     );
 
-      setNextUrl(res.next);
-      setOptions(
-        res.results.map((result: { name: string }) => ({
-          value: result.name,
-          label: result.name,
-        }))
-      );
-    }, 300)
-  ).current;
+  //     setNextUrl(res.next);
+  //     setOptions(
+  //       res.results.map((result: { name: string }) => ({
+  //         value: result.name,
+  //         label: result.name,
+  //       }))
+  //     );
+  //   }, 300)
+  // ).current;
 
   return (
     <DynamicCombobox
@@ -81,9 +80,9 @@ export const Default = () => {
       onScrollEnd={() => {
         loadMore();
       }}
-      onInputValueChange={(inputValue) => {
-        debouncedSearch(inputValue);
-      }}
+      // onInputValueChange={(inputValue) => {
+      //   debouncedSearch(inputValue);
+      // }}
     />
   );
 };

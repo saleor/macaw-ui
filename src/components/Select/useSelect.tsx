@@ -2,7 +2,7 @@ import {
   GetPropsCommonOptions,
   UseSelectGetToggleButtonPropsOptions,
   useSelect as useDownshiftSelect,
-} from "downshift7";
+} from "downshift";
 import { FocusEvent, useState } from "react";
 
 import { isString } from "~/utils";

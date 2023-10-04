@@ -5,7 +5,7 @@ import {
   UseComboboxPropGetters,
   useCombobox,
   useMultipleSelection,
-} from "downshift7";
+} from "downshift";
 import { FocusEvent, ReactNode, useState } from "react";
 
 import { MultiChangeHandler, Option } from "~/components/BaseSelect";

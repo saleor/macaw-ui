@@ -17,24 +17,18 @@ Official React UI components kit for [Saleor](https://saleor.io/) — an open-so
 npm i @saleor/macaw-ui
 ```
 
-Note that this package still bundles the old version of MacawUI so it still depends on the following Material-UI v4 packages: @material-ui/core, @material-ui/icons and @material-ui/lab. If your project doesn't have them installed and you're not using npm v7 with [automatically installed peer dependencies](https://github.blog/2020-10-13-presenting-v7-0-0-of-the-npm-cli/) then you'll need to install them manually:
-
-```sh
-npm i @material-ui/core @material-ui/icons @material-ui/lab
-```
-
 ## Usage
 
 You need to import the styles into your app. You can do it in your main entry point, for example `index.`tsx`:
 
 ```tsx
-import "@saleor/macaw-ui/next/style";
+import "@saleor/macaw-ui/style";
 ```
 
 Next, you need to add the `ThemeProvider` to your app. It will provide the theme to the components:
 
 ```tsx
-import { ThemeProvider } from "@saleor/macaw-ui/next";
+import { ThemeProvider } from "@saleor/macaw-ui";
 
 const App = () => (
   <ThemeProvider>
@@ -45,23 +39,10 @@ const App = () => (
 
 ### Usage with Next.js
 
-As mentioned above, we still bundle the old version of MacawUI so you need to add the following to your `next.config.js`:
-
-```js
-/** @type {import('next').NextConfig} */
-module.exports = {
-  experimental: {
-    esmExternals: false,
-  },
-};
-```
-
-It tells Next.js not to use ESM exports for external modules. This is needed because MacawUI dependencies (Material-UI v4) are still using CommonJS exports.
-
 If you need to render styles on the server we recommend that you use `getCSSVariables` helper to get the CSS variables that can be injected in `_document.tsx`:
 
 ```tsx
-import { getCSSVariables } from "@saleor/macaw-ui/next";
+import { getCSSVariables } from "@saleor/macaw-ui";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
 const css = getCSSVariables("defaultLight"); // or "defaultDark"
@@ -81,16 +62,6 @@ export default class AppDocument extends Document {
 }
 ```
 
-If you are using Next.js in version 13 and you got this error:
-
-```
-NonErrorEmittedError: (Emitted value instead of an instance of Error) ReferenceError: $RefreshReg$ is not defined
-```
-
-Try to change `sprinkles` imports from `@saleor/macaw-ui/next` to `@saleor/macaw-ui/next/theme`.
-
-[Reference](https://github.com/vanilla-extract-css/vanilla-extract/issues/1043)
-
 ### Usage with form libraries
 
 #### React Hook Form
@@ -98,7 +69,7 @@ Try to change `sprinkles` imports from `@saleor/macaw-ui/next` to `@saleor/macaw
 You need to wrap the MacawUI component with [`Controller`](https://react-hook-form.com/api/usecontroller/controller/). For example:
 
 ```tsx
-import { Input } from "@saleor/macaw-ui/next";
+import { Input } from "@saleor/macaw-ui";
 
 <Controller
   control={control}
@@ -127,7 +98,6 @@ To begin, you need to install dependencies:
 
 ```sh
 pnpm install
-cd legacy && npm install
 ```
 
 Then, you can run the Storybook:

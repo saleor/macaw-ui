@@ -29,3 +29,8 @@ globalStyle("ul, ol", {
   listStyle: "none",
   padding: 0,
 });
+
+globalStyle("a", {
+  textDecoration: "none",
+  color: "inherit",
+});

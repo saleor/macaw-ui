@@ -2,7 +2,7 @@ import {
   GetPropsCommonOptions,
   UseComboboxGetInputPropsOptions,
   useCombobox as useDownshiftCombobox,
-} from "downshift7";
+} from "downshift";
 import { FocusEvent, useState } from "react";
 
 import { Option, SingleChangeHandler } from "~/components/BaseSelect";

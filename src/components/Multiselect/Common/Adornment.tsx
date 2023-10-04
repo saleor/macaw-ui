@@ -1,10 +1,10 @@
-import { UseComboboxPropGetters } from "downshift7";
+import { UseComboboxPropGetters } from "downshift";
 
-import { classNames } from "~/utils";
 import { sprinkles } from "~/theme";
+import { classNames } from "~/utils";
 
-import { ArrowDownIcon } from "../../Icons";
 import { Option, toggleIconStyle } from "../../BaseSelect";
+import { ArrowDownIcon } from "../../Icons";
 import { RenderEndAdornmentType } from "./useMultiselect";
 
 export type AdornmentProps = {
