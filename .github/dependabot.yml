@@ -1,0 +1,40 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 2
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      react:
+        patterns:
+          - "react*"
+      vanilla-extract:
+        patterns:
+          - "@vanilla-extract*"
+          - "@dessert-box*"
+      infra:
+        patterns:
+          - "eslint*"
+          - "typescript*"
+          - "vite*"
+          - "vitest*"
+          - "prettier*"
+      storybook:
+        patterns:
+          - "@storybook*"
+          - "storybook*"
+          - "chromatic*"
+      radix-ui:
+        patterns:
+          - "@radix-ui*"
+    open-pull-requests-limit: 2
