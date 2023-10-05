@@ -1,6 +1,5 @@
 import { Meta } from "@storybook/react";
-import { clone, setWith } from "lodash-es";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
 import {
   Box,
@@ -159,103 +158,13 @@ const Template = ({
 };
 
 export const Default = () => {
-  const [rows, setRows] = useState(defaultValue);
-
   return (
     <Template>
       <_ExperimentalFilters
-        value={rows}
+        value={defaultValue}
         leftOptions={leftOptions}
-        onChange={(event) => {
-          if (event?.type === "rightOperator.onChange") {
-            const newState = setWith(
-              clone(rows),
-              event?.path ?? "",
-              event?.value,
-              clone
-            );
-            setRows(newState);
-          }
-
-          if (event?.type === "condition.onChange") {
-            const newState = setWith(
-              clone(rows),
-              event?.path ?? "",
-              {
-                value: [],
-                options: [
-                  { value: "electronics", label: "Electronics" },
-                  { value: "clothing", label: "Clothing" },
-                ],
-                conditionValue: event?.value,
-              },
-              clone
-            );
-            setRows(newState);
-          }
-
-          if (event?.type === "leftOperator.onChange") {
-            const newState = setWith(
-              clone(rows),
-              event?.path ?? "",
-              {
-                value: event?.value,
-                condition: {
-                  options: [
-                    { type: "number", label: "is", value: "input-1" },
-                    {
-                      type: "multiselect",
-                      label: "has",
-                      value: "input-2",
-                    },
-                  ],
-                  selected: {
-                    value: "",
-                    conditionValue: {
-                      type: "number",
-                      label: "is",
-                      value: "input-1",
-                    },
-                  },
-                },
-              },
-              clone
-            );
-            setRows(newState);
-          }
-          if (event?.type === "row.add") {
-            const newState = [
-              ...rows,
-              "AND",
-              {
-                value: null,
-                condition: {
-                  options: [],
-                  selected: {
-                    value: "",
-                    conditionValue: null,
-                    options: [],
-                  },
-                },
-              },
-            ];
-            setRows(newState);
-          }
-
-          if (event?.type === "row.remove") {
-            const index = parseInt(event?.path ?? "", 10);
-            if (index === 0) {
-              const newState = [...rows.slice(index + 2, rows.length)];
-              setRows(newState);
-              return;
-            }
-            const newState = [
-              ...rows.slice(0, index - 1),
-              ...rows.slice(index + 1, rows.length),
-            ];
-            setRows(newState);
-          }
-        }}
+        // eslint-disable-next-line no-console
+        onChange={(event) => console.log(event)}
       >
         <_ExperimentalFilters.Footer>
           <_ExperimentalFilters.AddRowButton>

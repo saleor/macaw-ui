@@ -1,7 +1,7 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { UseComboboxPropGetters } from "downshift7";
+import { UseComboboxPropGetters } from "downshift";
 import { ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";

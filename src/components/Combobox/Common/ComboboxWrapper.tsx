@@ -1,14 +1,14 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { UseComboboxPropGetters } from "downshift7";
+import { UseComboboxPropGetters } from "downshift";
 import { ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../../BaseInput";
-import { toggleIconStyle, Option } from "../../BaseSelect";
+import { Option, toggleIconStyle } from "../../BaseSelect";
 import { Box } from "../../Box";
 import { ArrowDownIcon } from "../../Icons";
 

@@ -1,6 +1,6 @@
-import { visualizer } from "rollup-plugin-visualizer";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
 import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
 
@@ -22,7 +22,6 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(__dirname, "src", "index.tsx"),
-        theme: resolve(__dirname, "src", "theme", "index.ts"),
       },
       formats: ["es", "cjs"],
     },

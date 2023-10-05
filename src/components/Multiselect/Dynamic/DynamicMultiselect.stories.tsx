@@ -1,6 +1,5 @@
 import { Meta } from "@storybook/react";
-import { debounce } from "lodash-es";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { DynamicMultiselect } from "..";
 import { Box, Option } from "../..";
@@ -56,21 +55,19 @@ export const Default = () => {
     setLoading(false);
   }
 
-  const debouncedSearch = useRef(
-    debounce(async (criteria) => {
-      const res = await search(
-        `https://swapi.dev/api/people/?search=${criteria}`
-      );
+  const handleInputValueChange = async (criteria: string) => {
+    const res = await search(
+      `https://swapi.dev/api/people/?search=${criteria}`
+    );
 
-      setNextUrl(res.next);
-      setOptions(
-        res.results.map((result: { name: string }) => ({
-          value: result.name,
-          label: result.name,
-        }))
-      );
-    }, 300)
-  ).current;
+    setNextUrl(res.next);
+    setOptions(
+      res.results.map((result: { name: string }) => ({
+        value: result.name,
+        label: result.name,
+      }))
+    );
+  };
 
   return (
     <Box __width={300}>
@@ -81,7 +78,7 @@ export const Default = () => {
         options={options}
         loading={loading}
         onInputValueChange={(value) => {
-          debouncedSearch(value);
+          handleInputValueChange(value);
         }}
         onScrollEnd={() => {
           loadMore();
