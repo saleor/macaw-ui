@@ -10,6 +10,8 @@ jobs:
   build:
     name: Run chromatic tests
     runs-on: ubuntu-latest
+    # disable for dependabot PRs as they don't have access to secrets
+    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3

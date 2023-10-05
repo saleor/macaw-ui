@@ -1,0 +1,40 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      react:
+        patterns:
+          - "react*"
+      vanilla-extract:
+        patterns:
+          - "@vanilla-extract*"
+          - "@dessert-box*"
+      infra:
+        patterns:
+          - "eslint*"
+          - "typescript*"
+          - "prettier*"
+      vite:
+        patterns:
+          - "vite*"
+          - "vitest*"
+      storybook:
+        patterns:
+          - "@storybook*"
+          - "storybook*"
+          - "chromatic*"
+      radix-ui:
+        patterns:
+          - "@radix-ui*"
