@@ -25,9 +25,11 @@ updates:
         patterns:
           - "eslint*"
           - "typescript*"
+          - "prettier*"
+      vite:
+        patterns:
           - "vite*"
           - "vitest*"
-          - "prettier*"
       storybook:
         patterns:
           - "@storybook*"
