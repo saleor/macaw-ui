@@ -106,7 +106,7 @@
     "vitest": "^0.34.1"
   },
   "dependencies": {
-    "@dessert-box/react": "^0.4.0",
+    "@dessert-box/react": "^0.7.5",
     "@floating-ui/react-dom": "^2.0.2",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.0.4",
