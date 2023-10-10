@@ -25,6 +25,7 @@ updates:
           - "eslint*"
           - "typescript*"
           - "prettier*"
+          - "@typescript*"
       vite:
         patterns:
           - "vite*"
