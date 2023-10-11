@@ -1,4 +1,4 @@
-import { Box, Text, WarningIcon } from ".";
+import { Box, InfoIcon, Text, WarningIcon } from ".";
 
 const meta = {
   title: "POC colors",
@@ -81,6 +81,103 @@ export const Card = () => {
         color="default"
         placeholder="Input field"
       />
+
+      <Box as="ul">
+        <Box
+          as="li"
+          backgroundColor={{
+            default: "default",
+            hover: "muted",
+          }}
+          cursor="pointer"
+          paddingY={3}
+          paddingX={1}
+        >
+          <Text color="default">List item 1</Text>
+        </Box>
+        <Box
+          as="li"
+          backgroundColor={{
+            default: "default",
+            hover: "muted",
+          }}
+          cursor="pointer"
+          paddingY={3}
+          paddingX={1}
+        >
+          <Text color="default">List item 2</Text>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export const Layout = () => {
+  return (
+    <Box
+      __maxWidth="800px"
+      display="grid"
+      __gridTemplateColumns="1fr 2fr"
+      gap={5}
+      borderColor="default"
+      borderStyle="solid"
+      __height="300px"
+    >
+      <Box backgroundColor="muted" padding={3}>
+        <Box as="ul" padding={0} margin={0}>
+          <Box
+            as="li"
+            backgroundColor={{
+              default: "muted",
+              hover: "strong",
+            }}
+            cursor="pointer"
+            paddingX={4}
+          >
+            <Text color="default" variant="bodyEmp">
+              Home
+            </Text>
+          </Box>
+          <Box
+            as="li"
+            backgroundColor={{
+              default: "muted",
+              hover: "strong",
+            }}
+            cursor="pointer"
+            paddingX={4}
+          >
+            <Text color="default" variant="bodyEmp">
+              Product
+            </Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box display="grid" __placeItems="center" paddingRight={5}>
+        <Box
+          backgroundColor="info"
+          padding={3}
+          borderRadius={3}
+          display="grid"
+          __width="300px"
+          borderColor="info"
+          borderWidth={1}
+          borderStyle="solid"
+        >
+          <Box display="flex" gap={2}>
+            <InfoIcon color="info" />
+            <Text color="info" variant="heading">
+              Info header
+            </Text>
+          </Box>
+
+          <Text color="info" variant="caption">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            eleifend metus vitae turpis volutpat, quis fermentum quam feugiat.
+            Aenean sed sem eu mi ullamcorper rhoncus.
+          </Text>
+        </Box>
+      </Box>
     </Box>
   );
 };

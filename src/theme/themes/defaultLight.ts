@@ -121,8 +121,10 @@ export const defaultLight = {
       decorativeSurfaceSubdued3: "hsla(234, 100%, 91%, 1)",
 
       default: "oklch(100% 0 0)",
+      // defaultHover?
+      // defaultFocus?
       muted: "oklch(97.29% 0.003 264.54)",
-      mutedHover: "",
+      mutedHover: "oklch(88.21% 0.009 242.85)",
       mutedFocus: "",
       strong: "lch(93.03% 1.58 271.99)",
       strongHover: "",
@@ -154,7 +156,7 @@ export const defaultLight = {
       strongHover: "",
       strongFocus: "",
       success: "",
-      info: "",
+      info: "#C2DBFF",
       critical: "#B82100",
       warning: "",
     },
