@@ -40,7 +40,7 @@
   "scripts": {
     "build": "npm-run-all check-types && vite build",
     "bundle-visualizer": "VISUALIZER=true vite build",
-    "build-storybook": "storybook build --docs",
+    "build-storybook": "storybook build",
     "watch": "vite build --watch",
     "lint": "eslint 'src/**/*.@(tsx|ts|jsx|js)' --fix",
     "check-types": "tsc",
