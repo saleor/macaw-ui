@@ -147,9 +147,9 @@ export const defaultLight = {
       criticalSubdued: "hsla(11, 100%, 57%, 1)",
       criticalHighlight: "hsla(11, 100%, 46%, 0.08)",
 
-      default: "oklch(89.52% 0.009 247.92)",
-      defaultHover: "",
-      defaultFocus: "",
+      default: "#D8DDE2",
+      defaultHover: "#bbc3cc",
+      defaultFocus: "#9EA9B5",
       strong: "oklch(81.37% 0.015 251.18)",
       strongHover: "",
       strongFocus: "",

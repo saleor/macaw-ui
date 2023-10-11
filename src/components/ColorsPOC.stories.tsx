@@ -69,10 +69,8 @@ export const Card = () => {
         as="input"
         borderColor={{
           default: "default",
-          hover: "strongHover",
-          focus: "strongFocus",
-          focusVisible: "strongFocus",
-          focusWithin: "strongFocus",
+          hover: "defaultHover",
+          focus: "defaultFocus",
         }}
         borderWidth={1}
         borderStyle="solid"
@@ -80,6 +78,8 @@ export const Card = () => {
         padding={3}
         borderRadius={3}
         outlineStyle="none"
+        color="default"
+        placeholder="Input field"
       />
     </Box>
   );
