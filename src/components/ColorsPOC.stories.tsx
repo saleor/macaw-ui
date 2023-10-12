@@ -19,7 +19,7 @@ export const WarningAlert = () => {
       borderStyle="solid"
     >
       <Box display="flex" gap={2}>
-        <WarningIcon color="critical" />
+        <WarningIcon iconColor="critical" />
         <Text color="critical" variant="heading">
           Alert header
         </Text>
@@ -72,6 +72,11 @@ export const Card = () => {
           hover: "defaultHover",
           focus: "defaultFocus",
         }}
+        boxShadow={{
+          default: "default",
+          hover: "defaultHover",
+          defaultFocus: "defaultFocus",
+        }}
         borderWidth={1}
         borderStyle="solid"
         fontSize="bodyLarge"
@@ -107,6 +112,17 @@ export const Card = () => {
         >
           <Text color="default">List item 2</Text>
         </Box>
+      </Box>
+
+      <Box
+        as="button"
+        backgroundColor="inverted"
+        borderWidth={0}
+        padding={3}
+        borderRadius={2}
+        cursor="pointer"
+      >
+        <Text color="inverted">Click me</Text>
       </Box>
     </Box>
   );
@@ -152,6 +168,19 @@ export const Layout = () => {
             </Text>
           </Box>
         </Box>
+        <Box
+          as="button"
+          backgroundColor="default"
+          borderWidth={1}
+          padding={3}
+          borderColor="default"
+          borderStyle="solid"
+          borderRadius={2}
+          cursor="pointer"
+          boxShadow="overlay"
+        >
+          Secondary
+        </Box>
       </Box>
       <Box display="grid" __placeItems="center" paddingRight={5}>
         <Box
@@ -163,9 +192,10 @@ export const Layout = () => {
           borderColor="info"
           borderWidth={1}
           borderStyle="solid"
+          boxShadow="overlay"
         >
           <Box display="flex" gap={2}>
-            <InfoIcon color="info" />
+            <InfoIcon iconColor="info" />
             <Text color="info" variant="heading">
               Info header
             </Text>
@@ -176,6 +206,24 @@ export const Layout = () => {
             eleifend metus vitae turpis volutpat, quis fermentum quam feugiat.
             Aenean sed sem eu mi ullamcorper rhoncus.
           </Text>
+        </Box>
+
+        <Box
+          as="button"
+          backgroundColor="critical"
+          borderWidth={1}
+          padding={3}
+          borderColor="critical"
+          borderStyle="solid"
+          borderRadius={2}
+          cursor="pointer"
+          boxShadow={{
+            default: "default",
+            hover: "defaultHover",
+            focus: "defaultFocus",
+          }}
+        >
+          <Text color="critical">Secondary</Text>
         </Box>
       </Box>
     </Box>

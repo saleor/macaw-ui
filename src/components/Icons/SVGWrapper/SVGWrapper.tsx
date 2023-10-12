@@ -1,20 +1,30 @@
 import { ReactNode, forwardRef } from "react";
 
-import { sprinkles, Sprinkles } from "~/theme";
+import { Sprinkles, sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
-import { svgWrapper, SVGWrapperVariants } from "./SVGWrapper.css";
+import { SVGWrapperVariants, svgWrapper } from "./SVGWrapper.css";
 
 export type SVGWrapperProps = SVGWrapperVariants & {
   className?: string;
   viewBox?: string;
   children: ReactNode;
   color?: Sprinkles["color"];
+  iconColor?: Sprinkles["iconColor"];
 };
 
 export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
   (
-    { className, size, viewBox = "0 0 24 24", color, children, ...rest },
+    {
+      className,
+      size,
+      viewBox = "0 0 24 24",
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      color,
+      iconColor,
+      children,
+      ...rest
+    },
     ref
   ) => {
     return (
@@ -22,7 +32,7 @@ export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
         ref={ref}
         className={classNames(
           svgWrapper({ size }),
-          sprinkles({ color }),
+          sprinkles({ color: iconColor }),
           className
         )}
         viewBox={viewBox}

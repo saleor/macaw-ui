@@ -121,8 +121,8 @@ export const defaultLight = {
       decorativeSurfaceSubdued3: "hsla(234, 100%, 91%, 1)",
 
       default: "oklch(100% 0 0)",
-      // defaultHover?
-      // defaultFocus?
+      defaultHover: "",
+      defaultFocus: "",
       muted: "oklch(97.29% 0.003 264.54)",
       mutedHover: "oklch(88.21% 0.009 242.85)",
       mutedFocus: "",
@@ -160,7 +160,19 @@ export const defaultLight = {
       critical: "#B82100",
       warning: "",
     },
+    icon: {
+      default: "#333",
+      muted: "",
+      strong: "",
+      disabled: "",
+      inverted: "",
+      success: "",
+      info: "",
+      critical: "#B82100",
+      warning: "",
+    },
   },
+
   fontSize,
   borderRadius,
   lineHeight,
@@ -171,6 +183,10 @@ export const defaultLight = {
     interactiveDefaultHovering: "0px 2px 3px 0px hsla(211, 42%, 16%, 0.1)",
     overlay: "0px 3px 8px 0px hsla(211, 42%, 16%, 0.08)",
     modal: "0px 8px 16px 0px hsla(211, 42%, 16%, 0.08)",
+
+    default: "0px 3px 8px 0px hsla(211, 42%, 16%, 0.08)",
+    defaultFocus: "0px 2px 3px 0px hsla(211, 42%, 16%, 0.1)",
+    defaultHover: "0px 1px 1px 0px hsla(212, 44%, 13%, 0.16)",
   },
   borderWidth,
 };

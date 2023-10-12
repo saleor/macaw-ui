@@ -119,6 +119,8 @@ export const defaultDark = {
       decorativeSurfaceSubdued3: "hsla(234, 67%, 39%, 1)",
 
       default: "",
+      defaultHover: "",
+      defaultFocus: "",
       muted: "",
       mutedHover: "",
       mutedFocus: "",
@@ -156,7 +158,19 @@ export const defaultDark = {
       critical: "",
       warning: "",
     },
+    icon: {
+      default: "",
+      muted: "",
+      strong: "",
+      disabled: "",
+      inverted: "",
+      success: "",
+      info: "",
+      critical: "",
+      warning: "",
+    },
   },
+
   fontSize,
   borderRadius,
   lineHeight,
@@ -167,6 +181,10 @@ export const defaultDark = {
     interactiveDefaultHovering: "0px 2px 3px 0px hsla(0, 0%, 0%, 0.28)",
     overlay: "0px 3px 8px 0px hsla(0, 0%, 0%, 0.24)",
     modal: "0px 8px 16px 0px hsla(0, 0%, 0%, 0.2)",
+
+    default: "",
+    defaultFocus: "",
+    defaultHover: "",
   },
   borderWidth,
 };

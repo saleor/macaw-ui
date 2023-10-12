@@ -224,6 +224,7 @@ const stateProperties = defineProperties({
   properties: {
     borderColor: { ...vars.colors.border, transparent: "transparent" },
     color: { ...vars.colors.foreground, inherit: "inherit" },
+    iconColor: { ...vars.colors.icon, inherit: "inherit" },
     backgroundColor: { ...vars.colors.background, transparent: "transparent" },
     pointerEvents: ["none", "auto"],
     cursor: ["pointer", "not-allowed", "auto", "grabbing", "text"],

@@ -80,6 +80,17 @@ export const vars = createGlobalThemeContract(
         critical: null,
         warning: null,
       },
+      icon: {
+        default: null,
+        muted: null,
+        strong: null,
+        disabled: null,
+        inverted: null,
+        success: null,
+        info: null,
+        critical: null,
+        warning: null,
+      },
       background: {
         plain: null,
         subdued: null,
@@ -148,6 +159,8 @@ export const vars = createGlobalThemeContract(
         decorativeSurfaceSubdued3: null,
 
         default: null,
+        defaultHover: null,
+        defaultFocus: null,
         muted: null,
         mutedHover: null,
         mutedFocus: null,
@@ -307,6 +320,10 @@ export const vars = createGlobalThemeContract(
       interactiveDefaultHovering: null,
       overlay: null,
       modal: null,
+
+      default: null,
+      defaultFocus: null,
+      defaultHover: null,
     },
     borderWidth: {
       0: null,
