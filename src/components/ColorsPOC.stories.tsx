@@ -75,7 +75,7 @@ export const Card = () => {
         boxShadow={{
           default: "default",
           hover: "defaultHover",
-          defaultFocus: "defaultFocus",
+          focus: "defaultFocus",
         }}
         borderWidth={1}
         borderStyle="solid"
