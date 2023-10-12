@@ -161,7 +161,7 @@ export const defaultLight = {
       warning: "",
     },
     icon: {
-      default: "#333",
+      default: "oklch(57.76% 0.037 248.83)",
       muted: "",
       strong: "",
       disabled: "",

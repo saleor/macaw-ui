@@ -1,4 +1,4 @@
-import { Box, InfoIcon, Text, WarningIcon } from ".";
+import { Box, HomeIcon, InfoIcon, ProductsIcons, Text, WarningIcon } from ".";
 
 const meta = {
   title: "POC colors",
@@ -224,6 +224,135 @@ export const Layout = () => {
           }}
         >
           <Text color="critical">Secondary</Text>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export const Dashboard = () => {
+  return (
+    <Box
+      display="grid"
+      __gridTemplateColumns="1fr 2fr"
+      gap={5}
+      borderColor="default"
+      borderStyle="solid"
+      __height="300px"
+      __width="100vh"
+    >
+      <Box backgroundColor="muted" padding={3}>
+        <Text variant="heading">Dashboard</Text>
+        <Box as="ul" padding={0} margin={0} gap="px" display="grid">
+          <Box
+            as="li"
+            backgroundColor={{
+              default: "muted",
+              hover: "strong",
+            }}
+            cursor="pointer"
+            display="flex"
+            gap={1}
+          >
+            <HomeIcon iconColor="default" />
+            <Text color="default" variant="bodyEmp">
+              Home
+            </Text>
+          </Box>
+          <Box
+            as="li"
+            backgroundColor={{
+              default: "strong",
+              hover: "strong",
+            }}
+            cursor="pointer"
+            display="flex"
+            gap={1}
+          >
+            <ProductsIcons iconColor="default" />
+            <Text color="default" variant="bodyEmp">
+              Product
+            </Text>
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        paddingRight={4}
+        paddingTop={3}
+        gap={4}
+      >
+        <Text variant="heading" color="strong">
+          Product detail
+        </Text>
+        <Box display="grid" gap={2}>
+          <Box
+            as="input"
+            placeholder="Name"
+            padding={2}
+            borderColor={{
+              default: "default",
+              hover: "defaultHover",
+              focus: "defaultFocus",
+            }}
+            borderWidth={1}
+            borderStyle="solid"
+            borderRadius={3}
+            outlineStyle="none"
+            color="default"
+          />
+          <Box
+            as="input"
+            placeholder="Price"
+            padding={2}
+            type="number"
+            borderColor={{
+              default: "default",
+              hover: "defaultHover",
+              focus: "defaultFocus",
+            }}
+            borderWidth={1}
+            borderStyle="solid"
+            borderRadius={3}
+            outlineStyle="none"
+            color="default"
+          />
+        </Box>
+        <Box display="flex" justifyContent="space-between">
+          <Box
+            as="button"
+            backgroundColor="critical"
+            borderWidth={1}
+            borderColor="critical"
+            borderStyle="solid"
+            borderRadius={2}
+            cursor="pointer"
+          >
+            <Text color="critical">Delete</Text>
+          </Box>
+          <Box display="flex" gap={1}>
+            <Box
+              as="button"
+              backgroundColor="default"
+              borderWidth={1}
+              borderColor="default"
+              borderStyle="solid"
+              borderRadius={2}
+              cursor="pointer"
+            >
+              <Text color="default">Back</Text>
+            </Box>
+            <Box
+              as="button"
+              backgroundColor="inverted"
+              borderWidth={0}
+              borderRadius={2}
+              cursor="pointer"
+            >
+              <Text color="inverted">Save</Text>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
