@@ -188,6 +188,9 @@ export const vars = createGlobalThemeContract(
         criticalHighlight: null,
 
         default: null,
+        muted: null,
+        mutedHover: null,
+        mutedFocus: null,
         defaultHover: null,
         defaultFocus: null,
         strong: null,
