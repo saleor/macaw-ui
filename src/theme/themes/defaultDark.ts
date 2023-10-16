@@ -50,6 +50,7 @@ export const defaultDark = {
       info: "",
       critical: "",
       warning: "",
+      brand: "",
     },
     background: {
       plain: "hsla(232, 17%, 18%, 1)",
@@ -132,6 +133,7 @@ export const defaultDark = {
       info: "",
       critical: "",
       warning: "",
+      brand: "",
     },
     border: {
       neutralPlain: "hsla(231, 18%, 23%, 1)",
@@ -160,6 +162,7 @@ export const defaultDark = {
       info: "",
       critical: "",
       warning: "",
+      brand: "",
     },
     icon: {
       default: "",
@@ -171,6 +174,7 @@ export const defaultDark = {
       info: "",
       critical: "",
       warning: "",
+      brand: "",
     },
   },
 

@@ -1,3 +1,5 @@
+import * as Checkbox from "@radix-ui/react-checkbox";
+import { CheckedIcon } from "./Checkbox/CheckedIcon";
 import { Box, HomeIcon, InfoIcon, ProductsIcons, Text, WarningIcon } from ".";
 
 const meta = {
@@ -287,6 +289,29 @@ export const Dashboard = () => {
           Product detail
         </Text>
         <Box display="grid" gap={2}>
+          <Box display="flex" gap={1}>
+            <Checkbox.Root defaultChecked asChild>
+              <Box
+                borderStyle="none"
+                borderRadius={2}
+                justifySelf="start"
+                backgroundColor="brand"
+                __width="20px"
+                __height="20px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                cursor="pointer"
+                borderColor="brand"
+              >
+                <Checkbox.Indicator className="CheckboxIndicator">
+                  <CheckedIcon color="inverted" />
+                </Checkbox.Indicator>
+              </Box>
+            </Checkbox.Root>
+            <Text>I have read and agree to the</Text>
+          </Box>
+
           <Box
             as="input"
             placeholder="Name"

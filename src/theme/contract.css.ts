@@ -79,6 +79,7 @@ export const vars = createGlobalThemeContract(
         info: null,
         critical: null,
         warning: null,
+        brand: null,
       },
       icon: {
         default: null,
@@ -90,6 +91,7 @@ export const vars = createGlobalThemeContract(
         info: null,
         critical: null,
         warning: null,
+        brand: null,
       },
       background: {
         plain: null,
@@ -172,6 +174,7 @@ export const vars = createGlobalThemeContract(
         info: null,
         critical: null,
         warning: null,
+        brand: null,
       },
       border: {
         neutralDefault: null,
@@ -200,6 +203,7 @@ export const vars = createGlobalThemeContract(
         info: null,
         critical: null,
         warning: null,
+        brand: null,
       },
     },
     fontSize: {
