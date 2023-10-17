@@ -1,6 +1,15 @@
 import * as Checkbox from "@radix-ui/react-checkbox";
+import * as Select from "@radix-ui/react-select";
 import { CheckedIcon } from "./Checkbox/CheckedIcon";
-import { Box, HomeIcon, InfoIcon, ProductsIcons, Text, WarningIcon } from ".";
+import {
+  Box,
+  ChervonDownIcon,
+  HomeIcon,
+  InfoIcon,
+  ProductsIcons,
+  Text,
+  WarningIcon,
+} from ".";
 
 const meta = {
   title: "POC colors",
@@ -289,15 +298,15 @@ export const Dashboard = () => {
           Product detail
         </Text>
         <Box display="grid" gap={2}>
-          <Box display="flex" gap={1}>
+          <Box display="flex" gap={1} alignItems="center">
             <Checkbox.Root defaultChecked asChild>
               <Box
                 borderStyle="none"
-                borderRadius={2}
-                justifySelf="start"
+                borderRadius={1}
+                paddingBottom={1}
                 backgroundColor="brand"
-                __width="20px"
-                __height="20px"
+                __width="14px"
+                __height="14px"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -312,6 +321,61 @@ export const Dashboard = () => {
             <Text>I have read and agree to the</Text>
           </Box>
 
+          <Select.Root>
+            <Select.Trigger aria-label="Channel" asChild>
+              <Box
+                padding={2}
+                borderColor={{
+                  default: "default",
+                  hover: "defaultHover",
+                  focus: "brand",
+                }}
+                borderWidth={1}
+                borderStyle="solid"
+                borderRadius={3}
+                outlineStyle="none"
+                color="default"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                fontSize="bodyMedium"
+                cursor="pointer"
+              >
+                <Select.Value placeholder="Select a channel" />
+                <Select.Icon asChild>
+                  <ChervonDownIcon />
+                </Select.Icon>
+              </Box>
+            </Select.Trigger>
+
+            <Select.Portal>
+              <Select.Content asChild>
+                <Box
+                  backgroundColor="default"
+                  borderRadius={3}
+                  boxShadow="default"
+                >
+                  <Select.ScrollUpButton />
+                  <Select.Viewport asChild>
+                    <Box padding={3}>
+                      <Select.Item value="default">
+                        <Select.ItemText asChild>
+                          <Text color="default">Default</Text>
+                        </Select.ItemText>
+                      </Select.Item>
+                      <Select.Item value="usd">
+                        <Select.ItemText asChild>
+                          <Text color="default">USD</Text>
+                        </Select.ItemText>
+                      </Select.Item>
+                    </Box>
+                  </Select.Viewport>
+                  <Select.ScrollDownButton></Select.ScrollDownButton>
+                </Box>
+              </Select.Content>
+            </Select.Portal>
+          </Select.Root>
+
           <Box
             as="input"
             placeholder="Name"
@@ -319,7 +383,7 @@ export const Dashboard = () => {
             borderColor={{
               default: "default",
               hover: "defaultHover",
-              focus: "defaultFocus",
+              focus: "brand",
             }}
             borderWidth={1}
             borderStyle="solid"
@@ -335,7 +399,7 @@ export const Dashboard = () => {
             borderColor={{
               default: "default",
               hover: "defaultHover",
-              focus: "defaultFocus",
+              focus: "brand",
             }}
             borderWidth={1}
             borderStyle="solid"

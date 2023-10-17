@@ -135,7 +135,7 @@ export const defaultLight = {
       info: "lch(91.25% 13.416066307154065 259.6247956254386)",
       critical: "lch(86.96% 12.5 37.02)",
       warning: "lch(86.96% 12.5 37.02)",
-      brand: "hsla(37, 100%, 51%, 1)",
+      brand: "hsla(287, 100%, 85%, 1)",
     },
     border: {
       neutralDefault: "hsla(212, 14%, 77%, 1)",
@@ -164,7 +164,7 @@ export const defaultLight = {
       info: "#C2DBFF",
       critical: "#B82100",
       warning: "",
-      brand: "#C2DBFF",
+      brand: "hsla(287, 100%, 51%, 1)",
     },
     icon: {
       default: "oklch(57.76% 0.037 248.83)",
@@ -176,7 +176,7 @@ export const defaultLight = {
       info: "",
       critical: "#B82100",
       warning: "",
-      brand: "",
+      brand: "hsla(287, 100%, 51%, 1)",
     },
   },
 
