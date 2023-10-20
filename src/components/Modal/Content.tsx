@@ -11,11 +11,12 @@ export const Content = ({ children }: ModalContentProps) => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay asChild className={showContent}>
-        <Box backgroundColor="highlightDim" position="fixed" inset={0} />
+        <Box backgroundColor="highlightDim" position="fixed" inset={0}>
+          <Dialog.Content asChild className={showContent}>
+            {children}
+          </Dialog.Content>
+        </Box>
       </Dialog.Overlay>
-      <Dialog.Content asChild className={showContent}>
-        {children}
-      </Dialog.Content>
     </Dialog.Portal>
   );
 };
