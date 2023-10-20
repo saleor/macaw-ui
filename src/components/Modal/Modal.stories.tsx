@@ -86,7 +86,6 @@ export const Controlled = () => {
 
 export const WithComboboxInside = () => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState<string | null>("color-black");
 
   return (
     <>
@@ -112,8 +111,7 @@ export const WithComboboxInside = () => {
               <Combobox
                 label="Pick a color"
                 size="large"
-                value={value}
-                onChange={(value) => setValue(value)}
+                value="color-black"
                 options={[
                   { value: "color-black", label: "Black" },
                   { value: "color-red", label: "Red" },
