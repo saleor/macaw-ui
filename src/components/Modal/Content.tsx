@@ -9,7 +9,7 @@ export type ModalContentProps = {
 };
 
 const createAutofocusHandler = (isDisabled?: boolean) => {
-  if (isDisabled) return {};
+  if (!isDisabled) return {};
 
   return {
     onOpenAutoFocus: (event: Event) => {
