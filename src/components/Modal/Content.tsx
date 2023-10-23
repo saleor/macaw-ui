@@ -5,14 +5,29 @@ import { showContent } from "./Content.css";
 
 export type ModalContentProps = {
   children: React.ReactNode;
+  disableAutofocus?: boolean;
 };
 
-export const Content = ({ children }: ModalContentProps) => {
+const createAutofocusHandler = (isDisabled?: boolean) => {
+  if (!isDisabled) return {};
+
+  return {
+    onOpenAutoFocus: (event: Event) => {
+      event.preventDefault();
+    },
+  };
+};
+
+export const Content = ({ children, disableAutofocus }: ModalContentProps) => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay asChild className={showContent}>
         <Box backgroundColor="highlightDim" position="fixed" inset={0}>
-          <Dialog.Content asChild className={showContent}>
+          <Dialog.Content
+            asChild
+            className={showContent}
+            {...createAutofocusHandler(disableAutofocus)}
+          >
             {children}
           </Dialog.Content>
         </Box>
