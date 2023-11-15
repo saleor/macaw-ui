@@ -8,10 +8,8 @@ import { classNames } from "~/utils";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 
 import { InputProps } from "./Input";
-import { checkIfDateTimeInput } from "./helpers";
-
-type InputValue = string | number | readonly string[] | undefined;
-type ChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
+import { isInputTyped } from "./helpers";
+import { ChangeHandler, InputValue } from "./types";
 
 export const useStateEvents = (
   value: InputValue,
@@ -19,8 +17,7 @@ export const useStateEvents = (
   changeHandler?: ChangeHandler
 ) => {
   const [active, setActive] = useState(false);
-  // do not scale label down if input is date, time or datetime-local
-  const typed = checkIfDateTimeInput(type) ? true : Boolean(value || active);
+  const typed = isInputTyped(type, value, active);
 
   const onFocus = () => setActive(true);
   const onBlur = () => setActive(false);
