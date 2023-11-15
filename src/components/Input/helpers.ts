@@ -16,6 +16,7 @@ export const isInputTyped = (
   value: InputValue,
   active: boolean
 ): boolean => {
+  // do not scale label down if input is date, time or datetime-local
   if (checkIfDateTimeInput(type)) {
     return true;
   }
