@@ -11,17 +11,34 @@ with clearly defined relationships between them, so the user will be able to use
 
 # Decision
 
-#### 1. We use the following structure:
+We use two kind of tokens:
 
-`--mu-[type]-[element]-[role]-[variant]-[state?]`
+- design system - more generic, define rules of design system
+- semantic - defines specific semantic elements (eg. button)
+
+#### 1. We use the following structure for design system token:
+
+`--mu-[type]-[element]-[role]-[layer]-[state?]`
+
+where:
+
+- `type` is color
+- `element` is one of: background | text | border
+- `role` is one of: default | critical | info | success | warning | accent
+- `layer` is one of: 1 -> 2 -> 3 | disabled
+- `state` is one of: hover | focused
+
+#### 2. We use the following structure for semantic token:
+
+`--mu-[type]-[element]-[role]-[layer]-[state?]`
 
 where:
 
 - `type` is color
 - `element` is one of: button | button-text
 - `role` is one of: default | critical | info | success | warning | accent
-- `variant` is one of primary | secondary | tertiary
-- `state` is one of hover | focused
+- `variant` is one of: primary | secondary | tertiary
+- `state` is one of: hover | focused
 
 #### 2. Inputs / form elements
 
@@ -29,7 +46,7 @@ Inputs always have a transparent background, always.
 
 #### 3. Buttons
 
-We have dedicated tokens for buttons.
+We have dedicated tokens for buttons (semantic).
 
 # Consequences
 
