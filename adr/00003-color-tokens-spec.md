@@ -30,12 +30,13 @@ where:
 
 #### 2. We use the following structure for semantic token:
 
-`--mu-[type]-[element]-[role]-[layer]-[state?]`
+`--mu-[type]-[element]-[component]-[role]-[variant]-[state?]`
 
 where:
 
 - `type` is color
-- `element` is one of: button | button-text
+- `element` is one of: background | text | border
+- `component` is: button (for now we support just this one)
 - `role` is one of: default | critical | info | success | warning | accent
 - `variant` is one of: primary | secondary | tertiary
 - `state` is one of: hover | focused
