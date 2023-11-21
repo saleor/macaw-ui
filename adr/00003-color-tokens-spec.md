@@ -41,11 +41,11 @@ where:
 - `variant` is one of: primary | secondary | tertiary
 - `state` is one of: hover | focused
 
-#### 2. Inputs / form elements
+#### 3. Inputs / form elements
 
 Inputs always have a transparent background, always.
 
-#### 3. Buttons
+#### 4. Buttons
 
 We have dedicated tokens for buttons (semantic).
 
