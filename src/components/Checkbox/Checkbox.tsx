@@ -2,9 +2,9 @@ import { Indicator, Root as RadixCheckbox } from "@radix-ui/react-checkbox";
 import { ReactNode, forwardRef } from "react";
 import { classNames } from "~/utils";
 import { Box, PropsWithBox } from "../Box";
-import { commonCheckbox, defaultCheckbox, errorCheckbox } from "./Checkbox.css";
 import { CheckedIcon } from "./CheckedIcon";
 import { IndeterminateIcon } from "./IndeterminateIcon";
+import { commonCheckbox, defaultCheckbox, errorCheckbox } from "./Checkbox.css";
 
 export type CheckboxProps = PropsWithBox<{
   children?: ReactNode;

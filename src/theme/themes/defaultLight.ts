@@ -12,7 +12,7 @@ export const defaultLight = {
   spacing,
   colors: {
     background: {
-      accent1: "hsla(215, 100%, 51%, 1)",
+      accent1: "hsla(234, 88%, 91%, 1)",
       buttonDefaultPrimary: "hsla(211, 45%, 13%, 1)",
       buttonDefaultSecondary: "hsla(0, 0%, 100%, 1)",
       buttonDefaultTertiary: "hsla(0, 0%, 100%, 1)",
