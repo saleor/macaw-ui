@@ -21,7 +21,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
       variant,
       size,
       ellipsis,
-      color = "textNeutralDefault",
+      color = "default1",
       className,
       ...rest
     },

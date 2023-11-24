@@ -15,17 +15,18 @@ export const storeAvatar = recipe({
   variants: {
     size: sizeVariants,
     scheme: {
+      // TODO: what to do with these?
       decorative1: sprinkles({
-        backgroundColor: "decorativeSurfaceSubdued1",
-        color: "text1Decorative",
+        backgroundColor: "accent1",
+        color: "accent1",
       }),
       decorative2: sprinkles({
-        backgroundColor: "decorativeSurfaceSubdued2",
-        color: "text2Decorative",
+        backgroundColor: "accent1",
+        color: "accent1",
       }),
       decorative3: sprinkles({
-        backgroundColor: "decorativeSurfaceSubdued3",
-        color: "text3Decorative",
+        backgroundColor: "accent1",
+        color: "accent1",
       }),
     },
   },

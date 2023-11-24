@@ -24,7 +24,7 @@ export const Primary: Story = {
       // eslint-disable-next-line react/jsx-key
       <Modal.Content>
         <Box
-          backgroundColor="surfaceNeutralPlain"
+          backgroundColor="default1"
           boxShadow="modal"
           __left="50%"
           __top="50%"
@@ -58,7 +58,7 @@ export const Controlled = () => {
       <Modal open={open} onChange={setOpen}>
         <Modal.Content>
           <Box
-            backgroundColor="surfaceNeutralPlain"
+            backgroundColor="default1"
             boxShadow="modal"
             __left="50%"
             __top="50%"

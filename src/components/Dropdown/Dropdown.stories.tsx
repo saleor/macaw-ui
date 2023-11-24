@@ -49,7 +49,7 @@ export const DropdownWithList: Story = {
           padding={1}
           borderRadius={3}
           boxShadow="overlay"
-          backgroundColor="surfaceNeutralPlain"
+          backgroundColor="default1"
         >
           <Dropdown.Item>
             <List.Item {...commonProps}>

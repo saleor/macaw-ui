@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { Box, Text, Button } from "../..";
+import { Box, Button, Text } from "../..";
 
 import { Accordion } from ".";
 
@@ -36,7 +36,7 @@ const args: Story["args"] = {
     </Accordion.Item>,
     <Accordion.Item value="third-item">
       <Accordion.Trigger disabled>
-        <Text color="textNeutralDisabled">Trigger 3</Text>
+        <Text color="defaultDisabled">Trigger 3</Text>
         <Accordion.TriggerButton disabled />
       </Accordion.Trigger>
       <Accordion.Content>Content 3</Accordion.Content>
@@ -98,7 +98,7 @@ export const WithTriggerButtonOnLeft: Story = {
       <Accordion.Item value="third-item">
         <Accordion.Trigger disabled>
           <Accordion.TriggerButton disabled />
-          <Text color="textNeutralDisabled">Trigger 3</Text>
+          <Text color="defaultDisabled">Trigger 3</Text>
         </Accordion.Trigger>
         <Accordion.Content>Content 3</Accordion.Content>
       </Accordion.Item>,
@@ -124,7 +124,7 @@ export const WithoutTriggerButton: Story = {
       </Accordion.Item>,
       <Accordion.Item value="third-item">
         <Accordion.Trigger disabled>
-          <Text color="textNeutralDisabled">Trigger 3</Text>
+          <Text color="defaultDisabled">Trigger 3</Text>
         </Accordion.Trigger>
         <Accordion.Content>Content 3</Accordion.Content>
       </Accordion.Item>,

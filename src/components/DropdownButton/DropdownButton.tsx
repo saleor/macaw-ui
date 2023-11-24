@@ -41,7 +41,7 @@ export const DropdownButton = forwardRef<
         <ArrowDownIcon
           size="small"
           className={sprinkles({
-            color: "textNeutralSubdued",
+            color: "default2",
           })}
         />
       </Box>

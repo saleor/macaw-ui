@@ -17,11 +17,11 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay asChild className={showContent}>
-        <Box backgroundColor="highlightDim" position="fixed" inset={0} />
+        <Box backgroundColor="default3" position="fixed" inset={0} />
       </Dialog.Overlay>
       <Dialog.Content asChild className={showContent}>
         <Box
-          backgroundColor="surfaceNeutralPlain"
+          backgroundColor="default1"
           boxShadow="modal"
           top={0}
           left={0}

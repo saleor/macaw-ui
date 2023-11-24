@@ -4,10 +4,10 @@ import { sprinkles } from "~/theme";
 export const popover = sprinkles({
   borderStyle: "solid",
   borderWidth: 1,
-  borderColor: "neutralPlain",
+  borderColor: "default1",
   borderRadius: 3,
   boxShadow: "interactiveDefaultHovering",
-  backgroundColor: "subdued",
+  backgroundColor: "default2",
 });
 
 export const arrow = style({

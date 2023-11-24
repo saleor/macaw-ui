@@ -16,9 +16,9 @@ export const LoadingListItem = ({
     className={listItemStyle}
     display="flex"
     gap={1.5}
-    color="textNeutralSubdued"
+    color="default2"
   >
-    <Text size={size} color="textNeutralSubdued">
+    <Text size={size} color="default2">
       {children}
     </Text>
     <Spinner />

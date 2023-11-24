@@ -22,7 +22,7 @@ export const Content = ({ children, disableAutofocus }: ModalContentProps) => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay asChild className={showContent}>
-        <Box backgroundColor="highlightDim" position="fixed" inset={0}>
+        <Box backgroundColor="default3" position="fixed" inset={0}>
           <Dialog.Content
             asChild
             className={showContent}

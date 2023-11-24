@@ -2,9 +2,9 @@ import { Indicator, Root as RadixCheckbox } from "@radix-ui/react-checkbox";
 import { ReactNode, forwardRef } from "react";
 import { classNames } from "~/utils";
 import { Box, PropsWithBox } from "../Box";
+import { commonCheckbox, defaultCheckbox, errorCheckbox } from "./Checkbox.css";
 import { CheckedIcon } from "./CheckedIcon";
 import { IndeterminateIcon } from "./IndeterminateIcon";
-import { commonCheckbox, defaultCheckbox, errorCheckbox } from "./Checkbox.css";
 
 export type CheckboxProps = PropsWithBox<{
   children?: ReactNode;
@@ -36,7 +36,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
     }: CheckboxProps,
     ref
   ) => {
-    const iconColor = disabled ? "iconNeutralSubdued" : "iconNeutralContrasted";
+    const iconColor = disabled ? "defaultDisabled" : "default3";
 
     return (
       <Box

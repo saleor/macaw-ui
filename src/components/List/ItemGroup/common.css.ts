@@ -17,8 +17,7 @@ export const button = style({
     [`${trigger}[data-state="open"] &`]: {
       // using vars here as sprinkles do not work currently in selectors
       // https://github.com/vanilla-extract-css/vanilla-extract/discussions/824
-      backgroundColor:
-        vars.colors.background.interactiveNeutralHighlightFocused,
+      backgroundColor: vars.colors.background.default1Focused,
     },
   },
 });

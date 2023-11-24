@@ -8,7 +8,7 @@ export const labelRecipe = recipe({
     sprinkles({
       position: "relative",
       display: "flex",
-      color: "textNeutralSubdued",
+      color: "default2",
       borderRadius: 3,
       paddingY: 1.5,
       borderWidth: 1,
@@ -51,10 +51,10 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         borderStyle: "solid",
-        borderColor: "brandSubdued",
+        borderColor: "accent1",
         backgroundColor: {
-          default: "interactiveNeutralHighlightDefault",
-          focus: "interactiveNeutralHighlightFocused",
+          default: "default1",
+          focus: "default1Focused",
         },
       }),
     },
@@ -67,11 +67,11 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         backgroundColor: {
-          default: "interactiveNeutralHighlightDefault",
+          default: "default1",
         },
         borderColor: {
-          default: "neutralHighlight",
-          hover: "neutralPlain",
+          default: "default1",
+          hover: "default1Hovered",
         },
       }),
     },
@@ -82,7 +82,7 @@ export const labelRecipe = recipe({
         error: false,
       },
       style: sprinkles({
-        backgroundColor: "interactiveNeutralHighlightDefault",
+        backgroundColor: "default1",
         borderColor: "transparent",
       }),
     },
@@ -95,12 +95,12 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         backgroundColor: {
-          focus: "interactiveNeutralHighlightDefault",
+          focus: "default1Focused",
         },
         borderStyle: "solid",
         borderColor: {
-          default: "neutralHighlight",
-          hover: "neutralPlain",
+          default: "default1",
+          hover: "default1Hovered",
         },
       }),
     },
@@ -109,9 +109,9 @@ export const labelRecipe = recipe({
         disabled: true,
       },
       style: sprinkles({
-        color: "textNeutralDisabled",
-        backgroundColor: "interactiveNeutralHighlightDefault",
-        borderColor: "neutralHighlight",
+        color: "defaultDisabled",
+        backgroundColor: "default1",
+        borderColor: "default1",
       }),
     },
     {
@@ -121,10 +121,10 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         backgroundColor: {
-          hover: "surfaceCriticalSubdued",
+          hover: "critical2",
         },
         borderStyle: "solid",
-        borderColor: "criticalPlain",
+        borderColor: "critical1",
       }),
     },
     {
@@ -134,7 +134,7 @@ export const labelRecipe = recipe({
       },
       style: sprinkles({
         borderStyle: "solid",
-        borderColor: "criticalPlain",
+        borderColor: "critical1",
       }),
     },
   ],
@@ -151,7 +151,7 @@ export const spanRecipe = recipe({
       transform: "translate(0, 50%) scale(1)",
     }),
     sprinkles({
-      color: "textNeutralSubdued",
+      color: "default2",
     }),
   ],
   variants: {
@@ -167,7 +167,7 @@ export const spanRecipe = recipe({
       }),
     },
     disabled: {
-      true: sprinkles({ color: "textNeutralDisabled" }),
+      true: sprinkles({ color: "defaultDisabled" }),
     },
     typed: {
       true: [
@@ -178,7 +178,7 @@ export const spanRecipe = recipe({
     },
     error: {
       true: sprinkles({
-        color: "textCriticalSubdued",
+        color: "critical2",
       }),
     },
   },
@@ -198,8 +198,8 @@ export const inputRecipe = recipe({
       outlineStyle: "none",
       padding: 0,
       color: {
-        default: "textNeutralDefault",
-        disabled: "textNeutralSubdued",
+        default: "default1",
+        disabled: "defaultDisabled",
       },
     }),
     {
@@ -211,10 +211,10 @@ export const inputRecipe = recipe({
           color: "transparent",
         },
         "&:focus::-webkit-input-placeholder": {
-          color: vars.colors.foreground.textNeutralSubdued,
+          color: vars.colors.text.default2,
         },
         "&:focus::-moz-placeholder": {
-          color: vars.colors.foreground.textNeutralSubdued,
+          color: vars.colors.text.default2,
         },
         // disable autocomplete background colors
         "&:-webkit-autofill": {
@@ -252,7 +252,7 @@ export const inputRecipe = recipe({
     },
     error: {
       true: sprinkles({
-        color: "textCriticalDefault",
+        color: "critical1",
       }),
     },
   },

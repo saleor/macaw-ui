@@ -32,7 +32,7 @@ export const Disabled: Story = {
     disabled: true,
     children: [
       // eslint-disable-next-line react/jsx-key
-      <Text variant="body" color="textNeutralDisabled">
+      <Text variant="body" color="defaultDisabled">
         Option 1
       </Text>,
     ],

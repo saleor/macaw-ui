@@ -12,7 +12,7 @@ export const groupLabelRecipe = recipe({
     sprinkles({
       padding: 0,
       margin: 0,
-      color: "textNeutralSubdued",
+      color: "default2",
     }),
   ],
   variants: {
@@ -29,12 +29,12 @@ export const groupLabelRecipe = recipe({
     },
     disabled: {
       true: sprinkles({
-        color: "textNeutralDisabled",
+        color: "defaultDisabled",
       }),
     },
     error: {
       true: sprinkles({
-        color: "textCriticalSubdued",
+        color: "critical2",
       }),
     },
   },

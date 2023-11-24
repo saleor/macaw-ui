@@ -116,7 +116,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           <Text
             size={size}
             variant="body"
-            color={error ? "textCriticalDefault" : "textNeutralDefault"}
+            color={error ? "critical1" : "default1"}
           >
             {selectedItem?.label}
           </Text>

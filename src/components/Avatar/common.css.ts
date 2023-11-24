@@ -4,7 +4,7 @@ export const base = sprinkles({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderColor: "neutralHighlight",
+  borderColor: "default1",
 });
 
 export const sizeVariants = {

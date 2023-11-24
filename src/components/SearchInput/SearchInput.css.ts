@@ -7,14 +7,14 @@ export const inputContainer = recipe({
       position: "relative",
       display: "flex",
       alignItems: "center",
-      color: "textNeutralDefault",
+      color: "default1",
       width: "100%",
       borderRadius: 3,
       transition: "all",
       backgroundColor: {
-        default: "interactiveNeutralHighlightDefault",
-        hover: "interactiveNeutralHighlightFocused",
-        focusWithin: "interactiveBrandHighlightFocused",
+        default: "default1",
+        hover: "default1Hovered",
+        focusWithin: "default1Focused",
       },
     }),
   ],
@@ -45,9 +45,9 @@ export const input = recipe({
       outlineStyle: "none",
       padding: 0,
       color: {
-        default: "textNeutralDefault",
-        disabled: "textNeutralSubdued",
-        placeholder: "textNeutralSubdued",
+        default: "default1",
+        disabled: "default2",
+        placeholder: "default2",
       },
     }),
   ],
@@ -56,7 +56,7 @@ export const input = recipe({
 export const searchIcon = recipe({
   base: [
     sprinkles({
-      color: "textNeutralSubdued",
+      color: "default2",
       marginRight: 2,
     }),
   ],

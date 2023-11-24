@@ -52,9 +52,9 @@ export const listWrapperRecipe = recipe({
 export const listStyle = style([
   sprinkles({
     position: "absolute",
-    backgroundColor: "surfaceNeutralPlain",
+    backgroundColor: "default1",
     boxShadow: "overlay",
-    borderColor: "neutralPlain",
+    borderColor: "default1",
     borderStyle: "solid",
     borderWidth: 1,
     width: "100%",
@@ -73,7 +73,7 @@ export const listStyle = style([
       width: vars.spacing[4],
     },
     "::-webkit-scrollbar-thumb": {
-      backgroundColor: vars.colors.border.neutralPlain,
+      backgroundColor: vars.colors.border.default1,
       border: `${vars.spacing[1]} solid transparent`,
       borderRadius: vars.borderRadius[4],
       backgroundClip: "padding-box",

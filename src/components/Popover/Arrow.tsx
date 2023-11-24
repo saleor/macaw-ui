@@ -11,8 +11,8 @@ export type PopoverArrowProps = {
 
 export const Arrow = ({
   className,
-  fill = "subdued",
-  stroke = "neutralPlain",
+  fill = "default2",
+  stroke = "default1",
 }: PopoverArrowProps) => {
   return (
     <RadixPopoverArrow className={classNames(arrow, className)} asChild>

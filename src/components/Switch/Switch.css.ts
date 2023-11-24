@@ -2,16 +2,8 @@ import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { sprinkles, vars } from "~/theme";
 
 const {
-  colors: {
-    background: {
-      surfaceNeutralPlain,
-      interactiveNeutralHighlightDefault,
-      interactiveNeutralHighlightHovering,
-      interactiveNeutralHighlightPressing,
-      interactiveNeutralHighlightFocused,
-    },
-    foreground: { iconNeutralPlain, iconNeutralDefault, iconNeutralDisabled },
-  },
+  colors: { background, text },
+  // TODO: what about shadow?
   boxShadow: { interactiveDefaultFocused },
 } = vars;
 
@@ -20,9 +12,9 @@ export const switchParent = recipe({
     sprinkles({
       display: "flex",
       gap: 0.5,
-      backgroundColor: "surfaceNeutralDepressed",
+      backgroundColor: "default2",
       borderRadius: 3,
-      borderColor: "neutralHighlight",
+      borderColor: "default1",
       height: 8,
       padding: 0.5,
     }),
@@ -41,27 +33,27 @@ export const switchChild = recipe({
     {
       selectors: {
         "&[data-state='checked']": {
-          backgroundColor: surfaceNeutralPlain,
+          backgroundColor: background.default1,
           borderStyle: "none",
           boxShadow: interactiveDefaultFocused,
-          color: iconNeutralDefault,
+          color: text.default1,
         },
         "&[data-state='unchecked']:hover": {
-          backgroundColor: interactiveNeutralHighlightHovering,
+          backgroundColor: background.default1Hovered,
         },
         "&[data-state='unchecked']:active": {
-          backgroundColor: interactiveNeutralHighlightPressing,
+          backgroundColor: background.default1Pressed,
         },
         "&[data-state='unchecked']:focus-visible": {
-          backgroundColor: interactiveNeutralHighlightFocused,
+          backgroundColor: background.default1Focused,
         },
         "&[data-state='unchecked']": {
-          backgroundColor: interactiveNeutralHighlightDefault,
+          backgroundColor: background.default1,
           borderStyle: "none",
-          color: iconNeutralPlain,
+          color: text.default1,
         },
         "&[disabled]": {
-          color: iconNeutralDisabled,
+          color: text.defaultDisabled,
           cursor: "not-allowed",
         },
       },

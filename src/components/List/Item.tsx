@@ -20,12 +20,10 @@ export const Item = forwardRef<HTMLElement, ListItemProps>(
         cursor={{ default: "pointer", disabled: "not-allowed" }}
         disabled={disabled}
         backgroundColor={{
-          default: active
-            ? "interactiveNeutralHighlightFocused"
-            : "interactiveNeutralHighlightDefault",
-          active: "interactiveNeutralHighlightPressing",
-          hover: "interactiveNeutralHighlightHovering",
-          focus: "interactiveNeutralHighlightFocused",
+          default: active ? "default1Focused" : "default1",
+          active: "default1Pressed",
+          hover: "default1Hovered",
+          focus: "default1Focused",
         }}
         onClick={onClick}
         className={className}

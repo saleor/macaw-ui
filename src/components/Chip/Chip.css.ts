@@ -4,13 +4,13 @@ import { sprinkles } from "~/theme";
 export const chip = recipe({
   base: [
     sprinkles({
-      backgroundColor: "surfaceNeutralDepressed",
+      backgroundColor: "default3",
       borderRadius: 2,
       display: "inline-flex",
       justifyContent: "center",
       alignItems: "center",
       lineHeight: 1,
-      borderColor: "neutralHighlight",
+      borderColor: "default1",
       borderWidth: 1,
       borderStyle: "solid",
     }),

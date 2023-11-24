@@ -15,9 +15,10 @@ export const userAvatar = recipe({
   variants: {
     size: sizeVariants,
     scheme: {
-      decorative1: sprinkles({ backgroundColor: "decorativeSurfacePlain1" }),
-      decorative2: sprinkles({ backgroundColor: "decorativeSurfacePlain2" }),
-      decorative3: sprinkles({ backgroundColor: "decorativeSurfacePlain3" }),
+      // TODO: what to do with these?
+      decorative1: sprinkles({ backgroundColor: "accent1" }),
+      decorative2: sprinkles({ backgroundColor: "accent1" }),
+      decorative3: sprinkles({ backgroundColor: "accent1" }),
     },
   },
 

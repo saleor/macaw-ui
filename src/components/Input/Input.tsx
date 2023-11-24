@@ -114,7 +114,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <Text
               variant="caption"
               size={size}
-              color={error ? "textCriticalDefault" : "textNeutralSubdued"}
+              color={error ? "critical1" : "default2"}
             >
               {helperText}
             </Text>
