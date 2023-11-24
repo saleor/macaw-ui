@@ -12,8 +12,8 @@ export const indicator = recipe({
   ],
   variants: {
     disabled: {
-      true: sprinkles({ color: "iconNeutralDisabled" }),
-      false: sprinkles({ color: "iconNeutralContrasted" }),
+      true: sprinkles({ color: "defaultDisabled" }),
+      false: sprinkles({ color: "buttonDefaultPrimary" }),
     },
   },
   defaultVariants: {
@@ -22,34 +22,7 @@ export const indicator = recipe({
 });
 
 const {
-  colors: {
-    background: {
-      interactiveNeutralSecondaryHovering,
-      interactiveBrandPressing,
-      interactiveBrandDisabled,
-      interactiveBrandHighlightPressing,
-      interactiveNeutralHighlightHovering,
-      interactiveNeutralSecondaryFocused,
-      interactiveNeutralHighlightFocused,
-      interactiveBrandDefault,
-      interactiveBrandHovering,
-      interactiveBrandHighlightHovering,
-      interactiveBrandFocused,
-      interactiveBrandHighlightFocused,
-      interactiveCriticalSecondaryHovering,
-      interactiveCriticalSecondaryPressing,
-      interactiveCriticalHighlightPressing,
-      interactiveCriticalHighlightHovering,
-      interactiveCriticalSecondaryFocused,
-      interactiveCriticalHighlightFocused,
-      interactiveCriticalDefault,
-      interactiveCriticalHovering,
-      interactiveCriticalFocused,
-      interactiveNeutralDisabled,
-      interactiveNeutralHighlightPressing,
-    },
-    border: { neutralHighlight },
-  },
+  colors: { background, border },
 } = vars;
 
 export const item = recipe({
@@ -57,7 +30,7 @@ export const item = recipe({
     sprinkles({
       position: "relative",
       boxShadow: "interactiveDefaultFocused",
-      borderColor: "neutralDefault",
+      borderColor: "default1",
       cursor: "pointer",
       borderWidth: 1,
       borderStyle: "solid",
@@ -65,7 +38,7 @@ export const item = recipe({
       width: 3,
       height: 3,
       padding: 0,
-      backgroundColor: "interactiveNeutralSecondaryDefault",
+      backgroundColor: "default1",
     }),
     {
       selectors: {
@@ -79,44 +52,44 @@ export const item = recipe({
           inset: "-5px",
         },
         "&:hover": {
-          backgroundColor: interactiveNeutralSecondaryHovering,
+          backgroundColor: background.default1Hovered,
         },
         "&:active": {
-          backgroundColor: interactiveBrandPressing,
+          backgroundColor: background.default1Pressed,
         },
         "&[data-disabled]": {
           cursor: "not-allowed",
         },
         "&[data-state='checked'][data-disabled]": {
-          backgroundColor: interactiveBrandDisabled,
+          backgroundColor: background.defaultDisabled,
         },
         "&:active:after": {
-          backgroundColor: interactiveBrandHighlightPressing,
+          backgroundColor: background.accent1,
         },
         "&:hover:after": {
-          backgroundColor: interactiveNeutralHighlightHovering,
+          backgroundColor: background.accent1,
         },
         "&:focus-visible": {
-          backgroundColor: interactiveNeutralSecondaryFocused,
+          backgroundColor: background.default1Focused,
         },
         "&:focus-visible:after": {
-          backgroundColor: interactiveNeutralHighlightFocused,
+          backgroundColor: background.default1Focused,
         },
         "&[data-state='checked']": {
-          backgroundColor: interactiveBrandDefault,
-          borderColor: neutralHighlight,
+          backgroundColor: background.accent1,
+          borderColor: border.accent1,
         },
         "&[data-state='checked']:hover": {
-          backgroundColor: interactiveBrandHovering,
+          backgroundColor: background.accent1,
         },
         "&[data-state='checked']:hover:after": {
-          backgroundColor: interactiveBrandHighlightHovering,
+          backgroundColor: background.accent1,
         },
         "&[data-state='checked']:focus-visible": {
-          backgroundColor: interactiveBrandFocused,
+          backgroundColor: background.accent1,
         },
         "&[data-state='checked']:focus-visible:after": {
-          backgroundColor: interactiveBrandHighlightFocused,
+          backgroundColor: background.accent1,
         },
       },
     },
@@ -127,41 +100,41 @@ export const item = recipe({
       true: {
         selectors: {
           "&:hover": {
-            backgroundColor: interactiveCriticalSecondaryHovering,
+            backgroundColor: background.critical1,
           },
           "&:active": {
-            backgroundColor: interactiveCriticalSecondaryPressing,
+            backgroundColor: background.critical1,
           },
           "&[data-state='checked'][data-disabled]": {
-            backgroundColor: interactiveBrandDisabled,
+            backgroundColor: background.defaultDisabled,
           },
           "&:active:after": {
-            backgroundColor: interactiveCriticalHighlightPressing,
+            backgroundColor: background.critical1,
           },
           "&:hover:after": {
-            backgroundColor: interactiveCriticalHighlightHovering,
+            backgroundColor: background.critical1,
           },
           "&:focus-visible": {
-            backgroundColor: interactiveCriticalSecondaryFocused,
+            backgroundColor: background.critical1,
           },
           "&:focus-visible:after": {
-            backgroundColor: interactiveCriticalHighlightFocused,
+            backgroundColor: background.critical1,
           },
           "&[data-state='checked']": {
-            backgroundColor: interactiveCriticalDefault,
-            borderColor: vars.colors.border.neutralHighlight,
+            backgroundColor: background.critical1,
+            borderColor: vars.colors.border.critical1,
           },
           "&[data-state='checked']:hover": {
-            backgroundColor: interactiveCriticalHovering,
+            backgroundColor: background.critical1,
           },
           "&[data-state='checked']:hover:after": {
-            backgroundColor: interactiveCriticalHighlightHovering,
+            backgroundColor: background.critical1,
           },
           "&[data-state='checked']:focus-visible": {
-            backgroundColor: interactiveCriticalFocused,
+            backgroundColor: background.critical1,
           },
           "&[data-state='checked']:focus-visible:after": {
-            backgroundColor: interactiveCriticalHighlightFocused,
+            backgroundColor: background.critical1,
           },
         },
       },
@@ -170,19 +143,19 @@ export const item = recipe({
       true: {
         selectors: {
           "&:hover": {
-            backgroundColor: interactiveNeutralDisabled,
+            backgroundColor: background.defaultDisabled,
           },
           "&:active": {
-            backgroundColor: interactiveNeutralDisabled,
+            backgroundColor: background.defaultDisabled,
           },
           "&:active:after": {
-            backgroundColor: interactiveNeutralHighlightPressing,
+            backgroundColor: background.defaultDisabled,
           },
           "&[data-state='checked']:hover": {
-            backgroundColor: interactiveNeutralDisabled,
+            backgroundColor: background.defaultDisabled,
           },
           "&[data-state='checked']:hover:after": {
-            backgroundColor: interactiveNeutralHighlightHovering,
+            backgroundColor: background.defaultDisabled,
           },
         },
       },

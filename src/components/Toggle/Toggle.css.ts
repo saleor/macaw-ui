@@ -1,5 +1,5 @@
-import { recipe } from "@vanilla-extract/recipes";
 import { CSSProperties } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 import { sprinkles, vars } from "~/theme";
 
 const outerGlow = (color: CSSProperties["backgroundColor"]) => {
@@ -26,13 +26,13 @@ export const toggle = recipe({
           width: vars.spacing[2],
           height: vars.spacing[2],
           // Token mismatch
-          backgroundColor: vars.colors.foreground.iconNeutralContrasted,
+          backgroundColor: vars.colors.text.buttonDefaultPrimary,
           borderRadius: 4,
           transition: "all 40ms ease-in-out",
         },
         "&[disabled]::before": {
           // Token mismatch
-          backgroundColor: vars.colors.foreground.iconNeutralDisabled,
+          backgroundColor: vars.colors.text.buttonDefaultPrimary,
           boxShadow: "none",
         },
 
@@ -55,27 +55,20 @@ export const toggle = recipe({
         // Styling for off state
         '&[data-state="off"]': {
           justifyContent: "flex-start",
-          borderColor: vars.colors.border.neutralHighlight,
-          backgroundColor: vars.colors.background.surfaceNeutralDepressed,
+          borderColor: vars.colors.border.default1,
+          backgroundColor: vars.colors.background.default2,
         },
         '&[data-state="off"]:hover': {
-          boxShadow: outerGlow(
-            vars.colors.background.interactiveNeutralHighlightHovering
-          ),
+          boxShadow: outerGlow(vars.colors.background.default1Hovered),
         },
         '&[data-state="off"]:active': {
-          boxShadow: outerGlow(
-            vars.colors.background.interactiveNeutralHighlightPressing
-          ),
+          boxShadow: outerGlow(vars.colors.background.default1Pressed),
         },
         '&[data-state="off"]:focus-visible': {
-          boxShadow: outerGlow(
-            vars.colors.background.interactiveNeutralHighlightFocused
-          ),
+          boxShadow: outerGlow(vars.colors.background.default1Focused),
         },
         '&[data-state="off"][disabled]': {
-          backgroundColor:
-            vars.colors.background.interactiveNeutralSecondaryDisabled,
+          backgroundColor: vars.colors.background.defaultDisabled,
           cursor: "not-allowed",
           boxShadow: "none",
         },
@@ -83,29 +76,23 @@ export const toggle = recipe({
         // Styling for on state
         '&[data-state="on"]': {
           flexDirection: "row-reverse",
-          backgroundColor: vars.colors.background.interactiveBrandDefault,
-          borderColor: vars.colors.border.neutralHighlight,
+          backgroundColor: vars.colors.background.accent1,
+          borderColor: vars.colors.border.accent1,
         },
         '&[data-state="on"]:hover': {
-          backgroundColor: vars.colors.background.interactiveBrandHovering,
-          boxShadow: outerGlow(
-            vars.colors.background.interactiveBrandHighlightHovering
-          ),
+          backgroundColor: vars.colors.background.accent1,
+          boxShadow: outerGlow(vars.colors.background.accent1),
         },
         '&[data-state="on"]:active': {
-          backgroundColor: vars.colors.background.interactiveBrandPressing,
-          boxShadow: outerGlow(
-            vars.colors.background.interactiveBrandHighlightPressing
-          ),
+          backgroundColor: vars.colors.background.accent1,
+          boxShadow: outerGlow(vars.colors.background.accent1),
         },
         '&[data-state="on"]:focus-visible': {
-          backgroundColor: vars.colors.background.interactiveBrandFocused,
-          boxShadow: outerGlow(
-            vars.colors.background.interactiveBrandHighlightFocused
-          ),
+          backgroundColor: vars.colors.background.accent1,
+          boxShadow: outerGlow(vars.colors.background.accent1),
         },
         '&[data-state="on"][disabled]': {
-          backgroundColor: vars.colors.background.interactiveBrandDisabled,
+          backgroundColor: vars.colors.background.defaultDisabled,
           cursor: "not-allowed",
           boxShadow: "none",
         },
