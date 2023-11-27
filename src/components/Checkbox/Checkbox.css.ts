@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { style } from "@vanilla-extract/css";
 import { sprinkles, vars } from "~/theme";
 
