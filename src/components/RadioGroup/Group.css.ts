@@ -12,7 +12,6 @@ export const groupLabelRecipe = recipe({
     sprinkles({
       padding: 0,
       margin: 0,
-      color: "default2",
     }),
   ],
   variants: {
@@ -35,6 +34,9 @@ export const groupLabelRecipe = recipe({
     error: {
       true: sprinkles({
         color: "critical2",
+      }),
+      false: sprinkles({
+        color: "default2",
       }),
     },
   },

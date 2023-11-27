@@ -13,6 +13,8 @@ export const defaultDark = {
   colors: {
     background: {
       accent1: "null",
+      accent1Hovered: "null",
+      accent1Pressed: "null",
       buttonDefaultPrimary: "null",
       buttonDefaultSecondary: "null",
       buttonDefaultTertiary: "null",

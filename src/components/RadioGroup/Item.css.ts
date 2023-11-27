@@ -22,7 +22,7 @@ export const indicator = recipe({
 });
 
 const {
-  colors: { background, border },
+  colors: { background },
 } = vars;
 
 export const item = recipe({
@@ -64,10 +64,10 @@ export const item = recipe({
           backgroundColor: background.defaultDisabled,
         },
         "&:active:after": {
-          backgroundColor: background.accent1,
+          backgroundColor: background.default1Pressed,
         },
         "&:hover:after": {
-          backgroundColor: background.accent1,
+          backgroundColor: background.default1Hovered,
         },
         "&:focus-visible": {
           backgroundColor: background.default1Focused,
@@ -77,19 +77,19 @@ export const item = recipe({
         },
         "&[data-state='checked']": {
           backgroundColor: background.accent1,
-          borderColor: border.accent1,
+          borderColor: "transparent",
         },
         "&[data-state='checked']:hover": {
           backgroundColor: background.accent1,
         },
         "&[data-state='checked']:hover:after": {
-          backgroundColor: background.accent1,
+          backgroundColor: background.accent1Hovered,
         },
         "&[data-state='checked']:focus-visible": {
-          backgroundColor: background.accent1,
+          backgroundColor: background.accent1Pressed,
         },
         "&[data-state='checked']:focus-visible:after": {
-          backgroundColor: background.accent1,
+          backgroundColor: background.accent1Pressed,
         },
       },
     },

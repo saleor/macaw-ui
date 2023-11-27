@@ -14,6 +14,7 @@ export const defaultLight = {
     background: {
       accent1: "hsl(215, 100%, 51%, 1)",
       accent1Hovered: "hsla(215, 100%, 51%, 0.12)",
+      accent1Pressed: "hsla(215, 100%, 51%, 0.24)",
       buttonDefaultPrimary: "hsla(211, 45%, 13%, 1)",
       buttonDefaultSecondary: "hsla(0, 0%, 100%, 1)",
       buttonDefaultTertiary: "hsla(0, 0%, 100%, 1)",
@@ -25,7 +26,7 @@ export const defaultLight = {
       default1: "hsla(0, 0%, 100%, 1)",
       default1Hovered: "hsla(180, 4%, 15%, 0.06)",
       default1Focused: "hsla(211, 22%, 26%, 1)",
-      default1Pressed: "hsla(211, 45%, 3%, 1)",
+      default1Pressed: "hsla(180, 4%, 15%, 0.12)",
       default2: "hsla(120, 11%, 98%, 1)",
       default3: "hsla(180, 1%, 85%, 1)",
       defaultDisabled: "hsla(211, 16%, 94%, 1)",
@@ -54,7 +55,7 @@ export const defaultLight = {
       warning1: "hsl(42, 100%, 84%, 1)",
     },
     border: {
-      accent1: "hsla(215, 100%, 88%, 1)",
+      accent1: "hsl(215, 100%, 74%, 1)",
       critical1: "hsla(11, 100%, 74%, 1)",
       default1: "hsla(212, 14%, 77%, 1)",
       default1Hovered: "hsla(210, 15%, 87%, 1)",

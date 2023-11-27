@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { style } from "@vanilla-extract/css";
 import { sprinkles, vars } from "~/theme";
 
@@ -10,9 +11,8 @@ export const commonCheckbox = sprinkles({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  borderStyle: "solid",
   borderRadius: 1,
-  borderWidth: 1,
+  borderStyle: "none",
   // TODO: what about color here - should it be its own color?
   color: "buttonDefaultPrimary",
   cursor: "pointer",
@@ -31,6 +31,8 @@ export const defaultCheckbox = style({
     '&[data-state="unchecked"]': {
       borderColor: vars.colors.border.default1,
       backgroundColor: vars.colors.background.default1,
+      borderStyle: "solid",
+      borderWidth: vars.borderWidth[1],
       borderRadius: vars.borderRadius[1],
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
@@ -66,7 +68,7 @@ export const defaultCheckbox = style({
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
       backgroundColor: vars.colors.background.accent1,
-      borderColor: vars.colors.border.default1,
+      // borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
@@ -85,7 +87,7 @@ export const defaultCheckbox = style({
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active::after': {
-      backgroundColor: vars.colors.background.accent1,
+      backgroundColor: vars.colors.background.accent1Pressed,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
       // TODO: do we need accent with focused?
