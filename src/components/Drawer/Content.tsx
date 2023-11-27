@@ -17,7 +17,12 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay asChild className={showContent}>
-        <Box backgroundColor="default3" position="fixed" inset={0} />
+        {/* TODO: what about this background */}
+        <Box
+          __backgroundColor="hsla(0, 0%, 0%, 0.6)"
+          position="fixed"
+          inset={0}
+        />
       </Dialog.Overlay>
       <Dialog.Content asChild className={showContent}>
         <Box

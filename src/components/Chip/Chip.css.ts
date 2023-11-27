@@ -4,7 +4,6 @@ import { sprinkles } from "~/theme";
 export const chip = recipe({
   base: [
     sprinkles({
-      backgroundColor: "default3",
       borderRadius: 2,
       display: "inline-flex",
       justifyContent: "center",

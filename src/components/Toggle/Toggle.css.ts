@@ -32,7 +32,7 @@ export const toggle = recipe({
         },
         "&[disabled]::before": {
           // Token mismatch
-          backgroundColor: vars.colors.text.buttonDefaultPrimary,
+          backgroundColor: vars.colors.text.default3,
           boxShadow: "none",
         },
 
@@ -55,8 +55,8 @@ export const toggle = recipe({
         // Styling for off state
         '&[data-state="off"]': {
           justifyContent: "flex-start",
-          borderColor: vars.colors.border.default1,
-          backgroundColor: vars.colors.background.default2,
+          borderColor: "transparent",
+          backgroundColor: vars.colors.background.default3,
         },
         '&[data-state="off"]:hover': {
           boxShadow: outerGlow(vars.colors.background.default1Hovered),
@@ -77,19 +77,16 @@ export const toggle = recipe({
         '&[data-state="on"]': {
           flexDirection: "row-reverse",
           backgroundColor: vars.colors.background.accent1,
-          borderColor: vars.colors.border.accent1,
+          borderColor: "transparent",
         },
         '&[data-state="on"]:hover': {
-          backgroundColor: vars.colors.background.accent1,
-          boxShadow: outerGlow(vars.colors.background.accent1),
+          boxShadow: outerGlow(vars.colors.background.accent1Hovered),
         },
         '&[data-state="on"]:active': {
-          backgroundColor: vars.colors.background.accent1,
-          boxShadow: outerGlow(vars.colors.background.accent1),
+          boxShadow: outerGlow(vars.colors.background.accent1Pressed),
         },
         '&[data-state="on"]:focus-visible': {
-          backgroundColor: vars.colors.background.accent1,
-          boxShadow: outerGlow(vars.colors.background.accent1),
+          boxShadow: outerGlow(vars.colors.background.accent1Pressed),
         },
         '&[data-state="on"][disabled]': {
           backgroundColor: vars.colors.background.defaultDisabled,

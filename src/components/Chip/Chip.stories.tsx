@@ -20,7 +20,7 @@ export const Primary: Story = {
   render: (props) => (
     <Box display="grid" gridTemplateColumns={2} gap={5}>
       {/* Neutral */}
-      <Chip {...props}>
+      <Chip {...props} color="default1" backgroundColor="default1">
         <Text variant="caption" size="small" color="default1">
           Example
         </Text>
@@ -30,7 +30,7 @@ export const Primary: Story = {
         {...props}
         color="critical1"
         backgroundColor="critical2"
-        borderColor="default1"
+        borderColor="critical1"
       >
         <Text color="critical1" size="small" variant="caption">
           Example
@@ -39,15 +39,15 @@ export const Primary: Story = {
       {/* Green */}
       <Chip
         {...props}
-        color="accent1"
-        backgroundColor="accent1"
-        borderColor="default1"
+        color="success1"
+        backgroundColor="success1"
+        borderColor="success1"
       >
-        <Text color="accent1" size="small" variant="caption">
+        <Text color="success1" size="small" variant="caption">
           Example
         </Text>
       </Chip>
-      {/* Blue */}
+      {/* Blue - low contrast */}
       <Chip {...props} backgroundColor="accent1" borderColor="default1">
         <Text color="accent1" size="small" variant="caption">
           Example

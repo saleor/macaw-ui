@@ -25,7 +25,7 @@ export const defaultLight = {
       critical2: "hsla(11, 100%, 96%, 1)",
       default1: "hsla(0, 0%, 100%, 1)",
       default1Hovered: "hsla(180, 4%, 15%, 0.06)",
-      default1Focused: "hsla(211, 22%, 26%, 1)",
+      default1Focused: "hsla(180, 4%, 15%, 0.08)",
       default1Pressed: "hsla(180, 4%, 15%, 0.12)",
       default2: "hsla(120, 11%, 98%, 1)",
       default3: "hsla(180, 1%, 85%, 1)",

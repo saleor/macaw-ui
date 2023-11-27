@@ -12,7 +12,7 @@ export const switchParent = recipe({
     sprinkles({
       display: "flex",
       gap: 0.5,
-      backgroundColor: "default2",
+      backgroundColor: "default3",
       borderRadius: 3,
       borderColor: "default1",
       height: 8,
@@ -48,7 +48,7 @@ export const switchChild = recipe({
           backgroundColor: background.default1Focused,
         },
         "&[data-state='unchecked']": {
-          backgroundColor: background.default1,
+          backgroundColor: background.default3,
           borderStyle: "none",
           color: text.default1,
         },
