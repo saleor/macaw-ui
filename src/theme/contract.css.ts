@@ -42,6 +42,7 @@ export const vars = createGlobalThemeContract(
     colors: {
       background: {
         accent1: null,
+        accent1Hovered: null,
         buttonDefaultPrimary: null,
         buttonDefaultSecondary: null,
         buttonDefaultTertiary: null,

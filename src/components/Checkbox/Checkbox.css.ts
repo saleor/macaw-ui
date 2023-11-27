@@ -66,7 +66,7 @@ export const defaultCheckbox = style({
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
       backgroundColor: vars.colors.background.accent1,
-      borderColor: vars.colors.border.accent1,
+      borderColor: vars.colors.border.default1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
@@ -76,7 +76,7 @@ export const defaultCheckbox = style({
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover::after': {
-      backgroundColor: vars.colors.background.accent1,
+      backgroundColor: vars.colors.background.accent1Hovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
       // TODO: do we need accent with pressing?
