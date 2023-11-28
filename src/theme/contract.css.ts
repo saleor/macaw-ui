@@ -47,7 +47,6 @@ export const vars = createGlobalThemeContract(
         buttonDefaultPrimary: null,
         buttonDefaultSecondary: null,
         buttonDefaultTertiary: null,
-        // TODO: do we need this?
         buttonDefaultDisabled: null,
         buttonCriticalPrimary: null,
         buttonCriticalDisabled: null,

@@ -12,7 +12,7 @@ export const defaultLight = {
   spacing,
   colors: {
     background: {
-      accent1: "hsl(215, 100%, 51%, 1)",
+      accent1: "hsla(215, 100%, 51%, 1)",
       accent1Hovered: "hsla(215, 100%, 51%, 0.12)",
       accent1Pressed: "hsla(215, 100%, 51%, 0.24)",
       buttonDefaultPrimary: "hsla(211, 45%, 13%, 1)",
@@ -52,10 +52,10 @@ export const defaultLight = {
       defaultDisabled: "hsla(212, 14%, 67%, 1)",
       info1: "hsla(215, 100%, 32%, 1)",
       success1: "hsla(169, 42%, 20%, 1)",
-      warning1: "hsl(42, 100%, 84%, 1)",
+      warning1: "hsla(42, 100%, 84%, 1)",
     },
     border: {
-      accent1: "hsl(215, 100%, 74%, 1)",
+      accent1: "hsla(215, 100%, 74%, 1)",
       critical1: "hsla(11, 100%, 74%, 1)",
       default1: "hsla(210, 15%, 87%, 1)",
       default1Hovered: "hsla(210, 15%, 87%, 1)",
