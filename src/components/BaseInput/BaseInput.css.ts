@@ -255,6 +255,18 @@ export const inputRecipe = recipe({
         color: "textCriticalDefault",
       }),
     },
+    alwaysDisplayPlaceholder: {
+      true: {
+        selectors: {
+          "&::-webkit-input-placeholder": {
+            color: vars.colors.foreground.textNeutralSubdued,
+          },
+          "&::-moz-placeholder": {
+            color: vars.colors.foreground.textNeutralSubdued,
+          },
+        },
+      },
+    },
   },
   defaultVariants: {
     size: "medium",

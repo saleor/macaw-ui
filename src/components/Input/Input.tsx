@@ -26,6 +26,7 @@ export type InputProps = PropsWithBox<
       | "datetime-local";
     helperText?: ReactNode;
     endAdornment?: ReactNode;
+    alwaysDisplayPlaceholder?: boolean;
   }
 > &
   InputVariants;
@@ -51,6 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       flexShrink,
       width,
       endAdornment,
+      alwaysDisplayPlaceholder,
       ...props
     },
     ref
@@ -87,7 +89,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             as="input"
             type={type}
-            className={classNames(inputRecipe({ size, error }))}
+            className={classNames(
+              inputRecipe({ size, error, alwaysDisplayPlaceholder })
+            )}
             disabled={disabled}
             value={inputValue}
             ref={ref}

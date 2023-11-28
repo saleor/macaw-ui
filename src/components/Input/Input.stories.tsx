@@ -252,3 +252,27 @@ export const DateTime: Story = {
     },
   },
 };
+
+export const PlaceholderVisible: Story = {
+  args: {
+    alwaysDisplayPlaceholder: true,
+    placeholder: "Placeholder",
+    value: "",
+    label: null,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState("");
+  
+  <Input
+    alwaysDisplayPlaceholder
+    placeholder="Placeholder"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+  />`,
+      },
+    },
+  },
+};
