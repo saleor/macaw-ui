@@ -12,13 +12,22 @@ export type SwitchRootProps = PropsWithBox<
     children: ReactNode;
     className?: string;
     defaultValue?: string;
+    value?: string;
     onValueChange?: (value: string) => void;
   } & DataAttributes
 >;
 
 export const SwitchRoot = forwardRef<HTMLDivElement, SwitchRootProps>(
-  ({ children, className, defaultValue, onValueChange, ...rest }, ref) => (
-    <Root asChild defaultValue={defaultValue} onValueChange={onValueChange}>
+  (
+    { children, className, defaultValue, onValueChange, value, ...rest },
+    ref
+  ) => (
+    <Root
+      asChild
+      defaultValue={defaultValue}
+      value={value}
+      onValueChange={onValueChange}
+    >
       <Box
         className={classNames(switchParent(), className)}
         ref={ref}
