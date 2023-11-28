@@ -14,6 +14,7 @@ export const labelRecipe = recipe({
       borderWidth: 1,
       borderStyle: "solid",
       cursor: "text",
+      backgroundColor: "transparent",
     }),
   ],
   variants: {
@@ -52,10 +53,6 @@ export const labelRecipe = recipe({
       style: sprinkles({
         borderStyle: "solid",
         borderColor: "accent1",
-        backgroundColor: {
-          default: "default1",
-          focus: "default1Focused",
-        },
       }),
     },
     {
@@ -66,9 +63,6 @@ export const labelRecipe = recipe({
         error: false,
       },
       style: sprinkles({
-        backgroundColor: {
-          default: "default1",
-        },
         borderColor: {
           default: "default1",
           hover: "default1Hovered",
@@ -82,7 +76,6 @@ export const labelRecipe = recipe({
         error: false,
       },
       style: sprinkles({
-        backgroundColor: "default1",
         borderColor: "transparent",
       }),
     },
@@ -94,9 +87,6 @@ export const labelRecipe = recipe({
         error: false,
       },
       style: sprinkles({
-        backgroundColor: {
-          focus: "default1Focused",
-        },
         borderStyle: "solid",
         borderColor: {
           default: "default1",
@@ -120,9 +110,6 @@ export const labelRecipe = recipe({
         typed: false,
       },
       style: sprinkles({
-        backgroundColor: {
-          hover: "critical2",
-        },
         borderStyle: "solid",
         borderColor: "critical1",
       }),
