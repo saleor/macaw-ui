@@ -31,7 +31,7 @@ export const dropdownButton = recipe({
     variant: {
       contained: sprinkles({
         backgroundColor: {
-          default: "default1",
+          default: "default2",
           hover: "default1Hovered",
           focusVisible: "default1Focused",
           active: "default1Pressed",
@@ -40,11 +40,11 @@ export const dropdownButton = recipe({
       }),
       text: sprinkles({
         backgroundColor: {
-          default: "default1",
+          default: "default2",
           // TODO: do we need this?
-          // hover: "interactiveBrandHighlightDefault",
-          // focusVisible: "surfaceNeutralPlain",
-          // active: "surfaceNeutralPlain",
+          hover: "default1Hovered",
+          focusVisible: "default1Focused",
+          active: "default1Pressed",
           disabled: "defaultDisabled",
         },
       }),
