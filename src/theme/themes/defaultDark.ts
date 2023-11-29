@@ -39,7 +39,7 @@ export const defaultDark = {
     },
     text: {
       accent1: "hsla(215, 100%, 83%, 1)",
-      buttonDefaultPrimary: "hsla(0, 0%, 100%, 1)",
+      buttonDefaultPrimary: "hsla(212, 44%, 13%, 1)",
       buttonDefaultSecondary: "hsla(0, 0%, 100%, 1)",
       buttonDefaultTertiary: "hsla(0, 0%, 100%, 1)",
       buttonCriticalPrimary: "hsla(0, 0%, 100%, 1)",
