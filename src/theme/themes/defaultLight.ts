@@ -75,7 +75,7 @@ export const defaultLight = {
       default2: "hsla(211, 13%, 66%, 1)",
       defaultDisabled: "hsla(210, 15%, 87%, 1)",
       info1: "hsla(234, 100%, 42%, 1)",
-      success1: "hsl(173, 97%, 15%, 1)",
+      success1: "hsla(173, 97%, 15%, 1)",
     },
   },
   fontSize,

@@ -47,7 +47,7 @@ export const Primary: Story = {
           Example
         </Text>
       </Chip>
-      {/* Blue  */}
+      {/* Blue */}
       <Chip {...props} backgroundColor="info1" borderColor="info1">
         <Text color="info1" size="small" variant="caption">
           Example
