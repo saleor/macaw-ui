@@ -1,5 +1,6 @@
 export * from "./Accordion";
 export * from "./Avatar";
+export * from "./Backdrop";
 export { type Option } from "./BaseSelect";
 export * from "./Box";
 export * from "./Button";

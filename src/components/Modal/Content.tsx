@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { Box } from "../Box";
 
+import { Backdrop } from "../Backdrop";
 import { showContent } from "./Content.css";
 
 export type ModalContentProps = {
@@ -22,12 +22,7 @@ export const Content = ({ children, disableAutofocus }: ModalContentProps) => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay asChild className={showContent}>
-        {/* TODO: what to do with this background */}
-        <Box
-          __backgroundColor="hsla(0, 0%, 0%, 0.6)"
-          position="fixed"
-          inset={0}
-        >
+        <Backdrop>
           <Dialog.Content
             asChild
             className={showContent}
@@ -35,7 +30,7 @@ export const Content = ({ children, disableAutofocus }: ModalContentProps) => {
           >
             {children}
           </Dialog.Content>
-        </Box>
+        </Backdrop>
       </Dialog.Overlay>
     </Dialog.Portal>
   );
