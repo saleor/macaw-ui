@@ -150,12 +150,12 @@ export const errorCheckbox = style({
       cursor: "not-allowed",
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
-      backgroundColor: vars.colors.background.critical1,
+      backgroundColor: vars.colors.background.critical2,
       borderColor: vars.colors.border.critical1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
-      backgroundColor: vars.colors.background.critical1,
+      backgroundColor: vars.colors.background.critical2,
       borderColor: vars.colors.border.critical1,
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
     },

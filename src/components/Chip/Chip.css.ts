@@ -9,7 +9,6 @@ export const chip = recipe({
       justifyContent: "center",
       alignItems: "center",
       lineHeight: 1,
-      borderColor: "default1",
       borderWidth: 1,
       borderStyle: "solid",
     }),

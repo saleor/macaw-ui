@@ -29,7 +29,7 @@ export const Primary: Story = {
       <Chip
         {...props}
         color="critical1"
-        backgroundColor="critical2"
+        backgroundColor="critical1"
         borderColor="critical1"
       >
         <Text color="critical1" size="small" variant="caption">
@@ -47,9 +47,9 @@ export const Primary: Story = {
           Example
         </Text>
       </Chip>
-      {/* Blue - low contrast */}
-      <Chip {...props} backgroundColor="accent1" borderColor="default1">
-        <Text color="accent1" size="small" variant="caption">
+      {/* Blue  */}
+      <Chip {...props} backgroundColor="info1" borderColor="info1">
+        <Text color="info1" size="small" variant="caption">
           Example
         </Text>
       </Chip>
