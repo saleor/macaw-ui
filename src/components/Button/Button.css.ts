@@ -21,10 +21,9 @@ export const button = recipe({
       primary: sprinkles({
         backgroundColor: {
           default: "buttonDefaultPrimary",
-          // TODO: do we need all those states?
-          // hover: "interactiveNeutralHovering",
-          // focusVisible: "interactiveNeutralFocused",
-          // active: "interactiveNeutralPressing",
+          hover: "buttonDefaultPrimaryHovered",
+          focusVisible: "buttonDefaultPrimaryFocused",
+          active: "buttonDefaultPrimaryPressed",
           disabled: "buttonDefaultDisabled",
         },
         color: {
@@ -43,9 +42,9 @@ export const button = recipe({
       secondary: sprinkles({
         backgroundColor: {
           default: "buttonDefaultSecondary",
-          // hover: "interactiveNeutralSecondaryHovering",
-          // focusVisible: "interactiveNeutralSecondaryFocused",
-          // active: "interactiveNeutralSecondaryPressing",
+          hover: "buttonDefaultSecondaryHovered",
+          focusVisible: "buttonDefaultSecondaryFocused",
+          active: "buttonDefaultSecondaryPressed",
           disabled: "buttonDefaultDisabled",
         },
         color: {
@@ -72,9 +71,9 @@ export const button = recipe({
       tertiary: sprinkles({
         backgroundColor: {
           default: "buttonDefaultTertiary",
-          // hover: "interactiveNeutralHighlightHovering",
-          // focusVisible: "interactiveNeutralHighlightFocused",
-          // active: "interactiveNeutralHighlightPressing",
+          hover: "buttonDefaultTertiaryHovered",
+          focusVisible: "buttonDefaultTertiaryFocused",
+          active: "buttonDefaultTertiaryPressed",
           disabled: "buttonDefaultDisabled",
         },
         color: {
@@ -86,9 +85,9 @@ export const button = recipe({
       error: sprinkles({
         backgroundColor: {
           default: "buttonCriticalPrimary",
-          // hover: "interactiveCriticalHovering",
-          // focusVisible: "interactiveCriticalFocused",
-          // active: "interactiveCriticalPressing",
+          hover: "buttonCriticalPrimaryHovered",
+          focusVisible: "buttonCriticalPrimaryFocused",
+          active: "buttonCriticalPrimaryPressed",
           disabled: "buttonCriticalDisabled",
         },
         color: {
