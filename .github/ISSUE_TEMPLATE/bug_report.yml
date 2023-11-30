@@ -1,13 +1,13 @@
 name: Bug report
-description: Create a bug report
-title: "Bug: "
+description: Create a report to help us improve
+title: "[Bug]: "
 labels: ["bug", "triage"]
 
 body:
   - type: textarea
-    id: goal
+    id: Description
     attributes:
-      label: What are you trying to achieve?
+      label: Description of the issue
       description: Describe your goal, use case, or provide context of your problem.
     validations:
       required: true
@@ -26,7 +26,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: addtional-info
+    id: additional-info
     attributes:
       label: Additional information
       description: Include any logs from the console, screenshots that could help us understand the problem. Make sure to omit any personal identifiable information or data sensitive to your business.
@@ -40,5 +40,6 @@ body:
       value: |
         Browser and version: …
         OS and version: …
+        Macaw version: …
     validations:
       required: true

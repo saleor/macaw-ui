@@ -1,0 +1,35 @@
+name: Feature request
+description: "Broader scope requests, a new implementation that is not yet present in the project."
+title: "[Feature]: "
+labels: ["feature", "backlog"]
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the feature
+      description: Describe your goal, use case, or provide context.
+      placeholder: |
+        Example: Users need a dedicated component for section as it is commonly used.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptable-criteria
+    attributes:
+      label: Acceptable criteria
+      description: Provide acceptable criteria for this feature. Describe expected behavior against personas.
+      placeholder: |
+        Example:
+        - [ ] As a user, I should have a section component exposed from Macaw
+        - [ ] As a user, I should able to style that (override)
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional information
+      description: Attach some additional context. Links, references, UI mockups and so on.
+      placeholder: |
+        Example: Sections are common area within the applications, here are the examples: ...
+    validations:
+      required: false
