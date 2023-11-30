@@ -37,7 +37,6 @@ export const Store = (props: StoreAvatarProps) => {
       data-macaw-ui-component="Avatar.Store"
       {...rest}
     >
-      {/* TODO: can it be a button color? */}
       <Text variant="bodyEmp" size={size} color="buttonDefaultPrimary">
         {initials}
       </Text>

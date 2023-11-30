@@ -31,8 +31,7 @@ export const toggle = recipe({
           transition: "all 40ms ease-in-out",
         },
         "&[disabled]::before": {
-          // Token mismatch
-          backgroundColor: vars.colors.text.default3,
+          backgroundColor: vars.colors.background.default3,
           boxShadow: "none",
         },
 

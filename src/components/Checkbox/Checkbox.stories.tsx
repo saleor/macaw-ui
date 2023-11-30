@@ -52,3 +52,11 @@ export const Indeterminate: Story = {
     checked: "indeterminate",
   },
 };
+
+export const IndeterminateError: Story = {
+  args: {
+    ...Primary.args,
+    checked: "indeterminate",
+    error: true,
+  },
+};

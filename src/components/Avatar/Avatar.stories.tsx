@@ -17,7 +17,7 @@ export const Primary: Story = {
   name: "With initials",
   args: {
     initials: "LI",
-    scheme: "decorative1",
+    scheme: "accent1",
     size: "medium",
   },
 };
@@ -25,7 +25,7 @@ export const Primary: Story = {
 export const WithImage: Story = {
   args: {
     src: "https://source.unsplash.com/random/32x32",
-    scheme: "decorative1",
+    scheme: "accent1",
     size: "medium",
   },
   parameters: {
@@ -36,7 +36,7 @@ export const WithImage: Story = {
 export const AsStoreInitials: Story = {
   args: {
     initials: "LI",
-    scheme: "decorative1",
+    scheme: "accent1",
     size: "medium",
   },
   render: (args) => <Store {...args} />,
@@ -45,7 +45,7 @@ export const AsStoreInitials: Story = {
 export const AsStoreImage: Story = {
   args: {
     src: "https://source.unsplash.com/random/32x32",
-    scheme: "decorative1",
+    scheme: "accent1",
     size: "medium",
   },
   render: (args) => <Store {...args} />,

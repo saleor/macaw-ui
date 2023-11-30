@@ -12,7 +12,6 @@ export const commonCheckbox = sprinkles({
   alignItems: "center",
   borderRadius: 1,
   borderStyle: "none",
-  // TODO: what about color here - should it be its own color?
   color: "buttonDefaultPrimary",
   cursor: "pointer",
   flexShrink: "0",
@@ -67,11 +66,9 @@ export const defaultCheckbox = style({
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
       backgroundColor: vars.colors.background.accent1,
-      // borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
-      // TODO: do we need accent with hover?
       backgroundColor: vars.colors.background.accent1,
       borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
@@ -80,7 +77,6 @@ export const defaultCheckbox = style({
       backgroundColor: vars.colors.background.accent1Hovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
-      // TODO: do we need accent with pressing?
       backgroundColor: vars.colors.background.accent1,
       borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
@@ -89,7 +85,6 @@ export const defaultCheckbox = style({
       backgroundColor: vars.colors.background.accent1Pressed,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
-      // TODO: do we need accent with focused?
       backgroundColor: vars.colors.background.accent1,
       borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
@@ -118,18 +113,19 @@ export const errorCheckbox = style({
     },
     '&[data-state="unchecked"]': {
       borderColor: vars.colors.border.critical1,
-      backgroundColor: vars.colors.background.critical2,
+      backgroundColor: vars.colors.background.default1,
+      borderStyle: "solid",
+      borderWidth: vars.borderWidth[1],
       borderRadius: vars.borderRadius[1],
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&[data-state="unchecked"]:hover': {
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
-      borderColor: vars.colors.border.default2,
-      // TODO: do we need critical with hover?
-      backgroundColor: vars.colors.background.critical2,
+      borderColor: vars.colors.border.critical1,
+      backgroundColor: vars.colors.background.critical1Hovered,
     },
     '&[data-state="unchecked"]:hover::after': {
-      backgroundColor: vars.colors.background.critical2,
+      backgroundColor: vars.colors.background.critical1Hovered,
     },
     '&[data-state="unchecked"]:active': {
       boxShadow: "none",
@@ -142,7 +138,7 @@ export const errorCheckbox = style({
     '&[data-state="unchecked"]:focus-visible': {
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
       borderColor: vars.colors.border.critical1,
-      backgroundColor: vars.colors.background.default2,
+      backgroundColor: vars.colors.background.critical1Focused,
       outline: "none",
     },
     '&[data-state="unchecked"]:focus-visible::after': {
@@ -164,7 +160,7 @@ export const errorCheckbox = style({
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover::after': {
-      backgroundColor: vars.colors.background.critical1,
+      backgroundColor: vars.colors.background.critical1Hovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
       backgroundColor: vars.colors.background.critical1,
@@ -172,7 +168,7 @@ export const errorCheckbox = style({
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active::after': {
-      backgroundColor: vars.colors.background.critical1,
+      backgroundColor: vars.colors.background.critical1Pressed,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
       backgroundColor: vars.colors.background.critical1,

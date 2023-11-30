@@ -36,7 +36,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
     }: CheckboxProps,
     ref
   ) => {
-    const iconColor = disabled ? "defaultDisabled" : "default3";
+    const iconColor = disabled ? "defaultDisabled" : "buttonDefaultPrimary";
 
     return (
       <Box

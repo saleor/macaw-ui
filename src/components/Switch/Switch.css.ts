@@ -3,7 +3,6 @@ import { sprinkles, vars } from "~/theme";
 
 const {
   colors: { background, text },
-  // TODO: what about shadow?
   boxShadow: { interactiveDefaultFocused },
 } = vars;
 
