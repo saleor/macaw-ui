@@ -60,7 +60,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.7",
+    "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^17.6.7",
     "@release-it/conventional-changelog": "^7.0.0",
     "@storybook/addon-actions": "^7.6.3",
