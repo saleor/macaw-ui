@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-dev.1",
+  "version": "1.0.0-pre.10",
   "license": "CC-BY-4.0",
   "homepage": "https://macaw-ui.vercel.app/",
   "repository": {
@@ -47,7 +47,7 @@
     "test": "vitest",
     "dev": "storybook dev -p 6006",
     "dev:docs": "storybook dev -p 6006 --docs",
-    "make-release": "release-it",
+    "make-release": "release-it pre",
     "release": "npm-run-all build make-release",
     "prepare": "is-ci || husky install",
     "chromatic": "chromatic --exit-zero-on-changes"
