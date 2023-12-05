@@ -32,8 +32,8 @@ export const multiselectInputRecipe = recipe({
       outlineStyle: "none",
       padding: 0,
       color: {
-        default: "textNeutralDefault",
-        disabled: "textNeutralSubdued",
+        default: "default1",
+        disabled: "defaultDisabled",
       },
     }),
     {
@@ -45,10 +45,10 @@ export const multiselectInputRecipe = recipe({
           color: "transparent",
         },
         "&:focus::-webkit-input-placeholder": {
-          color: vars.colors.foreground.textNeutralSubdued,
+          color: vars.colors.text.default2,
         },
         "&:focus::-moz-placeholder": {
-          color: vars.colors.foreground.textNeutralSubdued,
+          color: vars.colors.text.default2,
         },
       },
     },
@@ -67,7 +67,7 @@ export const multiselectInputRecipe = recipe({
     },
     error: {
       true: sprinkles({
-        color: "textCriticalDefault",
+        color: "critical1",
       }),
     },
   },

@@ -11,8 +11,8 @@ export interface TooltipArrowProps {
 
 export const Arrow = ({
   className,
-  backgroundColor = vars.colors.background.surfaceNeutralPlain,
-  borderColor = vars.colors.border.neutralPlain,
+  backgroundColor = vars.colors.background.default1,
+  borderColor = vars.colors.border.default1,
 }: TooltipArrowProps) => {
   return (
     <RadixTooltipArrow asChild className={classNames(arrow, className)}>

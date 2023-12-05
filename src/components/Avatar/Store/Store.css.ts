@@ -15,24 +15,16 @@ export const storeAvatar = recipe({
   variants: {
     size: sizeVariants,
     scheme: {
-      decorative1: sprinkles({
-        backgroundColor: "decorativeSurfaceSubdued1",
-        color: "text1Decorative",
-      }),
-      decorative2: sprinkles({
-        backgroundColor: "decorativeSurfaceSubdued2",
-        color: "text2Decorative",
-      }),
-      decorative3: sprinkles({
-        backgroundColor: "decorativeSurfaceSubdued3",
-        color: "text3Decorative",
+      accent1: sprinkles({
+        backgroundColor: "accent1",
+        color: "accent1",
       }),
     },
   },
 
   defaultVariants: {
     size: "medium",
-    scheme: "decorative1",
+    scheme: "accent1",
   },
 });
 

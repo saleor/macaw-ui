@@ -15,15 +15,13 @@ export const userAvatar = recipe({
   variants: {
     size: sizeVariants,
     scheme: {
-      decorative1: sprinkles({ backgroundColor: "decorativeSurfacePlain1" }),
-      decorative2: sprinkles({ backgroundColor: "decorativeSurfacePlain2" }),
-      decorative3: sprinkles({ backgroundColor: "decorativeSurfacePlain3" }),
+      accent1: sprinkles({ backgroundColor: "accent1" }),
     },
   },
 
   defaultVariants: {
     size: "medium",
-    scheme: "decorative1",
+    scheme: "accent1",
   },
 });
 

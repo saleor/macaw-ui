@@ -20,40 +20,36 @@ export const Primary: Story = {
   render: (props) => (
     <Box display="grid" gridTemplateColumns={2} gap={5}>
       {/* Neutral */}
-      <Chip {...props}>
-        <Text variant="caption" size="small" color="textNeutralPlain">
+      <Chip {...props} color="default1" backgroundColor="default1">
+        <Text variant="caption" size="small" color="default1">
           Example
         </Text>
       </Chip>
       {/* Red */}
       <Chip
         {...props}
-        color="textCriticalDefault"
-        backgroundColor="surfaceCriticalDepressed"
-        borderColor="neutralHighlight"
+        color="critical1"
+        backgroundColor="critical1"
+        borderColor="critical1"
       >
-        <Text color="textCriticalDefault" size="small" variant="caption">
+        <Text color="critical1" size="small" variant="caption">
           Example
         </Text>
       </Chip>
       {/* Green */}
       <Chip
         {...props}
-        color="text2Decorative"
-        backgroundColor="decorativeSurfaceSubdued2"
-        borderColor="neutralHighlight"
+        color="success1"
+        backgroundColor="success1"
+        borderColor="success1"
       >
-        <Text color="text2Decorative" size="small" variant="caption">
+        <Text color="success1" size="small" variant="caption">
           Example
         </Text>
       </Chip>
       {/* Blue */}
-      <Chip
-        {...props}
-        backgroundColor="surfaceBrandSubdued"
-        borderColor="neutralHighlight"
-      >
-        <Text color="textBrandDefault" size="small" variant="caption">
+      <Chip {...props} backgroundColor="info1" borderColor="info1">
+        <Text color="info1" size="small" variant="caption">
           Example
         </Text>
       </Chip>

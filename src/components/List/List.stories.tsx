@@ -17,7 +17,7 @@ export const Primary: Story = {
     children: [
       // eslint-disable-next-line react/jsx-key
       <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3}>
-        <Text color="textNeutralPlain">List item</Text>
+        <Text>List item</Text>
       </List.Item>,
     ],
   },
@@ -28,7 +28,7 @@ export const Disabled: Story = {
     children: [
       // eslint-disable-next-line react/jsx-key
       <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3} disabled>
-        <Text color="textNeutralPlain">List item</Text>
+        <Text>List item</Text>
       </List.Item>,
     ],
   },
@@ -39,7 +39,7 @@ export const Active: Story = {
     children: [
       // eslint-disable-next-line react/jsx-key
       <List.Item paddingX={2} paddingY={2} gap={3} borderRadius={3} active>
-        <Text color="textNeutralPlain">List item</Text>
+        <Text>List item</Text>
       </List.Item>,
     ],
   },

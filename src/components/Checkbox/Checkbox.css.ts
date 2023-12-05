@@ -10,10 +10,9 @@ export const commonCheckbox = sprinkles({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  borderStyle: "solid",
   borderRadius: 1,
-  borderWidth: 1,
-  color: "iconNeutralContrasted",
+  borderStyle: "none",
+  color: "buttonDefaultPrimary",
   cursor: "pointer",
   flexShrink: "0",
 });
@@ -28,85 +27,77 @@ export const defaultCheckbox = style({
       borderRadius: vars.borderRadius[2],
     },
     '&[data-state="unchecked"]': {
-      borderColor: vars.colors.border.neutralDefault,
-      backgroundColor:
-        vars.colors.background.interactiveNeutralSecondaryDefault,
+      borderColor: vars.colors.border.default1,
+      backgroundColor: vars.colors.background.default1,
+      borderStyle: "solid",
+      borderWidth: vars.borderWidth[1],
       borderRadius: vars.borderRadius[1],
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&[data-state="unchecked"]:hover': {
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
-      borderColor: vars.colors.border.neutralSubdued,
-      backgroundColor:
-        vars.colors.background.interactiveNeutralSecondaryHovering,
+      borderColor: vars.colors.border.default2,
+      backgroundColor: vars.colors.background.default1Hovered,
     },
     '&[data-state="unchecked"]:hover::after': {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralHighlightHovering,
+      backgroundColor: vars.colors.background.default1Hovered,
     },
     '&[data-state="unchecked"]:active': {
       boxShadow: "none",
-      borderColor: vars.colors.border.neutralSubdued,
-      backgroundColor:
-        vars.colors.background.interactiveNeutralSecondaryPressing,
+      borderColor: vars.colors.border.default2,
+      backgroundColor: vars.colors.background.default1Pressed,
     },
     '&[data-state="unchecked"]:active::after': {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralHighlightPressing,
+      backgroundColor: vars.colors.background.default1Pressed,
     },
     '&[data-state="unchecked"]:focus-visible': {
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
-      borderColor: vars.colors.border.neutralDefault,
-      backgroundColor:
-        vars.colors.background.interactiveNeutralSecondaryFocused,
+      borderColor: vars.colors.border.default1,
+      backgroundColor: vars.colors.background.default1Focused,
       outline: "none",
     },
     '&[data-state="unchecked"]:focus-visible::after': {
-      backgroundColor:
-        vars.colors.background.interactiveNeutralHighlightHovering,
+      backgroundColor: vars.colors.background.default1Hovered,
     },
     '&[data-state="unchecked"][disabled]': {
-      borderColor: vars.colors.border.neutralPlain,
-      backgroundColor:
-        vars.colors.background.interactiveNeutralSecondaryDisabled,
+      borderColor: vars.colors.border.default1,
+      backgroundColor: vars.colors.background.defaultDisabled,
       cursor: "not-allowed",
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
-      backgroundColor: vars.colors.background.interactiveBrandDefault,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
-      backgroundColor: vars.colors.background.interactiveBrandHovering,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.accent1,
+      borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover::after': {
-      backgroundColor: vars.colors.background.interactiveBrandHighlightHovering,
+      backgroundColor: vars.colors.background.accent1Hovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
-      backgroundColor: vars.colors.background.interactiveBrandPressing,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.accent1,
+      borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active::after': {
-      backgroundColor: vars.colors.background.interactiveBrandHighlightPressing,
+      backgroundColor: vars.colors.background.accent1Pressed,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
-      backgroundColor: vars.colors.background.interactiveBrandFocused,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.accent1,
+      borderColor: vars.colors.border.accent1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible::after':
       {
-        backgroundColor:
-          vars.colors.background.interactiveBrandHighlightFocused,
+        backgroundColor: vars.colors.background.accent1,
       },
     '&:is([data-state="checked"],[data-state="indeterminate"])[disabled]': {
-      backgroundColor: vars.colors.background.interactiveBrandDisabled,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.defaultDisabled,
+      borderColor: vars.colors.border.defaultDisabled,
       cursor: "not-allowed",
-      color: vars.colors.foreground.iconNeutralDisabled,
+      color: vars.colors.text.defaultDisabled,
     },
   },
 });
@@ -121,86 +112,77 @@ export const errorCheckbox = style({
       borderRadius: vars.borderRadius[2],
     },
     '&[data-state="unchecked"]': {
-      borderColor: vars.colors.border.criticalDefault,
-      backgroundColor:
-        vars.colors.background.interactiveCriticalSecondaryDefault,
+      borderColor: vars.colors.border.critical1,
+      backgroundColor: vars.colors.background.default1,
+      borderStyle: "solid",
+      borderWidth: vars.borderWidth[1],
       borderRadius: vars.borderRadius[1],
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&[data-state="unchecked"]:hover': {
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
-      borderColor: vars.colors.border.neutralSubdued,
-      backgroundColor:
-        vars.colors.background.interactiveCriticalSecondaryHovering,
+      borderColor: vars.colors.border.critical1,
+      backgroundColor: vars.colors.background.critical1Hovered,
     },
     '&[data-state="unchecked"]:hover::after': {
-      backgroundColor:
-        vars.colors.background.interactiveCriticalHighlightHovering,
+      backgroundColor: vars.colors.background.critical1Hovered,
     },
     '&[data-state="unchecked"]:active': {
       boxShadow: "none",
-      borderColor: vars.colors.border.neutralSubdued,
-      backgroundColor:
-        vars.colors.background.interactiveCriticalSecondaryPressing,
+      borderColor: vars.colors.border.default2,
+      backgroundColor: vars.colors.background.default2,
     },
     '&[data-state="unchecked"]:active::after': {
-      backgroundColor:
-        vars.colors.background.interactiveCriticalHighlightPressing,
+      backgroundColor: vars.colors.background.default2,
     },
     '&[data-state="unchecked"]:focus-visible': {
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
-      borderColor: vars.colors.border.criticalDefault,
-      backgroundColor:
-        vars.colors.background.interactiveCriticalSecondaryFocused,
+      borderColor: vars.colors.border.critical1,
+      backgroundColor: vars.colors.background.critical1Focused,
       outline: "none",
     },
     '&[data-state="unchecked"]:focus-visible::after': {
-      backgroundColor:
-        vars.colors.background.interactiveCriticalHighlightHovering,
+      backgroundColor: vars.colors.background.default2,
     },
     '&[data-state="unchecked"][disabled]': {
-      borderColor: vars.colors.border.neutralPlain,
-      backgroundColor:
-        vars.colors.background.interactiveCriticalSecondaryDisabled,
+      borderColor: vars.colors.border.default1,
+      backgroundColor: vars.colors.background.defaultDisabled,
       cursor: "not-allowed",
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
-      backgroundColor: vars.colors.background.interactiveCriticalDefault,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.critical2,
+      borderColor: vars.colors.border.critical1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
-      backgroundColor: vars.colors.background.interactiveCriticalHovering,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.critical2,
+      borderColor: vars.colors.border.critical1,
       boxShadow: vars.boxShadow.interactiveDefaultHovering,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover::after': {
-      backgroundColor:
-        vars.colors.background.interactiveCriticalHighlightHovering,
+      backgroundColor: vars.colors.background.critical1Hovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
-      backgroundColor: vars.colors.background.interactiveCriticalPressing,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.critical1,
+      borderColor: vars.colors.border.critical1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active::after': {
-      backgroundColor:
-        vars.colors.background.interactiveCriticalHighlightPressing,
+      backgroundColor: vars.colors.background.critical1Pressed,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
-      backgroundColor: vars.colors.background.interactiveCriticalFocused,
-      borderColor: vars.colors.border.neutralHighlight,
+      backgroundColor: vars.colors.background.critical1,
+      borderColor: vars.colors.border.critical1,
       boxShadow: vars.boxShadow.interactiveDefaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible::after':
       {
-        backgroundColor:
-          vars.colors.background.interactiveCriticalHighlightFocused,
+        backgroundColor: vars.colors.background.critical1,
       },
     '&:is([data-state="checked"],[data-state="indeterminate"])[disabled]': {
-      backgroundColor: vars.colors.background.interactiveCriticalDisabled,
-      borderColor: vars.colors.border.neutralHighlight,
-      color: vars.colors.foreground.iconCriticalDisabled,
+      backgroundColor: vars.colors.background.defaultDisabled,
+      borderColor: vars.colors.border.defaultDisabled,
+      color: vars.colors.text.defaultDisabled,
       cursor: "not-allowed",
     },
   },

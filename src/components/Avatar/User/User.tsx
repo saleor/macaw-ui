@@ -37,7 +37,7 @@ export const User = (props: UserAvatarProps) => {
       data-macaw-ui-component="Avatar.User"
       {...rest}
     >
-      <Text variant="bodyEmp" size={size} color="textNeutralContrasted">
+      <Text variant="bodyEmp" size={size} color="buttonDefaultPrimary">
         {initials}
       </Text>
     </Box>

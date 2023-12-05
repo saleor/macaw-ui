@@ -5,6 +5,7 @@ import { Button } from "../Button";
 import { CloseIcon } from "../Icons";
 import { DataAttributes } from "../types";
 
+import { Backdrop } from "../Backdrop";
 import { showContent } from "./Content.css";
 
 export type DrawerContentProps = PropsWithBox<
@@ -17,11 +18,11 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay asChild className={showContent}>
-        <Box backgroundColor="highlightDim" position="fixed" inset={0} />
+        <Backdrop />
       </Dialog.Overlay>
       <Dialog.Content asChild className={showContent}>
         <Box
-          backgroundColor="surfaceNeutralPlain"
+          backgroundColor="default1"
           boxShadow="modal"
           top={0}
           left={0}

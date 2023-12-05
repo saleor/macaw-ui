@@ -14,7 +14,7 @@ export const HelperText = ({ size, error, children }: HelperTextProps) => {
       <Text
         variant="caption"
         size={size}
-        color={error ? "textCriticalDefault" : "textNeutralSubdued"}
+        color={error ? "critical1" : "default2"}
       >
         {children}
       </Text>

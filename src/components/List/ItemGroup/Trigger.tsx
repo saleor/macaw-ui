@@ -30,11 +30,7 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
       <AccordionTrigger asChild>
         <Button
           icon={
-            <ChervonDownIcon
-              className={icon}
-              color="iconNeutralDefault"
-              size={size}
-            />
+            <ChervonDownIcon className={icon} color="default1" size={size} />
           }
           variant="tertiary"
           size={size}

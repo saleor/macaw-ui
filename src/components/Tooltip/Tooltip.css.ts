@@ -4,12 +4,12 @@ import { sprinkles } from "~/theme";
 export const content = sprinkles({
   borderStyle: "solid",
   borderWidth: 1,
-  borderColor: "neutralPlain",
-  backgroundColor: "surfaceNeutralPlain",
+  borderColor: "default1",
+  backgroundColor: "default1",
   padding: 2,
   borderRadius: 3,
   typeSize: "bodyEmpSmall",
-  color: "textNeutralPlain",
+  color: "default1",
   boxShadow: "overlay",
 });
 
