@@ -1,7 +1,7 @@
 name: RFC
 description: Start gathering information regarding new functionality
 title: "[RFC]: "
-labels: [RFC]
+labels: ["rfc"]
 assignees:
   - andrzejewski
   - krzysztofzuraw
