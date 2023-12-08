@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { Box } from "../Box";
 import { Select } from ".";
+import { Box } from "../Box";
 
 const options = [
   { value: "color-black", label: "Black" },
@@ -180,4 +180,26 @@ export const WithEllipsis = () => {
 
 export const Empty = () => {
   return <Select options={options} value="" />;
+};
+
+const books = [];
+
+for (let index = 1; index <= 1000; index++) {
+  books.push({ value: `Author ${index}`, label: `Book Number ${index}` });
+}
+
+export const Virtualized = () => {
+  const [value, setValue] = useState("");
+
+  console.log(books);
+
+  return (
+    <Select
+      options={books}
+      size="large"
+      value={value}
+      label="Pick a book"
+      onChange={(value) => setValue(value)}
+    />
+  );
 };

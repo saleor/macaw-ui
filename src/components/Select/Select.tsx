@@ -1,9 +1,11 @@
 import { Root as Portal } from "@radix-ui/react-portal";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   ForwardedRef,
   InputHTMLAttributes,
   ReactNode,
   forwardRef,
+  useRef,
 } from "react";
 
 import { useFloating } from "~/hooks/useFloating";
@@ -74,6 +76,8 @@ const SelectInner = <T extends Option, V extends Option | string>(
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
 ) => {
+  const parentRef = useRef<any>(null);
+
   const {
     active,
     typed,
@@ -96,6 +100,12 @@ const SelectInner = <T extends Option, V extends Option | string>(
   });
 
   const { refs, floatingStyles } = useFloating();
+
+  const rowVirtualizer = useVirtualizer({
+    count: 10000,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 35,
+  });
 
   return (
     <Box display="flex" flexDirection="column">
@@ -140,21 +150,25 @@ const SelectInner = <T extends Option, V extends Option | string>(
             as="ul"
             className={listStyle}
             // suppress error because of rendering list in portal
-            {...getMenuProps({}, { suppressRefError: true })}
+            {...getMenuProps({ ref: parentRef }, { suppressRefError: true })}
           >
             {isOpen &&
-              options?.map((item, index) => (
+              rowVirtualizer.getVirtualItems().map((virtualItem) => (
                 <List.Item
                   data-test-id="select-option"
-                  key={`${id}-${item.value}-${index}`}
+                  key={`${id}-${options[virtualItem.index].value}-${
+                    virtualItem.index
+                  }`}
                   className={listItemStyle}
                   {...getItemProps({
-                    item,
-                    index,
+                    item: options[virtualItem.index],
+                    index: virtualItem.index,
                   })}
-                  active={highlightedIndex === index}
+                  active={highlightedIndex === virtualItem.index}
                 >
-                  <Text size={getListTextSize(size)}>{item.label}</Text>
+                  <Text size={getListTextSize(size)}>
+                    {options[virtualItem.index].label}
+                  </Text>
                 </List.Item>
               ))}
           </List>
