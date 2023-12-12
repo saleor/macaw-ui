@@ -5,7 +5,7 @@ export const EnvironmentIcon = createSVGWrapper(
     <path
       d="M3 10h18M3 10v5a2 2 0 0 0 2 2h7m-9-7V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5m0 0v5a2 2 0 0 1-2 2h-7m0 0v4m0 0H6m6 0h7"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
