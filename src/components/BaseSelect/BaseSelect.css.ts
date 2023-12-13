@@ -53,7 +53,7 @@ export const listStyle = style([
   sprinkles({
     position: "absolute",
     backgroundColor: "default1",
-    boxShadow: "overlay",
+    boxShadow: "defaultOverlay",
     borderColor: "default1",
     borderStyle: "solid",
     borderWidth: 1,

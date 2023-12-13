@@ -3,7 +3,7 @@ import { sprinkles, vars } from "~/theme";
 
 const {
   colors: { background, text },
-  boxShadow: { interactiveDefaultFocused },
+  boxShadow: { defaultFocused },
 } = vars;
 
 export const switchParent = recipe({
@@ -34,7 +34,7 @@ export const switchChild = recipe({
         "&[data-state='checked']": {
           backgroundColor: background.default1,
           borderStyle: "none",
-          boxShadow: interactiveDefaultFocused,
+          boxShadow: defaultFocused,
           color: text.default1,
         },
         "&[data-state='unchecked']:hover": {

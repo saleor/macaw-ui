@@ -32,10 +32,10 @@ export const defaultCheckbox = style({
       borderStyle: "solid",
       borderWidth: vars.borderWidth[1],
       borderRadius: vars.borderRadius[1],
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&[data-state="unchecked"]:hover': {
-      boxShadow: vars.boxShadow.interactiveDefaultHovering,
+      boxShadow: vars.boxShadow.defaultHovered,
       borderColor: vars.colors.border.default2,
       backgroundColor: vars.colors.background.default1Hovered,
     },
@@ -51,7 +51,7 @@ export const defaultCheckbox = style({
       backgroundColor: vars.colors.background.default1Pressed,
     },
     '&[data-state="unchecked"]:focus-visible': {
-      boxShadow: vars.boxShadow.interactiveDefaultHovering,
+      boxShadow: vars.boxShadow.defaultHovered,
       borderColor: vars.colors.border.default1,
       backgroundColor: vars.colors.background.default1Focused,
       outline: "none",
@@ -66,12 +66,12 @@ export const defaultCheckbox = style({
     },
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
       backgroundColor: vars.colors.background.accent1,
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
       backgroundColor: vars.colors.background.accent1,
       borderColor: vars.colors.border.accent1,
-      boxShadow: vars.boxShadow.interactiveDefaultHovering,
+      boxShadow: vars.boxShadow.defaultHovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover::after': {
       backgroundColor: vars.colors.background.accent1Hovered,
@@ -79,7 +79,7 @@ export const defaultCheckbox = style({
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
       backgroundColor: vars.colors.background.accent1,
       borderColor: vars.colors.border.accent1,
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active::after': {
       backgroundColor: vars.colors.background.accent1Pressed,
@@ -87,7 +87,7 @@ export const defaultCheckbox = style({
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
       backgroundColor: vars.colors.background.accent1,
       borderColor: vars.colors.border.accent1,
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible::after':
       {
@@ -117,10 +117,10 @@ export const errorCheckbox = style({
       borderStyle: "solid",
       borderWidth: vars.borderWidth[1],
       borderRadius: vars.borderRadius[1],
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&[data-state="unchecked"]:hover': {
-      boxShadow: vars.boxShadow.interactiveDefaultHovering,
+      boxShadow: vars.boxShadow.defaultHovered,
       borderColor: vars.colors.border.critical1,
       backgroundColor: vars.colors.background.critical1Hovered,
     },
@@ -136,7 +136,7 @@ export const errorCheckbox = style({
       backgroundColor: vars.colors.background.default2,
     },
     '&[data-state="unchecked"]:focus-visible': {
-      boxShadow: vars.boxShadow.interactiveDefaultHovering,
+      boxShadow: vars.boxShadow.defaultHovered,
       borderColor: vars.colors.border.critical1,
       backgroundColor: vars.colors.background.critical1Focused,
       outline: "none",
@@ -152,12 +152,12 @@ export const errorCheckbox = style({
     '&:is([data-state="checked"],[data-state="indeterminate"])': {
       backgroundColor: vars.colors.background.critical2,
       borderColor: vars.colors.border.critical1,
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover': {
       backgroundColor: vars.colors.background.critical2,
       borderColor: vars.colors.border.critical1,
-      boxShadow: vars.boxShadow.interactiveDefaultHovering,
+      boxShadow: vars.boxShadow.defaultHovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):hover::after': {
       backgroundColor: vars.colors.background.critical1Hovered,
@@ -165,7 +165,7 @@ export const errorCheckbox = style({
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
       backgroundColor: vars.colors.background.critical1,
       borderColor: vars.colors.border.critical1,
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active::after': {
       backgroundColor: vars.colors.background.critical1Pressed,
@@ -173,7 +173,7 @@ export const errorCheckbox = style({
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
       backgroundColor: vars.colors.background.critical1,
       borderColor: vars.colors.border.critical1,
-      boxShadow: vars.boxShadow.interactiveDefaultFocused,
+      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible::after':
       {

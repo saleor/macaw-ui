@@ -29,7 +29,7 @@ export const item = recipe({
   base: [
     sprinkles({
       position: "relative",
-      boxShadow: "interactiveDefaultFocused",
+      boxShadow: "defaultFocused",
       borderColor: "default1",
       cursor: "pointer",
       borderWidth: 1,
