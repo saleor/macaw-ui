@@ -10,7 +10,7 @@ export const content = sprinkles({
   borderRadius: 3,
   typeSize: "bodyEmpSmall",
   color: "default1",
-  boxShadow: "overlay",
+  boxShadow: "defaultOverlay",
 });
 
 export const arrow = style({

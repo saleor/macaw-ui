@@ -25,7 +25,7 @@ export const Primary: Story = {
       <Modal.Content>
         <Box
           backgroundColor="default1"
-          boxShadow="modal"
+          boxShadow="defaultModal"
           __left="50%"
           __top="50%"
           position="fixed"
@@ -59,7 +59,7 @@ export const Controlled = () => {
         <Modal.Content>
           <Box
             backgroundColor="default1"
-            boxShadow="modal"
+            boxShadow="defaultModal"
             __left="50%"
             __top="50%"
             position="fixed"

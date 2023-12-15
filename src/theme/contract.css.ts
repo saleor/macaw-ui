@@ -230,10 +230,10 @@ export const vars = createGlobalThemeContract(
       captionSmall: null,
     },
     boxShadow: {
-      interactiveDefaultFocused: null,
-      interactiveDefaultHovering: null,
-      overlay: null,
-      modal: null,
+      defaultFocused: null,
+      defaultHovered: null,
+      defaultOverlay: null,
+      defaultModal: null,
     },
     borderWidth: {
       0: null,

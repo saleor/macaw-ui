@@ -23,7 +23,7 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
       <Dialog.Content asChild className={showContent}>
         <Box
           backgroundColor="default1"
-          boxShadow="modal"
+          boxShadow="defaultModal"
           top={0}
           left={0}
           height="100%"

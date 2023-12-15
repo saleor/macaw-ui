@@ -83,10 +83,10 @@ export const defaultDark = {
   fontWeight,
   letterSpacing,
   boxShadow: {
-    interactiveDefaultFocused: "0px 1px 1px 0px hsla(0, 0%, 0%, 0.32)",
-    interactiveDefaultHovering: "0px 2px 3px 0px hsla(0, 0%, 0%, 0.28)",
-    overlay: "0px 3px 8px 0px hsla(0, 0%, 0%, 0.24)",
-    modal: "0px 8px 16px 0px hsla(0, 0%, 0%, 0.2)",
+    defaultFocused: "0px 1px 1px 0px hsla(0, 0%, 0%, 0.32)",
+    defaultHovered: "0px 2px 3px 0px hsla(0, 0%, 0%, 0.28)",
+    defaultOverlay: "0px 3px 8px 0px hsla(0, 0%, 0%, 0.24)",
+    defaultModal: "0px 8px 16px 0px hsla(0, 0%, 0%, 0.2)",
   },
   borderWidth,
 };
