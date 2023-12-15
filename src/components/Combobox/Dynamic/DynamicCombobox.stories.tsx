@@ -70,6 +70,7 @@ export const Default = () => {
 
   return (
     <DynamicCombobox
+      __width="200px"
       value={value}
       label="Pick star wars character"
       onChange={(value) => setValue(value)}
@@ -149,7 +150,7 @@ export const WithAdorment = () => {
   );
 };
 
-export const Loding = () => {
+export const Loading = () => {
   const [value, setValue] = useState<Option | null>(null);
 
   return (

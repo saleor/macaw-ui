@@ -56,7 +56,7 @@ export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
           data-macaw-ui-component="Select"
           cursor={disabled ? "not-allowed" : "pointer"}
         >
-          <Box display="flex" flexDirection="column" width="100%">
+          <Box display="flex" flexDirection="column" __width="79%">
             <Box
               as="span"
               className={classNames(
