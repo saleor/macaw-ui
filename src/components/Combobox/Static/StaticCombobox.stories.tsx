@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { Box } from "~/components/Box";
 import { Option } from "~/components/BaseSelect";
+import { Box } from "~/components/Box";
 import { Combobox } from "..";
 
 const options = [
@@ -207,5 +207,28 @@ export const WithAdornment = () => {
         };
       })}
     />
+  );
+};
+
+export const WithEllipsis = () => {
+  const values = [
+    { value: "color-black", label: "Long black label here" },
+    {
+      value: "color-red",
+      label: "Long red label here",
+    },
+  ];
+  const [value, setValue] = useState<Option | null>(values[0]);
+
+  return (
+    <Box __width="200px">
+      <Combobox
+        options={values}
+        value={value}
+        size="large"
+        label="Label"
+        onChange={(value) => setValue(value)}
+      />
+    </Box>
   );
 };

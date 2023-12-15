@@ -59,7 +59,7 @@ export const ComboboxWrapper = forwardRef<
         {...getLabelProps({ htmlFor: id })}
         cursor={disabled ? "not-allowed" : "text"}
       >
-        <Box display="flex" flexDirection="column" width="100%">
+        <Box display="flex" flexDirection="column" __width="79%">
           <Box
             as="span"
             className={classNames(spanRecipe({ typed, size, disabled, error }))}

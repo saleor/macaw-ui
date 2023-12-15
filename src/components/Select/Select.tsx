@@ -112,11 +112,19 @@ const SelectInner = <T extends Option, V extends Option | string>(
         getLabelProps={getLabelProps}
         getToggleButtonProps={getToggleButtonProps}
       >
-        <Box height={getBoxHeight(size)} {...props} ref={ref}>
+        <Box
+          height={getBoxHeight(size)}
+          {...props}
+          ref={ref}
+          whiteSpace="nowrap"
+          overflow="hidden"
+          textOverflow="ellipsis"
+        >
           <Text
             size={size}
             variant="body"
             color={error ? "critical1" : "default1"}
+            title={selectedItem?.label}
           >
             {selectedItem?.label}
           </Text>

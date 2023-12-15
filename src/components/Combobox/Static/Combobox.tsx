@@ -106,7 +106,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         getLabelProps={getLabelProps}
         getToggleButtonProps={getToggleButtonProps}
       >
-        <Box display="flex" alignItems="center">
+        <Box display="flex">
           {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
 
           <Box
@@ -115,6 +115,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             type="text"
             className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
+            alignItems="center"
+            textOverflow="ellipsis"
+            title={isString(value) ? value : value?.label}
             {...props}
             {...getInputProps({
               id,

@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
+import { Box } from "../Box";
 import { Select } from ".";
 
 const options = [
@@ -151,5 +152,28 @@ export const WithStringValue = () => {
       size="large"
       onChange={(value) => setValue(value)}
     />
+  );
+};
+
+export const WithEllipsis = () => {
+  const values = [
+    { value: "color-black", label: "Long black label here" },
+    {
+      value: "color-red",
+      label: "Long red label here",
+    },
+  ];
+  const [value, setValue] = useState("color-black");
+
+  return (
+    <Box __width="200px">
+      <Select
+        options={values}
+        value={value}
+        size="large"
+        label="Label"
+        onChange={(value) => setValue(value)}
+      />
+    </Box>
   );
 };
