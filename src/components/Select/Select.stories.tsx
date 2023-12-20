@@ -177,3 +177,7 @@ export const WithEllipsis = () => {
     </Box>
   );
 };
+
+export const Empty = () => {
+  return <Select options={options} value="" />;
+};

@@ -86,13 +86,15 @@ export const MultiselectWrapper = forwardRef<
           </Box>
         </Box>
 
-        {hasItemsToSelect && (
+        {hasItemsToSelect ? (
           <Adornment
             size={size}
             getToggleButtonProps={getToggleButtonProps}
             renderEndAdornment={renderEndAdornment}
             disabled={disabled}
           />
+        ) : (
+          <Box width={5} height={5} />
         )}
       </Box>
     );
