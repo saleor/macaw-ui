@@ -23,7 +23,7 @@ const meta: Meta<typeof Multiselect> = {
   component: Multiselect,
   args: {
     options,
-    // label: "Pick colors",
+    label: "Pick colors",
     id: "multiselect",
     size: "large",
   },
