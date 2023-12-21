@@ -73,7 +73,7 @@ export const Default = () => {
     <Box __width={300}>
       <DynamicMultiselect
         value={value}
-        // label="Pick a star wars characters"
+        label="Pick a star wars characters"
         onChange={(value) => setValue(value)}
         options={options}
         loading={loading}
