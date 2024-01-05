@@ -3,18 +3,25 @@ import { useState } from "react";
 
 import { Select } from ".";
 <<<<<<< HEAD
+<<<<<<< HEAD
 ||||||| parent of 6f8127c (working version with tanstack)
 =======
 import { Option } from "../BaseSelect";
 >>>>>>> 6f8127c (working version with tanstack)
+||||||| parent of d273d8c (working version with tanstack 1)
+import { Option } from "../BaseSelect";
+=======
+import { Box } from "../Box";
+import { GoogleProductCategories } from "./dataset";
+>>>>>>> d273d8c (working version with tanstack 1)
 
 const options = [
   { value: "color-black", label: "Black" },
   { value: "color-red", label: "Red" },
-  { value: "color-green", label: "Green" },
-  { value: "color-blue", label: "Blue" },
-  { value: "color-orange", label: "Orange" },
-  { value: "color-purple", label: "Purple" },
+  // { value: "color-green", label: "Green" },
+  // { value: "color-blue", label: "Blue" },
+  // { value: "color-orange", label: "Orange" },
+  // { value: "color-purple", label: "Purple" },
 ];
 
 const meta: Meta<typeof Select> = {
@@ -161,20 +168,25 @@ export const WithStringValue = () => {
 
 export const Virtualized = () => {
   const [value, setValue] = useState("");
+  const data = GoogleProductCategories.map((category) => ({
+    value: category.id,
+    label: category.name,
+  }));
 
-  const books: Option[] = [];
-
-  for (let index = 1; index <= 1000; index++) {
-    books.push({ value: `author-${index}`, label: `Author ${index}` });
-  }
+  // const books = Array.from({ length: 1000 }).map((_, index) => ({
+  //   value: `book-${index}`,
+  //   label: `Book ${index}`,
+  // }));
 
   return (
-    <Select
-      options={books}
-      size="large"
-      value={value}
-      label="Pick author"
-      onChange={(value) => setValue(value)}
-    />
+    <Box __width={"1500px"}>
+      <Select
+        options={data}
+        size="large"
+        value={value}
+        label="Pick from data"
+        onChange={(value) => setValue(value)}
+      />
+    </Box>
   );
 };

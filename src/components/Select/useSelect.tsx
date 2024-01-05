@@ -40,9 +40,16 @@ export const useSelect = <T extends Option, V extends string | Option>({
     items: options,
     selectedItem: value ?? null,
     itemToString: (item) => item?.label ?? "",
-    // scrollIntoView: () => {},
-    // onHighlightedIndexChange: ({ highlightedIndex }) =>
-    //   rowVirtualizer.scrollToIndex(highlightedIndex),
+    scrollIntoView: () => {},
+    onHighlightedIndexChange({ highlightedIndex, type }) {
+      if (
+        type !== useDownshiftSelect.stateChangeTypes.ItemMouseMove &&
+        type !== useDownshiftSelect.stateChangeTypes.MenuMouseLeave &&
+        highlightedIndex! >= 0
+      ) {
+        rowVirtualizer.scrollToIndex(highlightedIndex);
+      }
+    },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isString(selectedItem)

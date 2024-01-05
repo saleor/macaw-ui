@@ -50,6 +50,9 @@ dependencies:
   downshift:
     specifier: ^7.6.0
     version: 7.6.0(react@18.2.0)
+  virtua:
+    specifier: ^0.19.2
+    version: 0.19.2(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@commitlint/cli':
@@ -12844,6 +12847,24 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
     dev: true
+
+  /virtua@0.19.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-UhVUKhKqbTCnegjLsFXkCQcRXxgqOB9sA/dBueroRGYGIzD7t19f9XTQ5GFTIivs7Ytd9SSNQQ4zuVQpTGRplg==}
+    peerDependencies:
+      react: '>=16.14.0'
+      react-dom: '>=16.14.0'
+      vue: '>=3.2'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /vite-node@0.28.5(@types/node@18.18.13):
     resolution: {integrity: sha512-LmXb9saMGlrMZbXTvOveJKwMTBTNUH66c8rJnQ0ZPNX+myPEol64+szRzXtV5ORb0Hb/91yq+/D3oERoyAt6LA==}

@@ -81,7 +81,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     count: options.length,
     getScrollElement: () => listRef.current,
     estimateSize: () => 40,
-    overscan: 1,
+    overscan: 25,
   });
 
   const {
@@ -146,35 +146,53 @@ const SelectInner = <T extends Option, V extends Option | string>(
           position="relative"
           display={isOpen && hasItemsToSelect ? "block" : "none"}
           className={listWrapperRecipe({ size })}
-          // __height={`${rowVirtualizer.getTotalSize()}px`}
         >
           <List
             as="ul"
             className={listStyle}
+            position="relative"
             {...getMenuProps({ ref: listRef })}
-            __height={`${rowVirtualizer.getTotalSize()}px`}
-            // position="absolute"
-            // __height="200px"
           >
-            {isOpen &&
-              rowVirtualizer.getVirtualItems().map((virtualItem) => (
-                <List.Item
-                  data-test-id="select-option"
-                  key={`${id}-${options[virtualItem.index].value}-${
-                    virtualItem.index
-                  }`}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item: options[virtualItem.index],
-                    index: virtualItem.index,
-                  })}
-                  active={highlightedIndex === virtualItem.index}
-                >
-                  <Text size={getListTextSize(size)}>
-                    {options[virtualItem.index].label}
-                  </Text>
-                </List.Item>
-              ))}
+            {isOpen && (
+              <>
+                <Box
+                  key="total-size"
+                  role="presentation"
+                  as="li"
+                  style={{
+                    width: "100%",
+                  }}
+                  __height={`${rowVirtualizer.getTotalSize()}px`}
+                />
+                {rowVirtualizer.getVirtualItems().map((virtualItem) => (
+                  <List.Item
+                    data-test-id="select-option"
+                    key={`${id}-${options[virtualItem.index].value}-${
+                      virtualItem.index
+                    }`}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item: options[virtualItem.index],
+                      index: virtualItem.index,
+                    })}
+                    active={highlightedIndex === virtualItem.index}
+                    style={{
+                      transform: `translateY(${virtualItem.start}px)`,
+                      height: `${virtualItem.size}px`,
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                    }}
+                  >
+                    <Text size={getListTextSize(size)}>
+                      {options[virtualItem.index].label}
+                    </Text>
+                  </List.Item>
+                ))}
+                {/* <j/Box> */}
+              </>
+            )}
           </List>
         </Box>
       </Portal>

@@ -61,6 +61,7 @@ export const listStyle = style([
     padding: 1,
     left: 0,
     overflowY: "auto",
+    maxHeight: 52,
     zIndex: "3",
   }),
   {
