@@ -2,7 +2,11 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import { Select } from ".";
-import { Box } from "../Box";
+<<<<<<< HEAD
+||||||| parent of 6f8127c (working version with tanstack)
+=======
+import { Option } from "../BaseSelect";
+>>>>>>> 6f8127c (working version with tanstack)
 
 const options = [
   { value: "color-black", label: "Black" },
@@ -155,50 +159,21 @@ export const WithStringValue = () => {
   );
 };
 
-export const WithEllipsis = () => {
-  const values = [
-    { value: "color-black", label: "Long black label here" },
-    {
-      value: "color-red",
-      label: "Long red label here",
-    },
-  ];
-  const [value, setValue] = useState("color-black");
-
-  return (
-    <Box __width="200px">
-      <Select
-        options={values}
-        value={value}
-        size="large"
-        label="Label"
-        onChange={(value) => setValue(value)}
-      />
-    </Box>
-  );
-};
-
-export const Empty = () => {
-  return <Select options={options} value="" />;
-};
-
-const books = [];
-
-for (let index = 1; index <= 1000; index++) {
-  books.push({ value: `Author ${index}`, label: `Book Number ${index}` });
-}
-
 export const Virtualized = () => {
   const [value, setValue] = useState("");
 
-  console.log(books);
+  const books: Option[] = [];
+
+  for (let index = 1; index <= 1000; index++) {
+    books.push({ value: `author-${index}`, label: `Author ${index}` });
+  }
 
   return (
     <Select
       options={books}
       size="large"
       value={value}
-      label="Pick a book"
+      label="Pick author"
       onChange={(value) => setValue(value)}
     />
   );

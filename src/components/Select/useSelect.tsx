@@ -16,12 +16,14 @@ export const useSelect = <T extends Option, V extends string | Option>({
   onChange,
   onFocus,
   onBlur,
+  rowVirtualizer,
 }: {
   value: T | null | undefined;
   options: T[];
   onChange?: SelectProps<T, V>["onChange"];
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLElement, Element>) => void;
+  rowVirtualizer: any;
 }) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
@@ -38,6 +40,9 @@ export const useSelect = <T extends Option, V extends string | Option>({
     items: options,
     selectedItem: value ?? null,
     itemToString: (item) => item?.label ?? "",
+    // scrollIntoView: () => {},
+    // onHighlightedIndexChange: ({ highlightedIndex }) =>
+    //   rowVirtualizer.scrollToIndex(highlightedIndex),
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isString(selectedItem)

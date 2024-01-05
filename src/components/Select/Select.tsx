@@ -76,7 +76,13 @@ const SelectInner = <T extends Option, V extends Option | string>(
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
 ) => {
-  const parentRef = useRef<any>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const rowVirtualizer = useVirtualizer({
+    count: options.length,
+    getScrollElement: () => listRef.current,
+    estimateSize: () => 40,
+    overscan: 1,
+  });
 
   const {
     active,
@@ -97,15 +103,10 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    rowVirtualizer,
   });
 
   const { refs, floatingStyles } = useFloating();
-
-  const rowVirtualizer = useVirtualizer({
-    count: 10000,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 35,
-  });
 
   return (
     <Box display="flex" flexDirection="column">
@@ -145,12 +146,15 @@ const SelectInner = <T extends Option, V extends Option | string>(
           position="relative"
           display={isOpen && hasItemsToSelect ? "block" : "none"}
           className={listWrapperRecipe({ size })}
+          // __height={`${rowVirtualizer.getTotalSize()}px`}
         >
           <List
             as="ul"
             className={listStyle}
-            // suppress error because of rendering list in portal
-            {...getMenuProps({ ref: parentRef }, { suppressRefError: true })}
+            {...getMenuProps({ ref: listRef })}
+            __height={`${rowVirtualizer.getTotalSize()}px`}
+            // position="absolute"
+            // __height="200px"
           >
             {isOpen &&
               rowVirtualizer.getVirtualItems().map((virtualItem) => (
