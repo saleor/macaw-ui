@@ -196,3 +196,20 @@ export const WithStringAsValues = () => {
     </Box>
   );
 };
+
+export const NoOptions = () => {
+  return (
+    <Box __width={300}>
+      <Multiselect
+        label="Pick colors"
+        size="large"
+        value={[]}
+        onChange={() => undefined}
+        options={[]}
+        locale={{
+          noItems: "No items to select",
+        }}
+      />
+    </Box>
+  );
+};

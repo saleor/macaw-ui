@@ -16,6 +16,7 @@ import {
   listWrapperRecipe,
   LoadingListItem,
   MultiChangeHandler,
+  noItemsStyle,
   Option,
 } from "~/components/BaseSelect";
 
@@ -53,6 +54,7 @@ export type DynamicMultiselectProps<T> = PropsWithBox<
     locale?: {
       loadingText?: string;
       placeholderText?: string;
+      noItems?: string;
     };
     onScrollEnd?: () => void;
   }
@@ -101,6 +103,7 @@ const DynamicMultiselectInner = <T extends Option>(
     showInput,
   } = useMultiselect<T, T>({
     selectedValues: value,
+    showEmptyState: !!locale?.noItems,
     onInputValueChange,
     options,
     onChange,
@@ -194,7 +197,12 @@ const DynamicMultiselectInner = <T extends Option>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+          display={getListDisplayMode({
+            isOpen,
+            loading,
+            hasItemsToSelect,
+            showEmptyState: !!locale?.noItems,
+          })}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -218,6 +226,13 @@ const DynamicMultiselectInner = <T extends Option>(
                   <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
+
+            {isOpen && !loading && !hasItemsToSelect && (
+              <Box className={noItemsStyle}>
+                <Text size="small">{locale?.noItems}</Text>
+              </Box>
+            )}
+
             {loading && (
               <LoadingListItem size={size}>
                 {locale?.loadingText || "Loading"}

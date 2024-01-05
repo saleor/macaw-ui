@@ -14,6 +14,7 @@ import {
   listStyle,
   listWrapperRecipe,
   MultiChangeHandler,
+  noItemsStyle,
   Option,
 } from "~/components/BaseSelect";
 
@@ -47,6 +48,7 @@ export type MultiselectProps<T, V> = PropsWithBox<
     renderEndAdornment?: RenderEndAdornmentType;
     locale?: {
       inputText?: string;
+      noItems?: string;
     };
   }
 > &
@@ -93,6 +95,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     showInput,
   } = useMultiselect({
     selectedValues: value,
+    showEmptyState: !!locale.noItems,
     options,
     onChange,
     onFocus,
@@ -183,7 +186,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={isOpen && hasItemsToSelect ? "block" : "none"}
+          display={isOpen ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -207,6 +210,12 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
                   <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
+
+            {isOpen && !hasItemsToSelect && (
+              <Box className={noItemsStyle}>
+                <Text size="small">{locale.noItems}</Text>
+              </Box>
+            )}
           </List>
         </Box>
       </Portal>

@@ -19,6 +19,7 @@ import {
   listStyle,
   listWrapperRecipe,
   LoadingListItem,
+  noItemsStyle,
   Option,
   SingleChangeHandler,
 } from "../../BaseSelect";
@@ -50,6 +51,7 @@ export type DynamicComboboxProps<T> = PropsWithBox<
     loading?: boolean;
     locale?: {
       loadingText?: string;
+      noItems?: string;
     };
     onScrollEnd?: () => void;
   }
@@ -142,7 +144,12 @@ const DynamicComboboxInner = <T extends Option>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+          display={getListDisplayMode({
+            isOpen,
+            loading,
+            hasItemsToSelect,
+            showEmptyState: !!locale?.noItems,
+          })}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -168,6 +175,13 @@ const DynamicComboboxInner = <T extends Option>(
                   {item?.endAdornment}
                 </List.Item>
               ))}
+
+            {isOpen && !loading && !hasItemsToSelect && (
+              <Box className={noItemsStyle}>
+                <Text size="small">{locale?.noItems}</Text>
+              </Box>
+            )}
+
             {loading && (
               <LoadingListItem size={size}>
                 {locale?.loadingText ?? "Loading"}

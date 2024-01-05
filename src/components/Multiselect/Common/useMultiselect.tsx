@@ -32,6 +32,7 @@ const getItemsFilter = <T extends Option>(
 
 export const useMultiselect = <T extends Option, V extends Option | string>({
   selectedValues,
+  showEmptyState = false,
   options,
   onChange,
   onInputValueChange,
@@ -39,6 +40,7 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
   onBlur,
 }: {
   selectedValues: V[];
+  showEmptyState?: boolean;
   options: T[];
   onChange?: MultiChangeHandler<V>;
   onInputValueChange?: (value: string) => void;
@@ -59,9 +61,10 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
 
   const itemsToSelect = getItemsFilter<T>(selectedItems, inputValue, options);
 
-  const showInput = onInputValueChange
-    ? true
-    : selectedItems.length !== options.length;
+  const showInput =
+    onInputValueChange || showEmptyState
+      ? true
+      : selectedItems.length !== options.length;
 
   const typed = Boolean(selectedItems.length || active);
 

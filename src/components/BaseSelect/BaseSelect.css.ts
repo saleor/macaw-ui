@@ -89,3 +89,10 @@ export const listItemStyle = style([
     borderRadius: listItemBorderRadius,
   },
 ]);
+
+export const noItemsStyle = style({
+  padding: vars.spacing[2],
+  borderRadius: listItemBorderRadius,
+  textAlign: "center",
+  fontStyle: "italic",
+});

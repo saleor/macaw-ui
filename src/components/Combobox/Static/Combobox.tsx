@@ -11,10 +11,12 @@ import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {
   Option,
   SingleChangeHandler,
+  getListDisplayMode,
   getListTextSize,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
+  noItemsStyle,
 } from "~/components/BaseSelect";
 import { classNames, isString } from "~/utils";
 
@@ -43,6 +45,9 @@ export type ComboboxProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V | null>;
     value: V | null;
+    locale?: {
+      noItems?: string;
+    };
   }
 > &
   InputVariants;
@@ -63,6 +68,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
     startAdornment,
     endAdornment,
+    locale,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -132,7 +138,11 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={isOpen && hasItemsToSelect ? "block" : "none"}
+          display={getListDisplayMode({
+            hasItemsToSelect,
+            isOpen,
+            showEmptyState: !!locale?.noItems,
+          })}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -158,6 +168,12 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                   {item?.endAdornment}
                 </List.Item>
               ))}
+
+            {isOpen && !hasItemsToSelect && (
+              <Box className={noItemsStyle}>
+                <Text size="small">{locale?.noItems}</Text>
+              </Box>
+            )}
           </List>
         </Box>
       </Portal>

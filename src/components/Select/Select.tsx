@@ -17,7 +17,9 @@ import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
+  noItemsStyle,
 } from "../BaseSelect";
+import { getListDisplayMode } from "../BaseSelect/helpers";
 
 import { SelectWrapper } from "./SelectWrapper";
 import { useSelect } from "./useSelect";
@@ -41,6 +43,9 @@ export type SelectProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V>;
     value: V | null;
+    locale?: {
+      noItems?: string;
+    };
   }
 > &
   InputVariants;
@@ -70,6 +75,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    locale,
     ...props
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
@@ -133,7 +139,11 @@ const SelectInner = <T extends Option, V extends Option | string>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={isOpen && hasItemsToSelect ? "block" : "none"}
+          display={getListDisplayMode({
+            isOpen,
+            hasItemsToSelect,
+            showEmptyState: !!locale?.noItems,
+          })}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -157,6 +167,12 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
+
+            {isOpen && !hasItemsToSelect && (
+              <Box className={noItemsStyle}>
+                <Text size="small">{locale?.noItems}</Text>
+              </Box>
+            )}
           </List>
         </Box>
       </Portal>

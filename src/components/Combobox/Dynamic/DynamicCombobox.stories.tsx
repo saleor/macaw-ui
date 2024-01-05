@@ -163,3 +163,18 @@ export const Loading = () => {
     />
   );
 };
+
+export const NoOptions = () => {
+  return (
+    <DynamicCombobox
+      __width="200px"
+      value={null}
+      label="Pick star wars character"
+      onChange={() => undefined}
+      options={[]}
+      locale={{
+        noItems: "No items to select",
+      }}
+    />
+  );
+};
