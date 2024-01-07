@@ -126,7 +126,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
             key={`selected-option-${item.value}-${idx}`}
             data-test-id={`selected-option-${item.value}-${idx}`}
             paddingX={1.5}
-            paddingY={0.5}
+            paddingY="px"
             backgroundColor="default1"
             borderColor="default1"
             borderWidth={1}
@@ -140,10 +140,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
               index: idx,
             })}
           >
-            <Text
-              variant="caption"
-              size={size === "small" ? "small" : "medium"}
-            >
+            <Text variant="caption" size="small">
               {item.label}
             </Text>
             {!disabled && (
@@ -151,7 +148,6 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
                 cursor="pointer"
                 variant="caption"
                 size="small"
-                marginBottom="px"
                 onClick={(event) => {
                   event.stopPropagation();
                   event.preventDefault();

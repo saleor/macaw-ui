@@ -13,6 +13,7 @@ export interface PopoverContentProps {
   alignOffset?: number;
   avoidCollisions?: boolean;
   onInteractOutside?: () => void;
+  onOpenAutoFocus?: (event: Event) => void;
   children: React.ReactNode;
 }
 

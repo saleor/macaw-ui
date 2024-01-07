@@ -8,7 +8,6 @@ import {
   spacing,
 } from "./common";
 
-// TODO: add note why those colors are null and will be commented out
 export const defaultLight = {
   spacing,
   colors: {

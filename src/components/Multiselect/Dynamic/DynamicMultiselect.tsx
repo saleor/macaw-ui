@@ -137,7 +137,7 @@ const DynamicMultiselectInner = <T extends Option>(
             key={`selected-option-${item.value}-${idx}`}
             data-test-id={`selected-option-${item.value}-${idx}`}
             paddingX={1.5}
-            paddingY={0.5}
+            paddingY="px"
             backgroundColor="default1"
             borderColor="default1"
             borderWidth={1}
@@ -151,10 +151,7 @@ const DynamicMultiselectInner = <T extends Option>(
               index: idx,
             })}
           >
-            <Text
-              variant="caption"
-              size={size === "small" ? "small" : "medium"}
-            >
+            <Text variant="caption" size="small">
               {item.label}
             </Text>
             {!disabled && (
@@ -162,7 +159,6 @@ const DynamicMultiselectInner = <T extends Option>(
                 cursor="pointer"
                 variant="caption"
                 size="small"
-                marginBottom="px"
                 onClick={(event) => {
                   event.stopPropagation();
                   event.preventDefault();

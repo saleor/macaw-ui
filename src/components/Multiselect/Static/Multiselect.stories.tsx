@@ -197,6 +197,10 @@ export const WithStringAsValues = () => {
   );
 };
 
+export const Empty = () => {
+  return <Multiselect options={[]} value={[]} />;
+};
+
 export const NoOptions = () => {
   return (
     <Box __width={300}>
