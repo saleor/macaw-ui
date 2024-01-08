@@ -99,9 +99,13 @@ export const NoOptions = () => {
         label="Pick a star wars characters"
         onChange={() => undefined}
         options={[]}
+        noOptionsComponent={
+          <DynamicMultiselect.NoOptions>
+            No items to select
+          </DynamicMultiselect.NoOptions>
+        }
         locale={{
           placeholderText: "Add character",
-          noItems: "No items to select",
         }}
       />
     </Box>

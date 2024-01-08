@@ -210,9 +210,9 @@ export const NoOptions = () => {
         value={[]}
         onChange={() => undefined}
         options={[]}
-        locale={{
-          noItems: "No items to select",
-        }}
+        noOptionsComponent={
+          <Multiselect.NoOptions>No items to select</Multiselect.NoOptions>
+        }
       />
     </Box>
   );

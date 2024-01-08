@@ -9,6 +9,7 @@ import {
 import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {
+  NoOptions,
   Option,
   SingleChangeHandler,
   getListDisplayMode,
@@ -16,7 +17,6 @@ import {
   listItemStyle,
   listStyle,
   listWrapperRecipe,
-  noItemsStyle,
 } from "~/components/BaseSelect";
 import { classNames, isString } from "~/utils";
 
@@ -42,12 +42,10 @@ export type ComboboxProps<T, V> = PropsWithBox<
     startAdornment?: (inputValue: V | null) => ReactNode;
     endAdornment?: (inputValue: V | null) => ReactNode;
     helperText?: ReactNode;
+    noOptionsComponent?: ReactNode;
     options: T[];
     onChange?: SingleChangeHandler<V | null>;
     value: V | null;
-    locale?: {
-      noItems?: string;
-    };
   }
 > &
   InputVariants;
@@ -68,7 +66,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
     startAdornment,
     endAdornment,
-    locale,
+    noOptionsComponent,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -141,7 +139,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
           display={getListDisplayMode({
             hasItemsToSelect,
             isOpen,
-            showEmptyState: !!locale?.noItems,
+            showEmptyState: !!noOptionsComponent,
           })}
           className={listWrapperRecipe({ size })}
         >
@@ -169,11 +167,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                 </List.Item>
               ))}
 
-            {isOpen && !hasItemsToSelect && (
-              <Box className={noItemsStyle}>
-                <Text size="small">{locale?.noItems}</Text>
-              </Box>
-            )}
+            {isOpen && !hasItemsToSelect && noOptionsComponent}
           </List>
         </Box>
       </Portal>
@@ -187,9 +181,13 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
   );
 };
 
-export const Combobox = forwardRef(ComboboxInner) as <
+const ComboboxRoot = forwardRef(ComboboxInner) as <
   T extends Option,
   V extends Option | string,
 >(
   props: ComboboxProps<T, V> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => ReturnType<typeof ComboboxInner>;
+
+export const Combobox = Object.assign(ComboboxRoot, {
+  NoOptions,
+});

@@ -11,13 +11,13 @@ import { isString } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
+  NoOptions,
   Option,
   SingleChangeHandler,
   getListTextSize,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
-  noItemsStyle,
 } from "../BaseSelect";
 import { getListDisplayMode } from "../BaseSelect/helpers";
 
@@ -43,9 +43,7 @@ export type SelectProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V>;
     value: V | null;
-    locale?: {
-      noItems?: string;
-    };
+    noOptionsComponent?: ReactNode;
   }
 > &
   InputVariants;
@@ -75,7 +73,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
-    locale,
+    noOptionsComponent,
     ...props
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
@@ -142,7 +140,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           display={getListDisplayMode({
             isOpen,
             hasItemsToSelect,
-            showEmptyState: !!locale?.noItems,
+            showEmptyState: !!noOptionsComponent,
           })}
           className={listWrapperRecipe({ size })}
         >
@@ -168,11 +166,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
                 </List.Item>
               ))}
 
-            {isOpen && !hasItemsToSelect && (
-              <Box className={noItemsStyle}>
-                <Text size="small">{locale?.noItems}</Text>
-              </Box>
-            )}
+            {isOpen && !hasItemsToSelect && noOptionsComponent}
           </List>
         </Box>
       </Portal>
@@ -186,9 +180,13 @@ const SelectInner = <T extends Option, V extends Option | string>(
   );
 };
 
-export const Select = forwardRef(SelectInner) as <
+const SelectRoot = forwardRef(SelectInner) as <
   T extends Option,
   V extends Option | string,
 >(
   props: SelectProps<T, V> & { ref?: React.ForwardedRef<HTMLElement> }
 ) => ReturnType<typeof SelectInner>;
+
+export const Select = Object.assign(SelectRoot, {
+  NoOptions,
+});

@@ -14,7 +14,7 @@ import {
   listStyle,
   listWrapperRecipe,
   MultiChangeHandler,
-  noItemsStyle,
+  NoOptions,
   Option,
 } from "~/components/BaseSelect";
 
@@ -46,9 +46,9 @@ export type MultiselectProps<T, V> = PropsWithBox<
     onChange?: MultiChangeHandler<V>;
     value: V[];
     renderEndAdornment?: RenderEndAdornmentType;
+    noOptionsComponent?: ReactNode;
     locale?: {
       inputText?: string;
-      noItems?: string;
     };
   }
 > &
@@ -69,6 +69,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     value = [],
     onFocus,
     onBlur,
+    noOptionsComponent,
     locale = {
       inputText: "Add item",
     },
@@ -95,7 +96,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     showInput,
   } = useMultiselect({
     selectedValues: value,
-    showEmptyState: !!locale.noItems,
+    showEmptyState: !!noOptionsComponent,
     options,
     onChange,
     onFocus,
@@ -207,11 +208,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
                 </List.Item>
               ))}
 
-            {isOpen && !hasItemsToSelect && (
-              <Box className={noItemsStyle}>
-                <Text size="small">{locale.noItems}</Text>
-              </Box>
-            )}
+            {isOpen && !hasItemsToSelect && noOptionsComponent}
           </List>
         </Box>
       </Portal>
@@ -225,9 +222,13 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
   );
 };
 
-export const Multiselect = forwardRef(MultiselectInner) as <
+export const MultiselectRoot = forwardRef(MultiselectInner) as <
   T extends Option,
   V extends Option | string,
 >(
   props: MultiselectProps<T, V> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => ReturnType<typeof MultiselectInner>;
+
+export const Multiselect = Object.assign(MultiselectRoot, {
+  NoOptions,
+});

@@ -242,9 +242,9 @@ export const NoOptions = () => {
         size="large"
         label="Label"
         onChange={() => undefined}
-        locale={{
-          noItems: "No items to select",
-        }}
+        noOptionsComponent={
+          <Combobox.NoOptions>No items to select</Combobox.NoOptions>
+        }
       />
     </Box>
   );
