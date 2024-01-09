@@ -10,10 +10,12 @@ import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   MultiChangeHandler,
+  NoOptions,
   Option,
 } from "~/components/BaseSelect";
 
@@ -45,6 +47,7 @@ export type MultiselectProps<T, V> = PropsWithBox<
     onChange?: MultiChangeHandler<V>;
     value: V[];
     renderEndAdornment?: RenderEndAdornmentType;
+    children?: ReactNode;
     locale?: {
       inputText?: string;
     };
@@ -67,6 +70,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     value = [],
     onFocus,
     onBlur,
+    children,
     locale = {
       inputText: "Add item",
     },
@@ -93,6 +97,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     showInput,
   } = useMultiselect({
     selectedValues: value,
+    showEmptyState: hasNoOptions(children),
     options,
     onChange,
     onFocus,
@@ -179,7 +184,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={isOpen && hasItemsToSelect ? "block" : "none"}
+          display={isOpen ? "block" : "none"}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -203,6 +208,8 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
                   <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
+
+            {isOpen && !hasItemsToSelect && children}
           </List>
         </Box>
       </Portal>
@@ -216,9 +223,13 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
   );
 };
 
-export const Multiselect = forwardRef(MultiselectInner) as <
+export const MultiselectRoot = forwardRef(MultiselectInner) as <
   T extends Option,
   V extends Option | string,
 >(
   props: MultiselectProps<T, V> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => ReturnType<typeof MultiselectInner>;
+
+export const Multiselect = Object.assign(MultiselectRoot, {
+  NoOptions,
+});

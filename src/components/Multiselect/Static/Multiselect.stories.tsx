@@ -200,3 +200,19 @@ export const WithStringAsValues = () => {
 export const Empty = () => {
   return <Multiselect options={[]} value={[]} />;
 };
+
+export const NoOptions = () => {
+  return (
+    <Box __width={300}>
+      <Multiselect
+        label="Pick colors"
+        size="large"
+        value={[]}
+        onChange={() => undefined}
+        options={[]}
+      >
+        <Multiselect.NoOptions>No items to select</Multiselect.NoOptions>
+      </Multiselect>
+    </Box>
+  );
+};

@@ -232,3 +232,19 @@ export const WithEllipsis = () => {
     </Box>
   );
 };
+
+export const NoOptions = () => {
+  return (
+    <Box __width="200px">
+      <Combobox
+        options={[]}
+        value={null}
+        size="large"
+        label="Label"
+        onChange={() => undefined}
+      >
+        <Combobox.NoOptions>No items to select</Combobox.NoOptions>
+      </Combobox>
+    </Box>
+  );
+};
