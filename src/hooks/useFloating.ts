@@ -1,10 +1,10 @@
 import {
-  useFloating as useFloatingHook,
-  size,
   UseFloatingReturn,
-  flip,
   autoUpdate,
-} from "@floating-ui/react-dom";
+  flip,
+  size,
+  useFloating as useFloatingHook,
+} from "@floating-ui/react";
 
 export const useFloating = (
   zIndexValue = 1

@@ -232,3 +232,24 @@ export const WithEllipsis = () => {
     </Box>
   );
 };
+
+export const Virtualized = () => {
+  const [value, setValue] = useState("");
+
+  const data = Array.from({ length: 1000 }).map((_, index) => ({
+    value: `book-${index}`,
+    label: `Book ${index}`,
+  }));
+
+  return (
+    <Box __minWidth={"500px"}>
+      <Combobox
+        options={data}
+        size="large"
+        value={value}
+        label="Pick book"
+        onChange={(value) => setValue(value!)}
+      />
+    </Box>
+  );
+};

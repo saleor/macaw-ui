@@ -1,4 +1,3 @@
-import { Root as Portal } from "@radix-ui/react-portal";
 import {
   ForwardedRef,
   InputHTMLAttributes,
@@ -6,6 +5,7 @@ import {
   forwardRef,
 } from "react";
 
+import { FloatingPortal } from "@floating-ui/react";
 import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {
@@ -79,6 +79,8 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
+    rowVirtualizer,
+    listRef,
   } = useCombobox({
     selectedItem: isString(value)
       ? options.find((option) => option.value === value)
@@ -129,38 +131,60 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         </Box>
       </ComboboxWrapper>
 
-      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
+      <FloatingPortal>
         <Box
           position="relative"
           display={isOpen && hasItemsToSelect ? "block" : "none"}
           className={listWrapperRecipe({ size })}
+          ref={refs.setFloating}
+          style={floatingStyles}
         >
           <List
             as="ul"
             className={listStyle}
             // suppress error because of rendering list in portal
-            {...getMenuProps({}, { suppressRefError: true })}
+            {...getMenuProps({ ref: listRef }, { suppressRefError: true })}
           >
-            {isOpen &&
-              itemsToSelect?.map((item, index) => (
-                <List.Item
-                  data-test-id="select-option"
-                  key={`${id}-${item.value}-${index}`}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item,
-                    index,
-                  })}
-                  active={highlightedIndex === index}
-                >
-                  {item?.startAdornment}
-                  <Text size={getListTextSize(size)}>{item.label}</Text>
-                  {item?.endAdornment}
-                </List.Item>
-              ))}
+            {isOpen && (
+              <Box
+                key="total-size"
+                role="presentation"
+                width="100%"
+                position="relative"
+                __height={`${rowVirtualizer.getTotalSize()}px`}
+              >
+                {rowVirtualizer.getVirtualItems().map((virtualItem) => (
+                  <List.Item
+                    data-test-id="select-option"
+                    data-index={virtualItem.index}
+                    key={`${id}-${itemsToSelect[virtualItem.index].value}-${
+                      virtualItem.index
+                    }`}
+                    className={listItemStyle}
+                    active={highlightedIndex === virtualItem.index}
+                    __transform={`translateY(${virtualItem.start}px)`}
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    width="100%"
+                    {...getItemProps({
+                      item: itemsToSelect[virtualItem.index],
+                      index: virtualItem.index,
+                      ref: rowVirtualizer.measureElement,
+                    })}
+                  >
+                    {itemsToSelect[virtualItem.index]?.startAdornment}
+                    <Text size={getListTextSize(size)}>
+                      {itemsToSelect[virtualItem.index].label}
+                    </Text>
+                    {itemsToSelect[virtualItem.index]?.endAdornment}
+                  </List.Item>
+                ))}
+              </Box>
+            )}
           </List>
         </Box>
-      </Portal>
+      </FloatingPortal>
 
       {helperText && (
         <HelperText size={size} error={error}>

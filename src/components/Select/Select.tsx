@@ -1,11 +1,9 @@
 import { Root as Portal } from "@radix-ui/react-portal";
-import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   ForwardedRef,
   InputHTMLAttributes,
   ReactNode,
   forwardRef,
-  useRef,
 } from "react";
 
 import { useFloating } from "~/hooks/useFloating";
@@ -76,14 +74,6 @@ const SelectInner = <T extends Option, V extends Option | string>(
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
 ) => {
-  const listRef = useRef<HTMLUListElement>(null);
-  const rowVirtualizer = useVirtualizer({
-    count: options.length,
-    getScrollElement: () => listRef.current,
-    estimateSize: () => 40,
-    overscan: 25,
-  });
-
   const {
     active,
     typed,
@@ -103,7 +93,6 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
-    rowVirtualizer,
   });
 
   const { refs, floatingStyles } = useFloating();
@@ -150,49 +139,24 @@ const SelectInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            position="relative"
-            {...getMenuProps({ ref: listRef })}
+            // suppress error because of rendering list in portal
+            {...getMenuProps({}, { suppressRefError: true })}
           >
-            {isOpen && (
-              <>
-                <Box
-                  key="total-size"
-                  role="presentation"
-                  as="li"
-                  style={{
-                    width: "100%",
-                  }}
-                  __height={`${rowVirtualizer.getTotalSize()}px`}
-                />
-                {rowVirtualizer.getVirtualItems().map((virtualItem) => (
-                  <List.Item
-                    data-test-id="select-option"
-                    key={`${id}-${options[virtualItem.index].value}-${
-                      virtualItem.index
-                    }`}
-                    className={listItemStyle}
-                    {...getItemProps({
-                      item: options[virtualItem.index],
-                      index: virtualItem.index,
-                    })}
-                    active={highlightedIndex === virtualItem.index}
-                    style={{
-                      transform: `translateY(${virtualItem.start}px)`,
-                      height: `${virtualItem.size}px`,
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                    }}
-                  >
-                    <Text size={getListTextSize(size)}>
-                      {options[virtualItem.index].label}
-                    </Text>
-                  </List.Item>
-                ))}
-                {/* <j/Box> */}
-              </>
-            )}
+            {isOpen &&
+              options?.map((item, index) => (
+                <List.Item
+                  data-test-id="select-option"
+                  key={`${id}-${item.value}-${index}`}
+                  className={listItemStyle}
+                  {...getItemProps({
+                    item,
+                    index,
+                  })}
+                  active={highlightedIndex === index}
+                >
+                  <Text size={getListTextSize(size)}>{item.label}</Text>
+                </List.Item>
+              ))}
           </List>
         </Box>
       </Portal>

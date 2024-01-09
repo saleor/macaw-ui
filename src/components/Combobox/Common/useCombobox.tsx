@@ -1,9 +1,10 @@
+import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   GetPropsCommonOptions,
   UseComboboxGetInputPropsOptions,
   useCombobox as useDownshiftCombobox,
 } from "downshift";
-import { FocusEvent, useState } from "react";
+import { FocusEvent, useRef, useState } from "react";
 
 import { Option, SingleChangeHandler } from "~/components/BaseSelect";
 import { isString } from "~/utils";
@@ -44,6 +45,14 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
 
+  const listRef = useRef<HTMLUListElement>(null);
+  const rowVirtualizer = useVirtualizer({
+    count: itemsToSelect.length,
+    getScrollElement: () => listRef.current,
+    estimateSize: () => 40,
+    overscan: 2,
+  });
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -62,6 +71,11 @@ export const useCombobox = <T extends Option, V extends string | Option>({
           ? selectedItem.value
           : selectedItem;
         onChange?.(selectedValue as V);
+      }
+    },
+    onHighlightedIndexChange({ highlightedIndex, type }) {
+      if (type !== useDownshiftCombobox.stateChangeTypes.MenuMouseLeave) {
+        rowVirtualizer.scrollToIndex(highlightedIndex ?? 0);
       }
     },
     onStateChange: ({ inputValue: newInputValue, type }) => {
@@ -107,5 +121,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     highlightedIndex,
     getItemProps,
     hasItemsToSelect: itemsToSelect.length > 0,
+    rowVirtualizer,
+    listRef,
   };
 };

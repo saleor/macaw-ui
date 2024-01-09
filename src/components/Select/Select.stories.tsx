@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
+<<<<<<< HEAD
 import { Select } from ".";
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -11,17 +12,27 @@ import { Option } from "../BaseSelect";
 ||||||| parent of d273d8c (working version with tanstack 1)
 import { Option } from "../BaseSelect";
 =======
+||||||| parent of 86cbf68 (push last changes)
+import { Select } from ".";
+=======
+>>>>>>> 86cbf68 (push last changes)
 import { Box } from "../Box";
+<<<<<<< HEAD
 import { GoogleProductCategories } from "./dataset";
 >>>>>>> d273d8c (working version with tanstack 1)
+||||||| parent of 86cbf68 (push last changes)
+import { GoogleProductCategories } from "./dataset";
+=======
+import { Select } from ".";
+>>>>>>> 86cbf68 (push last changes)
 
 const options = [
   { value: "color-black", label: "Black" },
   { value: "color-red", label: "Red" },
-  // { value: "color-green", label: "Green" },
-  // { value: "color-blue", label: "Blue" },
-  // { value: "color-orange", label: "Orange" },
-  // { value: "color-purple", label: "Purple" },
+  { value: "color-green", label: "Green" },
+  { value: "color-blue", label: "Blue" },
+  { value: "color-orange", label: "Orange" },
+  { value: "color-purple", label: "Purple" },
 ];
 
 const meta: Meta<typeof Select> = {
@@ -166,27 +177,29 @@ export const WithStringValue = () => {
   );
 };
 
-export const Virtualized = () => {
-  const [value, setValue] = useState("");
-  const data = GoogleProductCategories.map((category) => ({
-    value: category.id,
-    label: category.name,
-  }));
-
-  // const books = Array.from({ length: 1000 }).map((_, index) => ({
-  //   value: `book-${index}`,
-  //   label: `Book ${index}`,
-  // }));
+export const WithEllipsis = () => {
+  const values = [
+    { value: "color-black", label: "Long black label here" },
+    {
+      value: "color-red",
+      label: "Long red label here",
+    },
+  ];
+  const [value, setValue] = useState("color-black");
 
   return (
-    <Box __width={"1500px"}>
+    <Box __width="200px">
       <Select
-        options={data}
-        size="large"
+        options={values}
         value={value}
-        label="Pick from data"
+        size="large"
+        label="Label"
         onChange={(value) => setValue(value)}
       />
     </Box>
   );
+};
+
+export const Empty = () => {
+  return <Select options={options} value="" />;
 };
