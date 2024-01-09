@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Text } from "~/components";
 
-interface NoOptionsProps {
+export interface NoOptionsProps {
   children: ReactNode;
 }
 
