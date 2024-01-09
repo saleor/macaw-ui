@@ -9,9 +9,12 @@ import { FloatingPortal } from "@floating-ui/react";
 import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants, inputRecipe } from "~/components/BaseInput";
 import {
+  NoOptions,
   Option,
   SingleChangeHandler,
+  getListDisplayMode,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -40,6 +43,7 @@ export type ComboboxProps<T, V> = PropsWithBox<
     startAdornment?: (inputValue: V | null) => ReactNode;
     endAdornment?: (inputValue: V | null) => ReactNode;
     helperText?: ReactNode;
+    children?: ReactNode;
     options: T[];
     onChange?: SingleChangeHandler<V | null>;
     value: V | null;
@@ -63,6 +67,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
     startAdornment,
     endAdornment,
+    children,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -134,7 +139,11 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
       <FloatingPortal>
         <Box
           position="relative"
-          display={isOpen && hasItemsToSelect ? "block" : "none"}
+          display={getListDisplayMode({
+            hasItemsToSelect,
+            isOpen,
+            showEmptyState: hasNoOptions(children),
+          })}
           className={listWrapperRecipe({ size })}
           ref={refs.setFloating}
           style={floatingStyles}
@@ -195,9 +204,13 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
   );
 };
 
-export const Combobox = forwardRef(ComboboxInner) as <
+const ComboboxRoot = forwardRef(ComboboxInner) as <
   T extends Option,
   V extends Option | string,
 >(
   props: ComboboxProps<T, V> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => ReturnType<typeof ComboboxInner>;
+
+export const Combobox = Object.assign(ComboboxRoot, {
+  NoOptions,
+});

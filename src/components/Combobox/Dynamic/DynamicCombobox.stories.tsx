@@ -163,3 +163,17 @@ export const Loading = () => {
     />
   );
 };
+
+export const NoOptions = () => {
+  return (
+    <DynamicCombobox
+      __width="200px"
+      value={null}
+      label="Pick star wars character"
+      onChange={() => undefined}
+      options={[]}
+    >
+      <DynamicCombobox.NoOptions>No items to select</DynamicCombobox.NoOptions>
+    </DynamicCombobox>
+  );
+};

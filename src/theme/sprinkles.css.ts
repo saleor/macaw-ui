@@ -141,6 +141,7 @@ const responsiveProperties = defineProperties({
       "100%": "100%",
     },
     fontSize: { ...vars.fontSize, inherit: "inherit" },
+    fontStyle: ["normal", "italic"],
     lineHeight: { ...vars.lineHeight, inherit: "inherit" },
     textAlign: ["center", "left", "right"],
     borderLeftWidth: vars.borderWidth,

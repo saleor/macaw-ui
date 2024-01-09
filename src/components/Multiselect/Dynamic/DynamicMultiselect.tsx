@@ -11,11 +11,13 @@ import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
   getListDisplayMode,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   LoadingListItem,
   MultiChangeHandler,
+  NoOptions,
   Option,
 } from "~/components/BaseSelect";
 
@@ -50,6 +52,7 @@ export type DynamicMultiselectProps<T> = PropsWithBox<
     renderEndAdornment?: RenderEndAdornmentType;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
+    children?: ReactNode;
     locale?: {
       loadingText?: string;
       placeholderText?: string;
@@ -77,6 +80,7 @@ const DynamicMultiselectInner = <T extends Option>(
     onFocus,
     onBlur,
     locale,
+    children,
     onScrollEnd,
     ...props
   }: DynamicMultiselectProps<T>,
@@ -101,6 +105,7 @@ const DynamicMultiselectInner = <T extends Option>(
     showInput,
   } = useMultiselect<T, T>({
     selectedValues: value,
+    showEmptyState: hasNoOptions(children),
     onInputValueChange,
     options,
     onChange,
@@ -190,7 +195,12 @@ const DynamicMultiselectInner = <T extends Option>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+          display={getListDisplayMode({
+            isOpen,
+            loading,
+            hasItemsToSelect,
+            showEmptyState: hasNoOptions(children),
+          })}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -214,6 +224,9 @@ const DynamicMultiselectInner = <T extends Option>(
                   <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
+
+            {isOpen && !loading && !hasItemsToSelect && children}
+
             {loading && (
               <LoadingListItem size={size}>
                 {locale?.loadingText || "Loading"}
@@ -237,10 +250,14 @@ const DynamicMultiselectInner = <T extends Option>(
   );
 };
 
-export const DynamicMultiselect = forwardRef(DynamicMultiselectInner) as <
+const DynamicMultiselectRoot = forwardRef(DynamicMultiselectInner) as <
   T extends Option,
 >(
   props: DynamicMultiselectProps<T> & {
     ref?: React.ForwardedRef<HTMLInputElement>;
   }
 ) => ReturnType<typeof DynamicMultiselectInner>;
+
+export const DynamicMultiselect = Object.assign(DynamicMultiselectRoot, {
+  NoOptions,
+});

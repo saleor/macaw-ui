@@ -181,3 +181,19 @@ export const WithEllipsis = () => {
 export const Empty = () => {
   return <Select options={options} value="" />;
 };
+
+export const NoOptions = () => {
+  return (
+    <Box __width="200px">
+      <Select
+        options={[]}
+        value={null}
+        size="large"
+        label="Label"
+        onChange={() => undefined}
+      >
+        <Select.NoOptions>No items to select</Select.NoOptions>
+      </Select>
+    </Box>
+  );
+};

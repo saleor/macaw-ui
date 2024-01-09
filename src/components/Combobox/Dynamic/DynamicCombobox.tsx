@@ -15,10 +15,12 @@ import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
   getListDisplayMode,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
   LoadingListItem,
+  NoOptions,
   Option,
   SingleChangeHandler,
 } from "../../BaseSelect";
@@ -48,6 +50,7 @@ export type DynamicComboboxProps<T> = PropsWithBox<
     value: T | null;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
+    children?: ReactNode;
     locale?: {
       loadingText?: string;
     };
@@ -73,6 +76,7 @@ const DynamicComboboxInner = <T extends Option>(
     onBlur,
     loading,
     locale,
+    children,
     startAdornment,
     endAdornment,
     onScrollEnd,
@@ -144,7 +148,12 @@ const DynamicComboboxInner = <T extends Option>(
       <FloatingPortal>
         <Box
           position="relative"
-          display={getListDisplayMode({ isOpen, hasItemsToSelect, loading })}
+          display={getListDisplayMode({
+            isOpen,
+            loading,
+            hasItemsToSelect,
+            showEmptyState: hasNoOptions(children),
+          })}
           className={listWrapperRecipe({ size })}
           ref={refs.setFloating}
           style={floatingStyles}
@@ -215,10 +224,14 @@ const DynamicComboboxInner = <T extends Option>(
   );
 };
 
-export const DynamicCombobox = forwardRef(DynamicComboboxInner) as <
+const DynamicComboboxRoot = forwardRef(DynamicComboboxInner) as <
   T extends Option,
 >(
   props: DynamicComboboxProps<T> & {
     ref?: React.ForwardedRef<HTMLInputElement>;
   }
 ) => ReturnType<typeof DynamicComboboxInner>;
+
+export const DynamicCombobox = Object.assign(DynamicComboboxRoot, {
+  NoOptions,
+});

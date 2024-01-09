@@ -1,13 +1,19 @@
 export const getListDisplayMode = ({
   isOpen,
   hasItemsToSelect,
+  showEmptyState,
   loading,
 }: {
   isOpen: boolean;
   hasItemsToSelect: boolean;
+  showEmptyState: boolean;
   loading?: boolean;
 }) => {
   if (isOpen && hasItemsToSelect) {
+    return "block";
+  }
+
+  if (isOpen && showEmptyState) {
     return "block";
   }
 

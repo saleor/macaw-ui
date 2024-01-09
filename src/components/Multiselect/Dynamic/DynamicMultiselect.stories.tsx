@@ -90,3 +90,23 @@ export const Default = () => {
     </Box>
   );
 };
+
+export const NoOptions = () => {
+  return (
+    <Box __width={300}>
+      <DynamicMultiselect
+        value={[]}
+        label="Pick a star wars characters"
+        onChange={() => undefined}
+        options={[]}
+        locale={{
+          placeholderText: "Add character",
+        }}
+      >
+        <DynamicMultiselect.NoOptions>
+          No items to select
+        </DynamicMultiselect.NoOptions>
+      </DynamicMultiselect>
+    </Box>
+  );
+};

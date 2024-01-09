@@ -11,13 +11,16 @@ import { isString } from "~/utils";
 import { Box, List, PropsWithBox, Text } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
+  NoOptions,
   Option,
   SingleChangeHandler,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
 } from "../BaseSelect";
+import { getListDisplayMode } from "../BaseSelect/helpers";
 
 import { SelectWrapper } from "./SelectWrapper";
 import { useSelect } from "./useSelect";
@@ -41,6 +44,7 @@ export type SelectProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V>;
     value: V | null;
+    children?: ReactNode;
   }
 > &
   InputVariants;
@@ -70,6 +74,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    children,
     ...props
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
@@ -133,7 +138,11 @@ const SelectInner = <T extends Option, V extends Option | string>(
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
-          display={isOpen && hasItemsToSelect ? "block" : "none"}
+          display={getListDisplayMode({
+            isOpen,
+            hasItemsToSelect,
+            showEmptyState: hasNoOptions(children),
+          })}
           className={listWrapperRecipe({ size })}
         >
           <List
@@ -157,6 +166,8 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   <Text size={getListTextSize(size)}>{item.label}</Text>
                 </List.Item>
               ))}
+
+            {isOpen && !hasItemsToSelect && children}
           </List>
         </Box>
       </Portal>
@@ -170,9 +181,13 @@ const SelectInner = <T extends Option, V extends Option | string>(
   );
 };
 
-export const Select = forwardRef(SelectInner) as <
+const SelectRoot = forwardRef(SelectInner) as <
   T extends Option,
   V extends Option | string,
 >(
   props: SelectProps<T, V> & { ref?: React.ForwardedRef<HTMLElement> }
 ) => ReturnType<typeof SelectInner>;
+
+export const Select = Object.assign(SelectRoot, {
+  NoOptions,
+});
