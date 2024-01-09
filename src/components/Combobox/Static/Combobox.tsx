@@ -191,6 +191,8 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                 ))}
               </Box>
             )}
+
+            {isOpen && !hasItemsToSelect && children}
           </List>
         </Box>
       </FloatingPortal>

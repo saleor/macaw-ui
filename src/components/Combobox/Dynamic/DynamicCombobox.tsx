@@ -201,6 +201,9 @@ const DynamicComboboxInner = <T extends Option>(
                 ))}
               </Box>
             )}
+
+            {isOpen && !loading && !hasItemsToSelect && children}
+
             {loading && (
               <LoadingListItem size={size}>
                 {locale?.loadingText ?? "Loading"}
