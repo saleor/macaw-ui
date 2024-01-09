@@ -1,30 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-<<<<<<< HEAD
-import { Select } from ".";
-<<<<<<< HEAD
-<<<<<<< HEAD
-||||||| parent of 6f8127c (working version with tanstack)
-=======
-import { Option } from "../BaseSelect";
->>>>>>> 6f8127c (working version with tanstack)
-||||||| parent of d273d8c (working version with tanstack 1)
-import { Option } from "../BaseSelect";
-=======
-||||||| parent of 86cbf68 (push last changes)
-import { Select } from ".";
-=======
->>>>>>> 86cbf68 (push last changes)
 import { Box } from "../Box";
-<<<<<<< HEAD
-import { GoogleProductCategories } from "./dataset";
->>>>>>> d273d8c (working version with tanstack 1)
-||||||| parent of 86cbf68 (push last changes)
-import { GoogleProductCategories } from "./dataset";
-=======
 import { Select } from ".";
->>>>>>> 86cbf68 (push last changes)
 
 const options = [
   { value: "color-black", label: "Black" },
