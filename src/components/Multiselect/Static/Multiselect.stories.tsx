@@ -210,10 +210,9 @@ export const NoOptions = () => {
         value={[]}
         onChange={() => undefined}
         options={[]}
-        noOptionsComponent={
-          <Multiselect.NoOptions>No items to select</Multiselect.NoOptions>
-        }
-      />
+      >
+        <Multiselect.NoOptions>No items to select</Multiselect.NoOptions>
+      </Multiselect>
     </Box>
   );
 };

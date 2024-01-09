@@ -172,11 +172,8 @@ export const NoOptions = () => {
       label="Pick star wars character"
       onChange={() => undefined}
       options={[]}
-      noOptionsComponent={
-        <DynamicCombobox.NoOptions>
-          No items to select
-        </DynamicCombobox.NoOptions>
-      }
-    />
+    >
+      <DynamicCombobox.NoOptions>No items to select</DynamicCombobox.NoOptions>
+    </DynamicCombobox>
   );
 };

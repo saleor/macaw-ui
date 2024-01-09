@@ -15,6 +15,7 @@ import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
   getListDisplayMode,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -49,7 +50,7 @@ export type DynamicComboboxProps<T> = PropsWithBox<
     value: T | null;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
-    noOptionsComponent?: ReactNode;
+    children?: ReactNode;
     locale?: {
       loadingText?: string;
     };
@@ -75,7 +76,7 @@ const DynamicComboboxInner = <T extends Option>(
     onBlur,
     loading,
     locale,
-    noOptionsComponent,
+    children,
     startAdornment,
     endAdornment,
     onScrollEnd,
@@ -149,7 +150,7 @@ const DynamicComboboxInner = <T extends Option>(
             isOpen,
             loading,
             hasItemsToSelect,
-            showEmptyState: !!noOptionsComponent,
+            showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
         >
@@ -177,7 +178,7 @@ const DynamicComboboxInner = <T extends Option>(
                 </List.Item>
               ))}
 
-            {isOpen && !loading && !hasItemsToSelect && noOptionsComponent}
+            {isOpen && !loading && !hasItemsToSelect && children}
 
             {loading && (
               <LoadingListItem size={size}>

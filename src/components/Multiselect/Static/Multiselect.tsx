@@ -10,6 +10,7 @@ import { Box, List, PropsWithBox, Text } from "~/components";
 import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -46,7 +47,7 @@ export type MultiselectProps<T, V> = PropsWithBox<
     onChange?: MultiChangeHandler<V>;
     value: V[];
     renderEndAdornment?: RenderEndAdornmentType;
-    noOptionsComponent?: ReactNode;
+    children?: ReactNode;
     locale?: {
       inputText?: string;
     };
@@ -69,7 +70,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     value = [],
     onFocus,
     onBlur,
-    noOptionsComponent,
+    children,
     locale = {
       inputText: "Add item",
     },
@@ -96,7 +97,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     showInput,
   } = useMultiselect({
     selectedValues: value,
-    showEmptyState: !!noOptionsComponent,
+    showEmptyState: hasNoOptions(children),
     options,
     onChange,
     onFocus,
@@ -208,7 +209,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
                 </List.Item>
               ))}
 
-            {isOpen && !hasItemsToSelect && noOptionsComponent}
+            {isOpen && !hasItemsToSelect && children}
           </List>
         </Box>
       </Portal>

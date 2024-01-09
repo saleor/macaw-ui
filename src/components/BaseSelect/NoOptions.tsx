@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Children, ReactNode, isValidElement } from "react";
 import { Text } from "~/components";
 
 interface NoOptionsProps {
@@ -11,4 +11,16 @@ export const NoOptions = ({ children }: NoOptionsProps) => {
       {children}
     </Text>
   );
+};
+
+export const hasNoOptions = (children: ReactNode): boolean => {
+  let hasNoOptions = false;
+
+  Children.forEach(children, (child) => {
+    if (isValidElement(child) && child.type === NoOptions) {
+      hasNoOptions = true;
+    }
+  });
+
+  return hasNoOptions;
 };

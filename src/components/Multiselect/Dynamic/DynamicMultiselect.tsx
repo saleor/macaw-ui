@@ -11,6 +11,7 @@ import { HelperText, InputVariants } from "~/components/BaseInput";
 import {
   getListDisplayMode,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -51,7 +52,7 @@ export type DynamicMultiselectProps<T> = PropsWithBox<
     renderEndAdornment?: RenderEndAdornmentType;
     onInputValueChange?: (value: string) => void;
     loading?: boolean;
-    noOptionsComponent?: ReactNode;
+    children?: ReactNode;
     locale?: {
       loadingText?: string;
       placeholderText?: string;
@@ -79,7 +80,7 @@ const DynamicMultiselectInner = <T extends Option>(
     onFocus,
     onBlur,
     locale,
-    noOptionsComponent,
+    children,
     onScrollEnd,
     ...props
   }: DynamicMultiselectProps<T>,
@@ -104,7 +105,7 @@ const DynamicMultiselectInner = <T extends Option>(
     showInput,
   } = useMultiselect<T, T>({
     selectedValues: value,
-    showEmptyState: !!noOptionsComponent,
+    showEmptyState: hasNoOptions(children),
     onInputValueChange,
     options,
     onChange,
@@ -198,7 +199,7 @@ const DynamicMultiselectInner = <T extends Option>(
             isOpen,
             loading,
             hasItemsToSelect,
-            showEmptyState: !!noOptionsComponent,
+            showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
         >
@@ -224,7 +225,7 @@ const DynamicMultiselectInner = <T extends Option>(
                 </List.Item>
               ))}
 
-            {isOpen && !loading && !hasItemsToSelect && noOptionsComponent}
+            {isOpen && !loading && !hasItemsToSelect && children}
 
             {loading && (
               <LoadingListItem size={size}>

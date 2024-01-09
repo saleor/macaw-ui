@@ -14,6 +14,7 @@ import {
   SingleChangeHandler,
   getListDisplayMode,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -42,7 +43,7 @@ export type ComboboxProps<T, V> = PropsWithBox<
     startAdornment?: (inputValue: V | null) => ReactNode;
     endAdornment?: (inputValue: V | null) => ReactNode;
     helperText?: ReactNode;
-    noOptionsComponent?: ReactNode;
+    children?: ReactNode;
     options: T[];
     onChange?: SingleChangeHandler<V | null>;
     value: V | null;
@@ -66,7 +67,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
     startAdornment,
     endAdornment,
-    noOptionsComponent,
+    children,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -139,7 +140,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
           display={getListDisplayMode({
             hasItemsToSelect,
             isOpen,
-            showEmptyState: !!noOptionsComponent,
+            showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
         >
@@ -167,7 +168,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                 </List.Item>
               ))}
 
-            {isOpen && !hasItemsToSelect && noOptionsComponent}
+            {isOpen && !hasItemsToSelect && children}
           </List>
         </Box>
       </Portal>

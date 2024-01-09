@@ -15,6 +15,7 @@ import {
   Option,
   SingleChangeHandler,
   getListTextSize,
+  hasNoOptions,
   listItemStyle,
   listStyle,
   listWrapperRecipe,
@@ -43,7 +44,7 @@ export type SelectProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V>;
     value: V | null;
-    noOptionsComponent?: ReactNode;
+    children?: ReactNode;
   }
 > &
   InputVariants;
@@ -73,7 +74,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
-    noOptionsComponent,
+    children,
     ...props
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
@@ -140,7 +141,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           display={getListDisplayMode({
             isOpen,
             hasItemsToSelect,
-            showEmptyState: !!noOptionsComponent,
+            showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
         >
@@ -166,7 +167,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
                 </List.Item>
               ))}
 
-            {isOpen && !hasItemsToSelect && noOptionsComponent}
+            {isOpen && !hasItemsToSelect && children}
           </List>
         </Box>
       </Portal>

@@ -191,10 +191,9 @@ export const NoOptions = () => {
         size="large"
         label="Label"
         onChange={() => undefined}
-        noOptionsComponent={
-          <Select.NoOptions>No items to select</Select.NoOptions>
-        }
-      />
+      >
+        <Select.NoOptions>No items to select</Select.NoOptions>
+      </Select>
     </Box>
   );
 };
