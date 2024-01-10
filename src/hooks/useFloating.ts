@@ -4,7 +4,7 @@ import {
   flip,
   size,
   useFloating as useFloatingHook,
-} from "@floating-ui/react";
+} from "@floating-ui/react-dom";
 
 export const useFloating = (
   zIndexValue = 1
