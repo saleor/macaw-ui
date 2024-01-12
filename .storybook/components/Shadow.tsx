@@ -30,7 +30,7 @@ export const ShadowPresentation = () => {
             </Box>
             <Box
               __boxShadow={entry}
-              borderColor="neutralDefault"
+              borderColor="default1"
               borderWidth={1}
               borderStyle="solid"
               backgroundColor="transparent"

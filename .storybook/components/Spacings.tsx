@@ -18,7 +18,7 @@ export const SpacingsPresentation = () => {
                 <Box __fontSize="14px" __minWidth="100px">
                   <Box
                     display="inline-block"
-                    color="textNeutralPlain"
+                    color="default1"
                     __fontSize="15px"
                   >
                     {key}

@@ -31,7 +31,7 @@ export const BorderRadiusPresentation = () => {
             </Box>
             <Box
               __borderRadius={entry}
-              borderColor="neutralDefault"
+              borderColor="default1"
               borderWidth={1}
               borderStyle="solid"
               backgroundColor="transparent"
