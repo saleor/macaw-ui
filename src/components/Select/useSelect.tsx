@@ -5,19 +5,19 @@ import {
 } from "downshift";
 import { FocusEvent, useState } from "react";
 
-import { isString } from "~/utils";
-
 import { Option } from "../BaseSelect";
 import { SelectProps } from "./Select";
 
 export const useSelect = <T extends Option, V extends string | Option>({
   value,
+  isValuePassedAsString,
   options,
   onChange,
   onFocus,
   onBlur,
 }: {
   value: T | null | undefined;
+  isValuePassedAsString: boolean;
   options: T[];
   onChange?: SelectProps<T, V>["onChange"];
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
@@ -40,7 +40,7 @@ export const useSelect = <T extends Option, V extends string | Option>({
     itemToString: (item) => item?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        const selectedValue = isString(selectedItem)
+        const selectedValue = isValuePassedAsString
           ? selectedItem.value
           : selectedItem;
         onChange?.(selectedValue as V);

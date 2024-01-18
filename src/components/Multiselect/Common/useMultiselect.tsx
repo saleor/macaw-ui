@@ -79,7 +79,7 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
           case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
           case useMultipleSelection.stateChangeTypes
             .FunctionRemoveSelectedItem: {
-            const selected = isStringArray(selectedItems)
+            const selected = isStringArray(selectedValues)
               ? newSelectedItems?.map((item) => item.value)
               : newSelectedItems;
             onChange?.(selected as V[]);
@@ -130,7 +130,7 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
         case useCombobox.stateChangeTypes.ItemClick:
         case useCombobox.stateChangeTypes.InputBlur:
           if (newSelectedItem) {
-            const selected = isStringArray(selectedItems)
+            const selected = isStringArray(selectedValues)
               ? [...selectedItems.map((i) => i.value), newSelectedItem.value]
               : [...selectedItems, newSelectedItem];
             onChange?.(selected as V[]);

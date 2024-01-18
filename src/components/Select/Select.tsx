@@ -79,6 +79,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
 ) => {
+  const isValuePassedAsString = isString(value);
   const {
     active,
     typed,
@@ -91,9 +92,10 @@ const SelectInner = <T extends Option, V extends Option | string>(
     highlightedIndex,
     hasItemsToSelect,
   } = useSelect({
-    value: isString(value)
+    value: isValuePassedAsString
       ? options.find((item) => item.value === value)
       : value,
+    isValuePassedAsString,
     options,
     onChange,
     onFocus,

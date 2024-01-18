@@ -72,6 +72,8 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
+  const isValuePassedAsString = isString(value);
+
   const {
     active,
     typed,
@@ -85,9 +87,10 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     itemsToSelect,
     hasItemsToSelect,
   } = useCombobox({
-    selectedItem: isString(value)
+    selectedItem: isValuePassedAsString
       ? options.find((option) => option.value === value)
       : value,
+    isValuePassedAsString,
     options,
     onChange,
     onFocus,

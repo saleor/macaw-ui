@@ -6,7 +6,6 @@ import {
 import { FocusEvent, useState } from "react";
 
 import { Option, SingleChangeHandler } from "~/components/BaseSelect";
-import { isString } from "~/utils";
 
 const getItemsFilter = <T extends Option>(
   inputValue: string | undefined,
@@ -26,6 +25,7 @@ const getItemsFilter = <T extends Option>(
 export const useCombobox = <T extends Option, V extends string | Option>({
   selectedItem,
   options,
+  isValuePassedAsString,
   onChange,
   onInputValueChange,
   onFocus,
@@ -33,6 +33,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 }: {
   selectedItem: T | null | undefined;
   options: T[];
+  isValuePassedAsString: boolean;
   onChange?: SingleChangeHandler<V | null>;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -58,7 +59,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     selectedItem,
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        const selectedValue = isString(selectedItem)
+        const selectedValue = isValuePassedAsString
           ? selectedItem.value
           : selectedItem;
         onChange?.(selectedValue as V);
