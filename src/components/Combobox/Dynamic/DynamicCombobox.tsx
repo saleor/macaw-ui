@@ -99,6 +99,7 @@ const DynamicComboboxInner = <T extends Option>(
   } = useCombobox({
     selectedItem: value,
     options,
+    isValuePassedAsString: false,
     onChange,
     onInputValueChange,
     onFocus,
