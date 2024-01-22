@@ -139,7 +139,8 @@ const SelectInner = <T extends Option, V extends Option | string>(
         <Box
           position="relative"
           display={getListDisplayMode({
-            isOpen,
+            isOpen: isOpen,
+            disabled,
             hasItemsToSelect,
             showEmptyState: hasNoOptions(children),
           })}

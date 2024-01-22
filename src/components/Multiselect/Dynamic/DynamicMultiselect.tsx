@@ -199,6 +199,7 @@ const DynamicMultiselectInner = <T extends Option>(
             isOpen,
             loading,
             hasItemsToSelect,
+            disabled,
             showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}

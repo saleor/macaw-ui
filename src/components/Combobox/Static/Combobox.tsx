@@ -138,6 +138,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         <Box
           position="relative"
           display={getListDisplayMode({
+            disabled,
             hasItemsToSelect,
             isOpen,
             showEmptyState: hasNoOptions(children),
