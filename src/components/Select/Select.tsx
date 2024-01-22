@@ -4,11 +4,12 @@ import {
   InputHTMLAttributes,
   ReactNode,
   forwardRef,
+  useMemo,
 } from "react";
 
 import { useFloating } from "~/hooks/useFloating";
 import { isString } from "~/utils";
-import { Box, List, PropsWithBox, Text } from "..";
+import { Box, List, PropsWithBox, Text, TextProps } from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
   NoOptions,
@@ -104,6 +105,18 @@ const SelectInner = <T extends Option, V extends Option | string>(
 
   const { refs, floatingStyles } = useFloating();
 
+  const labelColor = useMemo((): TextProps["color"] => {
+    if (error) {
+      return "critical1";
+    }
+
+    if (disabled) {
+      return "defaultDisabled";
+    }
+
+    return "default1";
+  }, [disabled, error]);
+
   return (
     <Box display="flex" flexDirection="column">
       <SelectWrapper
@@ -130,7 +143,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           <Text
             size={size}
             variant="body"
-            color={error ? "critical1" : "default1"}
+            color={labelColor}
             title={selectedItem?.label}
           >
             {selectedItem?.label}
@@ -141,7 +154,8 @@ const SelectInner = <T extends Option, V extends Option | string>(
         <Box
           position="relative"
           display={getListDisplayMode({
-            isOpen,
+            isOpen: isOpen,
+            disabled,
             hasItemsToSelect,
             showEmptyState: hasNoOptions(children),
           })}

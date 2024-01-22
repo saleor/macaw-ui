@@ -149,6 +149,7 @@ const DynamicComboboxInner = <T extends Option>(
           position="relative"
           display={getListDisplayMode({
             isOpen,
+            disabled,
             loading,
             hasItemsToSelect,
             showEmptyState: hasNoOptions(children),
