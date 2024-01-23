@@ -47,7 +47,7 @@ export const defaultDark = {
       defaultDisabled: "hsla(211, 32%, 21%, 1)",
       info1: "hsla(215, 100%, 62%, 1)",
       success1: "hsla(173, 100%, 32%, 1)",
-      warning1: "hsla(36, 44%, 50%, 1)",
+      warning1: "hsla(42, 100%, 84%, 1)",
     },
     text: {
       accent1: "hsla(215, 100%, 83%, 1)",
@@ -63,7 +63,7 @@ export const defaultDark = {
       defaultDisabled: "hsla(212, 19%, 39%, 1)",
       info1: "hsla(215, 100%, 83%, 1)",
       success1: "hsla(173, 79%, 62%, 1)",
-      warning1: "hsla(42, 100%, 84%, 1)",
+      warning1: "hsla(36, 44%, 50%, 1)",
     },
     border: {
       accent1: "hsla(215, 100%, 39%, 1)",
@@ -75,6 +75,7 @@ export const defaultDark = {
       default2: "hsla(211, 21%, 39%, 1)",
       info1: "hsla(210, 32%, 25%, 1)",
       success1: "hsl(173, 79%, 62%, 1)",
+      warning1: "hsla(36, 44%, 50%, 1)",
     },
   },
   fontSize,

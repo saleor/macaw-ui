@@ -47,7 +47,7 @@ export const defaultLight = {
       defaultDisabled: "hsla(211, 16%, 94%, 1)",
       info1: "hsla(233, 100%, 91%, 1)",
       success1: "hsla(173, 43%, 80%, 1)",
-      warning1: "hsla(36, 44%, 50%, 1)",
+      warning1: "hsla(42, 100%, 84%, 1)",
     },
     text: {
       accent1: "hsla(234, 96%, 56%, 1)",
@@ -63,7 +63,7 @@ export const defaultLight = {
       defaultDisabled: "hsla(212, 14%, 67%, 1)",
       info1: "hsla(234, 100%, 42%, 1)",
       success1: "hsla(169, 42%, 20%, 1)",
-      warning1: "hsla(42, 100%, 84%, 1)",
+      warning1: "hsla(36, 44%, 50%, 1)",
     },
     border: {
       accent1: "hsla(215, 100%, 74%, 1)",
@@ -75,6 +75,7 @@ export const defaultLight = {
       defaultDisabled: "hsla(210, 15%, 87%, 1)",
       info1: "hsla(234, 100%, 42%, 1)",
       success1: "hsla(173, 97%, 15%, 1)",
+      warning1: "hsla(36, 44%, 50%, 1)",
     },
   },
   fontSize,

@@ -110,7 +110,7 @@ export const vars = createGlobalThemeContract(
         defaultDisabled: null,
         info1: null,
         success1: null,
-        // warning1: null,
+        warning1: null,
       },
     },
     fontSize: {
