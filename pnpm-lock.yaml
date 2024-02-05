@@ -77,8 +77,8 @@ devDependencies:
     specifier: ^7.6.3
     version: 7.6.10(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(vite@5.0.12)
   '@testing-library/jest-dom':
-    specifier: ^5.17.0
-    version: 5.17.0
+    specifier: ^6.4.1
+    version: 6.4.1(vitest@1.2.1)
   '@testing-library/react':
     specifier: ^14.0.0
     version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
@@ -89,8 +89,8 @@ devDependencies:
     specifier: ^18.0.0
     version: 18.2.18
   '@types/testing-library__jest-dom':
-    specifier: ^5.14.9
-    version: 5.14.9
+    specifier: ^6.0.0
+    version: 6.0.0
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.7.5
     version: 6.19.0(@typescript-eslint/parser@6.19.0)(eslint@8.56.0)(typescript@5.3.3)
@@ -4793,7 +4793,7 @@ packages:
     engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
     dependencies:
       '@adobe/css-tools': 4.3.2
-      '@babel/runtime': 7.23.1
+      '@babel/runtime': 7.23.8
       '@types/testing-library__jest-dom': 5.14.9
       aria-query: 5.3.0
       chalk: 3.0.0
@@ -4801,6 +4801,38 @@ packages:
       dom-accessibility-api: 0.5.16
       lodash: 4.17.21
       redent: 3.0.0
+    dev: true
+
+  /@testing-library/jest-dom@6.4.1(vitest@1.2.1):
+    resolution: {integrity: sha512-Z7qMM3J2Zw5H/nC2/5CYx5YcuaD56JmDFKNIozZ89VIo6o6Y9FMhssics4e2madEKYDNEpZz3+glPGz0yWMOag==}
+    engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
+    peerDependencies:
+      '@jest/globals': '>= 28'
+      '@types/bun': latest
+      '@types/jest': '>= 28'
+      jest: '>= 28'
+      vitest: '>= 0.32'
+    peerDependenciesMeta:
+      '@jest/globals':
+        optional: true
+      '@types/bun':
+        optional: true
+      '@types/jest':
+        optional: true
+      jest:
+        optional: true
+      vitest:
+        optional: true
+    dependencies:
+      '@adobe/css-tools': 4.3.2
+      '@babel/runtime': 7.23.8
+      aria-query: 5.3.0
+      chalk: 3.0.0
+      css.escape: 1.5.1
+      dom-accessibility-api: 0.6.3
+      lodash: 4.17.21
+      redent: 3.0.0
+      vitest: 1.2.1(@types/node@18.19.8)(jsdom@23.0.1)
     dev: true
 
   /@testing-library/react@14.1.2(react-dom@18.2.0)(react@18.2.0):
@@ -5095,6 +5127,13 @@ packages:
     resolution: {integrity: sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==}
     dependencies:
       '@types/jest': 29.5.5
+    dev: true
+
+  /@types/testing-library__jest-dom@6.0.0:
+    resolution: {integrity: sha512-bnreXCgus6IIadyHNlN/oI5FfX4dWgvGhOPvpr7zzCYDGAPIfvyIoAozMBINmhmsVuqV0cncejF2y5KC7ScqOg==}
+    deprecated: This is a stub types definition. @testing-library/jest-dom provides its own type definitions, so you do not need this installed.
+    dependencies:
+      '@testing-library/jest-dom': 5.17.0
     dev: true
 
   /@types/unist@2.0.10:
@@ -7098,6 +7137,10 @@ packages:
 
   /dom-accessibility-api@0.5.16:
     resolution: {integrity: sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==}
+    dev: true
+
+  /dom-accessibility-api@0.6.3:
+    resolution: {integrity: sha512-7ZgogeTnjuHbo+ct10G9Ffp0mif17idi0IyWNVA/wcwcm7NPOD/WEHVP3n7n3MhXqxoIYm8d6MuZohYWIZ4T3w==}
     dev: true
 
   /dot-prop@5.3.0:
