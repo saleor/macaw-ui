@@ -47,7 +47,7 @@
     "test": "vitest",
     "dev": "storybook dev -p 6006",
     "dev:docs": "storybook dev -p 6006 --docs",
-    "make-release": "release-it pre",
+    "make-release": "release-it",
     "release": "npm-run-all build make-release",
     "prepare": "is-ci || husky install",
     "chromatic": "chromatic --exit-zero-on-changes"
