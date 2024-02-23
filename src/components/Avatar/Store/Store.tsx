@@ -37,7 +37,11 @@ export const Store = (props: StoreAvatarProps) => {
       data-macaw-ui-component="Avatar.Store"
       {...rest}
     >
-      <Text size={convertSizeToScale(size)} color="buttonDefaultPrimary">
+      <Text
+        size={convertSizeToScale(size)}
+        color="buttonDefaultPrimary"
+        fontWeight="medium"
+      >
         {initials}
       </Text>
     </Box>

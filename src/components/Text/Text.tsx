@@ -23,6 +23,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
       ellipsis,
       color = "default1",
       className,
+      fontWeight = "regular",
       ...rest
     },
     ref
@@ -35,6 +36,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
       margin={0}
       data-macaw-ui-component="Text"
       typeSize={size}
+      fontWeight={fontWeight}
       {...rest}
     >
       {children}
