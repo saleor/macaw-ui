@@ -15,8 +15,4 @@ jobs:
         uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
         with:
           run_install: |
-            - recursive: false
-              args: [--frozen-lockfile]
-
-      - name: Validate PR title
-        run: echo "${{ github.event.pull_request.title }}" | pnpm dlx commitlint --verbose
+            - args: [--frozen-lockfile]

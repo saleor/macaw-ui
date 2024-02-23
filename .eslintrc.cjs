@@ -71,7 +71,7 @@ module.exports = {
       },
     ],
   },
-  ignorePatterns: [".eslintrc.cjs", "commitlint.config.cjs", "vite.config.ts"],
+  ignorePatterns: [".eslintrc.cjs", "vite.config.ts"],
   overrides: [
     {
       files: ["*.stories.tsx"],
