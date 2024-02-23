@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Text>;
 
 export const Hero: Story = {
   args: {
-    variant: "hero",
+    size: 11,
     children: "Some text",
   },
 };
@@ -20,48 +20,48 @@ export const Hero: Story = {
 export const Title: Story = {
   args: {
     ...Hero.args,
-    variant: "title",
+    size: 10,
   },
 };
 
 export const Heading: Story = {
   args: {
     ...Hero.args,
-    variant: "heading",
+    size: 9,
   },
 };
 
 export const BodyStrong: Story = {
   args: {
     ...Hero.args,
-    variant: "bodyStrong",
+    size: 8,
   },
 };
 
 export const BodyEmp: Story = {
   args: {
     ...Hero.args,
-    variant: "bodyEmp",
+    size: 7,
   },
 };
 
 export const Body: Story = {
   args: {
     ...Hero.args,
-    variant: "body",
+    size: 5,
   },
 };
 
 export const Button: Story = {
   args: {
     ...Hero.args,
-    variant: "button",
+    size: 4,
   },
 };
 
 export const Caption: Story = {
   args: {
     ...Hero.args,
-    variant: "caption",
+    size: 3,
   },
 };

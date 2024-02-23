@@ -10,7 +10,7 @@ import {
 import { classNames } from "~/utils";
 
 import { useAutoHeightTextarea } from "~/hooks/useAutoHeightTextarea";
-import { Box, PropsWithBox, Text } from "../..";
+import { Box, PropsWithBox, Text, convertSizeToScale } from "../..";
 import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 
 import { TextareaWrapper, useStateEvents } from "./TextareaWrapper";
@@ -112,8 +112,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {helperText && (
           <Box className={helperTextRecipe({ size })}>
             <Text
-              variant="caption"
-              size={size}
+              size={convertSizeToScale(size)}
               color={error ? "critical1" : "default2"}
             >
               {helperText}

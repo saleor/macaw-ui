@@ -142,14 +142,11 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
               index: idx,
             })}
           >
-            <Text variant="caption" size="small">
-              {item.label}
-            </Text>
+            <Text size={1}>{item.label}</Text>
             {!disabled && (
               <Text
                 cursor="pointer"
-                variant="caption"
-                size="small"
+                size={1}
                 onClick={(event) => {
                   event.stopPropagation();
                   event.preventDefault();

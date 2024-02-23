@@ -180,7 +180,7 @@ const responsiveProperties = defineProperties({
     marginX: ["marginLeft", "marginRight"],
     marginY: ["marginTop", "marginBottom"],
     placeItems: ["alignItems", "justifyContent"],
-    typeSize: ["fontSize", "lineHeight", "fontWeight", "letterSpacing"],
+    typeSize: ["fontSize", "lineHeight", "letterSpacing"],
     borderWidth: [
       "borderTopWidth",
       "borderBottomWidth",

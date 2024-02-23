@@ -2,7 +2,7 @@ import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
 
-import { Box, PropsWithBox, Text } from "..";
+import { Box, PropsWithBox, Text, convertSizeToScale } from "..";
 import { InputVariants, helperTextRecipe, inputRecipe } from "../BaseInput";
 
 import { InputWrapper, useStateEvents } from "./InputWrapper";
@@ -112,8 +112,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {helperText && (
           <Box className={helperTextRecipe({ size })}>
             <Text
-              variant="caption"
-              size={size}
+              size={convertSizeToScale(size)}
               color={error ? "critical1" : "default2"}
             >
               {helperText}

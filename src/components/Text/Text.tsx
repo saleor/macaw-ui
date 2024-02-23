@@ -10,6 +10,7 @@ export type TextProps = PropsWithBox<{
   children: ReactNode;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "a" | "strong";
   className?: string;
+  size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 }> &
   TextVariants;
 
@@ -18,29 +19,27 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
     {
       children,
       as = "span",
-      variant,
-      size,
+      size = 4,
       ellipsis,
       color = "default1",
       className,
       ...rest
     },
     ref
-  ) => {
-    return (
-      <Box
-        as={as}
-        className={classNames(text({ variant, size, ellipsis }), className)}
-        color={color}
-        ref={ref}
-        margin={0}
-        data-macaw-ui-component="Text"
-        {...rest}
-      >
-        {children}
-      </Box>
-    );
-  }
+  ) => (
+    <Box
+      as={as}
+      className={classNames(text({ ellipsis }), className)}
+      color={color}
+      ref={ref}
+      margin={0}
+      data-macaw-ui-component="Text"
+      typeSize={size}
+      {...rest}
+    >
+      {children}
+    </Box>
+  )
 );
 
 Text.displayName = "Text";

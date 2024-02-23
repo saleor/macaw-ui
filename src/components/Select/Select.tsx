@@ -9,7 +9,14 @@ import {
 
 import { useFloating } from "~/hooks/useFloating";
 import { isString } from "~/utils";
-import { Box, List, PropsWithBox, Text, TextProps } from "..";
+import {
+  Box,
+  List,
+  PropsWithBox,
+  Text,
+  TextProps,
+  convertSizeToScale,
+} from "..";
 import { HelperText, InputVariants } from "../BaseInput";
 import {
   NoOptions,
@@ -141,8 +148,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           textOverflow="ellipsis"
         >
           <Text
-            size={size}
-            variant="body"
+            size={convertSizeToScale(size)}
             color={labelColor}
             title={selectedItem?.label}
           >

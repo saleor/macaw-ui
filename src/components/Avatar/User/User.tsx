@@ -2,7 +2,7 @@ import { DataAttributes } from "~/components/types";
 import { classNames } from "~/utils";
 
 import { Box, PropsWithBox } from "../../Box";
-import { Text } from "../../Text";
+import { convertSizeToScale, Text } from "../../Text";
 
 import { userAvatar, UserAvatarVariants } from "./User.css";
 
@@ -37,7 +37,7 @@ export const User = (props: UserAvatarProps) => {
       data-macaw-ui-component="Avatar.User"
       {...rest}
     >
-      <Text variant="bodyEmp" size={size} color="buttonDefaultPrimary">
+      <Text size={convertSizeToScale(size)} color="buttonDefaultPrimary">
         {initials}
       </Text>
     </Box>

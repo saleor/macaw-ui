@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Checkbox>;
 export const Primary: Story = {
   args: {
     children: [
-      <Text variant="body">Option 1</Text>, // eslint-disable-line react/jsx-key
+      <Text size={2}>Option 1</Text>, // eslint-disable-line react/jsx-key
     ],
   },
 };
@@ -32,7 +32,7 @@ export const Disabled: Story = {
     disabled: true,
     children: [
       // eslint-disable-next-line react/jsx-key
-      <Text variant="body" color="defaultDisabled">
+      <Text size={2} color="defaultDisabled">
         Option 1
       </Text>,
     ],

@@ -133,7 +133,7 @@ const InputNumberTemplate: Story = {
           type="number"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          endAdornment={<Text variant="caption">USD</Text>}
+          endAdornment={<Text size={1}>USD</Text>}
         />
       </Box>
     );
@@ -156,7 +156,7 @@ export const Number: Story = {
     type="number"
     value={value}
     onChange={(e) => setValue(e.target.value)}
-    endAdornment={<Text variant="caption">USD</Text>}
+    endAdornment={<Text size={1}>USD</Text>}
   />`,
       },
     },
@@ -180,7 +180,7 @@ export const NumberWithLabel: Story = {
     type="number"
     value={value}
     onChange={(e) => setValue(e.target.value)}
-    endAdornment={<Text variant="caption">USD</Text>}
+    endAdornment={<Text size={1}>USD</Text>}
   />`,
       },
     },

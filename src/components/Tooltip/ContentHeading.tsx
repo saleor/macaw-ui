@@ -9,7 +9,7 @@ export const ContentHeading = ({ children }: TooltipContentHeadingProps) => {
   return (
     <Text
       display="block"
-      variant="caption"
+      size={1}
       color="default2"
       marginBottom={0.5}
       data-macaw-ui-component="Tooltip.ContentHeading"

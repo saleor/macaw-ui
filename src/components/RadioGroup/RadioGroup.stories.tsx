@@ -18,10 +18,10 @@ const meta: Meta<typeof RadioGroup> = {
   render: (args) => (
     <RadioGroup {...args}>
       <RadioGroup.Item value="default-unchecked" id="default-unchecked">
-        <Text size={args.size}>Unchecked</Text>
+        <Text size={2}>Unchecked</Text>
       </RadioGroup.Item>
       <RadioGroup.Item value="default-checked" id="default-checked">
-        <Text size={args.size}>Checked</Text>
+        <Text size={2}>Checked</Text>
       </RadioGroup.Item>
     </RadioGroup>
   ),
