@@ -15,7 +15,7 @@ export const Primary: Story = {
   args: {
     children: [
       // eslint-disable-next-line react/jsx-key
-      <Text variant="body">Option 1</Text>,
+      <Text size={2}>Option 1</Text>,
     ],
   },
 };
@@ -25,7 +25,7 @@ export const DefaultPressed: Story = {
     defaultPressed: true,
     children: [
       // eslint-disable-next-line react/jsx-key
-      <Text variant="body">Option 1</Text>,
+      <Text size={2}>Option 1</Text>,
     ],
   },
 };
@@ -35,7 +35,7 @@ export const Disabled: Story = {
     disabled: true,
     children: [
       // eslint-disable-next-line react/jsx-key
-      <Text variant="body">Option 1</Text>,
+      <Text size={2}>Option 1</Text>,
     ],
   },
 };
@@ -46,7 +46,7 @@ export const DisabledAndPressed: Story = {
     pressed: true,
     children: [
       // eslint-disable-next-line react/jsx-key
-      <Text variant="body">Option 1</Text>,
+      <Text size={2}>Option 1</Text>,
     ],
   },
 };

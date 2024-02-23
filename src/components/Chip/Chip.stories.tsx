@@ -21,7 +21,7 @@ export const Primary: Story = {
     <Box display="grid" gridTemplateColumns={2} gap={5}>
       {/* Neutral */}
       <Chip {...props} color="default1" backgroundColor="default1">
-        <Text variant="caption" size="small" color="default1">
+        <Text size={1} color="default1">
           Example
         </Text>
       </Chip>
@@ -32,7 +32,7 @@ export const Primary: Story = {
         backgroundColor="critical1"
         borderColor="critical1"
       >
-        <Text color="critical1" size="small" variant="caption">
+        <Text color="critical1" size={1}>
           Example
         </Text>
       </Chip>
@@ -43,13 +43,13 @@ export const Primary: Story = {
         backgroundColor="success1"
         borderColor="success1"
       >
-        <Text color="success1" size="small" variant="caption">
+        <Text color="success1" size={1}>
           Example
         </Text>
       </Chip>
       {/* Blue */}
       <Chip {...props} backgroundColor="info1" borderColor="info1">
-        <Text color="info1" size="small" variant="caption">
+        <Text color="info1" size={1}>
           Example
         </Text>
       </Chip>

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { List, Spinner, Text } from "~/components";
+import { List, Spinner, Text, convertSizeToScale } from "~/components";
 
 import { listItemStyle } from "../BaseSelect.css";
 
@@ -18,7 +18,7 @@ export const LoadingListItem = ({
     gap={1.5}
     color="default2"
   >
-    <Text size={size} color="default2">
+    <Text size={convertSizeToScale(size)} color="default2">
       {children}
     </Text>
     <Spinner />

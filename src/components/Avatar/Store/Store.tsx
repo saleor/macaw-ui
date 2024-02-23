@@ -2,7 +2,7 @@ import { DataAttributes } from "~/components/types";
 import { classNames } from "~/utils";
 
 import { Box, PropsWithBox } from "../../Box";
-import { Text } from "../../Text";
+import { convertSizeToScale, Text } from "../../Text";
 
 import { storeAvatar, StoreAvatarVariants } from "./Store.css";
 
@@ -37,7 +37,11 @@ export const Store = (props: StoreAvatarProps) => {
       data-macaw-ui-component="Avatar.Store"
       {...rest}
     >
-      <Text variant="bodyEmp" size={size} color="buttonDefaultPrimary">
+      <Text
+        size={convertSizeToScale(size)}
+        color="buttonDefaultPrimary"
+        fontWeight="medium"
+      >
         {initials}
       </Text>
     </Box>

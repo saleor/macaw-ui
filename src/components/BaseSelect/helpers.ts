@@ -37,8 +37,8 @@ export const getListTextSize = (
   switch (size) {
     case "small":
     case "medium":
-      return "medium";
+      return 2;
     case "large":
-      return "large";
+      return 3;
   }
 };

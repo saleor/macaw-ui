@@ -144,13 +144,13 @@ export const spanRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        typeSize: "bodySmall",
+        typeSize: 1,
       }),
       medium: sprinkles({
-        typeSize: "bodyMedium",
+        typeSize: 2,
       }),
       large: sprinkles({
-        typeSize: "bodyLarge",
+        typeSize: 3,
       }),
     },
     disabled: {
@@ -179,8 +179,8 @@ export const inputRecipe = recipe({
     sprinkles({
       width: "100%",
       backgroundColor: "transparent",
-      fontSize: "bodyLarge",
-      lineHeight: "bodyLarge",
+      fontSize: 3,
+      lineHeight: 3,
       borderWidth: 0,
       outlineStyle: "none",
       padding: 0,
@@ -225,16 +225,16 @@ export const inputRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        fontSize: "bodySmall",
-        lineHeight: "captionMedium",
+        fontSize: 1,
+        lineHeight: 1,
       }),
       medium: sprinkles({
-        fontSize: "bodyMedium",
-        lineHeight: "bodySmall",
+        fontSize: 2,
+        lineHeight: 2,
       }),
       large: sprinkles({
-        fontSize: "bodyLarge",
-        lineHeight: "bodyLarge",
+        fontSize: 3,
+        lineHeight: 3,
       }),
     },
     error: {

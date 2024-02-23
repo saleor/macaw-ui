@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Box, Text } from "..";
+import { Box, Text, convertSizeToScale } from "..";
 import { helperTextRecipe } from "./BaseInput.css";
 
 type HelperTextProps = {
@@ -12,8 +12,7 @@ export const HelperText = ({ size, error, children }: HelperTextProps) => {
   return (
     <Box className={helperTextRecipe({ size })}>
       <Text
-        variant="caption"
-        size={size}
+        size={convertSizeToScale(size)}
         color={error ? "critical1" : "default2"}
       >
         {children}
