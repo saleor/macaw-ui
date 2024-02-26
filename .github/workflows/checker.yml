@@ -1,0 +1,31 @@
+name: Changesets
+
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+      - edited
+      - synchronize
+jobs:
+  changeset_check:
+    name: Changeset added to the PR
+    # Adding 'skip changesets' label to the PR will skip this job
+    if: ${{ !contains( github.event.pull_request.labels.*.name, 'skip changeset') || !startsWith(github.head_ref, 'changeset-release/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # check out full history
+          fetch-depth: 0
+      - uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd
+      - run: |
+          echo "head_ref starts: ${{ startsWith(github.head_ref, 'changeset-release/') }}"
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Changeset added
+        run: npx changeset status --since origin/main
