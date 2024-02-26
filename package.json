@@ -79,7 +79,7 @@
     "@vanilla-extract/sprinkles": "^1.6.1",
     "@vanilla-extract/vite-plugin": "^3.9.0",
     "@vitejs/plugin-react": "^4.0.4",
-    "chromatic": "^10.0.0",
+    "chromatic": "^11.0.0",
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.5.5",
