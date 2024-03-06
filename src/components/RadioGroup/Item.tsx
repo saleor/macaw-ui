@@ -3,7 +3,8 @@ import { forwardRef, ReactNode } from "react";
 
 import { Box, PropsWithBox } from "../Box";
 import { DataAttributes } from "../types";
-import { indicator, item } from "./Item.css";
+import { RadioGroupIndicator } from "./Indicator";
+import { item } from "./Item.css";
 
 export type RadioGroupItemProps = PropsWithBox<
   {
@@ -34,16 +35,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
         id={id}
         disabled={disabled}
       >
-        <RadioGroup.Indicator className={indicator({ disabled })} asChild>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="6"
-            height="6"
-            fill="currentColor"
-          >
-            <circle cx="3" cy="3" r="3" fill="currentColor" />
-          </svg>
-        </RadioGroup.Indicator>
+        <RadioGroupIndicator disabled={disabled} asChild />
       </RadioGroup.Item>
       <Box
         as="label"
