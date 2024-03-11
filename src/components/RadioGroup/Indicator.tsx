@@ -1,12 +1,11 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { forwardRef } from "react";
-import { PropsWithBox } from "../Box";
 import { indicator } from "./Item.css";
 
-export type RadioGroupIndicatorProps = PropsWithBox<{
+export interface RadioGroupIndicatorProps {
   disabled?: boolean;
   asChild?: boolean;
-}>;
+}
 
 export const RadioGroupIndicator = forwardRef<
   HTMLDivElement,
