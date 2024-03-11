@@ -13,6 +13,7 @@ Official React UI components kit for [Saleor](https://saleor.io/) — an open-so
 
 ## Installation
 
+
 ```sh
 npm i @saleor/macaw-ui
 ```
