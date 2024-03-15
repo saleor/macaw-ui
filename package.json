@@ -38,6 +38,7 @@
     "pnpm": ">=8"
   },
   "scripts": {
+    "prepublishOnly": "pnpm build",
     "build": "npm-run-all check-types && vite build",
     "bundle-visualizer": "VISUALIZER=true vite build",
     "build-storybook": "storybook build --docs",
@@ -47,8 +48,8 @@
     "test": "vitest",
     "dev": "storybook dev -p 6006",
     "dev:docs": "storybook dev -p 6006 --docs",
-    "publish:ci-prod": "pnpm publish && pnpm exec changeset tag && git push --follow-tags",
-    "publish:ci-dev": "pnpm exec changeset version --snapshot pr && pnpm publish --tag dev --no-git-checks",
+    "publish:ci-prod": "pnpm publish && pnpm changeset tag && git push --follow-tags",
+    "publish:ci-dev": "pnpm changeset version --snapshot pr && pnpm publish --tag dev --no-git-checks",
     "prepare": "is-ci || husky install",
     "chromatic": "chromatic --exit-zero-on-changes"
   },
