@@ -54,7 +54,7 @@ export const dropdownButton = recipe({
         paddingX: 2,
         paddingY: 1,
         fontSize: 1,
-        lineHeight: 1,
+        lineHeight: 2,
         letterSpacing: 1,
         fontWeight: "medium",
         gap: 3,
