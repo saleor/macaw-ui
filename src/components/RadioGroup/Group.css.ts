@@ -17,13 +17,19 @@ export const groupLabelRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        typeSize: 1,
+        fontSize: 1,
+        letterSpacing: 1,
+        lineHeight: 1,
       }),
       medium: sprinkles({
-        typeSize: 2,
+        fontSize: 2,
+        letterSpacing: 2,
+        lineHeight: 2,
       }),
       large: sprinkles({
-        typeSize: 3,
+        fontSize: 3,
+        letterSpacing: 3,
+        lineHeight: 3,
       }),
     },
     disabled: {

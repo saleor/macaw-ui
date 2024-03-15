@@ -8,7 +8,9 @@ export const content = sprinkles({
   backgroundColor: "default1",
   padding: 2,
   borderRadius: 3,
-  typeSize: 1,
+  fontSize: 1,
+  lineHeight: 1,
+  letterSpacing: 1,
   color: "default1",
   boxShadow: "defaultOverlay",
 });
