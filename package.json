@@ -47,7 +47,8 @@
     "test": "vitest",
     "dev": "storybook dev -p 6006",
     "dev:docs": "storybook dev -p 6006 --docs",
-    "publish:ci": "pnpm publish && pnpm exec changeset tag && git push --follow-tags",
+    "publish:ci-prod": "pnpm publish && pnpm exec changeset tag && git push --follow-tags",
+    "publish:ci-dev": "pnpm exec changeset version --snapshot pr && pnpm publish --tag dev --no-git-checks",
     "prepare": "is-ci || husky install",
     "chromatic": "chromatic --exit-zero-on-changes"
   },

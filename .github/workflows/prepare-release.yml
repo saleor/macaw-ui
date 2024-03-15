@@ -24,7 +24,7 @@ jobs:
         with:
           title: Release to npm
           commit: Release to npm
-          publish: "pnpm publish:ci"
+          publish: "pnpm publish:ci-prod"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
