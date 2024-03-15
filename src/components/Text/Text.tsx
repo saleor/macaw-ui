@@ -35,7 +35,9 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>(
       ref={ref}
       margin={0}
       data-macaw-ui-component="Text"
-      typeSize={size}
+      fontSize={size}
+      letterSpacing={size}
+      lineHeight={size}
       fontWeight={fontWeight}
       {...rest}
     >

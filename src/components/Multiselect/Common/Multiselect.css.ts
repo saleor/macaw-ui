@@ -56,13 +56,19 @@ export const multiselectInputRecipe = recipe({
   variants: {
     size: {
       small: sprinkles({
-        typeSize: 1,
+        fontSize: 1,
+        lineHeight: 1,
+        letterSpacing: 1,
       }),
       medium: sprinkles({
-        typeSize: 2,
+        fontSize: 2,
+        lineHeight: 2,
+        letterSpacing: 2,
       }),
       large: sprinkles({
-        typeSize: 2,
+        fontSize: 2,
+        lineHeight: 2,
+        letterSpacing: 2,
       }),
     },
     error: {
