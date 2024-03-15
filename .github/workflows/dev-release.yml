@@ -1,0 +1,48 @@
+name: Release @dev tag to npm
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  release:
+    if: ${{ github.event.label.name == 'release dev tag' }}
+    runs-on: ubuntu-22.04
+    env:
+      HUSKY: 0
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d # v3.0.0
+        with:
+          run_install: |
+            - args: [--frozen-lockfile]
+      - name: Check for changeset
+        run: pnpm exec changeset status --since origin/main
+      - name: Create .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Release on @dev tag in npm
+        run: pnpm publish:ci-dev
+      - name: Get new package version
+        run: |
+          VERSION=$(cat package.json | jq -r '.version')
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+      - name: Add installation instructions PR comment
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
+        env:
+          VERSION: ${{ env.VERSION }}
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Released snapshot build with `@dev` tag in npm with version: `${{ env.VERSION }}`.
+
+            Install it with:
+            ```shell
+            pnpm add @saleor/macaw-ui@${{ env.VERSION }}
+            ```
