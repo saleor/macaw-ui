@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.2
+
+### Patch Changes
+
+- 604c7a0: This change adds bold font weight to button component and lowers bold font weight from 700 to 600.
+
 ## 1.1.1
 
 ### Patch Changes
