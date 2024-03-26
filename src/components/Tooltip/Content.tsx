@@ -1,4 +1,4 @@
-import { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 import {
   Portal as RadixTooltipPortal,
   Content as RadixTooltipContent,
@@ -23,8 +23,8 @@ export const Content = ({
   avoidCollisions = true,
   ...props
 }: TooltipContentProps) => {
-  // Stop showing empty tooltip content when no children or children with empty string
-  if (!showContent(children)) {
+  // Stop showing empty tooltip content when children is null, undefined or empty string
+  if (!children) {
     return null;
   }
 
@@ -44,11 +44,3 @@ export const Content = ({
 };
 
 Content.displayName = "Tooltip.Content";
-
-function showContent(children: ReactNode) {
-  const childrenCount = Children.count(children);
-  const isString = typeof children === "string";
-  const hasEmptyString = isString && children.trim().length === 0;
-
-  return childrenCount > 0 && !hasEmptyString;
-}

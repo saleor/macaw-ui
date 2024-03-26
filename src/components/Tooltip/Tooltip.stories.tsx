@@ -92,7 +92,7 @@ export const WithHeading: Story = {
   },
 };
 
-export const WithEmpty: Story = {
+export const WithNoChildren: Story = {
   args: {
     children: [
       // eslint-disable-next-line react/jsx-key
@@ -100,7 +100,7 @@ export const WithEmpty: Story = {
         <Button>With heading</Button>
       </Tooltip.Trigger>,
       // eslint-disable-next-line react/jsx-key
-      <Tooltip.Content>{""}</Tooltip.Content>,
+      <Tooltip.Content>{null}</Tooltip.Content>,
     ],
   },
 };
