@@ -22,8 +22,6 @@ export const Content = ({
   avoidCollisions = true,
   ...props
 }: TooltipContentProps) => {
-  // Stop showing empty tooltip content when children is null, undefined or empty string
-
   return (
     <RadixTooltipPortal>
       <RadixTooltipContent
