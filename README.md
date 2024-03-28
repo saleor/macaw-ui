@@ -112,6 +112,12 @@ You can run build in watch mode (useful for real-time development with e.g Dashb
 pnpm watch
 ```
 
+When you finish woking, you can add new changeset
+
+```sh
+pnpm change:add
+```
+
 ## License
 
 Distributed under the Creative Common Attribution 4.0 International License
