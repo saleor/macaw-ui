@@ -3,9 +3,7 @@ import {
   Portal as RadixTooltipPortal,
   Content as RadixTooltipContent,
 } from "@radix-ui/react-tooltip";
-// import { classNames } from "~/utils";
-// import { content } from "./Tooltip.css";
-import { vars } from "~/theme";
+import { Box } from "../Box";
 
 export interface TooltipContentProps {
   children: ReactNode;
@@ -24,28 +22,32 @@ export const Content = ({
   avoidCollisions = true,
   ...props
 }: TooltipContentProps) => {
+  // Stop showing empty tooltip content when children is null, undefined or empty string
+
   return (
     <RadixTooltipPortal>
       <RadixTooltipContent
-        className={className}
         asChild
-        style={{
-          borderRadius: vars.borderRadius[1],
-          padding: vars.spacing[2],
-          fontSize: vars.fontSize[1],
-          lineHeight: vars.lineHeight[1],
-          color: vars.colors.text.default1,
-          backgroundColor: vars.colors.background.default1,
-          // boxShadow: vars.boxShadow.defaultModal,
-          boxShadow:
-            "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
-        }}
+        className={className}
         sideOffset={sideOffset}
         avoidCollisions={avoidCollisions}
         data-macaw-ui-component="Tooltip.Content"
         {...props}
       >
-        {children}
+        <Box
+          borderStyle={children ? "solid" : "none"}
+          borderWidth={1}
+          borderRadius={3}
+          borderColor="default1"
+          padding={children ? 2 : 0}
+          fontSize={1}
+          lineHeight={1}
+          color="default1"
+          backgroundColor="default1"
+          boxShadow="defaultOverlay"
+        >
+          {children}
+        </Box>
       </RadixTooltipContent>
     </RadixTooltipPortal>
   );
