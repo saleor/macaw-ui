@@ -91,3 +91,17 @@ export const WithHeading: Story = {
     ],
   },
 };
+
+export const WithoutContent: Story = {
+  args: {
+    open: true,
+    children: [
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Trigger>
+        <Button>With heading</Button>
+      </Tooltip.Trigger>,
+      // eslint-disable-next-line react/jsx-key
+      <Tooltip.Content>{null}</Tooltip.Content>,
+    ],
+  },
+};
