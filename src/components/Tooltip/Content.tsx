@@ -3,8 +3,7 @@ import {
   Portal as RadixTooltipPortal,
   Content as RadixTooltipContent,
 } from "@radix-ui/react-tooltip";
-import { classNames } from "~/utils";
-import { content } from "./Tooltip.css";
+import { Box } from "../Box";
 
 export interface TooltipContentProps {
   children: ReactNode;
@@ -26,13 +25,27 @@ export const Content = ({
   return (
     <RadixTooltipPortal>
       <RadixTooltipContent
-        className={classNames(content, className)}
+        asChild
+        className={className}
         sideOffset={sideOffset}
         avoidCollisions={avoidCollisions}
         data-macaw-ui-component="Tooltip.Content"
         {...props}
       >
-        {children}
+        <Box
+          borderStyle={children ? "solid" : "none"}
+          borderWidth={1}
+          borderRadius={3}
+          borderColor="default1"
+          padding={children ? 2 : 0}
+          fontSize={1}
+          lineHeight={1}
+          color="default1"
+          backgroundColor="default1"
+          boxShadow="defaultOverlay"
+        >
+          {children}
+        </Box>
       </RadixTooltipContent>
     </RadixTooltipPortal>
   );

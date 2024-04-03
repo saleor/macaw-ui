@@ -1,5 +1,5 @@
 {
-  "version": "1.1.2",
+  "version": "1.1.3",
   "license": "CC-BY-4.0",
   "homepage": "https://macaw-ui.vercel.app/",
   "repository": {
@@ -51,7 +51,8 @@
     "publish:ci-prod": "pnpm publish && pnpm changeset tag && git push --follow-tags",
     "publish:ci-dev": "pnpm changeset version --snapshot pr && pnpm publish --tag dev --no-git-checks",
     "prepare": "is-ci || husky install",
-    "chromatic": "chromatic --exit-zero-on-changes"
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "change:add": "changeset add"
   },
   "name": "@saleor/macaw-ui",
   "description": "Saleor's UI component library",
