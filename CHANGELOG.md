@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.3
+
+### Patch Changes
+
+- 52642a5: Prevent Tooltip to show empty content tooltip when there is no children or empty string
+
 ## 1.1.2
 
 ### Patch Changes
