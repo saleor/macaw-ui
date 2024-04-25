@@ -227,6 +227,10 @@ const stateProperties = defineProperties({
   defaultCondition: "default",
   properties: {
     borderColor: { ...vars.colors.border, transparent: "transparent" },
+    borderLeftStyle: ["none", "solid"],
+    borderRightStyle: ["none", "solid"],
+    borderTopStyle: ["none", "solid"],
+    borderBottomStyle: ["none", "solid"],
     color: { ...vars.colors.text, inherit: "inherit" },
     backgroundColor: { ...vars.colors.background, transparent: "transparent" },
     pointerEvents: ["none", "auto"],
