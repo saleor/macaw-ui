@@ -236,7 +236,6 @@ const stateProperties = defineProperties({
     paddingRight: vars.spacing,
     paddingTop: vars.spacing,
     paddingBottom: vars.spacing,
-    padding: vars.spacing,
     color: { ...vars.colors.text, inherit: "inherit" },
     backgroundColor: { ...vars.colors.background, transparent: "transparent" },
     pointerEvents: ["none", "auto"],
