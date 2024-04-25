@@ -171,6 +171,7 @@ const responsiveProperties = defineProperties({
     alignSelf: ["auto", "normal", "end", "center", "start"],
     justifySelf: ["auto", "normal", "end", "center", "start"],
     visibility: ["visible", "hidden"],
+    borderCollapse: ["collapse"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -218,6 +219,10 @@ const stateProperties = defineProperties({
     active: { selector: "&:active" },
     disabled: { selector: "&[disabled]" },
     placeholder: { selector: "&::placeholder" },
+    firstChild: { selector: "&:first-child" },
+    lastChild: { selector: "&:last-child" },
+    oddChild: { selector: "&:nth-child(odd)" },
+    evenChild: { selector: "&:nth-child(even)" },
   },
   defaultCondition: "default",
   properties: {
