@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.4
+
+### Patch Changes
+
+- c7b7d19: This change adds border-collapse to sprinkles as well as child selectors
+
 ## 1.1.3
 
 ### Patch Changes
