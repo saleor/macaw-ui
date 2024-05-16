@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.5
+
+### Patch Changes
+
+- 65a8f3f: ID passed to comobobox will now be passed as an attribute to dropdown list wrapper box
+
 ## 1.1.4
 
 ### Patch Changes
