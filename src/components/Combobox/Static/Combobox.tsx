@@ -147,6 +147,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
+          data-portal-for={id}
         >
           <List
             as="ul"

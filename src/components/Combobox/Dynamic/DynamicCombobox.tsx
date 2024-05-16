@@ -155,6 +155,7 @@ const DynamicComboboxInner = <T extends Option>(
             showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
+          data-portal-for={id}
         >
           <List
             as="ul"
