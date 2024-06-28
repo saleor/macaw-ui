@@ -22,6 +22,19 @@ const getItemsFilter = <T extends Option>(
   );
 };
 
+const getHighlightedOptionIndex = <T extends Option>(
+  options: T[],
+  selectedItem: T | null | undefined
+) => {
+  const highlightedOptionIndex = options.findIndex(
+    (item) => item.value === selectedItem?.value
+  );
+
+  if (highlightedOptionIndex === -1) return undefined;
+
+  return highlightedOptionIndex;
+};
+
 export const useCombobox = <T extends Option, V extends string | Option>({
   selectedItem,
   options,
@@ -57,6 +70,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
+    highlightedIndex: getHighlightedOptionIndex(itemsToSelect, selectedItem),
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isValuePassedAsString
