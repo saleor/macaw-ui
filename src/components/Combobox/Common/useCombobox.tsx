@@ -3,7 +3,7 @@ import {
   UseComboboxGetInputPropsOptions,
   useCombobox as useDownshiftCombobox,
 } from "downshift";
-import { FocusEvent, useState } from "react";
+import { FocusEvent, useEffect, useState } from "react";
 
 import { Option, SingleChangeHandler } from "~/components/BaseSelect";
 
@@ -20,19 +20,6 @@ const getItemsFilter = <T extends Option>(
   return options.filter((option) =>
     option.label.toLowerCase().includes(lowerCasedInputValue)
   );
-};
-
-const getHighlightedOptionIndex = <T extends Option>(
-  options: T[],
-  selectedItem: T | null | undefined
-) => {
-  const highlightedOptionIndex = options.findIndex(
-    (item) => item.value === selectedItem?.value
-  );
-
-  if (highlightedOptionIndex === -1) return undefined;
-
-  return highlightedOptionIndex;
 };
 
 export const useCombobox = <T extends Option, V extends string | Option>({
@@ -53,10 +40,29 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
+  const [highlightedIndex, setHighlightedIndex] = useState<number | undefined>(
+    0
+  );
   const [active, setActive] = useState(false);
   const typed = Boolean(selectedItem || active || inputValue);
 
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
+
+  useEffect(() => {
+    // Find hilighted index in items to select base on selected item value
+    // or label. Label is used as fallback when API return  item value as Id
+    const index = itemsToSelect.findIndex(
+      (item) =>
+        item.value === selectedItem?.value ||
+        item.value === selectedItem?.label.toLocaleLowerCase()
+    );
+
+    if (index === -1) {
+      return;
+    }
+
+    setHighlightedIndex(index);
+  }, [itemsToSelect, selectedItem]);
 
   const {
     isOpen,
@@ -64,13 +70,17 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     getLabelProps,
     getMenuProps,
     getInputProps: _getInputProps,
-    highlightedIndex,
     getItemProps,
   } = useDownshiftCombobox({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
-    highlightedIndex: getHighlightedOptionIndex(itemsToSelect, selectedItem),
+    highlightedIndex,
+    onHighlightedIndexChange: ({ highlightedIndex }) => {
+      if (highlightedIndex === -1) return;
+
+      setHighlightedIndex(highlightedIndex);
+    },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isValuePassedAsString
