@@ -41,7 +41,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [highlightedIndex, setHighlightedIndex] = useState<number | undefined>(
-    0
+    -1
   );
   const [active, setActive] = useState(false);
   const typed = Boolean(selectedItem || active || inputValue);
@@ -50,7 +50,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 
   useEffect(() => {
     // Skip when no selected item
-    if (!selectedItem) {
+    if (!selectedItem || !highlightedIndex || highlightedIndex > -1) {
       return;
     }
 
@@ -63,7 +63,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     );
 
     setHighlightedIndex(index);
-  }, [itemsToSelect, selectedItem]);
+  }, [highlightedIndex, itemsToSelect, selectedItem]);
 
   const {
     isOpen,
