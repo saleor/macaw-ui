@@ -77,7 +77,9 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     selectedItem,
     highlightedIndex,
     onHighlightedIndexChange: ({ highlightedIndex }) => {
-      if (highlightedIndex === -1) return;
+      if (highlightedIndex === -1) {
+        return;
+      }
 
       setHighlightedIndex(highlightedIndex);
     },
