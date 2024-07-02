@@ -49,12 +49,17 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
 
   useEffect(() => {
+    // Skip when no selected item
+    if (!selectedItem) {
+      return;
+    }
+
     // Find hilighted index in items to select base on selected item value
     // or label. Label is used as fallback when API return  item value as Id
     const index = itemsToSelect.findIndex(
       (item) =>
         item.value === selectedItem?.value ||
-        item.value === selectedItem?.label.toLocaleLowerCase()
+        item.value === selectedItem?.label?.toLocaleLowerCase()
     );
 
     if (index === -1) {
