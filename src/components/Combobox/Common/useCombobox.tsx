@@ -85,6 +85,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         const selectedValue = isValuePassedAsString
           ? selectedItem.value
           : selectedItem;
+        setInputValue("");
         onChange?.(selectedValue as V);
       }
     },
