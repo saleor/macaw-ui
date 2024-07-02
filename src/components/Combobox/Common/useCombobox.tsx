@@ -62,10 +62,6 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         item.value === selectedItem?.label?.toLocaleLowerCase()
     );
 
-    if (index === -1) {
-      return;
-    }
-
     setHighlightedIndex(index);
   }, [itemsToSelect, selectedItem]);
 
@@ -82,10 +78,6 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     selectedItem,
     highlightedIndex,
     onHighlightedIndexChange: ({ highlightedIndex }) => {
-      if (highlightedIndex === -1) {
-        return;
-      }
-
       setHighlightedIndex(highlightedIndex);
     },
     onSelectedItemChange: ({ selectedItem }) => {
