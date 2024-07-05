@@ -3,12 +3,15 @@ import {
   UseSelectGetToggleButtonPropsOptions,
   useSelect as useDownshiftSelect,
 } from "downshift";
-import { FocusEvent, useState } from "react";
+import { FocusEvent, ReactNode, useState } from "react";
 
 import { Option } from "../BaseSelect";
 import { SelectProps } from "./Select";
 
-export const useSelect = <T extends Option, V extends string | Option>({
+export const useSelect = <
+  T extends Option<ReactNode>,
+  V extends string | Option,
+>({
   value,
   isValuePassedAsString,
   options,
@@ -37,7 +40,7 @@ export const useSelect = <T extends Option, V extends string | Option>({
   } = useDownshiftSelect({
     items: options,
     selectedItem: value ?? null,
-    itemToString: (item) => item?.label ?? "",
+    itemToString: (item) => item?.value ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isValuePassedAsString

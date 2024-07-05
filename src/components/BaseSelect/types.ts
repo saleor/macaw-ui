@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-export type Option = {
-  label: string;
+export type Option<TLabel = string> = {
+  label: TLabel;
   value: string;
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
