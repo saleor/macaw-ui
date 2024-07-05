@@ -5,7 +5,7 @@ import {
 } from "downshift";
 import { FocusEvent, ReactNode, useState } from "react";
 
-import { Option } from "../BaseSelect";
+import { Option, useSelectHighlightedIndex } from "../BaseSelect";
 import { SelectProps } from "./Select";
 
 export const useSelect = <
@@ -28,18 +28,23 @@ export const useSelect = <
 }) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
+  const { highlightedIndex, onHighlightedIndexChange } =
+    useSelectHighlightedIndex(options, value);
 
   const {
     isOpen,
     getToggleButtonProps: _getToggleButtonProps,
     getLabelProps,
     getMenuProps,
-    highlightedIndex,
     getItemProps,
     selectedItem,
   } = useDownshiftSelect({
     items: options,
     selectedItem: value ?? null,
+    highlightedIndex,
+    onHighlightedIndexChange({ highlightedIndex, type }) {
+      onHighlightedIndexChange(highlightedIndex, type);
+    },
     itemToString: (item) => item?.value ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {

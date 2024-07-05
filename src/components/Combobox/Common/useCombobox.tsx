@@ -3,9 +3,13 @@ import {
   UseComboboxGetInputPropsOptions,
   useCombobox as useDownshiftCombobox,
 } from "downshift";
-import { FocusEvent, useEffect, useState } from "react";
+import { FocusEvent, useState } from "react";
 
-import { Option, SingleChangeHandler } from "~/components/BaseSelect";
+import {
+  Option,
+  SingleChangeHandler,
+  useHighlightedIndex,
+} from "~/components/BaseSelect";
 
 const getItemsFilter = <T extends Option>(
   inputValue: string | undefined,
@@ -40,31 +44,14 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [highlightedIndex, setHighlightedIndex] = useState<number | undefined>(
-    -1
-  );
   const [active, setActive] = useState(false);
   const typed = Boolean(selectedItem || active || inputValue);
 
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
-
-  useEffect(() => {
-    // Skip when no selected item
-    // if (!selectedItem || !highlightedIndex || highlightedIndex > -1) {
-    if (!selectedItem) {
-      return;
-    }
-
-    // Find hilighted index in items to select base on selected item value
-    // or label. Label is used as fallback when API return  item value as Id
-    const index = itemsToSelect.findIndex(
-      (item) =>
-        item.value === selectedItem?.value ||
-        item.value === selectedItem?.label?.toLocaleLowerCase()
-    );
-
-    setHighlightedIndex(index);
-  }, [itemsToSelect, selectedItem]);
+  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
+    itemsToSelect,
+    selectedItem
+  );
 
   const {
     isOpen,
@@ -78,8 +65,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     itemToString: (item) => item?.label ?? "",
     selectedItem,
     highlightedIndex,
-    onHighlightedIndexChange: ({ highlightedIndex }) => {
-      setHighlightedIndex(highlightedIndex);
+    onHighlightedIndexChange: ({ highlightedIndex, type }) => {
+      onHighlightedIndexChange(highlightedIndex, type);
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
