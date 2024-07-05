@@ -50,7 +50,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 
   useEffect(() => {
     // Skip when no selected item
-    if (!selectedItem || !highlightedIndex || highlightedIndex > -1) {
+    // if (!selectedItem || !highlightedIndex || highlightedIndex > -1) {
+    if (!selectedItem) {
       return;
     }
 
@@ -63,7 +64,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     );
 
     setHighlightedIndex(index);
-  }, [highlightedIndex, itemsToSelect, selectedItem]);
+  }, [itemsToSelect, selectedItem]);
 
   const {
     isOpen,
