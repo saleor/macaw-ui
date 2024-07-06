@@ -185,7 +185,9 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   })}
                   active={highlightedIndex === index}
                 >
+                  {item?.startAdornment}
                   <Text size={getListTextSize(size)}>{item.label}</Text>
+                  {item?.endAdornment}
                 </List.Item>
               ))}
 
