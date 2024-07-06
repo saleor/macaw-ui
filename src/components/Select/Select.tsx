@@ -68,7 +68,7 @@ const getBoxHeight = (size: "small" | "medium" | "large") => {
   }
 };
 
-const SelectInner = <T extends Option<ReactNode>, V extends Option | string>(
+const SelectInner = <T extends Option, V extends Option | string>(
   {
     size = "medium",
     disabled = false,
