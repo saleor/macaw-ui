@@ -4,11 +4,11 @@ import {
   useCombobox as useDownshiftCombobox,
   useSelect as useDownshiftSelect,
 } from "downshift";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Option } from "~/components/BaseSelect";
 
-export function useHighlightedIndex<T extends Option<string | ReactNode>>(
+export function useHighlightedIndex<T extends Option>(
   items: T[],
   selectedItem: T | null | undefined
 ): {
@@ -24,9 +24,11 @@ export function useHighlightedIndex<T extends Option<string | ReactNode>>(
   );
 
   // When data from API comes we can calulate intial highlighted index
+  // Or when we change selected item
   useEffect(() => {
     // If we don't have selected item leave highlighted index as -1
     if (!selectedItem) {
+      // setHighlightedIndex(-1);
       return;
     }
 
@@ -40,6 +42,10 @@ export function useHighlightedIndex<T extends Option<string | ReactNode>>(
     type: UseComboboxStateChangeTypes | UseSelectStateChangeTypes
   ) => {
     switch (type) {
+      // Restore highlighted index to -1  when input value is changed and there is no selected item
+      case useDownshiftCombobox.stateChangeTypes.InputChange:
+        setHighlightedIndex(!selectedItem ? -1 : highlightedIndex);
+        break;
       // Restore highlighted index to last selected item when leaving menu
       case useDownshiftCombobox.stateChangeTypes.MenuMouseLeave:
       case useDownshiftSelect.stateChangeTypes.MenuMouseLeave:
@@ -64,7 +70,7 @@ export function useHighlightedIndex<T extends Option<string | ReactNode>>(
   };
 }
 
-function getIndexToHighlight<T extends Option<ReactNode>>(
+function getIndexToHighlight<T extends Option>(
   items: T[],
   selectedItem: T
 ): number {
