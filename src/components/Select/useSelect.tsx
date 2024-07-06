@@ -5,7 +5,7 @@ import {
 } from "downshift";
 import { FocusEvent, ReactNode, useState } from "react";
 
-import { Option, useSelectHighlightedIndex } from "../BaseSelect";
+import { Option, useHighlightedIndex } from "../BaseSelect";
 import { SelectProps } from "./Select";
 
 export const useSelect = <
@@ -28,8 +28,10 @@ export const useSelect = <
 }) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
-  const { highlightedIndex, onHighlightedIndexChange } =
-    useSelectHighlightedIndex(options, value);
+  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
+    options,
+    value
+  );
 
   const {
     isOpen,
