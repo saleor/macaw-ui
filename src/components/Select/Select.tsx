@@ -158,6 +158,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
             size={convertSizeToScale(size)}
             color={labelColor}
             title={selectedItem?.label}
+            width="100%"
           >
             {selectedItem?.label}
           </Text>
@@ -194,7 +195,9 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   active={highlightedIndex === index}
                 >
                   {item?.startAdornment}
-                  <Text size={getListTextSize(size)}>{item.label}</Text>
+                  <Text size={getListTextSize(size)} width="100%">
+                    {item.label}
+                  </Text>
                   {item?.endAdornment}
                 </List.Item>
               ))}
