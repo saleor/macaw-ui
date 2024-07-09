@@ -152,7 +152,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           textOverflow="ellipsis"
           display="flex"
         >
-          {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
+          {startAdornment && typed && startAdornment(value)}
           <Text
             size={convertSizeToScale(size)}
             color={labelColor}
@@ -161,7 +161,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           >
             {selectedItem?.label}
           </Text>
-          {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
+          {endAdornment && typed && endAdornment(value)}
         </Box>
       </SelectWrapper>
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
