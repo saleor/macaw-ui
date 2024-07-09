@@ -47,7 +47,6 @@ export type SelectProps<T, V> = PropsWithBox<
     | "nonce"
   > & {
     label?: ReactNode;
-
     error?: boolean;
     helperText?: ReactNode;
     options: T[];
