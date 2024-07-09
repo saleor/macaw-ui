@@ -47,11 +47,14 @@ export type SelectProps<T, V> = PropsWithBox<
     | "nonce"
   > & {
     label?: ReactNode;
+
     error?: boolean;
     helperText?: ReactNode;
     options: T[];
     onChange?: SingleChangeHandler<V>;
     value: V | null;
+    startAdornment?: (inputValue: V | null) => ReactNode;
+    endAdornment?: (inputValue: V | null) => ReactNode;
     children?: ReactNode;
   }
 > &
@@ -82,6 +85,8 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    startAdornment,
+    endAdornment,
     children,
     ...props
   }: SelectProps<T, V>,
@@ -146,7 +151,9 @@ const SelectInner = <T extends Option, V extends Option | string>(
           whiteSpace="nowrap"
           overflow="hidden"
           textOverflow="ellipsis"
+          display="flex"
         >
+          {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
           <Text
             size={convertSizeToScale(size)}
             color={labelColor}
@@ -154,6 +161,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           >
             {selectedItem?.label}
           </Text>
+          {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
         </Box>
       </SelectWrapper>
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
