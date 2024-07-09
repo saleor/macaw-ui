@@ -52,6 +52,8 @@ export type SelectProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V>;
     value: V | null;
+    startAdornment?: (inputValue: V | null) => ReactNode;
+    endAdornment?: (inputValue: V | null) => ReactNode;
     children?: ReactNode;
   }
 > &
@@ -82,6 +84,8 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    startAdornment,
+    endAdornment,
     children,
     ...props
   }: SelectProps<T, V>,
@@ -146,14 +150,18 @@ const SelectInner = <T extends Option, V extends Option | string>(
           whiteSpace="nowrap"
           overflow="hidden"
           textOverflow="ellipsis"
+          display="flex"
         >
+          {startAdornment && typed && startAdornment(value)}
           <Text
             size={convertSizeToScale(size)}
             color={labelColor}
             title={selectedItem?.label}
+            width="100%"
           >
             {selectedItem?.label}
           </Text>
+          {endAdornment && typed && endAdornment(value)}
         </Box>
       </SelectWrapper>
       <Portal asChild ref={refs.setFloating} style={floatingStyles}>
@@ -185,7 +193,11 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   })}
                   active={highlightedIndex === index}
                 >
-                  <Text size={getListTextSize(size)}>{item.label}</Text>
+                  {item?.startAdornment}
+                  <Text size={getListTextSize(size)} width="100%">
+                    {item.label}
+                  </Text>
+                  {item?.endAdornment}
                 </List.Item>
               ))}
 
