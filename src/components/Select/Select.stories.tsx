@@ -179,6 +179,7 @@ export const WithStartAdornment = () => {
             width={4}
             height={4}
             marginRight={2}
+            __flexShrink={0}
             __backgroundColor={value}
           ></Box>
         );
@@ -194,6 +195,7 @@ export const WithStartAdornment = () => {
               marginRight={2}
               width={4}
               height={4}
+              __flexShrink={0}
             ></Box>
           ),
         };
