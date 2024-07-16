@@ -217,9 +217,15 @@ const DynamicMultiselectInner = <T extends Option>(
                   {...getItemProps({
                     item,
                     index,
+                    disabled: item.disabled,
                   })}
                 >
-                  <Text size={getListTextSize(size)}>{item.label}</Text>
+                  <Text
+                    color={item.disabled ? "defaultDisabled" : undefined}
+                    size={getListTextSize(size)}
+                  >
+                    {item.label}
+                  </Text>
                 </List.Item>
               ))}
 

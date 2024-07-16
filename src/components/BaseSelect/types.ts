@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export type Option = {
   label: string;
   value: string;
+  disabled?: boolean;
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
 };

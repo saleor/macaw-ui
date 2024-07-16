@@ -190,11 +190,16 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   {...getItemProps({
                     item,
                     index,
+                    disabled: item.disabled,
                   })}
                   active={highlightedIndex === index}
                 >
                   {item?.startAdornment}
-                  <Text size={getListTextSize(size)} width="100%">
+                  <Text
+                    color={item.disabled ? "defaultDisabled" : undefined}
+                    size={getListTextSize(size)}
+                    width="100%"
+                  >
                     {item.label}
                   </Text>
                   {item?.endAdornment}
