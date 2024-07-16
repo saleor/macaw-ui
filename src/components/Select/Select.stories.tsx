@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import { Option } from "~/components/BaseSelect";
 
 import { Box } from "../Box";
 import { Select } from ".";
@@ -41,7 +42,11 @@ const SelectTemplate: Story = {
     const [value, setValue] = useState(options[0]);
 
     return (
-      <Select {...args} value={value} onChange={(value) => setValue(value)} />
+      <Select
+        {...args}
+        value={value}
+        onChange={(value) => setValue(value as Option)}
+      />
     );
   },
 };
@@ -151,6 +156,50 @@ export const WithStringValue = () => {
       value={value}
       size="large"
       onChange={(value) => setValue(value)}
+    />
+  );
+};
+
+export const WithStartAdornment = () => {
+  const [value, setValue] = useState("color-black");
+
+  return (
+    <Select
+      label="Pick a color"
+      size="large"
+      value={value}
+      onChange={(value) => setValue(value)}
+      startAdornment={(value) => {
+        if (!value) {
+          return null;
+        }
+
+        return (
+          <Box
+            width={4}
+            height={4}
+            marginRight={2}
+            __flexShrink={0}
+            __backgroundColor={value}
+          ></Box>
+        );
+      }}
+      options={options.map((option) => {
+        const value = option.value.split("color-")[1];
+        return {
+          ...option,
+          value,
+          startAdornment: (
+            <Box
+              __backgroundColor={value}
+              marginRight={2}
+              width={4}
+              height={4}
+              __flexShrink={0}
+            ></Box>
+          ),
+        };
+      })}
     />
   );
 };

@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.6
+
+### Patch Changes
+
+- 9c969e2: You can now see start and end adornment in select input options
+
 ## 1.1.5
 
 ### Patch Changes
