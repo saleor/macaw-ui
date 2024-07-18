@@ -227,6 +227,27 @@ export const WithEllipsis = () => {
   );
 };
 
+export const WithDisabledOption = () => {
+  const values: Option[] = options.map((option) => ({
+    ...option,
+    disabled: option.value === "color-green",
+  }));
+
+  const [value, setValue] = useState("color-black");
+
+  return (
+    <Box __width="200px">
+      <Select
+        options={values}
+        value={value}
+        size="large"
+        label="Label"
+        onChange={(value) => setValue(value)}
+      />
+    </Box>
+  );
+};
+
 export const Empty = () => {
   return <Select options={options} value="" />;
 };

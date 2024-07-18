@@ -164,11 +164,17 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                   {...getItemProps({
                     item,
                     index,
+                    disabled: item.disabled,
                   })}
                   active={highlightedIndex === index}
                 >
                   {item?.startAdornment}
-                  <Text size={getListTextSize(size)}>{item.label}</Text>
+                  <Text
+                    color={item.disabled ? "defaultDisabled" : undefined}
+                    size={getListTextSize(size)}
+                  >
+                    {item.label}
+                  </Text>
                   {item?.endAdornment}
                 </List.Item>
               ))}
