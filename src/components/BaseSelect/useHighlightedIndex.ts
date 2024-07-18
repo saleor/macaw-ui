@@ -28,7 +28,6 @@ export function useHighlightedIndex<T extends Option>(
   useEffect(() => {
     // If we don't have selected item leave highlighted index as -1
     if (!selectedItem) {
-      // setHighlightedIndex(-1);
       return;
     }
 
