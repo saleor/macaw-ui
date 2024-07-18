@@ -18,7 +18,7 @@ export function useHighlightedIndex<T extends Option>(
     type: UseComboboxStateChangeTypes | UseSelectStateChangeTypes
   ) => void;
 } {
-  // Inistiali we don't show any item as highlighted
+  // Initially we don't show any item as highlighted
   const [highlightedIndex, setHighlightedIndex] = useState<number | undefined>(
     -1
   );
