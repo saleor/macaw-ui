@@ -15,7 +15,7 @@ export const Skeleton = ({ className, ...props }: SkeletonProps) => {
       className={classNames(skeleton, className)}
       backgroundColor="default3"
       width="100%"
-      height={1}
+      height={4}
       borderRadius={2}
       {...props}
     />
