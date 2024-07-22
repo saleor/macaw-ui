@@ -5,7 +5,7 @@ import {
 } from "downshift";
 import { FocusEvent, useState } from "react";
 
-import { Option } from "../BaseSelect";
+import { Option, useHighlightedIndex } from "../BaseSelect";
 import { SelectProps } from "./Select";
 
 export const useSelect = <T extends Option, V extends string | Option>({
@@ -25,19 +25,26 @@ export const useSelect = <T extends Option, V extends string | Option>({
 }) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
+  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
+    options,
+    value
+  );
 
   const {
     isOpen,
     getToggleButtonProps: _getToggleButtonProps,
     getLabelProps,
     getMenuProps,
-    highlightedIndex,
     getItemProps,
     selectedItem,
   } = useDownshiftSelect({
     items: options,
     selectedItem: value ?? null,
-    itemToString: (item) => item?.label ?? "",
+    highlightedIndex,
+    onHighlightedIndexChange({ highlightedIndex, type }) {
+      onHighlightedIndexChange(highlightedIndex, type);
+    },
+    itemToString: (item) => item?.value ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isValuePassedAsString

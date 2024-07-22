@@ -5,7 +5,11 @@ import {
 } from "downshift";
 import { FocusEvent, useState } from "react";
 
-import { Option, SingleChangeHandler } from "~/components/BaseSelect";
+import {
+  Option,
+  SingleChangeHandler,
+  useHighlightedIndex,
+} from "~/components/BaseSelect";
 
 const getItemsFilter = <T extends Option>(
   inputValue: string | undefined,
@@ -44,6 +48,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   const typed = Boolean(selectedItem || active || inputValue);
 
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
+  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
+    itemsToSelect,
+    selectedItem
+  );
 
   const {
     isOpen,
@@ -51,17 +59,21 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     getLabelProps,
     getMenuProps,
     getInputProps: _getInputProps,
-    highlightedIndex,
     getItemProps,
   } = useDownshiftCombobox({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
+    highlightedIndex,
+    onHighlightedIndexChange: ({ highlightedIndex, type }) => {
+      onHighlightedIndexChange(highlightedIndex, type);
+    },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isValuePassedAsString
           ? selectedItem.value
           : selectedItem;
+        setInputValue("");
         onChange?.(selectedValue as V);
       }
     },
