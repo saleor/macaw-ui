@@ -1,5 +1,12 @@
 # @saleor/macaw-ui
 
+## 1.1.7
+
+### Patch Changes
+
+- df82ca9: You can now see selected option in combobox dropdown when provided value does not match same referance with options
+- 36a05eb: Skeleton component now by default has same height as text
+
 ## 1.1.6
 
 ### Patch Changes

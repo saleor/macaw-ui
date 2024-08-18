@@ -233,6 +233,26 @@ export const WithEllipsis = () => {
   );
 };
 
+export const WithDisabledOption = () => {
+  const values = options.map((option) => ({
+    ...option,
+    disabled: option.value === "color-green",
+  }));
+  const [value, setValue] = useState<Option | null>(values[0]);
+
+  return (
+    <Box __width="200px">
+      <Combobox
+        options={values}
+        value={value}
+        size="large"
+        label="Label"
+        onChange={(value) => setValue(value)}
+      />
+    </Box>
+  );
+};
+
 export const NoOptions = () => {
   return (
     <Box __width="200px">

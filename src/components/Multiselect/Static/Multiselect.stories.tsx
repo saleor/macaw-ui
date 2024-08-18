@@ -197,6 +197,28 @@ export const WithStringAsValues = () => {
   );
 };
 
+export const WithDisabledOption = () => {
+  const [selectedItems, setSelectedItems] = useState(["Black"]);
+  const values = options.map((option) => {
+    return {
+      ...option,
+      disabled: option.value === "Green",
+    };
+  });
+
+  return (
+    <Box __width={300}>
+      <Multiselect
+        label="Pick colors"
+        size="large"
+        value={selectedItems}
+        onChange={(values) => setSelectedItems(values)}
+        options={values}
+      />
+    </Box>
+  );
+};
+
 export const Empty = () => {
   return <Multiselect options={[]} value={[]} />;
 };
