@@ -1,7 +1,7 @@
 /*
   Do not expose this file, it's for internal purposes only.
 */
-import { UseComboboxPropGetters } from "downshift";
+import { UseSelectPropGetters } from "downshift";
 import { ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
@@ -11,6 +11,7 @@ import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { Option, toggleIconStyle } from "../BaseSelect";
 import { Box } from "../Box";
 import { ArrowDownIcon } from "../Icons";
+import { useSelect } from "./useSelect";
 
 type SelectWrapperProps = LabelVariants & {
   id?: string;
@@ -18,8 +19,8 @@ type SelectWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
-  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
+  getToggleButtonProps: ReturnType<typeof useSelect>["getToggleButtonProps"];
+  getLabelProps: UseSelectPropGetters<Option>["getLabelProps"];
 };
 
 export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
