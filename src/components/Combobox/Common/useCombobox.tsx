@@ -65,8 +65,15 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     itemToString: (item) => item?.label ?? "",
     selectedItem,
     highlightedIndex,
-    onHighlightedIndexChange: ({ highlightedIndex, type }) => {
-      onHighlightedIndexChange(highlightedIndex, type);
+    onHighlightedIndexChange,
+    isItemDisabled: (item) => item.disabled ?? false,
+    onInputValueChange({ inputValue }) {
+      onInputValueChange?.(inputValue ?? "");
+      setInputValue(inputValue ?? "");
+
+      if (!inputValue) {
+        onChange?.(null);
+      }
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
@@ -75,18 +82,6 @@ export const useCombobox = <T extends Option, V extends string | Option>({
           : selectedItem;
         setInputValue("");
         onChange?.(selectedValue as V);
-      }
-    },
-    onStateChange: ({ inputValue: newInputValue, type }) => {
-      switch (type) {
-        case useDownshiftCombobox.stateChangeTypes.InputChange:
-          onInputValueChange?.(newInputValue ?? "");
-          setInputValue(newInputValue ?? "");
-
-          if (!newInputValue) {
-            onChange?.(null);
-          }
-          break;
       }
     },
   });
@@ -103,7 +98,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
       options?: UseComboboxGetInputPropsOptions,
       otherOptions?: GetPropsCommonOptions
     ) =>
-      _getInputProps(
+      _getInputProps<{
+        onFocus: (e: FocusEvent<HTMLInputElement>) => void;
+        onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+      }>(
         {
           onFocus: (e) => {
             onFocus?.(e);

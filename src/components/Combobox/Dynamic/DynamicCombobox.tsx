@@ -1,5 +1,6 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import {
+  FormEventHandler,
   ForwardedRef,
   forwardRef,
   InputHTMLAttributes,
@@ -110,6 +111,11 @@ const DynamicComboboxInner = <T extends Option>(
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
+  const inputProps = getInputProps({
+    id,
+    ref,
+  });
+
   return (
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
@@ -129,16 +135,16 @@ const DynamicComboboxInner = <T extends Option>(
           {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
 
           <Box
-            id={id}
             as="input"
             type="text"
             className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
             {...props}
-            {...getInputProps({
-              id,
-              ref,
-            })}
+            {...inputProps}
+            // There is mismatch between desert box onChange type and downshift on change event
+            onChange={
+              inputProps.onChange as unknown as FormEventHandler<HTMLElement>
+            }
           />
 
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}

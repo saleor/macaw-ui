@@ -1,8 +1,8 @@
 import {
-  UseComboboxStateChangeTypes,
-  UseSelectStateChangeTypes,
   useCombobox as useDownshiftCombobox,
   useSelect as useDownshiftSelect,
+  UseComboboxStateChange,
+  UseSelectStateChange,
 } from "downshift";
 import { useEffect, useState } from "react";
 
@@ -14,8 +14,7 @@ export function useHighlightedIndex<T extends Option>(
 ): {
   highlightedIndex: number | undefined;
   onHighlightedIndexChange: (
-    index: number | undefined,
-    type: UseComboboxStateChangeTypes | UseSelectStateChangeTypes
+    change: UseComboboxStateChange<T> | UseSelectStateChange<T>
   ) => void;
 } {
   // Initially we don't show any item as highlighted
@@ -23,7 +22,7 @@ export function useHighlightedIndex<T extends Option>(
     -1
   );
 
-  // When data from API comes we can calulate intial highlighted index
+  // When data from API comes we can calculate initial highlighted index
   // Or when we change selected item
   useEffect(() => {
     // If we don't have selected item leave highlighted index as -1
@@ -31,15 +30,15 @@ export function useHighlightedIndex<T extends Option>(
       return;
     }
 
-    // Find hilighted index in items to select base on selected item value
+    // Find highlighted index in items to select base on selected item value
     // If there is no match, leave highlighted index as -1
     setHighlightedIndex(getIndexToHighlight(items, selectedItem));
   }, [items, selectedItem]);
 
-  const handleHighlightedIndexChange = (
-    highlightedIndex: number | undefined,
-    type: UseComboboxStateChangeTypes | UseSelectStateChangeTypes
-  ) => {
+  const handleHighlightedIndexChange = ({
+    type,
+    highlightedIndex,
+  }: UseComboboxStateChange<T> | UseSelectStateChange<T>) => {
     switch (type) {
       // Restore highlighted index to -1  when input value is changed and there is no selected item
       case useDownshiftCombobox.stateChangeTypes.InputChange:
@@ -54,12 +53,8 @@ export function useHighlightedIndex<T extends Option>(
             : highlightedIndex
         );
         break;
-      case useDownshiftCombobox.stateChangeTypes.ItemClick:
-      case useDownshiftSelect.stateChangeTypes.ItemClick:
-      case useDownshiftCombobox.stateChangeTypes.ItemMouseMove:
-      case useDownshiftSelect.stateChangeTypes.ItemMouseMove:
+      default:
         setHighlightedIndex(highlightedIndex);
-        break;
     }
   };
 

@@ -4,6 +4,7 @@ import {
   InputHTMLAttributes,
   ReactNode,
   forwardRef,
+  FormEventHandler,
 } from "react";
 
 import { Box, List, PropsWithBox, Text } from "~/components";
@@ -99,6 +100,11 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
 
   const { refs, floatingStyles } = useFloating();
 
+  const inputProps = getInputProps({
+    id,
+    ref,
+  });
+
   return (
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
@@ -118,7 +124,6 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
           {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
 
           <Box
-            id={id}
             as="input"
             type="text"
             className={classNames(inputRecipe({ size, error }))}
@@ -127,10 +132,11 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             textOverflow="ellipsis"
             title={isString(value) ? value : value?.label}
             {...props}
-            {...getInputProps({
-              id,
-              ref,
-            })}
+            {...inputProps}
+            // There is mismatch between desert box onChange type and downshift on change event
+            onChange={
+              inputProps.onChange as unknown as FormEventHandler<HTMLElement>
+            }
           />
 
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
@@ -160,11 +166,11 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                 <List.Item
                   data-test-id="select-option"
                   key={`${id}-${item.value}-${index}`}
+                  disabled={item.disabled}
                   className={listItemStyle}
                   {...getItemProps({
                     item,
                     index,
-                    disabled: item.disabled,
                   })}
                   active={highlightedIndex === index}
                 >
