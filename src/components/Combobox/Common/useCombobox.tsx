@@ -1,7 +1,8 @@
 import {
   GetPropsCommonOptions,
-  UseComboboxGetInputPropsOptions,
   useCombobox as useDownshiftCombobox,
+  UseComboboxGetInputPropsOptions,
+  UseComboboxStateChangeTypes,
 } from "downshift";
 import { FocusEvent, useState } from "react";
 
@@ -67,12 +68,14 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     highlightedIndex,
     onHighlightedIndexChange,
     isItemDisabled: (item) => item.disabled ?? false,
-    onInputValueChange({ inputValue }) {
-      onInputValueChange?.(inputValue ?? "");
-      setInputValue(inputValue ?? "");
+    onInputValueChange({ inputValue, type }) {
+      if (type == UseComboboxStateChangeTypes.InputChange) {
+        onInputValueChange?.(inputValue ?? "");
+        setInputValue(inputValue ?? "");
 
-      if (!inputValue) {
-        onChange?.(null);
+        if (!inputValue) {
+          onChange?.(null);
+        }
       }
     },
     onSelectedItemChange: ({ selectedItem }) => {
