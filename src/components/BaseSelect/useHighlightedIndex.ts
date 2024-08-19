@@ -54,7 +54,12 @@ export function useHighlightedIndex<T extends Option>(
             : highlightedIndex
         );
         break;
-      default:
+      case useDownshiftCombobox.stateChangeTypes.ItemClick:
+      case useDownshiftSelect.stateChangeTypes.ItemClick:
+      case useDownshiftCombobox.stateChangeTypes.ItemMouseMove:
+      case useDownshiftSelect.stateChangeTypes.ItemMouseMove:
+      case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowUp:
+      case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowDown:
         setHighlightedIndex(highlightedIndex);
     }
   };
