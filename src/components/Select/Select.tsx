@@ -187,10 +187,10 @@ const SelectInner = <T extends Option, V extends Option | string>(
                   data-test-id="select-option"
                   key={`${id}-${item.value}-${index}`}
                   className={listItemStyle}
+                  disabled={item.disabled}
                   {...getItemProps({
                     item,
                     index,
-                    disabled: item.disabled,
                   })}
                   active={highlightedIndex === index}
                 >

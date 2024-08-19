@@ -40,9 +40,10 @@ export const useSelect = <T extends Option, V extends string | Option>({
   } = useDownshiftSelect({
     items: options,
     selectedItem: value ?? null,
+    isItemDisabled: (item) => item?.disabled ?? false,
     highlightedIndex,
-    onHighlightedIndexChange({ highlightedIndex, type }) {
-      onHighlightedIndexChange(highlightedIndex, type);
+    onHighlightedIndexChange(change) {
+      onHighlightedIndexChange(change);
     },
     itemToString: (item) => item?.value ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
@@ -63,7 +64,10 @@ export const useSelect = <T extends Option, V extends string | Option>({
       options?: UseSelectGetToggleButtonPropsOptions | undefined,
       otherOptions?: GetPropsCommonOptions | undefined
     ) =>
-      _getToggleButtonProps(
+      _getToggleButtonProps<{
+        onFocus: (e: FocusEvent<HTMLInputElement>) => void;
+        onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+      }>(
         {
           onFocus: (e) => {
             setActive(true);
