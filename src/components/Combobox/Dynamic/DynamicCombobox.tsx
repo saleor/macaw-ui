@@ -177,7 +177,7 @@ const DynamicComboboxInner = <T extends Option>(
                   return (
                       <List.Item
                           data-test-id="select-option"
-                          key={`${id}-${item.value}-${index}`}
+                          key={`${id}-${item.value}-${index}-${highlightedIndex}`}
                           className={listItemStyle}
                           {...getItemProps({
                               item,
