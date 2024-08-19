@@ -45,7 +45,11 @@ export function useHighlightedIndex<T extends Option>(
       case useDownshiftCombobox.stateChangeTypes.InputChange:
         setHighlightedIndex(!selectedItem ? -1 : highlightedIndex);
         break;
-      // Restore highlighted index to last selected item when leaving menu
+      case useDownshiftCombobox.stateChangeTypes.FunctionOpenMenu:
+        setHighlightedIndex(selectedItem ? getIndexToHighlight(items, selectedItem) : -1);
+        break;
+
+        // Restore highlighted index to last selected item when leaving menu
       case useDownshiftCombobox.stateChangeTypes.MenuMouseLeave:
       case useDownshiftSelect.stateChangeTypes.MenuMouseLeave:
         setHighlightedIndex(
