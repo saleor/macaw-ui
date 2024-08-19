@@ -32,6 +32,7 @@ export function useHighlightedIndex<T extends Option>(
 
     // Find highlighted index in items to select base on selected item value
     // If there is no match, leave highlighted index as -1
+    console.log('Has selected', selectedItem);
     setHighlightedIndex(getIndexToHighlight(items, selectedItem));
   }, [items, selectedItem]);
 
@@ -69,8 +70,10 @@ function getIndexToHighlight<T extends Option>(
   selectedItem: T
 ): number {
   if (typeof selectedItem === "string") {
+    console.log(items, selectedItem, items.findIndex((item) => item.value === selectedItem));
     return items.findIndex((item) => item.value === selectedItem);
   }
+  console.log(items, selectedItem, items.findIndex((item) => item.value === selectedItem?.value));
 
   return items.findIndex((item) => item.value === selectedItem?.value);
 }

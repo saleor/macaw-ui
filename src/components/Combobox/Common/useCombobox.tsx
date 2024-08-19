@@ -8,7 +8,7 @@ import { FocusEvent, useState } from "react";
 import {
   Option,
   SingleChangeHandler,
-  // useHighlightedIndex,
+  useHighlightedIndex,
 } from "~/components/BaseSelect";
 
 const getItemsFilter = <T extends Option>(
@@ -48,10 +48,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   const typed = Boolean(selectedItem || active || inputValue);
 
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
-  // const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
-  //   itemsToSelect,
-  //   selectedItem
-  // );
+  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
+    itemsToSelect,
+    selectedItem
+  );
 
   const {
     isOpen,
@@ -60,11 +60,12 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     getMenuProps,
     getInputProps: _getInputProps,
     getItemProps,
-    highlightedIndex,
   } = useDownshiftCombobox({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
+    highlightedIndex,
+    onHighlightedIndexChange,
     isItemDisabled: (item) => item.disabled ?? false,
     onStateChange: ({ inputValue: newInputValue, type }) => {
       switch (type) {
