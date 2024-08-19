@@ -1,15 +1,15 @@
-import { UseComboboxPropGetters } from "downshift";
-
 import { sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
-import { Option, toggleIconStyle } from "../../BaseSelect";
+import { toggleIconStyle } from "../../BaseSelect";
 import { ArrowDownIcon } from "../../Icons";
-import { RenderEndAdornmentType } from "./useMultiselect";
+import { RenderEndAdornmentType, useMultiselect } from "./useMultiselect";
 
 export type AdornmentProps = {
   size?: "small" | "medium" | "large";
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
+  getToggleButtonProps: ReturnType<
+    typeof useMultiselect
+  >["getToggleButtonProps"];
   renderEndAdornment?: RenderEndAdornmentType;
   disabled?: boolean;
 };
@@ -21,7 +21,7 @@ export const Adornment = ({
   disabled,
 }: AdornmentProps) => {
   return renderEndAdornment ? (
-    <>{renderEndAdornment(getToggleButtonProps({ disabled }))}</>
+    <>{renderEndAdornment(getToggleButtonProps())}</>
   ) : (
     <ArrowDownIcon
       className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
