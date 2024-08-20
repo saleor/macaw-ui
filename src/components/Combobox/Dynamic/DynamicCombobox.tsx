@@ -141,7 +141,9 @@ const DynamicComboboxInner = <T extends Option>(
             disabled={disabled}
             {...props}
             {...inputProps}
-            onChange={formEventTypeAdapter(inputProps.onChange)}
+            onChange={
+              inputProps.onChange && formEventTypeAdapter(inputProps.onChange)
+            }
           />
 
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}

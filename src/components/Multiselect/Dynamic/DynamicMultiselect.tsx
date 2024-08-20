@@ -188,7 +188,9 @@ const DynamicMultiselectInner = <T extends Option>(
           visibility={showInput ? "visible" : "hidden"}
           {...inputProps}
           {...props}
-          onChange={formEventTypeAdapter(inputProps.onChange)}
+          onChange={
+            inputProps.onChange && formEventTypeAdapter(inputProps.onChange)
+          }
         />
       </MultiselectWrapper>
 

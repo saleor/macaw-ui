@@ -133,7 +133,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             title={isString(value) ? value : value?.label}
             {...props}
             {...inputProps}
-            onChange={formEventTypeAdapter(inputProps.onChange)}
+            onChange={
+              inputProps.onChange && formEventTypeAdapter(inputProps.onChange)
+            }
           />
 
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
