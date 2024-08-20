@@ -48,10 +48,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   const typed = Boolean(selectedItem || active || inputValue);
 
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
-  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
-    itemsToSelect,
-    selectedItem
-  );
+  const { highlightedIndex, onHighlightedIndexChange, setHighlightedIndex } =
+    useHighlightedIndex(itemsToSelect, selectedItem);
 
   const {
     isOpen,
@@ -108,6 +106,9 @@ export const useCombobox = <T extends Option, V extends string | Option>({
       }>(
         {
           onFocus: (e) => {
+            if (selectedItem) {
+              setHighlightedIndex(itemsToSelect, selectedItem);
+            }
             onFocus?.(e);
             setActive(true);
           },

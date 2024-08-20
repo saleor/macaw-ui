@@ -13,6 +13,7 @@ export function useHighlightedIndex<T extends Option>(
   selectedItem: T | null | undefined
 ): {
   highlightedIndex: number | undefined;
+  setHighlightedIndex: (items: T[], selectedItem: T) => void;
   onHighlightedIndexChange: (
     change: UseComboboxStateChange<T> | UseSelectStateChange<T>
   ) => void;
@@ -67,8 +68,13 @@ export function useHighlightedIndex<T extends Option>(
     }
   };
 
+  const handleSetHighlightedIndex = (items: T[], selectedItem: T) => {
+    setHighlightedIndex(getIndexToHighlight(items, selectedItem));
+  };
+
   return {
     highlightedIndex,
+    setHighlightedIndex: handleSetHighlightedIndex,
     onHighlightedIndexChange: handleHighlightedIndexChange,
   };
 }
