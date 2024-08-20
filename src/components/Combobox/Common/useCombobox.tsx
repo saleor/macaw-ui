@@ -107,6 +107,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         {
           onFocus: (e) => {
             if (selectedItem) {
+              console.log('Set highlightedIndex on focus');
               setHighlightedIndex(itemsToSelect, selectedItem);
             }
             onFocus?.(e);

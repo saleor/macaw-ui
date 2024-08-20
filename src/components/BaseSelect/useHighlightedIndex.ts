@@ -33,6 +33,7 @@ export function useHighlightedIndex<T extends Option>(
 
     // Find highlighted index in items to select base on selected item value
     // If there is no match, leave highlighted index as -1
+    console.log('Set higlight index use effect')
     setHighlightedIndex(getIndexToHighlight(items, selectedItem));
   }, [items, selectedItem]);
 
@@ -40,6 +41,7 @@ export function useHighlightedIndex<T extends Option>(
     type,
     highlightedIndex,
   }: UseComboboxStateChange<T> | UseSelectStateChange<T>) => {
+    console.log('highlightedIndex type', type, highlightedIndex)
     switch (type) {
       // Restore highlighted index to -1  when input value is changed and there is no selected item
       case useDownshiftCombobox.stateChangeTypes.InputChange:
