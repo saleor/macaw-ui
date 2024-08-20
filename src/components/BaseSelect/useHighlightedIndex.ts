@@ -62,11 +62,16 @@ export function useHighlightedIndex<T extends Option>(
       case useDownshiftCombobox.stateChangeTypes.ItemMouseMove:
       case useDownshiftSelect.stateChangeTypes.ItemMouseMove:
       case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowUp:
-      case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowDown:
       case useDownshiftSelect.stateChangeTypes.ToggleButtonKeyDownArrowDown:
       case useDownshiftSelect.stateChangeTypes.ToggleButtonKeyDownArrowUp:
         setHighlightedIndex(highlightedIndex);
         break;
+      case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowDown:
+        if (selectedItem && highlightedIndex === -1) {
+          setHighlightedIndex(getIndexToHighlight(items, selectedItem));
+        } else {
+          setHighlightedIndex(highlightedIndex)
+        }
     }
   };
 
