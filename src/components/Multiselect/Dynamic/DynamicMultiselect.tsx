@@ -1,6 +1,5 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import {
-  FormEventHandler,
   ForwardedRef,
   forwardRef,
   InputHTMLAttributes,
@@ -24,6 +23,7 @@ import {
 
 import { useFloating } from "~/hooks/useFloating";
 import { useInfinityScroll } from "~/hooks/useInfinityScroll";
+import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -188,10 +188,7 @@ const DynamicMultiselectInner = <T extends Option>(
           visibility={showInput ? "visible" : "hidden"}
           {...inputProps}
           {...props}
-          // There is mismatch between desert box onChange type and downshift on change event
-          onChange={
-            inputProps.onChange as unknown as FormEventHandler<HTMLElement>
-          }
+          onChange={formEventTypeAdapter(inputProps.onChange)}
         />
       </MultiselectWrapper>
 

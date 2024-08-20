@@ -1,6 +1,5 @@
 import { Root as Portal } from "@radix-ui/react-portal";
 import {
-  FormEventHandler,
   ForwardedRef,
   forwardRef,
   InputHTMLAttributes,
@@ -11,6 +10,7 @@ import { classNames } from "~/utils";
 
 import { useFloating } from "~/hooks/useFloating";
 import { useInfinityScroll } from "~/hooks/useInfinityScroll";
+import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -141,10 +141,7 @@ const DynamicComboboxInner = <T extends Option>(
             disabled={disabled}
             {...props}
             {...inputProps}
-            // There is mismatch between desert box onChange type and downshift on change event
-            onChange={
-              inputProps.onChange as unknown as FormEventHandler<HTMLElement>
-            }
+            onChange={formEventTypeAdapter(inputProps.onChange)}
           />
 
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}

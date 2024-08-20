@@ -4,7 +4,6 @@ import {
   InputHTMLAttributes,
   ReactNode,
   forwardRef,
-  FormEventHandler,
 } from "react";
 
 import { Box, List, PropsWithBox, Text } from "~/components";
@@ -23,6 +22,7 @@ import {
 import { classNames, isString } from "~/utils";
 
 import { useFloating } from "~/hooks/useFloating";
+import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import { ComboboxWrapper } from "../Common";
 import { useCombobox } from "../Common/useCombobox";
 
@@ -133,10 +133,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             title={isString(value) ? value : value?.label}
             {...props}
             {...inputProps}
-            // There is mismatch between desert box onChange type and downshift on change event
-            onChange={
-              inputProps.onChange as unknown as FormEventHandler<HTMLElement>
-            }
+            onChange={formEventTypeAdapter(inputProps.onChange)}
           />
 
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
