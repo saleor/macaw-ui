@@ -107,8 +107,6 @@ const DynamicComboboxInner = <T extends Option>(
     onBlur,
   });
 
-    console.log('Items to select', itemsToSelect)
-
   const { refs, floatingStyles } = useFloating();
 
   const scrollRef = useInfinityScroll(onScrollEnd);
@@ -172,31 +170,28 @@ const DynamicComboboxInner = <T extends Option>(
             {...getMenuProps({}, { suppressRefError: true })}
           >
             {isOpen &&
-              itemsToSelect?.map((item, index) => {
-                  console.log('Item', item, index)
-                  return (
-                      <List.Item
-                          data-test-id="select-option"
-                          key={`${id}-${item.value}-${index}-${highlightedIndex}`}
-                          className={listItemStyle}
-                          {...getItemProps({
-                              item,
-                              index,
-                              disabled: item.disabled,
-                          })}
-                          active={highlightedIndex === index}
-                      >
-                          {item?.startAdornment}
-                          <Text
-                              color={item.disabled ? "defaultDisabled" : undefined}
-                              size={getListTextSize(size)}
-                          >
-                              {item.label}
-                          </Text>
-                          {item?.endAdornment}
-                      </List.Item>
-                  )
-              })}
+              itemsToSelect?.map((item, index) => (
+                <List.Item
+                  data-test-id="select-option"
+                  key={`${id}-${item.value}-${index}-${highlightedIndex}`}
+                  className={listItemStyle}
+                  {...getItemProps({
+                    item,
+                    index,
+                    disabled: item.disabled,
+                  })}
+                  active={highlightedIndex === index}
+                >
+                  {item?.startAdornment}
+                  <Text
+                    color={item.disabled ? "defaultDisabled" : undefined}
+                    size={getListTextSize(size)}
+                  >
+                    {item.label}
+                  </Text>
+                  {item?.endAdornment}
+                </List.Item>
+              ))}
 
             {isOpen && !loading && !hasItemsToSelect && children}
 

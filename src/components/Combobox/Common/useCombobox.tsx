@@ -53,8 +53,6 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     selectedItem
   );
 
-  console.log("highlightedIndex", highlightedIndex)
-
   const {
     isOpen,
     getToggleButtonProps,

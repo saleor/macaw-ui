@@ -32,7 +32,6 @@ export function useHighlightedIndex<T extends Option>(
 
     // Find highlighted index in items to select base on selected item value
     // If there is no match, leave highlighted index as -1
-    console.log('Has selected', selectedItem);
     setHighlightedIndex(getIndexToHighlight(items, selectedItem));
   }, [items, selectedItem]);
 
@@ -45,11 +44,8 @@ export function useHighlightedIndex<T extends Option>(
       case useDownshiftCombobox.stateChangeTypes.InputChange:
         setHighlightedIndex(!selectedItem ? -1 : highlightedIndex);
         break;
-      case useDownshiftCombobox.stateChangeTypes.FunctionOpenMenu:
-        setHighlightedIndex(selectedItem ? getIndexToHighlight(items, selectedItem) : -1);
-        break;
 
-        // Restore highlighted index to last selected item when leaving menu
+      // Restore highlighted index to last selected item when leaving menu
       case useDownshiftCombobox.stateChangeTypes.MenuMouseLeave:
       case useDownshiftSelect.stateChangeTypes.MenuMouseLeave:
         setHighlightedIndex(
@@ -64,7 +60,10 @@ export function useHighlightedIndex<T extends Option>(
       case useDownshiftSelect.stateChangeTypes.ItemMouseMove:
       case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowUp:
       case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowDown:
+      case useDownshiftSelect.stateChangeTypes.ToggleButtonKeyDownArrowDown:
+      case useDownshiftSelect.stateChangeTypes.ToggleButtonKeyDownArrowUp:
         setHighlightedIndex(highlightedIndex);
+        break;
     }
   };
 
@@ -79,10 +78,8 @@ function getIndexToHighlight<T extends Option>(
   selectedItem: T
 ): number {
   if (typeof selectedItem === "string") {
-    console.log(items, selectedItem, items.findIndex((item) => item.value === selectedItem));
     return items.findIndex((item) => item.value === selectedItem);
   }
-  console.log(items, selectedItem, items.findIndex((item) => item.value === selectedItem?.value));
 
   return items.findIndex((item) => item.value === selectedItem?.value);
 }
