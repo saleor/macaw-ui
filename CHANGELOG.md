@@ -1,5 +1,12 @@
 # @saleor/macaw-ui
 
+## 1.1.8
+
+### Patch Changes
+
+- c89d56e: Checkboxes now have a semi-transparent background color on focus state, meaning that it is easier to differentiate states when using keyboard navigation.
+- e577c41: You can now navigate on dropdown list. Dropdown stays close on focus.
+
 ## 1.1.7
 
 ### Patch Changes
