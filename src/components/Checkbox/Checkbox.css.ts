@@ -86,18 +86,14 @@ export const defaultCheckbox = style({
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
       backgroundColor: vars.colors.background.accent1,
-      borderColor: vars.colors.border.accent1,
-      boxShadow: vars.boxShadow.defaultFocused,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible::after':
       {
-        backgroundColor: vars.colors.background.accent1,
+        boxShadow: vars.boxShadow.defaultFocused,
+        backgroundColor: vars.colors.background.accent1Focused,
       },
     '&:is([data-state="checked"],[data-state="indeterminate"])[disabled]': {
-      backgroundColor: vars.colors.background.defaultDisabled,
-      borderColor: vars.colors.border.defaultDisabled,
-      cursor: "not-allowed",
-      color: vars.colors.text.defaultDisabled,
+      backgroundColor: vars.colors.background.accent1Pressed,
     },
   },
 });
@@ -142,7 +138,9 @@ export const errorCheckbox = style({
       outline: "none",
     },
     '&[data-state="unchecked"]:focus-visible::after': {
-      backgroundColor: vars.colors.background.default2,
+      backgroundColor: vars.colors.background.critical1,
+      outlineColor: vars.colors.border.critical1,
+      zIndex: -1,
     },
     '&[data-state="unchecked"][disabled]': {
       borderColor: vars.colors.border.default1,
@@ -163,7 +161,7 @@ export const errorCheckbox = style({
       backgroundColor: vars.colors.background.critical1Hovered,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):active': {
-      backgroundColor: vars.colors.background.critical1,
+      backgroundColor: vars.colors.background.critical1Pressed,
       borderColor: vars.colors.border.critical1,
       boxShadow: vars.boxShadow.defaultFocused,
     },
@@ -171,13 +169,11 @@ export const errorCheckbox = style({
       backgroundColor: vars.colors.background.critical1Pressed,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible': {
-      backgroundColor: vars.colors.background.critical1,
-      borderColor: vars.colors.border.critical1,
-      boxShadow: vars.boxShadow.defaultFocused,
+      outlineColor: vars.colors.border.critical1,
     },
     '&:is([data-state="checked"],[data-state="indeterminate"]):focus-visible::after':
       {
-        backgroundColor: vars.colors.background.critical1,
+        backgroundColor: vars.colors.background.critical1Focused,
       },
     '&:is([data-state="checked"],[data-state="indeterminate"])[disabled]': {
       backgroundColor: vars.colors.background.defaultDisabled,

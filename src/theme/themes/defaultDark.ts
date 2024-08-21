@@ -15,6 +15,7 @@ export const defaultDark = {
       accent1: "hsla(215, 100%, 62%, 1)",
       accent1Hovered: "hsla(215, 100%, 51%, 0.16)",
       accent1Pressed: "hsla(215, 100%, 51%, 0.32)",
+      accent1Focused: "hsla(215, 100%, 51%, 0.32)",
       buttonCriticalDisabled: "hsla(204, 16%, 94%, 1)",
       buttonCriticalPrimary: "hsla(11, 100%, 56%, 1)",
       buttonCriticalPrimaryFocused: "hsla(11, 100%, 42%, 1)",
