@@ -20,6 +20,7 @@ import {
 } from "~/components/BaseSelect";
 
 import { useFloating } from "~/hooks/useFloating";
+import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -106,6 +107,12 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
 
   const { refs, floatingStyles } = useFloating();
 
+  const inputProps = getInputProps({
+    id,
+    ref,
+    value: inputValue,
+  });
+
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
@@ -160,7 +167,6 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
         ))}
 
         <Box
-          id={id}
           as="input"
           className={multiselectInputRecipe({ size, error })}
           placeholder={locale.inputText}
@@ -169,12 +175,11 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
           __flex={1}
           minWidth={7}
           visibility={showInput ? "visible" : "hidden"}
-          {...getInputProps({
-            id,
-            ref,
-            value: inputValue,
-          })}
+          {...inputProps}
           {...props}
+          onChange={
+            inputProps.onChange && formEventTypeAdapter(inputProps.onChange)
+          }
         />
       </MultiselectWrapper>
 
@@ -195,12 +200,12 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
                 <List.Item
                   data-test-id="select-option"
                   key={`to-select-${id}-${item.value}-${index}`}
+                  disabled={item.disabled}
                   className={listItemStyle}
                   active={highlightedIndex === index}
                   {...getItemProps({
                     item,
                     index,
-                    disabled: item.disabled,
                   })}
                 >
                   <Text

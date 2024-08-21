@@ -11,7 +11,7 @@ import { LabelVariants, labelRecipe, spanRecipe } from "../../BaseInput";
 import { Option } from "../../BaseSelect";
 
 import { Adornment } from "./Adornment";
-import { RenderEndAdornmentType } from "./useMultiselect";
+import { RenderEndAdornmentType, useMultiselect } from "./useMultiselect";
 import { multiselectSpanRecipe } from "./Multiselect.css";
 
 type MultiselectWrapperProps = LabelVariants & {
@@ -21,7 +21,9 @@ type MultiselectWrapperProps = LabelVariants & {
   error?: boolean;
   children: ReactNode;
   getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
-  getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
+  getToggleButtonProps: ReturnType<
+    typeof useMultiselect
+  >["getToggleButtonProps"];
   renderEndAdornment?: RenderEndAdornmentType;
   hasItemsToSelect?: boolean;
 };

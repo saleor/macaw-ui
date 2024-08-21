@@ -10,6 +10,7 @@ import { classNames } from "~/utils";
 
 import { useFloating } from "~/hooks/useFloating";
 import { useInfinityScroll } from "~/hooks/useInfinityScroll";
+import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import { Box, List, PropsWithBox, Text } from "../..";
 import { HelperText, inputRecipe, InputVariants } from "../../BaseInput";
 import {
@@ -110,6 +111,11 @@ const DynamicComboboxInner = <T extends Option>(
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
+  const inputProps = getInputProps({
+    id,
+    ref,
+  });
+
   return (
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
@@ -129,16 +135,15 @@ const DynamicComboboxInner = <T extends Option>(
           {startAdornment && typed && <Box>{startAdornment(value)}</Box>}
 
           <Box
-            id={id}
             as="input"
             type="text"
             className={classNames(inputRecipe({ size, error }))}
             disabled={disabled}
             {...props}
-            {...getInputProps({
-              id,
-              ref,
-            })}
+            {...inputProps}
+            onChange={
+              inputProps.onChange && formEventTypeAdapter(inputProps.onChange)
+            }
           />
 
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
@@ -167,7 +172,7 @@ const DynamicComboboxInner = <T extends Option>(
               itemsToSelect?.map((item, index) => (
                 <List.Item
                   data-test-id="select-option"
-                  key={`${id}-${item.value}-${index}`}
+                  key={`${id}-${item.value}-${index}-${highlightedIndex}`}
                   className={listItemStyle}
                   {...getItemProps({
                     item,

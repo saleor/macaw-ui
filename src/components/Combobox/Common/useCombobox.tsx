@@ -1,7 +1,7 @@
 import {
   GetPropsCommonOptions,
-  UseComboboxGetInputPropsOptions,
   useCombobox as useDownshiftCombobox,
+  UseComboboxGetInputPropsOptions,
 } from "downshift";
 import { FocusEvent, useState } from "react";
 
@@ -65,18 +65,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     itemToString: (item) => item?.label ?? "",
     selectedItem,
     highlightedIndex,
-    onHighlightedIndexChange: ({ highlightedIndex, type }) => {
-      onHighlightedIndexChange(highlightedIndex, type);
-    },
-    onSelectedItemChange: ({ selectedItem }) => {
-      if (selectedItem) {
-        const selectedValue = isValuePassedAsString
-          ? selectedItem.value
-          : selectedItem;
-        setInputValue("");
-        onChange?.(selectedValue as V);
-      }
-    },
+    onHighlightedIndexChange,
+    isItemDisabled: (item) => item.disabled ?? false,
     onStateChange: ({ inputValue: newInputValue, type }) => {
       switch (type) {
         case useDownshiftCombobox.stateChangeTypes.InputChange:
@@ -87,6 +77,15 @@ export const useCombobox = <T extends Option, V extends string | Option>({
             onChange?.(null);
           }
           break;
+      }
+    },
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (selectedItem) {
+        const selectedValue = isValuePassedAsString
+          ? selectedItem.value
+          : selectedItem;
+        setInputValue("");
+        onChange?.(selectedValue as V);
       }
     },
   });
@@ -103,7 +102,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
       options?: UseComboboxGetInputPropsOptions,
       otherOptions?: GetPropsCommonOptions
     ) =>
-      _getInputProps(
+      _getInputProps<{
+        onFocus: (e: FocusEvent<HTMLInputElement>) => void;
+        onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+      }>(
         {
           onFocus: (e) => {
             onFocus?.(e);

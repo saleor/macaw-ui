@@ -23,6 +23,7 @@ import {
 
 import { useFloating } from "~/hooks/useFloating";
 import { useInfinityScroll } from "~/hooks/useInfinityScroll";
+import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import {
   multiselectInputRecipe,
   MultiselectWrapper,
@@ -117,6 +118,12 @@ const DynamicMultiselectInner = <T extends Option>(
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
+  const inputProps = getInputProps({
+    id,
+    ref,
+    value: inputValue,
+  });
+
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
@@ -171,7 +178,6 @@ const DynamicMultiselectInner = <T extends Option>(
         ))}
 
         <Box
-          id={id}
           as="input"
           className={multiselectInputRecipe({ size, error })}
           placeholder={locale?.placeholderText || "Add item"}
@@ -180,12 +186,11 @@ const DynamicMultiselectInner = <T extends Option>(
           __flex={1}
           minWidth={7}
           visibility={showInput ? "visible" : "hidden"}
-          {...getInputProps({
-            id,
-            ref,
-            value: inputValue,
-          })}
+          {...inputProps}
           {...props}
+          onChange={
+            inputProps.onChange && formEventTypeAdapter(inputProps.onChange)
+          }
         />
       </MultiselectWrapper>
 
