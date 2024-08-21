@@ -2,17 +2,17 @@ import {
   GetPropsCommonOptions,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
-  UseComboboxPropGetters,
+  UseComboboxGetToggleButtonPropsReturnValue,
   useCombobox,
   useMultipleSelection,
 } from "downshift";
-import { FocusEvent, ReactNode, useState } from "react";
+import { FocusEvent, ReactNode, useState, MouseEventHandler } from "react";
 
 import { MultiChangeHandler, Option } from "~/components/BaseSelect";
 import { isStringArray } from "~/utils";
 
 export type RenderEndAdornmentType = (
-  ...props: ReturnType<UseComboboxPropGetters<Option>["getToggleButtonProps"]>
+  props: UseComboboxGetToggleButtonPropsReturnValue
 ) => ReactNode;
 
 const getItemsFilter = <T extends Option>(
@@ -104,6 +104,7 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     defaultHighlightedIndex: 0,
+    isItemDisabled: (item) => item?.disabled ?? false,
     selectedItem: null,
     stateReducer(_state, actionAndChanges) {
       const { changes, type } = actionAndChanges;
@@ -161,7 +162,10 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
       options?: UseComboboxGetInputPropsOptions,
       otherOptions?: GetPropsCommonOptions
     ) =>
-      _getInputProps(
+      _getInputProps<{
+        onFocus: (e: FocusEvent<HTMLInputElement>) => void;
+        onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+      }>(
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         getDropdownProps({
           onFocus: (e: FocusEvent<HTMLInputElement, Element>) => {
@@ -184,10 +188,10 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
     selectedItems,
     inputValue,
     showInput,
-    getToggleButtonProps: (
-      options?: UseComboboxGetToggleButtonPropsOptions | undefined
-    ) =>
-      _getToggleButtonProps({
+    getToggleButtonProps: (options?: UseComboboxGetToggleButtonPropsOptions) =>
+      _getToggleButtonProps<{
+        onClick?: MouseEventHandler<HTMLButtonElement>;
+      }>({
         onClick: (event) => {
           event.preventDefault();
         },
