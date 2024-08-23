@@ -55,6 +55,7 @@ export type SelectProps<T, V> = PropsWithBox<
     startAdornment?: (inputValue: V | null) => ReactNode;
     endAdornment?: (inputValue: V | null) => ReactNode;
     children?: ReactNode;
+    labelWidth?: string;
   }
 > &
   InputVariants;
@@ -87,6 +88,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     startAdornment,
     endAdornment,
     children,
+    labelWidth,
     ...props
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
@@ -142,6 +144,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
         className={className}
         getLabelProps={getLabelProps}
         getToggleButtonProps={getToggleButtonProps}
+        labelWidth={labelWidth}
       >
         <Box
           height={getBoxHeight(size)}

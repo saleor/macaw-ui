@@ -21,6 +21,7 @@ type SelectWrapperProps = LabelVariants & {
   children: ReactNode;
   getToggleButtonProps: ReturnType<typeof useSelect>["getToggleButtonProps"];
   getLabelProps: UseSelectPropGetters<Option>["getLabelProps"];
+  labelWidth?: string;
 };
 
 export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
@@ -37,6 +38,7 @@ export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
       active,
       disabled,
       size,
+      labelWidth = "79%",
     },
     ref
   ) => {
@@ -57,7 +59,7 @@ export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
           data-macaw-ui-component="Select"
           cursor={disabled ? "not-allowed" : "pointer"}
         >
-          <Box display="flex" flexDirection="column" __width="79%">
+          <Box display="flex" flexDirection="column" __width={labelWidth}>
             <Box
               as="span"
               className={classNames(
