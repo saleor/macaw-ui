@@ -2,4 +2,4 @@
 "@saleor/macaw-ui": patch
 ---
 
-You can now adjust select label's child width.
+You can now see ellipses in select when text width is too long.
