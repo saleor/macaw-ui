@@ -34,7 +34,7 @@
     "ui components"
   ],
   "engines": {
-    "node": ">=20",
+    "node": "18 || 20",
     "pnpm": ">=9"
   },
   "scripts": {
