@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.10
+
+### Patch Changes
+
+- d8516d5: MacawUI engine has been changed to support Node 18. This means that MacawUI no longer throws an error when being installed in Dashboard.
+
 ## 1.1.9
 
 ### Patch Changes
