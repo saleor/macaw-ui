@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.9
+
+### Patch Changes
+
+- 6a51f52: You can now see ellipses in select when text width is too long.
+
 ## 1.1.8
 
 ### Patch Changes
