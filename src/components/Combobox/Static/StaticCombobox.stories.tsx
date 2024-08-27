@@ -212,7 +212,7 @@ export const WithAdornment = () => {
 
 export const WithEllipsis = () => {
   const values = [
-    { value: "color-black", label: "Long black label here" },
+    { value: "color-black", label: "Very very long black label here" },
     {
       value: "color-red",
       label: "Long red label here",
