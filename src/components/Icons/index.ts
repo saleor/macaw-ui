@@ -24,6 +24,7 @@ export * from "./FullscreenOffIcon";
 export * from "./FullscreenOnIcon";
 export * from "./GenericAppIcon";
 export * from "./GripIcon";
+export * from "./HelpIcon";
 export * from "./HomeIcon";
 export * from "./InfoIcon";
 export * from "./LightModeIcon";
