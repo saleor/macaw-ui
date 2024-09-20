@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.11
+
+### Patch Changes
+
+- 406af8d: Macaw-ui now exports a new Help icon.
+
 ## 1.1.10
 
 ### Patch Changes
