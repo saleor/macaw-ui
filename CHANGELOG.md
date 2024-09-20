@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.12
+
+### Patch Changes
+
+- 26d98e6: Help icon now has now light color applied when using dark mode and dark color applied when using light mode.
+
 ## 1.1.11
 
 ### Patch Changes
