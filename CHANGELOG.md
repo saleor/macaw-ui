@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.13
+
+### Patch Changes
+
+- e7b919c: Macaw-ui now exports Dashboard and GraphQL icons.
+
 ## 1.1.12
 
 ### Patch Changes
