@@ -80,7 +80,7 @@
     "@vanilla-extract/css": "^1.13.0",
     "@vanilla-extract/dynamic": "^2.0.3",
     "@vanilla-extract/sprinkles": "^1.6.1",
-    "@vanilla-extract/vite-plugin": "^3.9.0",
+    "@vanilla-extract/vite-plugin": "^4.0.16",
     "@vitejs/plugin-react": "^4.0.4",
     "chromatic": "^11.3.0",
     "eslint": "^8.46.0",
