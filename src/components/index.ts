@@ -16,6 +16,7 @@ export * from "./Input";
 export * from "./List";
 export * from "./Modal";
 export * from "./Multiselect";
+export * from "./Paragraph";
 export * from "./Popover";
 export * from "./RadioGroup";
 export * from "./RangeInput";
