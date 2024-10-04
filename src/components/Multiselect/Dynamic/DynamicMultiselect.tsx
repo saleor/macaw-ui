@@ -222,7 +222,6 @@ const DynamicMultiselectInner = <T extends Option>(
                   {...getItemProps({
                     item,
                     index,
-                    disabled: item.disabled,
                   })}
                 >
                   <Text
