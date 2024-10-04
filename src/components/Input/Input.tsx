@@ -23,7 +23,8 @@ export type InputProps = PropsWithBox<
       | "password"
       | "date"
       | "time"
-      | "datetime-local";
+      | "datetime-local"
+      | "file";
     helperText?: ReactNode;
     endAdornment?: ReactNode;
   }
