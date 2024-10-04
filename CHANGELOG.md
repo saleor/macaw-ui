@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.14
+
+### Patch Changes
+
+- ecffb8c: Macaw-ui now exports new Paragraph component that is Text displayed as block.
+
 ## 1.1.13
 
 ### Patch Changes
