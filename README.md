@@ -118,9 +118,9 @@ When you finish woking, you can add new changeset
 pnpm change:add
 ```
 
-### Usefull Chrome extensions
+### Useful tooling
 
-* [Atomic CSS Devtools](https://chromewebstore.google.com/detail/atomic-css-devtools)
+- Chrome browser extension - [Atomic CSS Devtools](https://chromewebstore.google.com/detail/atomic-css-devtools)
 
 ## License
 
