@@ -1,9 +1,4 @@
-import {
-  useCombobox as useDownshiftCombobox,
-  useSelect as useDownshiftSelect,
-  UseComboboxStateChange,
-  UseSelectStateChange,
-} from "downshift";
+import { UseComboboxStateChange, UseSelectStateChange } from "downshift";
 import { useEffect, useState } from "react";
 
 import { Option } from "~/components/BaseSelect";
@@ -26,49 +21,24 @@ export function useHighlightedIndex<T extends Option>(
   // Or when we change selected item
   useEffect(() => {
     // If we don't have selected item leave highlighted index as -1
-    if (!selectedItem) {
+    if (!selectedItem || highlightedIndex !== -1) {
       return;
     }
 
     // Find highlighted index in items to select base on selected item value
     // If there is no match, leave highlighted index as -1
     setHighlightedIndex(getIndexToHighlight(items, selectedItem));
-  }, [items, selectedItem]);
+  }, [highlightedIndex, items, selectedItem]);
 
   const handleHighlightedIndexChange = ({
-    type,
     highlightedIndex,
   }: UseComboboxStateChange<T> | UseSelectStateChange<T>) => {
-    switch (type) {
-      // Restore highlighted index to -1  when input value is changed and there is no selected item
-      case useDownshiftCombobox.stateChangeTypes.InputChange:
-        setHighlightedIndex(!selectedItem ? -1 : highlightedIndex);
-        break;
-
-      // Restore highlighted index to last selected item when leaving menu
-      case useDownshiftCombobox.stateChangeTypes.MenuMouseLeave:
-      case useDownshiftSelect.stateChangeTypes.MenuMouseLeave:
-        setHighlightedIndex(
-          selectedItem
-            ? getIndexToHighlight(items, selectedItem)
-            : highlightedIndex
-        );
-        break;
-      case useDownshiftCombobox.stateChangeTypes.ItemClick:
-      case useDownshiftSelect.stateChangeTypes.ItemClick:
-      case useDownshiftCombobox.stateChangeTypes.ItemMouseMove:
-      case useDownshiftSelect.stateChangeTypes.ItemMouseMove:
-      case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowUp:
-      case useDownshiftSelect.stateChangeTypes.ToggleButtonKeyDownArrowDown:
-      case useDownshiftSelect.stateChangeTypes.ToggleButtonKeyDownArrowUp:
-        setHighlightedIndex(highlightedIndex);
-        break;
-      case useDownshiftCombobox.stateChangeTypes.InputKeyDownArrowDown:
-        if (selectedItem && highlightedIndex === -1) {
-          setHighlightedIndex(getIndexToHighlight(items, selectedItem));
-        } else {
-          setHighlightedIndex(highlightedIndex);
-        }
+    if (!highlightedIndex) {
+      setHighlightedIndex(
+        selectedItem ? getIndexToHighlight(items, selectedItem) : -1
+      );
+    } else {
+      setHighlightedIndex(highlightedIndex);
     }
   };
 
