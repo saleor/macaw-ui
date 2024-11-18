@@ -48,6 +48,7 @@ export type ComboboxProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V | null>;
     value: V | null;
+    useCalculatedHighlightIndex?: boolean;
   }
 > &
   InputVariants;
@@ -69,6 +70,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     startAdornment,
     endAdornment,
     children,
+    useCalculatedHighlightIndex = true,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -92,6 +94,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
       ? options.find((option) => option.value === value)
       : value,
     isValuePassedAsString,
+    useCalculatedHighlightIndex,
     options,
     onChange,
     onFocus,

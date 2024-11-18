@@ -15,20 +15,22 @@ export const useSelect = <T extends Option, V extends string | Option>({
   onChange,
   onFocus,
   onBlur,
+  useCalculatedHighlightIndex = true,
 }: {
   value: T | null | undefined;
   isValuePassedAsString: boolean;
   options: T[];
   onChange?: SelectProps<T, V>["onChange"];
+  useCalculatedHighlightIndex?: boolean;
   onFocus?: (e: FocusEvent<HTMLElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLElement, Element>) => void;
 }) => {
   const [active, setActive] = useState(false);
   const typed = Boolean(value || active);
-  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
-    options,
-    value
-  );
+  const {
+    highlightedIndex: calculatedHighlightIndex,
+    onHighlightedIndexChange: onCalculatedHighlightIndexChange,
+  } = useHighlightedIndex(options, value);
 
   const {
     isOpen,
@@ -37,14 +39,15 @@ export const useSelect = <T extends Option, V extends string | Option>({
     getMenuProps,
     getItemProps,
     selectedItem,
+    highlightedIndex: defaultHighlightIndex,
   } = useDownshiftSelect({
     items: options,
     selectedItem: value ?? null,
     isItemDisabled: (item) => item?.disabled ?? false,
-    highlightedIndex,
-    onHighlightedIndexChange(change) {
-      onHighlightedIndexChange(change);
-    },
+    ...(useCalculatedHighlightIndex && {
+      highlightedIndex: calculatedHighlightIndex,
+      onHighlightedIndexChange: onCalculatedHighlightIndexChange,
+    }),
     itemToString: (item) => item?.value ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
@@ -83,7 +86,9 @@ export const useSelect = <T extends Option, V extends string | Option>({
       ),
     getLabelProps,
     getMenuProps,
-    highlightedIndex,
+    highlightedIndex: useCalculatedHighlightIndex
+      ? calculatedHighlightIndex
+      : defaultHighlightIndex,
     getItemProps,
     selectedItem,
     hasItemsToSelect: options.length > 0,

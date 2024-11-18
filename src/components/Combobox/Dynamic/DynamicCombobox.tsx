@@ -56,6 +56,7 @@ export type DynamicComboboxProps<T> = PropsWithBox<
       loadingText?: string;
     };
     onScrollEnd?: () => void;
+    useCalculatedHighlightIndex?: boolean;
   }
 > &
   InputVariants;
@@ -81,6 +82,7 @@ const DynamicComboboxInner = <T extends Option>(
     startAdornment,
     endAdornment,
     onScrollEnd,
+    useCalculatedHighlightIndex = true,
     ...props
   }: DynamicComboboxProps<T>,
   ref: ForwardedRef<HTMLInputElement>
@@ -99,6 +101,7 @@ const DynamicComboboxInner = <T extends Option>(
     hasItemsToSelect,
   } = useCombobox({
     selectedItem: value,
+    useCalculatedHighlightIndex,
     options,
     isValuePassedAsString: false,
     onChange,
@@ -169,28 +172,30 @@ const DynamicComboboxInner = <T extends Option>(
             {...getMenuProps({}, { suppressRefError: true })}
           >
             {isOpen &&
-              itemsToSelect?.map((item, index) => (
-                <List.Item
-                  data-test-id="select-option"
-                  key={`${id}-${item.value}-${index}-${highlightedIndex}`}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item,
-                    index,
-                    disabled: item.disabled,
-                  })}
-                  active={highlightedIndex === index}
-                >
-                  {item?.startAdornment}
-                  <Text
-                    color={item.disabled ? "defaultDisabled" : undefined}
-                    size={getListTextSize(size)}
+              itemsToSelect?.map((item, index) => {
+                return (
+                  <List.Item
+                    data-test-id="select-option"
+                    key={`${id}-${item.value}-${index}-${highlightedIndex}`}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item,
+                      index,
+                      disabled: item.disabled,
+                    })}
+                    active={highlightedIndex === index}
                   >
-                    {item.label}
-                  </Text>
-                  {item?.endAdornment}
-                </List.Item>
-              ))}
+                    {item?.startAdornment}
+                    <Text
+                      color={item.disabled ? "defaultDisabled" : undefined}
+                      size={getListTextSize(size)}
+                    >
+                      {item.label}
+                    </Text>
+                    {item?.endAdornment}
+                  </List.Item>
+                );
+              })}
 
             {isOpen && !loading && !hasItemsToSelect && children}
 

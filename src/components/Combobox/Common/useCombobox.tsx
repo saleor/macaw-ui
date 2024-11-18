@@ -34,11 +34,13 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   onInputValueChange,
   onFocus,
   onBlur,
+  useCalculatedHighlightIndex = true,
 }: {
   selectedItem: T | null | undefined;
   options: T[];
   isValuePassedAsString: boolean;
   onChange?: SingleChangeHandler<V | null>;
+  useCalculatedHighlightIndex?: boolean;
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
@@ -48,10 +50,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   const typed = Boolean(selectedItem || active || inputValue);
 
   const itemsToSelect = getItemsFilter<T>(inputValue, options);
-  const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
-    itemsToSelect,
-    selectedItem
-  );
+  const {
+    highlightedIndex: calculatedHighlightIndex,
+    onHighlightedIndexChange: onCalculatedHighlightIndexChange,
+  } = useHighlightedIndex(itemsToSelect, selectedItem);
 
   const {
     isOpen,
@@ -60,12 +62,15 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     getMenuProps,
     getInputProps: _getInputProps,
     getItemProps,
+    highlightedIndex: defaultHighlightIndex,
   } = useDownshiftCombobox({
     items: itemsToSelect,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
-    highlightedIndex,
-    onHighlightedIndexChange,
+    ...(useCalculatedHighlightIndex && {
+      highlightedIndex: calculatedHighlightIndex,
+      onHighlightedIndexChange: onCalculatedHighlightIndexChange,
+    }),
     isItemDisabled: (item) => item.disabled ?? false,
     onStateChange: ({ inputValue: newInputValue, type }) => {
       switch (type) {
@@ -119,7 +124,9 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         },
         otherOptions
       ),
-    highlightedIndex,
+    highlightedIndex: useCalculatedHighlightIndex
+      ? calculatedHighlightIndex
+      : defaultHighlightIndex,
     getItemProps,
     hasItemsToSelect: itemsToSelect.length > 0,
   };

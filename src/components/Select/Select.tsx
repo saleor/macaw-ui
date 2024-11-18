@@ -55,6 +55,7 @@ export type SelectProps<T, V> = PropsWithBox<
     startAdornment?: (inputValue: V | null) => ReactNode;
     endAdornment?: (inputValue: V | null) => ReactNode;
     children?: ReactNode;
+    useCalculatedHighlightIndex?: boolean;
   }
 > &
   InputVariants;
@@ -87,6 +88,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     startAdornment,
     endAdornment,
     children,
+    useCalculatedHighlightIndex = true,
     ...props
   }: SelectProps<T, V>,
   ref: ForwardedRef<HTMLElement>
@@ -108,6 +110,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
       ? options.find((item) => item.value === value)
       : value,
     isValuePassedAsString,
+    useCalculatedHighlightIndex,
     options,
     onChange,
     onFocus,
