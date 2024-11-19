@@ -17,8 +17,8 @@ export function useHighlightedIndex<T extends Option>(
     -1
   );
 
-  // When data from API comes we can calculate initial highlighted index
-  // Or when we change selected item
+  // When data from API comes we can calculate initially highlighted index
+  // Or when we change the selected item
   useEffect(() => {
     // If we don't have selected item leave highlighted index as -1
     if (!selectedItem || highlightedIndex !== -1) {
@@ -33,10 +33,8 @@ export function useHighlightedIndex<T extends Option>(
   const handleHighlightedIndexChange = ({
     highlightedIndex,
   }: UseComboboxStateChange<T> | UseSelectStateChange<T>) => {
-    if (!highlightedIndex) {
-      setHighlightedIndex(
-        selectedItem ? getIndexToHighlight(items, selectedItem) : -1
-      );
+    if (selectedItem && highlightedIndex === -1) {
+      setHighlightedIndex(getIndexToHighlight(items, selectedItem));
     } else {
       setHighlightedIndex(highlightedIndex);
     }
