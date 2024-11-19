@@ -66,7 +66,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     selectedItem,
     highlightedIndex,
     onHighlightedIndexChange,
-    isItemDisabled: (item) => item.disabled ?? false,
+    isItemDisabled: (item) => item?.disabled ?? false,
     onStateChange: ({ inputValue: newInputValue, type }) => {
       switch (type) {
         case useDownshiftCombobox.stateChangeTypes.InputChange:
