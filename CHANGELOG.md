@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.15
+
+### Patch Changes
+
+- 13af63b: Custom logic for highlighting index in Combobox and Select no more cause an error when used in datagrid cell
+
 ## 1.1.14
 
 ### Patch Changes
