@@ -4,14 +4,15 @@ import {
   UseFloatingReturn,
   flip,
   autoUpdate,
+  ReferenceType,
 } from "@floating-ui/react-dom";
 
-export const useFloating = (
+export const useFloating = <T extends ReferenceType>(
   zIndexValue = 1
-): UseFloatingReturn & {
+): UseFloatingReturn<T> & {
   floatingStyles: { zIndex: number };
 } => {
-  const { floatingStyles, ...rest } = useFloatingHook({
+  const { floatingStyles, ...rest } = useFloatingHook<T>({
     whileElementsMounted: autoUpdate,
     middleware: [
       flip(),
