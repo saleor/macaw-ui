@@ -98,7 +98,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating(1, isOpen);
+  const { refs, floatingStyles } = useFloating({
+    shouldUpdate: isOpen,
+  });
 
   const inputProps = getInputProps({
     id,
@@ -117,7 +119,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         label={label}
         error={error}
         className={className}
-        getLabelProps={getLabelProps}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        getLabelProps={() => getLabelProps({ ref: refs.reference })}
         getToggleButtonProps={getToggleButtonProps}
       >
         <Box display="flex">
@@ -142,7 +146,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         </Box>
       </ComboboxWrapper>
 
-      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
+      <Portal asChild style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -157,8 +161,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            // suppress error because of rendering list in portal
-            {...getMenuProps({}, { suppressRefError: true })}
+            {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (

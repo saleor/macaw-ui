@@ -8,45 +8,47 @@ import {
 } from "@floating-ui/react-dom";
 import { useLayoutEffect } from "react";
 
-export const useFloating = <T extends ReferenceType>(
+interface UseFloatingProps {
+  zIndexValue?: number;
+  shouldUpdate: boolean;
+}
+
+export const useFloating = <T extends ReferenceType>({
   zIndexValue = 1,
-  isOpen: boolean
-): UseFloatingReturn<T> & {
-  floatingStyles: { zIndex: number };
+  shouldUpdate,
+}: UseFloatingProps): {
+  floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };
+  refs: UseFloatingReturn<T>["refs"];
 } => {
-  const { floatingStyles, refs, update, strategy, ...rest } =
-    useFloatingHook<T>({
-      middleware: [
-        flip(),
-        size({
-          apply({ rects, availableHeight, elements }) {
-            Object.assign(elements.floating.style, {
-              position: strategy,
-              top: rects.reference.y + rects.reference.height + "px" ?? "",
-              left: rects.reference.x + "px" ?? "",
-              width: `${rects.reference.width}px`,
-              maxHeight: `${availableHeight}px`,
-            });
-          },
-        }),
-      ],
-    });
+  const { floatingStyles, refs, update, strategy } = useFloatingHook<T>({
+    middleware: [
+      flip(),
+      size({
+        apply({ rects, availableHeight, elements }) {
+          Object.assign(elements.floating.style, {
+            position: strategy,
+            top: rects.reference.y + rects.reference.height + "px" ?? "",
+            left: rects.reference.x + "px" ?? "",
+            width: `${rects.reference.width}px`,
+            maxHeight: `${availableHeight}px`,
+          });
+        },
+      }),
+    ],
+  });
 
   useLayoutEffect(() => {
-    if (isOpen) {
+    if (shouldUpdate) {
       return autoUpdate(
         refs.reference.current!,
         refs.floating.current!,
         update
       );
     }
-  }, [isOpen, update, refs.floating, refs.reference]);
+  }, [shouldUpdate, update, refs.floating, refs.reference]);
 
   return {
-    ...rest,
     refs,
-    strategy,
-    update,
     floatingStyles: {
       ...floatingStyles,
       zIndex: zIndexValue,

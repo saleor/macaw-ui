@@ -114,7 +114,9 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLUListElement>(1, isOpen);
+  const { refs, floatingStyles } = useFloating<HTMLUListElement>({
+    shouldUpdate: isOpen,
+  });
 
   const labelColor = useMemo((): TextProps["color"] => {
     if (error) {

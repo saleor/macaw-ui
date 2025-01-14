@@ -114,7 +114,9 @@ const DynamicMultiselectInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating(1, isOpen);
+  const { refs, floatingStyles } = useFloating({
+    shouldUpdate: isOpen,
+  });
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
@@ -127,7 +129,6 @@ const DynamicMultiselectInner = <T extends Option>(
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
-        ref={refs.setReference}
         id={id}
         typed={typed}
         active={active}
@@ -136,7 +137,9 @@ const DynamicMultiselectInner = <T extends Option>(
         label={label}
         error={error}
         className={className}
-        getLabelProps={getLabelProps}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        getLabelProps={() => getLabelProps({ ref: refs.reference })}
         getToggleButtonProps={getToggleButtonProps}
         renderEndAdornment={renderEndAdornment}
         hasItemsToSelect={hasItemsToSelect}
@@ -194,7 +197,7 @@ const DynamicMultiselectInner = <T extends Option>(
         />
       </MultiselectWrapper>
 
-      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
+      <Portal asChild style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -209,8 +212,7 @@ const DynamicMultiselectInner = <T extends Option>(
           <List
             as="ul"
             className={listStyle}
-            // suppress error because of rendering list in portal
-            {...getMenuProps({}, { suppressRefError: true })}
+            {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (

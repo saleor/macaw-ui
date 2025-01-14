@@ -107,7 +107,9 @@ const DynamicComboboxInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating(1, isOpen);
+  const { refs, floatingStyles } = useFloating({
+    shouldUpdate: isOpen,
+  });
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
@@ -128,7 +130,9 @@ const DynamicComboboxInner = <T extends Option>(
         label={label}
         error={error}
         className={className}
-        getLabelProps={getLabelProps}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        getLabelProps={() => getLabelProps({ ref: refs.reference })}
         getToggleButtonProps={getToggleButtonProps}
       >
         <Box display="flex">
@@ -149,7 +153,7 @@ const DynamicComboboxInner = <T extends Option>(
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
         </Box>
       </ComboboxWrapper>
-      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
+      <Portal asChild style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -165,8 +169,7 @@ const DynamicComboboxInner = <T extends Option>(
           <List
             as="ul"
             className={listStyle}
-            // suppress error because of rendering list in portal
-            {...getMenuProps({}, { suppressRefError: true })}
+            {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (
