@@ -114,7 +114,7 @@ const DynamicMultiselectInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating();
+  const { refs, floatingStyles } = useFloating(1, isOpen);
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 

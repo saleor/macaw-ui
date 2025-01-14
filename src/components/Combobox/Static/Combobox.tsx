@@ -98,7 +98,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating();
+  const { refs, floatingStyles } = useFloating(1, isOpen);
 
   const inputProps = getInputProps({
     id,
