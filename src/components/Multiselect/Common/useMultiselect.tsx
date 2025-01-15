@@ -107,6 +107,9 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
       const { changes, type } = actionAndChanges;
 
       switch (type) {
+        case useCombobox.stateChangeTypes.InputClick:
+        case useCombobox.stateChangeTypes.ToggleButtonClick:
+          return { ...changes, isOpen: true };
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
           setInputValue("");

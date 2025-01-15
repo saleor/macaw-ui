@@ -67,6 +67,7 @@ export const MultiselectWrapper = forwardRef<
         {...getToggleButtonProps({
           disabled,
         })}
+        {...getLabelProps()}
         cursor={disabled ? "not-allowed" : "text"}
       >
         <Box display="flex" flexDirection="column" width="100%">
@@ -76,7 +77,6 @@ export const MultiselectWrapper = forwardRef<
               multiselectSpanRecipe({ typed }),
               spanRecipe({ typed, size, disabled, error })
             )}
-            {...getLabelProps()}
           >
             {label}
           </Box>
