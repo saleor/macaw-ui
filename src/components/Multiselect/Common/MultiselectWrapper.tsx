@@ -61,11 +61,12 @@ export const MultiselectWrapper = forwardRef<
         )}
         alignItems="center"
         justifyContent="space-between"
-        disabled={disabled}
         flexWrap="nowrap"
         gap={3}
         data-macaw-ui-component="Multiselect"
-        {...getLabelProps()}
+        {...getToggleButtonProps({
+          disabled,
+        })}
         cursor={disabled ? "not-allowed" : "text"}
       >
         <Box display="flex" flexDirection="column" width="100%">
@@ -75,6 +76,7 @@ export const MultiselectWrapper = forwardRef<
               multiselectSpanRecipe({ typed }),
               spanRecipe({ typed, size, disabled, error })
             )}
+            {...getLabelProps()}
           >
             {label}
           </Box>
@@ -92,7 +94,6 @@ export const MultiselectWrapper = forwardRef<
         {hasItemsToSelect ? (
           <Adornment
             size={size}
-            getToggleButtonProps={getToggleButtonProps}
             renderEndAdornment={renderEndAdornment}
             disabled={disabled}
           />

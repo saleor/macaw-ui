@@ -2,7 +2,6 @@ import {
   GetPropsCommonOptions,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
-  UseComboboxGetToggleButtonPropsReturnValue,
   useCombobox,
   useMultipleSelection,
 } from "downshift";
@@ -11,9 +10,7 @@ import { FocusEvent, ReactNode, useState, MouseEventHandler } from "react";
 import { MultiChangeHandler, Option } from "~/components/BaseSelect";
 import { isStringArray } from "~/utils";
 
-export type RenderEndAdornmentType = (
-  props: UseComboboxGetToggleButtonPropsReturnValue
-) => ReactNode;
+export type RenderEndAdornmentType = () => ReactNode;
 
 const getItemsFilter = <T extends Option>(
   selectedItems: T[],
