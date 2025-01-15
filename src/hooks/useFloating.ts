@@ -20,7 +20,7 @@ export const useFloating = <T extends ReferenceType>({
   floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };
   refs: UseFloatingReturn<T>["refs"];
 } => {
-  const { floatingStyles, refs, elements, update } = useFloatingHook<T>({
+  const { floatingStyles, refs, update, x, y } = useFloatingHook<T>({
     strategy: "fixed",
     placement: "bottom-start",
     whileElementsMounted: autoUpdate,
@@ -38,15 +38,17 @@ export const useFloating = <T extends ReferenceType>({
   });
 
   useLayoutEffect(() => {
-    if (shouldUpdate && elements.reference && elements.floating) {
-      return autoUpdate(elements.reference, elements.floating, update);
+    if (shouldUpdate && refs.reference.current && refs.floating.current) {
+      return autoUpdate(refs.reference.current, refs.floating.current, update);
     }
-  }, [shouldUpdate, elements, update]);
+  }, [shouldUpdate, refs, update]);
 
   return {
     refs,
     floatingStyles: {
       ...floatingStyles,
+      top: y ?? 0,
+      left: x ?? 0,
       zIndex: zIndexValue,
       pointerEvents: "auto",
     },
