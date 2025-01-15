@@ -14,21 +14,21 @@ interface UseFloatingProps {
 }
 
 export const useFloating = <T extends ReferenceType>({
-  zIndexValue = 1,
+  zIndexValue = 2,
   shouldUpdate,
 }: UseFloatingProps): {
   floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };
   refs: UseFloatingReturn<T>["refs"];
 } => {
-  const { floatingStyles, refs, update, strategy } = useFloatingHook<T>({
+  const { floatingStyles, refs, elements, update } = useFloatingHook<T>({
+    strategy: "fixed",
+    placement: "bottom-start",
+    whileElementsMounted: autoUpdate,
     middleware: [
       flip(),
       size({
         apply({ rects, availableHeight, elements }) {
           Object.assign(elements.floating.style, {
-            position: strategy,
-            top: rects.reference.y + rects.reference.height + "px" ?? "",
-            left: rects.reference.x + "px" ?? "",
             width: `${rects.reference.width}px`,
             maxHeight: `${availableHeight}px`,
           });
@@ -38,14 +38,10 @@ export const useFloating = <T extends ReferenceType>({
   });
 
   useLayoutEffect(() => {
-    if (shouldUpdate) {
-      return autoUpdate(
-        refs.reference.current!,
-        refs.floating.current!,
-        update
-      );
+    if (shouldUpdate && elements.reference && elements.floating) {
+      return autoUpdate(elements.reference, elements.floating, update);
     }
-  }, [shouldUpdate, update, refs.floating, refs.reference]);
+  }, [shouldUpdate, elements, update]);
 
   return {
     refs,

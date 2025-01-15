@@ -122,7 +122,6 @@ const DynamicComboboxInner = <T extends Option>(
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
         id={id}
-        ref={refs.setReference}
         typed={typed}
         active={active}
         disabled={disabled}
@@ -130,9 +129,9 @@ const DynamicComboboxInner = <T extends Option>(
         label={label}
         error={error}
         className={className}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        getLabelProps={() => getLabelProps({ ref: refs.reference })}
+        getLabelProps={() =>
+          getLabelProps({ ref: refs.setReference, htmlFor: id! })
+        }
         getToggleButtonProps={getToggleButtonProps}
       >
         <Box display="flex">
@@ -169,7 +168,7 @@ const DynamicComboboxInner = <T extends Option>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            {...getMenuProps({ ref: refs.setFloating })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (
