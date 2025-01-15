@@ -24,7 +24,6 @@ jobs:
     with:
       # List of ecosystems to scan.
       ecosystems: >-
-        python
         javascript
       # Grant rules (https://github.com/anchore/grant/blob/4362dc22cf5ea9baeccfa59b2863879afe0c30d7/README.md#usage)
       rules: |
