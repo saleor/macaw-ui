@@ -14,13 +14,14 @@ interface UseFloatingProps {
 }
 
 export const useFloating = <T extends ReferenceType>({
-  zIndexValue = 2,
+  zIndexValue = 999,
   shouldUpdate,
 }: UseFloatingProps): {
   floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };
   refs: UseFloatingReturn<T>["refs"];
 } => {
   const { floatingStyles, refs, update } = useFloatingHook<T>({
+    strategy: "fixed",
     middleware: [
       flip(),
       size({
@@ -29,7 +30,7 @@ export const useFloating = <T extends ReferenceType>({
             top: `${rects.reference.y + rects.reference.height}px`,
             left: `${rects.reference.x}px`,
             width: `${rects.reference.width}px`,
-            maxHeight: `${availableHeight}px`,
+            maxHeight: `${Math.min(230, availableHeight)}px`,
           });
         },
       }),
