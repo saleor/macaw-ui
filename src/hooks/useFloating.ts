@@ -20,15 +20,14 @@ export const useFloating = <T extends ReferenceType>({
   floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };
   refs: UseFloatingReturn<T>["refs"];
 } => {
-  const { floatingStyles, refs, update, x, y } = useFloatingHook<T>({
-    strategy: "fixed",
-    placement: "bottom-start",
-    whileElementsMounted: autoUpdate,
+  const { floatingStyles, refs, update } = useFloatingHook<T>({
     middleware: [
       flip(),
       size({
         apply({ rects, availableHeight, elements }) {
           Object.assign(elements.floating.style, {
+            top: `${rects.reference.y + rects.reference.height}px`,
+            left: `${rects.reference.x}px`,
             width: `${rects.reference.width}px`,
             maxHeight: `${availableHeight}px`,
           });
@@ -47,8 +46,6 @@ export const useFloating = <T extends ReferenceType>({
     refs,
     floatingStyles: {
       ...floatingStyles,
-      top: y ?? 0,
-      left: x ?? 0,
       zIndex: zIndexValue,
       pointerEvents: "auto",
     },
