@@ -22,25 +22,13 @@ export const Adornment = ({
 }: AdornmentProps) => {
   return renderEndAdornment ? (
     <>
-      {renderEndAdornment(
-        getToggleButtonProps({
-          disabled,
-          onClick: (event) => {
-            event.preventDefault();
-          },
-        })
-      )}
+      <>{renderEndAdornment(getToggleButtonProps())}</>
     </>
   ) : (
     <ArrowDownIcon
       className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
       size={size}
-      {...getToggleButtonProps({
-        disabled,
-        onClick: (event) => {
-          event.preventDefault();
-        },
-      })}
+      {...getToggleButtonProps({ disabled })}
     />
   );
 };

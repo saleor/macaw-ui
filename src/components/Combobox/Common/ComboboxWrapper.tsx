@@ -52,15 +52,16 @@ export const ComboboxWrapper = forwardRef<
         )}
         alignItems="center"
         justifyContent="space-between"
+        disabled={disabled}
         flexWrap="nowrap"
         gap={3}
         data-macaw-ui-component="Combobox"
+        {...getLabelProps({ htmlFor: id })}
         cursor={disabled ? "not-allowed" : "text"}
       >
         <Box display="flex" flexDirection="column" width="100%">
           <Box
             as="span"
-            {...getLabelProps({ htmlFor: id })}
             className={classNames(spanRecipe({ typed, size, disabled, error }))}
           >
             {label}
@@ -73,13 +74,13 @@ export const ComboboxWrapper = forwardRef<
             toggleIconStyle,
             sprinkles({ cursor: "pointer" })
           )}
+          size={size}
           {...getToggleButtonProps({
             disabled,
             onClick: (event) => {
               event.preventDefault();
             },
           })}
-          size={size}
         />
       </Box>
     );

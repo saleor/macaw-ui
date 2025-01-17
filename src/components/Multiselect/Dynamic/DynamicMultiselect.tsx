@@ -129,8 +129,8 @@ const DynamicMultiselectInner = <T extends Option>(
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
-        id={id}
         ref={refs.reference}
+        id={id}
         typed={typed}
         active={active}
         disabled={disabled}

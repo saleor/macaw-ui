@@ -60,6 +60,7 @@ export const MultiselectWrapper = forwardRef<
         )}
         alignItems="center"
         justifyContent="space-between"
+        disabled={disabled}
         flexWrap="nowrap"
         gap={3}
         data-macaw-ui-component="Multiselect"
