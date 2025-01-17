@@ -114,7 +114,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLUListElement>({
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
     shouldUpdate: isOpen,
   });
 

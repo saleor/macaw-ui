@@ -98,7 +98,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating({
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
     shouldUpdate: isOpen,
   });
 
@@ -111,6 +111,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
         id={id}
+        ref={refs.reference}
         typed={typed}
         active={active}
         disabled={disabled}
@@ -118,17 +119,8 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         label={label}
         error={error}
         className={className}
-        getLabelProps={() => getLabelProps({ htmlFor: id! })}
-        getToggleButtonProps={(props) =>
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          getToggleButtonProps({
-            ...props,
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            ref: refs.reference,
-          })
-        }
+        getLabelProps={getLabelProps}
+        getToggleButtonProps={getToggleButtonProps}
       >
         <Box display="flex">
           {startAdornment && typed && <Box>{startAdornment(value)}</Box>}

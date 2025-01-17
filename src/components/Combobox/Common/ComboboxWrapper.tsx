@@ -19,9 +19,7 @@ type ComboboxWrapperProps = LabelVariants & {
   error?: boolean;
   children: ReactNode;
   getToggleButtonProps: UseComboboxPropGetters<Option>["getToggleButtonProps"];
-  getLabelProps: () => ReturnType<
-    UseComboboxPropGetters<Option>["getLabelProps"]
-  >;
+  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
 };
 
 export const ComboboxWrapper = forwardRef<
@@ -30,6 +28,7 @@ export const ComboboxWrapper = forwardRef<
 >(
   (
     {
+      id,
       label,
       className,
       error,
@@ -56,19 +55,13 @@ export const ComboboxWrapper = forwardRef<
         flexWrap="nowrap"
         gap={3}
         data-macaw-ui-component="Combobox"
-        {...getToggleButtonProps({
-          disabled,
-          onClick: (event) => {
-            event.preventDefault();
-          },
-        })}
         cursor={disabled ? "not-allowed" : "text"}
       >
         <Box display="flex" flexDirection="column" width="100%">
           <Box
             as="span"
+            {...getLabelProps({ htmlFor: id })}
             className={classNames(spanRecipe({ typed, size, disabled, error }))}
-            {...getLabelProps()}
           >
             {label}
           </Box>
@@ -80,6 +73,12 @@ export const ComboboxWrapper = forwardRef<
             toggleIconStyle,
             sprinkles({ cursor: "pointer" })
           )}
+          {...getToggleButtonProps({
+            disabled,
+            onClick: (event) => {
+              event.preventDefault();
+            },
+          })}
           size={size}
         />
       </Box>

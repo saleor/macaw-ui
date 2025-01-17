@@ -20,9 +20,7 @@ type MultiselectWrapperProps = LabelVariants & {
   className?: string;
   error?: boolean;
   children: ReactNode;
-  getLabelProps: () => ReturnType<
-    UseComboboxPropGetters<Option>["getLabelProps"]
-  >;
+  getLabelProps: UseComboboxPropGetters<Option>["getLabelProps"];
   getToggleButtonProps: ReturnType<
     typeof useMultiselect
   >["getToggleButtonProps"];
@@ -36,6 +34,7 @@ export const MultiselectWrapper = forwardRef<
 >(
   (
     {
+      id,
       label,
       className,
       error,
@@ -64,10 +63,7 @@ export const MultiselectWrapper = forwardRef<
         flexWrap="nowrap"
         gap={3}
         data-macaw-ui-component="Multiselect"
-        {...getToggleButtonProps({
-          disabled,
-        })}
-        {...getLabelProps()}
+        {...getLabelProps({ htmlFor: id })}
         cursor={disabled ? "not-allowed" : "text"}
       >
         <Box display="flex" flexDirection="column" width="100%">
@@ -94,6 +90,7 @@ export const MultiselectWrapper = forwardRef<
         {hasItemsToSelect ? (
           <Adornment
             size={size}
+            getToggleButtonProps={getToggleButtonProps}
             renderEndAdornment={renderEndAdornment}
             disabled={disabled}
           />

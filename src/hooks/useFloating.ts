@@ -14,7 +14,7 @@ interface UseFloatingProps {
 }
 
 export const useFloating = <T extends ReferenceType>({
-  zIndexValue = 999,
+  zIndexValue = 2,
   shouldUpdate,
 }: UseFloatingProps): {
   floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };

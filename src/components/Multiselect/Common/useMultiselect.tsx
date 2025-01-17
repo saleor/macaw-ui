@@ -4,14 +4,16 @@ import {
   UseComboboxGetToggleButtonPropsOptions,
   useCombobox,
   useMultipleSelection,
+  UseComboboxGetToggleButtonPropsReturnValue,
 } from "downshift";
 import { FocusEvent, ReactNode, useState, MouseEventHandler } from "react";
 
 import { MultiChangeHandler, Option } from "~/components/BaseSelect";
 import { isStringArray } from "~/utils";
 
-export type RenderEndAdornmentType = () => ReactNode;
-
+export type RenderEndAdornmentType = (
+  props: UseComboboxGetToggleButtonPropsReturnValue
+) => ReactNode;
 const getItemsFilter = <T extends Option>(
   selectedItems: T[],
   inputValue: string,
@@ -107,9 +109,6 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
       const { changes, type } = actionAndChanges;
 
       switch (type) {
-        case useCombobox.stateChangeTypes.InputClick:
-        case useCombobox.stateChangeTypes.ToggleButtonClick:
-          return { ...changes, isOpen: true };
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
           setInputValue("");
