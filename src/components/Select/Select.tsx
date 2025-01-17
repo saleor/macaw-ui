@@ -9,7 +9,6 @@ import {
 
 import { useFloating } from "~/hooks/useFloating";
 import { isString } from "~/utils";
-import { SelectWrapper } from "~/components/Select/SelectWrapper";
 import {
   Box,
   List,
@@ -31,6 +30,7 @@ import {
 } from "../BaseSelect";
 import { getListDisplayMode } from "../BaseSelect/helpers";
 
+import { SelectWrapper } from "./SelectWrapper";
 import { useSelect } from "./useSelect";
 
 export type SelectProps<T, V> = PropsWithBox<

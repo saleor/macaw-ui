@@ -41,49 +41,45 @@ export const SelectWrapper = forwardRef<HTMLLabelElement, SelectWrapperProps>(
     ref
   ) => {
     return (
-      <Box>
+      <Box
+        ref={ref}
+        as="label"
+        className={classNames(
+          labelRecipe({ typed, active, disabled, size, error }),
+          className
+        )}
+        alignItems="center"
+        justifyContent="space-between"
+        disabled={disabled}
+        flexWrap="nowrap"
+        gap={3}
+        {...getToggleButtonProps()}
+        data-macaw-ui-component="Select"
+        cursor={disabled ? "not-allowed" : "pointer"}
+      >
         <Box
-          ref={ref}
-          as="label"
-          className={classNames(
-            labelRecipe({ typed, active, disabled, size, error }),
-            className
-          )}
-          alignItems="center"
-          justifyContent="space-between"
-          disabled={disabled}
-          flexWrap="nowrap"
-          gap={3}
-          {...getToggleButtonProps()}
-          data-macaw-ui-component="Select"
-          cursor={disabled ? "not-allowed" : "pointer"}
+          display="flex"
+          flexDirection="column"
+          // Take full width minus the arrow icon width
+          __width="calc(100% - 30px)"
         >
           <Box
-            display="flex"
-            flexDirection="column"
-            // Take full width minus the arrow icon width
-            __width="calc(100% - 30px)"
+            as="span"
+            className={classNames(spanRecipe({ typed, size, disabled, error }))}
+            {...getLabelProps({ htmlFor: id })}
           >
-            <Box
-              as="span"
-              className={classNames(
-                spanRecipe({ typed, size, disabled, error })
-              )}
-              {...getLabelProps({ htmlFor: id })}
-            >
-              {label}
-            </Box>
-            {children}
+            {label}
           </Box>
-
-          <ArrowDownIcon
-            className={classNames(
-              toggleIconStyle,
-              sprinkles({ cursor: "pointer" })
-            )}
-            size={size}
-          />
+          {children}
         </Box>
+
+        <ArrowDownIcon
+          className={classNames(
+            toggleIconStyle,
+            sprinkles({ cursor: "pointer" })
+          )}
+          size={size}
+        />
       </Box>
     );
   }

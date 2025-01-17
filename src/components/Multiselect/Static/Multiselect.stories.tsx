@@ -158,7 +158,7 @@ const [selectedItems, setSelectedItems] = useState([{ value: "color-black", labe
 export const WithEndAdornment: Story = {
   ...MultiselectTemplate,
   args: {
-    renderEndAdornment: () => <ViewTableIcon />,
+    renderEndAdornment: (props) => <ViewTableIcon {...props} />,
   },
   parameters: {
     docs: {
@@ -173,7 +173,6 @@ const [selectedItems, setSelectedItems] = useState([{ value: "color-black", labe
   onChange={(values) => setSelectedItems(values)}
   options={[{ value: "color-black", label: "Black" }]}
   renderEndAdornment={(props) => <ViewTableIcon {...props} />}
-
 />;
         `,
       },

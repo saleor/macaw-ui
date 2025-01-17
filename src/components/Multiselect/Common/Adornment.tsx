@@ -21,9 +21,7 @@ export const Adornment = ({
   disabled,
 }: AdornmentProps) => {
   return renderEndAdornment ? (
-    <>
-      <>{renderEndAdornment(getToggleButtonProps())}</>
-    </>
+    <>{renderEndAdornment(getToggleButtonProps())}</>
   ) : (
     <ArrowDownIcon
       className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
