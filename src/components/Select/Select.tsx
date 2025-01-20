@@ -133,7 +133,6 @@ const SelectInner = <T extends Option, V extends Option | string>(
   return (
     <Box display="flex" flexDirection="column">
       <SelectWrapper
-        ref={refs.reference}
         id={id}
         typed={typed}
         active={active}
@@ -143,7 +142,9 @@ const SelectInner = <T extends Option, V extends Option | string>(
         error={error}
         className={className}
         getLabelProps={getLabelProps}
-        getToggleButtonProps={getToggleButtonProps}
+        getToggleButtonProps={() =>
+          getToggleButtonProps({ ref: refs.reference })
+        }
       >
         <Box height={getBoxHeight(size)} {...props} ref={ref} display="flex">
           {startAdornment && typed && startAdornment(value)}
