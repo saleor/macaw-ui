@@ -98,7 +98,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating();
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
+    shouldUpdate: isOpen,
+  });
 
   const inputProps = getInputProps({
     id,
@@ -109,7 +111,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
         id={id}
-        ref={refs.setReference}
+        ref={refs.reference}
         typed={typed}
         active={active}
         disabled={disabled}
@@ -142,7 +144,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
         </Box>
       </ComboboxWrapper>
 
-      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
+      <Portal asChild style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -157,8 +159,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            // suppress error because of rendering list in portal
-            {...getMenuProps({}, { suppressRefError: true })}
+            {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (

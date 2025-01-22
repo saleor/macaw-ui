@@ -72,6 +72,9 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
     useMultipleSelection({
       selectedItems,
       onStateChange({ selectedItems: newSelectedItems, type }) {
+        // eslint-disable-next-line no-console
+        console.log("Debug useCombobox state change", type, newSelectedItems);
+
         switch (type) {
           case useMultipleSelection.stateChangeTypes
             .SelectedItemKeyDownBackspace:

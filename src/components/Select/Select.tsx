@@ -114,7 +114,9 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating();
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
+    shouldUpdate: isOpen,
+  });
 
   const labelColor = useMemo((): TextProps["color"] => {
     if (error) {
@@ -131,7 +133,6 @@ const SelectInner = <T extends Option, V extends Option | string>(
   return (
     <Box display="flex" flexDirection="column">
       <SelectWrapper
-        ref={refs.setReference}
         id={id}
         typed={typed}
         active={active}
@@ -141,7 +142,9 @@ const SelectInner = <T extends Option, V extends Option | string>(
         error={error}
         className={className}
         getLabelProps={getLabelProps}
-        getToggleButtonProps={getToggleButtonProps}
+        getToggleButtonProps={() =>
+          getToggleButtonProps({ ref: refs.reference })
+        }
       >
         <Box height={getBoxHeight(size)} {...props} ref={ref} display="flex">
           {startAdornment && typed && startAdornment(value)}
@@ -159,7 +162,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           {endAdornment && typed && endAdornment(value)}
         </Box>
       </SelectWrapper>
-      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
+      <Portal asChild style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -173,8 +176,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            // suppress error because of rendering list in portal
-            {...getMenuProps({}, { suppressRefError: true })}
+            {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
               options?.map((item, index) => (
