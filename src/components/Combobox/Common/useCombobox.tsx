@@ -2,6 +2,7 @@ import {
   GetPropsCommonOptions,
   useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
+  UseSelectStateChangeTypes,
 } from "downshift";
 import { FocusEvent, useState } from "react";
 
@@ -67,9 +68,22 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     highlightedIndex,
     onHighlightedIndexChange,
     isItemDisabled: (item) => item?.disabled ?? false,
-    onStateChange: ({ inputValue: newInputValue, type }) => {
+    onStateChange: ({ inputValue: newInputValue, type, selectedItem }) => {
       // eslint-disable-next-line no-console
-      console.log("Debug useCombobox state change", type, newInputValue);
+      console.log(
+        "Debug useCombobox state change type",
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        UseSelectStateChangeTypes[type],
+        type
+      );
+      // eslint-disable-next-line no-console
+      console.log("Debug useCombobox state change input value", inputValue);
+      // eslint-disable-next-line no-console
+      console.log(
+        "Debug useCombobox state change new selected item",
+        selectedItem
+      );
       switch (type) {
         case useDownshiftCombobox.stateChangeTypes.InputChange:
           onInputValueChange?.(newInputValue ?? "");
