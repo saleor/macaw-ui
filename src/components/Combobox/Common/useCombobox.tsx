@@ -68,6 +68,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     onHighlightedIndexChange,
     isItemDisabled: (item) => item?.disabled ?? false,
     onStateChange: ({ inputValue: newInputValue, type }) => {
+      // eslint-disable-next-line no-console
+      console.log("Debug useCombobox state change", type, newInputValue);
       switch (type) {
         case useDownshiftCombobox.stateChangeTypes.InputChange:
           onInputValueChange?.(newInputValue ?? "");
