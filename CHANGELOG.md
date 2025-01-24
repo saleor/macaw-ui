@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.16
+
+### Patch Changes
+
+- c6175e3: Add workflow to check licenses and add missing LICENSE file (copy of CC-BY-4.0)
+
 ## 1.1.15
 
 ### Patch Changes
