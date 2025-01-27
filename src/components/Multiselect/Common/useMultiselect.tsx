@@ -71,9 +71,10 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
   const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
     useMultipleSelection({
       selectedItems,
-      onStateChange({ selectedItems: newSelectedItems, type }) {
+      onStateChange(changes) {
+        const { selectedItems: newSelectedItems, type } = changes;
         // eslint-disable-next-line no-console
-        console.log("Debug useCombobox state change", type, newSelectedItems);
+        console.log("Debug useCombobox state change", changes);
 
         switch (type) {
           case useMultipleSelection.stateChangeTypes

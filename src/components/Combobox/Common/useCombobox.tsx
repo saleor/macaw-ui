@@ -78,6 +78,17 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         selectedItem
       );
       switch (type) {
+        case useDownshiftCombobox.stateChangeTypes.InputKeyDownEnter:
+        case useDownshiftCombobox.stateChangeTypes.ItemClick:
+        case useDownshiftCombobox.stateChangeTypes.InputBlur:
+          if (selectedItem) {
+            const selectedValue = isValuePassedAsString
+              ? selectedItem.value
+              : selectedItem;
+            setInputValue("");
+            onChange?.(selectedValue as V);
+          }
+          break;
         case useDownshiftCombobox.stateChangeTypes.InputChange:
           onInputValueChange?.(newInputValue ?? "");
           setInputValue(newInputValue ?? "");
@@ -86,17 +97,6 @@ export const useCombobox = <T extends Option, V extends string | Option>({
             onChange?.(null);
           }
           break;
-      }
-    },
-    onSelectedItemChange: ({ selectedItem }) => {
-      // eslint-disable-next-line no-console
-      console.log("onSelectedItemChange", selectedItem);
-      if (selectedItem) {
-        const selectedValue = isValuePassedAsString
-          ? selectedItem.value
-          : selectedItem;
-        setInputValue("");
-        onChange?.(selectedValue as V);
       }
     },
   });
