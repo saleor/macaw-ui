@@ -6,6 +6,11 @@ import { showContent } from "./Content.css";
 export type ModalContentProps = {
   children: React.ReactNode;
   disableAutofocus?: boolean;
+  dialogContentProps?: Omit<
+    Dialog.DialogContentProps,
+    "onOpenAutoFocus" | "className" | "asChild"
+  >;
+  container?: HTMLElement | null | undefined;
 };
 
 const createAutofocusHandler = (isDisabled?: boolean) => {
@@ -18,15 +23,21 @@ const createAutofocusHandler = (isDisabled?: boolean) => {
   };
 };
 
-export const Content = ({ children, disableAutofocus }: ModalContentProps) => {
+export const Content = ({
+  children,
+  disableAutofocus,
+  container,
+  dialogContentProps,
+}: ModalContentProps) => {
   return (
-    <Dialog.Portal>
+    <Dialog.Portal container={container}>
       <Dialog.Overlay asChild className={showContent}>
         <Backdrop>
           <Dialog.Content
             asChild
             className={showContent}
             {...createAutofocusHandler(disableAutofocus)}
+            {...dialogContentProps}
           >
             {children}
           </Dialog.Content>
