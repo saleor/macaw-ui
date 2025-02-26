@@ -46,10 +46,6 @@ export const useSelect = <T extends Option, V extends string | Option>({
       onHighlightedIndexChange(change);
     },
     itemToString: (item) => item?.value ?? "",
-    onStateChange({ selectedItem, type }) {
-      // eslint-disable-next-line no-console
-      console.log("Debug useCombobox state change", type, selectedItem);
-    },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         const selectedValue = isValuePassedAsString
