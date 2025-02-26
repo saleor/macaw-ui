@@ -81,11 +81,15 @@ export const useCombobox = <T extends Option, V extends string | Option>({
         case useDownshiftCombobox.stateChangeTypes.InputKeyDownEnter:
         case useDownshiftCombobox.stateChangeTypes.ItemClick:
         case useDownshiftCombobox.stateChangeTypes.InputBlur:
+          // eslint-disable-next-line no-console
+          console.log("Start calling on change", selectedItem);
           if (selectedItem) {
             const selectedValue = isValuePassedAsString
               ? selectedItem.value
               : selectedItem;
             setInputValue("");
+            // eslint-disable-next-line no-console
+            console.log("Call on change");
             onChange?.(selectedValue as V);
           }
           break;
