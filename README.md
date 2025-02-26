@@ -120,7 +120,7 @@ pnpm change:add
 
 ### Useful tooling
 
-- Chrome browser extension - [Atomic CSS Devtools](https://chromewebstore.google.com/detail/atomic-css-devtools)
+- Chrome browser extension - [Atomic CSS Devtools](https://chromewebstore.google.com/detail/atomic-css-devtools/cbjhfeooiomphlikkblgdageenemhpgc)
 
 ## License
 
