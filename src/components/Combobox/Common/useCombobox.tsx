@@ -67,40 +67,21 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     highlightedIndex,
     onHighlightedIndexChange,
     isItemDisabled: (item) => item?.disabled ?? false,
-    onStateChange: ({ inputValue: newInputValue, type, selectedItem }) => {
-      // eslint-disable-next-line no-console
-      console.log("Debug useCombobox state change type", type);
-      // eslint-disable-next-line no-console
-      console.log("Debug useCombobox state change input value", inputValue);
-      // eslint-disable-next-line no-console
-      console.log(
-        "Debug useCombobox state change new selected item",
-        selectedItem
-      );
-      switch (type) {
-        case useDownshiftCombobox.stateChangeTypes.InputKeyDownEnter:
-        case useDownshiftCombobox.stateChangeTypes.ItemClick:
-        case useDownshiftCombobox.stateChangeTypes.InputBlur:
-          // eslint-disable-next-line no-console
-          console.log("Start calling on change", selectedItem);
-          if (selectedItem) {
-            const selectedValue = isValuePassedAsString
-              ? selectedItem.value
-              : selectedItem;
-            setInputValue("");
-            // eslint-disable-next-line no-console
-            console.log("Call on change");
-            onChange?.(selectedValue as V);
-          }
-          break;
-        case useDownshiftCombobox.stateChangeTypes.InputChange:
-          onInputValueChange?.(newInputValue ?? "");
-          setInputValue(newInputValue ?? "");
+    onInputValueChange({ inputValue }) {
+      onInputValueChange?.(inputValue ?? "");
+      setInputValue(inputValue ?? "");
 
-          if (!newInputValue) {
-            onChange?.(null);
-          }
-          break;
+      if (!inputValue) {
+        onChange?.(null);
+      }
+    },
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (selectedItem) {
+        const selectedValue = isValuePassedAsString
+          ? selectedItem.value
+          : selectedItem;
+        setInputValue("");
+        onChange?.(selectedValue as V);
       }
     },
   });
