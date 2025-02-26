@@ -2,4 +2,5 @@
 "@saleor/macaw-ui": patch
 ---
 
-Floating ui now working corectly with react 18
+Now refs from floating-ui are properly set.
+Now useCombobox properly handles input value change
