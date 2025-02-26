@@ -12,6 +12,7 @@ export const Backdrop = forwardRef<HTMLDivElement, BackdropProps>(
       position="fixed"
       inset={0}
       ref={ref}
+      data-macaw-ui-component="Backdrop"
       {...rest}
     >
       {children}
