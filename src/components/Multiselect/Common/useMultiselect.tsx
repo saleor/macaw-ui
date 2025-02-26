@@ -71,7 +71,9 @@ export const useMultiselect = <T extends Option, V extends Option | string>({
   const { getSelectedItemProps, getDropdownProps, removeSelectedItem } =
     useMultipleSelection({
       selectedItems,
-      onStateChange({ selectedItems: newSelectedItems, type }) {
+      onStateChange(changes) {
+        const { selectedItems: newSelectedItems, type } = changes;
+
         switch (type) {
           case useMultipleSelection.stateChangeTypes
             .SelectedItemKeyDownBackspace:
