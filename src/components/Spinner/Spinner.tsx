@@ -12,6 +12,7 @@ export const Spinner = forwardRef<SVGSVGElement, { className?: string }>(
       height="16"
       fill="none"
       className={classNames(spinner, className)}
+      data-macaw-ui-component="Spinner"
       ref={ref}
     >
       <g

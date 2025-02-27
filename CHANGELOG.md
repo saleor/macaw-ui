@@ -1,5 +1,13 @@
 # @saleor/macaw-ui
 
+## 1.1.17
+
+### Patch Changes
+
+- ae5605c: Now refs from floating-ui are properly set.
+  Now useCombobox properly handles input value change
+- 20ab9eb: Added `data-macaw-ui-component` attribute to: `Icon`, `Paragraph`, `RangeInput`, `Skeleton`, `Spinner` components
+
 ## 1.1.16
 
 ### Patch Changes

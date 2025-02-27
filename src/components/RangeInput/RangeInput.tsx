@@ -24,6 +24,7 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
           onChange={(e) => onChange?.([e.target.value, end])}
           type={type}
           ref={ref}
+          data-macaw-ui-component="RangeInput"
           {...props}
         />
         {children}
@@ -32,6 +33,7 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
           onChange={(e) => onChange?.([start, e.target.value])}
           type={type}
           ref={ref}
+          data-macaw-ui-component="RangeInput"
           {...props}
         />
       </>

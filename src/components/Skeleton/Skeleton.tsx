@@ -17,6 +17,7 @@ export const Skeleton = ({ className, ...props }: SkeletonProps) => {
       width="100%"
       height={3}
       borderRadius={2}
+      data-macaw-ui-component="Skeleton"
       {...props}
     />
   );
