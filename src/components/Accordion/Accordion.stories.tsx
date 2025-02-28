@@ -52,7 +52,9 @@ export const Controlled: Story = {
   args,
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [value, setValue] = useState<undefined | string>(args.defaultValue);
+    const [value, setValue] = useState<undefined | string>(
+      args.defaultValue as string
+    );
 
     return (
       <Box>
@@ -70,7 +72,7 @@ export const Controlled: Story = {
         <Accordion
           {...args}
           value={value}
-          onValueChange={(value) => setValue(value)}
+          onValueChange={(value) => setValue(value as string)}
         />
       </Box>
     );
@@ -125,6 +127,37 @@ export const WithoutTriggerButton: Story = {
       <Accordion.Item value="third-item">
         <Accordion.Trigger disabled>
           <Text color="defaultDisabled">Trigger 3</Text>
+        </Accordion.Trigger>
+        <Accordion.Content>Content 3</Accordion.Content>
+      </Accordion.Item>,
+    ],
+  },
+};
+
+export const Multiple: Story = {
+  args: {
+    ...args,
+    defaultValue: ["first-item", "second-item"],
+    type: "multiple",
+    children: [
+      <Accordion.Item value="first-item">
+        <Accordion.Trigger>
+          <Text>Trigger 1</Text>
+          <Accordion.TriggerButton />
+        </Accordion.Trigger>
+        <Accordion.Content>Content 1</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="second-item">
+        <Accordion.Trigger>
+          <Text>Trigger 2</Text>
+          <Accordion.TriggerButton />
+        </Accordion.Trigger>
+        <Accordion.Content>Content 2</Accordion.Content>
+      </Accordion.Item>,
+      <Accordion.Item value="third-item">
+        <Accordion.Trigger disabled>
+          <Text color="defaultDisabled">Trigger 3</Text>
+          <Accordion.TriggerButton disabled />
         </Accordion.Trigger>
         <Accordion.Content>Content 3</Accordion.Content>
       </Accordion.Item>,
