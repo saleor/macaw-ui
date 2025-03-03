@@ -1,45 +1,55 @@
-import {
-  AccordionMultipleProps,
-  Root as AccordionRoot,
-  AccordionSingleProps,
-} from "@radix-ui/react-accordion";
-import { forwardRef, ReactNode } from "react";
+import { Root as AccordionRoot } from "@radix-ui/react-accordion";
+import { forwardRef } from "react";
 import { Box, PropsWithBox } from "../Box";
 
-export type AccordionRootProps = PropsWithBox<{
-  children: ReactNode;
-  type?: "single" | "multiple";
-  defaultValue?: string | string[];
-  value?: string | string[];
-  onValueChange?: (value: string | string[]) => void;
-}>;
+type SingleProps = {
+  type: "single";
+  defaultValue?: string;
+  value?: string;
+  onValueChange: (value: string) => void;
+};
+
+type MultipleProps = {
+  type: "multiple";
+  defaultValue?: string[];
+  value?: string[];
+  onValueChange: (value: string[]) => void;
+};
+
+export type AccordionRootProps = PropsWithBox<MultipleProps | SingleProps>;
 
 export const Root = forwardRef<HTMLElement, AccordionRootProps>(
-  (
-    { children, defaultValue, value, onValueChange, type = "single", ...rest },
-    ref
-  ) => {
-    const props =
-      type === "single"
-        ? ({
-            type,
-            collapsible: true,
-            defaultValue,
-            value,
-            onValueChange,
-          } as AccordionSingleProps)
-        : ({
-            type,
-            defaultValue,
-            value,
-            onValueChange,
-          } as AccordionMultipleProps);
+  ({ children, defaultValue, value, onValueChange, type, ...rest }, ref) => {
+    const content = (
+      <Box {...rest} ref={ref} data-macaw-ui-component="Accordion">
+        {children}
+      </Box>
+    );
+
+    if (!type || type === "single") {
+      return (
+        <AccordionRoot
+          collapsible
+          type={type}
+          value={value}
+          defaultValue={defaultValue}
+          onValueChange={onValueChange}
+          asChild
+        >
+          {content}
+        </AccordionRoot>
+      );
+    }
 
     return (
-      <AccordionRoot {...props} asChild>
-        <Box {...rest} ref={ref} data-macaw-ui-component="Accordion">
-          {children}
-        </Box>
+      <AccordionRoot
+        type={type}
+        value={value}
+        defaultValue={defaultValue}
+        onValueChange={onValueChange}
+        asChild
+      >
+        {content}
       </AccordionRoot>
     );
   }

@@ -71,8 +71,10 @@ export const Controlled: Story = {
         </Box>
         <Accordion
           {...args}
+          type="single"
+          defaultValue={args.defaultValue as string | undefined}
           value={value}
-          onValueChange={(value) => setValue(value as string)}
+          onValueChange={(value: string) => setValue(value)}
         />
       </Box>
     );
@@ -137,8 +139,10 @@ export const WithoutTriggerButton: Story = {
 export const Multiple: Story = {
   args: {
     ...args,
-    defaultValue: ["first-item", "second-item"],
+    onValueChange: undefined,
+    value: undefined,
     type: "multiple",
+    defaultValue: ["first-item", "second-item"],
     children: [
       <Accordion.Item value="first-item">
         <Accordion.Trigger>
