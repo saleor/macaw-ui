@@ -2,19 +2,19 @@ import { Root as AccordionRoot } from "@radix-ui/react-accordion";
 import { forwardRef } from "react";
 import { Box, PropsWithBox } from "../Box";
 
-type SingleProps = {
+interface SingleProps {
   type: "single";
   defaultValue?: string;
   value?: string;
-  onValueChange: (value: string) => void;
-};
+  onValueChange?: (value: string) => void;
+}
 
-type MultipleProps = {
+interface MultipleProps {
   type: "multiple";
   defaultValue?: string[];
   value?: string[];
-  onValueChange: (value: string[]) => void;
-};
+  onValueChange?: (value: string[]) => void;
+}
 
 export type AccordionRootProps = PropsWithBox<MultipleProps | SingleProps>;
 
@@ -26,7 +26,7 @@ export const Root = forwardRef<HTMLElement, AccordionRootProps>(
       </Box>
     );
 
-    if (!type || type === "single") {
+    if (type === "single") {
       return (
         <AccordionRoot
           collapsible
