@@ -107,9 +107,7 @@ const DynamicComboboxInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
-    shouldUpdate: isOpen,
-  });
+  const { refs, floatingStyles } = useFloating();
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
@@ -122,7 +120,7 @@ const DynamicComboboxInner = <T extends Option>(
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
         id={id}
-        ref={refs.reference}
+        ref={refs.setReference}
         typed={typed}
         active={active}
         disabled={disabled}
@@ -151,7 +149,7 @@ const DynamicComboboxInner = <T extends Option>(
           {endAdornment && typed && <Box>{endAdornment(value)}</Box>}
         </Box>
       </ComboboxWrapper>
-      <Portal asChild style={floatingStyles}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -167,7 +165,8 @@ const DynamicComboboxInner = <T extends Option>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            // suppress error because of rendering list in portal
+            {...getMenuProps({}, { suppressRefError: true })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (
