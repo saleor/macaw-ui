@@ -105,7 +105,9 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({});
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
+    shouldUpdate: isOpen,
+  });
 
   const inputProps = getInputProps({
     id,

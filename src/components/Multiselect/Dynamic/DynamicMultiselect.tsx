@@ -114,7 +114,9 @@ const DynamicMultiselectInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({});
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
+    shouldUpdate: isOpen,
+  });
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 

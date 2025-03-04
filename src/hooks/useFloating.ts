@@ -6,19 +6,21 @@ import {
   ReferenceType,
   autoUpdate,
 } from "@floating-ui/react-dom";
+import { useLayoutEffect } from "react";
 
 interface UseFloatingProps {
   zIndexValue?: number;
+  shouldUpdate?: boolean;
 }
 
 export const useFloating = <T extends ReferenceType>({
   zIndexValue = 2,
+  shouldUpdate,
 }: UseFloatingProps): {
   floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };
   refs: UseFloatingReturn<T>["refs"];
 } => {
-  const { floatingStyles, refs } = useFloatingHook<T>({
-    whileElementsMounted: autoUpdate,
+  const { floatingStyles, refs, update } = useFloatingHook<T>({
     middleware: [
       flip(),
       size({
@@ -31,6 +33,12 @@ export const useFloating = <T extends ReferenceType>({
       }),
     ],
   });
+
+  useLayoutEffect(() => {
+    if (shouldUpdate && refs.reference.current && refs.floating.current) {
+      return autoUpdate(refs.reference.current, refs.floating.current, update);
+    }
+  }, [shouldUpdate, refs, update]);
 
   return {
     refs,
