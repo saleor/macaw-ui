@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.18
+
+### Patch Changes
+
+- 84e01e3: Temporary revert fix for floating ui due to failing e2e test on dashboard on React v17
+
 ## 1.1.17
 
 ### Patch Changes
