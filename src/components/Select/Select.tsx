@@ -114,9 +114,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
-    shouldUpdate: isOpen,
-  });
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({});
 
   const labelColor = useMemo((): TextProps["color"] => {
     if (error) {
@@ -143,7 +141,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
         className={className}
         getLabelProps={getLabelProps}
         getToggleButtonProps={() =>
-          getToggleButtonProps({ ref: refs.reference })
+          getToggleButtonProps({ ref: refs.setReference })
         }
       >
         <Box height={getBoxHeight(size)} {...props} ref={ref} display="flex">
@@ -162,7 +160,7 @@ const SelectInner = <T extends Option, V extends Option | string>(
           {endAdornment && typed && endAdornment(value)}
         </Box>
       </SelectWrapper>
-      <Portal asChild style={floatingStyles}>
+      <Portal asChild>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -176,7 +174,8 @@ const SelectInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            {...getMenuProps({ ref: refs.setFloating })}
+            style={floatingStyles}
           >
             {isOpen &&
               options?.map((item, index) => (

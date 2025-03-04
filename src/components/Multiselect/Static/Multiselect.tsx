@@ -105,9 +105,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
-    shouldUpdate: isOpen,
-  });
+  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({});
 
   const inputProps = getInputProps({
     id,
@@ -119,7 +117,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
         id={id}
-        ref={refs.reference}
+        ref={refs.setReference}
         typed={typed}
         active={active}
         disabled={disabled}
@@ -185,7 +183,7 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
         />
       </MultiselectWrapper>
 
-      <Portal asChild style={floatingStyles}>
+      <Portal asChild>
         <Box
           position="relative"
           display={isOpen ? "block" : "none"}
@@ -194,7 +192,8 @@ const MultiselectInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            {...getMenuProps({ ref: refs.setFloating })}
+            style={floatingStyles}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (
