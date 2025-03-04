@@ -3,14 +3,14 @@ import { forwardRef } from "react";
 import { Box, PropsWithBox } from "../Box";
 
 interface SingleProps {
-  type: "single";
+  type?: "single";
   defaultValue?: string;
   value?: string;
   onValueChange?: (value: string) => void;
 }
 
 interface MultipleProps {
-  type: "multiple";
+  type?: "multiple";
   defaultValue?: string[];
   value?: string[];
   onValueChange?: (value: string[]) => void;
@@ -30,7 +30,6 @@ export const Root = forwardRef<HTMLElement, AccordionRootProps>(
     );
 
     const rootProps = {
-      type,
       defaultValue,
       value,
       onValueChange,
@@ -38,14 +37,19 @@ export const Root = forwardRef<HTMLElement, AccordionRootProps>(
 
     if (type === "single") {
       return (
-        <AccordionRoot collapsible {...(rootProps as SingleProps)} asChild>
+        <AccordionRoot
+          type="single"
+          collapsible
+          {...(rootProps as SingleProps)}
+          asChild
+        >
           {content}
         </AccordionRoot>
       );
     }
 
     return (
-      <AccordionRoot {...(rootProps as MultipleProps)} asChild>
+      <AccordionRoot type="multiple" {...(rootProps as MultipleProps)} asChild>
         {content}
       </AccordionRoot>
     );
