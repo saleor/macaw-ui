@@ -114,9 +114,7 @@ const DynamicMultiselectInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
-    shouldUpdate: isOpen,
-  });
+  const { refs, floatingStyles } = useFloating();
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
@@ -129,7 +127,7 @@ const DynamicMultiselectInner = <T extends Option>(
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
-        ref={refs.reference}
+        ref={refs.setReference}
         id={id}
         typed={typed}
         active={active}
@@ -196,7 +194,7 @@ const DynamicMultiselectInner = <T extends Option>(
         />
       </MultiselectWrapper>
 
-      <Portal asChild style={floatingStyles}>
+      <Portal asChild ref={refs.setFloating} style={floatingStyles}>
         <Box
           position="relative"
           display={getListDisplayMode({
@@ -211,7 +209,8 @@ const DynamicMultiselectInner = <T extends Option>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            // suppress error because of rendering list in portal
+            {...getMenuProps({}, { suppressRefError: true })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (
