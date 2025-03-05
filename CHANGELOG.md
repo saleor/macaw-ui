@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.19
+
+### Patch Changes
+
+- 5d424d2: You can now pass "multiple" as type to the Accordion component.
+
 ## 1.1.18
 
 ### Patch Changes
