@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.1.20
+
+### Patch Changes
+
+- b688072: All dropdowns in macaw now uses properly floating ui
+
 ## 1.1.19
 
 ### Patch Changes
