@@ -67,10 +67,10 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     highlightedIndex,
     onHighlightedIndexChange,
     isItemDisabled: (item) => item?.disabled ?? false,
-    onInputValueChange({ inputValue, selectedItem }) {
+    onInputValueChange({ inputValue, type }) {
       // It's happened because onInputValueChange is called when user selects item from a list,
       // and we don't want to show filtered items in the list when user selects item
-      if (inputValue === selectedItem?.label) {
+      if (type !== useDownshiftCombobox.stateChangeTypes.InputChange) {
         return;
       }
 
