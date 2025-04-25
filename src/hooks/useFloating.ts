@@ -1,6 +1,5 @@
 import {
   useFloating as useFloatingHook,
-  autoPlacement,
   size,
   UseFloatingReturn,
   flip,
@@ -24,18 +23,29 @@ export const useFloating = <T extends ReferenceType>({
   const { floatingStyles, refs, update } = useFloatingHook<T>({
     strategy: "fixed",
     middleware: [
-      flip(),
+      flip({
+        fallbackPlacements: ["top", "bottom"],
+        crossAxis: false,
+        mainAxis: true,
+      }),
       size({
-        apply({ rects, availableHeight, elements }) {
+        apply({ rects, elements, availableHeight }) {
+          const spaceBelow =
+            availableHeight - (rects.reference.y + rects.reference.height);
+
+          // Only place above if there's not enough space below for minimum height
+          const shouldPlaceAbove = spaceBelow < 230;
+
           Object.assign(elements.floating.style, {
-            top: `${rects.reference.y + rects.reference.height}px`,
+            top: shouldPlaceAbove
+              ? `${rects.reference.y - Math.min(230, rects.reference.y)}px`
+              : `${rects.reference.y + rects.reference.height}px`,
             left: `${rects.reference.x}px`,
             width: `${rects.reference.width}px`,
-            maxHeight: `${Math.min(230, availableHeight)}px`,
+            maxHeight: `${Math.min(230, shouldPlaceAbove ? rects.reference.y : spaceBelow)}px`,
           });
         },
       }),
-      autoPlacement(),
     ],
   });
 
