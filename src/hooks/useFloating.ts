@@ -1,5 +1,6 @@
 import {
   useFloating as useFloatingHook,
+  autoPlacement,
   size,
   UseFloatingReturn,
   flip,
@@ -34,6 +35,7 @@ export const useFloating = <T extends ReferenceType>({
           });
         },
       }),
+      autoPlacement(),
     ],
   });
 
