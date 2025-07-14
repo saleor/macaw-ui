@@ -6,7 +6,7 @@ import { classNames } from "~/utils";
 import { svgWrapper, SVGWrapperVariants } from "./SVGWrapper.css";
 
 export type SVGWrapperProps = SVGWrapperVariants &
-  SVGProps<SVGSVGElement> & {
+  Omit<SVGProps<SVGSVGElement>, "ref"> & {
     children: ReactNode;
     color?: Sprinkles["color"];
   };
