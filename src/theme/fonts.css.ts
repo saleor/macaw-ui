@@ -150,3 +150,143 @@ globalStyle("html", {
     },
   },
 });
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-Thin.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "100",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-ThinItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "100",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-ExtraLight.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "200",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-ExtraLightItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "200",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-Light.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "300",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-LightItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "300",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-Regular.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "400",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-RegularItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "400",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-Medium.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "500",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-MediumItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "500",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-SemiBold.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "600",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-SemiBoldItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "600",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-Bold.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "700",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-BoldItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "700",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-ExtraBold.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "800",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-ExtraBoldItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "800",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-Black.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "900",
+});
+
+globalFontFace("Geist", {
+  src: 'url("./Geist-BlackItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "900",
+});
+
+globalFontFace("Geist var", {
+  src: 'url("./Geist[wght].var.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "100 900",
+});
+
+globalFontFace("Geist var", {
+  src: 'url("./Geist-Italic[wght].var.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "100 900",
+});
