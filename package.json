@@ -12,7 +12,6 @@
   "files": [
     "dist/*"
   ],
-  "packageManager": "pnpm@9.7.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -34,9 +33,10 @@
     "ui components"
   ],
   "engines": {
-    "node": "18 || 20",
-    "pnpm": ">=9"
+    "node": "20 || 22",
+    "pnpm": "10"
   },
+  "packageManager": "pnpm@10.6.3",
   "scripts": {
     "prepublishOnly": "pnpm build",
     "build": "npm-run-all check-types && vite build",
