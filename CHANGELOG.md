@@ -1,5 +1,16 @@
 # @saleor/macaw-ui
 
+## 1.2.0
+
+### Minor Changes
+
+- 0e5554a: Update Node.js version to 22.14. Drop support for Node.js 18. Update pnpm to 10.
+
+### Patch Changes
+
+- 9bfac8b: Add new font - Geist
+- eca6ef8: Icons now accept all `<svg>` element props, instead of limited set of properties (viewBox, className, size, disabled) as previously.
+
 ## 1.1.20
 
 ### Patch Changes
