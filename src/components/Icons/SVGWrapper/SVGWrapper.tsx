@@ -1,16 +1,15 @@
-import { ReactNode, forwardRef } from "react";
+import { ReactNode, SVGProps, forwardRef } from "react";
 
 import { sprinkles, Sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
 import { svgWrapper, SVGWrapperVariants } from "./SVGWrapper.css";
 
-export type SVGWrapperProps = SVGWrapperVariants & {
-  className?: string;
-  viewBox?: string;
-  children: ReactNode;
-  color?: Sprinkles["color"];
-};
+export type SVGWrapperProps = SVGWrapperVariants &
+  Omit<SVGProps<SVGSVGElement>, "ref"> & {
+    children: ReactNode;
+    color?: Sprinkles["color"];
+  };
 
 export const SVGWrapper = forwardRef<SVGSVGElement, SVGWrapperProps>(
   (
