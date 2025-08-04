@@ -1,5 +1,5 @@
 ---
-"@saleor/macaw-ui": major
+"@saleor/macaw-ui": minor
 ---
 
 **BREAKING CHANGE: Icons deprecation and migration to Lucide React**
