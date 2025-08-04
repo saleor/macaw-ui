@@ -2,7 +2,7 @@
 "@saleor/macaw-ui": minor
 ---
 
-**BREAKING CHANGE: Icons deprecation and migration to Lucide React**
+**Icons deprecation and migration to Lucide React**
 
 We are beginning the migration process from our custom icon set to Lucide React icons. This change improves maintainability and provides access to a more comprehensive, well-maintained icon library.
 
