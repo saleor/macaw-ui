@@ -1,5 +1,12 @@
 import { createSVGWrapper } from "./SVGWrapper";
 
+/**
+ * @deprecated This icon is deprecated. Please use Lucide React icons instead.
+ * @see https://lucide.dev/ for available icons
+ * @example
+ * import { Package } from "lucide-react";
+ * // Use <Package /> instead
+ */
 export const ProductsIcons = createSVGWrapper(
   <path
     fill="currentColor"

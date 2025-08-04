@@ -1,5 +1,12 @@
 import { createSVGWrapper } from "./SVGWrapper";
 
+/**
+ * @deprecated This icon is deprecated. Please use Lucide React icons instead.
+ * @see https://lucide.dev/ for available icons
+ * @example
+ * import { Sun } from "lucide-react";
+ * // Use <Sun /> instead
+ */
 export const LightModeIcon = createSVGWrapper(
   <path
     fill="currentColor"

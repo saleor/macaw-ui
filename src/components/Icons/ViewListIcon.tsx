@@ -1,5 +1,12 @@
 import { createSVGWrapper } from "./SVGWrapper";
 
+/**
+ * @deprecated This icon is deprecated. Please use Lucide React icons instead.
+ * @see https://lucide.dev/ for available icons
+ * @example
+ * import { List } from "lucide-react";
+ * // Use <List /> instead
+ */
 export const ViewListIcon = createSVGWrapper(
   <path
     fill="currentColor"
