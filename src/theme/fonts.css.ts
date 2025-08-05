@@ -278,14 +278,14 @@ globalFontFace("Geist", {
 });
 
 globalFontFace("Geist var", {
-  src: 'url("./Geist[wght].var.woff2") format("woff2")',
+  src: 'url("./Geist[wght].woff2") format("woff2")',
   fontDisplay: "swap",
   fontStyle: "normal",
   fontWeight: "100 900",
 });
 
 globalFontFace("Geist var", {
-  src: 'url("./Geist-Italic[wght].var.woff2") format("woff2")',
+  src: 'url("./Geist-Italic[wght].woff2") format("woff2")',
   fontDisplay: "swap",
   fontStyle: "italic",
   fontWeight: "100 900",
