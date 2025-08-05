@@ -1,5 +1,12 @@
 import { createSVGWrapper } from "./SVGWrapper";
 
+/**
+ * @deprecated This icon is deprecated. Please use Lucide React icons instead.
+ * @see https://lucide.dev/ for available icons
+ * @example
+ * import { Plus } from "lucide-react";
+ * // Use <Plus /> instead
+ */
 export const PlusIcon = createSVGWrapper(
   <path
     fill="currentColor"

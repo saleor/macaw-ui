@@ -1,5 +1,12 @@
 import { createSVGWrapper } from "./SVGWrapper";
 
+/**
+ * @deprecated This icon is deprecated. Please use Lucide React icons instead.
+ * @see https://lucide.dev/ for available icons
+ * @example
+ * import { Grid3X3 } from "lucide-react";
+ * // Use <Grid3X3 /> instead
+ */
 export const ViewTilesIcon = createSVGWrapper(
   <path
     fill="currentColor"

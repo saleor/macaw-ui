@@ -1,5 +1,12 @@
 import { createSVGWrapper } from "./SVGWrapper";
 
+/**
+ * @deprecated This icon is deprecated. Please use Lucide React icons instead.
+ * @see https://lucide.dev/ for available icons
+ * @example
+ * import { Search } from "lucide-react";
+ * // Use <Search /> instead
+ */
 export const SearchIcon = createSVGWrapper(
   <path
     fill="currentColor"
