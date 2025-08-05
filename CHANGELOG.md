@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.3.1
+
+### Patch Changes
+
+- 7bc384c: Fix Geist font imports
+
 ## 1.3.0
 
 ### Minor Changes
