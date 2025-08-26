@@ -319,6 +319,20 @@ globalFontFace("Geist Mono", {
   fontWeight: "500",
 });
 
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-Bold.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "700",
+});
+
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-BoldItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "700",
+});
+
 globalFontFace("Geist Mono var", {
   src: 'url("./GeistMono[wght].woff2") format("woff2")',
   fontDisplay: "swap",
