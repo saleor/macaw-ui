@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.3.2
+
+### Patch Changes
+
+- be00c9f: Add Geist Mono font
+
 ## 1.3.1
 
 ### Patch Changes
