@@ -290,3 +290,59 @@ globalFontFace("Geist var", {
   fontStyle: "italic",
   fontWeight: "100 900",
 });
+
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-Regular.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "400",
+});
+
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-Italic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "400",
+});
+
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-Medium.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "500",
+});
+
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-MediumItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "500",
+});
+
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-Bold.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "700",
+});
+
+globalFontFace("Geist Mono", {
+  src: 'url("./GeistMono-BoldItalic.woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "700",
+});
+
+globalFontFace("Geist Mono var", {
+  src: 'url("./GeistMono[wght].woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "normal",
+  fontWeight: "100 900",
+});
+
+globalFontFace("Geist Mono var", {
+  src: 'url("./GeistMono-Italic[wght].woff2") format("woff2")',
+  fontDisplay: "swap",
+  fontStyle: "italic",
+  fontWeight: "100 900",
+});
