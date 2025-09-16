@@ -4,10 +4,17 @@ import { Avatar } from "./index";
 const User = Avatar.User;
 const Store = Avatar.Store;
 
-const meta: Meta<typeof Avatar> = {
+const meta: Meta<typeof User> = {
   title: "Components / Avatar",
   tags: ["autodocs"],
   component: User,
+  argTypes: {
+    scheme: {
+      control: "select",
+      options: ["accent1", "transparent"],
+      defaultValue: "accent1",
+    },
+  },
 };
 
 export default meta;
@@ -24,7 +31,7 @@ export const Primary: Story = {
 
 export const WithImage: Story = {
   args: {
-    src: "https://source.unsplash.com/random/32x32",
+    src: "https://picsum.photos/32/32",
     scheme: "accent1",
     size: "medium",
   },
@@ -44,7 +51,7 @@ export const AsStoreInitials: Story = {
 
 export const AsStoreImage: Story = {
   args: {
-    src: "https://source.unsplash.com/random/32x32",
+    src: "https://picsum.photos/32/32",
     scheme: "accent1",
     size: "medium",
   },

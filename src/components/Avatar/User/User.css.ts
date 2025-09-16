@@ -15,7 +15,16 @@ export const userAvatar = recipe({
   variants: {
     size: sizeVariants,
     scheme: {
-      accent1: sprinkles({ backgroundColor: "accent1" }),
+      accent1: sprinkles({
+        backgroundColor: "accent1",
+        color: "buttonDefaultPrimary",
+      }),
+      transparent: sprinkles({
+        backgroundColor: "transparent",
+        borderColor: "default1",
+        color: "default1",
+        borderStyle: "solid",
+      }),
     },
   },
 
