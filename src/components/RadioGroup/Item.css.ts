@@ -39,6 +39,7 @@ export const item = recipe({
       height: 3,
       padding: 0,
       backgroundColor: "default1",
+      flexShrink: "0",
     }),
     {
       selectors: {
