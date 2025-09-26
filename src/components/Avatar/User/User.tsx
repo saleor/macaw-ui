@@ -37,11 +37,7 @@ export const User = (props: UserAvatarProps) => {
       data-macaw-ui-component="Avatar.User"
       {...rest}
     >
-      <Text
-        size={convertSizeToScale(size)}
-        color="buttonDefaultPrimary"
-        fontWeight="medium"
-      >
+      <Text size={convertSizeToScale(size)} color="inherit" fontWeight="medium">
         {initials}
       </Text>
     </Box>
