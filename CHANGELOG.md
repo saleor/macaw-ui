@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.3.3
+
+### Patch Changes
+
+- 0ccafa0: Fix Radio indicator for very long content
+
 ## 1.3.2
 
 ### Patch Changes
