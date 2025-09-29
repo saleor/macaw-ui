@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.3.4
+
+### Patch Changes
+
+- 994b5d3: Doubled the padding on the tooltip component
+
 ## 1.3.3
 
 ### Patch Changes
