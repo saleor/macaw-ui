@@ -1,12 +1,6 @@
 import { keyframes, style } from "@vanilla-extract/css";
 
-export const trigger = style({
-  selectors: {
-    '&[data-state="open"]': {
-      overflow: "visible",
-    },
-  },
-});
+export const trigger = style({});
 
 export const icon = style({
   transition: "transform 300ms",
@@ -40,6 +34,7 @@ export const content = style({
   selectors: {
     '&[data-state="open"]': {
       animation: `${slideDown} 300ms ease-out`,
+      overflow: "visible",
     },
     '&[data-state="closed"]': {
       animation: `${slideUp} 300ms ease-out`,
