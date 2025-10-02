@@ -1,6 +1,12 @@
 import { keyframes, style } from "@vanilla-extract/css";
 
-export const trigger = style({});
+export const trigger = style({
+  selectors: {
+    '&[data-state="open"]': {
+      overflow: "visible",
+    },
+  },
+});
 
 export const icon = style({
   transition: "transform 300ms",
