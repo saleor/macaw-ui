@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.3.5
+
+### Patch Changes
+
+- 2f59ff1: Fixed Accordion overflow issue by setting `overflow: visible` on open content to ensure content displays correctly.
+
 ## 1.3.4
 
 ### Patch Changes
