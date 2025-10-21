@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import * as testLogo from "./testLogo.webp";
+import testLogo from "./testLogo.webp";
 import { Avatar } from "./index";
 
 const User = Avatar.User;
@@ -32,7 +32,7 @@ export const Primary: Story = {
 
 export const WithImage: Story = {
   args: {
-    src: testLogo.default,
+    src: testLogo,
     scheme: "accent1",
     size: "medium",
   },
@@ -52,7 +52,7 @@ export const AsStoreInitials: Story = {
 
 export const AsStoreImage: Story = {
   args: {
-    src: testLogo.default,
+    src: testLogo,
     scheme: "accent1",
     size: "medium",
   },

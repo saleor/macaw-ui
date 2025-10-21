@@ -21,9 +21,27 @@ export const storeAvatar = recipe({
       }),
       transparent: sprinkles({
         backgroundColor: "transparent",
+        color: "default1",
       }),
     },
+    type: {
+      image: {},
+      initials: {},
+    },
   },
+
+  compoundVariants: [
+    {
+      variants: {
+        type: "initials",
+        scheme: "transparent",
+      },
+      style: sprinkles({
+        borderColor: "default1",
+        borderStyle: "solid",
+      }),
+    },
+  ],
 
   defaultVariants: {
     size: "medium",
