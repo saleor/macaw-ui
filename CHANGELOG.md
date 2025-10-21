@@ -1,5 +1,23 @@
 # @saleor/macaw-ui
 
+## 1.3.5
+
+### Patch Changes
+
+- 2f59ff1: Fixed Accordion overflow issue by setting `overflow: visible` on open content to ensure content displays correctly.
+
+## 1.3.4
+
+### Patch Changes
+
+- 994b5d3: Doubled the padding on the tooltip component
+
+## 1.3.3
+
+### Patch Changes
+
+- 0ccafa0: Fix Radio indicator for very long content
+
 ## 1.3.2
 
 ### Patch Changes
