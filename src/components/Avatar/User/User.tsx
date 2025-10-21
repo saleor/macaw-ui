@@ -34,6 +34,9 @@ export const User = (props: UserAvatarProps) => {
   return (
     <Box
       className={classNames(userAvatar({ size, scheme }), className)}
+      borderColor="default1"
+      color="default1"
+      borderStyle="solid"
       data-macaw-ui-component="Avatar.User"
       {...rest}
     >

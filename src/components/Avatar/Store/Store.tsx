@@ -34,6 +34,9 @@ export const Store = (props: StoreAvatarProps) => {
   return (
     <Box
       className={classNames(storeAvatar({ size, scheme }), className)}
+      borderColor="default1"
+      color="default1"
+      borderStyle="solid"
       data-macaw-ui-component="Avatar.Store"
       {...rest}
     >

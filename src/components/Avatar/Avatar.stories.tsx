@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import * as testLogo from "./testLogo.webp";
 import { Avatar } from "./index";
 
 const User = Avatar.User;
@@ -31,7 +32,7 @@ export const Primary: Story = {
 
 export const WithImage: Story = {
   args: {
-    src: "https://picsum.photos/32/32",
+    src: testLogo.default,
     scheme: "accent1",
     size: "medium",
   },
@@ -51,7 +52,7 @@ export const AsStoreInitials: Story = {
 
 export const AsStoreImage: Story = {
   args: {
-    src: "https://picsum.photos/32/32",
+    src: testLogo.default,
     scheme: "accent1",
     size: "medium",
   },
