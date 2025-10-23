@@ -1,5 +1,11 @@
 # @saleor/macaw-ui
 
+## 1.4.0
+
+### Minor Changes
+
+- 75992a7: Add transparent scheme to Avatar component
+
 ## 1.3.5
 
 ### Patch Changes
