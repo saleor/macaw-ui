@@ -23,7 +23,10 @@ export const User = (props: UserAvatarProps) => {
         as="img"
         src={src}
         alt="User avatar image"
-        className={classNames(userAvatar({ size, scheme }), className)}
+        className={classNames(
+          userAvatar({ size, scheme, type: "image" }),
+          className
+        )}
         data-macaw-ui-component="Avatar.User"
         {...rest}
       />
@@ -33,15 +36,14 @@ export const User = (props: UserAvatarProps) => {
   const { size, scheme, className, initials, ...rest } = props;
   return (
     <Box
-      className={classNames(userAvatar({ size, scheme }), className)}
+      className={classNames(
+        userAvatar({ size, scheme, type: "initials" }),
+        className
+      )}
       data-macaw-ui-component="Avatar.User"
       {...rest}
     >
-      <Text
-        size={convertSizeToScale(size)}
-        color="buttonDefaultPrimary"
-        fontWeight="medium"
-      >
+      <Text size={convertSizeToScale(size)} color="inherit" fontWeight="medium">
         {initials}
       </Text>
     </Box>
