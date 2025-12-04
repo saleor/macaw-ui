@@ -1,7 +1,8 @@
 import { mergeConfig } from "vite";
 import { resolve } from "path";
+import type { StorybookConfig } from "@storybook/react-vite";
 
-export default {
+const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
@@ -17,9 +18,12 @@ export default {
   ],
   framework: {
     name: "@storybook/react-vite",
-    options: {},
+    options: {
+      strictMode: true,
+    },
   },
   features: {
+    // @ts-expect-error TODO: Check why do we use this feature, maybe it can be removed?
     storyStoreV7: true,
   },
   async viteFinal(config) {
@@ -37,3 +41,5 @@ export default {
     });
   },
 };
+
+export default config;
