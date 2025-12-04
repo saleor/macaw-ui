@@ -46,6 +46,21 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    // React compiler rules
+    "react-hooks/purity": "warn", // Side effects during render
+    "react-hooks/refs": "warn", // Reading/writing refs during render
+    "react-hooks/set-state-in-render": "warn", // setState during render
+    "react-hooks/set-state-in-effect": "warn", // Synchronous setState in effects
+    "react-hooks/immutability": "warn", // Mutation of props/state
+    "react-hooks/static-components": "warn", // Dynamic component creation
+    "react-hooks/use-memo": "warn", // useMemo violations
+    "react-hooks/void-use-memo": "warn", // useMemo returning void
+    "react-hooks/component-hook-factories": "warn", // Component/hook factory violations
+    "react-hooks/preserve-manual-memoization": "warn", // Manual memoization issues
+    "react-hooks/globals": "warn", // Global variable usage
+    "react-hooks/error-boundaries": "warn", // Error boundary violations
+    "react-hooks/config": "warn", // Config violations
+    "react-hooks/gating": "warn", // Conditional rendering violations
     "import/no-unresolved": "error",
     "import/order": [
       "error",
