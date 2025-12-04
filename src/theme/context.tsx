@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
 import { setElementVars } from "@vanilla-extract/dynamic";
 
 import { DefaultTheme, themes, ThemeTokensValues } from "./themes";
@@ -22,10 +22,9 @@ export const ThemeContextProvider = ({
 }: ThemeProviderProps) => {
   const [theme, setTheme] = useState(defaultTheme);
 
-  if (typeof document !== "undefined") {
-    // do not set CSS variables when rendering on the server - use getCSSVariables
+  useLayoutEffect(() => {
     setElementVars(document.documentElement, vars, themes[theme]);
-  }
+  }, [theme]);
 
   return (
     <ThemeContext.Provider
