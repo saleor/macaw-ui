@@ -62,7 +62,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       typed,
     } = useStateEvents(value, onChange);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
-    useAutoHeightTextarea(textAreaRef.current, value, rows, maxRows);
+    useAutoHeightTextarea(textAreaRef, value, rows, maxRows);
     useImperativeHandle(ref, () => textAreaRef.current!);
 
     return (
