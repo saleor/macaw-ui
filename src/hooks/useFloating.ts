@@ -18,7 +18,8 @@ export const useFloating = <T extends ReferenceType>({
   shouldUpdate,
 }: UseFloatingProps): {
   floatingStyles: UseFloatingReturn<T>["floatingStyles"] & { zIndex: number };
-  refs: UseFloatingReturn<T>["refs"];
+  setReferenceRef: (node: T | null) => void;
+  setFloatingRef: (node: HTMLElement | null) => void;
 } => {
   const { floatingStyles, refs, update } = useFloatingHook<T>({
     strategy: "fixed",
@@ -37,6 +38,10 @@ export const useFloating = <T extends ReferenceType>({
     ],
   });
 
+  // Use floating-ui's provided callback refs
+  const setReferenceRef = refs.setReference;
+  const setFloatingRef = refs.setFloating;
+
   useLayoutEffect(() => {
     if (shouldUpdate && refs.reference.current && refs.floating.current) {
       return autoUpdate(refs.reference.current, refs.floating.current, update);
@@ -44,7 +49,8 @@ export const useFloating = <T extends ReferenceType>({
   }, [shouldUpdate, refs, update]);
 
   return {
-    refs,
+    setReferenceRef,
+    setFloatingRef,
     floatingStyles: {
       ...floatingStyles,
       zIndex: zIndexValue,

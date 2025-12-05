@@ -98,20 +98,20 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
-    shouldUpdate: isOpen,
-  });
+  const { setReferenceRef, setFloatingRef, floatingStyles } =
+    useFloating<HTMLLabelElement>({
+      shouldUpdate: isOpen,
+    });
 
-  const inputProps = getInputProps({
-    id,
-    ref,
-  });
+  // Downshift requires ref for input focus management - it assigns, not reads, during render
+  // eslint-disable-next-line react-hooks/refs
+  const inputProps = getInputProps({ id, ref });
 
   return (
     <Box display="flex" flexDirection="column">
       <ComboboxWrapper
         id={id}
-        ref={refs.reference}
+        ref={setReferenceRef}
         typed={typed}
         active={active}
         disabled={disabled}
@@ -159,7 +159,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            {...getMenuProps({ ref: setFloatingRef })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (
