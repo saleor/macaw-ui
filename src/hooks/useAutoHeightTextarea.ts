@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { TextareaValue } from "../components/Textarea/TextareaWrapper";
 
 // Updates the height of a <textarea> when the value changes.
@@ -8,11 +8,13 @@ export const useAutoHeightTextarea = (
   rows: number,
   maxRows: number
 ) => {
-  const intialHeight = getHeight(textAreaRef, rows);
-  const maxRowsHeight = getHeight(textAreaRef, maxRows);
-
-  useEffect(() => {
+  // Use useLayoutEffect to avoid calling getComputedStyle during render
+  // which causes React error #185 in React 18's useSyncExternalStore
+  useLayoutEffect(() => {
     if (textAreaRef) {
+      const intialHeight = getHeight(textAreaRef, rows);
+      const maxRowsHeight = getHeight(textAreaRef, maxRows);
+
       // Restart the height at 0px to ensure that the scroll height is correct.
       textAreaRef.style.height = "0px";
 
@@ -23,7 +25,7 @@ export const useAutoHeightTextarea = (
 
       textAreaRef.style.height = `${scrollHeight}px`;
     }
-  }, [intialHeight, maxRowsHeight, textAreaRef, value]);
+  }, [textAreaRef, value, rows, maxRows]);
 };
 
 function getHeight(textAreaRef: HTMLTextAreaElement | null, rows: number) {
