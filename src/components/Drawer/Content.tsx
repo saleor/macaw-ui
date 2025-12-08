@@ -1,8 +1,8 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 import { sprinkles } from "~/theme";
 import { Box, PropsWithBox } from "../Box";
 import { Button } from "../Button";
-import { CloseIcon } from "../Icons";
 import { DataAttributes } from "../types";
 
 import { Backdrop } from "../Backdrop";
@@ -38,7 +38,7 @@ export const Content = ({ children, ...rest }: DrawerContentProps) => {
           <Dialog.Close asChild>
             <Button
               variant="tertiary"
-              icon={<CloseIcon />}
+              icon={<X />}
               size="small"
               className={sprinkles({
                 position: "absolute",

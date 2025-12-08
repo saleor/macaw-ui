@@ -1,5 +1,5 @@
+import { ChevronsDownIcon } from "lucide-react";
 import { Button } from "../../Button";
-import { ChervonDownIcon } from "../../Icons";
 import { icon } from "../common.css";
 
 export interface TriggerButtonProps {
@@ -10,7 +10,7 @@ export interface TriggerButtonProps {
 export const TriggerButton = ({ dataTestId, disabled }: TriggerButtonProps) => {
   return (
     <Button
-      icon={<ChervonDownIcon className={icon} />}
+      icon={<ChevronsDownIcon className={icon} />}
       variant="secondary"
       type="button"
       data-test-id={dataTestId}

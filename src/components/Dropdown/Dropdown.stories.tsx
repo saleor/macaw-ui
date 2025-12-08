@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { MoreHorizontal } from "lucide-react";
 import { Button } from "../Button";
-import { MoreOptionsIcon } from "../Icons";
 import { List } from "../List";
 import { Text } from "../Text";
 import { Dropdown } from "./index";
@@ -19,7 +19,7 @@ export const Primary: Story = {
     children: [
       // eslint-disable-next-line react/jsx-key
       <Dropdown.Trigger>
-        <Button icon={<MoreOptionsIcon />} variant="tertiary" />
+        <Button icon={<MoreHorizontal />} variant="tertiary" />
       </Dropdown.Trigger>,
       // eslint-disable-next-line react/jsx-key
       <Dropdown.Content align="start">
@@ -41,7 +41,7 @@ export const DropdownWithList: Story = {
     children: [
       // eslint-disable-next-line react/jsx-key
       <Dropdown.Trigger>
-        <Button icon={<MoreOptionsIcon />} variant="tertiary" />
+        <Button icon={<MoreHorizontal />} variant="tertiary" />
       </Dropdown.Trigger>,
       // eslint-disable-next-line react/jsx-key
       <Dropdown.Content align="start">

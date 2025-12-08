@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
+import { Table } from "lucide-react";
 import { Multiselect } from "..";
-import { Box, ViewTableIcon } from "../..";
+import { Box } from "../..";
 
 const options = [
   { value: "Black", label: "Black" },
@@ -158,7 +159,7 @@ const [selectedItems, setSelectedItems] = useState([{ value: "color-black", labe
 export const WithEndAdornment: Story = {
   ...MultiselectTemplate,
   args: {
-    renderEndAdornment: (props) => <ViewTableIcon {...props} />,
+    renderEndAdornment: (props) => <Table {...props} />,
   },
   parameters: {
     docs: {

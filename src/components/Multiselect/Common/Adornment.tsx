@@ -1,9 +1,9 @@
+import { ArrowDownIcon } from "lucide-react";
 import { sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
 import { SVGWrapperProps } from "~/components/Icons/SVGWrapper";
 import { toggleIconStyle } from "../../BaseSelect";
-import { ArrowDownIcon } from "../../Icons";
 import { RenderEndAdornmentType, useMultiselect } from "./useMultiselect";
 
 export type AdornmentProps = {

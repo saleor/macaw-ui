@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Box, Button, ConfigurationIcon, Text } from "..";
+import { Settings } from "lucide-react";
+import { Box, Button, Text } from "..";
 
 import { Popover } from "./index";
 
@@ -18,7 +19,7 @@ export const Primary: Story = {
       // eslint-disable-next-line react/jsx-key
       <Popover.Trigger>
         <Button fixedWidth variant="secondary">
-          <ConfigurationIcon />
+          <Settings />
         </Button>
       </Popover.Trigger>,
       // eslint-disable-next-line react/jsx-key
