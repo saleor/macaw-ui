@@ -4,13 +4,13 @@
 import { UseSelectPropGetters } from "downshift";
 import { ReactNode } from "react";
 
+import { ArrowDownIcon } from "lucide-react";
 import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
 import { Option, toggleIconStyle } from "../BaseSelect";
 import { Box } from "../Box";
-import { ArrowDownIcon } from "../Icons";
 import { useSelect } from "./useSelect";
 
 type SelectWrapperProps = LabelVariants & {

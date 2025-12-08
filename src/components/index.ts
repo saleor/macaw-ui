@@ -11,7 +11,6 @@ export * from "./Divider";
 export * from "./Drawer";
 export * from "./Dropdown";
 export * from "./DropdownButton";
-export * from "./Icons";
 export * from "./Input";
 export * from "./List";
 export * from "./Modal";

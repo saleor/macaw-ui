@@ -1,14 +1,14 @@
 import { AccordionTrigger } from "@radix-ui/react-accordion";
 import { ReactNode } from "react";
 
-import { Box, Button, ChervonDownIcon, PropsWithBox } from "~/components";
+import { ChevronDown } from "lucide-react";
+import { Box, Button, PropsWithBox } from "~/components";
 import { DataAttributes } from "~/components/types";
 
 import { List } from "..";
 import { useItemGroupContext } from "./context";
 
 import { button, icon } from "./common.css";
-
 export type ItemGroupTriggerProps = PropsWithBox<
   DataAttributes & {
     children: ReactNode;
@@ -29,9 +29,7 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
       </Box>
       <AccordionTrigger asChild>
         <Button
-          icon={
-            <ChervonDownIcon className={icon} color="default1" size={size} />
-          }
+          icon={<ChevronDown className={icon} color="default1" size={size} />}
           variant="tertiary"
           size={size}
           className={button}

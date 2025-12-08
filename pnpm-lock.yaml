@@ -49,9 +49,6 @@ importers:
       downshift:
         specifier: ^9.0.8
         version: 9.0.8(react@18.2.0)
-      lucide-react:
-        specifier: ^0.536.0
-        version: 0.536.0(react@18.2.0)
     devDependencies:
       "@changesets/changelog-git":
         specifier: ^0.2.0
@@ -149,6 +146,9 @@ importers:
       lint-staged:
         specifier: ^15.1.0
         version: 15.2.0
+      lucide-react:
+        specifier: ^0.536.0
+        version: 0.536.0(react@18.2.0)
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5

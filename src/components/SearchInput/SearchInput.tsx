@@ -1,7 +1,7 @@
 import { forwardRef, InputHTMLAttributes } from "react";
+import { SearchIcon } from "lucide-react";
 import { classNames } from "~/utils";
 import { Box, PropsWithBox } from "../Box";
-import { SearchIcon } from "../Icons";
 import {
   InputContainerVariants,
   inputContainer,

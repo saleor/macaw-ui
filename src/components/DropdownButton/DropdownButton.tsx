@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
+import { ArrowDownIcon } from "lucide-react";
 import { sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 import { Box, PropsWithBox } from "../Box";
-import { ArrowDownIcon } from "../Icons";
 import { dropdownButton, DropdownButtonVariants } from "./DropdownButton.css";
 
 export type DropdownButtonProps = PropsWithBox<

@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import { useState } from "react";
-import { Box, Button, CloseIcon, Text } from "..";
-
+import { X } from "lucide-react";
+import { Box, Button, Text } from "..";
 import { Modal } from ".";
 
 const meta: Meta<typeof Modal> = {
@@ -40,7 +40,7 @@ export const Primary: Story = {
           >
             <Text>Modal content!</Text>
             <Modal.Close>
-              <Button variant="tertiary" icon={<CloseIcon />} size="small" />
+              <Button variant="tertiary" icon={<X />} size="small" />
             </Modal.Close>
           </Box>
         </Box>
@@ -74,7 +74,7 @@ export const Controlled = () => {
             >
               <Text>Modal content!</Text>
               <Modal.Close>
-                <Button variant="tertiary" icon={<CloseIcon />} size="small" />
+                <Button variant="tertiary" icon={<X />} size="small" />
               </Modal.Close>
             </Box>
           </Box>
