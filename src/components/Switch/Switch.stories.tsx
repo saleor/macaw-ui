@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ProductsIcons, TableEditIcon } from "../Icons";
+import { Edit, Package } from "lucide-react";
 import { Switch } from "./index";
 
 const meta: Meta<typeof Switch> = {
@@ -17,11 +17,11 @@ export const Primary: Story = {
     children: [
       // eslint-disable-next-line react/jsx-key
       <Switch.Item id="1" value="1">
-        <TableEditIcon size="medium" />
+        <Edit size="medium" />
       </Switch.Item>,
       // eslint-disable-next-line react/jsx-key
       <Switch.Item id="2" value="2">
-        <ProductsIcons size="medium" />
+        <Package size="medium" />
       </Switch.Item>,
     ],
   },

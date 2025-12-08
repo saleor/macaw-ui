@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { RemoveIcon, SearchIcon } from "../Icons";
+import { Trash2, SearchIcon } from "lucide-react";
 import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -44,7 +44,7 @@ export const PrimaryIcon: Story = {
   args: {
     variant: "primary",
     size: "large",
-    icon: <RemoveIcon />,
+    icon: <Trash2 />,
   },
 };
 
