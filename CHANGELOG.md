@@ -1,5 +1,14 @@
 # @saleor/macaw-ui
 
+## 1.4.1
+
+### Patch Changes
+
+- 54c2363: Upgrade `eslint-plugin-react-hooks` from version 4.6.0 to 7.0.1, add react compiler ESLint rules to detect issues with incorrect hook implementation causing React to crash.
+- 0d2f5ee: CSS Variables from macaw-ui are now set in useLayoutEffect hook, instead of render function, which should resolve issues with React timing. Previously macaw-ui was breaking React contract by making updates in render function, making it not pure.
+- ed9cb0a: React Strict mode was enabled in Storybook for development to detect possible issues earlier. This might mean some components might have "bugs" in development, but not in production build due to additional rendering done in Strict mode. Refer to React docs for more details
+- 10164ae: Fixed crashes caused by `useAutoHeightTextarea` used by Textarea component. It now makes calculations in `useLayoutEffect`, which should prevent timing issues with React 18+
+
 ## 1.4.0
 
 ### Minor Changes
