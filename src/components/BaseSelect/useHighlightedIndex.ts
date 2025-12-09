@@ -1,5 +1,5 @@
 import { UseComboboxStateChange, UseSelectStateChange } from "downshift";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Option } from "~/components/BaseSelect";
 
@@ -12,31 +12,33 @@ export function useHighlightedIndex<T extends Option>(
     change: UseComboboxStateChange<T> | UseSelectStateChange<T>
   ) => void;
 } {
-  // Initially we don't show any item as highlighted
-  const [highlightedIndex, setHighlightedIndex] = useState<number | undefined>(
-    -1
-  );
+  // Derive highlighted index from items and selectedItem
+  // This automatically updates when items array changes (e.g., API data arrives)
+  const derivedHighlightedIndex = useMemo(() => {
+    if (!selectedItem) return -1;
+    return getIndexToHighlight(items, selectedItem);
+  }, [items, selectedItem]);
 
-  // When data from API comes we can calculate initially highlighted index
-  // Or when we change the selected item
-  useEffect(() => {
-    // If we don't have selected item leave highlighted index as -1
-    if (!selectedItem || highlightedIndex !== -1) {
-      return;
-    }
+  // Track whether user has interacted with keyboard navigation
+  // undefined means we should use the derived index
+  const [userHighlightedIndex, setUserHighlightedIndex] = useState<
+    number | undefined
+  >(undefined);
 
-    // Find highlighted index in items to select base on selected item value
-    // If there is no match, leave highlighted index as -1
-    setHighlightedIndex(getIndexToHighlight(items, selectedItem));
-  }, [highlightedIndex, items, selectedItem]);
+  // Use user-set index if available, otherwise use derived index
+  const highlightedIndex =
+    userHighlightedIndex !== undefined
+      ? userHighlightedIndex
+      : derivedHighlightedIndex;
 
   const handleHighlightedIndexChange = ({
-    highlightedIndex,
+    highlightedIndex: newIndex,
   }: UseComboboxStateChange<T> | UseSelectStateChange<T>) => {
-    if (selectedItem && highlightedIndex === -1) {
-      setHighlightedIndex(getIndexToHighlight(items, selectedItem));
+    if (selectedItem && newIndex === -1) {
+      // When Downshift resets to -1, fall back to derived index
+      setUserHighlightedIndex(undefined);
     } else {
-      setHighlightedIndex(highlightedIndex);
+      setUserHighlightedIndex(newIndex);
     }
   };
 

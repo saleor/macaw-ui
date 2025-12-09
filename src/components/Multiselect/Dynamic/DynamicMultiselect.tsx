@@ -114,22 +114,21 @@ const DynamicMultiselectInner = <T extends Option>(
     onBlur,
   });
 
-  const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
-    shouldUpdate: isOpen,
-  });
+  const { setReferenceRef, setFloatingRef, floatingStyles } =
+    useFloating<HTMLLabelElement>({
+      shouldUpdate: isOpen,
+    });
 
   const scrollRef = useInfinityScroll(onScrollEnd);
 
-  const inputProps = getInputProps({
-    id,
-    ref,
-    value: inputValue,
-  });
+  // Downshift requires ref for input focus management - it assigns, not reads, during render
+  // eslint-disable-next-line react-hooks/refs
+  const inputProps = getInputProps({ id, ref, value: inputValue });
 
   return (
     <Box display="flex" flexDirection="column">
       <MultiselectWrapper
-        ref={refs.reference}
+        ref={setReferenceRef}
         id={id}
         typed={typed}
         active={active}
@@ -211,7 +210,7 @@ const DynamicMultiselectInner = <T extends Option>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            {...getMenuProps({ ref: setFloatingRef })}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (
