@@ -70,6 +70,7 @@ const responsiveProperties = defineProperties({
       "block",
       "inline-block",
       "contents",
+      "inline"
     ],
     flexDirection: ["row", "column"],
     alignItems: [
