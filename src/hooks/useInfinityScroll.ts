@@ -1,16 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const useInfinityScroll = (onScrollEnd?: () => void) => {
   const observerTarget = useRef<HTMLElement | null>(null);
-  const [isIntersecting, setIsIntersecting] = useState(false);
   const observer = useRef<IntersectionObserver | null>(null);
+  const callbackRef = useRef(onScrollEnd);
 
+  // Keep callback ref updated to avoid stale closures
   useEffect(() => {
-    if (isIntersecting) {
-      onScrollEnd?.();
-      setIsIntersecting(false);
-    }
-  }, [isIntersecting, onScrollEnd]);
+    callbackRef.current = onScrollEnd;
+  }, [onScrollEnd]);
 
   useEffect(() => {
     const target = observerTarget.current;
@@ -26,7 +24,8 @@ export const useInfinityScroll = (onScrollEnd?: () => void) => {
     observer.current = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setIsIntersecting(true);
+          // Call callback directly instead of using state as trigger
+          callbackRef.current?.();
         }
       },
       { threshold: 0 }
