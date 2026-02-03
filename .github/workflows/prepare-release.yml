@@ -7,6 +7,12 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  # https://docs.npmjs.com/trusted-publishers
+  id-token: write  # Required for OIDC
+  # To open a PR
+  contents: write
+
 jobs:
   release:
     name: Prepare release with Changesets
