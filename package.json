@@ -36,7 +36,7 @@
     "node": "20 || 22",
     "pnpm": "10"
   },
-  "packageManager": "pnpm@10.6.3",
+  "packageManager": "pnpm@10.28.1",
   "scripts": {
     "prepublishOnly": "pnpm build",
     "build": "npm-run-all check-types && vite build",
