@@ -136,6 +136,7 @@ export const spanRecipe = recipe({
       transition: "transform 0.3s",
       transformOrigin: "left",
       transform: "translate(0, 50%) scale(1)",
+      userSelect: "none",
     }),
     sprinkles({
       color: "default2",
