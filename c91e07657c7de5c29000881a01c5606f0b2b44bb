@@ -1,0 +1,23 @@
+src/components/BaseInput/BaseInput.css.ts
+  0c8edf93b0e25dba 139
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.7",
+  "base_commit_sha": "c91e07657c7de5c29000881a01c5606f0b2b44bb",
+  "prompts": {
+    "0c8edf93b0e25dba": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "34b629ee-0846-43b0-b120-dccbe9afd007",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
