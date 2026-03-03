@@ -1,5 +1,12 @@
 # @saleor/macaw-ui
 
+## 1.4.2
+
+### Patch Changes
+
+- 045e049: Fixed labels in form controls - now they are not selected by double click
+- 1942cd8: Allow inline display in sprinkles
+
 ## 1.4.1
 
 ### Patch Changes
