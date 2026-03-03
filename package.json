@@ -59,7 +59,8 @@
   "author": "Saleor Commerce",
   "private": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.0",
