@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { useState } from "react";
 
 import { DynamicCombobox } from "..";
@@ -175,5 +176,48 @@ export const NoOptions = () => {
     >
       <DynamicCombobox.NoOptions>No items to select</DynamicCombobox.NoOptions>
     </DynamicCombobox>
+  );
+};
+
+export const AllowCustomValue = () => {
+  const [options, setOptions] = useState<Option[]>([]);
+  const [value, setValue] = useState<Option | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleInputValueChange = async (criteria: string) => {
+    if (!criteria) {
+      setOptions([]);
+      return;
+    }
+
+    setLoading(true);
+    const response = await fetch(
+      `https://swapi.dev/api/people/?search=${criteria}`
+    );
+    const body = await response.json();
+
+    setOptions(
+      body.results.map((result: { name: string }) => ({
+        value: result.name,
+        label: result.name,
+      }))
+    );
+    setLoading(false);
+  };
+
+  return (
+    <DynamicCombobox
+      __width="300px"
+      value={value}
+      label="Pick or create a character"
+      onChange={(value) => setValue(value)}
+      options={options}
+      loading={loading}
+      onInputValueChange={(inputValue) => {
+        handleInputValueChange(inputValue);
+      }}
+      allowCustomValue
+      onCustomValueSubmit={fn()}
+    />
   );
 };

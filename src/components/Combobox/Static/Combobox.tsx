@@ -48,6 +48,11 @@ export type ComboboxProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V | null>;
     value: V | null;
+    allowCustomValue?: boolean;
+    onCustomValueSubmit?: (value: string) => void;
+    locale?: {
+      addNewLabel?: string;
+    };
   }
 > &
   InputVariants;
@@ -69,6 +74,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     startAdornment,
     endAdornment,
     children,
+    allowCustomValue,
+    onCustomValueSubmit,
+    locale,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -87,6 +95,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
+    hasCustomValueToSubmit,
+    handleCustomValueSubmit,
+    inputValue,
   } = useCombobox({
     selectedItem: isValuePassedAsString
       ? options.find((option) => option.value === value)
@@ -96,6 +107,8 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    allowCustomValue,
+    onCustomValueSubmit,
   });
 
   const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
@@ -151,7 +164,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             disabled,
             hasItemsToSelect,
             isOpen,
-            showEmptyState: hasNoOptions(children),
+            showEmptyState: hasNoOptions(children) || hasCustomValueToSubmit,
           })}
           className={listWrapperRecipe({ size })}
           data-portal-for={id}
@@ -184,6 +197,19 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
                   {item?.endAdornment}
                 </List.Item>
               ))}
+
+            {isOpen && hasCustomValueToSubmit && (
+              <List.Item
+                data-test-id="combobox-custom-value"
+                className={listItemStyle}
+                onClick={() => handleCustomValueSubmit(inputValue)}
+                cursor="pointer"
+              >
+                <Text size={getListTextSize(size)}>
+                  {locale?.addNewLabel ?? "Add new"}: {inputValue}
+                </Text>
+              </List.Item>
+            )}
 
             {isOpen && !hasItemsToSelect && children}
           </List>

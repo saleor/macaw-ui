@@ -54,8 +54,11 @@ export type DynamicComboboxProps<T> = PropsWithBox<
     children?: ReactNode;
     locale?: {
       loadingText?: string;
+      addNewLabel?: string;
     };
     onScrollEnd?: () => void;
+    allowCustomValue?: boolean;
+    onCustomValueSubmit?: (value: string) => void;
   }
 > &
   InputVariants;
@@ -81,6 +84,8 @@ const DynamicComboboxInner = <T extends Option>(
     startAdornment,
     endAdornment,
     onScrollEnd,
+    allowCustomValue,
+    onCustomValueSubmit,
     ...props
   }: DynamicComboboxProps<T>,
   ref: ForwardedRef<HTMLInputElement>
@@ -97,6 +102,9 @@ const DynamicComboboxInner = <T extends Option>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
+    hasCustomValueToSubmit,
+    handleCustomValueSubmit,
+    inputValue,
   } = useCombobox({
     selectedItem: value,
     options,
@@ -105,6 +113,8 @@ const DynamicComboboxInner = <T extends Option>(
     onInputValueChange,
     onFocus,
     onBlur,
+    allowCustomValue,
+    onCustomValueSubmit,
   });
 
   const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
@@ -159,7 +169,7 @@ const DynamicComboboxInner = <T extends Option>(
             disabled,
             loading,
             hasItemsToSelect,
-            showEmptyState: hasNoOptions(children),
+            showEmptyState: hasNoOptions(children) || hasCustomValueToSubmit,
           })}
           className={listWrapperRecipe({ size })}
           data-portal-for={id}
@@ -192,6 +202,19 @@ const DynamicComboboxInner = <T extends Option>(
                   {item?.endAdornment}
                 </List.Item>
               ))}
+
+            {isOpen && !loading && hasCustomValueToSubmit && (
+              <List.Item
+                data-test-id="combobox-custom-value"
+                className={listItemStyle}
+                onClick={() => handleCustomValueSubmit(inputValue)}
+                cursor="pointer"
+              >
+                <Text size={getListTextSize(size)}>
+                  {locale?.addNewLabel ?? "Add new"}: {inputValue}
+                </Text>
+              </List.Item>
+            )}
 
             {isOpen && !loading && !hasItemsToSelect && children}
 

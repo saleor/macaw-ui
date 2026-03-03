@@ -3,7 +3,7 @@ import {
   useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
 } from "downshift";
-import { FocusEvent, useState } from "react";
+import { FocusEvent, useState, KeyboardEvent } from "react";
 
 import {
   Option,
@@ -34,6 +34,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   onInputValueChange,
   onFocus,
   onBlur,
+  allowCustomValue,
+  onCustomValueSubmit,
 }: {
   selectedItem: T | null | undefined;
   options: T[];
@@ -42,6 +44,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
+  allowCustomValue?: boolean;
+  onCustomValueSubmit?: (value: string) => void;
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [active, setActive] = useState(false);
@@ -55,6 +59,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 
   const {
     isOpen,
+    closeMenu,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
@@ -92,9 +97,21 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     },
   });
 
+  const hasItemsToSelect = itemsToSelect.length > 0;
+  const trimmedInputValue = inputValue.trim();
+  const hasCustomValueToSubmit =
+    !!allowCustomValue && !hasItemsToSelect && trimmedInputValue.length > 0;
+
+  const handleCustomValueSubmit = (value: string) => {
+    onCustomValueSubmit?.(value);
+    closeMenu();
+    setInputValue("");
+  };
+
   return {
     active,
     itemsToSelect,
+    inputValue: trimmedInputValue,
     typed,
     isOpen,
     getToggleButtonProps,
@@ -107,6 +124,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
       _getInputProps<{
         onFocus: (e: FocusEvent<HTMLInputElement>) => void;
         onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+        onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
       }>(
         {
           onFocus: (e) => {
@@ -117,12 +135,20 @@ export const useCombobox = <T extends Option, V extends string | Option>({
             onBlur?.(e);
             setActive(false);
           },
+          onKeyDown: (e) => {
+            if (e.key === "Enter" && hasCustomValueToSubmit) {
+              e.preventDefault();
+              handleCustomValueSubmit(trimmedInputValue);
+            }
+          },
           ...options,
         },
         otherOptions
       ),
     highlightedIndex,
     getItemProps,
-    hasItemsToSelect: itemsToSelect.length > 0,
+    hasItemsToSelect,
+    hasCustomValueToSubmit,
+    handleCustomValueSubmit,
   };
 };

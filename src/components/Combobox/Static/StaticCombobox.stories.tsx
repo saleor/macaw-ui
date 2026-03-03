@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { useState } from "react";
 
 import { Option } from "~/components/BaseSelect";
@@ -267,4 +268,21 @@ export const NoOptions = () => {
       </Combobox>
     </Box>
   );
+};
+
+export const AllowCustomValue: Story = {
+  ...ComboboxTemplate,
+  args: {
+    allowCustomValue: true,
+    onCustomValueSubmit: fn(),
+  },
+};
+
+export const AllowCustomValueWithLocale: Story = {
+  ...ComboboxTemplate,
+  args: {
+    allowCustomValue: true,
+    onCustomValueSubmit: fn(),
+    locale: { addNewLabel: "Dodaj nowy" },
+  },
 };
