@@ -100,7 +100,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   const hasItemsToSelect = itemsToSelect.length > 0;
   const trimmedInputValue = inputValue.trim();
   const hasCustomValueToSubmit =
-    !!allowCustomValue && !hasItemsToSelect && trimmedInputValue.length > 0;
+    !!allowCustomValue && !hasItemsToSelect && trimmedInputValue.length > 0 && onCustomValueSubmit;
 
   const handleCustomValueSubmit = (value: string) => {
     onCustomValueSubmit?.(value);
