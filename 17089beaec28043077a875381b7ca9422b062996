@@ -1,0 +1,47 @@
+src/components/Combobox/Dynamic/DynamicCombobox.stories.tsx
+  256e23a658d6f9e5 2,181-223
+src/components/Combobox/Dynamic/DynamicCombobox.tsx
+  618cccd4034581a1 106,210
+  256e23a658d6f9e5 57,60-61,87-88,105,107,116-117,172,206-209,211-218
+src/components/Combobox/Common/useCombobox.tsx
+  256e23a658d6f9e5 37-38,47-48,100-104,114,138-140,142-143,151
+  618cccd4034581a1 62,105-110,141,152
+src/components/Combobox/Static/Combobox.tsx
+  256e23a658d6f9e5 51-55,77-79,98,100,110-111,167,201-204,206-213
+  618cccd4034581a1 99,205
+src/components/Combobox/Static/StaticCombobox.stories.tsx
+  256e23a658d6f9e5 2,272-288
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.7",
+  "base_commit_sha": "17089beaec28043077a875381b7ca9422b062996",
+  "prompts": {
+    "256e23a658d6f9e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "444b981a-a79e-40a5-8516-c1a1cd528350",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 194,
+      "total_deletions": 67,
+      "accepted_lines": 125,
+      "overriden_lines": 1
+    },
+    "618cccd4034581a1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "64ee2e6e-35d7-4205-88e3-0c35a38f2110",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 13,
+      "total_deletions": 3,
+      "accepted_lines": 13,
+      "overriden_lines": 0
+    }
+  }
+}
