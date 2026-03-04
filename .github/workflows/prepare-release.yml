@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
   # https://docs.npmjs.com/trusted-publishers
-  id-token: write  # Required for OIDC
+  id-token: write # Required for OIDC
   # To open a PR
   contents: write
 
@@ -51,5 +51,3 @@ jobs:
         env:
           # Use private access token so Github can trigger another workflow from this one
           GITHUB_TOKEN: ${{ steps.get-token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
