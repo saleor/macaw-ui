@@ -1,0 +1,23 @@
+src/components/Combobox/Common/useCombobox.tsx
+  db16ea7d0ccda857 103
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "a7ff475982adb889df01b04b1b3c3a8b7905e25b",
+  "prompts": {
+    "db16ea7d0ccda857": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a8c43fa8-cb44-457e-861a-3e201a8abcb3",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
