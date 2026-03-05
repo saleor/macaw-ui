@@ -1,0 +1,27 @@
+src/components/Combobox/Static/Combobox.tsx
+  db16ea7d0ccda857 27,177,179-180,182-184,186-190,192-200,202,204,207,209,211
+src/components/Combobox/Common/useCombobox.tsx
+  db16ea7d0ccda857 14-18,59-77,86,94,115-118,120,122-127,161-163,165
+src/components/Combobox/Dynamic/DynamicCombobox.tsx
+  db16ea7d0ccda857 29-30,183,185-186,188-190,192-196,198-206,208,210,213,215,217
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "be8bff948cd84d117452c32915acc2daa49d63fc",
+  "prompts": {
+    "db16ea7d0ccda857": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a8c43fa8-cb44-457e-861a-3e201a8abcb3",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 122,
+      "total_deletions": 102,
+      "accepted_lines": 95,
+      "overriden_lines": 0
+    }
+  }
+}
