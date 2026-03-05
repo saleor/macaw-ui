@@ -165,3 +165,73 @@ Despite documentation suggesting it handles setup, the CLI only validates existi
 - baseColor: neutral
 - cssVariables: true
 - aliases: `@/components`, `@/lib/utils`, `@/components/ui`
+
+## 2026-03-05 — Phase 0.1+0.2+0.3 Dashboard PoC (COMPLETED)
+
+### Build tool: Vite (vite.config.js — note: .js not .ts)
+
+### Tailwind v4 integration method:
+
+- Installed: `tailwindcss @tailwindcss/vite` as devDeps
+- Added `import tailwindcss from "@tailwindcss/vite"` to vite.config.js
+- Added `tailwindcss()` to the plugins array in vite.config.js
+- Added `@import "tailwindcss"` to `src/index.css` (full import required for shadcn detection)
+
+### shadcn init result: SUCCESS (with --defaults flag)
+
+- shadcn detected Vite framework automatically
+- shadcn detected Tailwind v4 automatically
+- Created `components.json` at dashboard root
+- Wrote CSS variables into `src/index.css` (shadcn's hardcoded oklch defaults)
+- Created `assets/lib/utils.ts` (note: shadcn used `assets/` not `src/` — based on existing alias)
+- Installed `tw-animate-css` and `shadcn` packages
+
+### components.json alias discovery:
+
+- shadcn detected the existing `@assets` path alias from tsconfig
+- Components go to `assets/components/ui/` (not `src/components/ui/`)
+- This is correct for the dashboard's structure
+
+### shadcn add button result: SUCCESS
+
+- Created `assets/components/ui/button.tsx`
+- Uses `@assets/lib/utils` import (correct alias)
+
+### Bridge CSS (Task 0.1):
+
+- Created `src/styles/theme-bridge.css` with corrected var names (--mu-colors-text-_ not --mu-colors-foreground-_)
+- Import order in src/index.tsx:
+  1. `@saleor/macaw-ui-next/style` (sets --mu-colors-\* vars)
+  2. `./index.css` (Tailwind + shadcn's hardcoded oklch defaults)
+  3. `./styles/theme-bridge.css` (overrides shadcn defaults with var() references to macaw-ui vars)
+- This cascade is correct: bridge CSS wins because it's last
+
+### Dark mode bridge (Task 0.2):
+
+- Added to `src/theme/hook.tsx` setTheme function:
+  `document.documentElement.classList.toggle("dark", to === "defaultDark")`
+- shadcn uses `@custom-variant dark (&:is(.dark *))` — so `.dark` class on any ancestor works
+
+### Reset CSS conflict audit (Task 0.3):
+
+- Used `@import "tailwindcss"` (full import including Preflight)
+- shadcn also imports `@import "shadcn/tailwind.css"` which includes its own base styles
+- The dashboard has `html { font-size: 50.782% !important; }` which overrides Tailwind's reset
+- The dashboard has `body { color: var(--mu-colors-foreground-text-neutral-plain) !important; }` with !important
+- These !important rules protect existing macaw-ui styling from Tailwind Preflight
+- TypeScript type check passes: `pnpm check-types:src` → 2986 strict files, all passed
+
+### Key finding: shadcn v4 CSS variable approach
+
+- shadcn writes `@theme inline { --color-primary: var(--primary); ... }` in index.css
+- This maps shadcn's Tailwind color utilities (bg-primary, text-foreground, etc.) to CSS vars
+- Our bridge CSS overrides the `:root { --primary: oklch(...) }` defaults with macaw-ui var() refs
+- Result: `bg-primary` in Tailwind → `--color-primary` → `var(--primary)` → `var(--mu-colors-background-button-default-primary)` → actual hex color from macaw-ui theme
+
+### Phase 0 Decision Gate: PASS
+
+- Task 0.1 (CSS bridge): PASS — shadcn installed, bridge CSS created, cascade correct
+- Task 0.2 (dark mode): PASS — classList.toggle added to setTheme
+- Task 0.3 (reset audit): PASS — !important rules protect existing styles, no visual regressions expected
+- Task 0.4 (apps monorepo): PASS — smtp app already had shadcn installed (Tailwind v3)
+- **PROCEED TO PHASE 1**
