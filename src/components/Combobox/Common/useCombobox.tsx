@@ -11,6 +11,11 @@ import {
   useHighlightedIndex,
 } from "~/components/BaseSelect";
 
+const CUSTOM_VALUE_SENTINEL = "__macaw_custom_value__";
+
+export const isCustomValueOption = (item: Option): boolean =>
+  item.value === CUSTOM_VALUE_SENTINEL;
+
 const getItemsFilter = <T extends Option>(
   inputValue: string | undefined,
   options: T[]
@@ -51,7 +56,26 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   const [active, setActive] = useState(false);
   const typed = Boolean(selectedItem || active || inputValue);
 
-  const itemsToSelect = getItemsFilter<T>(inputValue, options);
+  const filteredItems = getItemsFilter<T>(inputValue, options);
+  const hasFilteredItems = filteredItems.length > 0;
+  const trimmedInputValue = inputValue.trim();
+
+  const canSubmitCustomValue =
+    !!allowCustomValue &&
+    !hasFilteredItems &&
+    trimmedInputValue.length > 0 &&
+    !!onCustomValueSubmit;
+
+  const customValueOption = canSubmitCustomValue
+    ? ({ label: trimmedInputValue, value: CUSTOM_VALUE_SENTINEL } as T)
+    : null;
+
+  const itemsToSelect = customValueOption
+    ? [...filteredItems, customValueOption]
+    : filteredItems;
+
+  const hasItemsToSelect = itemsToSelect.length > 0;
+
   const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
     itemsToSelect,
     selectedItem
@@ -59,7 +83,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 
   const {
     isOpen,
-    closeMenu,
+    selectItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
@@ -67,6 +91,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     getItemProps,
   } = useDownshiftCombobox({
     items: itemsToSelect,
+    inputValue,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
     highlightedIndex,
@@ -87,29 +112,21 @@ export const useCombobox = <T extends Option, V extends string | Option>({
       }
     },
     onSelectedItemChange: ({ selectedItem }) => {
-      if (selectedItem) {
-        const selectedValue = isValuePassedAsString
-          ? selectedItem.value
-          : selectedItem;
+      if (!selectedItem) return;
+
+      if (selectedItem.value === CUSTOM_VALUE_SENTINEL) {
+        onCustomValueSubmit?.(trimmedInputValue);
         setInputValue("");
-        onChange?.(selectedValue as V);
+        return;
       }
+
+      const selectedValue = isValuePassedAsString
+        ? selectedItem.value
+        : selectedItem;
+      setInputValue("");
+      onChange?.(selectedValue as V);
     },
   });
-
-  const hasItemsToSelect = itemsToSelect.length > 0;
-  const trimmedInputValue = inputValue.trim();
-  const hasCustomValueToSubmit =
-    !!allowCustomValue &&
-    !hasItemsToSelect &&
-    trimmedInputValue.length > 0 &&
-    !!onCustomValueSubmit;
-
-  const handleCustomValueSubmit = (value: string) => {
-    onCustomValueSubmit?.(value);
-    closeMenu();
-    setInputValue("");
-  };
 
   return {
     active,
@@ -139,9 +156,13 @@ export const useCombobox = <T extends Option, V extends string | Option>({
             setActive(false);
           },
           onKeyDown: (e) => {
-            if (e.key === "Enter" && hasCustomValueToSubmit) {
-              e.preventDefault();
-              handleCustomValueSubmit(trimmedInputValue);
+            if (
+              e.key === "Enter" &&
+              canSubmitCustomValue &&
+              customValueOption &&
+              highlightedIndex === -1
+            ) {
+              selectItem(customValueOption);
             }
           },
           ...options,
@@ -151,7 +172,5 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     highlightedIndex,
     getItemProps,
     hasItemsToSelect,
-    hasCustomValueToSubmit,
-    handleCustomValueSubmit,
   };
 };

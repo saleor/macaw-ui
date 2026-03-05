@@ -24,7 +24,7 @@ import { classNames, isString } from "~/utils";
 import { useFloating } from "~/hooks/useFloating";
 import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import { ComboboxWrapper } from "../Common";
-import { useCombobox } from "../Common/useCombobox";
+import { isCustomValueOption, useCombobox } from "../Common/useCombobox";
 
 export type ComboboxProps<T, V> = PropsWithBox<
   Omit<
@@ -95,8 +95,6 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
-    hasCustomValueToSubmit,
-    handleCustomValueSubmit,
     inputValue,
   } = useCombobox({
     selectedItem: isValuePassedAsString
@@ -164,7 +162,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             disabled,
             hasItemsToSelect,
             isOpen,
-            showEmptyState: hasNoOptions(children) || hasCustomValueToSubmit,
+            showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
           data-portal-for={id}
@@ -175,41 +173,43 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
-              itemsToSelect?.map((item, index) => (
-                <List.Item
-                  data-test-id="select-option"
-                  key={`${id}-${item.value}-${index}`}
-                  disabled={item.disabled}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item,
-                    index,
-                  })}
-                  active={highlightedIndex === index}
-                >
-                  {item?.startAdornment}
-                  <Text
-                    color={item.disabled ? "defaultDisabled" : undefined}
-                    size={getListTextSize(size)}
+              itemsToSelect?.map((item, index) =>
+                isCustomValueOption(item) ? (
+                  <List.Item
+                    data-test-id="combobox-custom-value"
+                    key={`${id}-custom-value`}
+                    className={listItemStyle}
+                    {...getItemProps({ item, index })}
+                    active={highlightedIndex === index}
+                    cursor="pointer"
                   >
-                    {item.label}
-                  </Text>
-                  {item?.endAdornment}
-                </List.Item>
-              ))}
-
-            {isOpen && hasCustomValueToSubmit && (
-              <List.Item
-                data-test-id="combobox-custom-value"
-                className={listItemStyle}
-                onClick={() => handleCustomValueSubmit(inputValue)}
-                cursor="pointer"
-              >
-                <Text size={getListTextSize(size)}>
-                  {locale?.addNewLabel ?? "Add new"}: {inputValue}
-                </Text>
-              </List.Item>
-            )}
+                    <Text size={getListTextSize(size)}>
+                      {locale?.addNewLabel ?? "Add new"}: {inputValue}
+                    </Text>
+                  </List.Item>
+                ) : (
+                  <List.Item
+                    data-test-id="select-option"
+                    key={`${id}-${item.value}-${index}`}
+                    disabled={item.disabled}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item,
+                      index,
+                    })}
+                    active={highlightedIndex === index}
+                  >
+                    {item?.startAdornment}
+                    <Text
+                      color={item.disabled ? "defaultDisabled" : undefined}
+                      size={getListTextSize(size)}
+                    >
+                      {item.label}
+                    </Text>
+                    {item?.endAdornment}
+                  </List.Item>
+                )
+              )}
 
             {isOpen && !hasItemsToSelect && children}
           </List>

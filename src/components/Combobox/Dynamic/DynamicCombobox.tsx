@@ -26,7 +26,8 @@ import {
   SingleChangeHandler,
 } from "../../BaseSelect";
 
-import { ComboboxWrapper, useCombobox } from "../Common";
+import { ComboboxWrapper } from "../Common";
+import { isCustomValueOption, useCombobox } from "../Common/useCombobox";
 
 export type DynamicComboboxProps<T> = PropsWithBox<
   Omit<
@@ -102,8 +103,6 @@ const DynamicComboboxInner = <T extends Option>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
-    hasCustomValueToSubmit,
-    handleCustomValueSubmit,
     inputValue,
   } = useCombobox({
     selectedItem: value,
@@ -169,7 +168,7 @@ const DynamicComboboxInner = <T extends Option>(
             disabled,
             loading,
             hasItemsToSelect,
-            showEmptyState: hasNoOptions(children) || hasCustomValueToSubmit,
+            showEmptyState: hasNoOptions(children),
           })}
           className={listWrapperRecipe({ size })}
           data-portal-for={id}
@@ -180,41 +179,43 @@ const DynamicComboboxInner = <T extends Option>(
             {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
-              itemsToSelect?.map((item, index) => (
-                <List.Item
-                  data-test-id="select-option"
-                  key={`${id}-${item.value}-${index}-${highlightedIndex}`}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item,
-                    index,
-                    disabled: item.disabled,
-                  })}
-                  active={highlightedIndex === index}
-                >
-                  {item?.startAdornment}
-                  <Text
-                    color={item.disabled ? "defaultDisabled" : undefined}
-                    size={getListTextSize(size)}
+              itemsToSelect?.map((item, index) =>
+                isCustomValueOption(item) ? (
+                  <List.Item
+                    data-test-id="combobox-custom-value"
+                    key={`${id}-custom-value`}
+                    className={listItemStyle}
+                    {...getItemProps({ item, index })}
+                    active={highlightedIndex === index}
+                    cursor="pointer"
                   >
-                    {item.label}
-                  </Text>
-                  {item?.endAdornment}
-                </List.Item>
-              ))}
-
-            {isOpen && !loading && hasCustomValueToSubmit && (
-              <List.Item
-                data-test-id="combobox-custom-value"
-                className={listItemStyle}
-                onClick={() => handleCustomValueSubmit(inputValue)}
-                cursor="pointer"
-              >
-                <Text size={getListTextSize(size)}>
-                  {locale?.addNewLabel ?? "Add new"}: {inputValue}
-                </Text>
-              </List.Item>
-            )}
+                    <Text size={getListTextSize(size)}>
+                      {locale?.addNewLabel ?? "Add new"}: {inputValue}
+                    </Text>
+                  </List.Item>
+                ) : (
+                  <List.Item
+                    data-test-id="select-option"
+                    key={`${id}-${item.value}-${index}-${highlightedIndex}`}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item,
+                      index,
+                      disabled: item.disabled,
+                    })}
+                    active={highlightedIndex === index}
+                  >
+                    {item?.startAdornment}
+                    <Text
+                      color={item.disabled ? "defaultDisabled" : undefined}
+                      size={getListTextSize(size)}
+                    >
+                      {item.label}
+                    </Text>
+                    {item?.endAdornment}
+                  </List.Item>
+                )
+              )}
 
             {isOpen && !loading && !hasItemsToSelect && children}
 
