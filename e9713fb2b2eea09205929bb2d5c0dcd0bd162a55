@@ -1,0 +1,23 @@
+src/components/Dropdown/Dropdown.stories.tsx
+  d95dd42a460fe8f6 2,22,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "e9713fb2b2eea09205929bb2d5c0dcd0bd162a55",
+  "prompts": {
+    "d95dd42a460fe8f6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a4d103b7-c889-495f-bfc7-bbafcec361a4",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 4,
+      "accepted_lines": 3,
+      "overriden_lines": 0
+    }
+  }
+}
