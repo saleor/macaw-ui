@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { MenuIcon } from "lucide-react";
 import { Button } from "../Button";
 import { Text } from "../Text";

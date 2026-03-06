@@ -1,4 +1,4 @@
-import { Unstyled } from "@storybook/blocks";
+import { Unstyled } from "@storybook/addon-docs/blocks";
 import { Box, Text } from "~/components";
 import { useTheme } from "~/theme";
 

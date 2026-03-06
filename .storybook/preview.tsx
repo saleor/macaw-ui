@@ -1,36 +1,29 @@
-import { DocsContainer, DocsContainerProps } from "@storybook/blocks";
+import {
+  DocsContainer,
+  DocsContainerProps,
+} from "@storybook/addon-docs/blocks";
 import React, { PropsWithChildren } from "react";
 import { Box, ThemeProvider, useTheme } from "../src";
 import "./styles.css";
 
-type MacawDocsContainerProps = {
-  [K in keyof DocsContainerProps]: K extends "context"
-    ? DocsContainerProps[K] & { store: Record<string, any> }
-    : DocsContainerProps[K];
-};
-
 const MacawDocsContainer = ({
   children,
   ...props
-}: PropsWithChildren<MacawDocsContainerProps>) => {
+}: PropsWithChildren<DocsContainerProps>) => {
   return (
-    <ThemeProvider defaultTheme={props.context.store.globals.globals.theme}>
-      <ThemeSwitcher theme={props.context.store.globals.globals.theme}>
-        <DocsContainer {...props}>{children}</DocsContainer>
-      </ThemeSwitcher>
+    <ThemeProvider>
+      <DocsContainer {...props}>{children}</DocsContainer>
     </ThemeProvider>
   );
 };
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
       date: /Date$/,
     },
   },
   docs: {
-    autodocs: "tag",
     container: MacawDocsContainer,
   },
   options: {
@@ -47,17 +40,22 @@ export const parameters = {
   },
 };
 
+export const tags = ["autodocs"];
+
 export const globalTypes = {
   theme: {
-    name: "Theme",
     description: "Global theme for components",
-    defaultValue: "defaultLight",
     toolbar: {
+      title: "Theme",
       icon: "mirror",
       items: ["defaultLight", "defaultDark"],
       dynamicTitle: true,
     },
   },
+};
+
+export const initialGlobals = {
+  theme: "defaultLight",
 };
 
 const ThemeSwitcher = ({ children, theme }) => {
