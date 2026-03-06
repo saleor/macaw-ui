@@ -3,13 +3,18 @@ import {
   useCombobox as useDownshiftCombobox,
   UseComboboxGetInputPropsOptions,
 } from "downshift";
-import { FocusEvent, useState } from "react";
+import { FocusEvent, useState, KeyboardEvent } from "react";
 
 import {
   Option,
   SingleChangeHandler,
   useHighlightedIndex,
 } from "~/components/BaseSelect";
+
+const CUSTOM_VALUE_SENTINEL = "__macaw_custom_value__";
+
+export const isCustomValueOption = (item: Option): boolean =>
+  item.value === CUSTOM_VALUE_SENTINEL;
 
 const getItemsFilter = <T extends Option>(
   inputValue: string | undefined,
@@ -34,6 +39,8 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   onInputValueChange,
   onFocus,
   onBlur,
+  allowCustomValue,
+  onCustomValueSubmit,
 }: {
   selectedItem: T | null | undefined;
   options: T[];
@@ -42,12 +49,33 @@ export const useCombobox = <T extends Option, V extends string | Option>({
   onInputValueChange?: (value: string) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement, Element>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement, Element>) => void;
+  allowCustomValue?: boolean;
+  onCustomValueSubmit?: (value: string) => void;
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [active, setActive] = useState(false);
   const typed = Boolean(selectedItem || active || inputValue);
 
-  const itemsToSelect = getItemsFilter<T>(inputValue, options);
+  const filteredItems = getItemsFilter<T>(inputValue, options);
+  const hasFilteredItems = filteredItems.length > 0;
+  const trimmedInputValue = inputValue.trim();
+
+  const canSubmitCustomValue =
+    !!allowCustomValue &&
+    !hasFilteredItems &&
+    trimmedInputValue.length > 0 &&
+    !!onCustomValueSubmit;
+
+  const customValueOption = canSubmitCustomValue
+    ? ({ label: trimmedInputValue, value: CUSTOM_VALUE_SENTINEL } as T)
+    : null;
+
+  const itemsToSelect = customValueOption
+    ? [...filteredItems, customValueOption]
+    : filteredItems;
+
+  const hasItemsToSelect = itemsToSelect.length > 0;
+
   const { highlightedIndex, onHighlightedIndexChange } = useHighlightedIndex(
     itemsToSelect,
     selectedItem
@@ -55,6 +83,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
 
   const {
     isOpen,
+    selectItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
@@ -62,6 +91,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
     getItemProps,
   } = useDownshiftCombobox({
     items: itemsToSelect,
+    inputValue,
     itemToString: (item) => item?.label ?? "",
     selectedItem,
     highlightedIndex,
@@ -82,19 +112,26 @@ export const useCombobox = <T extends Option, V extends string | Option>({
       }
     },
     onSelectedItemChange: ({ selectedItem }) => {
-      if (selectedItem) {
-        const selectedValue = isValuePassedAsString
-          ? selectedItem.value
-          : selectedItem;
+      if (!selectedItem) return;
+
+      if (selectedItem.value === CUSTOM_VALUE_SENTINEL) {
+        onCustomValueSubmit?.(trimmedInputValue);
         setInputValue("");
-        onChange?.(selectedValue as V);
+        return;
       }
+
+      const selectedValue = isValuePassedAsString
+        ? selectedItem.value
+        : selectedItem;
+      setInputValue("");
+      onChange?.(selectedValue as V);
     },
   });
 
   return {
     active,
     itemsToSelect,
+    inputValue: trimmedInputValue,
     typed,
     isOpen,
     getToggleButtonProps,
@@ -107,6 +144,7 @@ export const useCombobox = <T extends Option, V extends string | Option>({
       _getInputProps<{
         onFocus: (e: FocusEvent<HTMLInputElement>) => void;
         onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+        onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
       }>(
         {
           onFocus: (e) => {
@@ -117,12 +155,22 @@ export const useCombobox = <T extends Option, V extends string | Option>({
             onBlur?.(e);
             setActive(false);
           },
+          onKeyDown: (e) => {
+            if (
+              e.key === "Enter" &&
+              canSubmitCustomValue &&
+              customValueOption &&
+              highlightedIndex === -1
+            ) {
+              selectItem(customValueOption);
+            }
+          },
           ...options,
         },
         otherOptions
       ),
     highlightedIndex,
     getItemProps,
-    hasItemsToSelect: itemsToSelect.length > 0,
+    hasItemsToSelect,
   };
 };

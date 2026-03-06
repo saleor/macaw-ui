@@ -24,7 +24,7 @@ import { classNames, isString } from "~/utils";
 import { useFloating } from "~/hooks/useFloating";
 import { formEventTypeAdapter } from "~/utils/formEventTypeAdapter";
 import { ComboboxWrapper } from "../Common";
-import { useCombobox } from "../Common/useCombobox";
+import { isCustomValueOption, useCombobox } from "../Common/useCombobox";
 
 export type ComboboxProps<T, V> = PropsWithBox<
   Omit<
@@ -48,6 +48,11 @@ export type ComboboxProps<T, V> = PropsWithBox<
     options: T[];
     onChange?: SingleChangeHandler<V | null>;
     value: V | null;
+    allowCustomValue?: boolean;
+    onCustomValueSubmit?: (value: string) => void;
+    locale?: {
+      addNewLabel?: string;
+    };
   }
 > &
   InputVariants;
@@ -69,6 +74,9 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     startAdornment,
     endAdornment,
     children,
+    allowCustomValue,
+    onCustomValueSubmit,
+    locale,
     ...props
   }: ComboboxProps<T, V>,
   ref: ForwardedRef<HTMLInputElement>
@@ -87,6 +95,7 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     getItemProps,
     itemsToSelect,
     hasItemsToSelect,
+    inputValue,
   } = useCombobox({
     selectedItem: isValuePassedAsString
       ? options.find((option) => option.value === value)
@@ -96,6 +105,8 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
     onChange,
     onFocus,
     onBlur,
+    allowCustomValue,
+    onCustomValueSubmit,
   });
 
   const { refs, floatingStyles } = useFloating<HTMLLabelElement>({
@@ -162,28 +173,43 @@ const ComboboxInner = <T extends Option, V extends Option | string>(
             {...getMenuProps({ ref: refs.floating })}
           >
             {isOpen &&
-              itemsToSelect?.map((item, index) => (
-                <List.Item
-                  data-test-id="select-option"
-                  key={`${id}-${item.value}-${index}`}
-                  disabled={item.disabled}
-                  className={listItemStyle}
-                  {...getItemProps({
-                    item,
-                    index,
-                  })}
-                  active={highlightedIndex === index}
-                >
-                  {item?.startAdornment}
-                  <Text
-                    color={item.disabled ? "defaultDisabled" : undefined}
-                    size={getListTextSize(size)}
+              itemsToSelect?.map((item, index) =>
+                isCustomValueOption(item) ? (
+                  <List.Item
+                    data-test-id="combobox-custom-value"
+                    key={`${id}-custom-value`}
+                    className={listItemStyle}
+                    {...getItemProps({ item, index })}
+                    active={highlightedIndex === index}
+                    cursor="pointer"
                   >
-                    {item.label}
-                  </Text>
-                  {item?.endAdornment}
-                </List.Item>
-              ))}
+                    <Text size={getListTextSize(size)}>
+                      {locale?.addNewLabel ?? "Add new"}: {inputValue}
+                    </Text>
+                  </List.Item>
+                ) : (
+                  <List.Item
+                    data-test-id="select-option"
+                    key={`${id}-${item.value}-${index}`}
+                    disabled={item.disabled}
+                    className={listItemStyle}
+                    {...getItemProps({
+                      item,
+                      index,
+                    })}
+                    active={highlightedIndex === index}
+                  >
+                    {item?.startAdornment}
+                    <Text
+                      color={item.disabled ? "defaultDisabled" : undefined}
+                      size={getListTextSize(size)}
+                    >
+                      {item.label}
+                    </Text>
+                    {item?.endAdornment}
+                  </List.Item>
+                )
+              )}
 
             {isOpen && !hasItemsToSelect && children}
           </List>
