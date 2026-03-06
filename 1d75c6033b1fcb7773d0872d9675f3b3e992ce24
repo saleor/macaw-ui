@@ -1,0 +1,27 @@
+src/components/Button/Button.stories.tsx
+  d95dd42a460fe8f6 77
+src/components/Switch/Switch.stories.tsx
+  d95dd42a460fe8f6 20,24
+src/components/List/ItemGroup/Trigger.tsx
+  d95dd42a460fe8f6 21-26,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "1d75c6033b1fcb7773d0872d9675f3b3e992ce24",
+  "prompts": {
+    "d95dd42a460fe8f6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a4d103b7-c889-495f-bfc7-bbafcec361a4",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 16,
+      "total_deletions": 4,
+      "accepted_lines": 10,
+      "overriden_lines": 0
+    }
+  }
+}
