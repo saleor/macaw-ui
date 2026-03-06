@@ -1,0 +1,23 @@
+src/components/SearchInput/SearchInput.tsx
+  d04295d8b9eeeb94 28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "60be26a8a4368afeb325ea4d569eb136b60c22f7",
+  "prompts": {
+    "d04295d8b9eeeb94": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d8eb9a06-d717-4e21-b25f-2b1c6a8e7d92",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
