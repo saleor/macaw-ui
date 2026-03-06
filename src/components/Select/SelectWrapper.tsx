@@ -5,7 +5,7 @@ import { UseSelectPropGetters } from "downshift";
 import { ReactNode } from "react";
 
 import { ChevronDownIcon } from "lucide-react";
-import { classNames } from "~/utils";
+import { classNames, iconSizeMap } from "~/utils";
 
 import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../BaseInput";
@@ -73,7 +73,7 @@ export const SelectWrapper = ({
           toggleIconStyle,
           sprinkles({ cursor: "pointer" })
         )}
-        size={20}
+        size={iconSizeMap[size ?? "medium"]}
       />
     </Box>
   );

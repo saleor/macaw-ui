@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { Box, Button, PropsWithBox } from "~/components";
 import { DataAttributes } from "~/components/types";
+import { iconSizeMap } from "~/utils";
 
 import { List } from "..";
 import { useItemGroupContext } from "./context";
@@ -17,12 +18,6 @@ export type ItemGroupTriggerProps = PropsWithBox<
     size?: "small" | "medium" | "large";
   }
 >;
-
-const iconSizeMap = {
-  small: 16,
-  medium: 20,
-  large: 24,
-} as const;
 
 export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
   const { triggerOpen } = useItemGroupContext();

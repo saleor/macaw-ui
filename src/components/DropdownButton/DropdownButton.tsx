@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 import { ChevronDownIcon } from "lucide-react";
 import { sprinkles } from "~/theme";
-import { classNames } from "~/utils";
+import { classNames, iconSizeMap } from "~/utils";
 import { Box, PropsWithBox } from "../Box";
 import { dropdownButton, DropdownButtonVariants } from "./DropdownButton.css";
 
@@ -39,7 +39,7 @@ export const DropdownButton = forwardRef<
       >
         {children}
         <ChevronDownIcon
-          size={16}
+          size={iconSizeMap[size ?? "medium"]}
           className={sprinkles({
             color: "default2",
           })}

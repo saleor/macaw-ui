@@ -5,7 +5,7 @@ import { UseComboboxPropGetters } from "downshift";
 import { ReactNode, forwardRef } from "react";
 
 import { ChevronDownIcon } from "lucide-react";
-import { classNames } from "~/utils";
+import { classNames, iconSizeMap } from "~/utils";
 
 import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../../BaseInput";
@@ -74,7 +74,7 @@ export const ComboboxWrapper = forwardRef<
             toggleIconStyle,
             sprinkles({ cursor: "pointer" })
           )}
-          size={20}
+          size={iconSizeMap[size ?? "medium"]}
           {...getToggleButtonProps({
             disabled,
             onClick: (event) => {
