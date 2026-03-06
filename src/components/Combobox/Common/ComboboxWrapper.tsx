@@ -4,13 +4,13 @@
 import { UseComboboxPropGetters } from "downshift";
 import { ReactNode, forwardRef } from "react";
 
-import { classNames } from "~/utils";
+import { ChevronDownIcon } from "lucide-react";
+import { classNames, iconSizeMap } from "~/utils";
 
 import { sprinkles } from "~/theme";
 import { LabelVariants, labelRecipe, spanRecipe } from "../../BaseInput";
 import { Option, toggleIconStyle } from "../../BaseSelect";
 import { Box } from "../../Box";
-import { ArrowDownIcon } from "../../Icons";
 
 type ComboboxWrapperProps = LabelVariants & {
   id?: string;
@@ -69,12 +69,12 @@ export const ComboboxWrapper = forwardRef<
           {children}
         </Box>
 
-        <ArrowDownIcon
+        <ChevronDownIcon
           className={classNames(
             toggleIconStyle,
             sprinkles({ cursor: "pointer" })
           )}
-          size={size}
+          size={iconSizeMap[size ?? "medium"]}
           {...getToggleButtonProps({
             disabled,
             onClick: (event) => {

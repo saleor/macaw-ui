@@ -1,7 +1,7 @@
 import { forwardRef, InputHTMLAttributes } from "react";
-import { classNames } from "~/utils";
+import { SearchIcon } from "lucide-react";
+import { classNames, iconSizeMap } from "~/utils";
 import { Box, PropsWithBox } from "../Box";
-import { SearchIcon } from "../Icons";
 import {
   InputContainerVariants,
   inputContainer,
@@ -25,7 +25,10 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         className={classNames(inputContainer({ size }), className)}
         data-macaw-ui-component="SearchInput"
       >
-        <SearchIcon size="medium" className={searchIcon()} />
+        <SearchIcon
+          size={iconSizeMap[size ?? "medium"]}
+          className={searchIcon()}
+        />
         <Box as="input" className={input()} ref={ref} type="text" {...props} />
       </Box>
     );

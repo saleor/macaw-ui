@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { RemoveIcon, SearchIcon } from "../Icons";
+import { XIcon, SearchIcon } from "lucide-react";
 import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -44,7 +44,7 @@ export const PrimaryIcon: Story = {
   args: {
     variant: "primary",
     size: "large",
-    icon: <RemoveIcon />,
+    icon: <XIcon />,
   },
 };
 
@@ -74,7 +74,7 @@ export const PrimaryTextIcon: Story = {
     variant: "primary",
     size: "large",
     children: [
-      <SearchIcon size="small" />, // eslint-disable-line react/jsx-key
+      <SearchIcon size={16} />, // eslint-disable-line react/jsx-key
       "Search",
     ],
   },

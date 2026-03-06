@@ -1,4 +1,4 @@
-import { SearchIcon } from "../Icons";
+import { SearchIcon } from "lucide-react";
 import { ButtonProps } from "./Button";
 import { isFixedWidth } from "./utils";
 

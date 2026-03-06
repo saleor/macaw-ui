@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { MenuIcon } from "lucide-react";
 import { Button } from "../Button";
-import { MenuIcon } from "../Icons";
 import { Text } from "../Text";
 import { Drawer } from "./index";
 
