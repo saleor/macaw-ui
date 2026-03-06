@@ -4,7 +4,7 @@
 import { UseComboboxPropGetters } from "downshift";
 import { ReactNode, forwardRef } from "react";
 
-import { ArrowDownIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
@@ -69,12 +69,12 @@ export const ComboboxWrapper = forwardRef<
           {children}
         </Box>
 
-        <ArrowDownIcon
+        <ChevronDownIcon
           className={classNames(
             toggleIconStyle,
             sprinkles({ cursor: "pointer" })
           )}
-          size={size}
+          size={20}
           {...getToggleButtonProps({
             disabled,
             onClick: (event) => {

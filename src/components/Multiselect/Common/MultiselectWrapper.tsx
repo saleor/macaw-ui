@@ -90,7 +90,6 @@ export const MultiselectWrapper = forwardRef<
 
         {hasItemsToSelect ? (
           <Adornment
-            size={size}
             getToggleButtonProps={getToggleButtonProps}
             renderEndAdornment={renderEndAdornment}
             disabled={disabled}

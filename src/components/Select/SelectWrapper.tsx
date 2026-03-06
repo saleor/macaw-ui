@@ -4,7 +4,7 @@
 import { UseSelectPropGetters } from "downshift";
 import { ReactNode } from "react";
 
-import { ArrowDownIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { classNames } from "~/utils";
 
 import { sprinkles } from "~/theme";
@@ -68,12 +68,12 @@ export const SelectWrapper = ({
         {children}
       </Box>
 
-      <ArrowDownIcon
+      <ChevronDownIcon
         className={classNames(
           toggleIconStyle,
           sprinkles({ cursor: "pointer" })
         )}
-        size={size}
+        size={20}
       />
     </Box>
   );

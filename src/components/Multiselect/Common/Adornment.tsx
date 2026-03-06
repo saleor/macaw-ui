@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
@@ -7,7 +7,7 @@ import { toggleIconStyle } from "../../BaseSelect";
 import { RenderEndAdornmentType, useMultiselect } from "./useMultiselect";
 
 export type AdornmentProps = {
-  size?: "small" | "medium" | "large";
+  size?: number;
   getToggleButtonProps: ReturnType<
     typeof useMultiselect
   >["getToggleButtonProps"];
@@ -16,7 +16,7 @@ export type AdornmentProps = {
 };
 
 export const Adornment = ({
-  size,
+  size = 20,
   getToggleButtonProps,
   renderEndAdornment,
   disabled,
@@ -24,7 +24,7 @@ export const Adornment = ({
   return renderEndAdornment ? (
     <>{renderEndAdornment(getToggleButtonProps())}</>
   ) : (
-    <ArrowDownIcon
+    <ChevronDownIcon
       className={classNames(toggleIconStyle, sprinkles({ cursor: "pointer" }))}
       size={size}
       // TODO: We should instead wrap icon with button for correct HTML structure
