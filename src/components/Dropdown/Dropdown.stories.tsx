@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { EllipsisVertical } from "lucide-react";
 import { Button } from "../Button";
 import { List } from "../List";

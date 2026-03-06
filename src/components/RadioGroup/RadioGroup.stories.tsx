@@ -1,5 +1,5 @@
 // eslint-disable react/jsx-key
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { Text } from "../Text";
 import { RadioGroup } from "./index";
 
