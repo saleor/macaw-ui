@@ -1,0 +1,33 @@
+src/components/Combobox/Common/ComboboxWrapper.tsx
+  d04295d8b9eeeb94 7,72,77
+src/components/DropdownButton/DropdownButton.tsx
+  d04295d8b9eeeb94 2,41-42
+src/components/Select/SelectWrapper.tsx
+  d04295d8b9eeeb94 7,71,76
+src/components/Accordion/Item/TriggerButton.tsx
+  d04295d8b9eeeb94 1,13
+src/components/Button/Button.stories.tsx
+  d04295d8b9eeeb94 2,47
+src/components/Multiselect/Common/Adornment.tsx
+  d04295d8b9eeeb94 1,10,19,27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "6824bd463eb5fbb2c5ae7d9b1423e02092d4393f",
+  "prompts": {
+    "d04295d8b9eeeb94": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d8eb9a06-d717-4e21-b25f-2b1c6a8e7d92",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 19,
+      "total_deletions": 20,
+      "accepted_lines": 18,
+      "overriden_lines": 0
+    }
+  }
+}
