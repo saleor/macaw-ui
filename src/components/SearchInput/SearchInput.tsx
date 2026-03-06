@@ -25,7 +25,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         className={classNames(inputContainer({ size }), className)}
         data-macaw-ui-component="SearchInput"
       >
-        <SearchIcon size="medium" className={searchIcon()} />
+        <SearchIcon size={20} className={searchIcon()} />
         <Box as="input" className={input()} ref={ref} type="text" {...props} />
       </Box>
     );
