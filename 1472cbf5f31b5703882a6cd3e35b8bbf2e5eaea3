@@ -1,0 +1,35 @@
+src/utils/index.ts
+  d95dd42a460fe8f6 3
+src/utils/iconSize.ts
+  d95dd42a460fe8f6 1-7
+src/components/SearchInput/SearchInput.tsx
+  d95dd42a460fe8f6 3,28
+src/components/Select/SelectWrapper.tsx
+  d95dd42a460fe8f6 8,76
+src/components/List/ItemGroup/Trigger.tsx
+  d95dd42a460fe8f6 7
+src/components/Combobox/Common/ComboboxWrapper.tsx
+  d95dd42a460fe8f6 8,77
+src/components/DropdownButton/DropdownButton.tsx
+  d95dd42a460fe8f6 4,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "1472cbf5f31b5703882a6cd3e35b8bbf2e5eaea3",
+  "prompts": {
+    "d95dd42a460fe8f6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a4d103b7-c889-495f-bfc7-bbafcec361a4",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Lukasz Ostrowski <lukasz.ostrowski@saleor.io>",
+      "messages": [],
+      "total_additions": 17,
+      "total_deletions": 14,
+      "accepted_lines": 17,
+      "overriden_lines": 0
+    }
+  }
+}
