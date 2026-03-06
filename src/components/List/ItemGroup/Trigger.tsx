@@ -38,7 +38,6 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
           icon={
             <ChevronDown
               className={icon}
-              color="default1"
               size={size ? iconSizeMap[size] : undefined}
             />
           }
