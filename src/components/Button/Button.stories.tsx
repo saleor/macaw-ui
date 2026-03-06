@@ -74,7 +74,7 @@ export const PrimaryTextIcon: Story = {
     variant: "primary",
     size: "large",
     children: [
-      <SearchIcon size="small" />, // eslint-disable-line react/jsx-key
+      <SearchIcon size={16} />, // eslint-disable-line react/jsx-key
       "Search",
     ],
   },

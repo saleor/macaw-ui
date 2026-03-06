@@ -18,6 +18,12 @@ export type ItemGroupTriggerProps = PropsWithBox<
   }
 >;
 
+const iconSizeMap = {
+  small: 16,
+  medium: 20,
+  large: 24,
+} as const;
+
 export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
   const { triggerOpen } = useItemGroupContext();
 
@@ -29,7 +35,13 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
       </Box>
       <AccordionTrigger asChild>
         <Button
-          icon={<ChevronDown className={icon} color="default1" size={size} />}
+          icon={
+            <ChevronDown
+              className={icon}
+              color="default1"
+              size={size ? iconSizeMap[size] : undefined}
+            />
+          }
           variant="tertiary"
           size={size}
           className={button}

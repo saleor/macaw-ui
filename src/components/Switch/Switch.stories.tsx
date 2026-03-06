@@ -17,11 +17,11 @@ export const Primary: Story = {
     children: [
       // eslint-disable-next-line react/jsx-key
       <Switch.Item id="1" value="1">
-        <Edit size="medium" />
+        <Edit size={20} />
       </Switch.Item>,
       // eslint-disable-next-line react/jsx-key
       <Switch.Item id="2" value="2">
-        <Package size="medium" />
+        <Package size={20} />
       </Switch.Item>,
     ],
   },
