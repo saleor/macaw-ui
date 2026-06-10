@@ -1,5 +1,22 @@
 # @saleor/macaw-ui
 
+## 2.0.0
+
+### Major Changes
+
+- 8a1f3ff: Removed custom re-exported icons from Lucide. Now Macaw internally uses Lucide and expects it to be installed as peer dependency.
+
+  Migration:
+
+  - Upgrade to latest Macaw 1.x
+  - Find all imports of icons - they should be deprecated. Each icon has corresponding Lucide icon mentioned in deprecation notice
+  - Replace all imports from Macaw to `"lucide-react"`
+  - Install Macaw 2.x
+
+### Patch Changes
+
+- bf35f0d: Updated Storybook to v10
+
 ## 1.4.2
 
 ### Patch Changes
