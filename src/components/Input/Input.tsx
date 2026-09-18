@@ -105,7 +105,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 checkIfValidNumberInput(event);
               }
             }}
-            role="input"
             {...props}
           />
         </InputWrapper>
