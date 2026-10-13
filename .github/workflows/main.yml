@@ -74,7 +74,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        react: [18, 19]
+        include:
+          # Lowest @types/react in the peer range; .d.ts files inline types from the build's @types/react
+          - react: 18
+            types: 18.3.22
+          - react: 19
+            types: ^19
 
     defaults:
       run:
@@ -103,7 +108,7 @@ jobs:
         run: pnpm pack-lib
 
       - name: Install example on React ${{ matrix.react }}
-        run: pnpm add react@^${{ matrix.react }} react-dom@^${{ matrix.react }} @types/react@^${{ matrix.react }} @types/react-dom@^${{ matrix.react }}
+        run: pnpm add react@^${{ matrix.react }} react-dom@^${{ matrix.react }} @types/react@${{ matrix.types }} @types/react-dom@^${{ matrix.react }}
 
       - name: Build example
         run: pnpm build

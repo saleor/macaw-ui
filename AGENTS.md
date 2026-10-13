@@ -137,7 +137,7 @@ import { Button, Input, Modal } from "@saleor/macaw-ui";
 
 ## Dependencies Notes
 
-- **React 16.8+** required (hooks support)
+- **React 18+** required (CI tests 18 and 19)
 - **pnpm** is the package manager (version 10)
 - **Node 20 or 22** required
 - Icons from `lucide-react` are optional peer dependency
