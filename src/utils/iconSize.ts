@@ -3,5 +3,3 @@ export const iconSizeMap = {
   medium: 20,
   large: 24,
 } as const;
-
-export type IconSize = keyof typeof iconSizeMap;

@@ -1,8 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { sprinkles, vars } from "~/theme";
 
-export const trigger = style({});
-
 export const commonCheckbox = sprinkles({
   padding: 0,
   width: 3,
