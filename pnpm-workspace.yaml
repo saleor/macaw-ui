@@ -2,5 +2,5 @@ onlyBuiltDependencies:
   - esbuild
 
 blockExoticSubdeps: true
-minimumReleaseAge: 1440 # 24h
+minimumReleaseAge: 30240 # 21d
 trustPolicy: no-downgrade
