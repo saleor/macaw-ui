@@ -65,3 +65,53 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+  example:
+    name: Example app on React ${{ matrix.react }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        react: [18, 19]
+
+    defaults:
+      run:
+        working-directory: example
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install library dependencies
+        working-directory: .
+        run: pnpm install
+
+      - name: Build and pack library
+        run: pnpm pack-lib
+
+      - name: Install example on React ${{ matrix.react }}
+        run: pnpm add react@^${{ matrix.react }} react-dom@^${{ matrix.react }} @types/react@^${{ matrix.react }} @types/react-dom@^${{ matrix.react }}
+
+      - name: Build example
+        run: pnpm build
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run Playwright
+        run: pnpm test
+        env:
+          EXPECTED_REACT: ${{ matrix.react }}
