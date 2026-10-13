@@ -1,0 +1,10 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  // Public API: package.json "exports" builds from this file
+  "entry": ["src/index.tsx"],
+  "project": ["src/**/*.{ts,tsx,mdx}", ".storybook/**/*.{ts,tsx}"],
+  // Standalone app with its own package.json, not part of this workspace
+  "ignore": ["example/**"],
+  // Run inside example/ by CI (working-directory), which knip doesn't follow
+  "ignoreBinaries": ["pack-lib", "playwright"],
+}

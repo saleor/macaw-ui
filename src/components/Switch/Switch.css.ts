@@ -1,4 +1,4 @@
-import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
+import { recipe } from "@vanilla-extract/recipes";
 import { sprinkles, vars } from "~/theme";
 
 const {
@@ -59,5 +59,3 @@ export const switchChild = recipe({
     },
   ],
 });
-
-export type SwitchVariants = RecipeVariants<typeof switchParent>;

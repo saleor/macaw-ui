@@ -1,8 +1,7 @@
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronDownIcon, LucideProps } from "lucide-react";
 import { sprinkles } from "~/theme";
 import { classNames } from "~/utils";
 
-import { SVGWrapperProps } from "~/components/Icons/SVGWrapper";
 import { toggleIconStyle } from "../../BaseSelect";
 import { RenderEndAdornmentType, useMultiselect } from "./useMultiselect";
 
@@ -29,7 +28,7 @@ export const Adornment = ({
       size={size}
       // TODO: We should instead wrap icon with button for correct HTML structure
       // this function returns handlers for <button> element not <svg>
-      {...(getToggleButtonProps({ disabled }) as SVGWrapperProps)}
+      {...(getToggleButtonProps({ disabled }) as LucideProps)}
     />
   );
 };
