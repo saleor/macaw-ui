@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 export const useOutsideClick = (onClickOutside?: () => void) => {
-  const boxRef = useRef<HTMLElement>();
+  const boxRef = useRef<HTMLElement | undefined>(undefined);
 
   useEffect(() => {
     if (!onClickOutside) return;

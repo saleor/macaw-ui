@@ -1,0 +1,25 @@
+{
+  "name": "macaw-ui-example",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {
+    "pack-lib": "pnpm --dir .. build && pnpm --dir .. pack --out example/macaw-ui.tgz",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@saleor/macaw-ui": "file:./macaw-ui.tgz",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.0.0"
+  }
+}

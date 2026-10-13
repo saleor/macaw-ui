@@ -1,0 +1,4 @@
+test-results
+playwright-report
+# Pins macaw-ui.tgz integrity, which changes on every library build
+pnpm-lock.yaml

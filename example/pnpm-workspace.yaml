@@ -1,0 +1,2 @@
+# Standalone root so the example installs the packed library like a real consumer would
+minimumReleaseAge: 1440 # 24h

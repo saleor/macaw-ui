@@ -32,3 +32,91 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+  react-19:
+    name: Check types and test on React 19
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # Dev setup stays on React 18 so emitted .d.ts files work for both majors
+      - name: Switch to React 19
+        run: pnpm add -D react@^19.0.0 react-dom@^19.0.0 @types/react@^19.0.0 @types/react-dom@^19.0.0
+
+      - name: Check types
+        run: pnpm check-types
+
+      - name: Test
+        run: pnpm test
+
+  example:
+    name: Example app on React ${{ matrix.react }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Lowest @types/react in the peer range; .d.ts files inline types from the build's @types/react
+          - react: 18
+            types: 18.3.22
+          - react: 19
+            types: ^19
+
+    defaults:
+      run:
+        working-directory: example
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install library dependencies
+        working-directory: .
+        run: pnpm install
+
+      - name: Build and pack library
+        run: pnpm pack-lib
+
+      - name: Install example on React ${{ matrix.react }}
+        run: pnpm add react@^${{ matrix.react }} react-dom@^${{ matrix.react }} @types/react@${{ matrix.types }} @types/react-dom@^${{ matrix.react }}
+
+      - name: Build example
+        run: pnpm build
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run Playwright
+        run: pnpm test
+        env:
+          EXPECTED_REACT: ${{ matrix.react }}
