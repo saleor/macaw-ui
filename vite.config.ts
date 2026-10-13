@@ -26,7 +26,8 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      // Subpaths too: bundling react/jsx-runtime pins React internals and breaks other React majors
+      external: [/^react(-dom)?(\/.*)?$/],
     },
     sourcemap: true,
   },
