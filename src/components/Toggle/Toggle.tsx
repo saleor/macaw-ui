@@ -1,3 +1,5 @@
+"use client";
+
 import { Root as RadixToggle, ToggleProps } from "@radix-ui/react-toggle";
 import { forwardRef } from "react";
 import { Box } from "../Box";

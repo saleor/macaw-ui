@@ -1,3 +1,5 @@
+"use client";
+
 import { UseComboboxStateChange, UseSelectStateChange } from "downshift";
 import { useEffect, useState } from "react";
 

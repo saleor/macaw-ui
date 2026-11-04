@@ -1,3 +1,5 @@
+"use client";
+
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { forwardRef } from "react";
 import { indicator } from "./Item.css";

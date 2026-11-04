@@ -1,0 +1,7 @@
+test-results
+playwright-report
+.next
+next-env.d.ts
+# Pins macaw-ui.tgz integrity, which changes on every library build
+pnpm-lock.yaml
+AGENTS.md

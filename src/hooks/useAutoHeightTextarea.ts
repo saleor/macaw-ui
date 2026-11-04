@@ -1,3 +1,5 @@
+"use client";
+
 import { useLayoutEffect } from "react";
 import { TextareaValue } from "../components/Textarea/TextareaWrapper";
 

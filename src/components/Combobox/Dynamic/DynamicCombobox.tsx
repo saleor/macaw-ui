@@ -1,3 +1,5 @@
+"use client";
+
 import { Root as Portal } from "@radix-ui/react-portal";
 import {
   ForwardedRef,
@@ -167,7 +169,11 @@ const DynamicComboboxInner = <T extends Option>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            // The Portal mounts the menu after downshift checks its ref, so skip that check
+            {...getMenuProps(
+              { ref: refs.floating },
+              { suppressRefError: true }
+            )}
           >
             {isOpen &&
               itemsToSelect?.map((item, index) => (

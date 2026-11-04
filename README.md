@@ -39,28 +39,31 @@ const App = () => (
 
 ### Usage with Next.js
 
-If you need to render styles on the server we recommend that you use `getCSSVariables` helper to get the CSS variables that can be injected in `_document.tsx`:
+`ThemeProvider` renders the theme's CSS variables, so server-rendered pages (App Router or `pages/`) are themed on first paint, before hydration. Pass the theme you know on the server as `defaultTheme`:
 
 ```tsx
-import { getCSSVariables } from "@saleor/macaw-ui";
-import Document, { Head, Html, Main, NextScript } from "next/document";
+// app/layout.tsx
+import { ThemeProvider } from "@saleor/macaw-ui";
+import "@saleor/macaw-ui/style";
 
-const css = getCSSVariables("defaultLight"); // or "defaultDark"
-
-export default class AppDocument extends Document {
-  render() {
-    return (
-      <Html style={css}>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeProvider defaultTheme="defaultLight">{children}</ThemeProvider>
+      </body>
+    </html>
+  );
 }
 ```
+
+Setting the variables on `<html>` with `getCSSVariables` is no longer needed. Existing setups keep working: after hydration, `ThemeProvider` overrides them with the current theme.
+
+Presentational components (`Box`, `Text`, `Button`, ...) render as Server Components. Interactive ones are Client Components. In a Server Component, use the flat exports of compound parts (`PopoverTrigger` instead of `Popover.Trigger`): dotted parts of client components are `undefined` there.
 
 ### Usage with form libraries
 

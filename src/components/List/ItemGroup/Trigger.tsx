@@ -1,3 +1,5 @@
+"use client";
+
 import { AccordionTrigger } from "@radix-ui/react-accordion";
 import { ReactNode } from "react";
 
@@ -6,7 +8,7 @@ import { Box, Button, PropsWithBox } from "~/components";
 import { DataAttributes } from "~/components/types";
 import { iconSizeMap } from "~/utils";
 
-import { List } from "..";
+import { Item } from "../Item";
 import { useItemGroupContext } from "./context";
 
 import { button, icon } from "./common.css";
@@ -23,8 +25,7 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
   const { triggerOpen } = useItemGroupContext();
 
   return (
-    // Importing List.Item instead of Item fixes vite HMR
-    <List.Item data-macaw-ui-component="ItemGroup.Trigger" {...rest}>
+    <Item data-macaw-ui-component="ItemGroup.Trigger" {...rest}>
       <Box width="100%" height="100%" onClick={triggerOpen}>
         {children}
       </Box>
@@ -41,7 +42,7 @@ export const Trigger = ({ children, size, ...rest }: ItemGroupTriggerProps) => {
           className={button}
         />
       </AccordionTrigger>
-    </List.Item>
+    </Item>
   );
 };
 

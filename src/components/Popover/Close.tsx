@@ -1,3 +1,5 @@
+"use client";
+
 import { Close as RadixPopoverClose } from "@radix-ui/react-popover";
 
 export const Close = ({ children }: { children: React.ReactNode }) => {

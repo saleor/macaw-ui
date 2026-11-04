@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import { Trigger as DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 

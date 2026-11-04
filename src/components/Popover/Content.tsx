@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Content as RadixPopoverContent,
   Portal as RadixPopoverPortal,

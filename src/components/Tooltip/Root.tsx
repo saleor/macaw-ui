@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Provider as RadixTooltipProvider,
   Root as RadixTooltipRoot,

@@ -52,7 +52,7 @@ pnpm change:add       # Add a changeset describing your changes
 - Users should NOT override CSS variables directly (breaks theme consistency)
 - `ThemeProvider` wraps app and provides theme context
 - Use `useTheme()` hook to access/change theme programmatically
-- For SSR (Next.js), use `getCSSVariables()` helper in `_document.tsx`
+- `ThemeProvider` renders the theme variables as a `<style>` (`:root{...}`), so server-rendered pages are themed before hydration; it also sets them on `<html>` after hydration
 
 ### Component Structure
 
@@ -71,6 +71,18 @@ ComponentName/
 - Components extend `Box` to inherit sprinkles styling props
 - Export from component index, then from `src/components/index.ts`
 - Icons use `lucide-react` (optional peer dependency)
+
+### React Server Components
+
+The build keeps one output file per source module, so each module is a Server or Client Component on its own.
+
+- Start a file with `"use client";` if it uses client-only React APIs (state, effects, refs, context), Radix, downshift or floating-ui, or attaches its own event handlers
+- Compound `index.ts` files (`Object.assign(Root, { Trigger, ... })`) need it too when `Root` is a client component: a server module can't assign properties onto a client reference
+- Give every dotted part of a compound component a flat export too (`Popover.Trigger` → `PopoverTrigger`): Server Components can only use those
+- Don't detect children by type (`child.type === NoOptions`): children passed from a Server Component arrive as lazy references
+- Leave presentational components (`Box`, `Text`, `Button`, ...) without it so they render as Server Components
+- `pnpm build` runs `scripts/check-dist.mjs`, which fails if a module reachable from a Server Component uses client-only APIs without the directive, or if the built modules import each other in a cycle
+- `example-next/` renders every component from a Server Component and tests it with Playwright
 
 ### Path Aliases
 

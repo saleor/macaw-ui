@@ -1,3 +1,5 @@
+"use client";
+
 import { Trigger as RadixPopoverTrigger } from "@radix-ui/react-popover";
 
 export interface PopoverTriggerProps {

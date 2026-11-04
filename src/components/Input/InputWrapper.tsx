@@ -1,3 +1,5 @@
+"use client";
+
 /*
   Do not expose this file, it's for internal purposes only.
 */

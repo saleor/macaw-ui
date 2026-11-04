@@ -1,14 +1,6 @@
-import { Children, ReactNode, isValidElement, ReactElement } from "react";
-import { NoOptions } from "./NoOptions";
+import { Children, ReactNode } from "react";
 
-export const hasNoOptions = (children: ReactNode): boolean => {
-  let hasNoOptions = false;
-
-  Children.forEach(children, (child) => {
-    if (isValidElement(child) && (child as ReactElement).type === NoOptions) {
-      hasNoOptions = true;
-    }
-  });
-
-  return hasNoOptions;
-};
+// Any child is the empty state. Comparing child.type with NoOptions breaks for children passed from a
+// Server Component: they arrive as lazy references, so their type is never NoOptions.
+export const hasNoOptions = (children: ReactNode): boolean =>
+  Children.toArray(children).length > 0;

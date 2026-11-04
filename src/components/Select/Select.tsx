@@ -1,3 +1,5 @@
+"use client";
+
 import { Root as Portal } from "@radix-ui/react-portal";
 import {
   ForwardedRef,
@@ -176,7 +178,11 @@ const SelectInner = <T extends Option, V extends Option | string>(
           <List
             as="ul"
             className={listStyle}
-            {...getMenuProps({ ref: refs.floating })}
+            // The Portal mounts the menu after downshift checks its ref, so skip that check
+            {...getMenuProps(
+              { ref: refs.floating },
+              { suppressRefError: true }
+            )}
           >
             {isOpen &&
               options?.map((item, index) => (

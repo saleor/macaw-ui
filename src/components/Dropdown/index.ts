@@ -1,3 +1,5 @@
+"use client";
+
 import { Content } from "./Content";
 import { Item } from "./Item";
 import { DropdownRoot } from "./Root";
@@ -12,3 +14,10 @@ export const Dropdown = Object.assign(DropdownRoot, {
   Content,
   Item,
 });
+
+// Flat aliases of the dotted parts: Server Components can't access properties of client components
+export {
+  Trigger as DropdownTrigger,
+  Content as DropdownContent,
+  Item as DropdownItem,
+};

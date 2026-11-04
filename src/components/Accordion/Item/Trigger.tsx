@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Header as AccordionHeader,
   Trigger as AccordionTrigger,

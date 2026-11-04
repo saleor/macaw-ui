@@ -1,3 +1,5 @@
+"use client";
+
 import { Arrow as RadixTooltipArrow } from "@radix-ui/react-tooltip";
 import { vars } from "~/theme";
 import { classNames } from "~/utils";

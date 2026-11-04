@@ -1,3 +1,5 @@
+"use client";
+
 import { TooltipRoot } from "./Root";
 import { Trigger } from "./Trigger";
 import { Arrow } from "./Arrow";
@@ -16,3 +18,11 @@ export const Tooltip = Object.assign(TooltipRoot, {
   Content,
   ContentHeading,
 });
+
+// Flat aliases of the dotted parts: Server Components can't access properties of client components
+export {
+  Trigger as TooltipTrigger,
+  Arrow as TooltipArrow,
+  Content as TooltipContent,
+  ContentHeading as TooltipContentHeading,
+};

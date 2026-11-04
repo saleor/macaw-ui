@@ -1,3 +1,5 @@
+"use client";
+
 import { FocusEvent, InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 import { classNames } from "~/utils";
