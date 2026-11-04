@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 
 export const useInfinityScroll = (onScrollEnd?: () => void) => {

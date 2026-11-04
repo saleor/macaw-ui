@@ -1,3 +1,5 @@
+"use client";
+
 import { Item as AccordionItem } from "@radix-ui/react-accordion";
 import { ReactNode } from "react";
 

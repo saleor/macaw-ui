@@ -1,3 +1,5 @@
+"use client";
+
 import { Content } from "./Content";
 import { ItemGroupRoot } from "./Root";
 import { Trigger } from "./Trigger";

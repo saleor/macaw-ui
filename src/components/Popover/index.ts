@@ -1,3 +1,5 @@
+"use client";
+
 import { Content } from "./Content";
 import { Anchor } from "./Anchor";
 import { Trigger } from "./Trigger";

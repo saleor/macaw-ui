@@ -1,3 +1,5 @@
+"use client";
+
 import { Root as RadixPopoverRoot } from "@radix-ui/react-popover";
 
 export type PopoverProps = {

@@ -1,3 +1,5 @@
+"use client";
+
 import { Root } from "./Root";
 import { Content, Item, Trigger, TriggerButton } from "./Item";
 

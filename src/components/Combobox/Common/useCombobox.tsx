@@ -1,3 +1,5 @@
+"use client";
+
 import {
   GetPropsCommonOptions,
   useCombobox as useDownshiftCombobox,

@@ -1,3 +1,5 @@
+"use client";
+
 import { RadioGroupRoot } from "./Group";
 import { RadioGroupItem as Item } from "./Item";
 import { RadioGroupIndicator as Indicator } from "./Indicator";

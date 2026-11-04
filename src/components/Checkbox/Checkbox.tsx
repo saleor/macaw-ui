@@ -1,3 +1,5 @@
+"use client";
+
 import { Indicator, Root as RadixCheckbox } from "@radix-ui/react-checkbox";
 import { ReactNode, forwardRef } from "react";
 import { classNames } from "~/utils";

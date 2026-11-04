@@ -1,3 +1,5 @@
+"use client";
+
 import { Anchor as RadixPopoverAnchor } from "@radix-ui/react-popover";
 
 export interface PopoverAnchorProps {

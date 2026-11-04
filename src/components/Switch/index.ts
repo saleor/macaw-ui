@@ -1,3 +1,5 @@
+"use client";
+
 import { SwitchRoot } from "./Switch";
 import { SwitchItem as Item } from "./Item";
 

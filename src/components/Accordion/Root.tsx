@@ -1,3 +1,5 @@
+"use client";
+
 import { Root as AccordionRoot } from "@radix-ui/react-accordion";
 import { forwardRef } from "react";
 import { Box, PropsWithBox } from "../Box";

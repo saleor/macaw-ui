@@ -1,3 +1,5 @@
+"use client";
+
 import { Content } from "./Content";
 import { Item } from "./Item";
 import { DropdownRoot } from "./Root";

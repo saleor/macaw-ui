@@ -1,3 +1,5 @@
+"use client";
+
 import { Close as DialogClose } from "@radix-ui/react-dialog";
 
 export type ModalCloseProps = {

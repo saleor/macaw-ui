@@ -1,3 +1,5 @@
+"use client";
+
 import * as Switch from "@radix-ui/react-radio-group";
 import { ReactNode } from "react";
 

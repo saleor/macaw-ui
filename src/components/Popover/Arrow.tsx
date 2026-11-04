@@ -1,3 +1,5 @@
+"use client";
+
 import { Arrow as RadixPopoverArrow } from "@radix-ui/react-popover";
 import { Sprinkles, sprinkles } from "~/theme";
 import { classNames } from "~/utils";

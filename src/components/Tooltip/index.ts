@@ -1,3 +1,5 @@
+"use client";
+
 import { TooltipRoot } from "./Root";
 import { Trigger } from "./Trigger";
 import { Arrow } from "./Arrow";

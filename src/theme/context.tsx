@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useLayoutEffect, useState } from "react";
 import { setElementVars } from "@vanilla-extract/dynamic";
 

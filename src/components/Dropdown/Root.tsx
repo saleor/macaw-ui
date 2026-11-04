@@ -1,3 +1,5 @@
+"use client";
+
 import { Root as DropdownMenuRoot } from "@radix-ui/react-dropdown-menu";
 import { ReactNode } from "react";
 
