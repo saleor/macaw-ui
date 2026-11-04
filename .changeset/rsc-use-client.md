@@ -13,6 +13,8 @@ The build now ships one file per module, and only interactive components are mar
 
 The package now declares `"sideEffects": ["*.css"]`, so bundlers drop the components you don't use. An app that renders only `Box` ships about 24 KB gzipped of macaw instead of about 90 KB, and a Next.js (Turbopack) page ships only the client components it renders, not the whole library.
 
+`ThemeProvider` now renders the theme's CSS variables, so server-rendered pages paint in the right theme (including `defaultTheme="defaultDark"`) before hydration instead of unstyled. Setting them yourself with `getCSSVariables` is no longer needed; existing setups keep working. It also no longer logs React 18's "useLayoutEffect does nothing on the server" warning.
+
 Also fixed the `downshift: The ref prop "ref" from getMenuProps was not applied correctly` dev warning logged by `Select`, `Combobox`, `DynamicCombobox`, `Multiselect` and `DynamicMultiselect`.
 
 The public entry points (`@saleor/macaw-ui`, `@saleor/macaw-ui/style`) are unchanged.

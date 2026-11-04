@@ -52,7 +52,7 @@ pnpm change:add       # Add a changeset describing your changes
 - Users should NOT override CSS variables directly (breaks theme consistency)
 - `ThemeProvider` wraps app and provides theme context
 - Use `useTheme()` hook to access/change theme programmatically
-- For SSR (Next.js), use `getCSSVariables()` helper in `_document.tsx`
+- `ThemeProvider` renders the theme variables as a `<style>` (`:root{...}`), so server-rendered pages are themed before hydration; it also sets them on `<html>` after hydration
 
 ### Component Structure
 

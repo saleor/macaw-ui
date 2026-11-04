@@ -39,34 +39,11 @@ const App = () => (
 
 ### Usage with Next.js
 
-If you need to render styles on the server we recommend that you use `getCSSVariables` helper to get the CSS variables that can be injected in `_document.tsx`:
-
-```tsx
-import { getCSSVariables } from "@saleor/macaw-ui";
-import Document, { Head, Html, Main, NextScript } from "next/document";
-
-const css = getCSSVariables("defaultLight"); // or "defaultDark"
-
-export default class AppDocument extends Document {
-  render() {
-    return (
-      <Html style={css}>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
-```
-
-With the App Router, set them on `<html>` in the root layout. Spread them into a plain object, because Server Components can only pass plain objects:
+`ThemeProvider` renders the theme's CSS variables, so server-rendered pages (App Router or `pages/`) are themed on first paint, before hydration. Pass the theme you know on the server as `defaultTheme`:
 
 ```tsx
 // app/layout.tsx
-import { getCSSVariables, ThemeProvider } from "@saleor/macaw-ui";
+import { ThemeProvider } from "@saleor/macaw-ui";
 import "@saleor/macaw-ui/style";
 
 export default function RootLayout({
@@ -75,16 +52,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" style={{ ...getCSSVariables("defaultLight") }}>
+    <html lang="en">
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider defaultTheme="defaultLight">{children}</ThemeProvider>
       </body>
     </html>
   );
 }
 ```
 
-Without them, the page renders unstyled until `ThemeProvider` hydrates and sets the variables.
+Setting the variables on `<html>` with `getCSSVariables` is no longer needed. Existing setups keep working: after hydration, `ThemeProvider` overrides them with the current theme.
 
 Presentational components (`Box`, `Text`, `Button`, ...) render as Server Components. Interactive ones are Client Components. In a Server Component, use the flat exports of compound parts (`PopoverTrigger` instead of `Popover.Trigger`): dotted parts of client components are `undefined` there.
 

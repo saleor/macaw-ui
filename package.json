@@ -13,7 +13,8 @@
     "dist/*"
   ],
   "sideEffects": [
-    "*.css"
+    "*.css",
+    "*.css.ts"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

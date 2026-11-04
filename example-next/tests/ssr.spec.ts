@@ -51,8 +51,11 @@ test.describe("without JavaScript", () => {
       ).toBeAttached();
     }
 
-    // Theme variables are in the server HTML, so the page doesn't flash unstyled before hydration
-    await expect(page.locator("html")).toHaveAttribute("style", /--mu-colors/);
+    // ThemeProvider renders the theme variables, so the server HTML is themed before hydration
+    await expect(page.locator("body")).not.toHaveCSS(
+      "background-color",
+      "rgba(0, 0, 0, 0)"
+    );
     // Global styles from style.css (fonts, reset) apply
     await expect(page.locator("html")).toHaveCSS("font-family", /Inter/);
 
