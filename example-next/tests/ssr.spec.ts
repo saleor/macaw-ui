@@ -109,3 +109,21 @@ test("presentational components are Server Components", ({}, testInfo) => {
   expect(clientModules).not.toContain("components/Box/Box.mjs");
   expect(clientModules).not.toContain("components/Text/Text.mjs");
 });
+
+test("Server Component pages don't ship unused components", ({}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== "production",
+    "Reads the production build"
+  );
+
+  // Without "sideEffects" in macaw's package.json, Turbopack (Next's default, used by `pnpm build`) ships every
+  // client component the package entry re-exports. Next's webpack build merges client code shared across routes
+  // into one chunk, so this doesn't hold there.
+  const html = readFileSync(".next/server/app/box.html", "utf8");
+  const scripts = [...html.matchAll(/src="\/_next\/([^"]+\.js)"/g)].map(
+    ([, file]) => readFileSync(`.next/${decodeURIComponent(file)}`, "utf8")
+  );
+
+  expect(scripts.length).toBeGreaterThan(0);
+  expect(scripts.some((code) => code.includes("downshift"))).toBe(false);
+});

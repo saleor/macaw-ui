@@ -11,6 +11,8 @@ The build now ships one file per module, and only interactive components are mar
 - Compound parts now also have flat exports: `PopoverTrigger` for `Popover.Trigger`, `ModalContent` for `Modal.Content`, and so on for every `X.Y`. Use them in Server Components: there, the dotted parts of client components are `undefined`, because React doesn't allow accessing properties of a client module's exports. The dotted API is unchanged.
 - `Select`, `Combobox`, `DynamicCombobox`, `Multiselect` and `DynamicMultiselect` now show their empty state for any children, not only `NoOptions`. Children passed from a Server Component arrive as lazy references, so checking for the `NoOptions` type never matched there.
 
+The package now declares `"sideEffects": ["*.css"]`, so bundlers drop the components you don't use. An app that renders only `Box` ships about 24 KB gzipped of macaw instead of about 90 KB, and a Next.js (Turbopack) page ships only the client components it renders, not the whole library.
+
 Also fixed the `downshift: The ref prop "ref" from getMenuProps was not applied correctly` dev warning logged by `Select`, `Combobox`, `DynamicCombobox`, `Multiselect` and `DynamicMultiselect`.
 
 The public entry points (`@saleor/macaw-ui`, `@saleor/macaw-ui/style`) are unchanged.
