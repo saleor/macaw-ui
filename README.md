@@ -62,6 +62,32 @@ export default class AppDocument extends Document {
 }
 ```
 
+With the App Router, set them on `<html>` in the root layout. Spread them into a plain object, because Server Components can only pass plain objects:
+
+```tsx
+// app/layout.tsx
+import { getCSSVariables, ThemeProvider } from "@saleor/macaw-ui";
+import "@saleor/macaw-ui/style";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" style={{ ...getCSSVariables("defaultLight") }}>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+Without them, the page renders unstyled until `ThemeProvider` hydrates and sets the variables.
+
+Presentational components (`Box`, `Text`, `Button`, ...) render as Server Components. Interactive ones are Client Components. In a Server Component, use the flat exports of compound parts (`PopoverTrigger` instead of `Popover.Trigger`): dotted parts of client components are `undefined` there.
+
 ### Usage with form libraries
 
 #### React Hook Form

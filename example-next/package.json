@@ -1,0 +1,26 @@
+{
+  "name": "macaw-ui-example-next",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {
+    "pack-lib": "pnpm --dir .. build && pnpm --dir .. pack --out example-next/macaw-ui.tgz",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start --port 3100",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@saleor/macaw-ui": "file:./macaw-ui.tgz",
+    "lucide-react": "^0.536.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.9.0"
+  }
+}

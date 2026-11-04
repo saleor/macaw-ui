@@ -86,7 +86,12 @@ module.exports = {
       },
     ],
   },
-  ignorePatterns: [".eslintrc.cjs", "vite.config.ts", "example"],
+  ignorePatterns: [
+    ".eslintrc.cjs",
+    "vite.config.ts",
+    "example",
+    "example-next",
+  ],
   overrides: [
     {
       files: ["*.stories.tsx"],

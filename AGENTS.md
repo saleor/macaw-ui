@@ -82,6 +82,7 @@ The build keeps one output file per source module, so each module is a Server or
 - Don't detect children by type (`child.type === NoOptions`): children passed from a Server Component arrive as lazy references
 - Leave presentational components (`Box`, `Text`, `Button`, ...) without it so they render as Server Components
 - `pnpm build` runs `scripts/check-dist.mjs`, which fails if a module reachable from a Server Component uses client-only APIs without the directive, or if the built modules import each other in a cycle
+- `example-next/` renders every component from a Server Component and tests it with Playwright
 
 ### Path Aliases
 
