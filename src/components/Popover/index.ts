@@ -20,3 +20,12 @@ export const Popover = Object.assign(PopoverRoot, {
   Arrow,
   Close,
 });
+
+// Flat aliases of the dotted parts: Server Components can't access properties of client components
+export {
+  Trigger as PopoverTrigger,
+  Content as PopoverContent,
+  Anchor as PopoverAnchor,
+  Arrow as PopoverArrow,
+  Close as PopoverClose,
+};
