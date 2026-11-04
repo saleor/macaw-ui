@@ -53,6 +53,8 @@ test.describe("without JavaScript", () => {
 
     // Theme variables are in the server HTML, so the page doesn't flash unstyled before hydration
     await expect(page.locator("html")).toHaveAttribute("style", /--mu-colors/);
+    // Global styles from style.css (fonts, reset) apply
+    await expect(page.locator("html")).toHaveCSS("font-family", /Inter/);
 
     await expect(page.getByText("Box content")).toBeVisible();
     await expect(page.getByText("Accordion content")).toBeVisible();

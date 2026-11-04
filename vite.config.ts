@@ -54,12 +54,25 @@ const useClient = (): Plugin => {
   };
 };
 
+// Own modules are side-effect free, except CSS: .css.ts files that only call globalStyle/globalFontFace export
+// nothing. Without this, barrel imports (`from "~/components"`) leave `import "./X.mjs"` for every re-exported
+// module, tying all components into import cycles. Set from a hook, not treeshake.moduleSideEffects: Vite applies
+// package.json "sideEffects" (written for consumers of dist) to src too, and that overrides the treeshake option.
+const srcSideEffects = (): Plugin => ({
+  name: "src-side-effects",
+  transform(_, id) {
+    if (id.startsWith(resolve(__dirname, "src")))
+      return { moduleSideEffects: /\.css\b/.test(id) };
+  },
+});
+
 export default defineConfig({
   plugins: [
     dts(),
     react(),
     vanillaExtractPlugin(),
     useClient(),
+    srcSideEffects(),
     ...(process.env.VISUALIZER ? [visualizer()] : []),
   ],
   resolve: {
@@ -82,12 +95,6 @@ export default defineConfig({
       external: [/^react(-dom)?(\/.*)?$/],
       // One file per module, so each can carry its own "use client"
       output: { preserveModules: true, preserveModulesRoot: "src" },
-      treeshake: {
-        // Barrel imports (`from "~/components"`) otherwise leave `import "./X.mjs"` for every re-exported module,
-        // tying all components into import cycles. Only CSS files have side effects in src.
-        moduleSideEffects: (id) =>
-          !id.startsWith(resolve(__dirname, "src")) || /\.css\b/.test(id),
-      },
     },
     sourcemap: true,
   },

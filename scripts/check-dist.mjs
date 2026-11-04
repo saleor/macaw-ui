@@ -63,6 +63,15 @@ const visit = (file, path) => {
 
 entries.map(normalize).forEach((entry) => visit(entry, []));
 
+// 3. Global styles made it into the stylesheet. Files that only call globalStyle/globalFontFace export nothing,
+// so tree-shaking drops them (and their CSS) if they're treated as side-effect free.
+const css = readFileSync(pkg.exports["./style"].default, "utf8");
+
+if (!css.includes("@font-face"))
+  errors.push("style.css has no @font-face rules (fonts.css.ts was dropped)");
+if (!/(^|[},])html[{,]/.test(css))
+  errors.push("style.css has no html rule (global.css.ts was dropped)");
+
 if (errors.length > 0) {
   console.error(errors.join("\n"));
   process.exit(1);
